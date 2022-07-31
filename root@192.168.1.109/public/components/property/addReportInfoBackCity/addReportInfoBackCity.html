@@ -1,0 +1,75 @@
+<div id="addReportInfoBackCityModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span><vc:i18n name="上报" namespace="addReportInfoBackCity"></vc:i18n></span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="姓名" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.name" type="text" :placeholder="vc.i18n('必填，请填写姓名','addReportInfoBackCity')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="身份证" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.idCard" type="text" :placeholder="vc.i18n('必填，请填写身份证','addReportInfoBackCity')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="手机号" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写手机号','addReportInfoBackCity')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="来源地" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addReportInfoBackCityInfo.source">
+                    <option selected disabled value="">{{vc.i18n('必填','addReportInfoBackCity')}}，请选择来源地</option>
+                    <option value="1001">{{vc.i18n('国内','addReportInfoBackCity')}}</option>
+                    <option value="2002">{{vc.i18n('国外','addReportInfoBackCity')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="城市名称" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.sourceCityName" type="text" :placeholder="vc.i18n('必填，请填写城市名称','addReportInfoBackCity')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="返回时间" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.backTime" type="text" :placeholder="vc.i18n('必填，请填写返回时间','addReportInfoBackCity')"
+                    class="form-control addBackTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addReportInfoBackCity"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReportInfoBackCityInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','addReportInfoBackCity')"
+                    class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveReportInfoBackCityInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="addReportInfoBackCity"></vc:i18n></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

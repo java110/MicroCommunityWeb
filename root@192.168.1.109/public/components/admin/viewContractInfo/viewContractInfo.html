@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="合同信息信息" namespace="viewContractInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewContractInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectContractInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择合同信息" namespace="viewContractInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewContractInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddContractInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加合同信息" namespace="viewContractInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="合同名称" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.contractName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="合同编号" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.contractCode}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="合同类型" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.contractType}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="甲方" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.partyA}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="乙方" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.partyB}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="甲方联系人" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.aContacts}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="乙方联系人" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.bContacts}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="甲方联系电话" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.aLink}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="乙方联系电话" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.bLink}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="经办人" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.operator}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="联系电话" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.operatorLink}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="合同金额" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.amount}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.startTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.endTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="签订时间" namespace="viewContractInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewContractInfo.signingTime}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addContract" callBackListener="viewContractInfo" callBackFunction="chooseContract">
+    </vc:create>
+
+
+    <vc:create path="admin/chooseContract" emitChooseContract="viewContractInfo" emitLoadData="viewContractInfo">
+    </vc:create>
+</div>

@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="供应商分类信息"  namespace="viewChainSupplierCatalogInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewChainSupplierCatalogInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectChainSupplierCatalogInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择供应商分类"  namespace="viewChainSupplierCatalogInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewChainSupplierCatalogInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddChainSupplierCatalogInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加供应商分类"  namespace="viewChainSupplierCatalogInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='分类名称' namespace='viewchainSupplierCatalogInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierCatalogInfo.catalogName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='供应商ID' namespace='viewchainSupplierCatalogInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierCatalogInfo.csId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='对端接口参数' namespace='viewchainSupplierCatalogInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierCatalogInfo.intfUrlParam}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='排序' namespace='viewchainSupplierCatalogInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierCatalogInfo.seq}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addChainSupplierCatalog"
+               callBackListener="viewChainSupplierCatalogInfo"
+               callBackFunction="chooseChainSupplierCatalog"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseChainSupplierCatalog"
+               emitChooseChainSupplierCatalog="viewChainSupplierCatalogInfo"
+               emitLoadData="viewChainSupplierCatalogInfo"
+    ></vc:create>
+</div>

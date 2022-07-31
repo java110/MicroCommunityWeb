@@ -1,0 +1,70 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="抄表类型" namespace="meterTypeManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMeterTypeModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="抄表类型" namespace="meterTypeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="名称" namespace="meterTypeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="说明" namespace="meterTypeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="创建时间" namespace="meterTypeManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="meterTypeManage"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="meterType in meterTypeManageInfo.meterTypes">
+                                <td class="text-center">{{meterType.typeId}}</td>
+                                <td class="text-center">{{meterType.typeName}}</td>
+                                <td class="text-center">{{meterType.remark}}</td>
+                                <td class="text-center">{{meterType.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditMeterTypeModel(meterType)"><span><vc:i18n name="修改" namespace="meterTypeManage"></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMeterTypeModel(meterType)"><span><vc:i18n name="删除" namespace="meterTypeManage"></vc:i18n></span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div> <span><vc:i18n name="如果一个房屋有多个电表水表" namespace="meterTypeManage"></vc:i18n></span> 可以 这里新建多个 比如电表1 电表2</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="property/addMeterType" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editMeterType"></vc:create>
+    <vc:create path="property/deleteMeterType"></vc:create>
+
+</div>

@@ -1,0 +1,197 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                            {{allocationUserStorehouseManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品资源ID','allocationUserStorehouseManage')" v-model="allocationUserStorehouseManageInfo.conditions.resId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品名称','allocationUserStorehouseManage')" v-model="allocationUserStorehouseManageInfo.conditions.resName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入接受人ID','allocationUserStorehouseManage')" v-model="allocationUserStorehouseManageInfo.conditions.acceptUserId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAllocationUserStorehouseMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAllocationUserStorehouseMethod()">
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="allocationUserStorehouseManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                    <option selected value="">{{vc.i18n('请选择物品类型','allocationUserStorehouseManage')}}</option>
+                                    <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreTypes"
+                                            :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">{{vc.i18n('请选择二级分类','allocationUserStorehouseManage')}}</option>
+                                    <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreSonTypes" :key="index"
+                                        v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="allocationUserStorehouseManageInfo.conditions.rssId">
+                                    <option selected value="">{{vc.i18n('请选择物品规格','allocationUserStorehouseManage')}}</option>
+                                    <option v-for="(item,index) in allocationUserStorehouseManageInfo.resourceStoreSpecifications"
+                                            :key="index" v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="allocationUserStorehouseManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入接受人名称','allocationUserStorehouseManage')" v-model="allocationUserStorehouseManageInfo.conditions.acceptUserName" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="转赠记录信息" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠记录编号" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品资源ID" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品类型" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品名称" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品规格" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="是否是固定物品" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠人ID" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠人" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠对象ID" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠对象" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="原有库存" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="转赠数量" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="创建时间" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="备注" namespace="allocationUserStorehouseManage"></vc:i18n></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="allocationUserStorehouse in allocationUserStorehouseManageInfo.allocationUserStorehouses">
+                                <td class="text-center">{{allocationUserStorehouse.ausId}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.resId}}</td>
+                                <td class="text-center">
+                                    {{allocationUserStorehouse.parentRstName}} > {{allocationUserStorehouse.rstName}}
+                                </td>
+                                <td class="text-center">{{allocationUserStorehouse.resName}}</td>
+                                <td class="text-center">
+                                    {{allocationUserStorehouse.specName ? allocationUserStorehouse.specName : '-'}}
+                                </td>
+                                <td class="text-center">{{allocationUserStorehouse.isFixedName}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.startUserId}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.startUserName}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.acceptUserId}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.acceptUserName}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.stock}}{{allocationUserStorehouse.unitCodeName}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.giveQuantity}}{{allocationUserStorehouse.miniUnitCodeName}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.createTime}}</td>
+                                <td class="text-center">{{allocationUserStorehouse.remark}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="14">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <span class="margin-left"><span class="col-md-1"><b><span><vc:i18n name="小计" namespace="allocationUserStorehouseManage"></vc:i18n></span></b></span>
+                            <span class="col-md-1 margin-left"><span><vc:i18n name="转赠总数量" namespace="allocationUserStorehouseManage"></vc:i18n></span>：{{allocationUserStorehouseManageInfo.subTotalQuantity}}</span>
+                            </span>
+                            <br/>
+                            <span class="margin-left"><span class="col-md-1"><b><span><vc:i18n name="大计" namespace="allocationUserStorehouseManage"></vc:i18n></span></b></span>
+                            <span class="col-md-1 margin-left"><span><vc:i18n name="转赠总数量" namespace="allocationUserStorehouseManage"></vc:i18n></span>：{{allocationUserStorehouseManageInfo.highTotalQuantity}}</span>
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件" namespace="staffAssessmentManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="staffAssessmentManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','staffAssessmentManage')}}</option>
+                                <option value="1201">{{vc.i18n('待考核','staffAssessmentManage')}}</option>
+                                <option value="1202">{{vc.i18n('考核完成','staffAssessmentManage')}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入问卷名称','staffAssessmentManage')" v-model="staffAssessmentManageInfo.conditions.qaName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入问卷ID','staffAssessmentManage')" v-model="staffAssessmentManageInfo.conditions.qaId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryQuestionAnswerMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="staffAssessmentManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="员工考核" namespace="staffAssessmentManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="员工名称" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="问卷名称" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="开始时间" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="结束时间" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="自评得分" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="考核得分" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="staffAssessmentManage"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="questionAnswer in staffAssessmentManageInfo.questionAnswers">
+                                <td class="text-center">{{questionAnswer.personName}}</td>
+                                <td class="text-center">{{questionAnswer.qaName}}</td>
+                                <td class="text-center">{{questionAnswer.startTime}}</td>
+                                <td class="text-center">{{questionAnswer.endTime}}</td>
+                                <td class="text-center">{{_getStateName(questionAnswer.state)}}</td>
+                                <td class="text-center">{{questionAnswer.score}}</td>
+                                <td class="text-center">{{questionAnswer.evaluationScore}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-if="questionAnswer.state == '1202'"><span><vc:i18n name="已考核" namespace="staffAssessmentManage"></vc:i18n></span></button>
+                                        <button class="btn-white btn btn-xs" v-else v-on:click="_toQuestionAnswerTitle(questionAnswer)"><span><vc:i18n name="考核" namespace="staffAssessmentManage"></vc:i18n></span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

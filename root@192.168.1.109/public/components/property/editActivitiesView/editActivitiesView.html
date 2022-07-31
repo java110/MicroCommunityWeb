@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="信息修改" namespace="editActivitiesView"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="标题" namespace="editActivitiesView"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="editActivitiesViewInfo.title" type="text" :placeholder="vc.i18n('必填，请填写活动标题','editActivitiesView')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="信息类型" namespace="editActivitiesView"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="editActivitiesViewInfo.typeCd">
+                                    <option selected disabled value="">{{vc.i18n('必填','editActivitiesView')}}，请选择信息类型</option>
+                                    <option v-for="(item,index) in editActivitiesViewInfo.typeCds" :key="index"
+                                            v-bind:value="item.typeCd">{{item.typeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="头部照片" namespace="editActivitiesView"></vc:i18n></span>(800 * 595)</label>
+                            <div class="col-sm-10">
+                                <vc:create path="frame/uploadImage" callBackListener="editActivitiesView"
+                                           callBackFunction="notifyUploadImage" imageCount="1"
+                                           namespace="editActivitiesView">
+                                </vc:create>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="editActivitiesView"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="editActivitiesViewInfo.startTime" readonly type="text"
+                                       :placeholder="vc.i18n('必填，请填写开始时间','editActivitiesView')" class="form-control editActivitiesStartTime">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="editActivitiesView"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="editActivitiesViewInfo.endTime" readonly type="text"
+                                       :placeholder="vc.i18n('必填，请填写结束时间','editActivitiesView')" class="form-control editActivitiesEndTime">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="信息内容" namespace="editActivitiesView"></vc:i18n></span></label>
+                            <div class="col-sm-10 ">
+                                <div class="ibox-content no-padding">
+                                    <div class="eidtSummernote"></div>
+                                </div>
+                                <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','editActivitiesView')" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="editActivities()">
+                                <i class="fa fa-check"></i>&nbsp;保存
+                            </button>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    v-on:click="closeEditActivitiesInfo()">
+                                <i class="fa fa-close"></i>&nbsp;取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

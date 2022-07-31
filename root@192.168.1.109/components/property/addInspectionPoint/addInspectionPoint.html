@@ -1,0 +1,78 @@
+<div id="addInspectionPointModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addInspectionPoint"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="巡检点名称" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addInspectionPointInfo.inspectionName" type="text" :placeholder="vc.i18n('必填，请填写巡检点名称','addInspectionPoint')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="巡检类型" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addInspectionPointInfo.pointObjType" @change="_pointObjTypeChange()">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择巡检类型','addInspectionPoint')}}</option>
+                                        <option v-for="(item,index) in addInspectionPointInfo.pointObjTypes" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addInspectionPointInfo.pointObjType == '2002'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="位置" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addInspectionPointInfo.pointObjName" type="text" :placeholder="vc.i18n('必填，请填写巡检点名称','addInspectionPoint')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addInspectionPointInfo.pointObjType == '1001'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="巡检设备" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/machineSelect2" parentModal="addInspectionPointModel" callBackListener="addInspectionPointInfo" callBackFunction="notify" namespace="addInspectionPoint">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="巡检项目" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addInspectionPointInfo.itemId">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择巡检项目','addInspectionPoint')}}</option>
+                                        <option v-for="(item,index) in addInspectionPointInfo.items" :key="index"
+                                                :value="item.itemId">{{item.itemName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">nfc编码</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addInspectionPointInfo.nfcCode" type="text" :placeholder="vc.i18n('选填，请填写nfc编码','addInspectionPoint')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addInspectionPoint"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addInspectionPointInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','addInspectionPoint')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveInspectionPointInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div id="addJobModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加任务" namespace="addJob"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="任务名称" namespace="addJob"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addJobInfo.taskName" type="text" :placeholder="vc.i18n('必填，请填写任务名称','addJob')"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择模板" namespace="addJob"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control form-control-sm" v-model="addJobInfo.templateId"
+                                        @change="chooseTemplate()" :placeholder="vc.i18n('必填，请选择模板','addJob')">
+                                        <option v-for="item in addJobInfo.templates" :label="item.templateName"
+                                            :value="item.templateId">{{item.templateName}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="定时时间" namespace="addJob"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addJobInfo.taskCron" type="text" :placeholder="vc.i18n('选填，请填写定时时间','addJob')"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-for="item in addJobInfo.templateSpecs">
+                                <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                <div class="col-sm-10">
+                                    <input v-model="item.value" type="text" :placeholder="item.specDesc"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveJobInfo()"><i
+                                        class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal"><span><vc:i18n name="取消" namespace="addJob"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div id="chooseCommunitySettingModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="chooseCommunitySettingModelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseCommunitySettingModelLabel"><span><vc:i18n name="选择小区设置" namespace="chooseCommunitySetting"></vc:i18n></span></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('输入小区设置名称','chooseCommunitySetting')" type="text"
+                                               v-model="chooseCommunitySettingInfo._currentCommunitySettingName"
+                                               class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="queryCommunitySettings()"><span><vc:i18n name="查询" namespace="chooseCommunitySetting"></vc:i18n></span></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center"><span><vc:i18n name="小区设置" namespace="chooseCommunitySetting"></vc:i18n></span>ID</th>
+                                        <th class="text-center"><span><vc:i18n name="配置类型" namespace="chooseCommunitySetting"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="配置名称" namespace="chooseCommunitySetting"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="配置" namespace="chooseCommunitySetting"></vc:i18n></span>KEY</th>
+                                        <th class="text-center"><span><vc:i18n name="配置取值" namespace="chooseCommunitySetting"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="备注" namespace="chooseCommunitySetting"></vc:i18n></span></th>
+                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseCommunitySetting"></vc:i18n></span></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="communitySetting in chooseCommunitySettingInfo.communitySettings">
+                                        <td class="text-center">{{communitySetting.csId}}</td>
+                                        <td class="text-center">{{communitySetting.settingType}}</td>
+                                        <td class="text-center">{{communitySetting.settingName}}</td>
+                                        <td class="text-center">{{communitySetting.settingKey}}</td>
+                                        <td class="text-center">{{communitySetting.settingValue}}</td>
+                                        <td class="text-center">{{communitySetting.remark}}</td>
+
+                                        <td>
+                                            <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseCommunitySetting(communitySetting)"><span><vc:i18n name="选择" namespace="chooseCommunitySetting"></vc:i18n></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

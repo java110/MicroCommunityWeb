@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="员工门禁授权信息" namespace="viewMachineAuthInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewMachineAuthInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMachineAuthInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择员工门禁授权" namespace="viewMachineAuthInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewMachineAuthInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMachineAuthInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加员工门禁授权" namespace="viewMachineAuthInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="设备" namespace="viewMachineAuthInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMachineAuthInfo.machineId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="员工" namespace="viewMachineAuthInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMachineAuthInfo.personId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="开始时间" namespace="viewMachineAuthInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMachineAuthInfo.startTime}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="结束时间" namespace="viewMachineAuthInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMachineAuthInfo.endTime}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addMachineAuth"
+               callBackListener="viewMachineAuthInfo"
+               callBackFunction="chooseMachineAuth"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseMachineAuth"
+               emitChooseMachineAuth="viewMachineAuthInfo"
+               emitLoadData="viewMachineAuthInfo"
+    ></vc:create>
+</div>

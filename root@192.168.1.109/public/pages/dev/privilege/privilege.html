@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="权限组" namespace="privilege"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="openPrivilegeGroupModel()">
+                        <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="privilege"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <thead>
+                        <tr>
+                            <th><span><vc:i18n name="名称" namespace="privilege"></vc:i18n></span></th>
+                            <th data-hide="phone" class="text-center"><span><vc:i18n name="编码" namespace="privilege"></vc:i18n></span></th>
+                            <th data-hide="phone" class="text-center"><span><vc:i18n name="创建时间" namespace="privilege"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="privilege"></vc:i18n></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="pg in privilegeInfo.privilegeGroups">
+                            <td v-on:click="notifyQueryPrivilege(pg)" class="text-center">
+                                <span style="cursor:pointer"> {{pg.name}}</span>
+                            </td>
+                            <td v-on:click="notifyQueryPrivilege(pg)" class="text-center">
+                                <span style="cursor:pointer"> {{pg.pgId}}</span>
+                            </td>
+                            <td class="text-center">
+                                {{vc.dateFormat(pg.createTime)}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="pg.storeId != '9999'">
+                                    <button class="btn-white btn btn-xs " v-on:click="openEditPrivilegeGroupModel(pg)"><span><vc:i18n name="修改" namespace="privilege"></vc:i18n></span>
+                                </button>
+                                </div>
+                                <div class="btn-group" v-if="pg.storeId != '9999'">
+                                    <button class="btn-white btn btn-xs " v-on:click="openDeletePrivilegeGroupModel(pg)"><span><vc:i18n name="删除" namespace="privilege"></vc:i18n></span>
+                                </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!-- 分页 -->
+                <vc:create path="frame/pagination"></vc:create>
+            </div>
+        </div>
+    </div>
+    <!-- <vc:create path="dev/privilegeGroup"></vc:create> -->
+    <div class="col-lg-4 animated fadeInRight">
+        <div class="mail-box-header">
+            <h2>
+                {{privilegeInfo._currentPgName}}-权限
+            </h2>
+        </div>
+        <div class="mail-box">
+            <div id="jstree_privilege">
+            </div>
+        </div>
+    </div>
+    <!-- <vc:create path="dev/addPrivilege"></vc:create> -->
+    <!-- <vc:create path="dev/deletePrivilege"></vc:create> -->
+    <vc:create path="dev/addPrivilegeGroup"></vc:create>
+    <vc:create path="dev/editPrivilegeGroup"></vc:create>
+    <vc:create path="dev/deletePrivilegeGroup"></vc:create>
+</div>

@@ -1,0 +1,95 @@
+<div id="editApplyRoomDiscountModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="验房" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editApplyRoomDiscountInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editApplyRoomDiscount')"
+                                           class="form-control editStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editApplyRoomDiscountInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editApplyRoomDiscount')"
+                                           class="form-control editEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="验房状态" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editApplyRoomDiscountInfo.state">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editApplyRoomDiscount')}}，请选择状态
+                                        </option>
+                                        <option value="2">{{vc.i18n('验房通过','editApplyRoomDiscount')}}</option>
+                                        <option value="3">{{vc.i18n('验房不通过','editApplyRoomDiscount')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="申请说明" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editApplyRoomDiscountInfo.createRemark" readonly="readonly"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="验房说明" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editApplyRoomDiscountInfo.checkRemark"
+                                              :placeholder="vc.i18n('必填，请填写验房说明','editApplyRoomDiscount')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="图片资料" namespace="editApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="editApplyRoomDiscount"
+                                               callBackFunction="notifyUploadImage" namespace="editApplyRoomDiscount"
+                                               imageCount="4">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editApplyRoomDiscount()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

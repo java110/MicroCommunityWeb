@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="小区设置信息" namespace="viewCommunitySettingInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewCommunitySettingInfo.index != 2" class="btn btn-primary btn-sm"
+                            style="margin-right:10px;" v-on:click="_openSelectCommunitySettingInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择小区设置" namespace="viewCommunitySettingInfo"></vc:i18n></span>
+                    </button>
+
+                    <button type="button" v-if="viewCommunitySettingInfo.index != 2" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddCommunitySettingInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加小区设置" namespace="viewCommunitySettingInfo"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="配置类型" namespace="viewCommunitySettingInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySettingInfo.settingType}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="配置名称" namespace="viewCommunitySettingInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySettingInfo.settingName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="配置" namespace="viewCommunitySettingInfo"></vc:i18n></span>KEY：</label>
+                            <label class="">{{viewCommunitySettingInfo.settingKey}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="配置取值" namespace="viewCommunitySettingInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySettingInfo.settingValue}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="备注" namespace="viewCommunitySettingInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySettingInfo.remark}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addCommunitySetting"
+               callBackListener="viewCommunitySettingInfo"
+               callBackFunction="chooseCommunitySetting"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseCommunitySetting"
+               emitChooseCommunitySetting="viewCommunitySettingInfo"
+               emitLoadData="viewCommunitySettingInfo"
+    ></vc:create>
+</div>

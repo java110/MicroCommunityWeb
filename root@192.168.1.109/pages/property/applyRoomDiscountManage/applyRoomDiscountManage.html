@@ -1,0 +1,193 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋名称(楼栋-单元-房屋)','applyRoomDiscountManage')"
+                                       v-model="applyRoomDiscountManageInfo.conditions.roomName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="applyRoomDiscountManageInfo.conditions.applyType">
+                                <option selected value="">{{vc.i18n('请选择申请类型','applyRoomDiscountManage')}}</option>
+                                <option :value="item.applyType" v-for="item in applyRoomDiscountManageInfo.applyTypes">
+                                    {{item.typeName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="applyRoomDiscountManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','applyRoomDiscountManage')}}</option>
+                                <option v-for="(item,index) in applyRoomDiscountManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryApplyRoomDiscountMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetApplyRoomDiscountMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="优惠申请" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddApplyRoomDiscountModal()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="电话申请" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <!--<th class="text-center"><span><vc:i18n name="申请" namespace="applyRoomDiscountManage"></vc:i18n></span>ID</th>-->
+                            <th class="text-center">
+                                <span><vc:i18n name="房屋(楼栋-单元-房屋)" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            <th class="text-center">
+                                <span><vc:i18n name="折扣ID" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="折扣名称" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="申请类型" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="申请人" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="申请电话" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="开始时间" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="结束时间" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="使用状态" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="返还类型" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="返还金额" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="applyRoomDiscount in applyRoomDiscountManageInfo.applyRoomDiscounts">
+                            <!--<td class="text-center">{{applyRoomDiscount.ardId}}</td>-->
+                            <td class="text-center">{{applyRoomDiscount.roomName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.discountId}}</td>
+                            <td class="text-center">{{applyRoomDiscount.discountName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.applyTypeName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.createUserName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.createUserTel}}</td>
+                            <td class="text-center">{{applyRoomDiscount.startTime}}</td>
+                            <td class="text-center">{{applyRoomDiscount.endTime}}</td>
+                            <td class="text-center">{{applyRoomDiscount.stateName}}</td>
+                            <td class="text-center">{{applyRoomDiscount.createTime}}</td>
+                            <td class="text-center">{{applyRoomDiscount.inUse == '0' ? '未使用' : '已使用'}}</td>
+                            <td class="text-center" v-if="applyRoomDiscount.discountId">
+                                {{applyRoomDiscount.returnWay == '1002' ? '账户余额' : '折扣'}}
+                            </td>
+                            <td class="text-center" v-if="!applyRoomDiscount.discountId">-</td>
+                            <td class="text-center">
+                                {{applyRoomDiscount.returnAmount ? applyRoomDiscount.returnAmount : '-'}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group"
+                                     v-if="applyRoomDiscount.state == '1' && vc.hasPrivilege('502021010723590006')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditApplyRoomDiscountModel(applyRoomDiscount)">
+                                        <span><vc:i18n name="验房" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openApplyRoomDiscountRecord(applyRoomDiscount)">
+                                        <span><vc:i18n name="跟踪记录" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="applyRoomDiscount.state == '2' && vc.hasPrivilege('502021010761730007')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openReviewApplyRoomDiscountModel(applyRoomDiscount)">
+                                        <span><vc:i18n name="审核" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditApplyRoomDiscountRecordModel(applyRoomDiscount)">
+                                        <span><vc:i18n name="修改" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteApplyRoomDiscountModel(applyRoomDiscount)">
+                                        <span><vc:i18n name="删除" namespace="applyRoomDiscountManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+    <vc:create path="property/addApplyRoomDiscount" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editApplyRoomDiscountRecord"></vc:create>
+    <vc:create path="property/editApplyRoomDiscount"></vc:create>
+    <vc:create path="property/reviewApplyRoomDiscount"></vc:create>
+    <vc:create path="property/deleteApplyRoomDiscount"></vc:create>
+</div>

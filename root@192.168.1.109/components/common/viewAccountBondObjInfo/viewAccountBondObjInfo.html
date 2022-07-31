@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="保证金对象信息" namespace="viewAccountBondObjInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewAccountBondObjInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectAccountBondObjInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择保证金对象" namespace="viewAccountBondObjInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewAccountBondObjInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddAccountBondObjInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加保证金对象" namespace="viewAccountBondObjInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="保证金" namespace="viewAccountBondObjInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondObjInfo.bondId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="保证金对象" namespace="viewAccountBondObjInfo"></vc:i18n></span>ID：</label>
+                            <label class="">{{viewAccountBondObjInfo.objId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="应收金额" namespace="viewAccountBondObjInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondObjInfo.receivableAmount}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="实收金额" namespace="viewAccountBondObjInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondObjInfo.receivedAmount}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="acct/addAccountBondObj" callBackListener="viewAccountBondObjInfo"
+        callBackFunction="chooseAccountBondObj"></vc:create>
+
+
+    <vc:create path="acct/chooseAccountBondObj" emitChooseAccountBondObj="viewAccountBondObjInfo"
+        emitLoadData="viewAccountBondObjInfo"></vc:create>
+</div>

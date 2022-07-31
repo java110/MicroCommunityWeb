@@ -1,0 +1,344 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    display: -webkit-flex;
+    /* Safari */
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    /*字体渲染技术(字体抗锯齿技术)*/
+    font: 14px/1.5 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #999;
+    background: url(../img/logbg.jpg) no-repeat center bottom #141F32;
+    background-size: cover;
+}
+
+
+/* 版权 */
+
+.copyright {
+    margin-top: 80px;
+    flex: 1;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    bottom: 0;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+button {
+    cursor: pointer;
+}
+
+select,
+textarea,
+button,
+section,
+input {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    outline: none;
+    border: 0;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.pr {
+    position: relative;
+}
+
+
+/* 清除浮动  */
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+/*引用字体图标*/
+
+@font-face {
+    font-family: "iconfont";
+    /* Project id  */
+    src: url('../fonts/iconfont.ttf?t=1634541220479') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 26px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mimasuo:before {
+    content: "\e657";
+}
+
+.icon-yonghu:before {
+    content: "\e603";
+}
+
+.icon-shouji:before {
+    content: "\e8b9";
+}
+
+.logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+
+/* 顶部标题 */
+
+.headerfont {
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0 50px 0;
+}
+
+
+/* 登录窗口 */
+
+.login,
+.enroll {
+    margin: 0 auto;
+    width: 940px;
+    height: 430px;
+    background-color: #F0F6FF;
+    box-shadow: 2px 0 20px 5px rgba(0, 0, 0, .1);
+    border-radius: 8px;
+}
+
+.app {
+    width: 530px;
+    height: 295px;
+    padding: 120px 0 0 0;
+    text-align: center;
+}
+
+
+/* 登录输入 */
+
+.log {
+    float: right;
+    width: 384px;
+    padding: 0 60px;
+}
+
+.log h3 {
+    text-align: center;
+    font-size: 30px;
+    color: #1a4dca;
+    font-weight: 700;
+    height: 120px;
+    line-height: 120px;
+}
+
+.log div {
+    position: relative;
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 14px;
+    text-align: center;
+    background-color: #DDDDDD;
+    text-align: left;
+    padding: 1px;
+}
+
+.log div img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+}
+
+.log div span {
+    position: absolute;
+    top: 5px;
+    left: 16px;
+}
+
+.log div:hover {
+    color: #fff;
+    background-color: #3158e5;
+}
+
+.log input {
+    width: 372px;
+    padding: 0 5px;
+    text-align: left;
+    display: inline-block;
+    height: 48px;
+    background: #fff;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+}
+
+.log input:hover {
+    color: #377FB2;
+}
+
+.log button,
+.logins a,
+.enroll button {
+    width: 100%;
+    height: 50px;
+    background: #3158e5;
+    color: #fff;
+    font-size: 22px;
+}
+
+.log button:hover,
+.logins a:hover,
+.enroll button:hover {
+    background: #4f80f5;
+}
+
+.log input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.p-button {
+    padding: 0 !important;
+    margin-top: 38px;
+}
+
+.java110_loading {
+    width: 100%;
+    height: 100%;
+    z-index: 2300;
+    position: fixed;
+}
+
+.java110_loading>div {
+    margin: 70px auto;
+}
+
+.sk-spinner-wave.sk-spinner {
+    margin: 0 auto;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.sk-spinner-wave div {
+    background-color: #1ab394;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+    animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+}
+
+.sk-spinner-wave .sk-rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.sk-spinner-wave .sk-rect3 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+.sk-spinner-wave .sk-rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.sk-spinner-wave .sk-rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-waveStretchDelay {
+    0%,
+    40%,
+    100% {
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+    20% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@keyframes sk-waveStretchDelay {
+    0%,
+    40%,
+    100% {
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+    20% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+.java110_step {
+    width: 80%;
+    margin: 20px auto 50px auto;
+}
+
+.no_display {
+    display: none;
+}

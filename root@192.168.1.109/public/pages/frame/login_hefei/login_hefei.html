@@ -1,0 +1,26 @@
+<div>
+    <!-- 账户密码登录 -->
+    <div class="log">
+        <h3>物业管理系统</h3>
+        <div>
+            <input type="text" v-model="loginInfo.username" :placeholder="vc.i18n('请输入用户名','login')" @keyup.enter="doLogin">
+        </div>
+        <div>
+            <input type="password" v-model="loginInfo.passwd" maxlength="20" :placeholder="vc.i18n('请输入密码','login')" @keyup.enter="doLogin">
+        </div>
+
+        <div>
+            <input type="text" v-model="loginInfo.validateCode" placeholder="验证码" style="width: 270px;" @keyup.enter="doLogin">
+            <img v-bind:src="loginInfo.codeImage" style="cursor:pointer" alt="vc.i18n('点击刷新验证码','validateCode')" width="118" height="38" v-on:click="generateCode()">
+        </div>
+
+        <div class="p-button">
+            <button v-on:click="doLogin()">登 录</button>
+        </div>
+    </div>
+
+    <div class="app tc">
+        <img src="img/logico.png" alt="">
+    </div>
+    <vc:create path="frame/initData"></vc:create>
+</div>

@@ -1,0 +1,214 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                            {{resourceStoreUseRecordManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品使用记录编号','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.rsurId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入维修工单编码','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.repairId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品资源编号','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.resId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryResourceStoreUseRecordMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetResourceStoreUseRecordMethod()">
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品使用人Id','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.createUserId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品使用人用户名','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.createUserName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品名称','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.resName" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                    <option selected value="">{{vc.i18n('请选择物品类型','resourceStoreUseRecordManage')}}</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreTypes"
+                                            :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">{{vc.i18n('请选择二级分类','resourceStoreUseRecordManage')}}</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSonTypes"
+                                            :key="index"
+                                            v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="resourceStoreUseRecordManageInfo.conditions.rssId">
+                                    <option selected value="">{{vc.i18n('请选择物品规格','resourceStoreUseRecordManage')}}</option>
+                                    <option v-for="(item,index) in resourceStoreUseRecordManageInfo.resourceStoreSpecifications"
+                                            :key="index"
+                                            v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="resourceStoreUseRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择开始时间','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.startTime" class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择结束时间','resourceStoreUseRecordManage')" v-model="resourceStoreUseRecordManageInfo.conditions.endTime" class=" form-control endTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="物品使用记录信息" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品使用记录编号" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="维修工单编号" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品资源编号" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品类型" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品名称" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品规格" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="是否是固定物品" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品使用类型" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品使用数量" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品价格" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="使用人ID" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="使用人" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="创建时间" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="备注" namespace="resourceStoreUseRecordManage"></vc:i18n></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="resourceStoreUseRecord in resourceStoreUseRecordManageInfo.resourceStoreUseRecords">
+                                <td class="text-center">{{resourceStoreUseRecord.rsurId}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.repairId}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.resId}}</td>
+                                <td class="text-center">
+                                    {{resourceStoreUseRecord.parentRstName}} > {{resourceStoreUseRecord.rstName}}
+                                </td>
+                                <td class="text-center">
+                                    {{resourceStoreUseRecord.resourceStoreName ? resourceStoreUseRecord.resourceStoreName : '-'}}
+                                </td>
+                                <td class="text-center">
+                                    {{resourceStoreUseRecord.specName ? resourceStoreUseRecord.specName : '-'}}
+                                </td>
+                                <td class="text-center">{{resourceStoreUseRecord.isFixedName}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.stateName}}</td>
+                                <td class="text-center">
+                                    {{resourceStoreUseRecord.quantity}}{{resourceStoreUseRecord.miniUnitCodeName}}
+                                </td>
+                                <td class="text-center">
+                                    {{resourceStoreUseRecord.unitPrice ? resourceStoreUseRecord.unitPrice : '-'}}
+                                </td>
+                                <td class="text-center">{{resourceStoreUseRecord.createUserId}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.createUserName}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.createTime}}</td>
+                                <td class="text-center">{{resourceStoreUseRecord.remark}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="13">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

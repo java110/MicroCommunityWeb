@@ -1,0 +1,104 @@
+<div id="addCommunityModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加小区" namespace="addCommunity"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="小区名称" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.name" type="text" :placeholder="vc.i18n('必填，请填写小区名称','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="小区地区" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select id="pro" class="form-control form-control-sm" style="width: 30%;display: inline;" v-model="selectProv" @change="getProv(selectProv)">
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择省','addCommunity')}}</option>
+                                        <option v-for="item in provs" :label="item.areaName" :value="item.areaCode">
+                                            {{item.areaName}}
+                                        </option>
+                                    </select>
+                                    <select id="city" class="form-control form-control-sm" style="width: 30%;display: inline;" v-if="selectProv!=''" v-model="selectCity" @change="getCity(selectCity)">
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择城市','addCommunity')}}</option>
+                                        <option v-for="item in citys" :label="item.areaName" :value="item.areaCode">
+                                            {{item.areaName}}
+                                        </option>
+                                    </select>
+                                    <select id="area" class="form-control form-control-sm" style="width: 30%;display: inline;" v-if="selectCity!=''" v-model="selectArea" @change="getArea(selectArea)">
+                                        <option value='' disabled selected style='display:none;'>{{vc.i18n('请选择区县','addCommunity')}}</option>
+                                        <option v-for="item in areas" :label="item.areaName" :value="item.areaCode">
+                                            {{item.areaName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="小区地址" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.tmpAddress" type="text" :placeholder="vc.i18n('必填，请填写小区地址','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="附近地标" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.nearbyLandmarks" type="text" :placeholder="vc.i18n('必填，请填写附近地标','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系方式" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写联系方式','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="缴费周期" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.payFeeMonth" type="text" :placeholder="vc.i18n('必填，请填写缴费周期（月）','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="每月单价" namespace="addCommunity"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addCommunityInfo.feePrice" type="text" :placeholder="vc.i18n('必填，请填写每月单价（元）','addCommunity')" class="form-control">
+                                </div>
+                            </div>
+                            <div v-for="(item,index) in addCommunityInfo.attrs">
+                                <div class="form-group row" v-if="item.specType == '2233'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="item.specType == '3344'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="item.value">
+                                            <option selected disabled value="">{{item.specHoldplace}}</option>
+                                            <option v-for="value in item.values" :label="value.valueName"
+                                                    :value="value.value">
+                                                {{item.valueName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="saveCommunityInfo()">
+                                <i class="fa fa-check"></i>&nbsp;保存
+                            </button>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <i class="fa fa-times"></i>&nbsp;取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div id="nav">
+    <nav class="navbar navbar-static-top nav-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <span class="navbar-minimalize minimalize-styl-2  " @click="_doMenu()"><i class="fa fa-list-ul"></i> </span>
+            <ul class="nav navbar-top-links ">
+                <li class="nav-item dropdown " :class="{'tab-active' :item.active == '1' }" v-for="(item,index) in nav.catalogs">
+                    <span class="dropdown-toggle count-info vc-tab-text" data-toggle="dropdown" @click="_changeMenuCatalog(item)">
+                        <i :class="item.icon"></i>{{item.name}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="nav-item dropdown" v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{nav._currentCommunity.name}}
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos" v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
+                    <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
+                        <strong>{{vc.i18n('moreCommunity')}}</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </li>
+            <li style="padding: 5px">
+                <span class="m-r-sm text-muted welcome-message">
+                    <i class="fa fa-user margin-right-xs"></i>{{userName}}</span>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="">{{nav.langName}}</span>
+                </a>
+                <ul class="dropdown-menu ">
+                    <li v-for="lang in nav.langs">
+                        <a v-on:click="_changeLang(lang)" class="dropdown-item">
+                            <div>
+                                {{lang.name}}
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a v-on:click="_viewDocument()">
+                    <i class="fa fa-question-circle-o"></i>
+                </a>
+            </li>
+            <li>
+                <a v-on:click="logout()">
+                    <i class="fa fa-sign-out"></i> {{vc.i18n('signOut')}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

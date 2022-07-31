@@ -1,0 +1,112 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件" namespace="contractAudit"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入合同名称','contractAudit')"
+                                    v-model="contractManageInfo.conditions.contractName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入合同编号','contractAudit')"
+                                    v-model="contractManageInfo.conditions.contractCode" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入合同类型','contractAudit')"
+                                    v-model="contractManageInfo.conditions.contractType" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryContractMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="contractAudit"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="合同审核" namespace="contractAudit"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                       
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="合同名称" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="合同编号" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="合同类型" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="甲方" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="乙方" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="经办人" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="合同金额" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="开始时间" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="结束时间" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="contractAudit"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="contractAudit"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="contract in contractManageInfo.contracts">
+                                <td class="text-center">{{contract.contractName}}</td>
+                                <td class="text-center">{{contract.contractCode}}</td>
+                                <td class="text-center">{{contract.contractTypeName}}</td>
+                                <td class="text-center">{{contract.partyA}}</td>
+                                <td class="text-center">{{contract.partyB}}</td>
+                                <td class="text-center">{{contract.operator}}</td>
+                                <td class="text-center">{{contract.amount}}</td>
+                                <td class="text-center">{{contract.startTime}}</td>
+                                <td class="text-center">{{contract.endTime}}</td>
+                                <td class="text-center">{{contract.stateName}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAuditContractModal(contract)"><span><vc:i18n name="审核" namespace="contractAudit"></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteContractModel(contract)"><span><vc:i18n name="详情" namespace="contractAudit"></vc:i18n></span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="common/audit" callBackListener="contractAudit" callBackFunction="nitify"></vc:create>
+
+</div>

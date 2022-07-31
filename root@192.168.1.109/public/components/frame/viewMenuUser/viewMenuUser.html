@@ -1,0 +1,36 @@
+<div id="viewMenuUserModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="color: #fff;">
+        <div class="modal-content" style="background: rgba(66, 66, 66, 0); box-shadow: 0 0px 0px rgb(0 0 0 / 30%);">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <!-- <span class="fa fa-cog" @click.stop="_toUserMenu()" style="font-size: 18px;"></span> -->
+                        <span class="fa fa-close " @click.stop="_closeViewMenuUser()" style="font-size: 18px;cursor: pointer;"></span>
+                    </div>
+                </div>
+                <div class="row" style="cursor: pointer;">
+                    <div class="col-md-2 text-center" style="margin-top: 40px;" @click="_jumpToUserPage(item)" v-for="(item,index) in viewMenuUserInfo.menus">
+                        <div>
+                            <i :class="item.icon" style="font-size: 48px;"></i>
+                        </div>
+                        <div class="margin-top-sm">
+                            <span>{{item.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 40px;cursor: pointer;">
+                    <div class="col-md-2 text-center" @click="_toUserMenu()">
+                        <div>
+                            <i class="fa fa-plus" style="font-size: 48px;"></i>
+                        </div>
+                        <div class="margin-top-sm">
+                            <span><span><vc:i18n name="自定义" namespace="viewMenuUser"></vc:i18n></span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

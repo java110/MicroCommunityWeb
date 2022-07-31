@@ -1,0 +1,202 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="myResourceStoreManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                            {{myResourceStoreManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品ID','myResourceStoreManage')" v-model="myResourceStoreManageInfo.conditions.resId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品名称','myResourceStoreManage')" v-model="myResourceStoreManageInfo.conditions.resName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物品编码','myResourceStoreManage')" v-model="myResourceStoreManageInfo.conditions.resCode" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryResourceStoreMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="myResourceStoreManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetResourceStoreMethod()">
+                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="myResourceStoreManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
+                                    <option selected value="">{{vc.i18n('请选择物品类型','myResourceStoreManage')}}</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreTypes"
+                                            :key="index" v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                    <option selected value="">{{vc.i18n('请选择二级分类','myResourceStoreManage')}}</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSonTypes"
+                                            :key="index"
+                                            v-bind:value="item.rstId">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.rssId">
+                                    <option selected value="">{{vc.i18n('请选择物品规格','myResourceStoreManage')}}</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreSpecifications"
+                                            :key="index" v-bind:value="item.rssId">
+                                        {{item.specName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="vc.hasPrivilege('502021071018550002')">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入用户名称','myResourceStoreManage')" v-model="myResourceStoreManageInfo.conditions.searchUserName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4" v-if="vc.hasPrivilege('502021071018550002')">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入用户ID','myResourceStoreManage')" v-model="myResourceStoreManageInfo.conditions.searchUserId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="myResourceStoreManageInfo.conditions.isFixed">
+                                    <option selected value="">{{vc.i18n('请选择物品是否固定','myResourceStoreManage')}}</option>
+                                    <option v-for="(item,index) in myResourceStoreManageInfo.isFixeds"
+                                            :value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="我的物品" namespace="myResourceStoreManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2ReturnGoodsPage()">
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="退还" namespace="myResourceStoreManage"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2TransferGoodsPage()">
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="转赠" namespace="myResourceStoreManage"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2ScrapGoodsPage()">
+                            <i class="fa fa-plus"></i> <span><vc:i18n name="损耗" namespace="myResourceStoreManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center" v-if="vc.hasPrivilege('502021071018550002')">
+                                    <span><vc:i18n name="用户ID" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center" v-if="vc.hasPrivilege('502021071018550002')">
+                                    <span><vc:i18n name="用户名" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品ID" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品类型" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品名称" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品规格" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品编码" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="是否是固定物品" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="物品库存" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="最小计量总数" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="最小计量" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="收费标准" namespace="myResourceStoreManage"></vc:i18n></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="resourceStore in myResourceStoreManageInfo.resourceStores">
+                                <td class="text-center" v-if="vc.hasPrivilege('502021071018550002')">
+                                    {{resourceStore.userId}}
+                                </td>
+                                <td class="text-center" v-if="vc.hasPrivilege('502021071018550002')">
+                                    {{resourceStore.userName}}
+                                </td>
+                                <td class="text-center">{{resourceStore.resId}}</td>
+                                <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
+                                <td class="text-center">{{resourceStore.resName}}</td>
+                                <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                                <td class="text-center">{{resourceStore.resCode}}</td>
+                                <td class="text-center">{{resourceStore.isFixedName}}</td>
+                                <td class="text-center">{{resourceStore.stock}}{{resourceStore.unitCodeName}}</td>
+                                <td class="text-center">{{resourceStore.miniStock}}{{resourceStore.miniUnitCodeName}}</td>
+                                <td class="text-center">
+                                    1{{resourceStore.unitCodeName}}={{resourceStore.miniUnitStock}}{{resourceStore.miniUnitCodeName}}
+                                </td>
+                                <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' + resourceStore.outLowPrice : '￥' + resourceStore.outLowPrice + '-￥' + resourceStore.outHighPrice}}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="13">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

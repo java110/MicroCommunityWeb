@@ -1,0 +1,77 @@
+<div id="addMachineTranslateModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加设备同步" namespace="addMachineTranslate"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <!--<div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼名称" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.name" type="text" :placeholder="vc.i18n('必填，请填写名称','addMachineTranslate')" class="form-control"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼编号" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.floorNum" type="email" :placeholder="vc.i18n('必填，请填写编号','addMachineTranslate')" class="form-control"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="addFloorInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','addMachineTranslate')" class="form-control"></div>
+                            </div>-->
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备编码" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMachineTranslateInfo.machineCode" type="text" :placeholder="vc.i18n('必填，请填写设备编码','addMachineTranslate')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备" namespace="addMachineTranslate"></vc:i18n></span>ID</label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMachineTranslateInfo.machineId" type="text" :placeholder="vc.i18n('必填，请填写设备ID','addMachineTranslate')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="对象类型" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMachineTranslateInfo.typeCd">
+         <option selected  disabled value="">{{vc.i18n('必填，请选择对象类型','addMachineTranslate')}}</option>
+         <option  value="8899">{{vc.i18n('业主','addMachineTranslate')}}</option>
+<option  value="9988">{{vc.i18n('小区','addMachineTranslate')}}</option>
+  </select> </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="对象名称" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMachineTranslateInfo.objName" type="text" :placeholder="vc.i18n('必填，请填写对象名称','addMachineTranslate')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="对象Id" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMachineTranslateInfo.objId" type="text" :placeholder="vc.i18n('必填，请填写对象Id','addMachineTranslate')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="addMachineTranslate"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMachineTranslateInfo.state">
+         <option selected  disabled value="">{{vc.i18n('必填','addMachineTranslate')}}，请选择状态</option>
+         <option  value="10000">{{vc.i18n('未同步','addMachineTranslate')}}</option>
+<option  value="20000">{{vc.i18n('已同步','addMachineTranslate')}}</option>
+  </select> </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMachineTranslateInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addMachineTranslate"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

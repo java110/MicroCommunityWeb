@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="新增访客" namespace="viewVisitInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewVisitInfo.index == 0 && viewVisitInfo.needShowAddAppButton== 'true'"
+                            class="btn btn-primary btn-sm" v-on:click="_openAddVisitInfoModel()">
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加访客" namespace="viewVisitInfo"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="访客姓名" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.vName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="访客联系方式" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.phoneNumber}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="访客性别" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">
+                                {{viewVisitInfo.visitGender=="0"?"男":(viewVisitInfo.visitGender=="1"?"女":" ")}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="访客车牌号" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.carNum}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="随行人数" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.entourage}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.visitTime}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="viewVisitInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewVisitInfo.departureTime}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<vc:create path="property/addApp" callBackListener="viewVisitInfo" callBackFunction="chooseApp"></vc:create>-->
+    <vc:create path="property/addVisit" callBackListener="viewVisitInfo" callBackFunction="addNewVisit"></vc:create>
+    <!--<vc:create path="property/chooseApp" emitChooseApp="viewVisitInfo" emitLoadData="viewVisitInfo"></vc:create>-->
+</div>

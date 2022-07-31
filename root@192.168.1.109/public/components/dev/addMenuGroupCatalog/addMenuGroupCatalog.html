@@ -1,0 +1,29 @@
+<div id="addMenuGroupCatalogModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加目录组" namespace="addMenuGroupCatalog"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="菜单组" namespace="addMenuGroupCatalog"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMenuGroupCatalogInfo.gId">
+                                        <option selected  disabled value="">{{vc.i18n('必填','addMenuGroupCatalog')}}，请选择菜单组</option>
+                                        <option  :value="item.gId" v-for="(item,index) in addMenuGroupCatalogInfo.menuGroups">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMenuGroupCatalogInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addMenuGroupCatalog"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

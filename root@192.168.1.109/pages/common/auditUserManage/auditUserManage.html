@@ -1,0 +1,103 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件" namespace="auditUserManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入审核ID','auditUserManage')" v-model="auditUserManageInfo.conditions.auditUserId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入审核人员','auditUserManage')" v-model="auditUserManageInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="auditUserManageInfo.conditions.auditLink">
+                                <option selected value="">{{vc.i18n('请选择审核环节','auditUserManage')}}</option>
+                                <option value="809001">{{vc.i18n('部门主管','auditUserManage')}}</option>
+                                <option value="809002">{{vc.i18n('财务主管','auditUserManage')}}</option>
+                                <option value="809003">{{vc.i18n('采购人员','auditUserManage')}}</option>
+                            </select></div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAuditUserMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="auditUserManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="审核人员信息" namespace="auditUserManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAuditUserModal()">
+                            <i class="fa fa-plus"></i>
+                            添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="审核" namespace="auditUserManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="用户" namespace="auditUserManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="用户名称" namespace="auditUserManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="审核环节" namespace="auditUserManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="流程对象" namespace="auditUserManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="auditUserManage"></vc:i18n></span></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="auditUser in auditUserManageInfo.auditUsers">
+                                <td class="text-center">{{auditUser.auditUserId}}</td>
+                                <td class="text-center">{{auditUser.userId}}</td>
+                                <td class="text-center">{{auditUser.userName}}</td>
+                                <td class="text-center">{{auditUser.auditLinkName}}</td>
+                                <td class="text-center">{{auditUser.objCodeName}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteAuditUserModel(auditUser)"><span><vc:i18n name="删除" namespace="auditUserManage"></vc:i18n></span>
+                                    </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <vc:create path="common/deleteAuditUser"></vc:create>
+
+</div>

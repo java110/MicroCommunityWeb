@@ -1,0 +1,121 @@
+<div id="addMeterWaterModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加抄表" namespace="addMeterWater"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMeterWaterInfo.feeTypeCd" @change="_changeAddMeterWaterFeeTypeCd(addMeterWaterInfo.feeTypeCd)">
+                                        <option selected disabled value="">{{vc.i18n('必填','addMeterWater')}}，请选择费用类型</option>
+                                        <option value="888800010015">{{vc.i18n('水费','addMeterWater')}}</option>
+                                        <option value="888800010016">{{vc.i18n('电费','addMeterWater')}}</option>
+                                        <option value="888800010009">{{vc.i18n('煤气费','addMeterWater')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费项目" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMeterWaterInfo.configId" @change="changeFeeConfig()">
+                                        <option selected disabled value="">{{vc.i18n('必填','addMeterWater')}}，请选择收费项目</option>
+                                        <option v-for="(item,index) in addMeterWaterInfo.feeConfigs" :key="index"
+                                            v-bind:value="item.configId">{{item.feeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="抄表类型" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMeterWaterInfo.meterType" @change="_changeAddMeterType()">
+                                        <option selected disabled value="">{{vc.i18n('必填','addMeterWater')}}，请选择抄表类型</option>
+                                        <option v-for="(item,index) in addMeterWaterInfo.meterTypes" :key="index"
+                                            v-bind:value="item.typeId">{{item.typeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addMeterWaterInfo.hasRoom == false">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="楼栋" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/floorSelect2" parentModal="addMeterWaterModel" namespace="addMeterWater">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addMeterWaterInfo.hasRoom == false">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="单元" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/unitSelect2" parentModal="addMeterWaterModel" callBackListener="addMeterWater" callBackFunction="notify" namespace="addMeterWater">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addMeterWaterInfo.hasRoom == false">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/roomSelect2" parentModal="addMeterWaterModel" callBackListener="addMeterWater" callBackFunction="notify" namespace="addMeterWater">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addMeterWaterInfo.hasRoom == true">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费对象" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.ownerName" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写房屋','addMeterWater')" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上期度数" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.preDegrees" type="text" :placeholder="vc.i18n('必填，请填写上期度数','addMeterWater')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="本期度数" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.curDegrees" type="text" :placeholder="vc.i18n('必填，请填写本期度数','addMeterWater')" class="form-control addCurDegrees" @change="_getChange()">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="上期读表时间" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.preReadingTime" type="text" :placeholder="vc.i18n('必填，请填写上期读表时间','addMeterWater')" class="form-control addPreReadingTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="本期读表时间" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.curReadingTime" type="text" :placeholder="vc.i18n('必填，请填写本期读表时间','addMeterWater')" class="form-control addCurReadingTime">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="addMeterWaterInfo.computingFormula == '9009'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="单价" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.price" type="text" :placeholder="vc.i18n('必填，请填写单价','addMeterWater')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addMeterWater"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMeterWaterInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','addMeterWater')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <span><span><vc:i18n name="注" namespace="addMeterWater"></vc:i18n></span>：单元选择为0表示为商铺</span>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMeterWaterInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

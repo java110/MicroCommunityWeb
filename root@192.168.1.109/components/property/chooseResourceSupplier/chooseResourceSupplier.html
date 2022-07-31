@@ -1,0 +1,68 @@
+<div id = "chooseResourceSupplierModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseResourceSupplierModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseResourceSupplierModelLabel"><span><vc:i18n name="选择供应商" namespace="chooseResourceSupplier"></vc:i18n></span></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('输入供应商名称','chooseResourceSupplier')" type="text" v-model="chooseResourceSupplierInfo._currentResourceSupplierName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryResourceSuppliers()"><span><vc:i18n name="查询" namespace="chooseResourceSupplier"></vc:i18n></span></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                                                        <th class="text-center"><span><vc:i18n name="供应商编号" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="供应商名称" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="供应商地址" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="供应商联系方式" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="联系人姓名" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开户行" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="开户行账号" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseResourceSupplier"></vc:i18n></span></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="resourceSupplier in chooseResourceSupplierInfo.resourceSuppliers">
+                                                                        <td class="text-center">{{resourceSupplier.rs_id}}</td>
+                            <td class="text-center">{{resourceSupplier.supplierName}}</td>
+                            <td class="text-center">{{resourceSupplier.address}}</td>
+                            <td class="text-center">{{resourceSupplier.tel}}</td>
+                            <td class="text-center">{{resourceSupplier.contactName}}</td>
+                            <td class="text-center">{{resourceSupplier.accountBank}}</td>
+                            <td class="text-center">{{resourceSupplier.bankAccountNumber}}</td>
+                            <td class="text-center">{{resourceSupplier.remark}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseResourceSupplier(resourceSupplier)"><span><vc:i18n name="选择" namespace="chooseResourceSupplier"></vc:i18n></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

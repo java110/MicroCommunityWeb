@@ -1,0 +1,172 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="申请钥匙" namespace="addApplicationKey"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-5" style="text-align:center" v-show="addApplicationKeyInfo.typeFlag == '1100101'">
+                        <video id="addApplicationKeyPhoto" style="width: 100%;"></video>
+                        <canvas id="AddApplicationKeyCanvas" style="display:none;"></canvas>
+                        <div style="margin-top:20px">
+                            <button class="btn btn-primary" type="button" v-on:click="_takePhoto()"><span
+                                    class="glyphicon glyphicon-camera"></span> <span><vc:i18n name="拍照" namespace="addApplicationKey"></vc:i18n></span>
+                            </button>
+                            <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
+                                    <span class="fileinput-new"><span><vc:i18n name="上传照片" namespace="addApplicationKey"></vc:i18n></span></span>
+                                </span>
+                            <input type="file" class="file" accept="images/*" id="uploadApplicationKeyPhoto" hidden
+                                   v-on:change="_choosePhoto($event)">
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="姓名" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.name" type="text" :placeholder="vc.i18n('必填，请填写姓名','addApplicationKey')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="手机号" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写手机号','addApplicationKey')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="用户类型" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addApplicationKeyInfo.typeCd">
+                                    <option selected disabled value="">{{vc.i18n('必填','addApplicationKey')}}，请选择用户类型</option>
+                                    <option value="10001">{{vc.i18n('保洁','addApplicationKey')}}</option>
+                                    <option value="10002">{{vc.i18n('保安','addApplicationKey')}}</option>
+                                    <option value="10003">{{vc.i18n('其他人员','addApplicationKey')}}</option>
+                                </select></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="钥匙类型" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addApplicationKeyInfo.typeFlag">
+                                    <option selected disabled value="">{{vc.i18n('必填','addApplicationKey')}}，请选择钥匙类型申请</option>
+                                    <option value="1100101">{{vc.i18n('人脸','addApplicationKey')}}</option>
+                                    <option value="1100102">{{vc.i18n('固定密码','addApplicationKey')}}</option>
+                                    <option value="1100103">{{vc.i18n('临时密码','addApplicationKey')}}</option>
+                                </select></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="性别" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addApplicationKeyInfo.sex">
+                                    <option selected disabled value="">{{vc.i18n('必填','addApplicationKey')}}，请选择性别</option>
+                                    <option value="0">{{vc.i18n('男','addApplicationKey')}}</option>
+                                    <option value="1">{{vc.i18n('女','addApplicationKey')}}</option>
+                                </select></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="年龄" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.age" type="text" :placeholder="vc.i18n('必填，请填写年龄','addApplicationKey')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="身份证号" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.idCard" type="text" :placeholder="vc.i18n('必填，请填写身份证号','addApplicationKey')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备位置" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addApplicationKeyInfo.locationTypeCd"
+                                        :placeholder="vc.i18n('必填，请选择设备位置','addApplicationKey')">
+                                    <option selected disabled value="">{{vc.i18n('必填','addApplicationKey')}}，请选择设备位置</option>
+                                    <option value="1000">{{vc.i18n('东大门','addApplicationKey')}}</option>
+                                    <option value="1001">{{vc.i18n('西大门','addApplicationKey')}}</option>
+                                    <option value="1002">{{vc.i18n('北大门','addApplicationKey')}}</option>
+                                    <option value="1003">{{vc.i18n('南大门','addApplicationKey')}}</option>
+                                    <option value="2000">{{vc.i18n('单元门','addApplicationKey')}}</option>
+                                    <option value="3000">{{vc.i18n('房屋门','addApplicationKey')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row"
+                             v-show="addApplicationKeyInfo.locationTypeCd == '2000' || addApplicationKeyInfo.locationTypeCd == '3000'  ">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属楼栋" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <vc:create path="property/floorSelect2"
+                                           parentModal="addApplicationKeyModel"
+                                           namespace="addApplicationKey"
+                                ></vc:create>
+                            </div>
+                        </div>
+                        <div class="form-group row"
+                             v-show="addApplicationKeyInfo.locationTypeCd == '2000' || addApplicationKeyInfo.locationTypeCd == '3000'  ">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属单元" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <vc:create path="property/unitSelect2"
+                                           parentModal="addApplicationKeyModel"
+                                           callBackListener="addApplicationKey"
+                                           callBackFunction="notify"
+                                           namespace="addApplicationKey"
+                                ></vc:create>
+                            </div>
+                        </div>
+                        <div class="form-group row"
+                             v-show="addApplicationKeyInfo.locationTypeCd == '3000'  ">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属房屋" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <vc:create path="property/roomSelect2"
+                                           parentModal="addApplicationKeyModel"
+                                           callBackListener="addApplicationKey"
+                                           callBackFunction="notify"
+                                           namespace="addApplicationKey"
+                                ></vc:create>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.startTime" readonly type="text"
+                                       :placeholder="vc.i18n('必填，请填写开始时间','addApplicationKey')"
+                                       class="form-control addApplicationStartTime">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-show="addApplicationKeyInfo.typeFlag == '1100101' || addApplicationKeyInfo.typeFlag == '1100102' ">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addApplicationKeyInfo.endTime" readonly type="text"
+                                       :placeholder="vc.i18n('必填，请填写结束时间','addApplicationKey')"
+                                       class="form-control addApplicationEndTime">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="addApplicationKeyInfo.typeFlag == '1100101'">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="照片" namespace="addApplicationKey"></vc:i18n></span></label>
+                            <div class="col-sm-10"><img width="100%" height="100%"
+                                                        v-bind:src="addApplicationKeyInfo.photo" alt="vc.i18n('申请人照片','addApplicationKey')"></div>
+                        </div>
+
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="saveApplicationKeyInfo()"><i class="fa fa-check"></i>&nbsp;保存
+                            </button>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    v-on:click="_closeAddApplicationKeyView()"><span><vc:i18n name="取消" namespace="addApplicationKey"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

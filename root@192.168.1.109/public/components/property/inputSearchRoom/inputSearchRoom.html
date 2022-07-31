@@ -1,0 +1,8 @@
+<div class="vc-input-search text-left" v-if="inputSearchRoomInfo.rooms && inputSearchRoomInfo.rooms.length>0">
+    <div class="close">
+        <i class="fa fa-remove" @click="_doInputSearchRoomClose()"></i>
+    </div>
+    <div class="padding-left-sm padding-top-sm" style="cursor:pointer;" v-for="(item,index) in inputSearchRoomInfo.rooms" @click="_inputSearchRoomChooseRoom(item)">
+        <span>{{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}</span>
+    </div>
+</div>

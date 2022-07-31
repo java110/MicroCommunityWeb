@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="保证金信息" namespace="viewAccountBondInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewAccountBondInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectAccountBondInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择保证金" namespace="viewAccountBondInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewAccountBondInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddAccountBondInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加保证金" namespace="viewAccountBondInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="保证金名称" namespace="viewAccountBondInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondInfo.bondName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="保证金金额" namespace="viewAccountBondInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondInfo.amount}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="有效月份" namespace="viewAccountBondInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewAccountBondInfo.bondMonth}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="类型" namespace="viewAccountBondInfo"></vc:i18n></span>ID：</label>
+                            <label class="">{{viewAccountBondInfo.objId}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="acct/addAccountBond" callBackListener="viewAccountBondInfo" callBackFunction="chooseAccountBond">
+    </vc:create>
+
+
+    <vc:create path="acct/chooseAccountBond" emitChooseAccountBond="viewAccountBondInfo"
+        emitLoadData="viewAccountBondInfo"></vc:create>
+</div>

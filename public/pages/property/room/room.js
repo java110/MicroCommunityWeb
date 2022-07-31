@@ -79,12 +79,24 @@
                     params: JSON.parse(JSON.stringify(vc.component.roomInfo.conditions))
                 };
                 let _allNum = $that.roomInfo.conditions.roomId;
-                if (_allNum.split('-').length == 3) {
-                    let _allNums = _allNum.split('-')
+                let _allNums = _allNum.split('-')
+                if (_allNums.length == 3) {
                     param.params.floorNum = _allNums[0].trim();
                     param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
                     param.params.roomId = '';
+                    param.params.unitId = '';
+                    param.params.floorId = '';
+                }else if(_allNums.length >3){
+                    param.params.floorNum = _allNums[0].trim();
+                    param.params.unitNum = _allNums[1].trim();
+                    param.params.roomNum = _allNums[2].trim();
+                    for(let _numIndex = 3;_numIndex < _allNums.length;_numIndex++){
+                        param.params.roomNum += ('-'+_allNums[_numIndex].trim());
+                    }
+                    param.params.roomId = '';
+                    param.params.unitId = '';
+                    param.params.floorId = '';
                 }
                 //发送get请求
                 vc.http.apiGet('/room.queryRooms',

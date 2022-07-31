@@ -1,0 +1,62 @@
+<div id="addStorehouseModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加" namespace="addStorehouse"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="仓库名称" namespace="addStorehouse"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStorehouseInfo.shName" type="text" :placeholder="vc.i18n('必填，请填写仓库名称','addStorehouse')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="仓库类型" namespace="addStorehouse"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addStorehouseInfo.shType">
+                                        <option selected disabled value="">{{vc.i18n('必填','addStorehouse')}}，请选择仓库类型</option>
+                                        <option v-for="(item,index) in addStorehouseInfo.shTypes" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="是否对外开放" namespace="addStorehouse"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addStorehouseInfo.isShow">
+                                        <option selected disabled value="">{{vc.i18n('必填','addStorehouse')}}，请选择是否对外开放</option>
+                                        <option value="true">{{vc.i18n('是','addStorehouse')}}</option>
+                                        <option value="false">{{vc.i18n('否','addStorehouse')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="addStorehouse"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addStorehouseInfo.shDesc" :placeholder="vc.i18n('必填，请填写描述','addStorehouse')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveStorehouseInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

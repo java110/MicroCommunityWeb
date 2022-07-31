@@ -1,0 +1,151 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="调拨物品" namespace="allocationStorehouseApplyManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="allocationStorehouseApplyManage"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAllocationStorehouseModel()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="选择物品" namespace="allocationStorehouseApplyManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="物品" namespace="allocationStorehouseApplyManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="物品类型" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品名称" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="物品规格" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="源仓库" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="库存" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="目标仓库" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="调拨数量" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="allocationStorehouseApplyManage"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="resourceStore in allocationStorehouseManageInfo.resourceStores">
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resId}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} > {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    {{resourceStore.rssName ? resourceStore.rssName : '-'}}
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.isFixedName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.shaName}}</td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    {{resourceStore.stock}}{{resourceStore.unitCodeName}}
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <select class="custom-select" v-model="resourceStore.shzId" style="width: 70%">
+                                    <option value="">{{vc.i18n('必填','allocationStorehouseApplyManage')}}，请选择目标仓库</option>
+                                    <option v-for="(item,index) in allocationStorehouseManageInfo.storehouses"
+                                            :key="index" v-bind:value="item.shId"
+                                            v-if="item.shId != resourceStore.shId">
+                                        {{item.shName}}
+                                    </option>
+                                </select>
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <input v-model="resourceStore.curStock" type="number" :placeholder="vc.i18n('必填，请填写调拨数量','allocationStorehouseApplyManage')" class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
+                                </td>
+                                <td class="text-center" style="vertical-align: inherit;">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteResourceStoreModel(resourceStore)"><span><vc:i18n name="取消调拨" namespace="allocationStorehouseApplyManage"></vc:i18n></span>
+                                    </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="9">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="调拨说明" namespace="allocationStorehouseApplyManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="申请说明" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
+                        <div class="col-sm-10 ">
+                            <textarea v-model="allocationStorehouseManageInfo.remark" :placeholder="vc.i18n('必填，请填写申请说明','allocationStorehouseApplyManage')" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="审批人信息" namespace="allocationStorehouseApplyManage"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content" v-if="allocationStorehouseManageInfo.companyName">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="所属公司" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <input :placeholder="vc.i18n('必填，请填写所属公司','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.companyName" readonly/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="所属部门" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <input :placeholder="vc.i18n('必填，请填写所属部门','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.departmentName" readonly/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <input :placeholder="vc.i18n('必填，请填写所属员工','allocationStorehouseApplyManage')" class="form-control" v-model="allocationStorehouseManageInfo.staffName" readonly/>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content" v-else>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工" namespace="allocationStorehouseApplyManage"></vc:i18n></span></label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','allocationStorehouseApplyManage')" disabled v-model="allocationStorehouseManageInfo.staffName">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                            选择
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_submitApply()"><span><vc:i18n name="提交" namespace="allocationStorehouseApplyManage"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+    <vc:create path="common/chooseResourceStore" emitChooseResourceStore="allocationStorehouseApply" emitLoadData="allocationStorehouseApply"></vc:create>
+
+</div>

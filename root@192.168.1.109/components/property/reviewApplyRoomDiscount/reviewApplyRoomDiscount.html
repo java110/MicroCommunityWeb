@@ -1,0 +1,196 @@
+<div id="reviewApplyRoomDiscountModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="审批" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="折扣类型" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.discountType"
+                                            @change="_changeApplyRoomDiscountType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','reviewApplyRoomDiscount')}}，请选择折扣类型
+                                        </option>
+                                        <option value="3003">{{vc.i18n('优惠','reviewApplyRoomDiscount')}}(需要申请)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="折扣名称" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.discountId">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','reviewApplyRoomDiscount')}}，请选择折扣名称
+                                        </option>
+                                        <option v-for="(item,index) in reviewApplyRoomDiscountInfo.discounts"
+                                                :value="item.discountId">
+                                            {{item.discountName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="返还方式" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.returnWay">
+                                        <option selected value="">{{vc.i18n('请选择返还方式','reviewApplyRoomDiscount')}}
+                                        </option>
+                                        <option :value="1001">{{vc.i18n('享受缴纳折扣','reviewApplyRoomDiscount')}}</option>
+                                        <option :value="1002">{{vc.i18n('预缴金额返还至余额账户','reviewApplyRoomDiscount')}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div v-show="reviewApplyRoomDiscountInfo.returnWay == '1002'">
+                                <!-- <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="reviewApplyRoomDiscount"></vc:i18n></span></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.feeTypeCd" @change="_selectConfig()">
+                                            <option selected disabled value="">{{vc.i18n('请选择费用类型','reviewApplyRoomDiscount')}}</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.feeTypeCds"
+                                                    :value="item.statusCd">
+                                                {{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="收费项" namespace="reviewApplyRoomDiscount"></vc:i18n></span></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.configId" @change="_listFees()">
+                                            <option selected disabled value="">{{vc.i18n('请选择收费项','reviewApplyRoomDiscount')}}</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.feeConfigDtos"
+                                                    :value="item.configId">
+                                                {{item.feeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row" v-if="reviewApplyRoomDiscountInfo.state != '5'">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="缴费记录" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <!-- <select class="custom-select" multiple v-model="reviewApplyRoomDiscountInfo.selectedFees">
+                                            <option selected disabled value="">{{vc.i18n('必填','reviewApplyRoomDiscount')}}，请选择缴费记录</option>
+                                            <option v-for="(item,index) in reviewApplyRoomDiscountInfo.fees"
+                                                    :value="item.oId">
+                                                【{{item.feeName}}】{{item.receivableAmount}}{{vc.i18n('元','reviewApplyRoomDiscount')}} - {{item.createTime}}
+                                            </option>
+                                        </select> -->
+                                        <div class="checkbox-area">
+                                            <div class="checkbox"
+                                                 v-for="(item,index) in reviewApplyRoomDiscountInfo.fees">
+                                                <input type="checkbox" :value="item.detailId"
+                                                       v-model="reviewApplyRoomDiscountInfo.selectedFees">【{{item.feeName}}】<span
+                                                    class="text-danger">{{item.receivedAmount}}{{vc.i18n('元','reviewApplyRoomDiscount')}}</span>
+                                                - {{item.createTime}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="reviewApplyRoomDiscountInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','reviewApplyRoomDiscount')"
+                                           class="form-control reviewStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="reviewApplyRoomDiscountInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','reviewApplyRoomDiscount')"
+                                           class="form-control reviewEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="审批状态" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="reviewApplyRoomDiscountInfo.state">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','reviewApplyRoomDiscount')}}，请选择状态
+                                        </option>
+                                        <option value="4">{{vc.i18n('审批通过','reviewApplyRoomDiscount')}}</option>
+                                        <option value="5">{{vc.i18n('审批不通过','reviewApplyRoomDiscount')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="申请备注" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.createRemark" readonly="readonly"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="验房备注" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.checkRemark" readonly="readonly"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="审批备注" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="reviewApplyRoomDiscountInfo.reviewRemark"
+                                              :placeholder="vc.i18n('必填，请填写审批说明','reviewApplyRoomDiscount')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="图片资料" namespace="reviewApplyRoomDiscount"></vc:i18n></span>
+                                </label>
+                                <div style="position: relative; display: inline-block; margin-left: 10px;"
+                                     v-for="url in reviewApplyRoomDiscountInfo.urls">
+                                    <img width="50" height="50" v-bind:src="url" onerror="this.src='/img/noPhoto.jpg';"
+                                         v-on:click="showImg(url)">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="reviewApplyRoomDiscount()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

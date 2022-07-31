@@ -1,0 +1,111 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件" namespace="listPropertyManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                            v-on:click="_moreCondition()">{{listPropertyManageInfo.moreCondition ==
+                            true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入物业名称','listPropertyManage')"
+                                    v-model="listPropertyManageInfo.conditions.name" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" :placeholder="vc.i18n('请输入管理员','listPropertyManage')"
+                                v-model="listPropertyManageInfo.conditions.staffName" class=" form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','listPropertyManage')" v-model="listPropertyManageInfo.conditions.tel"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryListPropertyMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="listPropertyManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="物业信息" namespace="listPropertyManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="物业名称" namespace="listPropertyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="管理员" namespace="listPropertyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="管理员电话" namespace="listPropertyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="管理员" namespace="listPropertyManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="listPropertyManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="创建时间" namespace="listPropertyManage"></vc:i18n></span></th>
+                                <th class="text-right"><span><vc:i18n name="操作" namespace="listPropertyManage"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="listProperty in listPropertyManageInfo.listPropertys">
+                                <td class="text-center">{{listProperty.storeName}}</td>
+                                <td class="text-center">{{listProperty.staffName}}</td>
+                                <td class="text-center">{{listProperty.staffTel}}</td>
+                                <td class="text-center">{{listProperty.staffId}}</td>
+                                <td class="text-center">{{listProperty.state == '48002'?'限制登录':'正常'}}</td>
+                                <td class="text-center">{{listProperty.createTime}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openPropertysCommunityModel(listProperty)"><span><vc:i18n name="隶属小区" namespace="listPropertyManage"></vc:i18n></span>
+                                        </button>
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openAdminLoginPropertyModel(listProperty)"><span><vc:i18n name="登录" namespace="listPropertyManage"></vc:i18n></span>
+                                        </button>
+                                        <button class="btn-white btn btn-xs" v-if="listProperty.state != '48002'"
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48002')"><span><vc:i18n name="限制登录" namespace="listPropertyManage"></vc:i18n></span>
+                                        </button>
+                                        <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_openUpdateStoreStateModel(listProperty,'48001')"><span><vc:i18n name="恢复登录" namespace="listPropertyManage"></vc:i18n></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="common/storesCommunity"></vc:create>
+    <vc:create path="admin/adminLoginProperty"></vc:create>
+    <vc:create path="admin/updateStoreState"></vc:create>
+
+</div>

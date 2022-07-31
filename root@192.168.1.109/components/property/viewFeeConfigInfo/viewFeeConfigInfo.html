@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="费用项信息" namespace="viewFeeConfigInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewFeeConfigInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectFeeConfigInfoModel()">
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择费用项" namespace="viewFeeConfigInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewFeeConfigInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddFeeConfigInfoModel()">
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加费用项" namespace="viewFeeConfigInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="费用类型" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.feeTypeCd}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="收费项目" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.feeName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="费用标识" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.feeFlag}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="计费起始时间" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.startTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="计费终止时间" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.endTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="计算公式" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.computingFormula}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="计费单价" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.squarePrice}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="附加费用" namespace="viewFeeConfigInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewFeeConfigInfo.additionalAmount}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addFeeConfig" callBackListener="viewFeeConfigInfo" callBackFunction="chooseFeeConfig">
+    </vc:create>
+
+
+    <vc:create path="property/chooseFeeConfig" emitChooseFeeConfig="viewFeeConfigInfo" emitLoadData="viewFeeConfigInfo">
+    </vc:create>
+</div>

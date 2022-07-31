@@ -1,0 +1,105 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="添加商户" namespace="addStoreInfo"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="商户名称" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStoreInfoInfo.name" type="text" :placeholder="vc.i18n('必填，请填写商户名称','addStoreInfo')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="便民类型" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-3">
+                                    <select class="custom-select" v-model="addStoreInfoInfo.convenienceMenusId">
+                                        <option selected disabled value="">{{vc.i18n('选填','addStoreInfo')}}，请选择类型</option>
+                                        <option v-for="(item,index) in storeInfoManageInfo.menuInfos"
+                                                :value="item.convenienceMenusId">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="是否显示" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-3">
+                                    <select class="custom-select" v-model="addStoreInfoInfo.isShow">
+                                        <option selected disabled value="">{{vc.i18n('选填','addStoreInfo')}}，请选择是否显示</option>
+                                        <option value="Y">{{vc.i18n('是','addStoreInfo')}}</option>
+                                        <option value="N">{{vc.i18n('否','addStoreInfo')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="图片地址" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="addIcon"
+                                               callBackFunction="notifyUploadCoverImage" namespace="addIconCover"
+                                               imageCount="1">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="商户电话" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStoreInfoInfo.tel" type="text" :placeholder="vc.i18n('选填，请填写商户电话','addStoreInfo')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="商户位置" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStoreInfoInfo.site" type="text" :placeholder="vc.i18n('选填，请填写商户位置','addStoreInfo')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="显示序号" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStoreInfoInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写显示序号','addStoreInfo')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="工作时间" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addStoreInfoInfo.workTime" type="text" :placeholder="vc.i18n('选填，请填写工作时间','addStoreInfo')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="商家信息" namespace="addStoreInfo"></vc:i18n></span></label>
+                                <div class="col-sm-10 ">
+                                    <div class="no-padding">
+                                        <div class="summernote"></div>
+                                    </div>
+                                    <!--<textarea v-model="addNoticeViewInfo.context" cols="3"  type="text" :placeholder="vc.i18n('必填，请填写公告内容','addStoreInfo')" class="form-control"></textarea>-->
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveStoreInfoInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right"
+                                        v-on:click="_closeAddProductInfo()" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

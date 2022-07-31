@@ -1,0 +1,54 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="已办单" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="调度编号" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="调拨数量" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="申请人" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="时间" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="auditOrder in allocationStorehouseHistoryAuditOrdersInfo.auditOrders">
+                                <td class="text-center">{{auditOrder.applyId}}</td>
+                                <td class="text-center">{{auditOrder.applyCount}}</td>
+                                <td class="text-center">{{auditOrder.startUserName}}</td>
+                                <td class="text-center">{{auditOrder.stateName}}</td>
+                                <td class="text-center">{{auditOrder.createTime}}</td>
+                                <td class="text-center">
+                                    <div>
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs"
+                                                v-on:click="_toDetail(auditOrder)"><span><vc:i18n name="详情" namespace="allocationStorehouseHistoryAuditOrders"></vc:i18n></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div id="addOwnerRepairModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="报修登记" namespace="addOwnerRepair"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修范围" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addOwnerRepairInfo.repairObjType"
+                                            @change="_changeRepairObjType()">
+                                        <option selected disabled value="">{{vc.i18n('必填','addOwnerRepair')}}，请选择报修范围</option>
+                                        <option value="001">{{vc.i18n('小区','addOwnerRepair')}}</option>
+                                        <option value="002">{{vc.i18n('楼栋','addOwnerRepair')}}</option>
+                                        <option value="003">{{vc.i18n('单元','addOwnerRepair')}}</option>
+                                        <option value="004">{{vc.i18n('房屋','addOwnerRepair')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row"
+                                 v-show="addOwnerRepairInfo.repairObjType != '001' && addOwnerRepairInfo.repairObjType != ''">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属楼栋" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/floorSelect2" parentModal="addOwnerRepairModel"
+                                               namespace="addOwnerRepair">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row"
+                                 v-show="addOwnerRepairInfo.repairObjType == '003' ||  addOwnerRepairInfo.repairObjType == '004'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属单元" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/unitSelect2" parentModal="addOwnerRepairModel"
+                                               callBackListener="addOwnerRepair" callBackFunction="notify2"
+                                               namespace="addOwnerRepair">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addOwnerRepairInfo.repairObjType == '004'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属房屋" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/roomSelect2" parentModal="addOwnerRepairModel"
+                                               callBackListener="addOwnerRepair" callBackFunction="notify"
+                                               namespace="addOwnerRepair">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修类型" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addOwnerRepairInfo.repairType">
+                                        <option selected disabled value="">{{vc.i18n('必填','addOwnerRepair')}}，请选择报修类型</option>
+                                        <option v-for="(item,index) in addOwnerRepairInfo.repairSettings"
+                                                :value="item.repairType">{{item.repairTypeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修人" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addOwnerRepairInfo.repairName" type="text" :placeholder="vc.i18n('必填，请填写报修人','addOwnerRepair')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系方式" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addOwnerRepairInfo.tel" type="number" :placeholder="vc.i18n('必填，请填写联系方式','addOwnerRepair')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="预约时间" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addOwnerRepairInfo.appointmentTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写预约时间','addOwnerRepair')" class="form-control addAppointmentTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="报修内容" namespace="addOwnerRepair"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <textarea :placeholder="vc.i18n('必填，请填写报修内容','addOwnerRepair')" cols="15" class="form-control"
+                                              v-model="addOwnerRepairInfo.context"></textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveOwnerRepairInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;提交
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div  class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="基本信息" namespace="storeInfoManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15"
+                    >
+                        <thead>
+                        <tr>
+                            <th class="text-center"><span><vc:i18n name="商户名称" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="商户地址" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="联系电话" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="商户类型" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="企业法人" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="附近地标" namespace="storeInfoManage"></vc:i18n></span></th>
+                            <th class="text-right"><span><vc:i18n name="操作" namespace="storeInfoManage"></vc:i18n></span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="listStore in listStoreManageInfo.listStores">
+                            <td class="text-center">{{listStore.name}}</td>
+                            <td class="text-center">{{listStore.address}}</td>
+                            <td class="text-center">{{listStore.tel}}</td>
+                            <td class="text-center">{{listStore.storeTypeName}}</td>
+                            <td class="text-center">{{listStore.artificialPerson}}</td>
+                            <td class="text-center">{{listStore.nearByLandmarks}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditStoreInfoModel(listStore)"><span><vc:i18n name="修改" namespace="storeInfoManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="商户信息" namespace="storeInfoManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <tbody>
+
+                            <tr v-for="(storeAttr, key) in listStoreManageInfo.storeAttrDtoList">
+                                <td class="text-center">{{storeAttr.name}}</td>
+                                <td class="text-center">{{storeAttr.value}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                                v-on:click="_openEditStoreAttrModel(storeAttr)"><span><vc:i18n name="修改" namespace="storeInfoManage"></vc:i18n></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/editStoreInfo"></vc:create>
+    <vc:create path="common/editStoreAttr"></vc:create>
+</div>

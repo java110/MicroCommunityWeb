@@ -1,0 +1,15 @@
+<div>
+    <div>
+        <div>
+            <input v-model="chooseOrgTree2Info.curOrg.allOrgName" readonly @focus="_changeOrg2()" type="text" :placeholder="vc.i18n('必填，请填写关联组织','chooseOrgTree2')" class="form-control">
+        </div>
+        <div v-show="chooseOrgTree2Info.selectOrgFlag" class="vc-input-search">
+            <div class="close">
+                <i class="fa fa-check" @click="_doChooseOrg"></i>
+            </div>
+            <div id="jstree_chooseOrg2" class="margin-top">
+            </div>
+
+        </div>
+    </div>
+</div>

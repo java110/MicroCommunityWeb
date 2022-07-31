@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="菜单组信息" namespace="viewMenuGroupInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewMenuGroupInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMenuGroupInfoModel()">
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择菜单组" namespace="viewMenuGroupInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewMenuGroupInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMenuGroupInfoModel()">
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加菜单组" namespace="viewMenuGroupInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="组名称" namespace="viewMenuGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMenuGroupInfo.name}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >icon：</label>
+                            <label class="">{{viewMenuGroupInfo.icon}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="标签" namespace="viewMenuGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMenuGroupInfo.label}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="序列" namespace="viewMenuGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMenuGroupInfo.seq}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewMenuGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewMenuGroupInfo.description}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="dev/addMenuGroup"
+               callBackListener="viewMenuGroupInfo"
+               callBackFunction="chooseMenuGroup"
+    ></vc:create>
+
+
+    <vc:create path="dev/chooseMenuGroup"
+               emitChooseMenuGroup="viewMenuGroupInfo"
+               emitLoadData="viewMenuGroupInfo"
+    ></vc:create>
+</div>

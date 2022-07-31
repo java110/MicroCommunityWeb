@@ -1,0 +1,67 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="预缴费提醒" namespace="reportPrePaymentFee"></vc:i18n></span></h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;" data-content="距离费用开始时间剩余天数的统计"></span>
+                    <span style="font-size: 10px;">(按天更新)</span>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportPrePaymentFee"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用编号" namespace="reportPrePaymentFee"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="房号" namespace="reportPrePaymentFee"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用项" namespace="reportPrePaymentFee"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用开始时间" namespace="reportPrePaymentFee"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="距离费用开始时间" namespace="reportPrePaymentFee"></vc:i18n></span>（天）
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(fee,index) in reportPrePaymentFeeInfo.fees">
+                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{fee.oweDay}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>温馨提示：此表反馈7天内开始缴费的费用</div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

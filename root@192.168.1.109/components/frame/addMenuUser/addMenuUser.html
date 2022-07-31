@@ -1,0 +1,68 @@
+<div id="addMenuUserModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加" namespace="addMenuUser"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="菜单" namespace="addMenuUser"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMenuUserInfo.mId">
+                                        <option selected  disabled value="">{{vc.i18n('必填','addMenuUser')}}，请选择菜单</option>
+                                        <option  :value="item.mId" v-if="item.isShow == 'Y'" v-for="(item,index) in addMenuUserInfo.menus">{{item.menuGroupName}}-{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="图标" namespace="addMenuUser"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-adjust" v-model="addMenuUserInfo.icon" checked>
+                                        <i class="fa fa-adjust" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-bar-chart" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-bar-chart"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-comment-o" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-comment-o"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-folder-o" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-folder-o"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-futbol-o" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-futbol-o"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-globe" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-globe"></i>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" value="fa fa-female" v-model="addMenuUserInfo.icon">
+                                        <i class="fa fa-female"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="列顺序" namespace="addMenuUser"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMenuUserInfo.seq" type="number" :placeholder="vc.i18n('必填，请填写列顺序','addMenuUser')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMenuUserInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addMenuUser"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

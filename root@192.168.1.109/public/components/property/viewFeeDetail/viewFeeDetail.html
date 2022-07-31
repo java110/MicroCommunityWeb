@@ -1,0 +1,84 @@
+<div id="viewFeeDetailModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="viewFeeDetailModel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseFloorModelLabel">{{viewFeeDetailInfo.curYear}}<span><vc:i18n name="年缴费历史" namespace="viewFeeDetail"></vc:i18n></span>({{viewFeeDetailInfo.roomName}})</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                                    data-page-size="10">
+                                    <thead>
+                                        <tr>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="周期" namespace="viewFeeDetail"></vc:i18n></span>(单位:月)</th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="应收金额" namespace="viewFeeDetail"></vc:i18n></span>(单位:元)</th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="实收金额" namespace="viewFeeDetail"></vc:i18n></span>(单位:元)</th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="缴费时间" namespace="viewFeeDetail"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="缴费起始时间" namespace="viewFeeDetail"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="缴费结束时间" namespace="viewFeeDetail"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="状态" namespace="viewFeeDetail"></vc:i18n></span></th>
+                                            <th data-hide="phone" class="text-center"><span><vc:i18n name="备注" namespace="viewFeeDetail"></vc:i18n></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="feeDetail in viewFeeDetailInfo.feeDetails">
+                                            <td class="text-center">
+                                                {{feeDetail.cycles}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{feeDetail.receivableAmount}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{feeDetail.receivedAmount}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{feeDetail.createTime}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{vc.dateFormat(feeDetail.startTime)}}
+                                            </td>
+                                            <td class="text-center" v-if="feeDetail.startTime >= feeDetail.endTime">
+                                                {{vc.dateFormat(feeDetail.endTime)}}</td>
+                                            <td class="text-center" v-else>
+                                                {{vc.dateSubOneDay(vc.dateFormat(feeDetail.endTime),vc.dateFormat(feeDetail.endTime),feeDetail.feeFlag)}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{feeDetail.stateName}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{feeDetail.remark}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="7">
+                                                <ul class="pagination float-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <span> </span>
+                                    </div>
+                                    <div class="col-sm-7 float-right">
+                                        <vc:create namespace="viewFeeDetail" path="frame/paginationPlus"></vc:create>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

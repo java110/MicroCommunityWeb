@@ -1,0 +1,24 @@
+<div id = "chooseinitializeCommunityModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseinitializeCommunityModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span><vc:i18n name="温馨提示" namespace="chooseinitializeCommunity"></vc:i18n></span>!</h5>
+ 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <li style="color: red;"><span><vc:i18n name="请慎重操作" namespace="chooseinitializeCommunity"></vc:i18n></span>，此操作将清空所有【{{chooseinitializeCommunityInfo.communityName}}】小区数据,小区编码为【{{chooseinitializeCommunityInfo.communityId}}】。谨慎期间，请再次跟相关人员核实确认！</li>
+            </br>
+                <input :placeholder="vc.i18n('请输入开发者密码','chooseinitializeCommunity')" type="text" v-model="chooseinitializeCommunityInfo._devPassword" class="form-control form-control-sm">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeInitializeCommunityModel()"><span><vc:i18n name="点错了" namespace="chooseinitializeCommunity"></vc:i18n></span></button>
+                <button type="button" class="btn btn-primary" v-on:click="authenticationDevPassword()"><span><vc:i18n name="确认格式化" namespace="chooseinitializeCommunity"></vc:i18n></span></button>
+            </div>
+        </div>
+    </div>
+</div>

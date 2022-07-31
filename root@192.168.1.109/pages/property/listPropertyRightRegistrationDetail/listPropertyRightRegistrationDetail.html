@@ -1,0 +1,99 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        {{listPropertyRightRegistrationDetailInfo.conditions.floorNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.unitNum}}-{{listPropertyRightRegistrationDetailInfo.conditions.roomNum}}<span><vc:i18n name="的产权登记详情记录" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_goBack()">
+                            <i class="fa fa-times"></i><span><vc:i18n name="返回" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center"><span><vc:i18n name="产权登记详情" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="材料类型" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否缴费" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="图片" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="创建时间" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="listPropertyRightRegistrationDetail"></vc:i18n></span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="propertyRightRegistrationDetail in listPropertyRightRegistrationDetailInfo.propertyRightRegistrationDetails">
+                            <td class="text-center">{{propertyRightRegistrationDetail.prrdId}}</td>
+                            <td class="text-center">{{propertyRightRegistrationDetail.securitiesName}}</td>
+                            <td class="text-center" v-if="propertyRightRegistrationDetail.isTrue != '-1'">
+                                {{propertyRightRegistrationDetail.isTrue == 'true' ? '是' : '否'}}
+                            </td>
+                            <td class="text-center" v-else>--</td>
+                            <td class="text-center" v-if="propertyRightRegistrationDetail.securities == '001'">
+                                <div style="position: relative; display: inline-block;" v-on:click="showImg(item)"
+                                     v-for="(item,index) in propertyRightRegistrationDetail.idCardUrl.split(',')">
+                                    <img width="50" height="50" v-bind:src="item"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
+                            </td>
+                            <td class="text-center" v-if="propertyRightRegistrationDetail.securities == '002'">
+                                <div style="position: relative; display: inline-block;" v-on:click="showImg(item)"
+                                     v-for="(item,index) in propertyRightRegistrationDetail.housePurchaseUrl.split(',')">
+                                    <img width="50" height="50" v-bind:src="item"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
+                            </td>
+                            <td class="text-center" v-if="propertyRightRegistrationDetail.securities == '003'">
+                                <div style="position: relative; display: inline-block;" v-on:click="showImg(item)"
+                                     v-for="(item,index) in propertyRightRegistrationDetail.repairUrl.split(',')">
+                                    <img width="50" height="50" v-bind:src="item"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
+                            </td>
+                            <td class="text-center" v-if="propertyRightRegistrationDetail.securities == '004'">
+                                <div style="position: relative; display: inline-block;" v-on:click="showImg(item)"
+                                     v-for="(item,index) in propertyRightRegistrationDetail.deedTaxUrl.split(',')">
+                                    <img width="50" height="50" v-bind:src="item"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
+                            </td>
+                            <td class="text-center">{{propertyRightRegistrationDetail.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditPropertyRightRegistrationDetailModel(propertyRightRegistrationDetail)">
+                                        修改
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="15">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editPropertyRightRegistrationDetail"></vc:create>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

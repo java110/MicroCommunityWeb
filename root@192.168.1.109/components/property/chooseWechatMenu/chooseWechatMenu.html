@@ -1,0 +1,66 @@
+<div id = "chooseWechatMenuModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseWechatMenuModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseWechatMenuModelLabel"><span><vc:i18n name="选择公众号菜单" namespace="chooseWechatMenu"></vc:i18n></span></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('输入公众号菜单名称','chooseWechatMenu')" type="text" v-model="chooseWechatMenuInfo._currentWechatMenuName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryWechatMenus()"><span><vc:i18n name="查询" namespace="chooseWechatMenu"></vc:i18n></span></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                                                        <th class="text-center"><span><vc:i18n name="菜单" namespace="chooseWechatMenu"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="菜单名称" namespace="chooseWechatMenu"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="菜单类型" namespace="chooseWechatMenu"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="菜单级别" namespace="chooseWechatMenu"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="值" namespace="chooseWechatMenu"></vc:i18n></span></th>
+                            <th class="text-center">AppId</th>
+                            <th class="text-center"><span><vc:i18n name="小程序地址" namespace="chooseWechatMenu"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseWechatMenu"></vc:i18n></span></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="wechatMenu in chooseWechatMenuInfo.wechatMenus">
+                                                                        <td class="text-center">{{wechatMenu.wechatMenuId}}</td>
+                            <td class="text-center">{{wechatMenu.menuName}}</td>
+                            <td class="text-center">{{wechatMenu.menuType}}</td>
+                            <td class="text-center">{{wechatMenu.menuLevel}}</td>
+                            <td class="text-center">{{wechatMenu.menuValue}}</td>
+                            <td class="text-center">{{wechatMenu.appId}}</td>
+                            <td class="text-center">{{wechatMenu.pagepath}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseWechatMenu(wechatMenu)"><span><vc:i18n name="选择" namespace="chooseWechatMenu"></vc:i18n></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div id="addNewVisitModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加访客" namespace="addVisit"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="访客姓名" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.vName" type="text" :placeholder="vc.i18n('必填，请填写访客姓名','addVisit')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="性别" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addVisitInfo.visitGender">
+                                        <option selected disabled value="">{{vc.i18n('必填','addVisit')}}，请选择性别</option>
+                                        <option value="0">{{vc.i18n('男','addVisit')}}</option>
+                                        <option value="1">{{vc.i18n('女','addVisit')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="访客联系方式" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.phoneNumber" type="text" :placeholder="vc.i18n('必填，请填写访客联系方式','addVisit')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌号" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.carNum" type="text" :placeholder="vc.i18n('选填，请填写访客车牌号','addVisit')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="随行人数" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.entourage" type="text" :placeholder="vc.i18n('选填，请填写随行人数','addVisit')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.visitTime" readonly type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','addVisit')" class="form-control addVisitTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addVisit"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addVisitInfo.departureTime" readonly type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','addVisit')" class="form-control addDepartureTime">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="_addNewVisitInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div id = "editFeeManualCollectionModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改人工托收" namespace="editFeeManualCollection"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.roomName"                   type="text" :placeholder="vc.i18n('必填，请填写规格','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="业主名称" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.ownerName"                   type="text" :placeholder="vc.i18n('必填，请填写业主名称','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="业主电话" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.link"                   type="text" :placeholder="vc.i18n('必填，请填写业主电话','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋面积" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.roomArea"                   type="text" :placeholder="vc.i18n('必填，请填写房屋面积','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋单价" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.squarePrice"                   type="text" :placeholder="vc.i18n('必填，请填写房屋单价','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+<div class="form-group row">
+         <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="editFeeManualCollection"></vc:i18n></span></label>
+         <div class="col-sm-10">
+           <input v-model="editFeeManualCollectionInfo.remark"                   type="text" :placeholder="vc.i18n('选填，请填写备注','editFeeManualCollection')" class="form-control">
+         </div>
+</div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editFeeManualCollection()" ><i class="fa fa-check"></i>&nbsp;保存</button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editFeeManualCollection"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

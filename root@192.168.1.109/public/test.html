@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="a.b().d()">点我</button>
+    <script type="text/javascript">
+        a = {
+            b: function() {
+
+                return {
+                    data: {
+
+                    },
+                    c: function() {
+                        console.log('123123');
+                    },
+                    d: function() {
+                        this.c();
+                    }
+                }
+
+            }
+        };
+        console.log(a)
+
+        a.b().d();
+
+        console.log(a)
+    </script>
+
+
+</body>
+
+</html>

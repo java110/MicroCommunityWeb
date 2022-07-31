@@ -1,0 +1,109 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件" namespace="tempCarInoutFeeManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                 v-on:click="_moreCondition()">{{tempCarInoutFeeManageInfo.moreCondition == true ? '隐藏' : '更多'}}
+                         </button>-->
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请填写车牌号','tempCarInoutFeeManage')"
+                                       v-model="tempCarInoutFeeManageInfo.conditions.carNum" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择开始时间','tempCarInoutFeeManage')" readonly
+                                       class="form-control  start_time"
+                                       v-model="tempCarInoutFeeManageInfo.conditions.startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择结束时间','tempCarInoutFeeManage')" readonly
+                                       class="form-control  end_time"
+                                       v-model="tempCarInoutFeeManageInfo.conditions.endTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPayFeeMethod()">
+                                <i class="fa fa-search"></i><span><vc:i18n name="查询" namespace="tempCarInoutFeeManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPayFeeMethod()">
+                                <i class="fa fa-repeat"></i><span><vc:i18n name="重置" namespace="tempCarInoutFeeManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--<div class="row" v-if="tempCarInoutFeeManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <input size="16" type="text" :placeholder="vc.i18n('请填写员工编码','tempCarInoutFeeManage')"  v-model="tempCarInoutFeeManageInfo.conditions.userCode" class="form-control">
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="临时车缴费清单" namespace="tempCarInoutFeeManage"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="tempCarInoutFeeManage"></vc:i18n></span>
+                        </button>-->
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny"
+                           data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center"><span><vc:i18n name="订单" namespace="tempCarInoutFeeManage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="缴费" namespace="tempCarInoutFeeManage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="进场" namespace="tempCarInoutFeeManage"></vc:i18n></span>ID</th>
+                            <th class="text-center"><span><vc:i18n name="车牌号" namespace="tempCarInoutFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="应付金额" namespace="tempCarInoutFeeManage"></vc:i18n></span>(单位:元)</th>
+                            <th class="text-center"><span><vc:i18n name="实付金额" namespace="tempCarInoutFeeManage"></vc:i18n></span>(单位:元)</th>
+                            <th class="text-center"><span><vc:i18n name="开始时间" namespace="tempCarInoutFeeManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="tempCarInoutFeeManage"></vc:i18n></span></th>
+                            <!--<th class="text-center"><span><vc:i18n name="操作员工" namespace="tempCarInoutFeeManage"></vc:i18n></span></th>-->
+                            <th class="text-center"><span><vc:i18n name="缴费时间" namespace="tempCarInoutFeeManage"></vc:i18n></span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="payFee in tempCarInoutFeeManageInfo.payFees">
+                            <td class="text-center">{{payFee.oId}}</td>
+                            <td class="text-center">{{payFee.feeId}}</td>
+                            <td class="text-center">{{payFee.inoutId}}</td>
+                            <td class="text-center">{{payFee.carNum}}</td>
+                            <td class="text-center">{{payFee.receivableAmount}}<span><vc:i18n name="元" namespace="tempCarInoutFeeManage"></vc:i18n></span></td>
+                            <td class="text-center">{{payFee.receivedAmount}}<span><vc:i18n name="元" namespace="tempCarInoutFeeManage"></vc:i18n></span></td>
+                            <td class="text-center">{{payFee.startTime}}</td>
+                            <td class="text-center">{{payFee.endTime}}</td>
+                            <!--<td class="text-center">{{payFee.userName}}</td>-->
+                            <td class="text-center">{{payFee.payTime}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

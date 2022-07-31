@@ -1,0 +1,132 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="查询条件"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择分类名称','chainSupplierCatalogManage')"
+                                    v-model="chainSupplierCatalogManageInfo.conditions.catalogName"
+                                    class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择排序','chainSupplierCatalogManage')"
+                                    v-model="chainSupplierCatalogManageInfo.conditions.seq" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryChainSupplierCatalogMethod()">
+                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="auditUserManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="供应商分类信息" namespace="chainSupplierCatalogManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.goBack()">
+                            返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddChainSupplierCatalogModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>
+                                <vc:i18n name="添加供应商分类" namespace="chainSupplierCatalogManage"></vc:i18n>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='供应商分类ID' namespace='chainSupplierCatalogManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='分类名称' namespace='chainSupplierCatalogManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='供应商ID' namespace='chainSupplierCatalogManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='对端接口参数' namespace='chainSupplierCatalogManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='排序' namespace='chainSupplierCatalogManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="chainSupplierCatalog in chainSupplierCatalogManageInfo.chainSupplierCatalogs">
+                                <td class="text-center">{{chainSupplierCatalog.catalogId}}</td>
+                                <td class="text-center">{{chainSupplierCatalog.catalogName}}</td>
+                                <td class="text-center">{{chainSupplierCatalog.csId}}</td>
+                                <td class="text-center">{{chainSupplierCatalog.intfUrlParam}}</td>
+                                <td class="text-center">{{chainSupplierCatalog.seq}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditChainSupplierCatalogModel(chainSupplierCatalog)"><span>
+                                                <vc:i18n name='修改'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteChainSupplierCatalogModel(chainSupplierCatalog)"><span>
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="admin/addChainSupplierCatalog" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/editChainSupplierCatalog"></vc:create>
+    <vc:create path="admin/deleteChainSupplierCatalog"></vc:create>
+
+</div>

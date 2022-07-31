@@ -1,0 +1,83 @@
+<div id="addRentingPoolModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span><vc:i18n name="房屋出租" namespace="addRentingPool"></vc:i18n></span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="出租标题" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.rentingTitle" type="text" :placeholder="vc.i18n('必填，请填写出租标题','addRentingPool')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="租金" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.price" type="text" :placeholder="vc.i18n('必填，请填写租金','addRentingPool')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="预付类型" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addRentingPoolInfo.paymentType">
+                    <option selected disabled value="">{{vc.i18n('必填','addRentingPool')}}，请选择预付类型</option>
+                    <option value="1001">{{vc.i18n('押一付一','addRentingPool')}}</option>
+                    <option value="2002">{{vc.i18n('押一付三','addRentingPool')}}</option>
+                    <option value="3003">{{vc.i18n('押一付六','addRentingPool')}}</option>
+                  </select> </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="入住时间" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.checkIn" type="text" :placeholder="vc.i18n('必填，请填写入住时间','addRentingPool')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{vc.i18n('出租配置','addRentingPool')}}</label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addRentingPoolInfo.rentingConfigId">
+                    <option selected disabled value="">{{vc.i18n('必填','addRentingPool')}}，请选择出租配置</option>
+                    <option value="1001">{{vc.i18n('出租配置','addRentingPool')}}</option>
+                    <option value="2002">{{vc.i18n('每月租金比例','addRentingPool')}}</option>
+                  </select> </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.rentingDesc" type="text" :placeholder="vc.i18n('选填，请填写备注','addRentingPool')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业主名称" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.ownerName" type="text" :placeholder="vc.i18n('必填，请填写业主名称','addRentingPool')"
+                    class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业主电话" namespace="addRentingPool"></vc:i18n></span></label>
+                <div class="col-sm-10">
+                  <input v-model="addRentingPoolInfo.ownerTel" type="text" :placeholder="vc.i18n('必填，请填写业主电话','addRentingPool')"
+                    class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveRentingPoolInfo()"><i
+                    class="fa fa-check"></i>&nbsp;保存</button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="addRentingPool"></vc:i18n></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

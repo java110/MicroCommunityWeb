@@ -1,0 +1,112 @@
+<div id="addBarrierGateMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加道闸" namespace="addBarrierGateMachine"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="道闸名称" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addBarrierGateMachineInfo.machineName" type="text" :placeholder="vc.i18n('必填，请填写设备名称','addBarrierGateMachine')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="道闸编码" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addBarrierGateMachineInfo.machineCode" type="text" :placeholder="vc.i18n('必填，请填写设备编码','addBarrierGateMachine')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="版本号" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addBarrierGateMachineInfo.machineVersion" type="text" :placeholder="vc.i18n('必填，请填写版本号','addBarrierGateMachine')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="类型" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addBarrierGateMachineInfo.typeId" @change="setAddMachineTypeCd(addBarrierGateMachineInfo.typeId)">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择类型','addMaaddBarrierGateMachinehine')}}</option>
+                                        <option v-for="(item,index) in addBarrierGateMachineInfo.machineTypes" :key="index" :value="item.typeId" 
+                                        v-if="item.machineTypeCd == '9995' || item.machineTypeCd == '9996'">
+                                            {{item.machineTypeName}}</option>
+                                        </select>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" v-if="addBarrierGateMachineInfo.machineTypeCd == '9996'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="道闸方向" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addBarrierGateMachineInfo.direction">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择设备方向','addBarrierGateMachine')}}</option>
+                                        <option value="3306">{{vc.i18n('进场','addBarrierGateMachine')}}</option>
+                                        <option value="3307">{{vc.i18n('出场','addBarrierGateMachine')}}</option>
+                                    </select></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="道闸位置" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addBarrierGateMachineInfo.locationTypeCd">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择设备位置','addBarrierGateMachine')}}</option>
+                                        <option v-for="item in addBarrierGateMachineInfo.locations" 
+                                            :value="item.locationId">{{item.locationName}}-->{{item.locationObjName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备IP" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addBarrierGateMachineInfo.machineIp" type="text" :placeholder="vc.i18n('选填，请填写设备IP,如 192.168.1.10:8090','addBarrierGateMachine')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备MAC" namespace="addBarrierGateMachine"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="addBarrierGateMachineInfo.machineMac" type="text" :placeholder="vc.i18n('选填，请填写设备MAC','addBarrierGateMachine')" class="form-control">
+                            </div>
+                        </div>
+
+                        <div v-for="(item,index) in addBarrierGateMachineInfo.attrs">
+
+                            <div class="form-group row" v-if="item.specType == '2233'">
+                                <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                <div class="col-sm-10">
+                                    <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="item.specType == '3344'">
+                                <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="item.value">
+                                        <option selected disabled value="">{{item.specHoldplace}}</option>
+                                        <option v-for="value in item.values" :label="value.valueName"
+                                            :value="value.value">
+                                            {{item.valueName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="saveMachineInfo()"><i
+                                    class="fa fa-check"></i>&nbsp;保存
+                            </button>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addBarrierGateMachine"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

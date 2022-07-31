@@ -1,0 +1,13 @@
+<div component="validate-tel">
+    <div class="form-group">
+        <input  name="tel" v-model="validateParam.tel" type="text" class="form-control" :placeholder="vc.i18n('请输入手机号码','validate-tel')" required="">
+    </div>
+    <div class="form-group row" >
+        <div class="col-sm-7 ">
+            <input type="text" class="form-control" v-model="validateParam.messageCode" :placeholder="vc.i18n('请输入验证码','validate-tel')" required=""/>
+        </div>
+        <div class="col-sm-5 ">
+            <button type="button" v-bind:disabled="buttonInfo !='验证码'"  class="btn btn-primary form-control" v-on:click="sendTelMessageCode()">{{buttonInfo}}</button>
+        </div>
+    </div>
+</div>
