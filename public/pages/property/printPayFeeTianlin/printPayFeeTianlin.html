@@ -102,5 +102,11 @@
         <div>东莞市天麟物业管理有限公司</div>
         <div>物业服务中心</div>
     </div>
-
+    <div class="text-right" id="print-btn">
+        <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFeeBangTai"></vc:i18n></span>
+        </button>
+    </div>
 </div>

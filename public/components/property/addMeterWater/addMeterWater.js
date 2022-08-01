@@ -207,7 +207,7 @@
                     return;
                 }
                 vc.http.apiPost(
-                    'meterWater.saveMeterWater',
+                    '/meterWater.saveMeterWater',
                     JSON.stringify(vc.component.addMeterWaterInfo), {
                         emulateJSON: true
                     },

@@ -320,6 +320,11 @@
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
                 vc.jumpToPage('/#/pages/property/reportFeeSummaryDetail?feeYear=' + _fee.feeYear + "&feeMonth=" + _fee.feeMonth + "&configIds=" + _configIds + "&" + vc.objToGetParam($that.reportFeeSummaryInfo.conditions))
+            },
+            _printFeeSummary: function() {
+                let _param = vc.objToGetParam($that.reportFeeSummaryInfo.conditions);
+
+                window.open('/print.html#/pages/property/reportFeeSummaryPrint?' + _param);
             }
         }
     });

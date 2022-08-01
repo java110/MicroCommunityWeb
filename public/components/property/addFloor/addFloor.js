@@ -12,7 +12,8 @@
                 floorArea: '',
                 floorNum: '',
                 remark: '',
-                errorInfo: ''
+                errorInfo: '',
+                seq: '',
             }
         },
         watch: {
@@ -71,6 +72,17 @@
                             errInfo: "建筑面积错误，如300.00"
                         },
                     ],
+                    'addFloorInfo.seq': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "排序不能为空"
+                        },
+                        {
+                            limit: "number",
+                            param: "",
+                            errInfo: "排序必须是数字"
+                        },
+                    ],
                     'addFloorInfo.remark': [
 
                         {
@@ -125,7 +137,8 @@
                     floorNum: '',
                     floorArea: '',
                     remark: '',
-                    errorInfo: ''
+                    errorInfo: '',
+                    seq: '',
                 };
             }
         }
