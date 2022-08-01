@@ -1,0 +1,106 @@
+<div>
+    <div class="top-1 flex justify-between ">
+        <div class="top-left" style="width: 80%;">
+            <h1 class="text-center" style="color:#000;font-weight: 400;">{{printPayFeeInfo.storeName}}缴费通知单</h1>
+            <div class="flex justify-around" style="color:#000;font-size:20px">
+                <div style="width: 25%;">小区名称：{{printPayFeeInfo.communityName}}</div>
+                <div style="width: 25%;">栋号：{{printPayFeeInfo.roomInfo.floorNum}}栋</div>
+                <div style="width: 25%;">建筑面积：{{printPayFeeInfo.fees && printPayFeeInfo.fees.length>0?printPayFeeInfo.fees[0].area:'无'}}</div>
+            </div>
+            <div class="flex justify-around" style="color:#000;font-size:20px">
+                <div style="width: 25%;">户主姓名：{{printPayFeeInfo.payObjName}}</div>
+                <div style="width: 25%;">房号：{{printPayFeeInfo.roomInfo.roomNum}}</div>
+                <div style="width: 25%;">房屋编号：{{printPayFeeInfo.fees && printPayFeeInfo.fees.length>0?printPayFeeInfo.fees[0].objName:'无'}}</div>
+            </div>
+        </div>
+        <div class="top-right">
+            <img :src="printPayFeeInfo.qrImg" width="100px" height="100px">
+        </div>
+    </div>
+
+    <div class="context-1">
+        <table class="table vc-table-border" style="color:#000;font-size:20px">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center" width="80px"><span><vc:i18n name="费用名称" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="起始日期" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="结束日期" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="上期读数" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="本期读数" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="本期用量" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="单位" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                    <th scope="col" class="text-center"><span><vc:i18n name="小计(元)" namespace="printPayFeeBangTai"></vc:i18n></span></th>
+                </tr>
+            </thead>
+            <tbody class="vc-table-border" style="color:#000;font-size:20px">
+                <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
+                    <td scope="row" class="text-center">{{item.feeName}}</td>
+                    <td class="text-center">{{vc.dateFormat(item.startTime)}}</td>
+                    <td class="text-center">{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</td>
+                    <td class="text-center" v-if="item.preDegrees">{{item.preDegrees}} </td>
+                    <td class="text-center" v-else>-</td>
+                    <td class="text-center" v-if="item.preDegrees">{{item.curDegrees}}</td>
+                    <td class="text-center" v-else>-</td>
+                    <td class="text-center" v-if="item.preDegrees">{{item.curDegrees - item.preDegrees}}</td>
+                    <td class="text-center" v-else>-</td>
+                    <td class="text-center">m2</td>
+                    <td class="text-center">{{item.squarePrice}}</td>
+                    <td class="text-center">{{item.amount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right "><span><vc:i18n name="合计：" namespace="printPayFeeBangTai"></vc:i18n></span></td>
+                    <td colspan="3" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                    </td>
+                    <td class="text-center ">{{printPayFeeInfo.amount}}</td>
+                </tr>
+                <tr>
+                    <td scope="row" class="text-center">物业费预存日期</td>
+                    <td scope="row" class="text-center"></td>
+                    <td scope="row" class="text-center">上期预存</td>
+                    <td scope="row" class="text-center">0.00</td>
+                    <td scope="row" class="text-center">预存剩余</td>
+                    <td scope="row" class="text-center">0.00</td>
+                    <td colspan="2" scope="row" class="text-center">抵扣预存后应缴</td>
+                    <td scope="row" class="text-center">{{printPayFeeInfo.amount}}</td>
+                </tr>
+                <tr height="60px">
+                    <td scope="row" class="text-center">备注1</td>
+                    <td colspan="8">
+                        <p>
+                            <!-- {{printPayFeeInfo.content}} -->
+                            <div v-html="printPayFeeInfo.content"></div>
+                        </p>
+                    </td>
+
+                </tr>
+                <tr height="60px">
+                    <td scope="row" class="text-center">备注2</td>
+                    <td colspan="8">
+                        <p>
+
+                        </p>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="flex justify-around " style="color:#000;font-size:20px">
+        <div style="width: 20%;">制单人：{{printPayFeeInfo.userName}}</div>
+        <div style="width: 20%;">复核人：</div>
+        <div style="width: 20%;">客服管家：</div>
+        <div style="width: 20%;">缴费方式：{{printPayFeeInfo.fees && printPayFeeInfo.fees.length>0?printPayFeeInfo.fees[0].primeRate:'无'}}</div>
+    </div>
+    <div class="flex justify-around " style="color:#000;font-size:20px">
+        <div style="width: 20%;">日期：{{vc.dateFormat(new Date())}}</div>
+        <div style="width: 20%;"></div>
+        <div style="width: 20%;">手机/微信号：</div>
+        <div style="width: 20%;">实缴日期：{{printPayFeeInfo.feeTime}}</div>
+    </div>
+    <div class="text-right margin-top" style="color:#000;font-size:20px">
+        <div>东莞市天麟物业管理有限公司</div>
+        <div>物业服务中心</div>
+    </div>
+
+</div>
