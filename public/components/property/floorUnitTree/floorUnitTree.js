@@ -57,9 +57,9 @@
                     }
                 })
 
-                _data = _data.sort(function(a, b) {
-                    return a.floorNum - b.floorNum
-                });
+                // _data = _data.sort(function(a, b) {
+                //     return a.seq - b.seq
+                // });
 
                 $.jstree.destroy()
                 $("#jstree_floorUnit").jstree({

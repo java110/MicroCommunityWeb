@@ -86,7 +86,7 @@
                                 </td>
                                 <td class="text-center">{{community.stateName}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group" v-if="community.state == '1200' && communityManageInfo.storeTypeCd == '800900000001'">
+                                    <div class="btn-group" v-if=" communityManageInfo.storeTypeCd == '800900000001'">
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteCommunityModel(community)"><span><vc:i18n name="删除" namespace="communityManage"></vc:i18n></span>
                                     </button>
                                     </div>
