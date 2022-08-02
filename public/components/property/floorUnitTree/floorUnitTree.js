@@ -168,6 +168,10 @@
                                 _includeMenu = true;
                             }
                         }
+
+                        if (_units[_pIndex].unitNum == "0") {
+                            continue;
+                        }
                         if (!_includeMenu) {
                             let _menuItem = {
                                 id: 'u_' + _units[_pIndex].unitId,
