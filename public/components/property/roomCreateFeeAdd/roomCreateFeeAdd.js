@@ -215,6 +215,11 @@
             },
             clearRoomCreateFeeAddData: function() {
                 var _feeTypeCds = $that.roomCreateFeeAddInfo.feeTypeCds;
+
+                vc.emit('roomCreateFeeAdd', 'floorSelect2', 'clearFloor', {});
+                vc.emit('roomCreateFeeAdd', 'unitSelect2', 'clearUnit', {});
+                vc.emit('roomCreateFeeAdd', 'roomSelect2', 'clearRoom', {});
+
                 $that.roomCreateFeeAddInfo = {
                     feeConfigs: [],
                     locationTypeCd: '',
