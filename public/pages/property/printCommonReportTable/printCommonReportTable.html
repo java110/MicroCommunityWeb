@@ -1,0 +1,33 @@
+<div>
+    <div class="top-1 ">
+        <h1 class="text-center" style="color:#000;font-weight: 400;">{{printCommonReportTableInfo.componentName}}</h1>
+    </div>
+
+    <div class="context-1">
+        <table class="table vc-table-border" style="color:#000;font-size:20px">
+            <thead>
+                <tr>
+                    <th class="text-center" v-for="(itemTh,indexTh) in printCommonReportTableInfo.th">{{itemTh}}</th>
+                </tr>
+            </thead>
+            <tbody class="vc-table-border" style="color:#000;font-size:20px">
+                <tr v-for="(itemData,indexData) in printCommonReportTableInfo.data" class="vc-table-border">
+                    <td class="text-center" v-for="(tmpItemTh,key) in printCommonReportTableInfo.th">
+                        {{itemData[tmpItemTh]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row padding-left" v-if="printCommonReportTableInfo.footer" style="color:#000;font-size:20px">
+            <span class="col-md-2" v-for="(tmpItemTh,key) of printCommonReportTableInfo.footer">
+                <div class="row">{{key}}: {{tmpItemTh}}</div>
+            </span>
+        </div>
+        <div class="text-right" id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPayFeeBangTai"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+</div>

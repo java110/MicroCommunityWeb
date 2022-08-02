@@ -201,9 +201,11 @@
 
                 }
                 let urlParam = _result.join('&');
-
                 vc.jumpToPage('/callComponent/importAndExportFee/exportCustomReportTableData?' + urlParam)
-
+            },
+            _printReportTableMethod: function(_data) {
+                vc.saveData('printCommonReportTableData', _data);
+                window.open('/print.html#/pages/property/printCommonReportTable');
             }
         }
     });
