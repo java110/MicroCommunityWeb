@@ -133,6 +133,9 @@
                     });
                     _call();
                 }, 'MONITOR');
+            },
+            _openViewVideoModel: function(_machine) {
+                vc.emit('viewCameraVideo', 'openCameraVideoModal', _machine);
             }
         }
     });

@@ -60,6 +60,9 @@
                                     <span><vc:i18n name="视频通道编码ID" namespace="monitorMachineManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
+                                    <span><vc:i18n name="视频流端口" namespace="monitorMachineManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
                                     <span><vc:i18n name="状态" namespace="monitorMachineManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
@@ -80,6 +83,7 @@
                                 <td class="text-center">{{machine.machineName}}</td>
                                 <td class="text-center">{{machine.machineCode}}</td>
                                 <td class="text-center">{{machine.machineVersion}}</td>
+                                <td class="text-center">{{machine.machineIp}}</td>
                                 <td class="text-center">{{machine.stateName}}</td>
                                 <td class="text-center">{{machine.heartbeatTime}}</td>
                                 <td v-for="item in machine.listValues" class="text-center">
@@ -91,6 +95,10 @@
                                     </button>
                                     <button class="btn-white btn btn-xs" v-on:click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除" namespace="monitorMachineManage"></vc:i18n></span>
                                     </button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openViewVideoModel(machine)"><span><vc:i18n name="预览" namespace="monitorMachineManage"></vc:i18n></span>
+                                    </button>
+
+
                                 </td>
                             </tr>
                         </tbody>
@@ -112,4 +120,5 @@
     <vc:create path="property/editMonitorMachine"></vc:create>
     <vc:create path="property/deleteMachine"></vc:create>
     <vc:create path="property/machineState"></vc:create>
+    <vc:create path="property/viewCameraVideo"></vc:create>
 </div>
