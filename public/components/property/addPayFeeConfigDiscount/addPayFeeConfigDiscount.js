@@ -169,9 +169,11 @@
                             $('#addPayFeeConfigDiscountModel').modal('hide');
                             vc.component.clearAddPayFeeConfigDiscountInfo();
                             vc.emit('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

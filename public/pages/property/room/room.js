@@ -24,8 +24,9 @@
                     roomId: '',
                     state: '',
                     section: '',
-                    roomType: '1010301',
-                    roomSubType: ''
+                    roomType: '',
+                    roomSubType: '',
+                    flag: ''
                 },
                 currentPage: DEFAULT_PAGE,
                 listColumns: [],
@@ -40,7 +41,6 @@
             vc.getDict('building_room', "state", function (_data) {
                 vc.component.roomInfo.states = _data;
             });
-
             //与字典表关联
             vc.getDict('building_room', "room_sub_type", function (_data) {
                 vc.component.roomInfo.roomSubTypes = _data;
@@ -52,11 +52,13 @@
             vc.on('room', 'switchFloor', function (_param) {
                 vc.component.roomInfo.conditions.floorId = _param.floorId;
                 vc.component.roomInfo.conditions.unitId = '';
+                vc.component.roomInfo.conditions.flag = 1;
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('room', 'switchUnit', function (_param) {
                 vc.component.roomInfo.conditions.floorId = '';
                 vc.component.roomInfo.conditions.unitId = _param.unitId;
+                vc.component.roomInfo.conditions.flag = 1;
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('room', 'listRoom', function (_param) {
@@ -157,6 +159,7 @@
                     });
             },
             _queryRoomMethod: function () {
+                vc.component.roomInfo.conditions.flag = 0;
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             },
             showState: function (_state) {
@@ -207,11 +210,13 @@
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
             dealRoomAttr: function (rooms) {
-                $that._getColumns(rooms, function () {
-                    rooms.forEach(item => {
-                        $that._getColumnsValue(item);
+                if (rooms != null && rooms != '' && rooms != undefined) {
+                    $that._getColumns(rooms, function () {
+                        rooms.forEach(item => {
+                            $that._getColumnsValue(item);
+                        });
                     });
-                });
+                }
             },
             _getColumnsValue: function (_room) {
                 _room.listValues = [];
@@ -303,9 +308,7 @@
             _openRoomCreateFeeComboModal: function (_room) {
                 let _roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
-                    _room.roomId +
-                    "&payerObjName=" + _roomName +
-                    "&payerObjType=3333")
+                    _room.roomId + "&payerObjName=" + _roomName + "&payerObjType=3333")
             },
         }
     });

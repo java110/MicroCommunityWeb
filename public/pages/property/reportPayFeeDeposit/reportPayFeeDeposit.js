@@ -77,7 +77,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    // todayBtn: true,
+                    clearBtn: true
                 });
                 $(".endTime").datetimepicker({
                     language: 'zh-CN',
@@ -86,7 +87,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {

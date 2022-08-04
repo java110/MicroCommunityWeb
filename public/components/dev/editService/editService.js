@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editServiceInfo: {
@@ -15,22 +14,19 @@
                 timeout: '60',
                 retryCount: '3',
                 provideAppId: '8000418002',
-                services:[]
-
+                services: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editService', 'openEditServiceModal', function (_params) {
                 vc.component.refreshEditServiceInfo();
-                vc.getDict('c_service',"url",function(_data){
+                vc.getDict('c_service', "url", function (_data) {
                     vc.component.editServiceInfo.services = _data;
                 });
                 $('#editServiceModel').modal('show');
                 vc.copyObject(_params, vc.component.editServiceInfo);
-
             });
         },
         methods: {
@@ -165,8 +161,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "服务ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editService: function () {
@@ -174,7 +170,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editService',
                     'update',
@@ -188,13 +183,12 @@
                             //关闭model
                             $('#editServiceModel').modal('hide');
                             vc.emit('serviceManage', 'listService', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -212,10 +206,9 @@
                     timeout: '60',
                     retryCount: '3',
                     provideAppId: '8000418002',
-                    services:[]
+                    services: []
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

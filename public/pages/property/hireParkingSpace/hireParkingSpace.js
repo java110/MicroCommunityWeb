@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             hireParkingSpaceInfo: {
@@ -10,11 +10,11 @@
                 infos: [],
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent: function() {
-            vc.on("hireParkingSpace", "notify", function(_info) {
+        _initEvent: function () {
+            vc.on("hireParkingSpace", "notify", function (_info) {
                 vc.component.hireParkingSpaceInfo.infos[vc.component.hireParkingSpaceInfo.index] = _info;
                 /*if(vc.component.hireParkingSpaceInfo.index == 0){
                     vc.emit('searchRoom','listenerFloorInfo',_info);
@@ -22,7 +22,7 @@
             });
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.hireParkingSpaceInfo.$step = $("#step");
                 vc.component.hireParkingSpaceInfo.$step.step({
                     index: 0,
@@ -31,7 +31,7 @@
                 });
                 vc.component.hireParkingSpaceInfo.index = vc.component.hireParkingSpaceInfo.$step.getIndex();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.hireParkingSpaceInfo.$step.prevStep();
                 vc.component.hireParkingSpaceInfo.index = vc.component.hireParkingSpaceInfo.$step.getIndex();
                 vc.emit('viewSelectParkingSpace', 'onIndex', vc.component.hireParkingSpaceInfo.index);
@@ -42,7 +42,7 @@
                     vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
             },
-            _nextStep: function() {
+            _nextStep: function () {
                 var _currentData = vc.component.hireParkingSpaceInfo.infos[vc.component.hireParkingSpaceInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -58,7 +58,7 @@
                     vc.emit('viewOwnerInfo', 'callBackOwnerInfo', {});
                 }
             },
-            _finishStep: function() {
+            _finishStep: function () {
                 var _currentData = vc.component.hireParkingSpaceInfo.infos[vc.component.hireParkingSpaceInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -74,7 +74,7 @@
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         json = JSON.parse(json);
                         if (res.status == 200 && json.code == 0) {
                             vc.toast("请记得收费哦！");
@@ -82,13 +82,15 @@
                             //vc.jumpToPage("/#/pages/property/listOwnerCar");
                             vc.goBack();
                             return;
+                        } else {
+                            vc.toast(json.msg);
                         }
-                        vc.toast(json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             }
         }
     });

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -18,7 +17,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addQuestionAnswerTitle', 'openAddQuestionAnswerTitleModal', function (_param) {
@@ -72,7 +70,6 @@
             saveQuestionAnswerTitleInfo: function () {
                 if (!vc.component.addQuestionAnswerTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addQuestionAnswerTitleInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -96,17 +93,15 @@
                             $('#addQuestionAnswerTitleModel').modal('hide');
                             vc.component.clearAddQuestionAnswerTitleInfo();
                             vc.emit('questionAnswerTitleManage', 'listQuestionAnswerTitle', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddQuestionAnswerTitleInfo: function () {
@@ -121,14 +116,11 @@
                 };
             },
             _changeAddTitleType: function () {
-
                 let _titleType = $that.addQuestionAnswerTitleInfo.titleType;
-
                 if (_titleType == '3003') {
                     $that.addQuestionAnswerTitleInfo.titleValues = [];
                     return;
                 }
-
                 $that.addQuestionAnswerTitleInfo.titleValues = [
                     {
                         qaValue: '',
@@ -146,7 +138,6 @@
             },
             _deleteTitleValue: function (_seq) {
                 console.log(_seq);
-
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.addQuestionAnswerTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
@@ -157,10 +148,8 @@
                         })
                     }
                 });
-
                 $that.addQuestionAnswerTitleInfo.titleValues = _newTitleValues;
             }
         }
     });
-
 })(window.vc);

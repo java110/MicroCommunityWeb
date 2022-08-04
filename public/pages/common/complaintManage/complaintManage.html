@@ -16,12 +16,12 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入投诉编码','complaintManage')" v-model="complaintManageInfo.conditions.complaintId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入ID','complaintManage')" v-model="complaintManageInfo.conditions.complaintId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.typeCd">
-                                <option selected value="">{{vc.i18n('请选择投诉类型','complaintManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择类型','complaintManage')}}</option>
                                 <option value="809001">{{vc.i18n('投诉','complaintManage')}}</option>
                                 <option value="809002">{{vc.i18n('建议','complaintManage')}}</option>
                                 <option value="809003">{{vc.i18n('咨询','complaintManage')}}</option>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="complaintManageInfo.conditions.state">
-                                <option selected value="">{{vc.i18n('请选择投诉状态','complaintManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择状态','complaintManage')}}</option>
                                 <option value="10001">{{vc.i18n('处理中','complaintManage')}}</option>
                                 <option value="10002">{{vc.i18n('处理完成','complaintManage')}}</option>
                             </select>
@@ -46,12 +46,12 @@
                     <div class="row" v-show="complaintManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入投诉人','complaintManage')" v-model="complaintManageInfo.conditions.complaintName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入提交者','complaintManage')" v-model="complaintManageInfo.conditions.complaintName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入投诉人电话','complaintManage')" v-model="complaintManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','complaintManage')" v-model="complaintManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -81,7 +81,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="投诉建议" namespace="complaintManage"></vc:i18n></span>
+                        <span><vc:i18n name="民生诉求" namespace="complaintManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddComplaintModal()">
@@ -93,22 +93,21 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
+                                <th class="text-center">ID</th>
                                 <th class="text-center">
-                                    {{vc.i18n('投诉','complaintManage')}}ID</th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="投诉类型" namespace="complaintManage"></vc:i18n></span>
+                                    <span><vc:i18n name="类型" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="房屋" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="投诉人" namespace="complaintManage"></vc:i18n></span>
+                                    <span><vc:i18n name="提交者" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="投诉人电话" namespace="complaintManage"></vc:i18n></span>
+                                    <span><vc:i18n name="联系电话" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="投诉状态" namespace="complaintManage"></vc:i18n></span>
+                                    <span><vc:i18n name="状态" namespace="complaintManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="处理人" namespace="complaintManage"></vc:i18n></span>

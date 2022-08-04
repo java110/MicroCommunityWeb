@@ -1,52 +1,44 @@
-(function(vc,vm){
-
+(function (vc, vm) {
     vc.extends({
-        data:{
-            deleteServiceImplInfo:{
-
-            }
+        data: {
+            deleteServiceImplInfo: {}
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-             vc.on('deleteServiceImpl','openDeleteServiceImplModal',function(_params){
-
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteServiceImpl', 'openDeleteServiceImplModal', function (_params) {
                 vc.component.deleteServiceImplInfo = _params;
                 $('#deleteServiceImplModel').modal('show');
-
             });
         },
-        methods:{
-            deleteServiceImpl:function(){
+        methods: {
+            deleteServiceImpl: function () {
                 //vc.component.deleteServiceImplInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteServiceImpl',
                     'delete',
                     JSON.stringify(vc.component.deleteServiceImplInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             //关闭model
                             $('#deleteServiceImplModel').modal('hide');
-                            vc.emit('serviceImplManage','listServiceImpl',{});
-                            return ;
+                            vc.emit('serviceImplManage', 'listServiceImpl', {});
+                            vc.toast("删除成功");
+                            return;
                         }
-                        vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
-                     });
+                    });
             },
-            closeDeleteServiceImplModel:function(){
+            closeDeleteServiceImplModel: function () {
                 $('#deleteServiceImplModel').modal('hide');
             }
         }
     });
-
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);

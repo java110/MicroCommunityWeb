@@ -12,7 +12,9 @@
                 startTime: '',
                 endTime: '',
                 remark: '',
+                content: '',
                 objType: '',
+                photos: [],
                 objId: ''
             }
         },
@@ -22,6 +24,9 @@
         _initEvent: function () {
             vc.on('addQuestionAnswer', 'openAddQuestionAnswerModal', function () {
                 $('#addQuestionAnswerModel').modal('show');
+            });
+            vc.on("addQuestionAnswer", "notifyUploadImage", function (_param) {
+                vc.component.addQuestionAnswerInfo.photos = _param;
             });
         },
         methods: {
@@ -175,6 +180,8 @@
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
                             vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {
@@ -189,7 +196,9 @@
                     startTime: '',
                     endTime: '',
                     remark: '',
+                    content: '',
                     objType: '',
+                    photos: [],
                     objId: ''
                 };
             }

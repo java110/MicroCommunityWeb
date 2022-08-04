@@ -5,25 +5,24 @@
     vc.extends({
         data: {
             paginationPlusInfo: {
-                total:0,
+                total: 0,
                 dataCount: 0,
                 currentPage: 1,
                 pageList: []
             }
         },
         _initEvent: function () {
-            vc.on($namespace,'paginationPlus','info_event', function (_paginationPlusInfo) {
+            vc.on($namespace, 'paginationPlus', 'info_event', function (_paginationPlusInfo) {
                 this.paginationPlusInfo.total = _paginationPlusInfo.total;
-                if(_paginationPlusInfo.hasOwnProperty("dataCount")){
+                if (_paginationPlusInfo.hasOwnProperty("dataCount")) {
                     this.paginationPlusInfo.dataCount = _paginationPlusInfo.dataCount;
                 }
                 this.paginationPlusInfo.currentPage = _paginationPlusInfo.currentPage;
                 this._freshPageList();
             });
-
-            vc.on($namespace,'paginationPlus', 'init', function (_paginationPlusInfo) {
+            vc.on($namespace, 'paginationPlus', 'init', function (_paginationPlusInfo) {
                 this.paginationPlusInfo.total = _paginationPlusInfo.total;
-                if(_paginationPlusInfo.hasOwnProperty("dataCount")) {
+                if (_paginationPlusInfo.hasOwnProperty("dataCount")) {
                     this.paginationPlusInfo.dataCount = _paginationPlusInfo.dataCount;
                 }
                 this.paginationPlusInfo.currentPage = _paginationPlusInfo.currentPage;
@@ -37,26 +36,24 @@
                     return;
                 }
                 this.paginationPlusInfo.currentPage = this.paginationPlusInfo.currentPage - 1;
-                vc.emit($namespace,'paginationPlus','page_event', this.paginationPlusInfo.currentPage);
+                vc.emit($namespace, 'paginationPlus', 'page_event', this.paginationPlusInfo.currentPage);
             },
             next: function () {
                 if (this.paginationPlusInfo.currentPage >= this.paginationPlusInfo.total) {
                     return;
                 }
                 this.paginationPlusInfo.currentPage = this.paginationPlusInfo.currentPage + 1;
-                vc.emit($namespace,'paginationPlus','page_event', this.paginationPlusInfo.currentPage);
-
+                vc.emit($namespace, 'paginationPlus', 'page_event', this.paginationPlusInfo.currentPage);
             },
             current: function (_page) {
-                if(_page == -1){
+                if (_page == -1) {
                     return;
                 }
                 if (_page > this.paginationPlusInfo.total) {
                     return;
                 }
                 this.paginationPlusInfo.currentPage = _page;
-
-                vc.emit($namespace,'paginationPlus','page_event', this.paginationPlusInfo.currentPage);
+                vc.emit($namespace, 'paginationPlus', 'page_event', this.paginationPlusInfo.currentPage);
             },
             _freshPageList: function () {
                 var current = this.paginationPlusInfo.currentPage;

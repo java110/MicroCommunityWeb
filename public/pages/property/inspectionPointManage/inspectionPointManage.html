@@ -16,12 +16,16 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入巡检点ID','inspectionPointManage')" v-model="inspectionPointManageInfo.conditions.inspectionId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入巡检点ID','inspectionPointManage')"
+                                       v-model="inspectionPointManageInfo.conditions.inspectionId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入巡检点名称','inspectionPointManage')" v-model="inspectionPointManageInfo.conditions.inspectionName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入巡检点名称','inspectionPointManage')"
+                                       v-model="inspectionPointManageInfo.conditions.inspectionName"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -33,18 +37,23 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionPointMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="inspectionPointManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryInspectionPointMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="inspectionPointManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetInspectionPointMethod()">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="inspectionPointManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPointMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="inspectionPointManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
                     <div class="row" v-show="inspectionPointManageInfo.moreCondition == true">
                         <div class="col-sm-3" v-if="inspectionPointManageInfo.conditions.pointObjType == '1001'">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备编码','inspectionPointManage')" v-model="inspectionPointManageInfo.conditions.machineCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备编码','inspectionPointManage')"
+                                       v-model="inspectionPointManageInfo.conditions.machineCode" class=" form-control">
                             </div>
                         </div>
                     </div>
@@ -60,70 +69,77 @@
                         <span><vc:i18n name="巡检点信息" namespace="inspectionPointManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionPointModal()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="inspectionPointManage"></vc:i18n></span>
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddInspectionPointModal()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="inspectionPointManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="巡检点ID" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="巡检点名称" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="巡检点类型" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="巡检位置" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="巡检项目" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">nfc</th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="备注" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="inspectionPointManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检点ID" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检点名称" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检点类型" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检位置" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检项目" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">nfc</th>
+                            <th class="text-center">
+                                <span><vc:i18n name="备注" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="inspectionPointManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="inspectionPoint in inspectionPointManageInfo.inspectionPoints">
-                                <td class="text-center">{{inspectionPoint.inspectionId}}</td>
-                                <td class="text-center">{{inspectionPoint.inspectionName}}</td>
-                                <td class="text-center">{{inspectionPoint.pointTypeName}}</td>
-                                <td class="text-center">{{inspectionPoint.pointObjName}}</td>
-                                <td class="text-center">{{inspectionPoint.itemName}}</td>
-                                <td class="text-center">{{inspectionPoint.nfcCode}}</td>
-                                <td class="text-center">{{inspectionPoint.remark}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionPointModel(inspectionPoint)"><span><vc:i18n name="修改" namespace="inspectionPointManage"></vc:i18n></span>
+                        <tr v-for="inspectionPoint in inspectionPointManageInfo.inspectionPoints">
+                            <td class="text-center">{{inspectionPoint.inspectionId}}</td>
+                            <td class="text-center">{{inspectionPoint.inspectionName}}</td>
+                            <td class="text-center">{{inspectionPoint.pointTypeName}}</td>
+                            <td class="text-center">{{inspectionPoint.pointObjName}}</td>
+                            <td class="text-center">{{inspectionPoint.itemName}}</td>
+                            <td class="text-center">{{inspectionPoint.nfcCode}}</td>
+                            <td class="text-center">{{inspectionPoint.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditInspectionPointModel(inspectionPoint)">
+                                        <span><vc:i18n name="修改" namespace="inspectionPointManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPointModel(inspectionPoint)"><span><vc:i18n name="删除" namespace="inspectionPointManage"></vc:i18n></span>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteInspectionPointModel(inspectionPoint)">
+                                        <span><vc:i18n name="删除" namespace="inspectionPointManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_pointQrCode(inspectionPoint)"><span><vc:i18n name="二维码" namespace="inspectionPointManage"></vc:i18n></span>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_pointQrCode(inspectionPoint)">
+                                        <span><vc:i18n name="二维码" namespace="inspectionPointManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="8">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

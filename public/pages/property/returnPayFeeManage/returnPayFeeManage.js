@@ -59,6 +59,19 @@
                         vc.component.returnPayFeeManageInfo.total = _returnPayFeeManageInfo.total;
                         // vc.component.returnPayFeeManageInfo.records = parseInt(_returnPayFeeManageInfo.total/_rows +1);
                         vc.component.returnPayFeeManageInfo.records = _returnPayFeeManageInfo.records;
+                        if (_returnPayFeeManageInfo.returnPayFees != null && _returnPayFeeManageInfo.returnPayFees.length > 0) {
+                            _returnPayFeeManageInfo.returnPayFees.forEach(item => {
+                                if (item.feeAccountDetailDtoList != null && item.feeAccountDetailDtoList.length > 0) {
+                                    item.feeAccountDetailDtoList.forEach(item2 => {
+                                        if (item2.state == '1001' || item2.state == '1003') { //无抵扣或积分抵扣
+                                            return;
+                                        } else {
+                                            item.receivedAmount = (parseFloat(item.receivedAmount) - parseFloat(item2.amount)).toFixed(2);
+                                        }
+                                    })
+                                }
+                            });
+                        }
                         vc.component.returnPayFeeManageInfo.returnPayFees = _returnPayFeeManageInfo.returnPayFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.returnPayFeeManageInfo.records,

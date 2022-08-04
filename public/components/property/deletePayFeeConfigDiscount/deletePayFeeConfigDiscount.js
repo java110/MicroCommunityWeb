@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deletePayFeeConfigDiscountInfo: {
-
-            }
+            deletePayFeeConfigDiscountInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deletePayFeeConfigDiscount', 'openDeletePayFeeConfigDiscountModal', function (_params) {
-
                 vc.component.deletePayFeeConfigDiscountInfo = _params;
                 $('#deletePayFeeConfigDiscountModel').modal('show');
-
             });
         },
         methods: {
@@ -33,14 +27,15 @@
                             //关闭model
                             $('#deletePayFeeConfigDiscountModel').modal('hide');
                             vc.emit('payFeeConfigDiscountManage', 'listPayFeeConfigDiscount', {});
+                            vc.toast("删除成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeletePayFeeConfigDiscountModel: function () {
@@ -48,5 +43,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

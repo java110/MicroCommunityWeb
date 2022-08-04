@@ -29,6 +29,8 @@
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
                             vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

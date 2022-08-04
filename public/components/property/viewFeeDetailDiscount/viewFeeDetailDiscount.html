@@ -24,6 +24,9 @@
                                                 <span><vc:i18n name="折扣类型" namespace="viewFeeDetailDiscount"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
+                                                <span><vc:i18n name="折扣名称" namespace="viewFeeDetailDiscount"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
                                                 <span><vc:i18n name="折扣规则" namespace="viewFeeDetailDiscount"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
@@ -35,6 +38,7 @@
                                         <tr v-for="discount in viewFeeDetailDiscountInfo.feeDetailDiscounts">
                                             <td class="text-center">{{discount.discountName}}</td>
                                             <td class="text-center">{{discount.discountType == '1001'?'优惠':'违约'}}</td>
+                                            <td class="text-center">{{discount.ruleName}}</td>
                                             <td class="text-center">
                                                 <div v-for="(item,index) in discount.feeDiscountSpecs">
                                                     {{item.specName}}：{{item.specValue}}</div>

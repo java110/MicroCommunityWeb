@@ -72,12 +72,12 @@
                     function (json, res) {
                         let _tmpResJson = JSON.parse(json);
                         if (_tmpResJson.code == 0) {
-                            vc.toast('处理成功');
                             //关闭model
-                            console.log(_tmpResJson);
                             vc.goBack();
                             vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_tmpResJson.msg);
                         }
                     },
                     function (errInfo, error) {

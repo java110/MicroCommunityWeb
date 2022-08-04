@@ -24,8 +24,9 @@
                     billType: '',
                     feeName: '',
                     feeTypeCd: '',
-                    isDefault: 'F',
-                    paymentCd: ''
+                    isDefault: '',
+                    paymentCd: '',
+                    deductFrom: ''
                 }
             }
         },
@@ -103,6 +104,7 @@
                 vc.component.feeConfigManageInfo.conditions.paymentCd = '';
                 vc.component.feeConfigManageInfo.conditions.billType = '';
                 vc.component.feeConfigManageInfo.conditions.isDefault = '';
+                vc.component.feeConfigManageInfo.conditions.deductFrom = '';
                 $that._listFeeConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddFeeConfigModal: function () {

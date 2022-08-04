@@ -208,6 +208,7 @@
 		}
 
 		this.todayBtn = (options.todayBtn || this.element.data('date-today-btn') || false);
+		this.clearBtn = (options.clearBtn || this.element.data('date-clear-btn') || false); //添加清空按钮
 		this.todayHighlight = (options.todayHighlight || this.element.data('date-today-highlight') || false);
 
 		this.weekStart = ((options.weekStart || this.element.data('date-weekstart') || dates[this.language].weekStart || 0) % 7);
@@ -590,9 +591,8 @@
 				this.picker.find('.datetimepicker-minutes thead th:eq(1)')
 					.text(dayMonth + ' ' + dates[this.language].months[month] + ' ' + year);
 			}
-			this.picker.find('tfoot th.today')
-				.text(dates[this.language].today)
-				.toggle(this.todayBtn !== false);
+			this.picker.find('tfoot th.today').text(dates[this.language].today).toggle(this.todayBtn !== false);
+			this.picker.find('tfoot th.clear').text(dates[this.language].clear).toggle(this.clearBtn!==false); //添加清空按钮
 			this.updateNavArrows();
 			this.fillMonths();
 			/*var prevMonth = UTCDate(year, month, 0,0,0,0,0);
@@ -710,7 +710,7 @@
 			this.addSec = addSec;
 			if (addSec) {
 			    var orgSec = this.viewDate.getSeconds();
-			    for (var _i = 0; _i < 60; _i++) sSec += '<option value="' + _i + '"'+(_i==orgSec?' selected':'')+'>' +(_i<10?'0':'')+ _i + '</option>';
+			    for (var _i = 0; _i < 60; _i++) sSec += '<option class="opt" value="' + _i + '"'+(_i==orgSec?' selected':'')+'>' +(_i<10?'0':'')+ _i + '</option>';
 			    sSec += '</select>';
 			}
 			this.picker.find('.datetimepicker-minutes td').html(html.join('')+sSec);
@@ -855,7 +855,21 @@
 		click: function (e) {
 			e.stopPropagation();
 			e.preventDefault();
-			if (e.target.tagName == 'SELECT' || e.target.tagName == 'OPTION') return;
+			if (e.target.tagName == 'SELECT' || e.target.tagName == 'OPTION'){
+				var currentSecond = this.date.getSeconds(),
+					newSecond = this.picker.find('select').val();
+				if(currentSecond == newSecond){
+					return;
+				}
+				var year = this.viewDate.getUTCFullYear(),
+					month = this.viewDate.getUTCMonth(),
+					day = this.viewDate.getUTCDate(),
+					hours = this.viewDate.getUTCHours(),
+					minutes = this.viewDate.getUTCMinutes(),
+					seconds = this.picker.find('select').val();
+				this._setDate(UTCDate(year, month, day, hours, minutes, seconds, 0));
+				return;
+			}
 			var target = $(e.target).closest('span, td, th, legend');
 			if (target.is('.' + this.icontype)) {
 				target = $(target).parent().closest('span, td, th, legend');
@@ -918,6 +932,18 @@
 									this.hide();
 								}
 								break;
+							case 'clear':  // 添加清空按钮
+								this.showMode(0);
+								this.element.val(""); 
+								this.element.trigger({
+									type: 'changeDate',
+									date: ''
+								}); 
+								this.fill();  
+								if (this.autoclose) {  
+									this.hide();  
+								}  
+								break;
 						}
 						break;
 					case 'span':
@@ -927,7 +953,8 @@
 								day = this.viewDate.getUTCDate(),
 								hours = this.viewDate.getUTCHours(),
 								minutes = this.viewDate.getUTCMinutes(),
-								seconds = this.addSec ? this.picker.find('select').val() : this.viewDate.getUTCSeconds();
+								seconds = 0;
+								// seconds = this.addSec ? this.picker.find('select').val() : this.viewDate.getUTCSeconds();
                            
 							if (target.is('.month')) {
 								this.viewDate.setUTCDate(1);
@@ -1002,7 +1029,8 @@
 								month = this.viewDate.getUTCMonth(),
 								hours = this.viewDate.getUTCHours(),
 								minutes = this.viewDate.getUTCMinutes(),
-								seconds = this.viewDate.getUTCSeconds();
+								seconds = 0;
+								// seconds = this.viewDate.getUTCSeconds();
 							if (target.is('.old')) {
 								if (month === 0) {
 									month = 11;
@@ -1353,7 +1381,8 @@
 			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			meridiem:    ["am", "pm"],
 			suffix:      ["st", "nd", "rd", "th"],
-			today:       "Today"
+			today:       "Today",
+			clear:       "Clear"
 		}
 	};
 
@@ -1694,7 +1723,7 @@
 							  '</tr>' +
 			'</thead>',
 		contTemplate:     '<tbody><tr><td colspan="7"></td></tr></tbody>',
-		footTemplate:     '<tfoot><tr><th colspan="7" class="today"></th></tr></tfoot>'
+		footTemplate:     '<tfoot><tr><th colspan="2" class="today"></th><th colspan="2" class="clear"></th></tr></tfoot>'
 	};
 	DPGlobal.template = '<div class="datetimepicker">' +
 		'<div class="datetimepicker-minutes">' +

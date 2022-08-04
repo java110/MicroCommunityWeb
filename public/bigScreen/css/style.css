@@ -59,7 +59,7 @@ html,body{ font-family: 微软雅黑, MicrosoftYahei, sans-serif; color:#fff; ba
 .lefttime_text{ padding: 2% 5% 0 5%}
   .lefttime_text li{ font-size: 12px; color: rgba(255,255,255,.9); width: 20%;float: left; height: 22px; line-height: 22px;text-align: center; border-radius: 4px}
   .lefttime_text li.bg{ background: rgba(0,183,238,.1);}
-  .lefttime_text li.active{ background: rgba(0,183,238,.6); color: #fff;} */
+  .lefttime_text li.active{ background: rgba(0,183,238,.6); color: #fff;} *
 .lefttoday{background:url(../img/left1box.png);background-repeat: no-repeat;background-position: -3px 2px; width:350px; height:584px;margin: 0 auto;}
 
 .lefttoday_tit{ overflow: hidden; padding: 1.9% 5% .2%;  height: 6%; position: relative;}

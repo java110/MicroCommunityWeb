@@ -14,7 +14,6 @@
         },
         _initMethod: function() {
             $that._loadFloorAndUnits();
-
         },
         _initEvent: function() {
             vc.on('floorUnitTree', 'refreshTree', function(_param) {
@@ -25,9 +24,7 @@
             });
         },
         methods: {
-
             _loadFloorAndUnits: function() {
-
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId
@@ -46,21 +43,16 @@
                     });
             },
             _initJsTreeFloorUnit: function() {
-
                 let _data = $that._doJsTreeData();
-
                 let _unitId = '';
-
                 $that.floorUnitTreeInfo.units.forEach(item => {
                     if ($that.floorUnitTreeInfo.floorId && item.floorId == $that.floorUnitTreeInfo.floorId) {
                         _unitId = item.unitId;
                     }
                 })
-
                 // _data = _data.sort(function(a, b) {
                 //     return a.seq - b.seq
                 // });
-
                 $.jstree.destroy()
                 $("#jstree_floorUnit").jstree({
                     "checkbox": {
@@ -81,7 +73,6 @@
                     //             "action": function (data) {
                     //                 var inst = $.jstree.reference(data.reference),
                     //                     obj = inst.get_node(data.reference);
-
                     //             }
                     //         },
                     //     },
@@ -94,7 +85,6 @@
                         return;
                     }
                     $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */ );
-
                 });
 
                 $('#jstree_floorUnit').on("changed.jstree", function(e, data) {
@@ -104,14 +94,12 @@
                         return;
                     }
                     let _selected = data.selected[0];
-
                     if (_selected.startsWith('f_')) {
                         vc.emit($props.callBackListener, 'switchFloor', {
                             floorId: data.node.original.floorId
                         })
                         return;
                     }
-
                     //console.log(_selected, data.node.original.unitId)
                     vc.emit($props.callBackListener, 'switchUnit', {
                         unitId: data.node.original.unitId
@@ -121,14 +109,10 @@
                     .on('click', '.jstree-anchor', function(e) {
                         $(this).jstree(true).toggle_node(e.target);
                     })
-
-
             },
             _doJsTreeData: function() {
                 let _mFloorTree = [];
-
                 let _units = $that.floorUnitTreeInfo.units;
-
                 //构建 第一层菜单组
                 _units.forEach(pItem => {
                     let _includeFloor = false;
@@ -137,7 +121,6 @@
                             _includeFloor = true;
                         }
                     }
-
                     if (!_includeFloor) {
                         let _floorItem = {
                             id: 'f_' + pItem.floorId,
@@ -181,11 +164,9 @@
                             };
                             _children.push(_menuItem);
                         }
-
                     }
                 }
             },
-
         }
     });
 })(window.vc);

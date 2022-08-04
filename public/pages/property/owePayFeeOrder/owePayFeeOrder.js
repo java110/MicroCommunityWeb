@@ -14,7 +14,8 @@
                 receiptIds: '',
                 remark: '',
                 primeRate: '',
-                primeRates: []
+                primeRates: [],
+                toFixedSign: 1, // 编码映射-应收款取值标识
             }
         },
         watch: {
@@ -68,13 +69,62 @@
                         }
                         $that.owePayFeeOrderInfo.oweFees = _fees;
                         $that.owePayFeeOrderInfo.selectPayFeeIds = [];
+                        $that.owePayFeeOrderInfo.toFixedSign = _fees[0].val;
                         $that.owePayFeeOrderInfo.oweFees.forEach(item => {
+                            item.feePrice = $that._getFixedNum(item.feePrice);
                             $that.owePayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
+
                         });
                     }, function () {
                         console.log('请求失败处理');
                     }
                 );
+            },
+            /**
+             * 格式化数字
+             */
+             _getFixedNum: function(num) {
+                if ($that.owePayFeeOrderInfo.toFixedSign == 2) {
+                    return $that._mathToFixed1(num);
+                } else if ($that.owePayFeeOrderInfo.toFixedSign == 3) {
+                    return $that._mathCeil(num);
+                } else if ($that.owePayFeeOrderInfo.toFixedSign == 4) {
+                    return $that._mathFloor(num);
+                } else if ($that.owePayFeeOrderInfo.toFixedSign == 5) {
+                    return $that._mathRound(num);
+                } else {
+                    return $that._mathToFixed2(num);
+                }
+            },
+            /**
+             * 向上取整
+             */
+            _mathCeil: function(_price) {
+                return Math.ceil(_price);
+            },
+            /**
+             * 向下取整
+             */
+            _mathFloor: function(_price) {
+                return Math.floor(_price);
+            },
+            /**
+             * 四首五入取整
+             */
+            _mathRound: function(_price) {
+                return Math.round(_price);
+            },
+            /**
+             * 保留小数点后一位
+             */
+            _mathToFixed1: function(_price) {
+                return parseFloat(_price).toFixed(1);
+            },
+            /**
+             * 保留小数点后两位
+             */
+            _mathToFixed2: function(_price) {
+                return parseFloat(_price).toFixed(2);
             },
             _payFee: function () {
                 if (vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {

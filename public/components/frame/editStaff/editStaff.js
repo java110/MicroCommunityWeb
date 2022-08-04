@@ -102,6 +102,8 @@
                             $('#editStaffModel').modal('hide');
                             vc.emit('staff', 'notify',{})
                             return;
+                        } else {
+                            vc.toast(json.response.message);
                         }
                         $that.editStaffInfo.photoUrl =  $that.editStaffInfo.photo;
                         vc.toast(_json.msg);

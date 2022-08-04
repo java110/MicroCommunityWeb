@@ -7,7 +7,9 @@
                 qaName: '',
                 startTime: '',
                 endTime: '',
-                remark: ''
+                remark: '',
+                content: '',
+                photos: []
             }
         },
         _initMethod: function () {
@@ -18,7 +20,14 @@
                 vc.component.refreshEditQuestionAnswerInfo();
                 $('#editQuestionAnswerModel').modal('show');
                 vc.copyObject(_params, vc.component.editQuestionAnswerInfo);
+                vc.component.editQuestionAnswerInfo.photos = _params.fileUrls;
+                if (_params.fileUrls) {
+                    vc.component._freshPhoto(vc.component.editQuestionAnswerInfo.photos);
+                }
                 vc.component.editQuestionAnswerInfo.communityId = vc.getCurrentCommunity().communityId;
+            });
+            vc.on("editQuestionAnswer", "notifyUploadImage", function (_param) {
+                vc.component.editQuestionAnswerInfo.photos = _param;
             });
         },
         methods: {
@@ -178,9 +187,14 @@
                     qaName: '',
                     startTime: '',
                     endTime: '',
-                    remark: ''
+                    remark: '',
+                    content: '',
+                    photos: []
                 }
-            }
+            },
+            _freshPhoto: function (_photos) {
+                vc.emit('editQuestionAnswer', 'uploadImage', 'notifyPhotos', _photos);
+            },
         }
     });
 })(window.vc, window.vc.component);

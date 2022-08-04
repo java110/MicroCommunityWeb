@@ -27,9 +27,9 @@
                             //关闭model
                             $('#deleteStorehouseModel').modal('hide');
                             vc.emit('storehouseManage', 'listStorehouse', {});
+                            vc.toast("删除成功");
                             return;
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

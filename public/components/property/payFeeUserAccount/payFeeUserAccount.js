@@ -93,7 +93,6 @@
             _computeFeeUserAmount: function () {
                 let _totalUserAmount = 0.0;
                 let _selectAccount = [];
-                console.log(111,$that.payFeeUserAccountInfo.accountList);
                 $that.payFeeUserAccountInfo.selectAccountIds.forEach(item => {
                     $that.payFeeUserAccountInfo.accountList.forEach(disItem => {
                         if (item == disItem.acctId && disItem.amount != 0) {

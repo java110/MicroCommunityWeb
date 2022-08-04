@@ -6,19 +6,20 @@
                     <h5><span><vc:i18n name="查询条件" namespace="advertManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{advertManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">
+                            {{advertManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入广告名称','advertManage')" v-model="advertManageInfo.conditions.adName"
-                                       class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入广告名称','advertManage')"
+                                       v-model="advertManageInfo.conditions.adName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="advertManageInfo.conditions.classify">
                                 <option selected value="">{{vc.i18n('请选择广告分类','advertManage')}}</option>
                                 <option value="9001">{{vc.i18n('物流','advertManage')}}</option>
@@ -29,9 +30,9 @@
                                 <option value="9006">{{vc.i18n('互联网','advertManage')}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="advertManageInfo.conditions.state">
-                                <option selected value="">{{vc.i18n('请选择状态','advertManage')}}</option>
+                                <option selected value="">{{vc.i18n('请选择广告状态','advertManage')}}</option>
                                 <option value="1000">{{vc.i18n('未审核','advertManage')}}</option>
                                 <option value="2000">{{vc.i18n('审核通过','advertManage')}}</option>
                                 <option value="3000">{{vc.i18n('审核拒绝','advertManage')}}</option>
@@ -39,10 +40,25 @@
                                 <option value="5000">{{vc.i18n('播放中','advertManage')}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAdvertMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="advertManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="advertManage"></vc:i18n></span>
                             </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAdvertMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="advertManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="advertManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="advertManageInfo.conditions.locationTypeCd">
+                                <option selected value="">{{vc.i18n('请选择投放位置','advertManage')}}</option>
+                                <option v-for="(item,index) in advertManageInfo.locationTypeCds" :value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -56,10 +72,12 @@
                     <h5><span><vc:i18n name="广告信息" namespace="advertManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAdvertModal()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="发布" namespace="advertManage"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="发布" namespace="advertManage"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_viewAdvertPhotoOrPhoto()">
-                            <i class="fa fa-book"></i><span><vc:i18n name="查看广告" namespace="advertManage"></vc:i18n></span>
+                            <i class="fa fa-book"></i>
+                            <span><vc:i18n name="查看广告" namespace="advertManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -67,34 +85,59 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="广告" namespace="advertManage"></vc:i18n></span>ID</th>
-                            <th class="text-center"><span><vc:i18n name="广告名称" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="投放位置" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="发布类型" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="投放时间" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="结束时间" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="创建时间" namespace="advertManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="操作" namespace="advertManage"></vc:i18n></span></th>
+                            <th class="text-center">
+                                <span><vc:i18n name="广告ID" namespace="advertManage"></vc:i18n></span>ID
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="广告名称" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="广告分类" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="投放位置" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="发布类型" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="投放时间" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="结束时间" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="广告状态" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="advertManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="advertManage"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="advert in advertManageInfo.adverts">
                             <td class="text-center">{{advert.advertId}}</td>
                             <td class="text-center">{{advert.adName}}</td>
+                            <td class="text-center">{{advert.classifyName}}</td>
                             <td class="text-center">{{advert.locationObjName}}</td>
                             <td class="text-center">{{advertManageInfo.advertTypeName[advert.advertType]}}</td>
                             <td class="text-center">{{advert.startTime}}</td>
                             <td class="text-center">{{advert.endTime}}</td>
+                            <td class="text-center">{{advert.stateName}}</td>
                             <td class="text-center">{{advert.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditAdvertModel(advert)"><span><vc:i18n name="修改" namespace="advertManage"></vc:i18n></span>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditAdvertModel(advert)">
+                                        <span><vc:i18n name="修改" namespace="advertManage"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteAdvertModel(advert)"><span><vc:i18n name="删除" namespace="advertManage"></vc:i18n></span>
+                                            v-on:click="_openDeleteAdvertModel(advert)">
+                                        <span><vc:i18n name="删除" namespace="advertManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>
@@ -102,7 +145,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="8">
+                            <td colspan="10">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -14,12 +14,10 @@
         },
         _initEvent: function () {
             vc.on('chooseApp', 'openChooseAppModel', function (_param) {
-                console.log("打开业主成员界面")
                 $('#chooseAppModel').modal('show');
                 vc.component._refreshChooseAppInfo();
                 vc.component._loadAllAppInfo(1, 10, '');
             });
-
             vc.on('chooseApp', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllAppInfo(_currentPage, 10);
             });
@@ -30,11 +28,9 @@
                     params: {
                         page: _page,
                         row: _row,
-
                         name: _name
                     }
                 };
-
                 //发送get请求
                 vc.http.get('chooseApp',
                     'list',
@@ -67,6 +63,5 @@
                 vc.component.chooseAppInfo._currentAppName = "";
             }
         }
-
     });
 })(window.vc);

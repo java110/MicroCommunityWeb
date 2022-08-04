@@ -22,7 +22,7 @@
                    @input="_simplifyInputOwner()" v-model="simplifyAcceptanceInfo.searchValue"
                    @keyup.enter="_doSearch()"/>
             <vc:create path="property/inputSearchOwner"></vc:create>
-            <vc:create path="property/inputSearchRoom"></vc:create>
+            <!-- <vc:create path="property/inputSearchRoom"></vc:create> -->
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">
@@ -274,7 +274,7 @@
                         <span><vc:i18n name="道闸同步" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="vc.hasPrivilege('502020092373407363')">
                     <a class="nav-link"
                        v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
                        v-on:click="changeTab('simplifyFeeReceipt')">

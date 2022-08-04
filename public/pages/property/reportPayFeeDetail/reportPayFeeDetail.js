@@ -31,10 +31,13 @@
                 allLateFee: 0.0,
                 allVacantHousingDiscount: 0.0,
                 allVacantHousingReduction: 0.0,
+                allGiftAmount: 0.0,
+                totalGiftAmount: 0.0,
                 conditions: {
                     floorId: '',
                     floorName: '',
                     roomNum: '',
+                    roomName: '', // 1-1-101
                     unitId: '',
                     configId: '',
                     primeRate: '',
@@ -88,7 +91,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $(".endTime").datetimepicker({
                     minView: "month",
@@ -98,16 +102,21 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {
+                        console.log('start');
                         var value = $(".startTime").val();
+                        console.log(value);
                         vc.component.reportPayFeeDetailInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
                     .on('changeDate', function (ev) {
+                        console.log('end');
                         var value = $(".endTime").val();
+                        console.log(value);
                         vc.component.reportPayFeeDetailInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.startTime))
                         let end = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.endTime))
@@ -149,6 +158,9 @@
                         vc.component.reportPayFeeDetailInfo.total = _reportPayFeeDetailInfo.total;
                         vc.component.reportPayFeeDetailInfo.records = _reportPayFeeDetailInfo.records;
                         vc.component.reportPayFeeDetailInfo.fees = _reportPayFeeDetailInfo.data;
+                        vc.component.reportPayFeeDetailInfo.fees.forEach(item => {
+                            item.lateFee = (item.lateFee * -1).toFixed(2);
+                        })
                         if (typeof (_reportPayFeeDetailInfo.sumTotal.totalReceivableAmount) != 'undefined') {
                             vc.component.reportPayFeeDetailInfo.totalReceivableAmount = _reportPayFeeDetailInfo.sumTotal.totalReceivableAmount;
                         } else {
@@ -219,6 +231,16 @@
                         } else {
                             vc.component.reportPayFeeDetailInfo.allVacantHousingReduction = 0.0.toFixed(2);
                         }
+                        if (typeof (_reportPayFeeDetailInfo.sumTotal.allGiftAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.allGiftAmount = _reportPayFeeDetailInfo.sumTotal.allGiftAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.allGiftAmount = 0.0.toFixed(2);
+                        }
+                        if (typeof (_reportPayFeeDetailInfo.sumTotal.totalGiftAmount) != 'undefined') {
+                            vc.component.reportPayFeeDetailInfo.totalGiftAmount = _reportPayFeeDetailInfo.sumTotal.totalGiftAmount;
+                        } else {
+                            vc.component.reportPayFeeDetailInfo.totalGiftAmount = 0.0.toFixed(2);
+                        }
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportPayFeeDetailInfo.records,
                             dataCount: vc.component.reportPayFeeDetailInfo.total,
@@ -238,6 +260,7 @@
                 vc.component.reportPayFeeDetailInfo.conditions.floorName = "";
                 vc.component.reportPayFeeDetailInfo.conditions.unitId = "";
                 vc.component.reportPayFeeDetailInfo.conditions.roomNum = "";
+                vc.component.reportPayFeeDetailInfo.conditions.roomName = "";
                 vc.component.reportPayFeeDetailInfo.conditions.primeRate = "";
                 vc.component.reportPayFeeDetailInfo.conditions.startTime = "";
                 vc.component.reportPayFeeDetailInfo.conditions.endTime = "";

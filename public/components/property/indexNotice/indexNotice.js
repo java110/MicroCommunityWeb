@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             indexNoticeInfo: {
@@ -8,7 +8,7 @@
                 scrollDirection: true,
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadPropertyIndexNotices();
         },
         _initEvent: function() {},
@@ -39,7 +39,6 @@
                     }
                 );
             },
-
             checkPoolScroll: function() {
                 let element = document.getElementById("pool");
                 if (!element) { return; }
@@ -74,7 +73,6 @@
                 if (canScrollHeight <= $that.indexNoticeInfo.scrollTopValue) {
                     $that.indexNoticeInfo.scrollDirection = !$that.indexNoticeInfo.scrollDirection;
                 }
-                element.scrollTop = $that.indexNoticeInfo.scrollTopValue;
             }
         }
     })

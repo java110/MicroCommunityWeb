@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -14,24 +14,25 @@
                 conditions: {}
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
             //切换 至费用页面
-            vc.on('reportProficientRoomFee', 'switch', function(_param) {
+            vc.on('reportProficientRoomFee', 'switch', function (_param) {
                 $that.clearReportProficientRoomFeeInfo();
                 $that.reportProficientRoomFeeInfo.conditions = _param;
                 $that._listReportProficientRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('reportProficientRoomFee', 'notify', function() {
+            vc.on('reportProficientRoomFee', 'notify', function () {
                 $that._listReportProficientRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportProficientRoomFee', 'paginationPlus', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     vc.component._listReportProficientRoomFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listReportProficientRoomFee: function(_page, _row) {
+            _listReportProficientRoomFee: function (_page, _row) {
                 $that.reportProficientRoomFeeInfo.conditions.page = _page;
                 $that.reportProficientRoomFeeInfo.conditions.row = _row;
                 $that.reportProficientRoomFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -42,7 +43,7 @@
                 //发送get请求
                 vc.http.apiGet('/reportFeeYearCollection/queryReportFeeYear',
                     param,
-                    function(json) {
+                    function (json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.reportProficientRoomFeeInfo.total = _feeConfigInfo.total;
                         vc.component.reportProficientRoomFeeInfo.records = _feeConfigInfo.records;
@@ -69,12 +70,12 @@
                             $that.reportProficientRoomFeeInfo.listColumns.push(item.collectionYear)
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _getProficientRoomFeeValue: function(_reportFeeYearCollectionDetailDtos, _year) {
+            _getProficientRoomFeeValue: function (_reportFeeYearCollectionDetailDtos, _year) {
                 let _value = 0.00;
                 _reportFeeYearCollectionDetailDtos.forEach(item => {
                     if (item.collectionYear == _year) {
@@ -83,7 +84,7 @@
                 })
                 return _value;
             },
-            _getAttrValue: function(_attrs, _specCd) {
+            _getAttrValue: function (_attrs, _specCd) {
                 let _value = "";
                 _attrs.forEach(item => {
                     if (item.specCd == _specCd) {
@@ -93,7 +94,7 @@
                 });
                 return _value;
             },
-            clearReportProficientRoomFeeInfo: function() {
+            clearReportProficientRoomFeeInfo: function () {
                 $that.reportProficientRoomFeeInfo = {
                     fees: [],
                     roomId: '',
@@ -101,8 +102,9 @@
                     name: ''
                 }
             },
-            dealReportProficientRoomFeeAttr: function(owners) {},
-            _showFeeDetail: function(fee, item) {
+            dealReportProficientRoomFeeAttr: function (owners) {
+            },
+            _showFeeDetail: function (fee, item) {
                 vc.emit('viewFeeDetail', 'listFeeDetail', {
                     roomName: fee.objName,
                     feeId: fee.feeId,

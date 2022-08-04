@@ -83,8 +83,7 @@
             },
             //提交审核信息
             _auditOrderInfo: function(_auditInfo) {
-                console.log("提交得参数：",
-                    _auditInfo);
+                console.log("提交得参数：", _auditInfo);
                 _auditInfo.taskId = vc.component.contractApplyAuditOrdersInfo.orderInfo.taskId;
                 _auditInfo.contractId = vc.component.contractApplyAuditOrdersInfo.orderInfo.contractId;
                 //发送get请求

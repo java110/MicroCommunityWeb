@@ -15,6 +15,9 @@
                 $that._loadRoomByOwnerInfo(_param.ownerName);
                 $that.inputSearchRoomByOwnerInfo.callComponent = _param.callComponent;
             });
+            vc.on('inputSearchRoomByOwner', 'close', function (_param) {
+                $that.inputSearchRoomByOwnerInfo.rooms = [];
+            });
         },
         methods: {
             _loadRoomByOwnerInfo: function(_ownerName) {

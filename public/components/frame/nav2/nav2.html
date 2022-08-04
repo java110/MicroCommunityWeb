@@ -2,7 +2,8 @@
     <div>
         <ul class="flex flex-start">
             <li class="title"><a href="/">{{vc.i18n('systemName')}}</a></li>
-            <li :class="{'active' :item.active == '1' }" v-for="(item,index) in nav.catalogs" @click="_changeMenuCatalog(item)">
+            <li :class="{'active' :item.active == '1' }" v-for="(item,index) in nav.catalogs"
+                @click="_changeMenuCatalog(item)">
                 <i :class="item.icon"></i>{{item.name}}
             </li>
         </ul>
@@ -12,12 +13,12 @@
             <li class="dropdown"
                 v-if="nav.storeTypeCd != '800900000001' && nav.storeTypeCd != '800900000002' && nav.storeTypeCd != '800900000000'">
                 <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">
+                      aria-expanded="false">
                     {{nav._currentCommunity.name}}
                 </span>
                 <div class="dropdown-menu margin-top">
                     <a class="dropdown-item" v-for="currentCommunity in nav.communityInfos"
-                        v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
+                       v-on:click="changeCommunity(currentCommunity)">{{currentCommunity.name}} </a>
                     <a href="javascript:void(0)" class="dropdown-item text-center" v-on:click="_chooseMoreCommunity()">
                         <strong>{{vc.i18n('moreCommunity')}}</strong>
                         <i class="fa fa-angle-right"></i>
@@ -32,7 +33,7 @@
                 <ul class="dropdown-menu margin-top">
                     <li v-for="lang in nav.langs">
                         <a v-on:click="_changeLang(lang)" class="dropdown-item">
-                            <div  class="dropdown-item text-center">
+                            <div class="dropdown-item text-center">
                                 {{lang.name}}
                             </div>
                         </a>

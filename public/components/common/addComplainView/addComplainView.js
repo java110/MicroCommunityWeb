@@ -53,36 +53,36 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "投诉人不能为空"
+                            errInfo: "联系人不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "200",
-                            errInfo: "投诉人不能大于200位"
+                            errInfo: "联系人不能大于200位"
                         },
                     ],
                     'addComplainViewInfo.tel': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "投诉电话不能为空"
+                            errInfo: "联系电话不能为空"
                         },
                         {
                             limit: "phone",
                             param: "",
-                            errInfo: "投诉电话格式错误"
+                            errInfo: "联系电话格式错误"
                         },
                     ],
                     'addComplainViewInfo.context': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "投诉内容不能为空"
+                            errInfo: "内容不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "4000",
-                            errInfo: "投诉状态超过4000位"
+                            errInfo: "内容超过4000位"
                         },
                     ],
 

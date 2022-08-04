@@ -39,7 +39,8 @@
                     function (errInfo, error) {
                         vc.toast(errInfo);
                         // vc.component.deleteOwnerCarnfo.errorInfo = errInfo;
-                    });
+                    }
+                );
             }
         }
     });

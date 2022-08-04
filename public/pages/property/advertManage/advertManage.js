@@ -13,11 +13,13 @@
                 records: 1,
                 moreCondition: false,
                 adName: '',
+                locationTypeCds: [],
                 conditions: {
                     adName: '',
                     adTypeCd: '',
                     classify: '',
-                    state: ''
+                    state: '',
+                    locationTypeCd: ''
                 }
             }
         },
@@ -31,6 +33,10 @@
             vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAdverts(_currentPage, DEFAULT_ROWS);
             });
+            //与字典表位置类型关联
+            vc.getDict('advert', "location_type_cd", function (_data) {
+                vc.component.advertManageInfo.locationTypeCds = _data;
+            });
         },
         methods: {
             _listAdverts: function (_page, _rows) {
@@ -39,6 +45,7 @@
                 var param = {
                     params: vc.component.advertManageInfo.conditions
                 };
+                param.params.adName = param.params.adName.trim();
                 //发送get请求
                 vc.http.get('advertManage',
                     'list',
@@ -67,7 +74,16 @@
             _openDeleteAdvertModel: function (_advert) {
                 vc.emit('deleteAdvert', 'openDeleteAdvertModal', _advert);
             },
+            //查询
             _queryAdvertMethod: function () {
+                vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetAdvertMethod: function () {
+                vc.component.advertManageInfo.conditions.adName = "";
+                vc.component.advertManageInfo.conditions.classify = "";
+                vc.component.advertManageInfo.conditions.state = "";
+                vc.component.advertManageInfo.conditions.locationTypeCd = "";
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _viewAdvertPhotoOrPhoto: function () {

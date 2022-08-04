@@ -68,7 +68,7 @@
                     },
                     function(json, res) {
                         if (res.status == 200) {
-                            vc.toast('投诉成功');
+                            vc.toast('提交成功');
                             //关闭model
                             //vc.jumpToPage("/#/pages/common/complaintManage?" + vc.objToGetParam(JSON.parse(json)));
                             vc.goBack();
@@ -78,7 +78,11 @@
                     function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
+            },
+            _goBack: function (_param) {
+                vc.goBack();
             }
         }
     });

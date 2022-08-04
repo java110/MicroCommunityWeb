@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             returnFeeDetailInfo: {
@@ -17,15 +16,12 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('returnPayFee', 'openReturnPayFeeModel', function (_params) {
                 vc.component.refreshFeeDetailInfo();
                 vc.component.pushReturnFeeDetailInfo(_params);
                 $('#returnPayFeeModel').modal('show');
-
-
             });
         },
         methods: {
@@ -103,5 +99,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

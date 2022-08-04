@@ -107,12 +107,20 @@
                             <td class="text-center">{{payFee.returnFeeId}}</td>
                             <td class="text-center">{{payFee.detailId}}</td>
                             <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                            <td class="text-center">
-                                {{payFee.payerObjName}}
-                            </td>
+                            <td class="text-center">{{payFee.payerObjName}}</td>
                             <td class="text-center">{{vc.unum(payFee.cycles)}}</td>
                             <td class="text-center">{{vc.unum(payFee.receivableAmount)}}</td>
-                            <td class="text-center">{{vc.unum(payFee.receivedAmount)}}</td>
+                            <td class="text-center">
+                                {{vc.unum(payFee.receivedAmount)}}<br>
+                                <div v-for="(item,index) in payFee.feeAccountDetailDtoList"
+                                     :key="index" v-bind:value="item.state" v-if="item.state != '1001'">
+                                    {{item.stateName}}: {{item.amount}}<br>
+                                </div>
+                                <div v-for="(item,index) in payFee.payFeeDetailDiscountDtoList"
+                                     :key="index" v-bind:value="item.state">
+                                    {{item.discountName}}: {{Math.abs(item.discountPrice)}}<br>
+                                </div>
+                            </td>
                             <td class="text-center">{{payFee.createTime}}</td>
                             <td class="text-center">{{payFee.reason}}</td>
                             <td class="text-center">

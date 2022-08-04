@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,12 +14,10 @@
                 messageTopic: '',
                 timeout: '60',
                 retryCount: '3',
-                description: '',
-
+                description: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addServiceImpl', 'openAddServiceImplModal', function () {
@@ -32,7 +29,6 @@
                 return vc.validate.validate({
                     addServiceImplInfo: vc.component.addServiceImplInfo
                 }, {
-
                     'addServiceImplInfo.businessTypeCd': [
                         {
                             limit: "required",
@@ -118,15 +114,12 @@
                             param: "200",
                             errInfo: "备注内容不能超过200"
                         },
-                    ],
-
-
+                    ]
                 });
             },
             saveServiceImplInfo: function () {
                 if (!vc.component.addServiceImplValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 //不提交数据将数据 回调给侦听处理
@@ -135,7 +128,6 @@
                     $('#addServiceImplModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addServiceImpl',
                     'save',
@@ -150,17 +142,13 @@
                             $('#addServiceImplModel').modal('hide');
                             vc.component.clearAddServiceImplInfo();
                             vc.emit('serviceImplManage', 'listServiceImpl', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddServiceImplInfo: function () {
@@ -173,11 +161,9 @@
                     messageTopic: '',
                     timeout: '60',
                     retryCount: '3',
-                    description: '',
-
+                    description: ''
                 };
             }
         }
     });
-
 })(window.vc);

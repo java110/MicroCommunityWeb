@@ -6,8 +6,7 @@
                     <h5><span><vc:i18n name="简答题" namespace="questionAnswerTitleValueManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
-                            v-on:click="_goBack()">
-                            返回
+                                v-on:click="_goBack()">返回
                         </button>
                     </div>
                 </div>
@@ -15,25 +14,31 @@
 
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name="问卷人" namespace="questionAnswerTitleValueManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="内容" namespace="questionAnswerTitleValueManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="时间" namespace="questionAnswerTitleValueManage"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="问卷人" namespace="questionAnswerTitleValueManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="内容" namespace="questionAnswerTitleValueManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="时间" namespace="questionAnswerTitleValueManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="value in questionAnswerTitleValueManageInfo.values">
-                                <td class="text-center">{{value.userName}}</td>
-                                <td class="text-center">{{value.qaValue}}</td>
-                                <td class="text-center">{{value.createTime}}</td>
-                            </tr>
+                        <tr v-for="value in questionAnswerTitleValueManageInfo.values">
+                            <td class="text-center">{{value.userName}}</td>
+                            <td class="text-center">{{value.qaValue}}</td>
+                            <td class="text-center">{{value.createTime}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

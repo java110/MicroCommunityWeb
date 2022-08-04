@@ -7,7 +7,6 @@
                         <span><vc:i18n name="修改密码" namespace="changeStaffPwd"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -15,30 +14,42 @@
                         <div>
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="原始密码" namespace="changeStaffPwd"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="原始密码" namespace="changeStaffPwd"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-4">
                                     <div class="custom-file">
-                                        <input v-model="changeStaffPwdInfo.oldPwd" type="password" :placeholder="vc.i18n('必填，请输入原始密码','changeStaffPwd')" class="form-control">
+                                        <input v-model="changeStaffPwdInfo.oldPwd" type="password"
+                                               :placeholder="vc.i18n('必填，请输入原始密码','changeStaffPwd')"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="新密码" namespace="changeStaffPwd"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="新密码" namespace="changeStaffPwd"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-4">
                                     <div class="custom-file">
-                                        <input v-model="changeStaffPwdInfo.newPwd" type="password" :placeholder="vc.i18n('必填，请输入新密码','changeStaffPwd')" class="form-control">
+                                        <input v-model="changeStaffPwdInfo.newPwd" type="password"
+                                               :placeholder="vc.i18n('必填，请输入新密码','changeStaffPwd')"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3"></div>
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="确认密码" namespace="changeStaffPwd"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="确认密码" namespace="changeStaffPwd"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-4">
                                     <div class="custom-file">
-                                        <input v-model="changeStaffPwdInfo.reNewPwd" type="password" :placeholder="vc.i18n('必填，请输入确认密码','changeStaffPwd')" class="form-control">
+                                        <input v-model="changeStaffPwdInfo.reNewPwd" type="password"
+                                               :placeholder="vc.i18n('必填，请输入确认密码','changeStaffPwd')"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -49,11 +60,11 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" v-on:click="_changePwd()"><span><vc:i18n name="确认修改" namespace="changeStaffPwd"></vc:i18n></span>
+            <button type="button" class="btn btn-primary" v-on:click="_changePwd()">
+                <span><vc:i18n name="确认修改" namespace="changeStaffPwd"></vc:i18n></span>
             </button>
         </div>
     </div>

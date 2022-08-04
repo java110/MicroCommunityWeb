@@ -46,7 +46,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $(".endTime").datetimepicker({
                     minView: "month",
@@ -56,7 +57,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {

@@ -29,7 +29,6 @@
                     params: {
                         ownerId: vc.component.memberInfo._currentOwnerId,
                         communityId: vc.getCurrentCommunity().communityId
-
                     }
                 };
                 //发送get请求
@@ -77,7 +76,6 @@
                 })
             },
             _getColumns: function (_call) {
-                console.log('_getColumns');
                 $that.memberInfo.listColumns = [];
                 vc.getAttrSpec('building_owner_attr', function (data) {
                     $that.memberInfo.listColumns = [];

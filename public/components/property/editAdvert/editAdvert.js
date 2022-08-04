@@ -1,4 +1,4 @@
-(function(vc, vm) {
+(function (vc, vm) {
     vc.extends({
         data: {
             editAdvertInfo: {
@@ -25,22 +25,21 @@
                 photos: [],
                 viewType: '',
                 vedioName: '',
-                communityId: '',
+                communityId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initEditAdvertDateInfo();
         },
-        _initEvent: function() {
-            vc.on('editAdvert', 'openEditAdvertModal', function(_params) {
+        _initEvent: function () {
+            vc.on('editAdvert', 'openEditAdvertModal', function (_params) {
                 vc.component.refreshEditAdvertInfo();
                 $('#editAdvertModel').modal('show');
                 vc.copyObject(_params, vc.component.editAdvertInfo);
                 vc.component._loadAdvertItem();
                 //查询 广告属性
             });
-
-            vc.on("editAdvert", "notify", function(_param) {
+            vc.on("editAdvert", "notify", function (_param) {
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.editAdvertInfo.floorId = _param.floorId;
                 }
@@ -51,15 +50,15 @@
                     vc.component.editAdvertInfo.roomId = _param.roomId;
                 }
             });
-            vc.on("editAdvert", "notifyUploadImage", function(_param) {
+            vc.on("editAdvert", "notifyUploadImage", function (_param) {
                 vc.component.editAdvertInfo.photos = _param;
             });
-            vc.on("editAdvert", "notifyUploadVedio", function(_param) {
+            vc.on("editAdvert", "notifyUploadVedio", function (_param) {
                 vc.component.editAdvertInfo.vedioName = _param.realFileName;
             });
         },
         methods: {
-            _initEditAdvertDateInfo: function() {
+            _initEditAdvertDateInfo: function () {
                 vc.component.editAdvertInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.editAdvertStartTime').datetimepicker({
                     language: 'zh-CN',
@@ -71,7 +70,7 @@
                     todayBtn: true
                 });
                 $('.editAdvertStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".editAdvertStartTime").val();
                         vc.component.editAdvertInfo.startTime = value;
                     });
@@ -85,20 +84,20 @@
                     todayBtn: true
                 });
                 $('.editAdvertEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".editAdvertEndTime").val();
                         vc.component.editAdvertInfo.endTime = value;
                     });
             },
-            editAdvertValidate: function() {
+            editAdvertValidate: function () {
                 return vc.validate.validate({
                     editAdvertInfo: vc.component.editAdvertInfo
                 }, {
                     'editAdvertInfo.adName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "广告名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "广告名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,200",
@@ -106,10 +105,10 @@
                         },
                     ],
                     'editAdvertInfo.adTypeCd': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "广告类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "广告类型不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -117,10 +116,10 @@
                         },
                     ],
                     'editAdvertInfo.classify': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "广告分类不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "广告分类不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -133,10 +132,10 @@
                         errInfo: "发布类型不能为空"
                     }],
                     'editAdvertInfo.locationTypeCd': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "投放位置不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "投放位置不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -144,10 +143,10 @@
                         },
                     ],
                     'editAdvertInfo.seq': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "播放顺序不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "播放顺序不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -155,10 +154,10 @@
                         },
                     ],
                     'editAdvertInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "投放时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "投放时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -166,10 +165,10 @@
                         },
                     ],
                     'editAdvertInfo.endTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -183,7 +182,7 @@
                     }]
                 });
             },
-            editAdvert: function() {
+            editAdvert: function () {
                 if (!vc.component.editAdvertValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -199,7 +198,7 @@
                     JSON.stringify(vc.component.editAdvertInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -208,14 +207,13 @@
                             vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _loadAdvertItem: function() {
+            _loadAdvertItem: function () {
                 var param = {
                     params: {
                         advertId: vc.component.editAdvertInfo.advertId
@@ -225,18 +223,18 @@
                 vc.http.get('editAdvert',
                     'listAdvertItem',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _advertItemInfo = JSON.parse(json);
                         vc.component._freshPhotoOrVedio(_advertItemInfo.advertItems);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _freshPhotoOrVedio: function(_advertItems) {
+            _freshPhotoOrVedio: function (_advertItems) {
                 //判断属性中是否有照片
-                _advertItems.forEach(function(_item) {
+                _advertItems.forEach(function (_item) {
                     vc.component.editAdvertInfo.viewType = _item.itemTypeCd;
                     var _photos = [];
                     if (_item.itemTypeCd == '8888') {
@@ -249,7 +247,7 @@
                     }
                 });
             },
-            refreshEditAdvertInfo: function() {
+            refreshEditAdvertInfo: function () {
                 vc.component.editAdvertInfo = {
                     advertId: '',
                     adName: '',

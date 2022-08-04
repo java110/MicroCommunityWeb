@@ -121,6 +121,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-show="reportPayFeeDetailInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportPayFeeDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportPayFeeDetailInfo.conditions.roomName">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -186,6 +195,9 @@
                                 <span><vc:i18n name="减免金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
                             </th>
                             <th class="text-center">
+                                <span><vc:i18n name="赠送金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
                             </th>
                             <th class="text-center">
@@ -222,6 +234,7 @@
                             <td class="text-center">{{fee.receivedAmount}}</td>
                             <td class="text-center">{{fee.preferentialAmount}}</td>
                             <td class="text-center">{{fee.deductionAmount}}</td>
+                            <td class="text-center">{{fee.giftAmount}}</td>
                             <td class="text-center">{{fee.lateFee}}</td>
                             <td class="text-center">{{fee.vacantHousingDiscount}}</td>
                             <td class="text-center">{{fee.vacantHousingReduction}}</td>
@@ -231,7 +244,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="19">
+                            <td colspan="20">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>
@@ -289,6 +302,16 @@
                         </span>
                         <span class="col-md-1">
                             <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.allGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
                                 <span><vc:i18n name="滞纳金" namespace="reportPayFeeDetail"></vc:i18n></span>: {{reportPayFeeDetailInfo.totalLateFee}}
                                 <span><vc:i18n name="元" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </div>
@@ -318,7 +341,15 @@
                             </div>
                         </span>
                     </div>
-                    <div class="row">
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div><span><vc:i18n name="优惠金额" namespace="reportFeeDetail"></vc:i18n></span>：打折规则和打折无欠费规则下产生的优惠金额</div>
+                            <div><span><vc:i18n name="减免金额" namespace="reportFeeDetail"></vc:i18n></span>：减免规则下产生的减免金额</div>
+                            <div><span><vc:i18n name="赠送金额" namespace="reportFeeDetail"></vc:i18n></span>：赠送规则下赠送月份应缴的金额</div>
+                            <div><span><vc:i18n name="滞纳金" namespace="reportFeeDetail"></vc:i18n></span>：违约滞纳金规则下产生的违约金额，需额外缴纳的滞纳金</div>
+                            <div><span><vc:i18n name="空置房打折" namespace="reportFeeDetail"></vc:i18n></span>：空置房打折规则下产生的优惠金额</div>
+                            <div><span><vc:i18n name="空置房减免" namespace="reportFeeDetail"></vc:i18n></span>：空置房减免规则下产生的减免金额</div>
+                        </div>
                         <div class="col-md-12 text-center">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>

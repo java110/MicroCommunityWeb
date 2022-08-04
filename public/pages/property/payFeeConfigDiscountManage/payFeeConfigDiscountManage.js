@@ -69,7 +69,6 @@
             },
             _queryPayFeeConfigDiscountMethod: function () {
                 vc.component._listPayFeeConfigDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _goBack: function () {
                 vc.goBack();

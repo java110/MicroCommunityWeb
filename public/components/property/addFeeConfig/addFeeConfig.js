@@ -11,7 +11,7 @@
                 feeTypeCd: '',
                 feeName: '',
                 feeFlag: '',
-                startTime: '2010-01-01',
+                startTime: vc.dateFormat(new Date()),
                 endTime: '2050-01-01',
                 computingFormula: '',
                 squarePrice: '',

@@ -3,39 +3,56 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="账户信息" namespace="payFeeUserAccount"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="账户信息" namespace="payFeeUserAccount"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <input type="checkbox" class="i-checks"
-                                        v-bind:checked="payFeeUserAccountInfo.quanAccount == true"
-                                        @click="checkAllAccount($event)">
-                                </th>
-                                <th class="text-center"><span><vc:i18n name="账户类型" namespace="payFeeUserAccount"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="账户名" namespace="payFeeUserAccount"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="账户金额" namespace="payFeeUserAccount"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="操作" namespace="payFeeUserAccount"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <input type="checkbox" class="i-checks"
+                                       v-bind:checked="payFeeUserAccountInfo.quanAccount == true"
+                                       @click="checkAllAccount($event)">
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户类型" namespace="payFeeUserAccount"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户名" namespace="payFeeUserAccount"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户金额" namespace="payFeeUserAccount"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="payFeeUserAccount"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="userAccount in payFeeUserAccountInfo.accountList">
-                                <td class="text-center">
-                                    <input type="checkbox" class="i-checks checkAccountItem"
-                                        v-bind:value="userAccount.acctId"
-                                        v-model="payFeeUserAccountInfo.selectAccountIds">
-                                </td>
-                                <td class="text-center">{{userAccount.acctTypeName}}</td>
-                                <td class="text-center">{{userAccount.acctName}}</td>
-                                <td class="text-center">{{userAccount.amount}}<span><vc:i18n name="元" namespace="payFeeUserAccount"></vc:i18n></span></td>
-                                <td class="text-center">
-                                    <button type="button" v-show="userAccount.acctType != '2004'" class="btn btn-primary btn-sm" v-on:click="_openAddUserAmountModal(userAccount)"><i class="glyphicon glyphicon-plus"></i><span><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></span></button>
-                                </td>
-                            </tr>
+                        <tr v-for="userAccount in payFeeUserAccountInfo.accountList">
+                            <td class="text-center">
+                                <input type="checkbox" class="i-checks checkAccountItem"
+                                       v-bind:value="userAccount.acctId"
+                                       v-model="payFeeUserAccountInfo.selectAccountIds">
+                            </td>
+                            <td class="text-center">{{userAccount.acctTypeName}}</td>
+                            <td class="text-center">{{userAccount.acctName}}</td>
+                            <td class="text-center">{{userAccount.amount}}
+                                <span><vc:i18n name="元" namespace="payFeeUserAccount"></vc:i18n></span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" v-show="userAccount.acctType != '2004'"
+                                        class="btn btn-primary btn-sm"
+                                        v-on:click="_openAddUserAmountModal(userAccount)">
+                                    <i class="fa fa-plus"></i>
+                                    <span><vc:i18n name="预存" namespace="payFeeUserAccount"></vc:i18n></span>
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
                         <tr>

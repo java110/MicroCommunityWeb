@@ -58,8 +58,7 @@
                     this.nav.langName = _lang.name;
                 }
             },
-
-            _changeLang: function(_lang) {
+            _changeLang: function (_lang) {
                 vc.saveData('JAVA110-LANG', _lang);
                 location.reload();
             },
@@ -73,7 +72,7 @@
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         if (res.status == 200) {
                             // 清除本地sessionStorage存储的tab
                             vc.clearTabToLocal();
@@ -102,7 +101,7 @@
                             vm.nav.storeTypeCd = tmpUserInfo.storeTypeCd;
                             //加个水印
                             if (tmpUserInfo.watermark == 'true') {
-                                vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
+                                vc.watermark({watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name});
                             }
                         }
                     },
@@ -180,7 +179,6 @@
                     }
                 );
             },
-
             _getMenuCatalog: function() {
                 let _param = {
                     params: {
@@ -255,7 +253,6 @@
                     $('#' + _modelName).modal('show');
                     return true;
                 }
-
                 return false;
             }
         }

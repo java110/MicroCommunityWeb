@@ -47,17 +47,17 @@
                         errInfo: "姓名长度必须在2位至64位"
                     },
                 ],
-                'handoverInfo.age': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "年龄不能为空"
-                    },
-                    {
-                        limit: "num",
-                        param: "",
-                        errInfo: "年龄不是有效的数字"
-                    },
-                ],
+                // 'handoverInfo.age': [{
+                //         limit: "required",
+                //         param: "",
+                //         errInfo: "年龄不能为空"
+                //     },
+                //     {
+                //         limit: "num",
+                //         param: "",
+                //         errInfo: "年龄不是有效的数字"
+                //     },
+                // ],
                 'handoverInfo.sex': [{
                     limit: "required",
                     param: "",

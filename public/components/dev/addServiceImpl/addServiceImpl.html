@@ -1,4 +1,5 @@
-<div id="addServiceImplModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="addServiceImplModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -21,60 +22,92 @@
                                 <div class="col-sm-10"><input v-model="addFloorInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','addServiceImpl')" class="form-control"></div>
                             </div>-->
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业务类型" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="业务类型" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.businessTypeCd" type="text" :placeholder="vc.i18n('必填，请填写业务类型','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.businessTypeCd" type="text"
+                                           :placeholder="vc.i18n('必填，请填写业务类型','addServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="业务名称" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="业务名称" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.name" type="text" :placeholder="vc.i18n('必填，请填写业务名称','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写业务名称','addServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="调用类型" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="调用类型" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addServiceImplInfo.invokeType">
-                                        <option selected disabled value="">{{vc.i18n('必填','addServiceImpl')}}，请选择调用类型</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addServiceImpl')}}，请选择调用类型
+                                        </option>
                                         <option value="1">{{vc.i18n('微服务','addServiceImpl')}}POST方式</option>
                                         <option value="2">webservice方式</option>
                                         <option value="3">http post方式</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="调用地址" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="调用地址" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.url" type="text" :placeholder="vc.i18n('必填，请填写调用地址','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.url" type="text"
+                                           :placeholder="vc.i18n('必填，请填写调用地址','addServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">kafka主题</label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.messageTopic" type="text" :placeholder="vc.i18n('选填，请填写kafka主题','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.messageTopic" type="text"
+                                           :placeholder="vc.i18n('选填，请填写kafka主题','addServiceImpl')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="超时时间" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="超时时间" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.timeout" type="text" :placeholder="vc.i18n('必填，请填写超时时间','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.timeout" type="text"
+                                           :placeholder="vc.i18n('必填，请填写超时时间','addServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="重试次数" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="重试次数" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addServiceImplInfo.retryCount" type="text" :placeholder="vc.i18n('必填，请填写重试次数','addServiceImpl')" class="form-control">
+                                    <input v-model="addServiceImplInfo.retryCount" type="text"
+                                           :placeholder="vc.i18n('必填，请填写重试次数','addServiceImpl')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="addServiceImpl"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="描述" namespace="addServiceImpl"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea :placeholder="vc.i18n('选填，请填写描述','addServiceImpl')" class="form-control" v-model="addServiceImplInfo.description"></textarea></div>
+                                    <textarea :placeholder="vc.i18n('选填，请填写描述','addServiceImpl')" class="form-control"
+                                              v-model="addServiceImplInfo.description">
+                                    </textarea>
+                                </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveServiceImplInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addServiceImpl"></vc:i18n></span></button>
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveServiceImplInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="addServiceImpl"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

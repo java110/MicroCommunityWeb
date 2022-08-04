@@ -89,6 +89,14 @@
                                 </option>
                             </select>
                         </div>
+                        <!--是否账户抵扣-->
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="feeConfigManageInfo.conditions.deductFrom">
+                                <option selected value="">{{vc.i18n('请选择账户抵扣','feeConfigManage')}}</option>
+                                <option value="Y">是</option>
+                                <option value="N">否</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,6 +155,9 @@
                                 <span><vc:i18n name="附加/固定费用(单位:元)" namespace="feeConfigManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
+                                <span><vc:i18n name="账户是否抵扣" namespace="feeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="操作" namespace="feeConfigManage"></vc:i18n></span>
                             </th>
                         </tr>
@@ -165,6 +176,7 @@
                             <td class="text-center">{{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
                             </td>
                             <td class="text-center">{{feeConfig.additionalAmount}}</td>
+                            <td class="text-center">{{feeConfig.deductFrom == 'Y' ? '是':'否'}}</td>
                             <td class="text-center">
                                 <div class="btn-group" v-if="vc.hasPrivilege('502022022549630561')">
                                     <button class="btn-white btn btn-xs"

@@ -15,13 +15,13 @@
             }
         },
         _initMethod: function () {
-            vc.getDict('storehouse',"sh_type",function(_data){
+            vc.getDict('storehouse', "sh_type", function (_data) {
                 // 根据登录用户的权限 显示可选择的仓库类型
                 // 权限用户,显示所有仓库类型
                 // 非权限用户,只显示2807小区仓库
-                if (!vc.hasPrivilege('502021041902760001')){
+                if (!vc.hasPrivilege('502021041902760001')) {
                     _data.forEach((item, index) => {
-                        if (item.statusCd != "2807"){
+                        if (item.statusCd != "2807") {
                             _data.splice(index, 1);
                         }
                     })
@@ -110,9 +110,9 @@
                             $('#addStorehouseModel').modal('hide');
                             vc.component.clearAddStorehouseInfo();
                             vc.emit('storehouseManage', 'listStorehouse', {});
+                            vc.toast("添加成功")
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -120,9 +120,9 @@
                     });
             },
             clearAddStorehouseInfo: function () {
-                    vc.component.addStorehouseInfo.shName = '';
-                    vc.component.addStorehouseInfo.shType = '';
-                    vc.component.addStorehouseInfo.shDesc = '';
+                vc.component.addStorehouseInfo.shName = '';
+                vc.component.addStorehouseInfo.shType = '';
+                vc.component.addStorehouseInfo.shDesc = '';
             }
         }
     });

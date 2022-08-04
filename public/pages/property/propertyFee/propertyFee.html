@@ -78,7 +78,15 @@
                                 {{feeDetail.receivableAmount}}
                             </td>
                             <td class="text-center">
-                                {{feeDetail.receivedAmount}}
+                                {{feeDetail.receivedAmount}}<br>
+                                <div v-for="(item,index) in feeDetail.feeAccountDetailDtoList"
+                                     :key="index" v-bind:value="item.state" v-if="item.state != '1001'">
+                                    {{item.stateName}}: {{item.amount}}<br>
+                                </div>
+                                <div v-for="(item,index) in feeDetail.payFeeDetailDiscountDtoList"
+                                     :key="index" v-bind:value="item.state">
+                                    {{item.discountName}}: {{Math.abs(item.discountPrice)}}<br>
+                                </div>
                             </td>
                             <td class="text-center">
                                 {{feeDetail.createTime}}

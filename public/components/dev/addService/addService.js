@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -19,16 +18,14 @@
                 timeout: '60',
                 retryCount: '3',
                 provideAppId: '8000418002',
-                services:[]
-
+                services: []
             }
         },
         _initMethod: function () {
-           
         },
         _initEvent: function () {
             vc.on('addService', 'openAddServiceModal', function () {
-                vc.getDict('c_service',"url",function(_data){
+                vc.getDict('c_service', "url", function (_data) {
                     vc.component.addServiceInfo.services = _data;
                 });
                 $('#addServiceModel').modal('show');
@@ -160,20 +157,14 @@
                             param: "",
                             errInfo: "重试次数必须为数字"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveServiceInfo: function () {
                 if (!vc.component.addServiceValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //vc.component.addServiceInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -195,17 +186,13 @@
                             $('#addServiceModel').modal('hide');
                             vc.component.clearAddServiceInfo();
                             vc.emit('serviceManage', 'listService', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddServiceInfo: function () {
@@ -221,11 +208,9 @@
                     timeout: '60',
                     retryCount: '3',
                     provideAppId: '8000418002',
-                    services:[]
-
+                    services: []
                 };
             }
         }
     });
-
 })(window.vc);

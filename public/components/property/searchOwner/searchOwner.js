@@ -12,33 +12,29 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('searchOwner', 'openSearchOwnerModel', function (_param) {
-                console.log("打开业主成员界面")
                 $('#searchOwnerModel').modal('show');
                 vc.component._refreshSearchOwnerData();
                 vc.component._loadAllOwnerInfo(1, 10);
             });
-
-            vc.on('searchOwner','paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('searchOwner', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllOwnerInfo(_currentPage, 10);
             });
         },
         methods: {
-            _loadAllOwnerInfo: function (_page, _row, _name) {
+            _loadAllOwnerInfo: function (_page, _row) {
                 var param = {
                     params: {
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        name: _name,
+                        name: vc.component.searchOwnerInfo._currentOwnerName,
                         roomName: vc.component.searchOwnerInfo.roomName,
                         ownerTypeCd: '1001'
                     }
                 };
-
                 //发送get请求
                 vc.http.get('searchOwner',
                     'listOwner',
@@ -46,7 +42,7 @@
                     function (json) {
                         var _ownerInfo = JSON.parse(json);
                         vc.component.searchOwnerInfo.owners = _ownerInfo.owners;
-                        vc.emit('searchOwner','paginationPlus', 'init', {
+                        vc.emit('searchOwner', 'paginationPlus', 'init', {
                             total: _ownerInfo.records,
                             currentPage: _page
                         });
@@ -69,6 +65,5 @@
                 vc.component.searchOwnerInfo._currentOwnerName = "";
             }
         }
-
     });
 })(window.vc);

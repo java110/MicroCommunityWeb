@@ -38,9 +38,12 @@
                     $that.reportDeadlineFeeInfo.conditions.endTime = '';
                 }
             });
-
-            $(".popover-show").mouseover(() => { $('.popover-show').popover('show'); })
-            $(".popover-show").mouseleave(() => { $('.popover-show').popover('hide'); })
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function () {
             vc.on('reportDeadlineFee', 'chooseFloor', function (_param) {

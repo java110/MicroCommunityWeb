@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editQuestionAnswerTitleInfo: {
@@ -14,7 +13,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editQuestionAnswerTitle', 'openEditQuestionAnswerTitleModal', function (_params) {
@@ -71,8 +69,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "题目ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editQuestionAnswerTitle: function () {
@@ -80,7 +78,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/questionAnswer/updateQuestionAnswerTitle',
                     JSON.stringify(vc.component.editQuestionAnswerTitleInfo),
@@ -94,13 +91,14 @@
                             //关闭model
                             $('#editQuestionAnswerTitleModel').modal('hide');
                             vc.emit('questionAnswerTitleManage', 'listQuestionAnswerTitle', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -124,8 +122,6 @@
                 );
             },
             _deleteEditTitleValue: function (_seq) {
-                console.log(_seq);
-
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.editQuestionAnswerTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
@@ -136,10 +132,8 @@
                         })
                     }
                 });
-
                 $that.editQuestionAnswerTitleInfo.titleValues = _newTitleValues;
             }
         }
     });
-
 })(window.vc, window.vc.component);

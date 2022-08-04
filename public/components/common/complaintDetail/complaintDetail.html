@@ -12,45 +12,45 @@
                 <div>
                     <div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋信息" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="房屋" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="complaintDetailInfo.roomName" type="text" readonly
-                                       :placeholder="vc.i18n('必填，请填写投诉人','complaintDetail')" class="form-control">
+                                       :placeholder="vc.i18n('必填，请填写房屋','complaintDetail')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉编码" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="ID" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="complaintDetailInfo.complaintId" type="text" readonly
-                                       :placeholder="vc.i18n('必填，请填写投诉人','complaintDetail')" class="form-control">
+                                       :placeholder="vc.i18n('必填，请填写ID','complaintDetail')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉类型" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="类型" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="complaintDetailInfo.typeCdName" type="text" readonly
-                                       :placeholder="vc.i18n('必填，请填写投诉人','complaintDetail')" class="form-control"/>
+                                       :placeholder="vc.i18n('必填，请填写类型','complaintDetail')" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉人" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="提交者" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="complaintDetailInfo.complaintName" type="text" readonly
-                                       :placeholder="vc.i18n('必填，请填写投诉人','complaintDetail')" class="form-control">
+                                       :placeholder="vc.i18n('必填，请填写提交者','complaintDetail')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉人电话" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系电话" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <input v-model="complaintDetailInfo.tel" type="text" readonly :placeholder="vc.i18n('必填，请填写投诉人电话','complaintDetail')"
+                                <input v-model="complaintDetailInfo.tel" type="text" readonly :placeholder="vc.i18n('必填，请填写联系电话','complaintDetail')"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉状态" namespace="complaintDetail"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="状态" namespace="complaintDetail"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="complaintDetailInfo.stateName" type="text" readonly
-                                       :placeholder="vc.i18n('必填，请填写投诉状态','complaintDetail')" class="form-control">
+                                       :placeholder="vc.i18n('必填，请填写状态','complaintDetail')" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">

@@ -60,7 +60,8 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="费用到期提醒" namespace="reportDeadlineFee"></vc:i18n></span></h5>
-                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;" data-content="距离费用结束时间剩余天数的统计"></span>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="距离费用结束时间剩余天数的统计"></span>
                     <span style="font-size: 10px;">(按天更新)</span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
@@ -88,6 +89,9 @@
                             <th class="text-center">
                                 <span><vc:i18n name="距离费用结束时间" namespace="reportDeadlineFee"></vc:i18n></span>（天）
                             </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="更新时间" namespace="reportDeadlineFee"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -97,6 +101,7 @@
                             <td class="text-center">{{fee.feeName}}</td>
                             <td class="text-center">{{fee.deadlineTime}}</td>
                             <td class="text-center">{{fee.oweDay}}</td>
+                            <td class="text-center">{{fee.updateTime}}</td>
                         </tr>
                         </tbody>
                         <tfoot>

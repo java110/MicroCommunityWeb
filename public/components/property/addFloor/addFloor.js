@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -28,9 +28,10 @@
                 deep: true
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('addFloor', 'openAddFloorModal', function() {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('addFloor', 'openAddFloorModal', function () {
                 $('#addFloorModel').modal('show');
             });
         },
@@ -40,10 +41,10 @@
                     addFloorInfo: vc.component.addFloorInfo
                 }, {
                     'addFloorInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "楼名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "楼名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "2,10",
@@ -51,10 +52,10 @@
                         },
                     ],
                     'addFloorInfo.floorNum': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "楼编号不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "楼编号不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,12",
@@ -62,10 +63,10 @@
                         },
                     ],
                     'addFloorInfo.floorArea': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "建筑面积不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "建筑面积不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -84,7 +85,6 @@
                         },
                     ],
                     'addFloorInfo.remark': [
-
                         {
                             limit: "maxLength",
                             param: "200",
@@ -93,7 +93,7 @@
                     ]
                 });
             },
-            saveFloorInfo: function() {
+            saveFloorInfo: function () {
                 if (!vc.component.addFloorValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -111,7 +111,7 @@
                     JSON.stringify(vc.component.addFloorInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -120,18 +120,20 @@
                             vc.component.clearAddFloorInfo();
                             vc.emit('listFloor', 'listFloorData', {});
                             vc.emit('floorUnitTree', 'refreshTree', {})
+                            vc.toast("添加成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                         //vc.component.addFloorInfo.errorInfo = json;
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.component.addFloorInfo.errorInfo = errInfo;
                         vc.toast(errInfo)
                     });
             },
-            clearAddFloorInfo: function() {
+            clearAddFloorInfo: function () {
                 vc.component.addFloorInfo = {
                     name: '',
                     floorNum: '',

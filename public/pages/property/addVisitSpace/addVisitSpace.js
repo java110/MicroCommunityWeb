@@ -122,7 +122,11 @@
                     function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                    });
+                    }
+                );
+            },
+            _goBack: function (_param) {
+                vc.goBack();
             }
         }
     });

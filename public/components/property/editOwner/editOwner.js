@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     //var _fileUrl = 'https://hc.demo.winqi.cn/callComponent/download/getFile/fileByObjId';
     var _fileUrl = '/callComponent/download/getFile/fileByObjId';
     vc.extends({
@@ -15,6 +15,7 @@
                 name: '',
                 age: '',
                 link: '',
+                address: '',
                 sex: '',
                 remark: '',
                 ownerPhoto: '',
@@ -24,11 +25,14 @@
                 attrs: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadEditOwnerAttrSpec();
         },
-        _initEvent: function() {
-            vc.on('editOwner', 'openEditOwnerModal', function(_owner) {
+        _initEvent: function () {
+            vc.on('editOwner', 'openEditOwnerModal', function (_owner) {
+                if (_owner.address == null || _owner.address == undefined || _owner.address == '') {
+                    vc.component.editOwnerInfo.address = "";
+                }
                 vc.copyObject(_owner, vc.component.editOwnerInfo);
                 //根据memberId 查询 照片信息
                 vc.component.editOwnerInfo.ownerPhoto = _fileUrl + "?objId=" +
@@ -49,30 +53,19 @@
             });
         },
         methods: {
-            editOwnerValidate: function() {
+            editOwnerValidate: function () {
                 return vc.validate.validate({
                     editOwnerInfo: vc.component.editOwnerInfo
                 }, {
                     'editOwnerInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "2,64",
                             errInfo: "名称长度必须在2位至64位"
-                        },
-                    ],
-                    'editOwnerInfo.age': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "年龄不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "年龄不是有效的数字"
                         },
                     ],
                     'editOwnerInfo.sex': [{
@@ -97,7 +90,7 @@
                     }]
                 });
             },
-            editOwnerMethod: function() {
+            editOwnerMethod: function () {
                 if (!vc.component.editOwnerValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -112,7 +105,7 @@
                     JSON.stringify(vc.component.editOwnerInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -120,16 +113,18 @@
                             $('#editOwnerModel').modal('hide');
                             vc.component.clearEditOwnerInfo();
                             vc.emit($props.notifyLoadDataComponentName, 'listOwnerData', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearEditOwnerInfo: function() {
+            clearEditOwnerInfo: function () {
                 let _componentTitle = $that.editOwnerInfo.componentTitle;
                 let _attrs = $that.editOwnerInfo.attrs;
                 vc.component.editOwnerInfo = {
@@ -140,6 +135,7 @@
                     name: '',
                     age: '',
                     link: '',
+                    address: '',
                     sex: '',
                     remark: '',
                     ownerPhoto: '',
@@ -149,13 +145,13 @@
                     attrs: _attrs
                 };
             },
-            _editUserMedia: function() {
+            _editUserMedia: function () {
                 return navigator.getUserMedia = navigator.getUserMedia ||
                     navigator.webkitGetUserMedia ||
                     navigator.mozGetUserMedia ||
                     navigator.msGetUserMedia || null;
             },
-            _initAddOwnerMediaForEdit: function() {
+            _initAddOwnerMediaForEdit: function () {
                 if (vc.component._editUserMedia()) {
                     vc.component.editOwnerInfo.videoPlaying = false;
                     var constraints = {
@@ -166,7 +162,7 @@
                         audio: false
                     };
                     var video = document.getElementById('ownerPhotoForEdit');
-                    var media = navigator.getUserMedia(constraints, function(stream) {
+                    var media = navigator.getUserMedia(constraints, function (stream) {
                         var url = window.URL || window.webkitURL;
                         //video.src = url ? url.createObjectURL(stream) : stream;
                         $that.editOwnerInfo.mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[0];
@@ -177,7 +173,7 @@
                         }
                         video.play();
                         vc.component.editOwnerInfo.videoPlaying = true;
-                    }, function(error) {
+                    }, function (error) {
                         vc.component.editOwnerInfo.videoPlaying = false;
                     });
                 } else {
@@ -185,15 +181,13 @@
                     console.log("初始化视频失败");
                 }
             },
-            _takePhotoForEdit: function() {
+            _takePhotoForEdit: function () {
                 if (vc.component.editOwnerInfo.videoPlaying) {
                     var canvas = document.getElementById('canvasForEdit');
                     var video = document.getElementById('ownerPhotoForEdit');
                     let w = video.videoWidth;
-
                     // 默认按比例压缩
                     let h = video.videoHeight;
-
                     if (h > 1080 || w > 1080) {
                         let _rate = 0;
                         if (h > w) {
@@ -214,10 +208,10 @@
                     vc.toast('未检测到摄像头');
                 }
             },
-            _uploadEditPhoto: function(event) {
+            _uploadEditPhoto: function (event) {
                 $("#uploadEditOwnerPhoto").trigger("click")
             },
-            _chooseEditPhoto: function(event) {
+            _chooseEditPhoto: function (event) {
                 var photoFiles = event.target.files;
                 if (photoFiles && photoFiles.length > 0) {
                     // 获取目前上传的文件
@@ -228,25 +222,25 @@
                     }
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function(e) {
-                        vc.translate(reader.result, function(_data) {
+                    reader.onloadend = function (e) {
+                        vc.translate(reader.result, function (_data) {
                             vc.component.editOwnerInfo.ownerPhoto = _data;
                         })
                     }
                 }
             },
-            _reOpenVedioForEdit: function() {
+            _reOpenVedioForEdit: function () {
                 vc.component.editOwnerInfo.ownerPhoto = "";
                 vc.component._initAddOwnerMediaForEdit();
             },
-            _closeVedioForEdit: function() {
+            _closeVedioForEdit: function () {
                 if (vc.component.editOwnerInfo.mediaStreamTrack != null) {
                     vc.component.editOwnerInfo.mediaStreamTrack.stop();
                 }
             },
-            _loadEditOwnerAttrSpec: function() {
+            _loadEditOwnerAttrSpec: function () {
                 $that.editOwnerInfo.attrs = [];
-                vc.getAttrSpec('building_owner_attr', function(data) {
+                vc.getAttrSpec('building_owner_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
@@ -257,8 +251,8 @@
                     });
                 });
             },
-            _loadEditAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadEditAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
@@ -266,9 +260,33 @@
                     });
                 });
             },
-            _closeEditOwnerModal: function() {
+            _closeEditOwnerModal: function () {
                 $that._closeVedioForEdit();
                 $('#editOwnerModel').modal('hide');
+            },
+            obtainEditAge: function () {
+                let param = {
+                    idCard: vc.component.editOwnerInfo.idCard,
+                    communityId: vc.getCurrentCommunity().communityId
+                };
+                //发送get请求
+                vc.http.apiPost('/owner.obtainAge',
+                    JSON.stringify(param), {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.age != null && _json.age != '' && _json.age != undefined) {
+                            vc.component.editOwnerInfo.age = _json.age;
+                        } else {
+                            vc.toast(_json.msg);
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

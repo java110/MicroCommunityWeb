@@ -32,8 +32,7 @@
                 vc.emit('searchOwner', 'openSearchOwnerModel', {});
             },
             openAddMemberModel() {
-                vc.emit('addOwner', 'openAddOwnerModal', vc.component.ownerInfo.ownerId
-                );
+                vc.emit('addOwner', 'openAddOwnerModal', vc.component.ownerInfo.ownerId);
             },
             _loadOwnerPhoto: function () {
                 vc.component.ownerInfo.ownerPhoto = _fileUrl + "?objId=" +

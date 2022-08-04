@@ -40,13 +40,14 @@
         },
         methods: {
             _listServices: function(_page, _rows) {
-
                 vc.component.serviceManageInfo.conditions.page = _page;
                 vc.component.serviceManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.serviceManageInfo.conditions
                 };
-
+                param.params.serviceCode = param.params.serviceCode.trim();
+                param.params.serviceName = param.params.serviceName.trim();
+                param.params.serviceUrl = param.params.serviceUrl.trim();
                 //发送get请求
                 vc.http.apiGet('/service.listServices',
                     param,
@@ -78,7 +79,13 @@
             },
             _queryServiceMethod: function() {
                 vc.component._listServices(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetServiceMethod: function () {
+                vc.component.serviceManageInfo.conditions.serviceName = '';
+                vc.component.serviceManageInfo.conditions.serviceCode = "";
+                vc.component.serviceManageInfo.conditions.serviceUrl = "";
+                vc.component._listServices(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function() {
                 if (vc.component.serviceManageInfo.moreCondition) {
@@ -86,9 +93,7 @@
                 } else {
                     vc.component.serviceManageInfo.moreCondition = true;
                 }
-            }
-
-            ,
+            },
             _openChooseAppMethod: function() {
                 vc.emit('chooseApp', 'openChooseAppModel', {});
 
@@ -102,7 +107,6 @@
                     vc.component._listServices(DEFAULT_PAGE, DEFAULT_ROWS);
                     return;
                 }
-
                 var param = {
                     params: {
                         page: DEFAULT_PAGE,
@@ -111,7 +115,6 @@
                         appId: vc.component.serviceManageInfo.conditions.appId
                     }
                 }
-
                 vc.http.get(
                     'serviceManage',
                     'loadApp',
@@ -127,13 +130,9 @@
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
-
                 vc.component._listServices(DEFAULT_PAGE, DEFAULT_ROWS);
-
-
             }
         }
     });

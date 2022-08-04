@@ -70,8 +70,6 @@
                 vc.goBack();
             },
             showImg: function (e) {
-                console.log("haha")
-                console.log(e)
                 vc.emit('viewImage', 'showImage', {url: e});
             }
         }

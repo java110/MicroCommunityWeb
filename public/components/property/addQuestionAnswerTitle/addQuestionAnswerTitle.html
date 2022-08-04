@@ -1,26 +1,34 @@
 <div id="addQuestionAnswerTitleModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="添加题目" namespace="addQuestionAnswerTitle"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加题目" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
-
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="问卷题目" namespace="addQuestionAnswerTitle"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="问卷题目" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <input v-model="addQuestionAnswerTitleInfo.qaTitle" type="text"
-                                        :placeholder="vc.i18n('必填，请填写问卷题目','addQuestionAnswerTitle')" class="form-control">
+                                           :placeholder="vc.i18n('必填，请填写问卷题目','addQuestionAnswerTitle')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="题目类型" namespace="addQuestionAnswerTitle"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="题目类型" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addQuestionAnswerTitleInfo.titleType"
-                                        @change="_changeAddTitleType()">
-                                        <option selected disabled value="">{{vc.i18n('必填','addQuestionAnswerTitle')}}，请选择题目类型</option>
+                                            @change="_changeAddTitleType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addQuestionAnswerTitle')}}，请选择题目类型
+                                        </option>
                                         <option value="1001">{{vc.i18n('单选','addQuestionAnswerTitle')}}</option>
                                         <option value="2002">{{vc.i18n('多选','addQuestionAnswerTitle')}}</option>
                                         <option value="3003">{{vc.i18n('简答题','addQuestionAnswerTitle')}}</option>
@@ -28,34 +36,46 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-for="(item,index) in addQuestionAnswerTitleInfo.titleValues">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选项" namespace="addQuestionAnswerTitle"></vc:i18n></span>{{item.seq}}</label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="选项" namespace="addQuestionAnswerTitle"></vc:i18n></span>{{item.seq}}
+                                </label>
                                 <div class="col-sm-8">
-                                    <input v-model="item.qaValue" type="text" :placeholder="vc.i18n('必填，请填写选项内容','addQuestionAnswerTitle')"
-                                        class="form-control">
+                                    <input v-model="item.qaValue" type="text"
+                                           :placeholder="vc.i18n('必填，请填写选项内容','addQuestionAnswerTitle')"
+                                           class="form-control">
                                 </div>
                                 <div class="col-sm-2" v-if="index == addQuestionAnswerTitleInfo.titleValues.length-1">
                                     <button class="btn btn-link float-right" type="button"
-                                        v-on:click="_addTitleValue()"><span><vc:i18n name="增加选项" namespace="addQuestionAnswerTitle"></vc:i18n></span></button>
+                                            v-on:click="_addTitleValue()">
+                                        <span><vc:i18n name="增加选项" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                    </button>
                                 </div>
                                 <div class="col-sm-2" v-else>
                                     <button class="btn btn-link float-right" type="button"
-                                        v-on:click="_deleteTitleValue(item.seq)"><span><vc:i18n name="删除选项" namespace="addQuestionAnswerTitle"></vc:i18n></span></button>
+                                            v-on:click="_deleteTitleValue(item.seq)">
+                                        <span><vc:i18n name="删除选项" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                    </button>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="顺序" namespace="addQuestionAnswerTitle"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="顺序" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addQuestionAnswerTitleInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写顺序','addQuestionAnswerTitle')"
-                                        class="form-control">
+                                    <input v-model="addQuestionAnswerTitleInfo.seq" type="text"
+                                           :placeholder="vc.i18n('必填，请填写顺序','addQuestionAnswerTitle')"
+                                           class="form-control">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                    v-on:click="saveQuestionAnswerTitleInfo()"><i
-                                        class="fa fa-check"></i>&nbsp;保存</button>
+                                        v-on:click="saveQuestionAnswerTitleInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal"><span><vc:i18n name="取消" namespace="addQuestionAnswerTitle"></vc:i18n></span></button>
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="addQuestionAnswerTitle"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "仓库编号不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editStorehouse: function () {
@@ -97,9 +98,9 @@
                             //关闭model
                             $('#editStorehouseModel').modal('hide');
                             vc.emit('storehouseManage', 'listStorehouse', {});
+                            vc.toast("修改成功")
                             return;
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

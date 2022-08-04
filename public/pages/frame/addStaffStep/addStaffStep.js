@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             addStaffStepInfo: {
@@ -38,11 +38,11 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent: function() {
-            vc.on("addStaffStep", "notify", function(_info) {
+        _initEvent: function () {
+            vc.on("addStaffStep", "notify", function (_info) {
                 if (vc.component.addStaffStepInfo.index == 0) {
                     vc.copyObject(_info, vc.component.addStaffStepInfo.branchOrgInfo);
                     vc.component.addStaffStepInfo.infos[0] = vc.component.addStaffStepInfo.branchOrgInfo;
@@ -50,7 +50,6 @@
                     vc.copyObject(_info, vc.component.addStaffStepInfo.departmemtOrgInfo);
                     vc.component.addStaffStepInfo.staffInfo.orgId = _info.orgId
                     vc.component.addStaffStepInfo.infos[1] = vc.component.addStaffStepInfo.departmemtOrgInfo;
-
                 } else {
                     vc.copyObject(_info, vc.component.addStaffStepInfo.staffInfo);
                     vc.component.addStaffStepInfo.infos[2] = vc.component.addStaffStepInfo.staffInfo;
@@ -58,7 +57,7 @@
             });
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.addStaffStepInfo.$step = $("#step");
                 vc.component.addStaffStepInfo.$step.step({
                     index: 0,
@@ -68,14 +67,14 @@
                 vc.component.addStaffStepInfo.index = vc.component.addStaffStepInfo.$step.getIndex();
                 vc.component._notifyViewOrgInfoComponentData();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.addStaffStepInfo.$step.prevStep();
                 vc.component.addStaffStepInfo.index = vc.component.addStaffStepInfo.$step.getIndex();
                 vc.emit('viewOrgInfo', 'onIndex', vc.component.addStaffStepInfo.index);
                 vc.emit('addStaffView', 'onIndex', vc.component.addStaffStepInfo.index);
                 vc.component._notifyViewOrgInfoComponentData();
             },
-            _nextStep: function() {
+            _nextStep: function () {
                 var _currentData = vc.component.addStaffStepInfo.infos[vc.component.addStaffStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -87,7 +86,7 @@
                 vc.emit('addStaffView', 'onIndex', vc.component.addStaffStepInfo.index);
                 vc.component._notifyViewOrgInfoComponentData();
             },
-            _finishStep: function() {
+            _finishStep: function () {
                 //vc.component.addStaffStepInfo.staffInfo.departmentOrgId = vc.component.addStaffStepInfo.infos[1].orgId;
                 var _currentData = vc.component.addStaffStepInfo.infos[vc.component.addStaffStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
@@ -100,23 +99,23 @@
                     JSON.stringify(vc.component.addStaffStepInfo.staffInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (res.status == 200 && _json.code == 0) {
-
-                            vc.toast('处理成功');
+                            vc.toast('添加成功');
                             //关闭model
                             vc.goBack();
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _notifyViewOrgInfoComponentData: function() {
+            _notifyViewOrgInfoComponentData: function () {
                 if (vc.component.addStaffStepInfo.index == 0) {
                     vc.emit('viewOrgInfo', '_initInfo', vc.component.addStaffStepInfo.branchOrgInfo);
                 } else if (vc.component.addStaffStepInfo.index == 1) {

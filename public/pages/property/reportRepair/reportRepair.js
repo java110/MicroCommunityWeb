@@ -64,7 +64,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $(".begin_end_time").datetimepicker({
                     minView: "month",
@@ -74,7 +75,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $(".finish_start_time").datetimepicker({
                     minView: "month",
@@ -84,7 +86,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $(".finish_end_time").datetimepicker({
                     minView: "month",
@@ -94,7 +97,8 @@
                     initTime: true,
                     initialDate: new Date(),
                     autoClose: 1,
-                    todayBtn: true
+                    todayBtn: true,
+                    clearBtn: true
                 });
                 $('.begin_start_time').datetimepicker()
                     .on('changeDate', function (ev) {

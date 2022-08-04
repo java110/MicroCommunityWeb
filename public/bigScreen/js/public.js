@@ -346,7 +346,9 @@
                 orient: 'vertical',
                 left: 10,
                 data: ['待处理', '处理中', '已处理'],
-                color: '#FFF'
+                textStyle: {
+                    color: '#fff'
+                }
             },
             series: [{
                 name: '访问来源',
@@ -361,7 +363,7 @@
                 emphasis: {
                     label: {
                         show: true,
-                        fontSize: '30',
+                        fontSize: '15',
                         fontWeight: 'bold'
                     }
                 },
@@ -580,7 +582,9 @@
             },
             legend: {
                 data: ['已缴费', '未缴费'],
-                color: "#FFF"
+                textStyle: {
+                    color: '#fff'
+                }
             },
             toolbox: {
                 show: true,

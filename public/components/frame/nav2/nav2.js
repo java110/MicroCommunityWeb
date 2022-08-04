@@ -58,7 +58,6 @@
                     this.nav.langName = _lang.name;
                 }
             },
-
             _changeLang: function(_lang) {
                 vc.saveData('JAVA110-LANG', _lang);
                 location.reload();
@@ -101,7 +100,7 @@
                             vm.nav.storeTypeCd = tmpUserInfo.storeTypeCd;
                             //加个水印
                             if (tmpUserInfo.watermark == 'true') {
-                                vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
+                                vc.watermark({watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name});
                             }
                         }
                     },
@@ -136,6 +135,8 @@
                     function(json, res) {
                         if (res.status == 200) {
                             vm.nav.communityInfos = JSON.parse(json).communitys;
+                            console.log("looooook")
+                            console.log(vm.nav.communityInfos)
                             if (vm.nav.communityInfos == null || vm.nav.communityInfos.length == 0) {
                                 vm.nav._currentCommunity = {
                                     name: "还没有入驻小区"
@@ -180,7 +181,6 @@
                     }
                 );
             },
-
             _getMenuCatalog: function() {
                 let _param = {
                     params: {
@@ -255,7 +255,6 @@
                     $('#' + _modelName).modal('show');
                     return true;
                 }
-
                 return false;
             }
         }

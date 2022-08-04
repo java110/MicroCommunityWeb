@@ -45,6 +45,12 @@
             });
         },
         methods: {
+            popOverShowMsg: function(){
+                $('.popover-show').popover('show');
+            },
+            popOverHideMsg: function(){
+                $('.popover-show').popover('hide');
+            },
             _listFeeDiscounts: function (_page, _rows) {
                 let param = {
                     params: {
@@ -66,21 +72,57 @@
                         $that.payFeeDiscountInfo.feeDiscounts = _payFeeDiscountInfo.data;
                         $that.payFeeDiscountInfo.feeDiscounts.forEach(item => {
                             $that.payFeeDiscountInfo.selectDiscountIds.push(item.discountId);
-                            //当映射开关值为1时向下取整
                             if (item.value === "1") {
-                                item.discountPrice = Math.floor(item.discountPrice);
+                                // 当映射开关值为1时向下取整
+                                item.discountPrice = $that._mathFloor(item.discountPrice);
                             } else if (item.value === "2") {
+                                // 2正常显示
                                 return item.discountPrice;
                             } else if (item.value === "3") {
-                                item.discountPrice = Math.ceil(item.discountPrice);
+                                // 3向上取整
+                                item.discountPrice = $that._mathCeil(item.discountPrice);
+                            } else if (item.value === "5") {
+                                // 5保留一位
+                                item.discountPrice = $that._mathToFixed1(item.discountPrice);
                             } else {
-                                return item.discountPrice;
+                                // 其他保留两位
+                                item.discountPrice = $that._mathToFixed2(item.discountPrice);
                             }
                         })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
+            },
+            /**
+             * 向上取整
+             */
+             _mathCeil: function (_price) {
+                return Math.ceil(_price);
+            },
+            /**
+             * 向下取整
+             */
+            _mathFloor: function (_price) {
+                return Math.floor(_price);
+            },
+            /**
+             * 四首五入取整
+             */
+            _mathRound: function (_price) {
+                return Math.round(_price);
+            },
+            /**
+             * 保留小数点后一位
+             */
+            _mathToFixed1: function (_price) {
+                return parseFloat(_price).toFixed(1);
+            },
+            /**
+             * 保留小数点后两位
+             */
+            _mathToFixed2: function (_price) {
+                return parseFloat(_price).toFixed(2);
             },
             _openAddFeeDiscountModal: function () {
                 vc.emit('addFeeDiscount', 'openAddFeeDiscountModal', {});

@@ -4,45 +4,61 @@
             <div class="col-sm-5 margin-lr-0 padding-lr-0">
                 <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
                     <thead>
-                        <tr>
-                            <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="姓名" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <th class="text-center" style="border-bottom: none;"><span><vc:i18n name="房号" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="联系电话" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="面积" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="收费类型" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="费用名称" namespace="reportProficientRoomFee"></vc:i18n></span></th>
-                            <!--客户当时提供的Excel中未包含该字段，该字段存在歧义 故作下线处理-->
-                            <!-- <th class="text-center " style="border-bottom: none;"><span><vc:i18n name="应收金额" namespace="reportProficientRoomFee"></vc:i18n></span></th> -->
-                        </tr>
+                    <tr>
+                        <th class="text-center " style="border-bottom: none;">
+                            <span><vc:i18n name="姓名" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <th class="text-center" style="border-bottom: none;">
+                            <span><vc:i18n name="房号" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <span><vc:i18n name="联系电话" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <span><vc:i18n name="面积" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <span><vc:i18n name="收费类型" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <span><vc:i18n name="费用名称" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th>
+                        <!--客户当时提供的Excel中未包含该字段，该字段存在歧义 故作下线处理-->
+                        <!-- <th class="text-center " style="border-bottom: none;">
+                        <span><vc:i18n name="应收金额" namespace="reportProficientRoomFee"></vc:i18n></span>
+                        </th> -->
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportProficientRoomFeeInfo.fees">
-                            <td class="text-center ">{{fee.ownerName}}</td>
-                            <td class="text-center ">{{fee.objName}}</td>
-                            <td class="text-center ">{{fee.ownerLink}}</td>
-                            <td class="text-center">{{fee.builtUpArea}}</td>
-                            <td class="text-center ">{{fee.feeTypeCdName}}</td>
-                            <td class="text-center ">{{fee.feeName}}</td>
-                            <!--客户当时提供的Excel中未包含该字段，该字段存在歧义 故作下线处理-->
-                            <!-- <td class="text-center ">{{fee.receivableAmount}}</td> -->
-                        </tr>
+                    <tr v-for="fee in reportProficientRoomFeeInfo.fees">
+                        <td class="text-center ">{{fee.ownerName}}</td>
+                        <td class="text-center ">{{fee.objName}}</td>
+                        <td class="text-center ">{{fee.ownerLink}}</td>
+                        <td class="text-center">{{fee.builtUpArea}}</td>
+                        <td class="text-center ">{{fee.feeTypeCdName}}</td>
+                        <td class="text-center ">{{fee.feeName}}</td>
+                        <!--客户当时提供的Excel中未包含该字段，该字段存在歧义 故作下线处理-->
+                        <!-- <td class="text-center ">{{fee.receivableAmount}}</td> -->
+                    </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-sm-7 margin-lr-0 padding-lr-0 java110-table-scoll-width">
                 <table class="footable table table-stripped " style="margin-top:10px;" data-page-size="10">
                     <thead>
-                        <tr>
-                            <th v-for="(item,index) in reportProficientRoomFeeInfo.listColumns" style="width:100px" class="java110-td-scoll-width">{{item}}年
-                            </th>
-                        </tr>
+                    <tr>
+                        <th v-for="(item,index) in reportProficientRoomFeeInfo.listColumns" style="width:100px"
+                            class="java110-td-scoll-width">{{item}}年
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportProficientRoomFeeInfo.fees">
-                            <td v-for="(item,index) in reportProficientRoomFeeInfo.listColumns" style="width:100px;cursor: pointer;" @click="_showFeeDetail(fee,item)">
-                                {{_getProficientRoomFeeValue(fee.reportFeeYearCollectionDetailDtos,item)}}
-                            </td>
-                        </tr>
+                    <tr v-for="fee in reportProficientRoomFeeInfo.fees">
+                        <td v-for="(item,index) in reportProficientRoomFeeInfo.listColumns"
+                            style="width:100px;cursor: pointer;" @click="_showFeeDetail(fee,item)">
+                            {{_getProficientRoomFeeValue(fee.reportFeeYearCollectionDetailDtos,item)}}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

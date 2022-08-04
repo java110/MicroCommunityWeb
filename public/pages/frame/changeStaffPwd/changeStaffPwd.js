@@ -2,21 +2,17 @@
  权限组
  **/
 (function (vc) {
-
     vc.extends({
         data: {
             changeStaffPwdInfo: {
                 oldPwd: '',
                 newPwd: '',
-                reNewPwd:''
+                reNewPwd: ''
             }
         },
-
         _initMethod: function () {
-
         },
         _initEvent: function () {
-
         },
         methods: {
             assetImportValidate: function () {
@@ -48,42 +44,41 @@
                 });
             },
             _changePwd: function () {
-
                 if (!vc.component.assetImportValidate()) {
                     return;
                 }
-
-                if(vc.component.changeStaffPwdInfo.newPwd != vc.component.changeStaffPwdInfo.reNewPwd){
+                if (vc.component.changeStaffPwdInfo.newPwd != vc.component.changeStaffPwdInfo.reNewPwd) {
                     vc.toast('两次密码不一致');
-                    return ;
+                    return;
                 }
-
                 vc.http.post(
                     'changeStaffPwd',
                     'change',
                     JSON.stringify(vc.component.changeStaffPwdInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             vc.toast("修改成功");
                             vc.component.changeStaffPwdInfo.oldPwd = '';
                             vc.component.changeStaffPwdInfo.newPwd = '';
                             vc.component.changeStaffPwdInfo.reNewPwd = '';
-                            return ;
+                            vc.clearTabToLocal();
+                            vc.jumpToPage("/user.html#/pages/frame/login");
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
-                     });
-
+                    });
             }
         }
     });
-
 })(window.vc);

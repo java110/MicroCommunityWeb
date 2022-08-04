@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -11,7 +11,7 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                titleId: '',
+                titleId: ''
             }
         },
         _initMethod: function () {
@@ -28,13 +28,12 @@
             _listQuestionAnswerTitles: function (_page, _rows) {
                 let param = {
                     params: {
-                        page:_page,
-                        row:_rows,
-                        titleId:$that.questionAnswerTitleValueManageInfo.titleId,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: _page,
+                        row: _rows,
+                        titleId: $that.questionAnswerTitleValueManageInfo.titleId,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportQuestionAnswer/queryUserQuestionAnswerValue',
                     param,
@@ -53,11 +52,9 @@
                     }
                 );
             },
-           
             _goBack: function () {
                 vc.goBack();
             }
-
         }
     });
 })(window.vc);

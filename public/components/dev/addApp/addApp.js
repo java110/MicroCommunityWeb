@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,12 +11,10 @@
                 securityCode: '',
                 whileListIp: '',
                 blackListIp: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addApp', 'openAddAppModal', function () {
@@ -68,27 +65,21 @@
                             param: "200",
                             errInfo: "备注内容不能超过200"
                         },
-                    ],
-
-
+                    ]
                 });
             },
             saveAppInfo: function () {
                 if (!vc.component.addAppValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //vc.component.addAppInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addAppInfo);
                     $('#addAppModel').modal('hide');
                     return;
                 }
-
                 vc.http.post(
                     'addApp',
                     'save',
@@ -103,17 +94,13 @@
                             $('#addAppModel').modal('hide');
                             vc.component.clearAddAppInfo();
                             vc.emit('appManage', 'listApp', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddAppInfo: function () {
@@ -122,11 +109,9 @@
                     securityCode: '',
                     whileListIp: '',
                     blackListIp: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

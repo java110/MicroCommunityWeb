@@ -29,7 +29,6 @@
                 stateName: '',
                 additionalAmount: 0.0,
                 squarePrice: 0,
-                builtUpArea: '',
                 deadlineTime: '',
                 payerObjType: '',
                 payerObjId: '',

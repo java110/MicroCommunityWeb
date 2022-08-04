@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editServiceRegisterInfo: {
@@ -8,12 +7,10 @@
                 serviceId: '',
                 orderTypeCd: '',
                 invokeLimitTimes: '1000',
-                invokeModel: '',
-
+                invokeModel: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editServiceRegister', 'openEditServiceRegisterModal', function (_params) {
@@ -93,8 +90,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "绑定ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editServiceRegister: function () {
@@ -102,7 +99,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editServiceRegister',
                     'update',
@@ -116,13 +112,12 @@
                             //关闭model
                             $('#editServiceRegisterModel').modal('hide');
                             vc.emit('serviceRegisterManage', 'listServiceRegister', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -133,11 +128,9 @@
                     serviceId: '',
                     orderTypeCd: '',
                     invokeLimitTimes: '1000',
-                    invokeModel: '',
-
+                    invokeModel: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

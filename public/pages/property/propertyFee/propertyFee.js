@@ -106,38 +106,19 @@
                         var listFeeDetailData = JSON.parse(json);
                         vc.component.feeDetailInfo.total = listFeeDetailData.total;
                         vc.component.feeDetailInfo.records = listFeeDetailData.records;
-                        vc.component.feeDetailInfo.feeDetails = listFeeDetailData.feeDetails;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.feeDetailInfo.records,
-                            currentPage: _page
-                        });
-                    }, function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            //重置操作
-            resetListFeeDetail: function (_page, _row) {
-                vc.component.feeDetailInfo.startTime = "";
-                vc.component.feeDetailInfo.endTime = "";
-                var param = {
-                    params: {
-                        page: _page,
-                        row: _row,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        feeId: vc.component.feeDetailInfo.feeId,
-                        startTime: vc.component.feeDetailInfo.startTime,
-                        endTime: vc.component.feeDetailInfo.endTime
-                    }
-                }
-                //发送get请求
-                vc.http.get('propertyFee',
-                    'listFeeDetail',
-                    param,
-                    function (json, res) {
-                        var listFeeDetailData = JSON.parse(json);
-                        vc.component.feeDetailInfo.total = listFeeDetailData.total;
-                        vc.component.feeDetailInfo.records = listFeeDetailData.records;
+                        if (listFeeDetailData.feeDetails != null && listFeeDetailData.feeDetails.length > 0) {
+                            listFeeDetailData.feeDetails.forEach(item1 => {
+                                if (item1.feeAccountDetailDtoList != null && item1.feeAccountDetailDtoList.length > 0) {
+                                    item1.feeAccountDetailDtoList.forEach(item => {
+                                        if (item.state == '1001' || item.state == '1003') { //无抵扣或积分抵扣
+                                            return;
+                                        } else {
+                                            item1.receivedAmount = (parseFloat(item1.receivedAmount) - parseFloat(item.amount)).toFixed(2);
+                                        }
+                                    })
+                                }
+                            });
+                        }
                         vc.component.feeDetailInfo.feeDetails = listFeeDetailData.feeDetails;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeDetailInfo.records,
@@ -154,7 +135,9 @@
             },
             //重置
             resetFeeDetailMethod: function () {
-                vc.component.resetListFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
+                vc.component.feeDetailInfo.startTime = "";
+                vc.component.feeDetailInfo.endTime = "";
+                vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             },
             _openRefundModel: function (_feeDetail) {
                 _feeDetail.mainFeeInfo = vc.component.mainFeeInfo;

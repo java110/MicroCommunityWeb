@@ -233,6 +233,11 @@ var saveAs = saveAs || (function(view) {
                             return;
                         }
                         $that.batchPayFeeOrderInfo.batchFees = _fees.sort($that._batchRoomFeeCompare);
+                        // 防止后台设置有误
+                        let toFixedSign = _fees[0].val;
+                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3 || toFixedSign == 4 || toFixedSign == 5) {
+                            $that.batchPayFeeOrderInfo.toFixedSign = toFixedSign;
+                        }
                         $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                         $that.batchPayFeeOrderInfo.batchFees.forEach(item => {
                             $that.batchPayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
@@ -240,13 +245,7 @@ var saveAs = saveAs || (function(view) {
                             item.receivableAmount = $that._getFixedNum(item.feeTotalPrice);
                             item.receivedAmount = item.receivableAmount;
                         });
-                        let toFixedSign = _fees[0].val;
-
                         $that.batchPayFeeOrderInfo.allBatchFees = $that.batchPayFeeOrderInfo.batchFees;
-                        // 防止后台设置有误
-                        if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3 || toFixedSign == 4 || toFixedSign == 5) {
-                            $that.batchPayFeeOrderInfo.toFixedSign = toFixedSign;
-                        }
 
                         $that._pushPayObjs();
                         $that._doComputeTotalFee();
