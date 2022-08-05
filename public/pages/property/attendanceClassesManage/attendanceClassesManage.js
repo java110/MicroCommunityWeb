@@ -44,7 +44,7 @@
                 param.params.classesId = param.params.classesId.trim();
                 param.params.classesName = param.params.classesName.trim();
                 //发送get请求
-                vc.http.apiGet('attendanceClasses.listAttendanceClassess',
+                vc.http.apiGet('/attendanceClasses.listAttendanceClassess',
                     param,
                     function(json, res) {
                         var _attendanceClassesManageInfo = JSON.parse(json);
