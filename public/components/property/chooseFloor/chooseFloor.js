@@ -37,8 +37,7 @@
                 };
 
                 //发送get请求
-               vc.http.get('chooseFloor',
-                            'list',
+               vc.http.apiGet('/floor.queryFloors',
                              param,
                              function(json){
                                 var _floorInfo = JSON.parse(json);

@@ -36,11 +36,10 @@
                 };
 
                 //发送get请求
-               vc.http.get('chooseUnit',
-                            'list',
+               vc.http.apiGet('/unit.queryUnits',
                              param,
                              function(json){
-                                var _unitInfo = JSON.parse(json);
+                                let _unitInfo = JSON.parse(json);
                                 vc.component.chooseUnitInfo.units = _unitInfo;
                              },function(){
                                 console.log('请求失败处理');
