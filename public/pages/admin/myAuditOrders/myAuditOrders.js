@@ -99,8 +99,7 @@
                 }
                 console.log("提交得参数：", _auditInfo);
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/purchaseApply.auditApplyOrder',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },
@@ -122,8 +121,7 @@
                     remark: '处理结束'
                 };
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/purchaseApply.auditApplyOrder',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

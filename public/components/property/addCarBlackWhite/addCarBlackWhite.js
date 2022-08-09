@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -17,25 +17,25 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initAddCarBlackWhiteDateInfo();
 
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('addCarBlackWhite', 'openAddCarBlackWhiteModal',
-                function () {
+                function() {
                     $('#addCarBlackWhiteModel').modal('show');
                 });
 
             vc.on('addCarBlackWhite', 'notify',
-                function (_param) {
+                function(_param) {
                     if (_param.hasOwnProperty('paId')) {
                         $that.addCarBlackWhiteInfo.paId = _param.paId;
                     }
                 });
         },
         methods: {
-            _initAddCarBlackWhiteDateInfo: function () {
+            _initAddCarBlackWhiteDateInfo: function() {
                 vc.component.addCarBlackWhiteInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.addCarBlackWhiteStartTime').datetimepicker({
                     language: 'zh-CN',
@@ -48,7 +48,7 @@
 
                 });
                 $('.addCarBlackWhiteStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".addCarBlackWhiteStartTime").val();
                         vc.component.addCarBlackWhiteInfo.startTime = value;
                     });
@@ -62,7 +62,7 @@
                     todayBtn: true
                 });
                 $('.addCarBlackWhiteEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".addCarBlackWhiteEndTime").val();
                         vc.component.addCarBlackWhiteInfo.endTime = value;
                     });
@@ -70,9 +70,8 @@
             addCarBlackWhiteValidate() {
                 return vc.validate.validate({
                     addCarBlackWhiteInfo: vc.component.addCarBlackWhiteInfo
-                },
-                    {
-                        'addCarBlackWhiteInfo.blackWhite': [{
+                }, {
+                    'addCarBlackWhiteInfo.blackWhite': [{
                             limit: "required",
                             param: "",
                             errInfo: "名单类型不能为空"
@@ -82,8 +81,8 @@
                             param: "",
                             errInfo: "名单类型格式错误"
                         },
-                        ],
-                        'addCarBlackWhiteInfo.carNum': [{
+                    ],
+                    'addCarBlackWhiteInfo.carNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "车牌号不能为空"
@@ -93,14 +92,13 @@
                             param: "1,12",
                             errInfo: "车牌号大于12位"
                         },
-                        ],
-                        'addCarBlackWhiteInfo.paId': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "停车场不能为空"
-                        }
-                        ],
-                        'addCarBlackWhiteInfo.startTime': [{
+                    ],
+                    'addCarBlackWhiteInfo.paId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "停车场不能为空"
+                    }],
+                    'addCarBlackWhiteInfo.startTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "开始时间不能为空"
@@ -110,8 +108,8 @@
                             param: "",
                             errInfo: "不是有效的时间格式"
                         },
-                        ],
-                        'addCarBlackWhiteInfo.endTime': [{
+                    ],
+                    'addCarBlackWhiteInfo.endTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "结束时间不能为空"
@@ -121,11 +119,11 @@
                             param: "",
                             errInfo: "不是有效的时间格式"
                         },
-                        ],
+                    ],
 
-                    });
+                });
             },
-            saveCarBlackWhiteInfo: function () {
+            saveCarBlackWhiteInfo: function() {
                 if (!vc.component.addCarBlackWhiteValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -139,10 +137,10 @@
                     return;
                 }
 
-                vc.http.post('addCarBlackWhite', 'save', JSON.stringify(vc.component.addCarBlackWhiteInfo), {
-                    emulateJSON: true
-                },
-                    function (json, res) {
+                vc.http.apiPost('/carBlackWhite.saveCarBlackWhite', JSON.stringify(vc.component.addCarBlackWhiteInfo), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -155,14 +153,14 @@
                         vc.toast(json);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
             },
-            clearAddCarBlackWhiteInfo: function () {
+            clearAddCarBlackWhiteInfo: function() {
                 vc.component.addCarBlackWhiteInfo = {
                     blackWhite: '',
                     carNum: '',

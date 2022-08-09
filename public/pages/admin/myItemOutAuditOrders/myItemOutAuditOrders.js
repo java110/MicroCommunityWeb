@@ -98,8 +98,7 @@
                     _auditInfo.noticeState = '1001';
                 }
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/purchaseApply.auditApplyOrder',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },
@@ -121,8 +120,7 @@
                     remark: '处理结束'
                 };
                 //发送get请求
-                vc.http.post('myAuditOrders',
-                    'audit',
+                vc.http.apiPost('/purchaseApply.auditApplyOrder',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

@@ -201,8 +201,7 @@
                         row: 50
                     }
                 };
-                vc.http.get('room',
-                    'listRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         var listRoomData = JSON.parse(json);

@@ -67,8 +67,7 @@
                     communityId: _communityInfo.communityId
                 };
                 //发送get请求
-                vc.http.post('storeEnterCommunity',
-                    '_saveEnterCommunity',
+                vc.http.apiPost('/member.join.community',
                     JSON.stringify(_param), {
                         emulateJSON: true
                     },

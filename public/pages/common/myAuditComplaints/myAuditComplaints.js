@@ -80,8 +80,7 @@
                 _auditInfo.taskId = vc.component.myAuditComplaintsInfo.currentTaskId;
                 _auditInfo.complaintId = vc.component.myAuditComplaintsInfo.currentComplaintId;
                 //发送get请求
-                vc.http.post('myAuditComplaints',
-                    'audit',
+                vc.http.apiPost('/complaint.auditComplaint',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

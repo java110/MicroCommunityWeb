@@ -103,8 +103,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('menuGroupManage',
-                    'list',
+                vc.http.apiGet('/menuGroup.listMenuGroups',
                     param,
                     function(json, res) {
                         let _menuGroupManageInfo = JSON.parse(json);

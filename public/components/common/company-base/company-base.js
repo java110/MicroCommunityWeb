@@ -72,7 +72,7 @@
                     }
 
                 }
-                vc.http.get('company', 'getStoreType',
+                vc.http.apiGet('/query.store.type',
                     JSON.stringify(param),
                     function(json, res) {
                         if (res.status == 200) {
@@ -94,7 +94,7 @@
                         parentAreaCode: _parentAreaCode
                     }
                 };
-                vc.http.get('company', 'getAreas',
+                vc.http.apiGet('/area.listAreas',
                     _param,
                     function(json, res) {
                         if (res.status == 200) {
