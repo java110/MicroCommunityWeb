@@ -247,8 +247,7 @@
                         row: 50
                     }
                 };
-                vc.http.get('initData',
-                    'getCommunitys',
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
                     param,
                     function(json, res) {
                         if (res.status == 200) {

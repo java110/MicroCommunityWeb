@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var curr = 0;
     var _imagePlayTime = 10 * 1000;
     var myvideo = null;
@@ -11,16 +11,16 @@
                 words: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._loadAdvertVedioData();
-            var h = document.documentElement.clientHeight;//获取页面可见高度
-            $("#videoView").height(h + "px");//掐头去尾，减去100px
+            var h = document.documentElement.clientHeight; //获取页面可见高度
+            $("#videoView").height(h + "px"); //掐头去尾，减去100px
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
         },
         methods: {
-            _loadAdvertVedioData: function () {
+            _loadAdvertVedioData: function() {
                 var _machineCode = vc.getParam("machineCode");
                 if (!vc.notNull(_machineCode)) {
                     vc.toast("请求参数中未包含设备编码");
@@ -33,7 +33,7 @@
                     return;
                 }
 
-                var param = {
+                let param = {
                     params: {
                         machineCode: _machineCode,
                         communityId: _communityId
@@ -41,25 +41,25 @@
                 };
 
                 //发送get请求
-                vc.http.get('advertVedioView',
-                    'list',
+                vc.http.apiGet('/advert.listAdvertPhotoAndVedios',
                     param,
-                    function (json) {
+                    function(json) {
                         var _advertInfo = JSON.parse(json);
                         _advertInfo = vc.component._refreshAdvertActive(_advertInfo);
                         vc.component.startInterval(_advertInfo);
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            startInterval: function (data) {
+            startInterval: function(data) {
                 vc.component.advertVedioViewInfo.imgsAndVideos = data;
                 myvideo = document.getElementById("videoView")
                 vc.component.handleImgVideoUrl(vc.component.advertVedioViewInfo.imgsAndVideos);
             },
 
-            handleImgVideoUrl: function (_imgsAndVideos) {
+            handleImgVideoUrl: function(_imgsAndVideos) {
                 // 设置图片和视频播放
                 // let iavSize = imgsAndVideos.length;
                 var vList = [];
@@ -85,7 +85,7 @@
                     $("#imgView").show();
                     curr++;
                     // console.log("当前图片地址：1" );
-                    setTimeout(function () {
+                    setTimeout(function() {
                         if (curr >= vLen) {
                             curr = 0; //重新循环播放
                             vc.component._loadAdvertVedioData();
@@ -97,7 +97,7 @@
                 }
 
                 //视频播放完执行的方法
-                myvideo.onended = function () {
+                myvideo.onended = function() {
                     if (vList[curr].indexOf('VIDEO:') >= 0) {
                         curr++;
                         if (curr >= vLen) {
@@ -115,7 +115,7 @@
                         console.log("当前图片地址：" + url);
                         curr++;
 
-                        setTimeout(function () {
+                        setTimeout(function() {
                             if (curr >= vLen) {
                                 curr = 0; //重新循环播放
                                 vc.component._loadAdvertVedioData();
@@ -134,8 +134,8 @@
              * @param _advertInfo
              * @returns {*}
              */
-            _refreshAdvertActive: function (_advertInfo) {
-                _advertInfo.sort(function (_child, _newChild) {
+            _refreshAdvertActive: function(_advertInfo) {
+                _advertInfo.sort(function(_child, _newChild) {
                     return _child.seq - _newChild.seq
                 });
 
@@ -144,6 +144,5 @@
 
         }
 
-    })
-    ;
+    });
 })(window.vc);

@@ -5,15 +5,15 @@
     vc.extends({
         data: {
             privilegeTreeInfo: {
-                privileges:[],
-                _currentPgId:''
+                privileges: [],
+                _currentPgId: ''
             }
         },
         _initMethod: function() {
 
         },
         _initEvent: function() {
-            vc.on('privilegeTree','loadPrivilege',function(_pgId){
+            vc.on('privilegeTree', 'loadPrivilege', function(_pgId) {
                 $that.privilegeTreeInfo._currentPgId = _pgId;
                 $that._loadPrivilege(_pgId);
             });
@@ -234,8 +234,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('addPrivilege',
-                    'listNoAddPrivilege',
+                vc.http.apiGet('/query.privilegeGroup.noAddPrivilege',
                     param,
                     function(json) {
                         let _privileges = JSON.parse(json);
@@ -247,7 +246,7 @@
                     }
                 );
             },
-            
+
 
         }
     });

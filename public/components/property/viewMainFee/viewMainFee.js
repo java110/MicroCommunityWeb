@@ -132,8 +132,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
+                vc.http.apiGet('/fee.listRoomsWhereFeeSet',
                     param,
                     function(json, res) {
                         var listRoomData = JSON.parse(json);

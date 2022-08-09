@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -11,7 +11,7 @@
                 total: 0,
                 records: 1,
                 storeTypeCd: vc.getData('/nav/getUserInfo').storeTypeCd,
-                devPassword:'',
+                devPassword: '',
                 msgData: '',
                 conditions: {
                     name: '',
@@ -21,32 +21,31 @@
                 listColumns: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('initializeCommunityManage', 'listCommunity', function (_param) {
+        _initEvent: function() {
+            vc.on('initializeCommunityManage', 'listCommunity', function(_param) {
                 vc.component._listCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on("chooseinitializeCommunity", "chooseinitializeCommunity",function (_param) {
+            vc.on("chooseinitializeCommunity", "chooseinitializeCommunity", function(_param) {
                 $that._initializeCommunity(_param);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listCommunitys(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listCommunitys: function (_page, _rows) {
+            _listCommunitys: function(_page, _rows) {
                 vc.component.initializeCommunityManageInfo.conditions.page = _page;
                 vc.component.initializeCommunityManageInfo.conditions.row = _rows;
-                var _param = {
-                    params: vc.component.initializeCommunityManageInfo.conditions
-                }
-                //发送get请求
-                vc.http.get('communityManage',
-                    'list',
+                let _param = {
+                        params: vc.component.initializeCommunityManageInfo.conditions
+                    }
+                    //发送get请求
+                vc.http.apiGet('/community.listCommunitys',
                     _param,
-                    function (json, res) {
+                    function(json, res) {
                         var _initializeCommunityManageInfo = JSON.parse(json);
                         vc.component.initializeCommunityManageInfo.total = _initializeCommunityManageInfo.total;
                         vc.component.initializeCommunityManageInfo.records = _initializeCommunityManageInfo.records;
@@ -56,12 +55,13 @@
                             dataCount: vc.component.initializeCommunityManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _initializeCommunity: function (_community) {
+            _initializeCommunity: function(_community) {
                 var _param = {
                     communityId: _community.communityId,
                     devPassword: _community._devPassword
@@ -69,11 +69,10 @@
                 console.log(JSON.stringify(_param));
                 vc.http.apiPost(
                     '/initializeBuildingUnit/deleteBuildingUnit',
-                    JSON.stringify(_param),
-                    {
+                    JSON.stringify(_param), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -82,15 +81,15 @@
                             vc.emit('initializeCommunityManage', 'listCommunity', {});
                             return;
                         }
-                             vc.toast(_json.msg);
+                        vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _openChooseinInitializeCommunity: function(_initializeCommunity){
-                vc.emit('chooseinitializeCommunity','openChooseinitializeCommunityModel', {_initializeCommunity});
+            _openChooseinInitializeCommunity: function(_initializeCommunity) {
+                vc.emit('chooseinitializeCommunity', 'openChooseinitializeCommunityModel', { _initializeCommunity });
             }
         }
     });

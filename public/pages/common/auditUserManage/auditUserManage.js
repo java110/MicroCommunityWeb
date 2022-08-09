@@ -42,8 +42,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('auditUserManage',
-                    'list',
+                vc.http.apiGet('/auditUser.listAuditUsers',
                     param,
                     function(json, res) {
                         var _auditUserManageInfo = JSON.parse(json);

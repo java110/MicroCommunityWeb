@@ -63,8 +63,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('orgManage',
-                    'list',
+                vc.http.apiGet('/org.listOrgs',
                     param,
                     function(json, res) {
                         var _orgManageInfo = JSON.parse(json);
@@ -105,8 +104,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('staff',
-                    'loadData',
+                vc.http.apiGet('/query.staff.infos',
                     param,
                     function(json) {
                         var _staffInfo = JSON.parse(json);

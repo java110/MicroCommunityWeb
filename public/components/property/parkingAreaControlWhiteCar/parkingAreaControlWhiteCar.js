@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -12,22 +12,22 @@
                 carNum: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('parkingAreaControlWhiteCar', 'switch', function (_data) {
+        _initEvent: function() {
+            vc.on('parkingAreaControlWhiteCar', 'switch', function(_data) {
                 $that.parkingAreaControlWhiteCar.boxId = _data.boxId;
                 $that._loadParkingAreaControlWhiteCars(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlWhiteCar', 'paginationPlus', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     vc.component._loadParkingAreaControlWhiteCars(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
 
-            _loadParkingAreaControlWhiteCars: function (_page, _row) {
+            _loadParkingAreaControlWhiteCars: function(_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -39,10 +39,9 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('carBlackWhiteManage',
-                    'list',
+                vc.http.apiGet('/carBlackWhite.listCarBlackWhites',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _json = JSON.parse(json);
                         $that.parkingAreaControlWhiteCar.total = _json.total;
                         $that.parkingAreaControlWhiteCar.records = _json.records;
@@ -52,13 +51,14 @@
                             dataCount: $that.parkingAreaControlWhiteCar.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _qureyParkingAreaControlWhiteCar: function () {
-                $that._loadParkingAreaControlWhiteCars(DEFAULT_PAGE,DEFAULT_ROWS);
+            _qureyParkingAreaControlWhiteCar: function() {
+                $that._loadParkingAreaControlWhiteCars(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
         }

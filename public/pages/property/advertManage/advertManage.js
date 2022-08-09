@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -23,23 +23,23 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('advertManage', 'listAdvert', function (_param) {
+        _initEvent: function() {
+            vc.on('advertManage', 'listAdvert', function(_param) {
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAdverts(_currentPage, DEFAULT_ROWS);
             });
             //与字典表位置类型关联
-            vc.getDict('advert', "location_type_cd", function (_data) {
+            vc.getDict('advert', "location_type_cd", function(_data) {
                 vc.component.advertManageInfo.locationTypeCds = _data;
             });
         },
         methods: {
-            _listAdverts: function (_page, _rows) {
+            _listAdverts: function(_page, _rows) {
                 vc.component.advertManageInfo.conditions.page = _page;
                 vc.component.advertManageInfo.conditions.row = _rows;
                 var param = {
@@ -47,10 +47,9 @@
                 };
                 param.params.adName = param.params.adName.trim();
                 //发送get请求
-                vc.http.get('advertManage',
-                    'list',
+                vc.http.apiGet('/advert.listAdverts',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _advertManageInfo = JSON.parse(json);
                         vc.component.advertManageInfo.total = _advertManageInfo.total;
                         vc.component.advertManageInfo.records = _advertManageInfo.records;
@@ -60,36 +59,37 @@
                             dataCount: vc.component.advertManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddAdvertModal: function () {
+            _openAddAdvertModal: function() {
                 vc.emit('addAdvert', 'openAddAdvertModal', {});
             },
-            _openEditAdvertModel: function (_advert) {
+            _openEditAdvertModel: function(_advert) {
                 vc.emit('editAdvert', 'openEditAdvertModal', _advert);
             },
-            _openDeleteAdvertModel: function (_advert) {
+            _openDeleteAdvertModel: function(_advert) {
                 vc.emit('deleteAdvert', 'openDeleteAdvertModal', _advert);
             },
             //查询
-            _queryAdvertMethod: function () {
+            _queryAdvertMethod: function() {
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAdvertMethod: function () {
+            _resetAdvertMethod: function() {
                 vc.component.advertManageInfo.conditions.adName = "";
                 vc.component.advertManageInfo.conditions.classify = "";
                 vc.component.advertManageInfo.conditions.state = "";
                 vc.component.advertManageInfo.conditions.locationTypeCd = "";
                 vc.component._listAdverts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _viewAdvertPhotoOrPhoto: function () {
+            _viewAdvertPhotoOrPhoto: function() {
                 vc.emit('writeAdvertMachine', 'openWriteAdvertMachineModal', {});
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.advertManageInfo.moreCondition) {
                     vc.component.advertManageInfo.moreCondition = false;
                 } else {

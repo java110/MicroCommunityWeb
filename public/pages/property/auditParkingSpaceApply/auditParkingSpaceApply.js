@@ -77,7 +77,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('feeConfigManage', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         $that.auditParkingSpaceApplyInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;

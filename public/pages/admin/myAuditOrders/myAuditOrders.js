@@ -53,8 +53,7 @@
                     params: vc.component.auditOrdersInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('myAuditOrders',
-                    'list',
+                vc.http.apiGet('/auditUser.listAuditOrders',
                     param,
                     function(json, res) {
                         var _auditOrdersInfo = JSON.parse(json);

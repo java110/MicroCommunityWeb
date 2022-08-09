@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             selectFeeConfigInfo: {
@@ -6,18 +6,18 @@
                 feeConfigs: [],
                 feeTypeCd: '',
                 configId: '',
-                configName:'',
+                configName: '',
                 locationTypeCdName: '',
                 startTime: '',
                 endTime: '',
                 computingFormula: '',
                 amount: '',
-                call:null,
+                call: null,
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._initSelectFeeConfigInfo();
-            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 var _datanew = [];
                 _data.forEach((item, index) => {
                     if (item.statusCd != "888800010015" && item.statusCd != "888800010016") {
@@ -27,21 +27,21 @@
                 $that.selectFeeConfigInfo.feeTypeCds = _datanew;
             });
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('selectFeeConfig', 'openSelectFeeConfigModal',
-                function (_room) {
+                function(_room) {
                     $that.clearAddFeeConfigInfo();
-                    vc.copyObject(_room,$that.selectFeeConfigInfo);
+                    vc.copyObject(_room, $that.selectFeeConfigInfo);
                     $('#selectFeeConfigModel').modal('show');
                 });
         },
         methods: {
-            _initSelectFeeConfigInfo: function () {
+            _initSelectFeeConfigInfo: function() {
 
-                vc.initDate('roomCreateFeeStartTime', function (_startTime) {
+                vc.initDate('roomCreateFeeStartTime', function(_startTime) {
                     $that.selectFeeConfigInfo.startTime = _startTime;
                 });
-                vc.initDate('roomCreateFeeEndTime', function (_endTime) {
+                vc.initDate('roomCreateFeeEndTime', function(_endTime) {
                     $that.selectFeeConfigInfo.endTime = _endTime;
                     let start = Date.parse(new Date($that.selectFeeConfigInfo.startTime))
                     let end = Date.parse(new Date($that.selectFeeConfigInfo.endTime))
@@ -73,28 +73,28 @@
                         errInfo: "费用项目不能为空"
                     }],
                     'selectFeeConfigInfo.startTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "计费起始时间不能为空"
-                    },
-                    {
-                        limit: "datetime",
-                        param: "",
-                        errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
-                    }
+                            limit: "required",
+                            param: "",
+                            errInfo: "计费起始时间不能为空"
+                        },
+                        {
+                            limit: "datetime",
+                            param: "",
+                            errInfo: "计费起始时间格式错误 YYYY-MM-DD hh:mm:ss"
+                        }
                     ]
                 });
             },
-            saveRoomCreateFeeInfo: function () {
+            saveRoomCreateFeeInfo: function() {
                 if (!$that.selectFeeConfigValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.emit($that.selectFeeConfigInfo.call,'notifyFeeConfig',$that.selectFeeConfigInfo)
+                vc.emit($that.selectFeeConfigInfo.call, 'notifyFeeConfig', $that.selectFeeConfigInfo)
                 $('#selectFeeConfigModel').modal('hide');
 
             },
-            clearAddFeeConfigInfo: function () {
+            clearAddFeeConfigInfo: function() {
                 var _feeTypeCds = $that.selectFeeConfigInfo.feeTypeCds;
                 $that.selectFeeConfigInfo = {
                     feeTypeCds: _feeTypeCds,
@@ -106,11 +106,11 @@
                     endTime: '',
                     computingFormula: '',
                     amount: '',
-                    call:null,
+                    call: null,
                 };
                 $that.selectFeeConfigInfo.feeTypeCds = _feeTypeCds;
             },
-            _changeFeeTypeCdX: function (_feeTypeCd) {
+            _changeFeeTypeCdX: function(_feeTypeCd) {
                 $that.selectFeeConfigInfo.configId = '';
                 var param = {
                     params: {
@@ -123,12 +123,12 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFeeAdd', 'list', param,
-                    function (json, res) {
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
+                    function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.selectFeeConfigInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     });
             },

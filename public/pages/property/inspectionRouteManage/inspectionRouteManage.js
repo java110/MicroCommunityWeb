@@ -43,8 +43,7 @@
                     params: vc.component.inspectionRouteManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('inspectionRouteManage',
-                    'list',
+                vc.http.apiGet('/inspectionRoute.listInspectionRoutes',
                     param,
                     function(json, res) {
                         var _inspectionRouteManageInfo = JSON.parse(json);

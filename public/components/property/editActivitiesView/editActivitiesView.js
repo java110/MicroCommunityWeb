@@ -22,8 +22,8 @@
                 $that.editActivitiesViewInfo.activitiesId = _params.activitiesId;
                 $that._listEditActivitiess();
             });
-            vc.on('editActivitiesView', 'activitiesEditActivitiesInfo', function (_params) {
-             
+            vc.on('editActivitiesView', 'activitiesEditActivitiesInfo', function(_params) {
+
                 vc.component.refreshEditActivitiesInfo();
                 $that.editActivitiesViewInfo.activitiesId = _params.activitiesId;
                 $that._listEditActivitiess();
@@ -254,7 +254,7 @@
                     }
                 );
             },
-            _listEditActivitiess: function (_page, _rows) {
+            _listEditActivitiess: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -264,10 +264,9 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('activitiesManage',
-                    'list',
+                vc.http.apiGet('activities.listActivitiess',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _params = JSON.parse(json).activitiess[0];
                         _params.context = filterXSS(_params.context);
                         vc.copyObject(_params, vc.component.editActivitiesViewInfo);
@@ -275,7 +274,8 @@
                         var photos = [];
                         photos.push(vc.component.editActivitiesViewInfo.headerImg);
                         vc.emit('editActivitiesView', 'uploadImage', 'notifyPhotos', photos);
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

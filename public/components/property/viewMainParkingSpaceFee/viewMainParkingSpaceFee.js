@@ -73,8 +73,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('viewMainParkingSpaceFee',
-                    'getFee',
+                vc.http.apiGet('/fee.queryFeeByParkingSpace',
                     param,
                     function(json, res) {
                         var _fee = JSON.parse(json);

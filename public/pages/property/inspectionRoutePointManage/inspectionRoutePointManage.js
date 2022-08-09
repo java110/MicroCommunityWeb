@@ -40,8 +40,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('inspectionRoutePointManage',
-                    'list',
+                vc.http.apiGet('/inspectionRoute.listInspectionRoutePoints',
                     param,
                     function(json, res) {
                         var _inspectionRouteManageInfo = JSON.parse(json);
