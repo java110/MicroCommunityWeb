@@ -13,14 +13,12 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请输入车牌号','listOwnerCar')"
-                                       v-model="listOwnerCarInfo.conditions.carNumLike" class="form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入车牌号','listOwnerCar')" v-model="listOwnerCarInfo.conditions.carNumLike" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写车位编号','listOwnerCar')"
-                                       class=" form-control" v-model="listOwnerCarInfo.conditions.num">
+                                <input type="text" :placeholder="vc.i18n('请填写车位编号','listOwnerCar')" class=" form-control" v-model="listOwnerCarInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -82,112 +80,108 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">
-                                <span><vc:i18n name="车牌号" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="房屋号" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="车辆类型" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="颜色" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="业主" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="起租时间" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="截止时间" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><vc:i18n name="状态" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="操作" namespace="listOwnerCar"></vc:i18n></span>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="车牌号" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="房屋号" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="车辆类型" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="颜色" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="业主" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="起租时间" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="截止时间" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <span><vc:i18n name="状态" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="listOwnerCar"></vc:i18n></span>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="car in listOwnerCarInfo.ownerCars"
-                            :class="{ 'table-danger' : _getCarState(car) == '到期'}">
-                            <td class="text-center">
-                                {{car.carNum}}
-                            </td>
-                            <td class="text-center">
-                                {{car.roomName}}
-                            </td>
-                            <td class="text-center">
-                                {{car.carBrand}}
-                            </td>
-                            <td class="text-center">
-                                {{car.carTypeName}}
-                            </td>
-                            <td class="text-center">
-                                {{car.carColor}}
-                            </td>
-                            <td class="text-center">
-                                {{car.ownerName}}({{car.link}})
-                            </td>
-                            <td v-if="car.areaNum && car.state == '1001'" class="text-center">
-                                {{car.areaNum}}
-                                <span><vc:i18n name="车场" namespace="listOwnerCar"></vc:i18n></span>{{car.num}}
-                                <span><vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n></span>
-                            </td>
-                            <td v-else class="text-center">
-                                车位已释放
-                            </td>
-                            <td class="text-center">
-                                {{car.startTime}}
-                            </td>
-                            <td class="text-center">
-                                {{car.endTime}}
-                            </td>
-                            <td class="text-center">
-                                {{_getCarState(car)}}
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group" v-if="car.state != '3003'">
-                                    <button class="btn-white btn btn-xs" v-on:click="_deleteCarParkingSpace(car)">
+                            <tr v-for="car in listOwnerCarInfo.ownerCars" :class="{ 'table-danger' : _getCarState(car) == '到期'}">
+                                <td class="text-center">
+                                    {{car.carNum}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.roomName}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.carBrand}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.carTypeName}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.carColor}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.ownerName}}({{car.link}})
+                                </td>
+                                <td v-if="car.areaNum && car.state == '1001'" class="text-center">
+                                    {{car.areaNum}}
+                                    <span><vc:i18n name="车场" namespace="listOwnerCar"></vc:i18n></span>{{car.num}}
+                                    <span><vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n></span>
+                                </td>
+                                <td v-else class="text-center">
+                                    车位已释放
+                                </td>
+                                <td class="text-center">
+                                    {{car.startTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{car.endTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{_getCarState(car)}}
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="car.state != '3003'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_deleteCarParkingSpace(car)">
                                         <span><vc:i18n name="释放车位" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group" v-else>
-                                    <button class="btn-white btn btn-xs" v-on:click="_addCarParkingSpace(car)">
+                                    </div>
+                                    <div class="btn-group" v-else>
+                                        <button class="btn-white btn btn-xs" v-on:click="_addCarParkingSpace(car)">
                                         <span><vc:i18n name="续租车位" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_toCarMember(car)"
-                                            v-if="car.parkingType == '2'">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toCarMember(car)" v-if="car.parkingType == '2'">
                                         <span><vc:i18n name="子母车辆" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_toPayFee(car)">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toPayFee(car)">
                                         <span><vc:i18n name="费用" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
                                     </div>
 
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_toPayFee(car)"><span><vc:i18n name="费用" namespace="listOwnerCar"></vc:i18n></span></button>
-                                    </div>
+
                                     <div class="btn-group" v-if="car.carTypeCd != '1003'">
                                         <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerCar(car)"><span><vc:i18n name="修改" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerCarModel(car)">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerCarModel(car)">
                                         <span><vc:i18n name="删除" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
                                     </div>

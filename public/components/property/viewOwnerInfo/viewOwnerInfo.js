@@ -57,7 +57,7 @@
 
                 vc.component.viewOwnerInfo.viewOwnerFlag = 'Owner';
 
-                var param = {
+                let param = {
                     params: {
                         ownerId: _ownerId,
                         page: 1,
@@ -68,8 +68,7 @@
                 }
 
                 //发送get请求
-                vc.http.get('viewOwner',
-                    'getOwner',
+                vc.http.apiGet('/owner.queryOwners',
                     param,
                     function(json, res) {
                         var listOwnerData = JSON.parse(json);

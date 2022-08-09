@@ -40,7 +40,7 @@
         methods: {
             _loadAllParkingSpaceInfo: function(_page, _row) {
 
-                var param = {
+                let param = {
                     params: {
                         page: _page,
                         row: _row,
@@ -53,8 +53,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('searchParkingSpace',
-                    'listParkingSpace',
+                vc.http.apiGet('/parkingSpace.queryParkingSpaces',
                     param,
                     function(json) {
                         var _parkingSpaceInfo = JSON.parse(json);

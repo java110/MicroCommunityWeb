@@ -45,24 +45,27 @@
             }
         },
         _initMethod: function() {
-            var param = {
-                    params: {
-                        name: 'owner_car',
-                        type: 'car_type'
-                    }
-                }
-                //发送get请求
-            vc.http.get('hireParkingSpace',
-                'listCarType',
-                param,
-                function(json, res) {
-                    var carTypes = JSON.parse(json);
-                    vc.component.carTypes = carTypes;
-                },
-                function(errInfo, error) {
-                    console.log('请求失败处理');
-                }
-            );
+            // var param = {
+            //         params: {
+            //             name: 'owner_car',
+            //             type: 'car_type'
+            //         }
+            //     }
+            //     //发送get请求
+            // vc.http.get('hireParkingSpace',
+            //     'listCarType',
+            //     param,
+            //     function(json, res) {
+            //         var carTypes = JSON.parse(json);
+            //         vc.component.carTypes = carTypes;
+            //     },
+            //     function(errInfo, error) {
+            //         console.log('请求失败处理');
+            //     }
+            // );
+            vc.getDict('owner_car', "car_type", function(_data) {
+                vc.component.carTypes = _data;
+            });
             vc.component._initDateInfo();
             $that._loadCarAttrSpec();
             // vc.component._listCarAttrs();
