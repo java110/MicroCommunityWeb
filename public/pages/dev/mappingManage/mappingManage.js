@@ -40,8 +40,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('mappingManage',
-                    'list',
+                vc.http.apiGet('/mapping.listMappings',
                     param,
                     function(json, res) {
                         var _mappingManageInfo = JSON.parse(json);

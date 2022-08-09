@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     //员工权限
     vc.extends({
         data: {
@@ -7,16 +7,16 @@
                 _currentStaffId: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('staffPrivilege', '_loadStaffPrivileges', function (_param) {
+        _initEvent: function() {
+            vc.on('staffPrivilege', '_loadStaffPrivileges', function(_param) {
                 vc.component._loadStaffPrivileges(_param);
             });
         },
         methods: {
-            _loadStaffPrivileges: function (_param) {
+            _loadStaffPrivileges: function(_param) {
                 vc.component.staffPrivilegeInfo._currentStaffId = _param.staffId;
                 var param = {
                     params: {
@@ -24,23 +24,23 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('staffPrivilege',
-                    'listStaffPrivileges',
+                vc.http.apiGet('/query.user.privilege',
                     param,
-                    function (json) {
+                    function(json) {
                         var _staffPrivilegeInfo = JSON.parse(json);
                         vc.component.staffPrivilegeInfo.privileges = _staffPrivilegeInfo.datas;
                         $that._initJsTreePrivilege(_staffPrivilegeInfo.datas);
 
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     });
             },
-            _openDeleteStaffPrivilegeModel: function (_staffPrivilege) {
+            _openDeleteStaffPrivilegeModel: function(_staffPrivilege) {
                 _staffPrivilege.staffId = vc.component.staffPrivilegeInfo._currentStaffId;
                 vc.emit('deleteStaffPrivilege', 'openStaffPrivilegeModel', _staffPrivilege);
             },
-            _initJsTreePrivilege: function (_privileges) {
+            _initJsTreePrivilege: function(_privileges) {
 
                 let _data = $that._doJsTreeData(_privileges);
                 $.jstree.destroy()
@@ -48,14 +48,14 @@
                     "checkbox": {
                         "keep_selected_style": false
                     },
-                    'state': {                  //一些初始化状态
+                    'state': { //一些初始化状态
                         "opened": true,
                     },
                     'core': {
                         'data': _data
                     }
                 });
-                $('#jstree_privilege').on("loaded.jstree", function (e, data) {
+                $('#jstree_privilege').on("loaded.jstree", function(e, data) {
                     console.log(data);
                     //默认合并
                     $("#jstree_privilege").jstree("open_all");
@@ -64,7 +64,7 @@
 
 
             },
-            _doJsTreeData: function (_privileges) {
+            _doJsTreeData: function(_privileges) {
                 let _mGroupTree = [];
                 //构建 第一层菜单组
                 _privileges.forEach(pItem => {
@@ -91,7 +91,7 @@
                 });
                 return _mGroupTree;
             },
-            _doJsTreeMenuData: function (_groupItem) {
+            _doJsTreeMenuData: function(_groupItem) {
                 let _privileges = $that.staffPrivilegeInfo.privileges;
 
                 //构建菜单
@@ -121,7 +121,7 @@
                     }
                 }
             },
-            _doJsTreePrivilegeData: function (_menuItem) {
+            _doJsTreePrivilegeData: function(_menuItem) {
                 let _privileges = $that.staffPrivilegeInfo.privileges;
                 //构建菜单
                 let _children = _menuItem.children;

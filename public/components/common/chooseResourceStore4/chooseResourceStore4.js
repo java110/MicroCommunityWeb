@@ -84,8 +84,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('chooseResourceStore',
-                    'list',
+                vc.http.apiGet('/resourceStore.listResourceStores',
                     param,
                     function(json) {
                         var _resourceStoreInfo = JSON.parse(json);
@@ -167,8 +166,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
                     function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
@@ -194,8 +192,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
                     function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);

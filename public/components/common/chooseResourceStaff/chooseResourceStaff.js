@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -31,21 +31,21 @@
                 deep: true // 深度监视
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._listStorehouses();
             $that._listResourceStoreTypes();
         },
-        _initEvent: function () {
-            vc.on('chooseResourceStaff', 'openChooseResourceStaffModel', function (_param) {
+        _initEvent: function() {
+            vc.on('chooseResourceStaff', 'openChooseResourceStaffModel', function(_param) {
                 $('#chooseResourceStaffModel').modal('show');
                 vc.component.chooseResourceStaffInfo._currentResourceStoreName = "";
                 vc.component._loadAllResourceStaffInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._loadAllResourceStaffInfo(_currentPage, DEFAULT_ROWS);
             });
             // 监听移除选中项
-            vc.on('chooseResourceStaff', 'removeSelectResourceStaffItem', function (_resId) {
+            vc.on('chooseResourceStaff', 'removeSelectResourceStaffItem', function(_resId) {
                 vc.component.chooseResourceStaffInfo.selectResourceStores.forEach((item, index) => {
                     if (item == _resId) {
                         vc.component.chooseResourceStaffInfo.selectResourceStores.splice(index, 1);
@@ -54,7 +54,7 @@
             });
         },
         methods: {
-            _loadAllResourceStaffInfo: function (_page, _row) {
+            _loadAllResourceStaffInfo: function(_page, _row) {
                 var param = {
                     params: {
                         page: _page,
@@ -64,13 +64,13 @@
                         parentRstId: vc.component.chooseResourceStaffInfo.parentRstId,
                         rstId: vc.component.chooseResourceStaffInfo.rstId,
                         giveType: 1
-                        // shId: vc.component.chooseResourceStaffInfo.shId
+                            // shId: vc.component.chooseResourceStaffInfo.shId
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('resourceStore.listUserStorehouses',
                     param,
-                    function (json) {
+                    function(json) {
                         var _resourceStaffInfo = JSON.parse(json);
                         vc.component.chooseResourceStaffInfo.resourceStores = _resourceStaffInfo.data;
                         vc.component.chooseResourceStaffInfo.total = _resourceStaffInfo.total;
@@ -80,12 +80,13 @@
                             dataCount: vc.component.chooseResourceStaffInfo.total,
                             currentPage: _page
                         });
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseResourceStore: function (_resourceStore) {
+            chooseResourceStore: function(_resourceStore) {
                 if (_resourceStore.hasOwnProperty('name')) {
                     _resourceStore.resourceStoreName = _resourceStore.name;
                 }
@@ -95,10 +96,10 @@
                 });
                 $('#chooseResourceStoreModel').modal('hide');
             },
-            queryResourceStores: function () {
+            queryResourceStores: function() {
                 vc.component._loadAllResourceStaffInfo(1, 10, vc.component.chooseResourceStaffInfo._currentResourceStoreName);
             },
-            getSelectResourceStores: function () {
+            getSelectResourceStores: function() {
                 var selectResourceStores = vc.component.chooseResourceStaffInfo.selectResourceStores;
                 var resourceStores = vc.component.chooseResourceStaffInfo.resourceStores;
                 if (selectResourceStores.length < 1) {
@@ -134,7 +135,7 @@
                 vc.emit($props.emitChooseResourceStore, "setSelectResourceStores", _resourceStores);
                 $('#chooseResourceStaffModel').modal('hide');
             },
-            _listStorehouses: function (_page, _rows) {
+            _listStorehouses: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -145,15 +146,16 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         vc.component.chooseResourceStaffInfo.storehouses = _storehouseManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreTypes: function () {
+            _listResourceStoreTypes: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -162,18 +164,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.chooseResourceStaffInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSonTypes: function () {
+            _listResourceStoreSonTypes: function() {
                 vc.component.chooseResourceStaffInfo.rstId = '';
                 vc.component.chooseResourceStaffInfo.resourceStoreSonTypes = [];
                 if (vc.component.chooseResourceStaffInfo.parentRstId == '') {
@@ -188,18 +190,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.chooseResourceStaffInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            checkAll: function (e) {
+            checkAll: function(e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {

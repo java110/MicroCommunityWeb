@@ -166,7 +166,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFeeAdd', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         $that.tempImportRoomFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;

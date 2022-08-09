@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -16,10 +16,9 @@
                 sonResourceStoreTypes: []
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('addResourceStoreSpecification', 'openAddResourceStoreSpecificationModal', function () {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('addResourceStoreSpecification', 'openAddResourceStoreSpecificationModal', function() {
                 $('#addResourceStoreSpecificationModel').modal('show');
                 vc.component._listResourceStoreTypesAdd();
             });
@@ -29,8 +28,7 @@
                 return vc.validate.validate({
                     addResourceStoreSpecificationInfo: vc.component.addResourceStoreSpecificationInfo
                 }, {
-                    'addResourceStoreSpecificationInfo.specName': [
-                        {
+                    'addResourceStoreSpecificationInfo.specName': [{
                             limit: "required",
                             param: "",
                             errInfo: "规格名称不能为空"
@@ -41,8 +39,7 @@
                             errInfo: "规格名称太长"
                         },
                     ],
-                    'addResourceStoreSpecificationInfo.parentRstId': [
-                        {
+                    'addResourceStoreSpecificationInfo.parentRstId': [{
                             limit: "required",
                             param: "",
                             errInfo: "商品类型不能为空"
@@ -53,25 +50,21 @@
                             errInfo: "商品类型格式错误"
                         },
                     ],
-                    'addResourceStoreSpecificationInfo.rstId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "请选择二级分类"
-                        }
-                    ],
-                    'addResourceStoreSpecificationInfo.description': [
-                        {
-                            limit: "maxLength",
-                            param: "512",
-                            errInfo: "备注太长"
-                        },
-                    ],
+                    'addResourceStoreSpecificationInfo.rstId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "请选择二级分类"
+                    }],
+                    'addResourceStoreSpecificationInfo.description': [{
+                        limit: "maxLength",
+                        param: "512",
+                        errInfo: "备注太长"
+                    }, ],
 
 
                 });
             },
-            saveResourceStoreSpecificationInfo: function () {
+            saveResourceStoreSpecificationInfo: function() {
                 if (!vc.component.addResourceStoreSpecificationValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -85,11 +78,10 @@
                 }
                 vc.http.apiPost(
                     'resourceStore.saveResourceStoreSpecification',
-                    JSON.stringify(vc.component.addResourceStoreSpecificationInfo),
-                    {
+                    JSON.stringify(vc.component.addResourceStoreSpecificationInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -101,13 +93,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
             // 分类改变事件
-            resourceStoreSpecificationTypesOnChangeAdd: function () {
+            resourceStoreSpecificationTypesOnChangeAdd: function() {
                 vc.component.addResourceStoreSpecificationInfo.rstId = '';
                 vc.component.addResourceStoreSpecificationInfo.sonResourceStoreTypes = [];
                 if (vc.component.addResourceStoreSpecificationInfo.parentRstId == '') {
@@ -122,18 +114,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeInfo = JSON.parse(json);
                         vc.component.addResourceStoreSpecificationInfo.sonResourceStoreTypes = _resourceStoreTypeInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreTypesAdd: function () {
+            _listResourceStoreTypesAdd: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -142,18 +134,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.addResourceStoreSpecificationInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddResourceStoreSpecificationInfo: function () {
+            clearAddResourceStoreSpecificationInfo: function() {
                 vc.component.addResourceStoreSpecificationInfo = {
                     rssid: '',
                     specName: '',

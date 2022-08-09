@@ -36,8 +36,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('privilegeGroup',
-                    'listPrivilegeGroup',
+                vc.http.apiGet('/query.store.privilegeGroup',
                     param,
                     function(json) {
                         var _groupsInfo = JSON.parse(json);
@@ -67,8 +66,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('addPrivilege',
-                    'listNoAddPrivilege',
+                vc.http.apiGet('/query.privilegeGroup.noAddPrivilege',
                     param,
                     function(json) {
                         var _privileges = JSON.parse(json);

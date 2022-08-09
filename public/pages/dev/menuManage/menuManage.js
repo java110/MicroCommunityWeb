@@ -50,8 +50,7 @@
                     params: vc.component.menuManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('menuManage',
-                    'list',
+                vc.http.apiGet('/menu.listMenus',
                     param,
                     function(json, res) {
                         var _menuManageInfo = JSON.parse(json);
