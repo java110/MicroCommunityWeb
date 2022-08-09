@@ -117,7 +117,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post('editCommunity', 'update', JSON.stringify(vc.component.editCommunityAreaInfo), {
+                vc.http.apiPost('/community.updateCommunity', JSON.stringify(vc.component.editCommunityAreaInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
