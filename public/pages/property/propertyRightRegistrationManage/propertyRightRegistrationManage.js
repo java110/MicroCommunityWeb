@@ -162,8 +162,7 @@
                         row: 50
                     }
                 };
-                vc.http.get('unit',
-                    'loadUnits',
+                vc.http.apiGet('/unit.queryUnits',
                     param,
                     function(json, res) {
                         var listUnitData = JSON.parse(json);

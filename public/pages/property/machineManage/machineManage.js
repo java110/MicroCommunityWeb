@@ -54,8 +54,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('machineManage',
-                    'list',
+                vc.http.apiGet('/machine.listMachines',
                     param,
                     function(json, res) {
                         let _machineManageInfo = JSON.parse(json);

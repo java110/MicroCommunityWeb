@@ -42,8 +42,7 @@
                 }
 
                 //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
+                vc.http.apiGet('/ownerRepair.listOwnerRepairs',
                     param,
                     function(json, res) {
                         var _repairPoolManageInfo = JSON.parse(json);

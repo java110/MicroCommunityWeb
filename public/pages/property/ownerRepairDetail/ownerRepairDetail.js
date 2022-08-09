@@ -54,8 +54,7 @@
                     }
                 };
                 //查询房屋信息 业主信息
-                vc.http.get('ownerRepairManage',
-                    'getRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         if (res.status == 200) {
@@ -78,7 +77,7 @@
                 );
             },
             _listRepairPools: function() {
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 1,
@@ -87,8 +86,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
+                vc.http.apiGet('/ownerRepair.listOwnerRepairs',
                     param,
                     function(json, res) {
                         var _repairPoolManageInfo = JSON.parse(json);

@@ -53,8 +53,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('machineManage',
-                    'list',
+                vc.http.apiGet('/machine.listMachines',
                     param,
                     function(json) {
                         var _machineInfo = JSON.parse(json);

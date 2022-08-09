@@ -44,8 +44,7 @@
                         }
                     }
                     //发送get请求
-                vc.http.get('machineManage',
-                    'list',
+                vc.http.apiGet('/machine.listMachines',
                     param,
                     function(json, res) {
                         let _machineManageInfo = JSON.parse(json);
@@ -155,7 +154,7 @@
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
-                        if(_json.code == -3){ // 摄像头 未推流 重新播放推流
+                        if (_json.code == -3) { // 摄像头 未推流 重新播放推流
                             $that.viewCameras();
                         }
                     },

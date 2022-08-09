@@ -59,8 +59,7 @@
                 //报修电话查询框去空
                 param.params.tel = param.params.tel.trim();
                 //发送get请求
-                vc.http.get('ownerRepairManage',
-                    'list',
+                vc.http.apiGet('/ownerRepair.listOwnerRepairs',
                     param,
                     function(json, res) {
                         var _repairForceFinishManageInfo = JSON.parse(json);
