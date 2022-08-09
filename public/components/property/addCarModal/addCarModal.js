@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             addCarModelInfo: {
@@ -13,8 +13,7 @@
                 remark: "",
                 carId: ''
             },
-            carTypes: [
-                {
+            carTypes: [{
                     key: '9901',
                     value: '家用小汽车'
                 },
@@ -28,39 +27,38 @@
                 }
             ]
         },
-        _initMethod: function () {
+        _initMethod: function() {
             var param = {
-                params: {
-                    name: 'owner_car',
-                    type: 'car_type'
+                    params: {
+                        name: 'owner_car',
+                        type: 'car_type'
+                    }
                 }
-            }
-            //发送get请求
-            vc.http.get('hireParkingSpace',
-                'listCarType',
+                //发送get请求
+            vc.http.apiGet('/dict.queryDict',
                 param,
-                function (json, res) {
+                function(json, res) {
                     var carTypes = JSON.parse(json);
                     vc.component.carTypes = carTypes;
-                }, function (errInfo, error) {
+                },
+                function(errInfo, error) {
                     console.log('请求失败处理');
                 }
             );
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('addCarModal', 'openAddCarModel',
-                function (_param) {
+                function(_param) {
                     $that.addCarModelInfo.carId = _param.carId;
                     $('#addCarModal').modal('show');
                 });
         },
         methods: {
-            addCarValidate: function () {
+            addCarValidate: function() {
                 return vc.validate.validate({
                     addCarModelInfo: vc.component.addCarModelInfo
                 }, {
-                    'addCarModelInfo.carNum': [
-                        {
+                    'addCarModelInfo.carNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "车牌号不能为空"
@@ -71,8 +69,7 @@
                             errInfo: "车牌号不正确"
                         }
                     ],
-                    'addCarModelInfo.carBrand': [
-                        {
+                    'addCarModelInfo.carBrand': [{
                             limit: "required",
                             param: "",
                             errInfo: "车品牌不能为空"
@@ -83,15 +80,12 @@
                             errInfo: "车品牌超出限制"
                         }
                     ],
-                    'addCarModelInfo.carType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "车类型不能为空"
-                        }
-                    ],
-                    'addCarModelInfo.carColor': [
-                        {
+                    'addCarModelInfo.carType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "车类型不能为空"
+                    }],
+                    'addCarModelInfo.carColor': [{
                             limit: "required",
                             param: "",
                             errInfo: "车颜色不能为空"
@@ -104,7 +98,7 @@
                     ]
                 });
             },
-            saveAddCarInfo: function () {
+            saveAddCarInfo: function() {
                 let _carNumType = $that.addCarModelInfo.carNumType;
                 if (!vc.component.addCarValidate()) {
                     //侦听回传
@@ -115,7 +109,7 @@
                 vc.http.apiPost('owner.saveOwnerCarMember', JSON.stringify(vc.component.addCarModelInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -127,12 +121,12 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddCarModalInfo: function () {
+            clearAddCarModalInfo: function() {
                 $that.addCarModelInfo = {
                     flowComponent: 'addCar',
                     carNum: '',

@@ -192,7 +192,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('parkingSpaceCreateFeeAdd', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.carCreateFeeAddInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
@@ -210,7 +210,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('parkingSpaceCreateFeeAdd', 'listParkingArea', param,
+                vc.http.apiGet('/parkingArea.listParkingAreas', param,
                     function(json, res) {
                         if (res.status == 200) {
                             var _parkingAreaInfo = JSON.parse(json);

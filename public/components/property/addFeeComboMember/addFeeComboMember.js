@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -9,20 +9,20 @@
             addFeeComboMemberInfo: {
                 feeConfigs: [],
                 feeTypeCd: '',
-                feeTypeCds:[],
+                feeTypeCds: [],
                 configId: '',
-                comboId:'',
-               
+                comboId: '',
+
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 $that.addFeeComboMemberInfo.feeTypeCds = _data;
             });
         },
-        _initEvent: function () {
-            vc.on('addFeeComboMember', 'openAddFeeComboMemberModal', function (_param) {
-                vc.copyObject(_param,$that.addFeeComboMemberInfo);
+        _initEvent: function() {
+            vc.on('addFeeComboMember', 'openAddFeeComboMemberModal', function(_param) {
+                vc.copyObject(_param, $that.addFeeComboMemberInfo);
                 $('#addFeeComboMemberModel').modal('show');
             });
         },
@@ -31,16 +31,14 @@
                 return vc.validate.validate({
                     addFeeComboMemberInfo: vc.component.addFeeComboMemberInfo
                 }, {
-                    'addFeeComboMemberInfo.configId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "费用项不能为空"
-                        }
-                    ],
+                    'addFeeComboMemberInfo.configId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "费用项不能为空"
+                    }],
                 });
             },
-            saveFeeComboInfo: function () {
+            saveFeeComboInfo: function() {
                 if (!vc.component.addFeeComboMemberValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -56,11 +54,10 @@
 
                 vc.http.apiPost(
                     '/feeComboMember.saveFeeComboMember',
-                    JSON.stringify(vc.component.addFeeComboMemberInfo),
-                    {
+                    JSON.stringify(vc.component.addFeeComboMemberInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -73,20 +70,20 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
                     });
             },
-            clearAddFeeComboInfo: function () {
+            clearAddFeeComboInfo: function() {
                 let _feeTypeCds = $that.addFeeComboMemberInfo.feeTypeCds;
                 vc.component.addFeeComboMemberInfo = {
                     feeConfigs: [],
                     feeTypeCd: '',
-                    feeTypeCds:_feeTypeCds,
+                    feeTypeCds: _feeTypeCds,
                     configId: '',
-                    comboId:'',
+                    comboId: '',
                 };
             },
             _changeFeeTypeCdX: function(_feeTypeCd) {
@@ -102,7 +99,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFeeAdd', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.addFeeComboMemberInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;

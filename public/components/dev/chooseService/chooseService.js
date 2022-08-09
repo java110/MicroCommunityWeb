@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             emitChooseService: vc.propTypes.string,
@@ -10,17 +10,16 @@
                 _currentServiceName: ''
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('chooseService', 'openChooseServiceModel', function (_param) {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('chooseService', 'openChooseServiceModel', function(_param) {
                 $('#chooseServiceModel').modal('show');
                 vc.component._refreshChooseServiceInfo();
                 vc.component._loadAllServiceInfo(1, 10, '');
             });
         },
         methods: {
-            _loadAllServiceInfo: function (_page, _row, _name) {
+            _loadAllServiceInfo: function(_page, _row, _name) {
                 var param = {
                     params: {
                         page: _page,
@@ -30,28 +29,28 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('chooseService',
-                    'list',
+                vc.http.apiGet('/service.listServices',
                     param,
-                    function (json) {
+                    function(json) {
                         var _serviceInfo = JSON.parse(json);
                         vc.component.chooseServiceInfo.services = _serviceInfo.services;
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseService: function (_service) {
+            chooseService: function(_service) {
                 vc.emit($props.emitChooseService, 'chooseService', _service);
                 vc.emit($props.emitLoadData, 'listServiceData', {
                     serviceId: _service.serviceId
                 });
                 $('#chooseServiceModel').modal('hide');
             },
-            queryServices: function () {
+            queryServices: function() {
                 vc.component._loadAllServiceInfo(1, 10, vc.component.chooseServiceInfo._currentServiceName);
             },
-            _refreshChooseServiceInfo: function () {
+            _refreshChooseServiceInfo: function() {
                 vc.component.chooseServiceInfo._currentServiceName = "";
             }
         }

@@ -38,8 +38,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('chooseOrg',
-                    'list',
+                vc.http.apiGet('/org.listOrgs',
                     param,
                     function(json) {
                         let _orgInfo = JSON.parse(json);

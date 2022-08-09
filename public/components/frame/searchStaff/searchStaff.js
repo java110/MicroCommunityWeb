@@ -1,75 +1,75 @@
-(function(vc){
+(function(vc) {
     vc.extends({
         propTypes: {
-           callBackListener:vc.propTypes.string='privilegeStaffInfo', //父组件名称
-           callBackFunction:vc.propTypes.string='chooseStaff' //父组件监听方法
+            callBackListener: vc.propTypes.string = 'privilegeStaffInfo', //父组件名称
+            callBackFunction: vc.propTypes.string = 'chooseStaff' //父组件监听方法
         },
-        data:{
-            searchStaffInfo:{
-                staffs:[],
-                _currentStaffName:'',
-                orgId:'',
+        data: {
+            searchStaffInfo: {
+                staffs: [],
+                _currentStaffName: '',
+                orgId: '',
             }
         },
-        _initMethod:function(){
+        _initMethod: function() {
 
         },
-        _initEvent:function(){
-            vc.on('searchStaff','openSearchStaffModel',function(_param){
+        _initEvent: function() {
+            vc.on('searchStaff', 'openSearchStaffModel', function(_param) {
                 console.log("打开定位员工界面")
                 $('#searchStaffModel').modal('show');
                 vc.component._refreshSearchStaffData();
-                if(_param.hasOwnProperty('orgId')){
+                if (_param.hasOwnProperty('orgId')) {
                     vc.component.searchStaffInfo.orgId = _param.orgId;
                 }
-                vc.component._loadAllStaffInfo(1,10);
+                vc.component._loadAllStaffInfo(1, 10);
             });
 
-            vc.on('searchStaff', 'paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('searchStaff', 'paginationPlus', 'page_event', function(_currentPage) {
                 vc.component._loadAllStaffInfo(_currentPage, 10);
             });
         },
-        methods:{
-            _loadAllStaffInfo:function(_page,_rows,_staffName){
+        methods: {
+            _loadAllStaffInfo: function(_page, _rows, _staffName) {
                 var param = {
-                    params:{
-                        page:_page,
-                        row:_rows,
-                        staffName:_staffName,
-                        orgId:vc.component.searchStaffInfo.orgId
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        staffName: _staffName,
+                        orgId: vc.component.searchStaffInfo.orgId
                     }
                 };
 
                 //发送get请求
-               vc.http.get('searchStaff',
-                            'listStaff',
-                             param,
-                             function(json){
-                                var _staffInfo = JSON.parse(json);
-                                vc.component.searchStaffInfo.staffs = _staffInfo.staffs;
-                                 vc.emit('searchStaff', 'paginationPlus', 'init', {
-                                     total: _staffInfo.records,
-                                     dataCount: _staffInfo.total,
-                                    currentPage: _page
-                                });
-                             },function(){
-                                console.log('请求失败处理');
-                             }
-                           );
+                vc.http.apiGet('/query.staff.infos',
+                    param,
+                    function(json) {
+                        var _staffInfo = JSON.parse(json);
+                        vc.component.searchStaffInfo.staffs = _staffInfo.staffs;
+                        vc.emit('searchStaff', 'paginationPlus', 'init', {
+                            total: _staffInfo.records,
+                            dataCount: _staffInfo.total,
+                            currentPage: _page
+                        });
+                    },
+                    function() {
+                        console.log('请求失败处理');
+                    }
+                );
             },
-            chooseStaff:function(_staff){
+            chooseStaff: function(_staff) {
                 //vc.emit('privilegeStaffInfo','chooseStaff',_staff);
-                vc.emit($props.callBackListener,$props.callBackFunction,_staff);
+                vc.emit($props.callBackListener, $props.callBackFunction, _staff);
 
-                vc.emit('staffPrivilege','_loadStaffPrivileges',{
-                    staffId:_staff.userId
+                vc.emit('staffPrivilege', '_loadStaffPrivileges', {
+                    staffId: _staff.userId
                 });
                 $('#searchStaffModel').modal('hide');
             },
-            searchStaffs:function(){
-                vc.component._loadAllStaffInfo(1,10,vc.component.searchStaffInfo._currentStaffName);
+            searchStaffs: function() {
+                vc.component._loadAllStaffInfo(1, 10, vc.component.searchStaffInfo._currentStaffName);
             },
-            _refreshSearchStaffData:function(){
+            _refreshSearchStaffData: function() {
                 vc.component.searchStaffInfo._currentStaffName = "";
             }
         }

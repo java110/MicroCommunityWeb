@@ -245,7 +245,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFeeAdd', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.addMeterWaterInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;

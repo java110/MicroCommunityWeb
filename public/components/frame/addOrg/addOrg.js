@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -14,35 +14,31 @@
                 parentOrgName: '',
                 description: '',
                 belongCommunityId: '',
-                parentOrg:[],
-                belongCommunitys:[]
+                parentOrg: [],
+                belongCommunitys: []
 
             },
-            flagOrgName:false
-        }
-        ,
-        _initMethod: function () {
+            flagOrgName: false
+        },
+        _initMethod: function() {
 
-        }
-        ,
-        _initEvent: function () {
-            vc.on('addOrg', 'openAddOrgModal', function (_param) {
+        },
+        _initEvent: function() {
+            vc.on('addOrg', 'openAddOrgModal', function(_param) {
                 if (_param.hasOwnProperty('parentOrgId')) {
                     vc.component.addOrgInfo.parentOrgId = _param.parentOrgId;
                     vc.component.addOrgInfo.parentOrgName = _param.parentOrgName;
-                    
+
                 }
                 $('#addOrgModel').modal('show');
             });
-        }
-        ,
+        },
         methods: {
-            addOrgValidate:function() {
+            addOrgValidate: function() {
                 return vc.validate.validate({
                     addOrgInfo: vc.component.addOrgInfo
                 }, {
-                    'addOrgInfo.orgName': [
-                        {
+                    'addOrgInfo.orgName': [{
                             limit: "required",
                             param: "",
                             errInfo: "组织名称不能为空"
@@ -53,8 +49,7 @@
                             errInfo: "组织名称长度为2至50"
                         },
                     ],
-                    'addOrgInfo.parentOrgId': [
-                        {
+                    'addOrgInfo.parentOrgId': [{
                             limit: "required",
                             param: "",
                             errInfo: "上级ID不能为空"
@@ -76,9 +71,8 @@
 
 
                 });
-            }
-            ,
-            saveOrgInfo: function () {
+            },
+            saveOrgInfo: function() {
                 if (!vc.component.addOrgValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -94,11 +88,10 @@
 
                 vc.http.apiPost(
                     '/org.saveOrg',
-                    JSON.stringify(vc.component.addOrgInfo),
-                    {
+                    JSON.stringify(vc.component.addOrgInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -111,15 +104,14 @@
                         vc.toast(json);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
-            }
-            ,
-            clearAddOrgInfo: function () {
+            },
+            clearAddOrgInfo: function() {
                 vc.component.addOrgInfo = {
                     orgName: '',
                     orgLevel: '',
@@ -130,9 +122,8 @@
                     belongCommunityId: '',
                     communityId: '',
                 };
-            }
-            ,
-            _addOrgListParentOrgInfo: function () {
+            },
+            _addOrgListParentOrgInfo: function() {
 
 
                 var _tmpOrgLevel = vc.component.addOrgInfo.orgLevel;
@@ -150,57 +141,56 @@
                 };
 
                 //发送get请求
-                vc.http.get('addOrg',
-                    'list',
+                vc.http.apiGet('/org.listOrgs',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _orgManageInfo = JSON.parse(json);
                         vc.component.addOrgInfo.parentOrg = _orgManageInfo.orgs;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            textOrgName(){
+            textOrgName() {
                 var _tmpOrgLevel = vc.component.addOrgInfo.orgLevel;
                 var param = {
                     params: {
                         page: 1,
                         row: 30,
                         orgLevel: _tmpOrgLevel,
-                        parentOrgId:vc.component.addOrgInfo.parentOrgId,
+                        parentOrgId: vc.component.addOrgInfo.parentOrgId,
                         orgName: vc.component.addOrgInfo.orgName
                     }
                 };
-                console.log(param,6666)
-                //发送get请求
-                vc.http.get('orgManage',
-                    'list',
+                console.log(param, 6666)
+                    //发送get请求
+                vc.http.apiGet('/org.listOrgs',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var arr = JSON.parse(json).orgs;
                         if (_tmpOrgLevel == 2) {
-                            if(arr.length>0){
+                            if (arr.length > 0) {
                                 vc.toast("公司名重复");
-                                vc.component.flagOrgName=true
-                            }else{
-                                vc.component.flagOrgName=false
+                                vc.component.flagOrgName = true
+                            } else {
+                                vc.component.flagOrgName = false
                             }
-                        } else if(_tmpOrgLevel == 3) {
-                            if(arr.length>0){
+                        } else if (_tmpOrgLevel == 3) {
+                            if (arr.length > 0) {
                                 vc.toast("组织名称重复");
-                                vc.component.flagOrgName=true
-                            }else{
-                                vc.component.flagOrgName=false
+                                vc.component.flagOrgName = true
+                            } else {
+                                vc.component.flagOrgName = false
                             }
                         }
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             }
         }
-    })
-    ;
+    });
 
 })(window.vc);

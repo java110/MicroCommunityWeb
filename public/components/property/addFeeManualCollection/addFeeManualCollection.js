@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -13,15 +13,15 @@
                 link: '',
                 roomArea: '',
                 remark: '',
-                roomId:'',
+                roomId: '',
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addFeeManualCollection', 'openAddFeeManualCollectionModal', function () {
+        _initEvent: function() {
+            vc.on('addFeeManualCollection', 'openAddFeeManualCollectionModal', function() {
                 $('#addFeeManualCollectionModel').modal('show');
             });
         },
@@ -30,8 +30,7 @@
                 return vc.validate.validate({
                     addFeeManualCollectionInfo: vc.component.addFeeManualCollectionInfo
                 }, {
-                    'addFeeManualCollectionInfo.roomName': [
-                        {
+                    'addFeeManualCollectionInfo.roomName': [{
                             limit: "required",
                             param: "",
                             errInfo: "规格不能为空"
@@ -42,8 +41,7 @@
                             errInfo: "房屋错误"
                         },
                     ],
-                    'addFeeManualCollectionInfo.ownerName': [
-                        {
+                    'addFeeManualCollectionInfo.ownerName': [{
                             limit: "required",
                             param: "",
                             errInfo: "业主名称不能为空"
@@ -54,8 +52,7 @@
                             errInfo: "业主名称超过100位"
                         },
                     ],
-                    'addFeeManualCollectionInfo.link': [
-                        {
+                    'addFeeManualCollectionInfo.link': [{
                             limit: "required",
                             param: "",
                             errInfo: "业主电话不能为空"
@@ -66,8 +63,7 @@
                             errInfo: "业主电话格式错误"
                         },
                     ],
-                    'addFeeManualCollectionInfo.roomArea': [
-                        {
+                    'addFeeManualCollectionInfo.roomArea': [{
                             limit: "required",
                             param: "",
                             errInfo: "房屋面积不能为空"
@@ -78,16 +74,14 @@
                             errInfo: "房屋面积格式错误"
                         },
                     ],
-                    'addFeeManualCollectionInfo.remark': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "备注超过200位"
-                        },
-                    ],
+                    'addFeeManualCollectionInfo.remark': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "备注超过200位"
+                    }, ],
                 });
             },
-            saveFeeManualCollectionInfo: function () {
+            saveFeeManualCollectionInfo: function() {
                 if (!vc.component.addFeeManualCollectionValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -104,11 +98,10 @@
 
                 vc.http.apiPost(
                     '/feeManualCollection/saveFeeManualCollection',
-                    JSON.stringify(vc.component.addFeeManualCollectionInfo),
-                    {
+                    JSON.stringify(vc.component.addFeeManualCollectionInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -122,24 +115,24 @@
                         vc.message(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddFeeManualCollectionInfo: function () {
+            clearAddFeeManualCollectionInfo: function() {
                 vc.component.addFeeManualCollectionInfo = {
                     roomName: '',
-                    roomId:'',
+                    roomId: '',
                     ownerName: '',
                     link: '',
                     roomArea: '',
                     remark: '',
                 };
             },
-            _queryRoom: function () {
+            _queryRoom: function() {
                 let _allNum = $that.addFeeManualCollectionInfo.roomName;
                 if (_allNum == '') {
                     return;
@@ -163,10 +156,9 @@
                 }
 
                 //发送get请求
-                vc.http.get('roomCreateFee',
-                    'listRoom',
+                vc.http.apiGet('/fee.listRoomsWhereFeeSet',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let listRoomData = JSON.parse(json);
                         let _rooms = listRoomData.rooms;
 
@@ -180,8 +172,9 @@
                         $that.addFeeManualCollectionInfo.ownerName = _rooms[0].ownerName;
                         $that.addFeeManualCollectionInfo.link = _rooms[0].link;
 
-                        $that.addFeeManualCollectionInfo.roomArea=_rooms[0].builtUpArea;
-                    }, function (errInfo, error) {
+                        $that.addFeeManualCollectionInfo.roomArea = _rooms[0].builtUpArea;
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
