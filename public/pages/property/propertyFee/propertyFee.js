@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     vc.extends({
@@ -15,24 +15,24 @@
                 endTime: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.initDate();
         },
-        _initEvent: function () {
-            vc.on('propertyFee', 'listFeeDetail', function (_param) {
+        _initEvent: function() {
+            vc.on('propertyFee', 'listFeeDetail', function(_param) {
                 vc.component.feeDetailInfo.feeId = _param.feeId;
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('propertyFee', 'listParkingSpaceData', function (_param) {
+            vc.on('propertyFee', 'listParkingSpaceData', function(_param) {
                 vc.component.feeDetailInfo.feeId = _param.feeId;
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component.listFeeDetail(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
-            initDate: function () {
+            initDate: function() {
                 $(".start_time").datetimepicker({
                     format: 'yyyy-mm-dd',
                     fontAwesome: 'fa',
@@ -46,7 +46,7 @@
                     todayBtn: true
                 });
                 $('.start_time').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".start_time").val();
                         vc.component.feeDetailInfo.startTime = value;
                     });
@@ -63,7 +63,7 @@
                     todayBtn: true
                 });
                 $('.end_time').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".end_time").val();
                         var start = Date.parse(new Date(vc.component.feeDetailInfo.startTime));
                         var end = Date.parse(new Date(value));
@@ -87,22 +87,21 @@
                     e.currentTarget.blur();
                 }
             },
-            listFeeDetail: function (_page, _row) {
-                var param = {
-                    params: {
-                        page: _page,
-                        row: _row,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        feeId: vc.component.feeDetailInfo.feeId,
-                        startTime: vc.component.feeDetailInfo.startTime,
-                        endTime: vc.component.feeDetailInfo.endTime
+            listFeeDetail: function(_page, _row) {
+                let param = {
+                        params: {
+                            page: _page,
+                            row: _row,
+                            communityId: vc.getCurrentCommunity().communityId,
+                            feeId: vc.component.feeDetailInfo.feeId,
+                            startTime: vc.component.feeDetailInfo.startTime,
+                            endTime: vc.component.feeDetailInfo.endTime
+                        }
                     }
-                }
-                //发送get请求
-                vc.http.get('propertyFee',
-                    'listFeeDetail',
+                    //发送get请求
+                vc.http.apiGet('/fee.queryFeeDetail',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listFeeDetailData = JSON.parse(json);
                         vc.component.feeDetailInfo.total = listFeeDetailData.total;
                         vc.component.feeDetailInfo.records = listFeeDetailData.records;
@@ -124,26 +123,27 @@
                             total: vc.component.feeDetailInfo.records,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            queryFeeDetailMethod: function () {
+            queryFeeDetailMethod: function() {
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             },
             //重置
-            resetFeeDetailMethod: function () {
+            resetFeeDetailMethod: function() {
                 vc.component.feeDetailInfo.startTime = "";
                 vc.component.feeDetailInfo.endTime = "";
                 vc.component.listFeeDetail(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _openRefundModel: function (_feeDetail) {
+            _openRefundModel: function(_feeDetail) {
                 _feeDetail.mainFeeInfo = vc.component.mainFeeInfo;
                 vc.emit('returnPayFee', 'openReturnPayFeeModel', _feeDetail);
             },
-            _openFeeDetailDiscountModal: function (_detail) {
+            _openFeeDetailDiscountModal: function(_detail) {
                 vc.emit('viewFeeDetailDiscount', 'openModel', _detail);
             }
         }

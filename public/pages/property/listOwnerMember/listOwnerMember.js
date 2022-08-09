@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     //员工权限
     vc.extends({
         data: {
@@ -8,20 +8,19 @@
                 listColumns: []
             }
         },
-        _initMethod: function () {
-            $that._getColumns(function () {
-            });
+        _initMethod: function() {
+            $that._getColumns(function() {});
         },
-        _initEvent: function () {
-            vc.on('listOwnerMember', 'loadOwner', function (_param) {
+        _initEvent: function() {
+            vc.on('listOwnerMember', 'loadOwner', function(_param) {
                 vc.component._loadOwners(_param);
             });
-            vc.on('listOwnerMember', 'listOwnerData', function (_param) {
+            vc.on('listOwnerMember', 'listOwnerData', function(_param) {
                 vc.component._loadOwners(_param);
             });
         },
         methods: {
-            _loadOwners: function (_param) {
+            _loadOwners: function(_param) {
                 if (_param.hasOwnProperty('ownerId')) {
                     vc.component.memberInfo._currentOwnerId = _param.ownerId;
                 }
@@ -32,31 +31,31 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('listOwnerMember',
-                    'list',
+                vc.http.apiGet('/owner.queryOwnerMembers',
                     param,
-                    function (json) {
+                    function(json) {
                         var _memberInfo = JSON.parse(json);
                         vc.component.memberInfo.members = _memberInfo.owners;
                         $that.dealOwnerAttr(_memberInfo.owners);
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     });
             },
-            _openDeleteOwnerModel: function (_member) {
+            _openDeleteOwnerModel: function(_member) {
                 _member.ownerId = vc.component.memberInfo._currentOwnerId;
                 vc.emit('deleteOwner', 'openOwnerModel', _member);
             },
-            _openEditOwnerModel: function (_member) {
+            _openEditOwnerModel: function(_member) {
                 _member.ownerId = vc.component.memberInfo._currentOwnerId;
                 vc.emit('editOwner', 'openEditOwnerModal', _member);
             },
-            dealOwnerAttr: function (owners) {
+            dealOwnerAttr: function(owners) {
                 owners.forEach(item => {
                     $that._getColumnsValue(item);
                 });
             },
-            _getColumnsValue: function (_owner) {
+            _getColumnsValue: function(_owner) {
                 _owner.listValues = [];
                 if (!_owner.hasOwnProperty('ownerAttrDtos') || _owner.ownerAttrDtos.length < 1) {
                     $that.memberInfo.listColumns.forEach(_value => {
@@ -75,9 +74,9 @@
                     _owner.listValues.push(_tmpValue);
                 })
             },
-            _getColumns: function (_call) {
+            _getColumns: function(_call) {
                 $that.memberInfo.listColumns = [];
-                vc.getAttrSpec('building_owner_attr', function (data) {
+                vc.getAttrSpec('building_owner_attr', function(data) {
                     $that.memberInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {

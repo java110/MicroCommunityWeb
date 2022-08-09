@@ -69,8 +69,7 @@
                     param.params.roomId = '';
                 }
                 //发送get请求
-                vc.http.get('room',
-                    'listRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         var listShopsData = JSON.parse(json);

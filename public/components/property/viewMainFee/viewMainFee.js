@@ -82,8 +82,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('viewMainFee',
-                    'getFee',
+                vc.http.apiGet('/fee.listFee',
                     param,
                     function(json, res) {
                         var _fee = JSON.parse(json).fees[0];

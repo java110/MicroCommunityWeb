@@ -204,7 +204,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('feePrintPage.listFeePrintPage',
+                vc.http.apiGet('/feePrintPage.listFeePrintPage',
                     param,
                     function(json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
