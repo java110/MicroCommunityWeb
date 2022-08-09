@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
     vc.extends({
         data: {
             editInspectionRoutePointInfo: {
@@ -17,11 +17,10 @@
                 sortNumber: ''
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
+        _initMethod: function() {},
+        _initEvent: function() {
             vc.on('editInspectionRoutePoint', 'openEditInspectionRoutePointModal',
-                function (_params) {
+                function(_params) {
                     vc.component._initEditInspectionRoutePointDateInfo();
                     console.log(_params);
                     vc.component.refresheditInspectionRoutePointInfo();
@@ -31,7 +30,7 @@
                 });
         },
         methods: {
-            _initEditInspectionRoutePointDateInfo: function () {
+            _initEditInspectionRoutePointDateInfo: function() {
                 $('.editInspectionRoutePointStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -43,7 +42,7 @@
 
                 });
                 $('.editInspectionRoutePointStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".editInspectionRoutePointStartTime").val();
                         vc.component.editInspectionRoutePointInfo.pointStartTime = value;
                     });
@@ -57,49 +56,45 @@
                     todayBtn: true
                 });
                 $('.editInspectionRoutePointEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".editInspectionRoutePointEndTime").val();
                         vc.component.editInspectionRoutePointInfo.pointEndTime = value;
                     });
             },
-            editInspectionRoutePointValidate: function () {
+            editInspectionRoutePointValidate: function() {
                 return vc.validate.validate({
-                        editInspectionRoutePointInfo: vc.component.editInspectionRoutePointInfo
-                    },
-                    {
-                        'editInspectionRoutePointInfo.pointStartTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        }
-                        ],
-                        'editInspectionRoutePointInfo.pointEndTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        }
-                        ],
-                        'editInspectionRoutePointInfo.sortNumber': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "排序不能为空"
-                        },{
-                            limit: "num",
-                            param: "",
-                            errInfo: "顺序必须是数字"
-                        }
-                        ]
-                    });
+                    editInspectionRoutePointInfo: vc.component.editInspectionRoutePointInfo
+                }, {
+                    'editInspectionRoutePointInfo.pointStartTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "开始时间不能为空"
+                    }],
+                    'editInspectionRoutePointInfo.pointEndTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    }],
+                    'editInspectionRoutePointInfo.sortNumber': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "排序不能为空"
+                    }, {
+                        limit: "num",
+                        param: "",
+                        errInfo: "顺序必须是数字"
+                    }]
+                });
             },
-            editInspectionRoutePoint: function () {
+            editInspectionRoutePoint: function() {
                 if (!vc.component.editInspectionRoutePointValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post('editInspectionRoutePointRel', 'update', JSON.stringify(vc.component.editInspectionRoutePointInfo), {
+                vc.http.apiPost('/inspectionRoute.updateInspectionRoutePointRel', JSON.stringify(vc.component.editInspectionRoutePointInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             //关闭model
                             $('#editInspectionRoutePointModel').modal('hide');
@@ -108,12 +103,12 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            refresheditInspectionRoutePointInfo: function () {
+            refresheditInspectionRoutePointInfo: function() {
                 vc.component.editInspectionRoutePointInfo = {
                     communityId: '',
                     inspectionId: '',

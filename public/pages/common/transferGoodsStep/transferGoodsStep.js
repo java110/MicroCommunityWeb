@@ -92,8 +92,7 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-                vc.http.post('addAllocationUserStorehouse',
-                    'save',
+                vc.http.apiPost('/resourceStore.saveAllocationUserStorehouse',
                     JSON.stringify(vc.component.transferGoodsStepInfo.purchaseApply), {
                         emulateJSON: true
                     },

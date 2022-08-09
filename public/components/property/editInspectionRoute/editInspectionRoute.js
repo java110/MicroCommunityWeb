@@ -64,7 +64,7 @@
                     return;
                 }
                 vc.component.editInspectionRouteInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post('editInspectionRoute', 'update', JSON.stringify(vc.component.editInspectionRouteInfo), {
+                vc.http.apiPost('/inspectionRoute.updateInspectionRoute', JSON.stringify(vc.component.editInspectionRouteInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {

@@ -65,7 +65,7 @@
                     $('#addInspectionRouteModel').modal('hide');
                     return;
                 }
-                vc.http.post('addInspectionRoute', 'save', JSON.stringify(vc.component.addInspectionRouteInfo), {
+                vc.http.apiPost('/inspectionRoute.saveInspectionRoute', JSON.stringify(vc.component.addInspectionRouteInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {

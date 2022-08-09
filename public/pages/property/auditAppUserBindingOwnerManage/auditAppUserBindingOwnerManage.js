@@ -72,8 +72,7 @@
                 _auditInfo.communityId = vc.getCurrentCommunity().communityId;
                 _auditInfo.appUserId = vc.component.auditAppUserBindingOwnerManageInfo.currentAppUserId;
                 //发送get请求
-                vc.http.post('auditAppUserBindingOwnerManage',
-                    'audit',
+                vc.http.apiPost('/owner.updateAppUserBindingOwner',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

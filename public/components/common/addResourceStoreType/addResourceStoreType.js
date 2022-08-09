@@ -50,8 +50,7 @@
                     $('#addResourceStoreTypeModel').modal('hide');
                     return;
                 }
-                vc.http.post('addResourceStoreType',
-                    'save',
+                vc.http.apiPost('/resourceStoreType.saveResourceStoreType',
                     JSON.stringify(vc.component.addResourceStoreTypeInfo), {
                         emulateJSON: true
                     },
