@@ -22,8 +22,7 @@
                 }
 
                 //发送get请求
-                vc.http.get('remainingParkingSpace',
-                    'list',
+                vc.http.apiGet('/machineTranslate.machineGetFreeParkingSpace',
                     param,
                     function (json, res) {
                         var listParkingSpaceData = JSON.parse(json).data;

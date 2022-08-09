@@ -31,8 +31,7 @@
                 };
 
                 //发送get请求
-               vc.http.get('chooseActivities',
-                            'list',
+               vc.http.apiGet('/activities.listActivitiess',
                              param,
                              function(json){
                                 var _activitiesInfo = JSON.parse(json);

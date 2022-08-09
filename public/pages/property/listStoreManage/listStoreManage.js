@@ -39,8 +39,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('listStoreManage',
-                    'list',
+                vc.http.apiGet('/store.listStores',
                     param,
                     function (json, res) {
                         var _listStoreManageInfo = JSON.parse(json);

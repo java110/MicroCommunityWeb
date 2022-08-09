@@ -31,8 +31,7 @@
                 };
 
                 //发送get请求
-               vc.http.get('choosePurchaseApply',
-                            'list',
+               vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                              param,
                              function(json){
                                 var _purchaseApplyInfo = JSON.parse(json);

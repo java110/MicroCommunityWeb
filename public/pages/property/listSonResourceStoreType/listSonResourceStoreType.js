@@ -43,8 +43,7 @@
                 param.params.rsId = param.params.rsId.trim();
                 param.params.rstName = param.params.rstName.trim();
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
                     function (json, res) {
                         var _sonResourceStoreTypeInfo = JSON.parse(json);

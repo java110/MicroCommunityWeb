@@ -46,8 +46,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('machineRecordManage',
-                    'list',
+                vc.http.apiGet('/machineRecord.listMachineRecords"',
                     param,
                     function (json, res) {
                         var _machineRecordManageInfo = JSON.parse(json);

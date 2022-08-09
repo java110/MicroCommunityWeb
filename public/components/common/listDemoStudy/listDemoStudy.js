@@ -31,8 +31,7 @@
                 }
 
                //发送get请求
-               vc.http.get('listDemoStudy',
-                            'list',
+               vc.http.apiGet('/demo.queryDemoConfig',
                              param,
                              function(json,res){
                                 var listData =JSON.parse(json);

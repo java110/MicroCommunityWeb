@@ -31,8 +31,7 @@
                 };
 
                 //发送get请求
-               vc.http.get('chooseComplaint',
-                            'list',
+               vc.http.apiGet('/complaint.listComplaints',
                              param,
                              function(json){
                                 var _complaintInfo = JSON.parse(json);

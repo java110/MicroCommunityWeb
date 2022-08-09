@@ -66,8 +66,7 @@
                     }
                 };
                 //查询房屋信息 业主信息
-                vc.http.get('repairDispatchManage',
-                    'getRoom',
+                vc.http.apiGet('/room.queryRooms',
                     param,
                     function(json, res) {
                         if (res.status == 200) {

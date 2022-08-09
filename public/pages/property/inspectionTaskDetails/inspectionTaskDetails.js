@@ -173,8 +173,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('inspectionPlanManage',
-                    'list',
+                vc.http.apiGet('/inspectionPlan.listInspectionPlans',
                     param,
                     function (json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);
@@ -194,8 +193,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('inspectionRouteManage',
-                    'list',
+                vc.http.apiGet('/inspectionRoute.listInspectionRoutes',
                     param,
                     function (json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);
@@ -215,8 +213,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('inspectionPointManage',
-                    'list',
+                vc.http.apiGet('/inspectionPoint.listInspectionPoints',
                     param,
                     function (json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);

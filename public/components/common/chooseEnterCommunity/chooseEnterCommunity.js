@@ -33,8 +33,7 @@
                         communityName: $that.navCommunityInfo.searchCommunityName
                     }
                 };
-                vc.http.get('nav',
-                    'getCommunitys',
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
                     param,
                     function (json, res) {
                         if (res.status == 200) {

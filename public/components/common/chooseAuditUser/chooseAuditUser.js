@@ -31,8 +31,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('chooseAuditUser',
-                    'list',
+                vc.http.apiGet('/auditUser.listAuditUsers',
                     param,
                     function (json) {
                         var _auditUserInfo = JSON.parse(json);

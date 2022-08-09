@@ -92,8 +92,7 @@
                     params: vc.component.staffFeeManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('staffFeeManage',
-                    'list',
+                vc.http.apiGet('/api.getStaffFee',
                     param,
                     function (json, res) {
                         var _staffFeeManageInfo = JSON.parse(json);

@@ -51,8 +51,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('addOrgCommunity',
-                    'list',
+                vc.http.apiGet('/org.listOrgNoCommunitys',
                     param,
                     function(json) {
                         var _communityInfo = JSON.parse(json);

@@ -48,11 +48,10 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('listParkingSpaceFee',
-                    'list',
+                vc.http.apiGet('/fee.listFee',
                     param,
                     function (json) {
-                        var _feeConfigInfo = JSON.parse(json);
+                        let _feeConfigInfo = JSON.parse(json);
                         vc.component.listCarFeeInfo.total = _feeConfigInfo.total;
                         vc.component.listCarFeeInfo.records = _feeConfigInfo.records;
                         vc.component.listCarFeeInfo.fees = _feeConfigInfo.fees;

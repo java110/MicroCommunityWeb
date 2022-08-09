@@ -36,8 +36,7 @@
 
                    }
                    //发送get请求
-                   vc.http.get('storesCommunity',
-                                'listMyCommunity',
+                   vc.http.apiGet('/community.listCommunitys',
                                  param,
                                  function(json,res){
                                     var _communityInfo =JSON.parse(json);

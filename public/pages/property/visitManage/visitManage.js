@@ -91,8 +91,7 @@
                 param.params.vName = param.params.vName.trim();
                 param.params.phoneNumber = param.params.phoneNumber.trim();
                 //发送get请求
-                vc.http.get('visitManage',
-                    'list',
+                vc.http.apiGet('/visit.listVisits',
                     param,
                     function (json, res) {
                         var _visitManageInfo = JSON.parse(json);

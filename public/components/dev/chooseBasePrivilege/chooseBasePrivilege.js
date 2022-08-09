@@ -31,8 +31,7 @@
                 };
 
                 //发送get请求
-               vc.http.get('chooseBasePrivilege',
-                            'list',
+               vc.http.apiGet('/basePrivilege.listBasePrivileges',
                              param,
                              function(json){
                                 var _basePrivilegeInfo = JSON.parse(json);

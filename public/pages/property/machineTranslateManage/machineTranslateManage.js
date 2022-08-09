@@ -38,13 +38,12 @@
 
                 vc.component.machineTranslateManageInfo.conditions.page = _page;
                 vc.component.machineTranslateManageInfo.conditions.row = _rows;
-                var param = {
+                let param = {
                     params: vc.component.machineTranslateManageInfo.conditions
                 };
 
                 //发送get请求
-                vc.http.get('machineTranslateManage',
-                    'list',
+                vc.http.apiGet('/machineTranslate.listMachineTranslates',
                     param,
                     function (json, res) {
                         var _machineTranslateManageInfo = JSON.parse(json);

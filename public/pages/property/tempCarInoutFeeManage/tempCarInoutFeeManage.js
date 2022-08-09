@@ -80,8 +80,7 @@
                     params: vc.component.tempCarInoutFeeManageInfo.conditions
                 };
                 //发送get请求
-                vc.http.get('tempCarInoutFeeManage',
-                    'list',
+                vc.http.apiGet('/api.getTempCarInoutFee',
                     param,
                     function (json, res) {
                         var _tempCarInoutFeeManageInfo = JSON.parse(json);
