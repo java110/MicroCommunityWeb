@@ -98,8 +98,7 @@
                 param.params.tel = param.params.tel.trim();
                 param.params.roomId = param.params.roomId.trim();
                 //发送get请求
-                vc.http.get('complaintManage',
-                    'list',
+                vc.http.apiGet('/complaint.listComplaints',
                     param,
                     function(json, res) {
                         var _complaintManageInfo = JSON.parse(json);

@@ -41,14 +41,13 @@
             _listItemOuts: function(_page, _rows) {
                 vc.component.itemOutManageInfo.conditions.page = _page;
                 vc.component.itemOutManageInfo.conditions.row = _rows;
-                var param = {
+                let param = {
                     params: vc.component.itemOutManageInfo.conditions
                 };
                 param.params.applyOrderId = param.params.applyOrderId.trim();
                 param.params.userName = param.params.userName.trim();
                 //发送get请求
-                vc.http.get('purchaseApplyManage',
-                    'list',
+                vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,
                     function(json, res) {
                         var _itemOutManageInfo = JSON.parse(json);

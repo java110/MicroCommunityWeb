@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -16,25 +16,25 @@
                     resId: '',
                     resName: '',
                     resCode: '',
-                    stock:''
+                    stock: ''
 
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('resourceStoreManage', 'listResourceStore', function (_param) {
+            vc.on('resourceStoreManage', 'listResourceStore', function(_param) {
                 vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listResourceStores(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listResourceStores: function (_page, _rows) {
+            _listResourceStores: function(_page, _rows) {
 
                 vc.component.resourceStoreManageInfo.conditions.page = _page;
                 vc.component.resourceStoreManageInfo.conditions.row = _rows;
@@ -43,10 +43,9 @@
                 };
 
                 //发送get请求
-                vc.http.get('resourceStoreManage',
-                    'list',
+                vc.http.apiGet('/resourceStore.listResourceStores',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreManageInfo = JSON.parse(json);
                         vc.component.resourceStoreManageInfo.total = _resourceStoreManageInfo.total;
                         vc.component.resourceStoreManageInfo.records = _resourceStoreManageInfo.records;
@@ -56,25 +55,26 @@
                             dataCount: vc.component.resourceStoreManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddResourceStoreModal: function () {
+            _openAddResourceStoreModal: function() {
                 vc.emit('addResourceStore', 'openAddResourceStoreModal', {});
             },
-            _openEditResourceStoreModel: function (_resourceStore) {
+            _openEditResourceStoreModel: function(_resourceStore) {
                 vc.emit('editItemNumberStore', 'openEditItemNumberStoreModal', _resourceStore);
             },
-            _openDeleteResourceStoreModel: function (_resourceStore) {
+            _openDeleteResourceStoreModel: function(_resourceStore) {
                 vc.emit('deleteResourceStore', 'openDeleteResourceStoreModal', _resourceStore);
             },
-            _queryResourceStoreMethod: function () {
+            _queryResourceStoreMethod: function() {
                 vc.component._listResourceStores(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.resourceStoreManageInfo.moreCondition) {
                     vc.component.resourceStoreManageInfo.moreCondition = false;
                 } else {

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 1;
     vc.extends({
@@ -17,7 +17,7 @@
                 createTime: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             var tmpNoticeId = vc.getParam('noticeId');
             if (!vc.notNull(tmpNoticeId)) {
                 return;
@@ -25,10 +25,9 @@
             vc.component.noticeDetailInfo.noticeId = tmpNoticeId;
             vc.component._listNotices(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-        },
+        _initEvent: function() {},
         methods: {
-            _listNotices: function (_page, _rows) {
+            _listNotices: function(_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -38,10 +37,9 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('noticeDetail',
-                    'get',
+                vc.http.apiGet('/notice.listNotices',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _noticeDetailInfo = JSON.parse(json);
                         var _notices = _noticeDetailInfo.notices;
                         if (_notices.length > 0) {
@@ -53,12 +51,12 @@
                             vc.copyObject(_notices[0], vc.component.noticeDetailInfo);
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function () {
+            _goBack: function() {
                 vc.goBack();
             }
         }

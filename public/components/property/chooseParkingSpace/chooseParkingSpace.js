@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,42 +20,40 @@
                     state: ''
                 },
                 currentPage: DEFAULT_PAGE,
-                data:{}
+                data: {}
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('chooseParkingSpace', 'openChooseParkingSpaceModel', function (_param) {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('chooseParkingSpace', 'openChooseParkingSpaceModel', function(_param) {
                 $that.chooseParkingSpaceInfo.data = _param;
                 $that.chooseParkingSpaceInfo.conditions.paId = _param.paId;
                 $('#chooseParkingSpaceModel').modal('show');
                 vc.component._refreshChooseParkingSpaceInfo();
                 vc.component._listParkingSpaceData(1, 10);
             });
-            vc.on('chooseParkingSpace', 'paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('chooseParkingSpace', 'paginationPlus', 'page_event', function(_currentPage) {
                 vc.component._listParkingSpaceData(_currentPage, 10);
             });
         },
         methods: {
-            _listParkingSpaceData: function (_page, _row) {
+            _listParkingSpaceData: function(_page, _row) {
                 var param = {
-                    params: {
-                        page: _page,
-                        row: _row,
-                        communityId: vc.getCurrentCommunity().communityId,
-                        num: vc.component.chooseParkingSpaceInfo.num,
-                        psId: vc.component.chooseParkingSpaceInfo.conditions.psId,
-                        area: vc.component.chooseParkingSpaceInfo.conditions.area,
-                        paId: vc.component.chooseParkingSpaceInfo.conditions.paId,
-                        state: vc.component.chooseParkingSpaceInfo.conditions.state,
+                        params: {
+                            page: _page,
+                            row: _row,
+                            communityId: vc.getCurrentCommunity().communityId,
+                            num: vc.component.chooseParkingSpaceInfo.num,
+                            psId: vc.component.chooseParkingSpaceInfo.conditions.psId,
+                            area: vc.component.chooseParkingSpaceInfo.conditions.area,
+                            paId: vc.component.chooseParkingSpaceInfo.conditions.paId,
+                            state: vc.component.chooseParkingSpaceInfo.conditions.state,
+                        }
                     }
-                }
-                //发送get请求
-                vc.http.get('listParkingSpace',
-                    'list',
+                    //发送get请求
+                vc.http.apiGet('/parkingSpace.queryParkingSpaces',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var listParkingSpaceData = JSON.parse(json);
                         vc.component.chooseParkingSpaceInfo.total = listParkingSpaceData.total;
                         vc.component.chooseParkingSpaceInfo.records = listParkingSpaceData.records;
@@ -65,14 +63,15 @@
                             dataCount: vc.component.chooseParkingSpaceInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
 
 
-            chooseParkingSpace: function (_ParkingSpace) {
+            chooseParkingSpace: function(_ParkingSpace) {
                 if (_ParkingSpace.hasOwnProperty('name')) {
                     _ParkingSpace.ParkingSpaceName = _ParkingSpace.name;
                 }
@@ -84,13 +83,13 @@
                 });
                 $('#chooseParkingSpaceModel').modal('hide');
             },
-            queryParkingSpaces: function () {
+            queryParkingSpaces: function() {
                 vc.component._listParkingSpaceData(1, 10, vc.component.chooseParkingSpaceInfo._currentParkingSpaceName);
             },
-            _refreshChooseParkingSpaceInfo: function () {
+            _refreshChooseParkingSpaceInfo: function() {
                 vc.component.chooseParkingSpaceInfo._currentParkingSpaceName = "";
             },
-            _viewParkingSpaceState: function (state) {
+            _viewParkingSpaceState: function(state) {
                 if (state == 'F') {
                     return "空闲";
                 } else if (state == 'S') {
@@ -101,7 +100,7 @@
                     return "未知";
                 }
             },
-            _viewParkingTypeCd: function (typeCd) {
+            _viewParkingTypeCd: function(typeCd) {
                 var result = '未知';
                 switch (typeCd) {
                     case '1001':

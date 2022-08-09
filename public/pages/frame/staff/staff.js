@@ -135,8 +135,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('staff',
-                    'list',
+                vc.http.apiGet('/org.listOrgs',
                     param,
                     function(json, res) {
                         let _orgInfo = JSON.parse(json);

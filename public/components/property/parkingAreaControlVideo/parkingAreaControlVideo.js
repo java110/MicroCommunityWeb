@@ -36,8 +36,7 @@
                         }
                     }
                     //发送get请求
-                vc.http.get('machineManage',
-                    'list',
+                vc.http.apiGet('/machine.listMachines',
                     param,
                     function(json, res) {
                         let _machineManageInfo = JSON.parse(json);
@@ -232,9 +231,9 @@
                     machineId: _machineId
                 })
             },
-            unlicensedCarIn: function (_type) {
+            unlicensedCarIn: function(_type) {
                 let _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
-              
+
                 if (!_machineId) {
                     vc.toast('请选择入场摄像头');
                     return;

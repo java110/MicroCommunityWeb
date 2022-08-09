@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -36,13 +36,13 @@
                 resourceStoreSpecifications: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //与字典表关联
-            vc.getDict('allocation_storehouse_apply', "state", function (_data) {
+            vc.getDict('allocation_storehouse_apply', "state", function(_data) {
                 vc.component.allocationStorehousesInfo.states = _data;
             });
             //与字典表关联
-            vc.getDict('allocation_storehouse_apply', "apply_type", function (_data) {
+            vc.getDict('allocation_storehouse_apply', "apply_type", function(_data) {
                 vc.component.allocationStorehousesInfo.applyTypes = _data;
             });
             vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -50,17 +50,17 @@
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
         },
-        _initEvent: function () {
-            vc.on('allocationStorehouseDetailed', '_listAllocationStore', function (_param) {
+        _initEvent: function() {
+            vc.on('allocationStorehouseDetailed', '_listAllocationStore', function(_param) {
                 vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listAllocationStores(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
-            _listAllocationStores: function (_page, _rows) {
+            _listAllocationStores: function(_page, _rows) {
                 vc.component.allocationStorehousesInfo.conditions.page = _page;
                 vc.component.allocationStorehousesInfo.conditions.row = _rows;
                 vc.component.allocationStorehousesInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -74,7 +74,7 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _allocationStorehousesInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.total = _allocationStorehousesInfo.total;
                         vc.component.allocationStorehousesInfo.records = _allocationStorehousesInfo.records;
@@ -84,17 +84,18 @@
                             dataCount: vc.component.allocationStorehousesInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryAllocationStorehouseMethod: function () {
+            _queryAllocationStorehouseMethod: function() {
                 vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAllocationStorehouseMethod: function () {
+            _resetAllocationStorehouseMethod: function() {
                 vc.component.allocationStorehousesInfo.conditions.applyId = "";
                 vc.component.allocationStorehousesInfo.conditions.shIda = "";
                 vc.component.allocationStorehousesInfo.conditions.shIdz = "";
@@ -110,7 +111,7 @@
                 vc.component.allocationStorehousesInfo.resourceStoreSpecifications = [];
                 vc.component._listAllocationStores(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listStorehouses: function (_page, _rows) {
+            _listStorehouses: function(_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -121,15 +122,16 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.storehouses = _storehouseManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreTypes: function () {
+            _listResourceStoreTypes: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -138,18 +140,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSonTypes: function () {
+            _listResourceStoreSonTypes: function() {
                 vc.component.allocationStorehousesInfo.conditions.rstId = '';
                 vc.component.allocationStorehousesInfo.resourceStoreSonTypes = [];
                 if (vc.component.allocationStorehousesInfo.conditions.parentRstId == '') {
@@ -164,18 +166,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSpecifications: function () {
+            _listResourceStoreSpecifications: function() {
                 vc.component.allocationStorehousesInfo.resourceStoreSpecifications = [];
                 vc.component.allocationStorehousesInfo.conditions.rssId = '';
                 var param = {
@@ -190,22 +192,23 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _allocationStorehousesInfo = JSON.parse(json);
                         vc.component.allocationStorehousesInfo.resourceStoreSpecifications = _allocationStorehousesInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.allocationStorehousesInfo.moreCondition) {
                     vc.component.allocationStorehousesInfo.moreCondition = false;
                 } else {
                     vc.component.allocationStorehousesInfo.moreCondition = true;
                 }
             },
-            _exportExcel: function () {
+            _exportExcel: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationStorehouseDetail&' + vc.objToGetParam($that.allocationStorehousesInfo.conditions));
             }
         }

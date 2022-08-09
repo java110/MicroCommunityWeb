@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -10,15 +10,15 @@
                 blueCarIn: '',
                 yelowCarIn: '',
                 remark: '',
-                paId:'',
+                paId: '',
                 parkingAreas: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._loadEditParkingBoxs();
         },
-        _initEvent: function () {
-            vc.on('editParkingBox', 'openEditParkingBoxModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editParkingBox', 'openEditParkingBoxModal', function(_params) {
                 vc.component.refreshEditParkingBoxInfo();
                 $('#editParkingBoxModel').modal('show');
                 vc.copyObject(_params, vc.component.editParkingBoxInfo);
@@ -26,12 +26,11 @@
             });
         },
         methods: {
-            editParkingBoxValidate: function () {
+            editParkingBoxValidate: function() {
                 return vc.validate.validate({
                     editParkingBoxInfo: vc.component.editParkingBoxInfo
                 }, {
-                    'editParkingBoxInfo.boxName': [
-                        {
+                    'editParkingBoxInfo.boxName': [{
                             limit: "required",
                             param: "",
                             errInfo: "岗亭名称不能为空"
@@ -42,8 +41,7 @@
                             errInfo: "岗亭名称不能超过64"
                         },
                     ],
-                    'editParkingBoxInfo.tempCarIn': [
-                        {
+                    'editParkingBoxInfo.tempCarIn': [{
                             limit: "required",
                             param: "",
                             errInfo: "临时车是否进场不能为空"
@@ -54,8 +52,7 @@
                             errInfo: "临时车是否进场不能超过12"
                         },
                     ],
-                    'editParkingBoxInfo.fee': [
-                        {
+                    'editParkingBoxInfo.fee': [{
                             limit: "required",
                             param: "",
                             errInfo: "是否收费不能为空"
@@ -66,8 +63,7 @@
                             errInfo: "岗亭是否不能超过12"
                         },
                     ],
-                    'editParkingBoxInfo.blueCarIn': [
-                        {
+                    'editParkingBoxInfo.blueCarIn': [{
                             limit: "required",
                             param: "",
                             errInfo: "蓝牌车进场不能为空"
@@ -78,8 +74,7 @@
                             errInfo: "蓝牌车是否可以进场不能超过12"
                         },
                     ],
-                    'editParkingBoxInfo.yelowCarIn': [
-                        {
+                    'editParkingBoxInfo.yelowCarIn': [{
                             limit: "required",
                             param: "",
                             errInfo: "黄牌车进场不能为空"
@@ -90,8 +85,7 @@
                             errInfo: "黄牌车是否可以进场不能超过12"
                         },
                     ],
-                    'editParkingBoxInfo.remark': [
-                        {
+                    'editParkingBoxInfo.remark': [{
                             limit: "required",
                             param: "",
                             errInfo: "备注不能为空"
@@ -102,16 +96,15 @@
                             errInfo: "备注不能超过300"
                         },
                     ],
-                    'editParkingBoxInfo.boxId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "岗亭ID不能为空"
-                        }]
+                    'editParkingBoxInfo.boxId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "岗亭ID不能为空"
+                    }]
 
                 });
             },
-            editParkingBox: function () {
+            editParkingBox: function() {
                 if (!vc.component.editParkingBoxValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -119,11 +112,10 @@
 
                 vc.http.apiPost(
                     'parkingBox.updateParkingBox',
-                    JSON.stringify(vc.component.editParkingBoxInfo),
-                    {
+                    JSON.stringify(vc.component.editParkingBoxInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -134,13 +126,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            _loadEditParkingBoxs: function () {
+            _loadEditParkingBoxs: function() {
                 let param = {
                     params: {
                         page: 1,
@@ -149,16 +141,16 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('parkingAreaManage', 'list', param,
-                    function (json, res) {
+                vc.http.apiGet('/parkingArea.listParkingAreas', param,
+                    function(json, res) {
                         let _parkingAreaManageInfo = JSON.parse(json);
                         $that.editParkingBoxInfo.parkingAreas = _parkingAreaManageInfo.parkingAreas;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            refreshEditParkingBoxInfo: function () {
+            refreshEditParkingBoxInfo: function() {
                 let _parkingAreas = $that.editParkingBoxInfo.parkingAreas;
                 vc.component.editParkingBoxInfo = {
                     boxId: '',
@@ -168,7 +160,7 @@
                     blueCarIn: '',
                     yelowCarIn: '',
                     remark: '',
-                    paId:'',
+                    paId: '',
                     parkingAreas: _parkingAreas
                 }
             }

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,20 +22,20 @@
                 resourceStoreSonTypes: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listResourceStoreSpecifications(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listResourceStoreTypes();
         },
-        _initEvent: function () {
-            vc.on('resourceStoreSpecificationManage', 'listResourceStoreSpecification', function (_param) {
+        _initEvent: function() {
+            vc.on('resourceStoreSpecificationManage', 'listResourceStoreSpecification', function(_param) {
                 vc.component._listResourceStoreSpecifications(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listResourceStoreSpecifications(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listResourceStoreSpecifications: function (_page, _rows) {
+            _listResourceStoreSpecifications: function(_page, _rows) {
                 vc.component.resourceStoreSpecificationManageInfo.conditions.page = _page;
                 vc.component.resourceStoreSpecificationManageInfo.conditions.row = _rows;
                 var param = {
@@ -46,7 +46,7 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreSpecificationManageInfo = JSON.parse(json);
                         vc.component.resourceStoreSpecificationManageInfo.total = _resourceStoreSpecificationManageInfo.total;
                         vc.component.resourceStoreSpecificationManageInfo.records = _resourceStoreSpecificationManageInfo.records;
@@ -56,29 +56,30 @@
                             currentPage: _page,
                             dataCount: vc.component.resourceStoreSpecificationManageInfo.total
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //添加
-            _openAddResourceStoreSpecificationModal: function () {
+            _openAddResourceStoreSpecificationModal: function() {
                 vc.emit('addResourceStoreSpecification', 'openAddResourceStoreSpecificationModal', {});
             },
             //修改
-            _openEditResourceStoreSpecificationModel: function (_resourceStoreSpecification) {
+            _openEditResourceStoreSpecificationModel: function(_resourceStoreSpecification) {
                 vc.emit('editResourceStoreSpecification', 'openEditResourceStoreSpecificationModal', _resourceStoreSpecification);
             },
             //删除
-            _openDeleteResourceStoreSpecificationModel: function (_resourceStoreSpecification) {
+            _openDeleteResourceStoreSpecificationModel: function(_resourceStoreSpecification) {
                 vc.emit('deleteResourceStoreSpecification', 'openDeleteResourceStoreSpecificationModal', _resourceStoreSpecification);
             },
             //查询
-            _queryResourceStoreSpecificationMethod: function () {
+            _queryResourceStoreSpecificationMethod: function() {
                 vc.component._listResourceStoreSpecifications(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetResourceStoreSpecificationMethod: function () {
+            _resetResourceStoreSpecificationMethod: function() {
                 vc.component.resourceStoreSpecificationManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreSpecificationManageInfo.conditions.specName = '';
                 vc.component.resourceStoreSpecificationManageInfo.conditions.parentRstId = '';
@@ -86,7 +87,7 @@
                 vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = [];
                 $that._listResourceStoreSpecifications(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listResourceStoreTypes: function () {
+            _listResourceStoreTypes: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -95,19 +96,19 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.resourceStoreSpecificationManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 父级分类改变
-            resourceStoreParentTypesChange: function(){
+            resourceStoreParentTypesChange: function() {
                 vc.component.resourceStoreSpecificationManageInfo.conditions.rstId = '';
                 if (vc.component.resourceStoreSpecificationManageInfo.conditions.parentRstId == '') {
                     vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = [];
@@ -122,18 +123,18 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _resourceStoreTypeInfo = JSON.parse(json);
                         vc.component.resourceStoreSpecificationManageInfo.resourceStoreSonTypes = _resourceStoreTypeInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.resourceStoreSpecificationManageInfo.moreCondition) {
                     vc.component.resourceStoreSpecificationManageInfo.moreCondition = false;
                 } else {

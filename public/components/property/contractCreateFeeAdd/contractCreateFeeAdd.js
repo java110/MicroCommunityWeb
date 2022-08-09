@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             contractCreateFeeAddInfo: {
@@ -16,9 +16,9 @@
                 amount: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that._initContractCreateFeeAddInfo();
-            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 var _datanew = [];
                 _data.forEach((item, index) => {
                     if (item.statusCd != "888800010015" && item.statusCd != "888800010016") {
@@ -28,9 +28,9 @@
                 $that.contractCreateFeeAddInfo.feeTypeCds = _datanew;
             });
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('contractCreateFeeAdd', 'openContractCreateFeeAddModal',
-                function (_room) {
+                function(_room) {
                     $that.contractCreateFeeAddInfo.isMore = _room.isMore;
                     if (_room.contract != null && _room.contract != undefined) {
                         $that.contractCreateFeeAddInfo.contractId = _room.contract.contractId;
@@ -39,11 +39,11 @@
                 });
         },
         methods: {
-            _initContractCreateFeeAddInfo: function () {
-                vc.initDate('contractCreateFeeStartTime', function (_startTime) {
+            _initContractCreateFeeAddInfo: function() {
+                vc.initDate('contractCreateFeeStartTime', function(_startTime) {
                     $that.contractCreateFeeAddInfo.startTime = _startTime;
                 });
-                vc.initDate('contractCreateFeeEndTime', function (_endTime) {
+                vc.initDate('contractCreateFeeEndTime', function(_endTime) {
                     $that.contractCreateFeeAddInfo.endTime = _endTime;
                     let start = Date.parse(new Date($that.contractCreateFeeAddInfo.startTime))
                     let end = Date.parse(new Date($that.contractCreateFeeAddInfo.endTime))
@@ -79,10 +79,10 @@
                         errInfo: "合同状态不能为空"
                     }],
                     'contractCreateFeeAddInfo.startTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "计费起始时间不能为空"
-                    },
+                            limit: "required",
+                            param: "",
+                            errInfo: "计费起始时间不能为空"
+                        },
                         {
                             limit: "datetime",
                             param: "",
@@ -91,7 +91,7 @@
                     ]
                 });
             },
-            saveContractCreateFeeInfo: function () {
+            saveContractCreateFeeInfo: function() {
                 $that.contractCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
                 if (!$that.contractCreateFeeAddValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -104,7 +104,7 @@
                     JSON.stringify(_contractCreateFeeAddInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -118,13 +118,13 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
-            clearAddFeeConfigInfo: function () {
+            clearAddFeeConfigInfo: function() {
                 var _feeTypeCds = $that.contractCreateFeeAddInfo.feeTypeCds;
                 $that.contractCreateFeeAddInfo = {
                     feeTypeCds: [],
@@ -142,7 +142,7 @@
                 };
                 $that.contractCreateFeeAddInfo.feeTypeCds = _feeTypeCds;
             },
-            _changeFeeTypeCdX: function (_feeTypeCd) {
+            _changeFeeTypeCdX: function(_feeTypeCd) {
                 $that.contractCreateFeeAddInfo.configId = '';
                 var param = {
                     params: {
@@ -155,24 +155,24 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('roomCreateFeeAdd', 'list', param,
-                    function (json, res) {
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
+                    function(json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.contractCreateFeeAddInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _createFeeAddChangeRoomType: function () {
+            _createFeeAddChangeRoomType: function() {
                 if ($that.contractCreateFeeAddInfo.roomType == '1010301') {
                     $that.contractCreateFeeAddInfo.contractState = ['2001'];
                 } else {
                     $that.contractCreateFeeAddInfo.contractState = ['2006'];
                 }
             },
-            _changeFeeLayer: function () {
+            _changeFeeLayer: function() {
                 let _feeLayer = $that.contractCreateFeeAddInfo.feeLayer;
                 if (_feeLayer == '全部') {
                     $that.contractCreateFeeAddInfo.feeLayer = ''

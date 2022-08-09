@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -21,23 +21,23 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //vc.component._listServiceRegisters(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._loadDataByParam(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('serviceRegisterManage', 'chooseApp', function (_param) {
+        _initEvent: function() {
+            vc.on('serviceRegisterManage', 'chooseApp', function(_param) {
                 vc.copyObject(_param, vc.component.serviceRegisterManageInfo.conditions);
             });
-            vc.on('serviceRegisterManage', 'listServiceRegister', function (_param) {
+            vc.on('serviceRegisterManage', 'listServiceRegister', function(_param) {
                 vc.component._listServiceRegisters(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listServiceRegisters(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listServiceRegisters: function (_page, _rows) {
+            _listServiceRegisters: function(_page, _rows) {
                 vc.component.serviceRegisterManageInfo.conditions.page = _page;
                 vc.component.serviceRegisterManageInfo.conditions.row = _rows;
                 var param = {
@@ -47,10 +47,9 @@
                 param.params.serviceCode = param.params.serviceCode.trim();
                 param.params.serviceUrl = param.params.serviceUrl.trim();
                 //发送get请求
-                vc.http.get('serviceRegisterManage',
-                    'list',
+                vc.http.apiGet('/serviceRegister.listServiceRegisters',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _serviceRegisterManageInfo = JSON.parse(json);
                         vc.component.serviceRegisterManageInfo.total = _serviceRegisterManageInfo.total;
                         vc.component.serviceRegisterManageInfo.records = _serviceRegisterManageInfo.records;
@@ -61,48 +60,48 @@
                             currentPage: _page
                         });
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddServiceRegisterModal: function () {
+            _openAddServiceRegisterModal: function() {
                 //vc.emit('addServiceRegister','openAddServiceRegisterModal',{});
                 vc.jumpToPage("/#/pages/dev/serviceBinding");
             },
-            _openEditServiceRegisterModel: function (_serviceRegister) {
+            _openEditServiceRegisterModel: function(_serviceRegister) {
                 vc.emit('editServiceRegister', 'openEditServiceRegisterModal', _serviceRegister);
             },
-            _openDeleteServiceRegisterModel: function (_serviceRegister) {
+            _openDeleteServiceRegisterModel: function(_serviceRegister) {
                 vc.emit('deleteServiceRegister', 'openDeleteServiceRegisterModal', _serviceRegister);
             },
             //查询
-            _queryServiceRegisterMethod: function () {
+            _queryServiceRegisterMethod: function() {
                 vc.component._listServiceRegisters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetServiceRegisterMethod: function () {
+            _resetServiceRegisterMethod: function() {
                 vc.component.serviceRegisterManageInfo.conditions.appName = "";
                 vc.component.serviceRegisterManageInfo.conditions.serviceName = "";
                 vc.component.serviceRegisterManageInfo.conditions.serviceCode = "";
                 vc.component.serviceRegisterManageInfo.conditions.serviceUrl = "";
                 vc.component._listServiceRegisters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.serviceRegisterManageInfo.moreCondition) {
                     vc.component.serviceRegisterManageInfo.moreCondition = false;
                 } else {
                     vc.component.serviceRegisterManageInfo.moreCondition = true;
                 }
             },
-            _openChooseAppMethod: function () {
+            _openChooseAppMethod: function() {
                 vc.emit('chooseApp', 'openChooseAppModel', {});
             },
-            _loadDataByParam: function () {
+            _loadDataByParam: function() {
                 vc.component.serviceRegisterManageInfo.conditions.appId = vc.getParam("appId");
                 //如果 floodId 没有传 则，直接结束
-                if (vc.component.serviceRegisterManageInfo.conditions.appId == null || vc.component.serviceRegisterManageInfo.conditions.appId == undefined
-                    || vc.component.serviceRegisterManageInfo.conditions.appId == '') {
+                if (vc.component.serviceRegisterManageInfo.conditions.appId == null || vc.component.serviceRegisterManageInfo.conditions.appId == undefined ||
+                    vc.component.serviceRegisterManageInfo.conditions.appId == '') {
                     vc.component._listServiceRegisters(DEFAULT_PAGE, DEFAULT_ROWS);
                     return;
                 }
@@ -118,7 +117,7 @@
                     'serviceRegisterManage',
                     'loadApp',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status == 200) {
                             var _appInfo = JSON.parse(json);
                             var _tmpApp = _appInfo.apps[0];
@@ -127,7 +126,7 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);

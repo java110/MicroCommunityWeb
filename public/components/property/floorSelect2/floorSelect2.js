@@ -138,8 +138,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('floorSelect2',
-                    'list',
+                vc.http.apiGet('/floor.queryFloors',
                     param,
                     function(json, res) {
                         var _ownerRepairManageInfo = JSON.parse(json);

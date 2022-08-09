@@ -125,8 +125,7 @@
                 param.params.endUserName = param.params.endUserName.trim();
                 param.params.resName = param.params.resName.trim();
                 //发送get请求
-                vc.http.get('purchaseApplyDetailManage',
-                    'list',
+                vc.http.apiGet('/purchaseApplyDetail.listPurchaseApplyDetails',
                     param,
                     function(json, res) {
                         var _purchaseApplyDetailManageInfo = JSON.parse(json);
@@ -214,8 +213,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
                     function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
@@ -232,7 +230,7 @@
                 if (vc.component.purchaseApplyDetailManageInfo.conditions.parentRstId == '') {
                     return;
                 }
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
@@ -241,8 +239,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
                     function(json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             emitChooseParkingArea: vc.propTypes.string,
@@ -10,20 +10,19 @@
                 _currentParkingAreaName: '',
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('chooseParkingArea', 'openChooseParkingAreaModel', function (_param) {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('chooseParkingArea', 'openChooseParkingAreaModel', function(_param) {
                 $('#chooseParkingAreaModel').modal('show');
                 vc.component._refreshChooseParkingAreaInfo();
                 vc.component._loadAllParkingAreaInfo(1, 10, '');
             });
-            vc.on('chooseParkingArea', 'paginationPlus', 'page_event', function (_currentPage) {
+            vc.on('chooseParkingArea', 'paginationPlus', 'page_event', function(_currentPage) {
                 vc.component._loadAllParkingAreaInfo(_currentPage, 10, '');
             });
         },
         methods: {
-            _loadAllParkingAreaInfo: function (_page, _row, _name) {
+            _loadAllParkingAreaInfo: function(_page, _row, _name) {
                 var param = {
                     params: {
                         page: _page,
@@ -34,22 +33,22 @@
                 };
 
                 //发送get请求
-                vc.http.get('chooseParkingArea',
-                    'list',
+                vc.http.apiGet('/parkingArea.listParkingAreas',
                     param,
-                    function (json) {
+                    function(json) {
                         var _parkingAreaInfo = JSON.parse(json);
                         vc.component.chooseParkingAreaInfo.parkingAreas = _parkingAreaInfo.parkingAreas;
                         vc.emit('chooseParkingArea', 'paginationPlus', 'init', {
                             total: _parkingAreaInfo.records,
                             currentPage: _page
                         });
-                    }, function () {
+                    },
+                    function() {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseParkingArea: function (_parkingArea) {
+            chooseParkingArea: function(_parkingArea) {
                 if (_parkingArea.hasOwnProperty('name')) {
                     _parkingArea.parkingAreaName = _parkingArea.name;
                 }
@@ -59,10 +58,10 @@
                 });
                 $('#chooseParkingAreaModel').modal('hide');
             },
-            queryParkingAreas: function () {
+            queryParkingAreas: function() {
                 vc.component._loadAllParkingAreaInfo(1, 10, vc.component.chooseParkingAreaInfo._currentParkingAreaName);
             },
-            _refreshChooseParkingAreaInfo: function () {
+            _refreshChooseParkingAreaInfo: function() {
                 vc.component.chooseParkingAreaInfo._currentParkingAreaName = "";
             }
         }

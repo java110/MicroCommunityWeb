@@ -88,8 +88,7 @@
                 param.params.noticeId = param.params.noticeId.trim();
                 param.params.title = param.params.title.trim();
                 //发送get请求
-                vc.http.get('noticeManage',
-                    'list',
+                vc.http.apiGet('/notice.listNotices',
                     param,
                     function(json, res) {
                         var _noticeManageInfo = JSON.parse(json);

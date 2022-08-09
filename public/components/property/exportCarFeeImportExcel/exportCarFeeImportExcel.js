@@ -103,8 +103,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('parkingAreaManage',
-                    'list',
+                vc.http.apiGet('/parkingArea.listParkingAreas',
                     param,
                     function(json, res) {
                         let listParkingAreaData = JSON.parse(json);
@@ -128,7 +127,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('feeConfigManage', 'list', param,
+                vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function(json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         $that.exportCarFeeImportExcelInfo.configs = _feeConfigManageInfo.feeConfigs;

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             finishRepairInfo: {
@@ -31,11 +31,11 @@
                 choosedGoodsList: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component.clearFinishRepairInfo();
         },
-        _initEvent: function () {
-            vc.on('finishRepair', 'openFinishRepairModal', function (_repair) {
+        _initEvent: function() {
+            vc.on('finishRepair', 'openFinishRepairModal', function(_repair) {
                 vc.component.clearFinishRepairInfo();
                 $that._loadMaintenanceType();
                 $that._listResourceStoreType();
@@ -49,7 +49,7 @@
         },
         methods: {
             _loadMaintenanceType() {
-                vc.getDict('r_repair_pool', "maintenance_type", function (_data) {
+                vc.getDict('r_repair_pool', "maintenance_type", function(_data) {
                     vc.component.finishRepairInfo.maintenanceTypes = _data;
                 });
             },
@@ -57,36 +57,27 @@
                 return vc.validate.validate({
                     finishRepairInfo: vc.component.finishRepairInfo
                 }, {
-                    'finishRepairInfo.repairId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "报修单不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.maintenanceType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "维修类型不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.conditions.goodsType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品类型不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.conditions.resId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.price': [
-                        {
+                    'finishRepairInfo.repairId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "报修单不能为空"
+                    }],
+                    'finishRepairInfo.maintenanceType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "维修类型不能为空"
+                    }],
+                    'finishRepairInfo.conditions.goodsType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品类型不能为空"
+                    }],
+                    'finishRepairInfo.conditions.resId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品不能为空"
+                    }],
+                    'finishRepairInfo.price': [{
                             limit: "required",
                             param: "",
                             errInfo: "商品价格不能为空"
@@ -97,91 +88,71 @@
                             errInfo: "商品价格格式错误"
                         },
                     ],
-                    'finishRepairInfo.useNumber': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品数量不能为零"
-                        }
-                    ],
-                    'finishRepairInfo.context': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "处理意见不能为空"
-                        }
-                    ]
+                    'finishRepairInfo.useNumber': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品数量不能为零"
+                    }],
+                    'finishRepairInfo.context': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "处理意见不能为空"
+                    }]
                 });
             },
             yongLiaoValidate() {
                 return vc.validate.validate({
                     finishRepairInfo: vc.component.finishRepairInfo
                 }, {
-                    'finishRepairInfo.repairId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "报修单不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.maintenanceType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "维修类型不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.conditions.goodsType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品类型不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.conditions.resId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.useNumber': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "商品数量不能为零"
-                        }
-                    ],
-                    'finishRepairInfo.context': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "处理意见不能为空"
-                        }
-                    ]
+                    'finishRepairInfo.repairId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "报修单不能为空"
+                    }],
+                    'finishRepairInfo.maintenanceType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "维修类型不能为空"
+                    }],
+                    'finishRepairInfo.conditions.goodsType': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品类型不能为空"
+                    }],
+                    'finishRepairInfo.conditions.resId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品不能为空"
+                    }],
+                    'finishRepairInfo.useNumber': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "商品数量不能为零"
+                    }],
+                    'finishRepairInfo.context': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "处理意见不能为空"
+                    }]
                 });
             },
             repairValidate() {
                 return vc.validate.validate({
                     finishRepairInfo: vc.component.finishRepairInfo
                 }, {
-                    'finishRepairInfo.repairId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "报修单不能为空"
-                        }
-                    ],
-                    'finishRepairInfo.context': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "处理意见不能为空"
-                        }
-                    ]
+                    'finishRepairInfo.repairId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "报修单不能为空"
+                    }],
+                    'finishRepairInfo.context': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "处理意见不能为空"
+                    }]
                 });
             },
-            _finishRepairInfo: function () {
+            _finishRepairInfo: function() {
                 // 有偿
                 if (vc.component.finishRepairInfo.maintenanceType == '1001' && !vc.component.finishRepairValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -198,7 +169,7 @@
                     return;
                 }
                 // 自定义商品验证
-                if (vc.component.finishRepairInfo.isCustom && vc.component.finishRepairInfo.customGoodsName == ''){
+                if (vc.component.finishRepairInfo.isCustom && vc.component.finishRepairInfo.customGoodsName == '') {
                     vc.toast('商品名不能为空');
                 }
                 if (vc.component.finishRepairInfo.maintenanceType == '1002' || vc.component.finishRepairInfo.maintenanceType == '1004') {
@@ -208,11 +179,10 @@
                 vc.component.finishRepairInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'ownerRepair.repairFinish',
-                    JSON.stringify(vc.component.finishRepairInfo),
-                    {
+                    JSON.stringify(vc.component.finishRepairInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -223,14 +193,14 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
             //选择商品类型
-            _choseGoods: function () {
+            _choseGoods: function() {
                 vc.component.finishRepairInfo.conditions.resId = '';
                 vc.component.finishRepairInfo.resId = '';
                 var select = document.getElementById("goods");
@@ -250,19 +220,20 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listUserStorehouses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _goods = JSON.parse(json);
                         if (vc.component.finishRepairInfo.conditions.goodsType == '1003') {
-                            _goods.data.push({'resName': '自定义', 'resId': 'custom'});
+                            _goods.data.push({ 'resName': '自定义', 'resId': 'custom' });
                         }
                         vc.component.finishRepairInfo.resourceStores = _goods.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //选择商品
-            _chosePrice: function () {
+            _chosePrice: function() {
                 var _that = this;
                 var select = document.getElementById("goodsPrice");
                 // 如果选择自定义商品
@@ -291,11 +262,11 @@
                 vc.component.finishRepairInfo.outHighPrice = vc.component.finishRepairInfo.selectedGoodsInfo.outHighPrice;
             },
             // 监听价格变化 更新总金额
-            singlePriceChanged: function () {
+            singlePriceChanged: function() {
                 this._updateTotalPrice();
             },
             // 商品数量减少
-            _useNumDec: function () {
+            _useNumDec: function() {
                 if (vc.component.finishRepairInfo.useNumber <= 1) {
                     vc.toast("不能再减少了");
                     return;
@@ -304,7 +275,7 @@
                 this._updateTotalPrice();
             },
             // 商品数量增加
-            _useNumInc: function () {
+            _useNumInc: function() {
                 var goodsInfo = vc.component.finishRepairInfo.selectedGoodsInfo;
                 // if (vc.component.finishRepairInfo.useNumber >= goodsInfo.stock) {
                 //     vc.toast("库存不足");
@@ -314,12 +285,12 @@
                 this._updateTotalPrice();
             },
             // 更新总金额
-            _updateTotalPrice: function () {
+            _updateTotalPrice: function() {
                 let totalPrice = vc.component.finishRepairInfo.useNumber * vc.component.finishRepairInfo.price
                 vc.component.finishRepairInfo.totalPrice = totalPrice.toFixed(2);
             },
             //查询物品类型
-            _listResourceStoreType: function () {
+            _listResourceStoreType: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -328,22 +299,22 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('resourceStoreTypeManage',
-                    'list',
+                vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function (json, res) {
-                        var _resourceStoreType = JSON.parse(json);
+                    function(json, res) {
+                        let _resourceStoreType = JSON.parse(json);
                         vc.component.finishRepairInfo.resourceStoreTypes = _resourceStoreType.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 选择商品
-            _openChooseSingleResourceModel: function () {
+            _openChooseSingleResourceModel: function() {
                 vc.emit('chooseSingleResource', 'openChooseSingleResourceModel', {});
             },
-            clearFinishRepairInfo: function () {
+            clearFinishRepairInfo: function() {
                 vc.component.finishRepairInfo = {
                     repairId: '',
                     repairType: '',

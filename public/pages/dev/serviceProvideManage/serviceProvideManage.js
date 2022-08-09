@@ -44,8 +44,7 @@
                 };
 
                 //发送get请求
-                vc.http.get('serviceProvideManage',
-                    'list',
+                vc.http.apiGet('/serviceProvide.listServiceProvides',
                     param,
                     function(json, res) {
                         var _serviceProvideManageInfo = JSON.parse(json);

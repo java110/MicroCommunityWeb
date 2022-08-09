@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -9,25 +9,25 @@
             parkingAreaControlBlackCar: {
                 cars: [],
                 boxId: '',
-                carNum:''
+                carNum: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('parkingAreaControlBlackCar', 'switch', function (_data) {
+        _initEvent: function() {
+            vc.on('parkingAreaControlBlackCar', 'switch', function(_data) {
                 $that.parkingAreaControlBlackCar.boxId = _data.boxId;
                 $that._loadParkingAreaControlBlackCars(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlBlackCar', 'paginationPlus', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     vc.component._loadParkingAreaControlBlackCars(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
 
-            _loadParkingAreaControlBlackCars: function (_page, _row) {
+            _loadParkingAreaControlBlackCars: function(_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -40,10 +40,9 @@
                     }
                 };
                 //发送get请求
-                vc.http.get('carBlackWhiteManage',
-                    'list',
+                vc.http.apiGet('/carBlackWhite.listCarBlackWhites',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _json = JSON.parse(json);
                         $that.parkingAreaControlBlackCar.total = _json.total;
                         $that.parkingAreaControlBlackCar.records = _json.records;
@@ -53,13 +52,14 @@
                             dataCount: $that.parkingAreaControlBlackCar.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _qureyParkingAreaControlBlackCar:function(){
-                $that._loadParkingAreaControlBlackCars(DEFAULT_PAGE,DEFAULT_ROWS);
+            _qureyParkingAreaControlBlackCar: function() {
+                $that._loadParkingAreaControlBlackCars(DEFAULT_PAGE, DEFAULT_ROWS);
             }
 
         }
