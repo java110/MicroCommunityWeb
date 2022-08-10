@@ -226,7 +226,7 @@
                     console.log('_item', _item)
                     $that.owePayFeeOrderInfo.oweFees.forEach(function (_oweFeeItem) {
                         if (_item == _oweFeeItem.feeId) {
-                            totalFee += _oweFeeItem.feePrice;
+                            totalFee += parseFloat(_oweFeeItem.feePrice);
                         }
                     });
                 })

@@ -20,9 +20,8 @@
         methods: {
             deleteFee: function() {
                 vc.component.deleteFeeInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteFee',
-                    'delete',
+                vc.http.apiPost(
+                    '/fee.deleteFee',
                     JSON.stringify(vc.component.deleteFeeInfo), {
                         emulateJSON: true
                     },
