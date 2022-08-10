@@ -86,7 +86,7 @@
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
-                        url: "/callComponent/roomSelect2/listRoom",
+                        url: "/app/room.queryRooms",
                         dataType: 'json',
                         delay: 250,
                         headers:{
