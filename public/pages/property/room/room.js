@@ -140,9 +140,8 @@
                         communityId: vc.getCurrentCommunity().communityId,
                     }
                 }
-                vc.http.get(
-                    'room',
-                    'loadUnits',
+                vc.http.apiGet(
+                    '/unit.queryUnits',
                     param,
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
@@ -184,9 +183,8 @@
                         floorId: _floorId
                     }
                 }
-                vc.http.get(
-                    'room',
-                    'loadFloor',
+                vc.http.apiGet(
+                    '/floor.queryFloors',
                     param,
                     function (json, res) {
                         let _json = JSON.parse(json);
