@@ -26,9 +26,8 @@
                     unitId:vc.component.deleteUnitInfo._currentUnitId,
                     communityId:vc.getCurrentCommunity().communityId
                 }
-                vc.http.post(
-                    'deleteUnit',
-                    'delete',
+                vc.http.apiPost(
+                    '/unit.deleteUnit',
                     JSON.stringify(param),
                     {
                         emulateJSON:true

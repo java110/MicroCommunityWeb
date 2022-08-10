@@ -208,9 +208,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editRoom',
-                    'update',
+                vc.http.apiPost(
+                    '/room.updateRoom',
                     JSON.stringify(vc.component.editShopsInfo), {
                         emulateJSON: true
                     },

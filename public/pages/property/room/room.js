@@ -24,7 +24,7 @@
                     roomId: '',
                     state: '',
                     section: '',
-                    roomType: '',
+                    roomType: '1010301',
                     roomSubType: '',
                     flag: ''
                 },
