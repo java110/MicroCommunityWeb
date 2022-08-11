@@ -18,9 +18,8 @@
             },
             deleteParkingSpace: function () {
                 vc.component.deleteParkingSpaceInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteParkingSpace',
-                    'delete',
+                vc.http.apiPost(
+                    '/parkingSpace.deleteParkingSpace',
                     JSON.stringify(vc.component.deleteParkingSpaceInfo),
                     {
                         emulateJSON: true

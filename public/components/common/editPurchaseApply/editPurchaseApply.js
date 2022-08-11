@@ -51,9 +51,8 @@ state:'',
                     return ;
                 }
 
-                vc.http.post(
-                    'editPurchaseApply',
-                    'update',
+                vc.http.apiPost(
+                    '/purchaseApply.updatePurchaseApply',
                     JSON.stringify(vc.component.editPurchaseApplyInfo),
                     {
                         emulateJSON:true

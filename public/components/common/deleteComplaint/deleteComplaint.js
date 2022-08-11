@@ -14,9 +14,8 @@
         methods: {
             deleteComplaint: function () {
                 vc.component.deleteComplaintInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteComplaint',
-                    'delete',
+                vc.http.apiPost(
+                    '/complaint.deleteComplaint',
                     JSON.stringify(vc.component.deleteComplaintInfo),
                     {
                         emulateJSON: true

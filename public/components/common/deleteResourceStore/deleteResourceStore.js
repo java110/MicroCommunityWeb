@@ -14,9 +14,8 @@
         methods: {
             deleteResourceStore: function () {
                 vc.component.deleteResourceStoreInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteResourceStore',
-                    'delete',
+                vc.http.apiPost(
+                    '/resourceStore.deleteResourceStore',
                     JSON.stringify(vc.component.deleteResourceStoreInfo), {
                         emulateJSON: true
                     },

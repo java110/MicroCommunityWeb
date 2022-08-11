@@ -121,9 +121,8 @@
                     return;
                 }
                 vc.component.addNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'addNoticeView',
-                    'save',
+                vc.http.apiPost(
+                    '/notice.saveNotice',
                     JSON.stringify(vc.component.addNoticeViewInfo),
                     {
                         emulateJSON: true

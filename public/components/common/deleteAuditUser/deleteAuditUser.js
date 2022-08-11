@@ -18,9 +18,8 @@
         methods: {
             deleteAuditUser: function () {
                 vc.component.deleteAuditUserInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteAuditUser',
-                    'delete',
+                vc.http.apiPost(
+                    '/auditUser.deleteAuditUser',
                     JSON.stringify(vc.component.deleteAuditUserInfo),
                     {
                         emulateJSON: true

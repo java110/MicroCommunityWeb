@@ -85,9 +85,8 @@
 
                 vc.component.addNoticeInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                vc.http.post(
-                    'addNotice',
-                    'save',
+                vc.http.apiPost(
+                    '/notice.saveNotice',
                     JSON.stringify(vc.component.addNoticeInfo),
                     {
                         emulateJSON: true

@@ -20,9 +20,8 @@
         methods:{
             deleteOrgCommunity:function(){
                 vc.component.deleteOrgCommunityInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteOrgCommunity',
-                    'delete',
+                vc.http.apiPost(
+                    '/org.deleteOrgCommunity',
                     JSON.stringify(vc.component.deleteOrgCommunityInfo),
                     {
                         emulateJSON:true

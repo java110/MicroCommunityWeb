@@ -86,15 +86,15 @@
                     return;
                 }
                 vc.component.editParkingSpaceInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'editParkingSpace',
-                    'changeParkingSpace',
+                vc.http.apiPost(
+                    '/parkingSpace.editParkingSpace',
                     JSON.stringify(vc.component.editParkingSpaceInfo),
                     {
                         emulateJSON: true
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        
                         if (res.status == 200) {
                             //关闭model
                             $('#editParkingSpaceModel').modal('hide');

@@ -14,9 +14,8 @@
         methods: {
             deletePurchaseApply: function () {
                 vc.component.deletePurchaseApplyInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deletePurchaseApply',
-                    'delete',
+                vc.http.apiPost(
+                    '/purchaseApply.deletePurchaseApply',
                     JSON.stringify(vc.component.deletePurchaseApplyInfo),
                     {
                         emulateJSON: true
