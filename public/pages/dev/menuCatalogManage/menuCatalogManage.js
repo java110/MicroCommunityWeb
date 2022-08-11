@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -17,35 +17,32 @@
                     seq: '',
                     isShow: '',
                     storeType: ''
-
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('menuCatalogManage', 'listMenuCatalog', function(_param) {
+        _initEvent: function () {
+            vc.on('menuCatalogManage', 'listMenuCatalog', function (_param) {
                 vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listMenuCatalogs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listMenuCatalogs: function(_page, _rows) {
-
+            _listMenuCatalogs: function (_page, _rows) {
                 vc.component.menuCatalogManageInfo.conditions.page = _page;
                 vc.component.menuCatalogManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.menuCatalogManageInfo.conditions
                 };
-
+                param.params.name = param.params.name.trim();
                 //发送get请求
                 vc.http.apiGet('/menuCatalog.listMenuCatalog',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _menuCatalogManageInfo = JSON.parse(json);
                         vc.component.menuCatalogManageInfo.total = _menuCatalogManageInfo.total;
                         vc.component.menuCatalogManageInfo.records = _menuCatalogManageInfo.records;
@@ -55,42 +52,48 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddMenuCatalogModal: function() {
+            _openAddMenuCatalogModal: function () {
                 vc.emit('addMenuCatalog', 'openAddMenuCatalogModal', {});
             },
-            _openEditMenuCatalogModel: function(_menuCatalog) {
+            _openEditMenuCatalogModel: function (_menuCatalog) {
                 vc.emit('editMenuCatalog', 'openEditMenuCatalogModal', _menuCatalog);
             },
-            _openDeleteMenuCatalogModel: function(_menuCatalog) {
+            _openDeleteMenuCatalogModel: function (_menuCatalog) {
                 vc.emit('deleteMenuCatalog', 'openDeleteMenuCatalogModal', _menuCatalog);
             },
-            _queryMenuCatalogMethod: function() {
+            //查询
+            _queryMenuCatalogMethod: function () {
                 vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetMenuCatalogMethod: function () {
+                vc.component.menuCatalogManageInfo.conditions.name = "";
+                vc.component.menuCatalogManageInfo.conditions.storeType = "";
+                vc.component.menuCatalogManageInfo.conditions.isShow = "";
+                vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.menuCatalogManageInfo.moreCondition) {
                     vc.component.menuCatalogManageInfo.moreCondition = false;
                 } else {
                     vc.component.menuCatalogManageInfo.moreCondition = true;
                 }
             },
-            _openMenuCatalogGroup: function(_menuCatalog) {
+            _openMenuCatalogGroup: function (_menuCatalog) {
                 vc.jumpToPage('/#/pages/dev/menuGroupCatalogManage?caId=' + _menuCatalog.caId + "&storeType=" + _menuCatalog.storeType + "&catalogName=" + _menuCatalog.name);
             },
-            _getStoreTypeName: function(_storeTypeCd) {
+            _getStoreTypeName: function (_storeTypeCd) {
                 // <option value="800900000001">运营团队</option>
                 // <option value="800900000002">代理商</option>
                 // <option value="800900000003">物业</option>
                 // <option value="800900000004">物流公司</option>
                 // <option value="800900000005">商家</option>
                 // <option value="800900000000">开发团队</option>
-
                 if (_storeTypeCd == '800900000001') {
                     return "运营团队";
                 } else if (_storeTypeCd == '800900000002') {
@@ -109,8 +112,6 @@
                     return "未知";
                 }
             }
-
-
         }
     });
 })(window.vc);

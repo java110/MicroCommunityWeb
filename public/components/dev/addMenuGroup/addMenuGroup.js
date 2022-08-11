@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string,
@@ -19,7 +18,6 @@
             }
         },
         _initMethod: function() {
-
         },
         _initEvent: function() {
             vc.on('addMenuGroup', 'openAddMenuGroupModal',
@@ -83,10 +81,8 @@
             saveMenuGroupInfo: function() {
                 if (!vc.component.addMenuGroupValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //vc.component.addMenuGroupInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -105,17 +101,13 @@
                             $('#addMenuGroupModel').modal('hide');
                             vc.component.clearAddMenuGroupInfo();
                             vc.emit('menuGroupManage', 'listMenuGroup', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddMenuGroupInfo: function() {
@@ -131,5 +123,4 @@
             }
         }
     });
-
 })(window.vc);

@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editMenuCatalogInfo: {
@@ -9,30 +8,28 @@
                 seq: '',
                 storeType: '',
                 url: '',
-                isShow: '',
-
+                isShow: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('editMenuCatalog', 'openEditMenuCatalogModal', function(_params) {
+        _initEvent: function () {
+            vc.on('editMenuCatalog', 'openEditMenuCatalogModal', function (_params) {
                 vc.component.refreshEditMenuCatalogInfo();
                 $('#editMenuCatalogModel').modal('show');
                 vc.copyObject(_params, vc.component.editMenuCatalogInfo);
             });
         },
         methods: {
-            editMenuCatalogValidate: function() {
+            editMenuCatalogValidate: function () {
                 return vc.validate.validate({
                     editMenuCatalogInfo: vc.component.editMenuCatalogInfo
                 }, {
                     'editMenuCatalogInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "名称不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "10",
@@ -40,10 +37,10 @@
                         },
                     ],
                     'editMenuCatalogInfo.icon': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "图片不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "图片不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "20",
@@ -51,10 +48,10 @@
                         },
                     ],
                     'editMenuCatalogInfo.seq': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "顺序不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "顺序不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "11",
@@ -62,10 +59,10 @@
                         },
                     ],
                     'editMenuCatalogInfo.storeType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "商户类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "商户类型不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "12",
@@ -73,10 +70,10 @@
                         },
                     ],
                     'editMenuCatalogInfo.url': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "页面不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "页面不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "256",
@@ -84,10 +81,10 @@
                         },
                     ],
                     'editMenuCatalogInfo.isShow': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "是否显示不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "是否显示不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "12",
@@ -99,38 +96,37 @@
                         param: "",
                         errInfo: "编号不能为空"
                     }]
-
                 });
             },
-            editMenuCatalog: function() {
+            editMenuCatalog: function () {
                 if (!vc.component.editMenuCatalogValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/menuCatalog.updateMenuCatalog',
                     JSON.stringify(vc.component.editMenuCatalogInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#editMenuCatalogModel').modal('hide');
                             vc.emit('menuCatalogManage', 'listMenuCatalog', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
-            refreshEditMenuCatalogInfo: function() {
+            refreshEditMenuCatalogInfo: function () {
                 vc.component.editMenuCatalogInfo = {
                     caId: '',
                     name: '',
@@ -138,11 +134,9 @@
                     seq: '',
                     storeType: '',
                     url: '',
-                    isShow: '',
-
+                    isShow: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);
