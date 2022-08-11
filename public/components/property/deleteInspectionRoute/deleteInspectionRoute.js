@@ -13,9 +13,8 @@
         methods: {
             deleteInspectionRoute: function() {
                 vc.component.deleteInspectionRouteInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteInspectionRoute',
-                    'delete',
+                vc.http.apiPost(
+                    '/inspectionRoute.deleteInspectionRoute',
                     JSON.stringify(vc.component.deleteInspectionRouteInfo), {
                         emulateJSON: true
                     },

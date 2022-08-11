@@ -20,9 +20,8 @@
         methods:{
             deleteCarBlackWhite:function(){
                 vc.component.deleteCarBlackWhiteInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteCarBlackWhite',
-                    'delete',
+                vc.http.apiPost(
+                    '/carBlackWhite.deleteCarBlackWhite',
                     JSON.stringify(vc.component.deleteCarBlackWhiteInfo),
                     {
                         emulateJSON:true

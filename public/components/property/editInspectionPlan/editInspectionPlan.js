@@ -181,9 +181,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editInspectionPlan',
-                    'update',
+                vc.http.apiPost(
+                    '/inspectionPlan.updateInspectionPlan',
                     JSON.stringify(vc.component.editInspectionPlanInfo),
                     {
                         emulateJSON: true

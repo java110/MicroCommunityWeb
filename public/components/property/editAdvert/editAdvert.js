@@ -192,9 +192,8 @@
                 } else {
                     vc.component.editAdvertInfo.photos = [];
                 }
-                vc.http.post(
-                    'editAdvert',
-                    'update',
+                vc.http.apiPost(
+                    '/advert.updateAdvert',
                     JSON.stringify(vc.component.editAdvertInfo), {
                         emulateJSON: true
                     },

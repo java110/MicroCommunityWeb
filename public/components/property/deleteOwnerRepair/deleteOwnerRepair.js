@@ -18,9 +18,8 @@
         methods: {
             deleteOwnerRepair: function () {
                 vc.component.deleteOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteOwnerRepair',
-                    'delete',
+                vc.http.apiPost(
+                    '/ownerRepair.deleteOwnerRepair',
                     JSON.stringify(vc.component.deleteOwnerRepairInfo),
                     {
                         emulateJSON: true
