@@ -1,4 +1,6 @@
-(function(vc) {
+(function (vc) {
+    var DEFAULT_PAGE = 1;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         propTypes: {
             emitChooseOrg: vc.propTypes.string,
@@ -9,23 +11,24 @@
                 orgs: [],
                 _currentOrgName: '',
                 orgLevel: '',
-                parentOrgId: '',
+                parentOrgId: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('chooseOrg', 'openChooseOrgModel', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('chooseOrg', 'openChooseOrgModel', function (_param) {
                 $('#chooseOrgModel').modal('show');
                 vc.copyObject(_param, vc.component.chooseOrgInfo);
                 vc.component._refreshChooseOrgInfo();
-                vc.component._loadAllOrgInfo(1, 10, '');
+                vc.component._loadAllOrgInfo(DEFAULT_PAGE, DEFAULT_ROWS, '');
             });
-            vc.on('chooseOrg', 'paginationPlus', 'page_event', function(_currentPage) {
-                vc.component._loadAllOrgInfo(_currentPage, 10);
+            vc.on('pagination', 'page_event', function (_currentPage) {
+                vc.component._loadAllOrgInfo(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _loadAllOrgInfo: function(_page, _row, _name) {
+            _loadAllOrgInfo: function (_page, _row, _name) {
                 var param = {
                     params: {
                         page: _page,
@@ -36,7 +39,6 @@
                         parentOrgId: vc.component.chooseOrgInfo.parentOrgId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/org.listOrgs',
                     param,
@@ -53,7 +55,7 @@
                     }
                 );
             },
-            chooseOrg: function(_org) {
+            chooseOrg: function (_org) {
                 if (_org.hasOwnProperty('name')) {
                     _org.orgName = _org.name;
                 }
@@ -63,13 +65,12 @@
                 });
                 $('#chooseOrgModel').modal('hide');
             },
-            queryOrgs: function() {
-                vc.component._loadAllOrgInfo(1, 10, vc.component.chooseOrgInfo._currentOrgName);
+            queryOrgs: function () {
+                vc.component._loadAllOrgInfo(DEFAULT_PAGE, DEFAULT_ROWS, vc.component.chooseOrgInfo._currentOrgName);
             },
-            _refreshChooseOrgInfo: function() {
+            _refreshChooseOrgInfo: function () {
                 vc.component.chooseOrgInfo._currentOrgName = "";
             }
         }
-
     });
 })(window.vc);

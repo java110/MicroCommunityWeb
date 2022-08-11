@@ -19,7 +19,8 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#deleteResourceStoreTypeModel').modal('hide');
                             if (vc.component.deleteResourceStoreTypeInfo.parentId != null && vc.component.deleteResourceStoreTypeInfo.parentId != '' &&
@@ -30,6 +31,8 @@
                             }
                             vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function(errInfo, error) {

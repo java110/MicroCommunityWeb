@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,16 +11,22 @@
                 idCard: '',
                 tel: '',
                 source: '',
-                sourceCity:'8630101',
+                sourceCity: '8630101',
                 sourceCityName: '',
                 backTime: '',
-                remark: '',
+                remark: ''
             }
         },
         _initMethod: function () {
             vc.initDateTime('addBackTime', function (_value) {
                 $that.addReportInfoBackCityInfo.backTime = _value;
             });
+            //防止多次点击时间插件失去焦点
+            document.getElementsByClassName('form-control addBackTime')[0].addEventListener('click', myfunc)
+
+            function myfunc(e) {
+                e.currentTarget.blur();
+            }
         },
         _initEvent: function () {
             vc.on('addReportInfoBackCity', 'openAddReportInfoBackCityModal', function () {
@@ -54,7 +59,12 @@
                         {
                             limit: "maxLength",
                             param: "64",
-                            errInfo: "身份证不能为空"
+                            errInfo: "身份证格式不对"
+                        },
+                        {
+                            limit: "idCard",
+                            param: "",
+                            errInfo: "不是有效的身份证号"
                         },
                     ],
                     'addReportInfoBackCityInfo.tel': [
@@ -111,20 +121,14 @@
                             param: "200",
                             errInfo: "备注内容不能超过200"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveReportInfoBackCityInfo: function () {
                 if (!vc.component.addReportInfoBackCityValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addReportInfoBackCityInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -132,7 +136,6 @@
                     $('#addReportInfoBackCityModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportInfoBackCity/saveReportInfoBackCity',
                     JSON.stringify(vc.component.addReportInfoBackCityInfo),
@@ -147,17 +150,15 @@
                             $('#addReportInfoBackCityModel').modal('hide');
                             vc.component.clearAddReportInfoBackCityInfo();
                             vc.emit('reportInfoBackCityManage', 'listReportInfoBackCity', {});
-
+                            vc.toast("上报成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddReportInfoBackCityInfo: function () {
@@ -166,14 +167,12 @@
                     idCard: '',
                     tel: '',
                     source: '',
-                    sourceCity:'8630101',
+                    sourceCity: '8630101',
                     sourceCityName: '',
                     backTime: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

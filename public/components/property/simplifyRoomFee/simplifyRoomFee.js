@@ -3,10 +3,12 @@
  **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 100;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             simplifyRoomFeeInfo: {
+                total: 0,
+                records: 1,
                 fees: [],
                 roomId: '',
                 roomName: '',
@@ -93,7 +95,8 @@
                         $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
                         vc.component.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees.sort($that._roomFeeCompare);
                         vc.emit('simplifyRoomFee', 'paginationPlus', 'init', {
-                            total: _feeConfigInfo.records,
+                            total: vc.component.simplifyRoomFeeInfo.records,
+                            dataCount: vc.component.simplifyRoomFeeInfo.total,
                             currentPage: _page
                         });
                     },
@@ -201,6 +204,8 @@
             clearSimplifyRoomFeeInfo: function() {
                 let _feeConfigs = $that.roomCreateFeeAddInfo.feeTypeCds;
                 $that.simplifyRoomFeeInfo = {
+                    total: 0,
+                    records: 1,
                     fees: [],
                     accounts: [],
                     roomId: '',

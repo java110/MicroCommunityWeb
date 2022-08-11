@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             addMappingInfo: {
@@ -7,15 +6,13 @@
                 name: '',
                 key: '',
                 value: '',
-                remark: '',
-
+                remark: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addMapping', 'openAddMappingModal', function() {
+        _initEvent: function () {
+            vc.on('addMapping', 'openAddMappingModal', function () {
                 $('#addMappingModel').modal('show');
             });
         },
@@ -25,10 +22,10 @@
                     addMappingInfo: vc.component.addMappingInfo
                 }, {
                     'addMappingInfo.domain': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "域不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "域不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "50",
@@ -36,10 +33,10 @@
                         },
                     ],
                     'addMappingInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "2,50",
@@ -47,10 +44,10 @@
                         },
                     ],
                     'addMappingInfo.key': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "键不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "键不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,100",
@@ -58,68 +55,54 @@
                         },
                     ],
                     'addMappingInfo.value': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "值不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "值不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,100",
                             errInfo: "值必须在1至100之间"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
-            saveMappingInfo: function() {
+            saveMappingInfo: function () {
                 if (!vc.component.addMappingValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //vc.component.addMappingInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.post(
                     'addMapping',
                     'save',
                     JSON.stringify(vc.component.addMappingInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                    function (json, res) {
                         if (res.status == 200) {
                             //关闭model
                             $('#addMappingModel').modal('hide');
                             vc.component.clearAddMappingInfo();
                             vc.emit('mappingManage', 'listMapping', {});
-
+                            vc.toast("添加成功");
                             return;
                         }
-                        vc.toast(json);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
-            clearAddMappingInfo: function() {
+            clearAddMappingInfo: function () {
                 vc.component.addMappingInfo = {
                     domain: 'DOMAIN.COMMON',
                     name: '',
                     key: '',
                     value: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

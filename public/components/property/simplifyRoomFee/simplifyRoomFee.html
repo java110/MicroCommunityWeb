@@ -194,6 +194,13 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="12">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="row">
             <div class="col-sm-5">
@@ -213,6 +220,9 @@
             </div>
             <div class="col-sm-5 float-right">
                 <vc:create namespace="simplifyRoomFee" path="frame/paginationPlus"></vc:create>
+            </div>
+            <div class="col-sm-5 float-right">
+                <vc:create path="frame/pagination"></vc:create>
             </div>
         </div>
     </div>

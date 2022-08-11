@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -16,37 +16,35 @@
                     id: '',
                     serviceCode: '',
                     name: '',
-                    queryModel: '',
-
+                    queryModel: ''
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component.serviceProvideManageInfo.conditions.serviceCode = vc.getParam("serviceCode");
             vc.component._listServiceProvides(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('serviceProvideManage', 'listServiceProvide', function(_param) {
+        _initEvent: function () {
+            vc.on('serviceProvideManage', 'listServiceProvide', function (_param) {
                 vc.component._listServiceProvides(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listServiceProvides(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listServiceProvides: function(_page, _rows) {
-
+            _listServiceProvides: function (_page, _rows) {
                 vc.component.serviceProvideManageInfo.conditions.page = _page;
                 vc.component.serviceProvideManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.serviceProvideManageInfo.conditions
                 };
-
+                param.params.name = param.params.name.trim();
+                param.params.serviceCode = param.params.serviceCode.trim();
                 //发送get请求
                 vc.http.apiGet('/serviceProvide.listServiceProvides',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _serviceProvideManageInfo = JSON.parse(json);
                         vc.component.serviceProvideManageInfo.total = _serviceProvideManageInfo.total;
                         vc.component.serviceProvideManageInfo.records = _serviceProvideManageInfo.records;
@@ -57,34 +55,38 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddServiceProvideModal: function() {
+            _openAddServiceProvideModal: function () {
                 //vc.emit('addServiceProvide','openAddServiceProvideModal',{});
                 vc.jumpToPage("/#/pages/dev/devServiceProvide");
             },
-            _openEditServiceProvideModel: function(_serviceProvide) {
+            _openEditServiceProvideModel: function (_serviceProvide) {
                 vc.emit('editServiceProvide', 'openEditServiceProvideModal', _serviceProvide);
             },
-            _openDeleteServiceProvideModel: function(_serviceProvide) {
+            _openDeleteServiceProvideModel: function (_serviceProvide) {
                 vc.emit('deleteServiceProvide', 'openDeleteServiceProvideModal', _serviceProvide);
             },
-            _queryServiceProvideMethod: function() {
+            _queryServiceProvideMethod: function () {
                 vc.component._listServiceProvides(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            _resetServiceProvideMethod: function () {
+                vc.component.serviceProvideManageInfo.conditions.id = "";
+                vc.component.serviceProvideManageInfo.conditions.serviceCode = "";
+                vc.component.serviceProvideManageInfo.conditions.name = "";
+                vc.component.serviceProvideManageInfo.conditions.queryModel = "";
+                vc.component._listServiceProvides(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.serviceProvideManageInfo.moreCondition) {
                     vc.component.serviceProvideManageInfo.moreCondition = false;
                 } else {
                     vc.component.serviceProvideManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

@@ -163,7 +163,6 @@
                     vc.component.inspectionTaskDetailManageInfo.moreCondition = true;
                 }
             },
-
             _listInspectionPlanInfo: function () {
                 var param = {
                     params: {
@@ -183,7 +182,6 @@
                     }
                 );
             },
-
             _listInspectionRouteInfo: function () {
                 var param = {
                     params: {
@@ -203,7 +201,6 @@
                     }
                 );
             },
-
             _listInspectionPointInfo: function () {
                 var param = {
                     params: {
@@ -223,7 +220,6 @@
                     }
                 );
             },
-
             openFile: function (_photo) {
                 vc.emit('viewImage', 'showImage', {
                     url: _photo.url

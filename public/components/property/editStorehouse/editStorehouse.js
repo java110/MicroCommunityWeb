@@ -98,8 +98,10 @@
                             //关闭model
                             $('#editStorehouseModel').modal('hide');
                             vc.emit('storehouseManage', 'listStorehouse', {});
-                            vc.toast("修改成功")
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

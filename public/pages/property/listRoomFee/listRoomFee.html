@@ -4,124 +4,194 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>{{listRoomCreateFeeInfo.roomName}}
-                        <span><span><vc:i18n name="费用" namespace="listRoomFee"></vc:i18n></span></span>
+                        <span>
+                            <span><vc:i18n name="费用" namespace="listRoomFee"></vc:i18n></span>
+                        </span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openProxyFeeModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_openProxyFeeModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             代收费用
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openAddMeterWaterModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_openAddMeterWaterModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             水电抄表
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeComboModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_openRoomCreateFeeComboModal()"
+                                v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             创建费用套餐
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_openRoomCreateFeeAddModal()"
+                                v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             创建费用
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_toOwnerPayFee()" v-if="listRoomCreateFeeInfo.hireOwnerFee == '0'">
                             欠费缴费
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()">
-                            返回
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                                v-on:click="_goBack()">返回
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                           data-page-size="10">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="费用项目" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="费用标识" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="费用类型" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="应收金额" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="建账时间" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="计费起始时间" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="计费结束时间" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="说明" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="状态" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><span><vc:i18n name="操作" namespace="listRoomFee"></vc:i18n></span></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="费用项目" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="费用标识" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="费用类型" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="应收金额" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="建账时间" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="计费起始时间" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="计费结束时间" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="说明" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="状态" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                            <th class="text-center">
+                                <span><span><vc:i18n name="操作" namespace="listRoomFee"></vc:i18n></span></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in listRoomCreateFeeInfo.fees">
-                                <td class="text-center">{{fee.feeName}}</td>
-                                <td class="text-center">{{fee.feeFlagName}}</td>
-                                <td class="text-center">{{fee.feeTypeCdName}}</td>
-                                <td class="text-center">{{fee.amountOwed}}</td>
-                                <td class="text-center">{{fee.startTime}}</td>
-                                <td class="text-center">{{_getEndTime(fee)}}</td>
-                                <td class="text-center">{{_getDeadlineTime(fee)}}</td>
-                                <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'">
-                                    <div>
-                                        <span><span><vc:i18n name="上期度数" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.preDegrees}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="本期度数" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.curDegrees}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span></span>：{{getOnePrice1(fee)}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
-                                </td>
-                                <td class="text-center" v-else-if="fee.computingFormula == '6006'">
-                                    <div>
-                                        <span><span><vc:i18n name="用量" namespace="listRoomFee"></vc:i18n></span></span>：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.squarePrice}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
-                                </td>
-                                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
-                                    <div>
-                                        <span><span><vc:i18n name="算法" namespace="listRoomFee"></vc:i18n></span></span>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="用量" namespace="listRoomFee"></vc:i18n></span></span>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
-                                </td>
-                                <td class="text-center" width="150" v-else-if="fee.computingFormula == '4004'">
-                                    <div>
-                                        <span><span><vc:i18n name="费用根据实际情况而定" namespace="listRoomFee"></vc:i18n></span></span>
-                                    </div>
-                                </td>
-                                <td class="text-center" v-else>
-                                    <div>
-                                        <span><span><vc:i18n name="面积" namespace="listRoomFee"></vc:i18n></span></span>：{{listRoomCreateFeeInfo.builtUpArea}}</div>
-                                    <div>
-                                        <span><span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.squarePrice}}</div>
-                                    <div v-if="fee.feeFlag == '1003006'">
-                                        <span><span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
-                                    <div v-else>
-                                        <span><span><vc:i18n name="固定费" namespace="listRoomFee"></vc:i18n></span></span>：{{fee.additionalAmount}}</div>
-                                </td>
-                                <td class="text-center">{{fee.stateName}}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)"><span><span><vc:i18n name="缴费" namespace="listRoomFee"></vc:i18n></span></span>
+                        <tr v-for="fee in listRoomCreateFeeInfo.fees">
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.feeFlagName}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.amountOwed}}</td>
+                            <td class="text-center">{{fee.startTime}}</td>
+                            <td class="text-center">{{_getEndTime(fee)}}</td>
+                            <td class="text-center">{{_getDeadlineTime(fee)}}</td>
+                            <td class="text-center"
+                                v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'">
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="上期度数" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.preDegrees}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="本期度数" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.curDegrees}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{getOnePrice1(fee)}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.additionalAmount}}
+                                </div>
+                            </td>
+                            <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="用量" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{_getAttrValue(fee.feeAttrs,'390006')}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.squarePrice}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.additionalAmount}}
+                                </div>
+                            </td>
+                            <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="算法" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{_getAttrValue(fee.feeAttrs,'390005')}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="用量" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{_getAttrValue(fee.feeAttrs,'390003')}}
+                                </div>
+                            </td>
+                            <td class="text-center" width="150" v-else-if="fee.computingFormula == '4004'">
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="费用根据实际情况而定" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="text-center" v-else>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="面积" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{listRoomCreateFeeInfo.builtUpArea}}
+                                </div>
+                                <div>
+                                    <span>
+                                        <span><vc:i18n name="单价" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.squarePrice}}
+                                </div>
+                                <div v-if="fee.feeFlag == '1003006'">
+                                    <span>
+                                        <span><vc:i18n name="附加费" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.additionalAmount}}
+                                </div>
+                                <div v-else>
+                                    <span>
+                                        <span><vc:i18n name="固定费" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>：{{fee.additionalAmount}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{fee.stateName}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
+                                        v-on:click="_payFee(fee)">
+                                    <span>
+                                        <span><vc:i18n name="缴费" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)"><span><span><vc:i18n name="缴费历史" namespace="listRoomFee"></vc:i18n></span></span></button>
-                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')" v-on:click="_deleteFee(fee)"><span><span><vc:i18n name="取消费用" namespace="listRoomFee"></vc:i18n></span></span>
+                                <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">
+                                    <span>
+                                        <span><vc:i18n name="缴费历史" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>
                                 </button>
-                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_editFee(fee)"><span><span><vc:i18n name="费用变更" namespace="listRoomFee"></vc:i18n></span></span>
+                                <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
+                                        v-on:click="_deleteFee(fee)">
+                                    <span>
+                                        <span><vc:i18n name="取消费用" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>
                                 </button>
-                                </td>
-                            </tr>
+                                <button class="btn btn-link btn-xs"
+                                        v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
+                                        v-on:click="_editFee(fee)">
+                                    <span>
+                                        <span><vc:i18n name="费用变更" namespace="listRoomFee"></vc:i18n></span>
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     <!-- 分页 -->

@@ -23,14 +23,15 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
-                        console.log(_json)
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteResourceSupplierModel').modal('hide');
                             vc.emit('resourceSupplierManage', 'listResourceSupplier', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

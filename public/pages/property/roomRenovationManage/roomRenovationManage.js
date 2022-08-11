@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -27,23 +27,23 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddRoomRenovationDate();
-            vc.getDict('room_renovation', "state", function(_data) {
+            vc.getDict('room_renovation', "state", function (_data) {
                 vc.component.roomRenovationManageInfo.states = _data;
             });
             vc.component._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('roomRenovationManage', 'listRoomRenovation', function(_param) {
+        _initEvent: function () {
+            vc.on('roomRenovationManage', 'listRoomRenovation', function (_param) {
                 vc.component._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRoomRenovations(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initAddRoomRenovationDate: function() {
+            _initAddRoomRenovationDate: function () {
                 $('.renovationTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -54,7 +54,7 @@
                     todayBtn: true
                 });
                 $('.renovationTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".renovationTime").val();
                         vc.component.roomRenovationManageInfo.conditions.renovationTime = value;
                     });
@@ -75,7 +75,7 @@
                     todayBtn: true
                 });
                 $('.start_time').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".start_time").val();
                         vc.component.roomRenovationManageInfo.conditions.renovationStartTime = value;
                     });
@@ -89,7 +89,7 @@
                     todayBtn: true
                 });
                 $('.end_time').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".end_time").val();
                         var start = Date.parse(new Date(vc.component.roomRenovationManageInfo.conditions.renovationStartTime));
                         var end = Date.parse(new Date(value));
@@ -113,7 +113,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listRoomRenovations: function(_page, _rows) {
+            _listRoomRenovations: function (_page, _rows) {
                 vc.component.roomRenovationManageInfo.conditions.page = _page;
                 vc.component.roomRenovationManageInfo.conditions.row = _rows;
                 var param = {
@@ -125,7 +125,7 @@
                 //发送get请求
                 vc.http.apiGet('/roomRenovation/queryRoomRenovation',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _roomRenovationManageInfo = JSON.parse(json);
                         vc.component.roomRenovationManageInfo.total = _roomRenovationManageInfo.total;
                         vc.component.roomRenovationManageInfo.records = _roomRenovationManageInfo.records;
@@ -136,13 +136,13 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置方法
-            _resetListRoomRenovations: function(_page, _rows) {
+            _resetListRoomRenovations: function (_page, _rows) {
                 vc.component.roomRenovationManageInfo.conditions.page = _page;
                 vc.component.roomRenovationManageInfo.conditions.row = _rows;
                 vc.component.roomRenovationManageInfo.conditions.roomName = '';
@@ -155,41 +155,41 @@
                 vc.component.roomRenovationManageInfo.conditions.renovationEndTime = '';
                 $that._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openAddRoomRenovationModal: function() {
+            _openAddRoomRenovationModal: function () {
                 vc.emit('addRoomRenovation', 'openAddRoomRenovationModal', vc.component.roomRenovationManageInfo.roomRenovations);
             },
             //修改
-            _openEditRoomRenovationModel: function(_roomRenovation) {
+            _openEditRoomRenovationModel: function (_roomRenovation) {
                 vc.emit('editRoomRenovation', 'openEditRoomRenovationModal', _roomRenovation);
             },
-            _openDeleteRoomRenovationModel: function(_roomRenovation) {
+            _openDeleteRoomRenovationModel: function (_roomRenovation) {
                 vc.emit('deleteRoomRenovation', 'openDeleteRoomRenovationModal', _roomRenovation);
             },
             //查询
-            _queryRoomRenovationMethod: function() {
+            _queryRoomRenovationMethod: function () {
                 vc.component._listRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetRoomRenovationMethod: function() {
+            _resetRoomRenovationMethod: function () {
                 vc.component._resetListRoomRenovations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openRoomRenovationFee: function(_room) {
+            _openRoomRenovationFee: function (_room) {
                 vc.jumpToPage('/#/pages/property/listRoomFee?roomId=' + _room.roomId);
             },
             //跟踪记录
-            _openRoomDecorationRecord: function(_room) {
+            _openRoomDecorationRecord: function (_room) {
                 vc.jumpToPage('/#/pages/property/listRoomDecorationRecord?roomId=' + _room.roomId +
                     '&rId=' + _room.rId + '&roomName=' + _room.roomName + '&state=' + _room.state + '&stateName=' + _room.stateName);
             },
             //装修完成
-            _openDecorationCompleted: function(_roomRenovation) {
+            _openDecorationCompleted: function (_roomRenovation) {
                 vc.emit('roomRenovationCompleted', 'openRoomRenovationCompletedModal', _roomRenovation);
             },
             //审核状态
-            _openToExamine: function(_room) {
+            _openToExamine: function (_room) {
                 vc.emit('roomToExamine', 'openRoomToExamineModal', _room);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.roomRenovationManageInfo.moreCondition) {
                     vc.component.roomRenovationManageInfo.moreCondition = false;
                 } else {
@@ -197,13 +197,13 @@
                 }
             },
             //装修验收
-            _openDecorationAcceptanceModel: function(_room) {
+            _openDecorationAcceptanceModel: function (_room) {
                 vc.emit('roomDecorationAcceptance', 'openRoomDecorationAcceptanceModal', _room);
             },
-            _openRoomRenovationDetail: function(_room) {
+            _openRoomRenovationDetail: function (_room) {
                 vc.jumpToPage('/#/pages/property/roomRenovationDetailManage?rId=' + _room.rId + '&roomName=' + _room.roomName);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.roomRenovationManageInfo.moreCondition) {
                     vc.component.roomRenovationManageInfo.moreCondition = false;
                 } else {

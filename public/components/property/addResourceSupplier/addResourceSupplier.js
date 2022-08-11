@@ -36,7 +36,7 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "255",
+                            param: "100",
                             errInfo: "供应商名称太长"
                         },
                     ],
@@ -48,8 +48,8 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "255",
-                            errInfo: "供应商名称太长"
+                            param: "100",
+                            errInfo: "供应商地址太长"
                         },
                     ],
                     'addResourceSupplierInfo.tel': [
@@ -61,7 +61,17 @@
                         {
                             limit: "maxLength",
                             param: "11",
-                            errInfo: "供应商联系方式太长"
+                            errInfo: "手机号格式错误"
+                        },
+                        {
+                            limit: "minLength",
+                            param: "11",
+                            errInfo: "手机号格式错误"
+                        },
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "手机号格式错误"
                         },
                     ],
                     'addResourceSupplierInfo.contactName': [
@@ -72,21 +82,21 @@
                         },
                         {
                             limit: "maxLength",
-                            param: "255",
+                            param: "50",
                             errInfo: "供应商联系人姓名太长"
                         },
                     ],
                     'addResourceSupplierInfo.accountBank': [
                         {
                             limit: "maxLength",
-                            param: "255",
+                            param: "150",
                             errInfo: "供应商开户行太长"
                         },
                     ],
                     'addResourceSupplierInfo.bankAccountNumber': [
                         {
                             limit: "maxLength",
-                            param: "255",
+                            param: "200",
                             errInfo: "供应商开户行账号太长"
                         },
                     ],
@@ -96,7 +106,7 @@
                             param: "512",
                             errInfo: "备注太长"
                         },
-                    ],
+                    ]
                 });
             },
             saveResourceSupplierInfo: function () {
@@ -125,9 +135,11 @@
                             $('#addResourceSupplierModel').modal('hide');
                             vc.component.clearAddResourceSupplierInfo();
                             vc.emit('resourceSupplierManage', 'listResourceSupplier', {});
+                            vc.toast("添加成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -142,7 +154,7 @@
                     contactName: '',
                     accountBank: '',
                     bankAccountNumber: '',
-                    remark: '',
+                    remark: ''
                 };
             }
         }

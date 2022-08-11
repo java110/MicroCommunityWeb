@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteReportInfoBackCityInfo: {
-
-            }
+            deleteReportInfoBackCityInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteReportInfoBackCity', 'openDeleteReportInfoBackCityModal', function (_params) {
-
                 vc.component.deleteReportInfoBackCityInfo = _params;
                 $('#deleteReportInfoBackCityModel').modal('show');
-
             });
         },
         methods: {
@@ -33,14 +27,15 @@
                             //关闭model
                             $('#deleteReportInfoBackCityModel').modal('hide');
                             vc.emit('reportInfoBackCityManage', 'listReportInfoBackCity', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteReportInfoBackCityModel: function () {
@@ -48,5 +43,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

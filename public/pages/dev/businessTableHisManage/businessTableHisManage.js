@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,8 +15,7 @@
                 conditions: {
                     action: '',
                     actionObj: '',
-                    businessTypeCd: '',
-
+                    businessTypeCd: ''
                 }
             }
         },
@@ -24,7 +23,6 @@
             vc.component._listBusinessTableHiss(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('businessTableHisManage', 'listBusinessTableHis', function (_param) {
                 vc.component._listBusinessTableHiss(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +32,13 @@
         },
         methods: {
             _listBusinessTableHiss: function (_page, _rows) {
-
                 vc.component.businessTableHisManageInfo.conditions.page = _page;
                 vc.component.businessTableHisManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.businessTableHisManageInfo.conditions
                 };
-
+                param.params.actionObj = param.params.actionObj.trim();
+                param.params.businessTypeCd = param.params.businessTypeCd.trim();
                 //发送get请求
                 vc.http.apiGet('/businessTableHis.listBusinessTableHis',
                     param,
@@ -69,7 +67,12 @@
             },
             _queryBusinessTableHisMethod: function () {
                 vc.component._listBusinessTableHiss(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            _resetBusinessTableHisMethod: function () {
+                vc.component.businessTableHisManageInfo.conditions.action = "";
+                vc.component.businessTableHisManageInfo.conditions.actionObj = "";
+                vc.component.businessTableHisManageInfo.conditions.businessTypeCd = "";
+                vc.component._listBusinessTableHiss(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.businessTableHisManageInfo.moreCondition) {
@@ -78,8 +81,6 @@
                     vc.component.businessTableHisManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

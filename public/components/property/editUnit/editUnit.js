@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editUnitInfo: {
@@ -13,11 +12,10 @@
                 unitArea: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('editUnit', 'openUnitModel', function(_params) {
+        _initEvent: function () {
+            vc.on('editUnit', 'openUnitModel', function (_params) {
                 vc.component.refreshEditUnitInfo();
                 $('#editUnitModel').modal('show');
                 // = _params;
@@ -26,7 +24,7 @@
             });
         },
         methods: {
-            editUnitValidate: function() {
+            editUnitValidate: function () {
                 return vc.validate.validate({
                     editUnitInfo: vc.component.editUnitInfo
                 }, {
@@ -41,10 +39,10 @@
                         errInfo: "单元编号不能为空"
                     }],
                     'editUnitInfo.layerCount': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "单元楼层高度不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "单元楼层高度不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -52,10 +50,10 @@
                         }
                     ],
                     'editUnitInfo.unitArea': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "建筑面积不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "建筑面积不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -71,11 +69,10 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注长度不能超过200位"
-                    }, ]
-
+                    }]
                 });
             },
-            editUnit: function() {
+            editUnit: function () {
                 if (!vc.component.editUnitValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -84,32 +81,32 @@
                     vc.toast("0单元为商铺特有，不允许修改");
                     return;
                 }
-
                 vc.http.apiPost(
                     '/unit.updateUnit',
                     JSON.stringify(vc.component.editUnitInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editUnitModel').modal('hide');
                             vc.emit('unit', 'loadUnit', {
                                 floorId: vc.component.editUnitInfo.floorId
                             });
-                            vc.emit('floorUnitTree','refreshTree',{floorId:vc.component.editUnitInfo.floorId});
+                            vc.emit('floorUnitTree', 'refreshTree', {floorId: vc.component.editUnitInfo.floorId});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-            refreshEditUnitInfo: function() {
+            refreshEditUnitInfo: function () {
                 vc.component.editUnitInfo = {
                     floorId: '',
                     unitId: '',
@@ -123,5 +120,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

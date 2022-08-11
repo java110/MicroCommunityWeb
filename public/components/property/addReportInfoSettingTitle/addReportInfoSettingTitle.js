@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,7 +15,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addReportInfoSettingTitle', 'openAddReportInfoSettingTitleModal', function (_param) {
@@ -30,18 +28,6 @@
                 return vc.validate.validate({
                     addReportInfoSettingTitleInfo: vc.component.addReportInfoSettingTitleInfo
                 }, {
-                    'addReportInfoSettingTitleInfo.titleType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "题目类型不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "题目类型格式错误"
-                        },
-                    ],
                     'addReportInfoSettingTitleInfo.title': [
                         {
                             limit: "required",
@@ -52,6 +38,18 @@
                             limit: "maxLength",
                             param: "256",
                             errInfo: "问卷题目太长"
+                        },
+                    ],
+                    'addReportInfoSettingTitleInfo.titleType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "题目类型不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "题目类型格式错误"
                         },
                     ],
                     'addReportInfoSettingTitleInfo.seq': [
@@ -71,7 +69,6 @@
             saveReportInfoSettingTitleInfo: function () {
                 if (!vc.component.addReportInfoSettingTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addReportInfoSettingTitleInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -95,18 +92,17 @@
                             $('#addReportInfoSettingTitleModel').modal('hide');
                             vc.component.clearAddReportInfoSettingTitleInfo();
                             vc.emit('reportInfoSettingTitleManage', 'listReportInfoSettingTitle', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
-                    });
+                    }
+                );
             },
             clearAddReportInfoSettingTitleInfo: function () {
                 vc.component.addReportInfoSettingTitleInfo = {
@@ -119,14 +115,11 @@
                 };
             },
             _changeAddTitleType: function () {
-
                 let _titleType = $that.addReportInfoSettingTitleInfo.titleType;
-
                 if (_titleType == '3003') {
                     $that.addReportInfoSettingTitleInfo.titleValues = [];
                     return;
                 }
-
                 $that.addReportInfoSettingTitleInfo.titleValues = [
                     {
                         qaValue: '',
@@ -143,8 +136,6 @@
                 );
             },
             _deleteTitleValue: function (_seq) {
-                console.log(_seq);
-
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.addReportInfoSettingTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
@@ -155,10 +146,8 @@
                         })
                     }
                 });
-
                 $that.addReportInfoSettingTitleInfo.titleValues = _newTitleValues;
             }
         }
     });
-
 })(window.vc);

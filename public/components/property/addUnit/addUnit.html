@@ -3,33 +3,46 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="添加单元" namespace="addUnit"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加单元" namespace="addUnit"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="单元编号" namespace="addUnit"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="单元编号" namespace="addUnit"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addUnitInfo.unitNum" type="text" :placeholder="vc.i18n('必填，请填写单元编号','addUnit')"
+                                    <input v-model="addUnitInfo.unitNum" type="text"
+                                           :placeholder="vc.i18n('必填，请填写单元编号','addUnit')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="总层数" namespace="addUnit"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="总层数" namespace="addUnit"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addUnitInfo.layerCount" type="number" :placeholder="vc.i18n('必填，请填写单元总层数','addUnit')"
+                                    <input v-model="addUnitInfo.layerCount" type="number"
+                                           :placeholder="vc.i18n('必填，请填写单元总层数','addUnit')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="建筑面积" namespace="addUnit"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="建筑面积" namespace="addUnit"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addUnitInfo.unitArea" type="text" :placeholder="vc.i18n('必填，请填写建筑面积','addUnit')"
+                                    <input v-model="addUnitInfo.unitArea" type="text"
+                                           :placeholder="vc.i18n('必填，请填写建筑面积','addUnit')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="电梯" namespace="addUnit"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="电梯" namespace="addUnit"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addUnitInfo.lift">
                                         <option selected disabled value="">{{vc.i18n('必填','addUnit')}}，请选择是否有电梯</option>
@@ -39,10 +52,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="addUnit"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="备注" namespace="addUnit"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea cols="5" v-model="addUnitInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','addUnit')"
-                                              class="form-control">
+                                    <textarea cols="5" v-model="addUnitInfo.remark" type="text"
+                                              :placeholder="vc.i18n('请填写备注信息','addUnit')" class="form-control">
                                     </textarea>
                                 </div>
                             </div>
@@ -51,7 +66,8 @@
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal"><span><vc:i18n name="取消" namespace="addUnit"></vc:i18n></span>
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="addUnit"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

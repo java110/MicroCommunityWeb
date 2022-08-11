@@ -201,6 +201,7 @@
                                 return;
                             }
                             vc.toast("创建收费成功，总共[" + _json.totalRoom + "]房屋，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
+                            vc.emit('listRoomFee', 'notify', {});
                             return;
                         }
                         vc.toast(json);
