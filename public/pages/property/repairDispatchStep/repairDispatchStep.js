@@ -110,9 +110,8 @@
                 vc.component.repairDispatchStepInfo.repairDispatchInfo.repairId = vc.component.repairDispatchStepInfo.repairId;
                 vc.component.repairDispatchStepInfo.repairDispatchInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                vc.http.post(
-                    'repairDispatchStepBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/ownerRepair.repairDispatchStep',
                     JSON.stringify(vc.component.repairDispatchStepInfo.repairDispatchInfo), {
                         emulateJSON: true
                     },

@@ -93,9 +93,8 @@
 				}
                 //这里写提交代码
                 console.log("提交审核",vc.component.companyInfo);
-                vc.http.post(
-                            'company',
-                            'saveCompanyInfo',
+                vc.http.apiPost(
+                            '/save.store.info',
                             JSON.stringify(vc.component.companyInfo),
                             {
                                 emulateJSON:true

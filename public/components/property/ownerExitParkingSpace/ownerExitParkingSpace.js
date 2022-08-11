@@ -16,9 +16,8 @@
             doOwnerExitParkingSpace:function(){
 
                 vc.component.exitParkingSpaceInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'ownerExitParkingSpace',
-                    'exit',
+                vc.http.apiPost(
+                    '/parkingSpace.exitParkingSpace',
                     JSON.stringify(vc.component.exitParkingSpaceInfo),
                     {
                         emulateJSON:true

@@ -106,9 +106,8 @@
                 }
                 vc.component.addRoomRepairInfo.communityId = vc.getCurrentCommunity().communityId;
 
-                vc.http.post(
-                    'addOwnerRepair',
-                    'save',
+                vc.http.apiPost(
+                    '/ownerRepair.saveOwnerRepair',
                     JSON.stringify(vc.component.addRoomRepairInfo),
                     {
                         emulateJSON: true

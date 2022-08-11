@@ -256,9 +256,8 @@
                     pgId: vc.component.privilegeInfo._currentPgId,
                     pIds: _pIds
                 };
-                vc.http.post(
-                    'addPrivilege',
-                    'addPrivilegeToPrivilegeGroup',
+                vc.http.apiPost(
+                    '/add.privilege.PrivilegeGroup',
                     JSON.stringify(_objData), {
                         emulateJSON: true
                     },
@@ -290,9 +289,8 @@
                     pgId: vc.component.privilegeInfo._currentPgId,
                     pIds: _pIds
                 };
-                vc.http.post(
-                    'deletePrivilege',
-                    'delete',
+                vc.http.apiPost(
+                    '/delete.privilege.PrivilegeGroup',
                     JSON.stringify(_objData), {
                         emulateJSON: true
                     },

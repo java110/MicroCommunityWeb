@@ -95,9 +95,8 @@
                     data: vc.component.sellParkingSpaceInfo.infos
                 }
 
-                vc.http.post(
-                    'sellParkingSpace',
-                    'sell',
+                vc.http.apiPost(
+                    '/parkingSpace.sellParkingSpace',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
