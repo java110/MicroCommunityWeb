@@ -115,9 +115,8 @@
                         appId: vc.component.serviceManageInfo.conditions.appId
                     }
                 }
-                vc.http.get(
-                    'serviceManage',
-                    'loadApp',
+                vc.http.apiGet(
+                    '/app.listApps',
                     param,
                     function(json, res) {
                         if (res.status == 200) {
