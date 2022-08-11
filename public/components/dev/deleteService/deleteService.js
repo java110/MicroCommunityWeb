@@ -14,9 +14,8 @@
         methods: {
             deleteService: function () {
                 vc.component.deleteServiceInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteService',
-                    'delete',
+                vc.http.apiPost(
+                    '/service.deleteService',
                     JSON.stringify(vc.component.deleteServiceInfo),
                     {
                         emulateJSON: true

@@ -17,32 +17,6 @@
             });
         },
         methods: {
-            //            _saveEnterCommunity:function(){
-            //                var param = {};
-            //                vc.component.storeEnterCommunityInfo.errorInfo = "";
-            //                vc.http.post(
-            //                    'storeEnterCommunity',
-            //                    'enterCommunity',
-            //                    JSON.stringify(param),
-            //                    {
-            //                        emulateJSON:true
-            //                     },
-            //                     function(json,res){
-            //                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-            //                        if(res.status == 200){
-            //                            //关闭model
-            //                            $('#storeEnterCommunityModel').modal('hide');
-            //                            vc.emit('enterCommunity','listMyCommunity',{});
-            //                            return ;
-            //                        }
-            //                        vc.component.storeEnterCommunityInfo.errorInfo = json;
-            //                     },
-            //                     function(errInfo,error){
-            //                        console.log('请求失败处理');
-            //
-            //                        vc.component.storeEnterCommunityInfo.errorInfo = errInfo;
-            //                     });
-            //            },
             listNoEnterCommunity: function() {
                 var param = {
                         params: {

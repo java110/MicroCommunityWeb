@@ -96,9 +96,8 @@
                     return;
                 }
                 vc.component.addActivitiesViewInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'addActivitiesView',
-                    'save',
+                vc.http.apiPost(
+                    '/activities.saveActivities',
                     JSON.stringify(vc.component.addActivitiesViewInfo), {
                         emulateJSON: true
                     },

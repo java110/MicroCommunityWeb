@@ -73,9 +73,8 @@
                     return;
                 }
                 //vc.component.addMappingInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'addMapping',
-                    'save',
+                vc.http.apiPost(
+                    '/mapping.saveMapping',
                     JSON.stringify(vc.component.addMappingInfo), {
                         emulateJSON: true
                     },

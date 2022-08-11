@@ -140,9 +140,8 @@
                     pIds:_pIds,
                     pFlag:vc.component.addStaffPrivilegeInfo._currentTab
                 };
-                vc.http.post(
-                    'addStaffPrivilege',
-                    'addStaffPrivilegeOrPrivilegeGroup',
+                vc.http.apiPost(
+                    '/add.privilege.userPrivilege',
                     JSON.stringify(param),
                     {
                         emulateJSON:true

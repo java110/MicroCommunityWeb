@@ -128,9 +128,8 @@
                     $('#addServiceImplModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addServiceImpl',
-                    'save',
+                vc.http.apiPost(
+                    '/serviceImpl.saveServiceImpl',
                     JSON.stringify(vc.component.addServiceImplInfo),
                     {
                         emulateJSON: true

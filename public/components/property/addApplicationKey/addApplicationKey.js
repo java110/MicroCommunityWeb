@@ -228,9 +228,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addApplicationKey',
-                    'save',
+                vc.http.apiPost(
+                    '/applicationKey.saveApplicationKey',
                     JSON.stringify(vc.component.addApplicationKeyInfo),
                     {
                         emulateJSON: true

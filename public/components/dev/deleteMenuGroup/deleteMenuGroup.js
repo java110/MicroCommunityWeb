@@ -13,9 +13,8 @@
         },
         methods: {
             deleteMenuGroup: function () {
-                vc.http.post(
-                    'deleteMenuGroup',
-                    'delete',
+                vc.http.apiPost(
+                    '/menuGroup.deleteMenuGroup',
                     JSON.stringify(vc.component.deleteMenuGroupInfo),
                     {
                         emulateJSON: true

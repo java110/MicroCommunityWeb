@@ -5,7 +5,8 @@
             changeFeeConfigInfo:{
                 configId:"",
                 squarePrice:"",
-                additionalAmount:""
+                additionalAmount:"",
+                feeTypeCd:'888800010001'
             }
         },
          _initMethod:function(){
@@ -60,9 +61,12 @@
                     return ;
                 }
                 vc.component.changeFeeConfigInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'configPropertyFee',
-                    'change',
+                let url = "/fee.saveFeeConfig";
+                if($that.changeFeeConfigInfo.configId){
+                    url = "/fee.updateFeeConfig";
+                }
+                vc.http.apiPost(
+                    url,
                     JSON.stringify(vc.component.changeFeeConfigInfo),
                     {
                         emulateJSON:true

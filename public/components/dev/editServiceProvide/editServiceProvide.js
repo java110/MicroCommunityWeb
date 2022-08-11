@@ -98,9 +98,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editServiceProvide',
-                    'update',
+                vc.http.apiPost(
+                    '/serviceProvide.updateServiceProvide',
                     JSON.stringify(vc.component.editServiceProvideInfo),
                     {
                         emulateJSON: true

@@ -20,7 +20,7 @@
         methods:{
             deleteSysDocument:function(){
                 vc.component.deleteSysDocumentInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
+                vc.http.apiPost(
                     '/sysDocument/deleteSysDocument',
                     JSON.stringify(vc.component.deleteSysDocumentInfo),
                     {

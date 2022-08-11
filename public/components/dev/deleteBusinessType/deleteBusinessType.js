@@ -19,9 +19,8 @@
             deleteOwner:function(){
 
                 vc.component.deleteBusinessTypeInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteBusinessType',
-                    'delete',
+                vc.http.apiPost(
+                    '/deleteBusinessType/delete',
                     JSON.stringify(vc.component.deleteBusinessTypeInfo),
                     {
                         emulateJSON:true

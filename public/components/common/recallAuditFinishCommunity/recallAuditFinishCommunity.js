@@ -24,9 +24,8 @@
                     state:'1000',
                     remark:'撤回审核'
                 };
-                vc.http.post(
-                    'recallAuditFinishCommunity',
-                    'recall',
+                vc.http.apiPost(
+                    '/community.auditEnterCommunity',
                     JSON.stringify(_paramObj),
                     {
                         emulateJSON:true

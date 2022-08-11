@@ -15,9 +15,8 @@
             },
             deletePrivilegeGroup:function(){
                 console.log("开始删除权限组：",vc.component.deletePrivilegeGroupInfo);
-                vc.http.post(
-                    'deletePrivilegeGroup',
-                    'delete',
+                vc.http.apiPost(
+                    '/delete.privilegeGroup.info',
                     JSON.stringify(vc.component.deletePrivilegeGroupInfo),
                     {
                         emulateJSON:true

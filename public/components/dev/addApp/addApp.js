@@ -80,9 +80,8 @@
                     $('#addAppModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addApp',
-                    'save',
+                vc.http.apiPost(
+                    '/app.saveApp',
                     JSON.stringify(vc.component.addAppInfo),
                     {
                         emulateJSON: true

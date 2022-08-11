@@ -56,9 +56,8 @@
                 var param = {
                     data: vc.component.serviceBindingInfo.infos
                 }
-                vc.http.post(
-                    'serviceBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/service.bindingService',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },

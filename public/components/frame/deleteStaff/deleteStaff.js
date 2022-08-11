@@ -15,9 +15,8 @@
             },
             deleteStaff: function () {
                 console.log("开始删除工号：", vc.component.deleteStaffInfo);
-                vc.http.post(
-                    'deleteStaff',
-                    'delete',
+                vc.http.apiPost(
+                    '/user.staff.delete',
                     JSON.stringify(vc.component.deleteStaffInfo),
                     {
                         emulateJSON: true
