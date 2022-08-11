@@ -16,9 +16,8 @@
             doOwnerExitRoom:function(){
 
                 vc.component.exitRoomInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'ownerExitRoom',
-                    'exit',
+                vc.http.apiPost(
+                    '/room.exitRoom',
                     JSON.stringify(vc.component.exitRoomInfo),
                     {
                         emulateJSON:true

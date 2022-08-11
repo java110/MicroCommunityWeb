@@ -43,11 +43,6 @@
                             errInfo: "单价不能为空"
                         },
                         {
-                            limit: "num",
-                            param: "",
-                            errInfo: "单价格式错误"
-                        },
-                        {
                             limit: "moneyModulus",
                             param: "",
                             errInfo: "单价填写有误，如1.5000"

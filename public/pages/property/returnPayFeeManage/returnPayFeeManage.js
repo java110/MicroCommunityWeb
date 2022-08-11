@@ -52,7 +52,7 @@
                 };
                 param.params.detailId = param.params.detailId.trim();
                 param.params.payerObjName = param.params.payerObjName.trim();
-                vc.http.apiGet('returnPayFee.listReturnPayFees',
+                vc.http.apiGet('/returnPayFee.listReturnPayFees',
                     param,
                     function (json) {
                         var _returnPayFeeManageInfo = JSON.parse(json);

@@ -63,9 +63,8 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 }
-                vc.http.get(
-                    'editRoom',
-                    'loadUnits',
+                vc.http.apiGet(
+                    '/unit.queryUnits',
                     param,
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
