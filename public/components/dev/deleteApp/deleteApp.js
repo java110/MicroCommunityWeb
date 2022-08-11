@@ -7,6 +7,8 @@
         },
         _initEvent: function () {
             vc.on('deleteApp', 'openDeleteAppModel', function (_params) {
+                console.log("12321")
+                console.log(_params)
                 vc.component.deleteAppInfo = _params;
                 $('#deleteAppModel').modal('show');
             });
@@ -15,7 +17,7 @@
             deleteApp: function () {
                 vc.component.deleteAppInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
-                    'deleteVisit',
+                    'deleteApp',
                     'delete',
                     JSON.stringify(vc.component.deleteAppInfo),
                     {

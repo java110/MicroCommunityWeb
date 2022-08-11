@@ -1,4 +1,5 @@
-<div id="editMenuGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editMenuGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,45 +10,63 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组名称" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="组名称" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMenuGroupInfo.name" type="text" :placeholder="vc.i18n('必填，请填写组名称','editMenuGroup')" class="form-control">
+                                    <input v-model="editMenuGroupInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写组名称','editMenuGroup')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">icon</label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMenuGroupInfo.icon" type="text" :placeholder="vc.i18n('必填，请填写icon','editMenuGroup')" class="form-control">
+                                    <input v-model="editMenuGroupInfo.icon" type="text"
+                                           :placeholder="vc.i18n('必填，请填写icon','editMenuGroup')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="标签" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="标签" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editMenuGroupInfo.label">
-                                        <option selected disabled value="">{{vc.i18n('可填，请选择标签','editMenuGroup')}}</option>
-                                        <option value="">{{vc.i18n('无','editMenuGroup')}}</option>
+                                        <option selected value="">
+                                            {{vc.i18n('可填，请选择标签','editMenuGroup')}}
+                                        </option>
+                                        <!--<option value="">{{vc.i18n('无','editMenuGroup')}}</option>-->
                                         <option value="HOT">HOT</option>
                                         <option value="TOP">TOP</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="序列" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="序列" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editMenuGroupInfo.seq" type="text" :placeholder="vc.i18n('必填，请填写序列','editMenuGroup')" class="form-control">
+                                    <input v-model="editMenuGroupInfo.seq" type="text"
+                                           :placeholder="vc.i18n('必填，请填写序列','editMenuGroup')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组类型" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="组类型" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editMenuGroupInfo.groupType">
-                                        <option selected disabled value="">{{vc.i18n('选填，请选择组类型','editMenuGroup')}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('选填，请选择组类型','editMenuGroup')}}
+                                        </option>
                                         <option value="P_WEB">WEB端</option>
                                         <option value="P_APP">APP端</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="归属商户" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属商户" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editMenuGroupInfo.storeType">
                                         <option selected value="">{{vc.i18n('请选择商户类型','editMenuGroup')}}</option>
@@ -62,17 +81,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="editMenuGroup"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="描述" namespace="editMenuGroup"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea :placeholder="vc.i18n('选填，请填写描述','editMenuGroup')" class="form-control" v-model="editMenuGroupInfo.description"></textarea>
+                                    <textarea :placeholder="vc.i18n('选填，请填写描述','editMenuGroup')" class="form-control"
+                                              v-model="editMenuGroupInfo.description">
+                                    </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editMenuGroup()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editMenuGroup"></vc:i18n></span>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editMenuGroup"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

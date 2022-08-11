@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editServiceProvideInfo: {
@@ -12,12 +11,10 @@
                 template: '',
                 proc: '',
                 javaScript: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editServiceProvide', 'openEditServiceProvideModal', function (_params) {
@@ -92,8 +89,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "提供ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editServiceProvide: function () {
@@ -101,7 +98,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.post(
                     'editServiceProvide',
                     'update',
@@ -115,13 +111,12 @@
                             //关闭model
                             $('#editServiceProvideModel').modal('hide');
                             vc.emit('serviceProvideManage', 'listServiceProvide', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -136,11 +131,9 @@
                     template: '',
                     proc: '',
                     javaScript: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -68,8 +68,10 @@
                                 vc.component.clearAddResourceStoreTypeInfo();
                                 vc.emit('resourceStoreTypeManage', 'listResourceStoreType', {});
                             }
-                            vc.toast("添加成功")
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                         vc.toast(_json.msg)
                     },

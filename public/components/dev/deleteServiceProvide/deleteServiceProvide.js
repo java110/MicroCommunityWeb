@@ -1,52 +1,44 @@
-(function(vc,vm){
-
+(function (vc, vm) {
     vc.extends({
-        data:{
-            deleteServiceProvideInfo:{
-
-            }
+        data: {
+            deleteServiceProvideInfo: {}
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-             vc.on('deleteServiceProvide','openDeleteServiceProvideModal',function(_params){
-
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteServiceProvide', 'openDeleteServiceProvideModal', function (_params) {
                 vc.component.deleteServiceProvideInfo = _params;
                 $('#deleteServiceProvideModel').modal('show');
-
             });
         },
-        methods:{
-            deleteServiceProvide:function(){
-                vc.component.deleteServiceProvideInfo.communityId=vc.getCurrentCommunity().communityId;
+        methods: {
+            deleteServiceProvide: function () {
+                vc.component.deleteServiceProvideInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.post(
                     'deleteServiceProvide',
                     'delete',
                     JSON.stringify(vc.component.deleteServiceProvideInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             //关闭model
                             $('#deleteServiceProvideModel').modal('hide');
-                            vc.emit('serviceProvideManage','listServiceProvide',{});
-                            return ;
+                            vc.emit('serviceProvideManage', 'listServiceProvide', {});
+                            vc.toast("删除成功");
+                            return;
                         }
-                        vc.toast(json);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
-                     });
+                    });
             },
-            closeDeleteServiceProvideModel:function(){
+            closeDeleteServiceProvideModel: function () {
                 $('#deleteServiceProvideModel').modal('hide');
             }
         }
     });
-
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);

@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -23,9 +23,8 @@
         _initMethod: function() {
             vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('menuGroupManage', 'listMenuGroup', function(_param) {
+        _initEvent: function () {
+            vc.on('menuGroupManage', 'listMenuGroup', function (_param) {
                 vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
@@ -33,14 +32,14 @@
             });
         },
         methods: {
-            _listMenuGroups: function(_page, _rows) {
-
+            _listMenuGroups: function (_page, _rows) {
                 vc.component.menuGroupManageInfo.conditions.page = _page;
                 vc.component.menuGroupManageInfo.conditions.row = _rows;
                 let param = {
                     params: vc.component.menuGroupManageInfo.conditions
                 };
-
+                param.params.name = param.params.name.trim();
+                param.params.icon = param.params.icon.trim();
                 //发送get请求
                 vc.http.apiGet('/menuGroup.listMenuGroups',
                     param,
@@ -69,9 +68,17 @@
             _openDeleteMenuGroupModel: function(_menuGroup) {
                 vc.emit('deleteMenuGroup', 'openDeleteMenuGroupModal', _menuGroup);
             },
-            _queryMenuGroupMethod: function() {
+            //查询
+            _queryMenuGroupMethod: function () {
                 vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetMenuGroupMethod: function () {
+                vc.component.menuGroupManageInfo.conditions.name = "";
+                vc.component.menuGroupManageInfo.conditions.icon = "";
+                vc.component.menuGroupManageInfo.conditions.label = "";
+                vc.component.menuGroupManageInfo.conditions.storeType = "";
+                vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function() {
                 if (vc.component.menuGroupManageInfo.moreCondition) {
@@ -87,7 +94,6 @@
                 // <option value="800900000004">物流公司</option>
                 // <option value="800900000005">商家</option>
                 // <option value="800900000000">开发团队</option>
-
                 if (_storeTypeCd == '800900000001') {
                     return "运营团队";
                 } else if (_storeTypeCd == '800900000002') {
@@ -106,8 +112,6 @@
                     return "未知";
                 }
             }
-
-
         }
     });
 })(window.vc);

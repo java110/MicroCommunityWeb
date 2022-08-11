@@ -5,35 +5,47 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{reportInfoBackCityManageInfo.moreCondition ==
-                            true?'隐藏':'更多'}}</button>
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{reportInfoBackCityManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入姓名','reportInfoBackCityManage')" v-model="reportInfoBackCityManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入姓名','reportInfoBackCityManage')"
+                                       v-model="reportInfoBackCityManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入身份证','reportInfoBackCityManage')" v-model="reportInfoBackCityManageInfo.conditions.idCard" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入身份证','reportInfoBackCityManage')"
+                                       v-model="reportInfoBackCityManageInfo.conditions.idCard" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入手机号','reportInfoBackCityManage')" v-model="reportInfoBackCityManageInfo.conditions.tel" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入手机号','reportInfoBackCityManage')"
+                                       v-model="reportInfoBackCityManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportInfoBackCityMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryReportInfoBackCityMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetReportInfoBackCityMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="重置" namespace="reportInfoBackCityManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" v-if="reportInfoBackCityManageInfo.moreCondition == true">
+                        <div class="col-sm-3" v-if="reportInfoBackCityManageInfo.moreCondition == true">
                             <select class="custom-select" v-model="reportInfoBackCityManageInfo.conditions.source">
                                 <option selected value="">{{vc.i18n('请选择来源地','reportInfoBackCityManage')}}</option>
                                 <option value="1001">{{vc.i18n('国内','reportInfoBackCityManage')}}</option>
@@ -41,8 +53,6 @@
                             </select>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -53,68 +63,96 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="返省信息" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddReportInfoBackCityModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            上报
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddReportInfoBackCityModal()">
+                            <i class="fa fa-plus"></i>上报
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_payBackCity()"><span><vc:i18n name="二维码" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_payBackCity()">
+                            <span><vc:i18n name="二维码" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name="姓名" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="身份证" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="手机号" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="来源地" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="城市名称" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="返回时间" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="操作" namespace="reportInfoBackCityManage"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="姓名" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="身份证" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="手机号" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="来源地" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="城市名称" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="返回时间" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="reportInfoBackCity in reportInfoBackCityManageInfo.reportInfoBackCitys">
-                                <td class="text-center">{{reportInfoBackCity.name}}</td>
-                                <td class="text-center">{{reportInfoBackCity.idCard}}</td>
-                                <td class="text-center">{{reportInfoBackCity.tel}}</td>
-                                <td class="text-center">{{reportInfoBackCity.source}}</td>
-                                <td class="text-center">{{reportInfoBackCity.sourceCityName}}</td>
-                                <td class="text-center">{{reportInfoBackCity.backTime}}</td>
-                                <td class="text-center">
-                                    <!-- <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditReportInfoBackCityModel(reportInfoBackCity)"><span><vc:i18n name="修改" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
-                                    </div> -->
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteReportInfoBackCityModel(reportInfoBackCity)"><span><vc:i18n name="删除" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
-                                    </div>
-
-                                </td>
-
-                            </tr>
+                        <tr v-for="reportInfoBackCity in reportInfoBackCityManageInfo.reportInfoBackCitys">
+                            <td class="text-center">{{reportInfoBackCity.name}}</td>
+                            <td class="text-center">{{reportInfoBackCity.idCard}}</td>
+                            <td class="text-center">{{reportInfoBackCity.tel}}</td>
+                            <td class="text-center">{{reportInfoBackCity.source == '1001' ? '国内' : '国外'}}</td>
+                            <td class="text-center">{{reportInfoBackCity.sourceCityName}}</td>
+                            <td class="text-center">{{reportInfoBackCity.backTime}}</td>
+                            <td class="text-center">
+                                <!-- <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                        v-on:click="_openEditReportInfoBackCityModel(reportInfoBackCity)">
+                                        <span><vc:i18n name="修改" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                                    </button>
+                                </div> -->
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteReportInfoBackCityModel(reportInfoBackCity)">
+                                        <span><vc:i18n name="删除" namespace="reportInfoBackCityManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title"><span><vc:i18n name="外来人员登记" namespace="reportInfoBackCityManage"></vc:i18n></span></h5>
-                                                </div>
-                                                <div class="modal-body text-center">
-                                                    <div id="qrcode" style="width:200px; height:200px; "></div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" @click="_back()"><span><vc:i18n name="关闭" namespace="reportInfoBackCityManage"></vc:i18n></span></button>
-                                                </div>
+                        <tr>
+                            <td colspan="7">
+                                <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    <span>
+                                                        <vc:i18n name="外来人员登记" namespace="reportInfoBackCityManage">
+                                                        </vc:i18n>
+                                                    </span>
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div id="qrcode" style="width:200px; height:200px; "></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" @click="_back()">
+                                                    <span>
+                                                        <vc:i18n name="关闭" namespace="reportInfoBackCityManage">
+                                                        </vc:i18n>
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -123,11 +161,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addReportInfoBackCity" callBackListener="" callBackFunction=""></vc:create>
     <!-- <vc:create path="property/editReportInfoBackCity"></vc:create> -->
     <vc:create path="property/deleteReportInfoBackCity"></vc:create>
-
 </div>

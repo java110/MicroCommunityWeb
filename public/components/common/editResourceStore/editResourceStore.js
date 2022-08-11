@@ -183,13 +183,16 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        var _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editResourceStoreModel').modal('hide');
                             vc.emit('resourceStoreManage', 'listResourceStore', {});
+                            vc.toast("修改成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

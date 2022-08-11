@@ -13,8 +13,7 @@
                 storeType: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
         _initEvent: function() {
             vc.on('editMenuGroup', 'openEditMenuGroupModal',
@@ -28,9 +27,10 @@
         methods: {
             editMenuGroupValidate: function() {
                 return vc.validate.validate({
-                    editMenuGroupInfo: vc.component.editMenuGroupInfo
-                }, {
-                    'editMenuGroupInfo.name': [{
+                        editMenuGroupInfo: vc.component.editMenuGroupInfo
+                    },
+                    {
+                        'editMenuGroupInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "组名称不能为空"
@@ -46,18 +46,20 @@
                             param: "",
                             errInfo: "icon不能为空"
                         },
-                        {
-                            limit: "maxin",
-                            param: "2,20",
-                            errInfo: "icon必须在2至20字符之间"
-                        },
-                    ],
-                    'editMenuGroupInfo.label': [{
-                        limit: "maxLength",
-                        param: "20",
-                        errInfo: "标签错误"
-                    }, ],
-                    'editMenuGroupInfo.seq': [{
+                            {
+                                limit: "maxin",
+                                param: "2,20",
+                                errInfo: "icon必须在2至20字符之间"
+                            },
+                        ],
+                        'editMenuGroupInfo.label': [
+                            {
+                                limit: "maxLength",
+                                param: "20",
+                                errInfo: "标签错误"
+                            },
+                        ],
+                        'editMenuGroupInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "序列不能为空"
@@ -96,13 +98,12 @@
                             //关闭model
                             $('#editMenuGroupModel').modal('hide');
                             vc.emit('menuGroupManage', 'listMenuGroup', {});
+                            vc.toast("修改成功");
                             return;
                         }
-                        vc.toast(json);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -120,5 +121,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

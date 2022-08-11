@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportInfoSettingInfo: {
@@ -24,6 +23,18 @@
                     $that.editReportInfoSettingInfo.endTime = '';
                 }
             });
+            //防止多次点击时间插件失去焦点
+            document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
+
+            function myfunc(e) {
+                e.currentTarget.blur();
+            }
+
+            document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+            function myfunc(e) {
+                e.currentTarget.blur();
+            }
         },
         _initEvent: function () {
             vc.on('editReportInfoSetting', 'openEditReportInfoSettingModal', function (_params) {
@@ -98,8 +109,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "问卷ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportInfoSetting: function () {
@@ -107,7 +118,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportInfoSetting/updateReportInfoSetting',
                     JSON.stringify(vc.component.editReportInfoSettingInfo),
@@ -121,15 +131,17 @@
                             //关闭model
                             $('#editReportInfoSettingModel').modal('hide');
                             vc.emit('reportInfoSettingManage', 'listReportInfoSetting', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-                    });
+                    }
+                );
             },
             refreshEditReportInfoSettingInfo: function () {
                 vc.component.editReportInfoSettingInfo = {
@@ -143,5 +155,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

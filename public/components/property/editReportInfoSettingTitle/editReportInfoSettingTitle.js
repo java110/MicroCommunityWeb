@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportInfoSettingTitleInfo: {
@@ -9,18 +8,15 @@
                 seq: '',
                 settingId: '',
                 titleValues: []
-                
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editReportInfoSettingTitle', 'openEditReportInfoSettingTitleModal', function (_params) {
                 vc.component.refreshEditReportInfoSettingTitleInfo();
                 $('#editReportInfoSettingTitleModel').modal('show');
                 vc.copyObject(_params, vc.component.editReportInfoSettingTitleInfo);
-                console.log(_params);
                 $that.editReportInfoSettingTitleInfo.titleValues = _params.reportInfoSettingTitleValueDtos;
                 vc.component.editReportInfoSettingTitleInfo.communityId = vc.getCurrentCommunity().communityId;
             });
@@ -71,8 +67,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "题目ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportInfoSettingTitle: function () {
@@ -80,7 +76,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportInfoSettingTitle/updateSettingTitle',
                     JSON.stringify(vc.component.editReportInfoSettingTitleInfo),
@@ -94,13 +89,14 @@
                             //关闭model
                             $('#editReportInfoSettingTitleModel').modal('hide');
                             vc.emit('reportInfoSettingTitleManage', 'listReportInfoSettingTitle', {});
+                            vc.toast("修改成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -123,8 +119,6 @@
                 );
             },
             _deleteEditTitleValue: function (_seq) {
-                console.log(_seq);
-
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.editReportInfoSettingTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
@@ -135,10 +129,8 @@
                         })
                     }
                 });
-
                 $that.editReportInfoSettingTitleInfo.titleValues = _newTitleValues;
             }
         }
     });
-
 })(window.vc, window.vc.component);

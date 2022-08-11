@@ -22,11 +22,15 @@
                     userCode: '',
                     state: '',
                     feeTypeCd: '',
-                    payerObjName: ''
+                    payerObjName: '',
+                    startTime: '',
+                    endTime: ''
                 }
             }
         },
         _initMethod: function () {
+            // 初始化方法（时间插件）
+            vc.component._initReturnPayFeeManageDateInfo();
             vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.getDict('return_pay_fee', "state", function (_data) {
                 vc.component.returnPayFeeManageInfo.returnPayFeeStates = _data;
@@ -44,6 +48,56 @@
             });
         },
         methods: {
+            // 新增初始化时间插件方法
+            _initReturnPayFeeManageDateInfo: function () {
+                $('.startTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.startTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".startTime").val();
+                        vc.component.returnPayFeeManageInfo.conditions.startTime = value;
+                    });
+                $('.endTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.endTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".endTime").val();
+                        var start = Date.parse(new Date(vc.component.returnPayFeeManageInfo.conditions.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间")
+                            $(".endTime").val('')
+                        } else {
+                            vc.component.returnPayFeeManageInfo.conditions.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control startTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control endTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _listReturnPayFees: function (_page, _rows) {
                 vc.component.returnPayFeeManageInfo.conditions.page = _page;
                 vc.component.returnPayFeeManageInfo.conditions.row = _rows;
@@ -94,6 +148,8 @@
                 vc.component.returnPayFeeManageInfo.conditions.feeTypeCd = "";
                 vc.component.returnPayFeeManageInfo.conditions.state = "";
                 vc.component.returnPayFeeManageInfo.conditions.payerObjName = "";
+                vc.component.returnPayFeeManageInfo.conditions.startTime = "";
+                vc.component.returnPayFeeManageInfo.conditions.endTime = "";
                 vc.component._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _auditReturnPayFeeState: function (_auditInfo) {
@@ -122,6 +178,9 @@
                 } else {
                     vc.component.returnPayFeeManageInfo.moreCondition = true;
                 }
+            },
+            _exportFee: function () {
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=returnPayFeeManage&' + vc.objToGetParam($that.returnPayFeeManageInfo.conditions));
             },
             _openReturnPayFeeAuditModel(_payFee) {
                 vc.component.returnPayFeeManageInfo.returnPayFee = _payFee;

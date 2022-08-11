@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -19,8 +19,9 @@
                 urlOwnerId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             if (vc.notNull(vc.getParam("roomId"))) {
+                $that.listRoomCreateFeeInfo.roomId = vc.getParam("roomId");
                 $that._listRoom(vc.getParam("roomId"));
             }
             if (vc.notNull(vc.getParam("hireOwnerFee"))) {
@@ -29,18 +30,20 @@
             if (vc.notNull(vc.getParam('ownerId'))) {
                 $that.listRoomCreateFeeInfo.urlOwnerId = vc.getParam("ownerId");
             }
+            vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('listRoomFee', 'notify', function(_param) {
+        _initEvent: function () {
+            vc.on('listRoomFee', 'notify', function (_param) {
                 vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     vc.component._loadListRoomCreateFeeInfo(_currentPage, DEFAULT_ROWS);
-                });
+                }
+            );
         },
         methods: {
-            getOnePrice1: function(fee) {
+            getOnePrice1: function (fee) {
                 let _price = fee.mwPrice;
                 if (!_price) {
                     return fee.squarePrice;
@@ -50,20 +53,21 @@
                 }
                 return fee.squarePrice;
             },
-            _loadListRoomCreateFeeInfo: function(_page, _row) {
+            _loadListRoomCreateFeeInfo: function (_page, _row) {
                 var param = {
                     params: {
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId
-                            // ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
+                        payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
+                        payerObjType: '3333'
+                        // ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/fee.listFee',
                     param,
-                    function(json) {
+                    function (json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.listRoomCreateFeeInfo.total = _feeConfigInfo.total;
                         vc.component.listRoomCreateFeeInfo.records = _feeConfigInfo.records;
@@ -74,24 +78,24 @@
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _payFee: function(_fee) {
+            _payFee: function (_fee) {
                 _fee.roomName = $that.listRoomCreateFeeInfo.roomName;
                 _fee.builtUpArea = $that.listRoomCreateFeeInfo.builtUpArea;
                 vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
             },
-            _editFee: function(_fee) {
+            _editFee: function (_fee) {
                 vc.emit('editFee', 'openEditFeeModal', _fee);
             },
-            _payFeeHis: function(_fee) {
+            _payFeeHis: function (_fee) {
                 _fee.builtUpArea = $that.listRoomCreateFeeInfo.builtUpArea;
                 vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
-            _deleteFee: function(_fee) {
+            _deleteFee: function (_fee) {
                 // var dateA = new Date(_fee.startTime);
                 // var dateB = new Date();
                 // if(dateA.setHours(0, 0, 0, 0) != dateB.setHours(0, 0, 0, 0)){
@@ -103,35 +107,35 @@
                     feeId: _fee.feeId
                 });
             },
-            _refreshListRoomCreateFeeInfo: function() {
+            _refreshListRoomCreateFeeInfo: function () {
                 vc.component.listRoomCreateFeeInfo._currentFeeConfigName = "";
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             },
-            _toOwnerPayFee: function() {
+            _toOwnerPayFee: function () {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.listRoomCreateFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.listRoomCreateFeeInfo.roomName);
             },
-            _openRoomCreateFeeAddModal: function() {
+            _openRoomCreateFeeAddModal: function () {
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
                     isMore: false,
                     room: $that.listRoomCreateFeeInfo
                 });
             },
-            _openRoomCreateFeeComboModal: function() {
+            _openRoomCreateFeeComboModal: function () {
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
                     $that.listRoomCreateFeeInfo.roomId +
                     "&payerObjName=" + $that.listRoomCreateFeeInfo.roomName +
                     "&payerObjType=3333")
             },
-            _openAddMeterWaterModal: function() {
+            _openAddMeterWaterModal: function () {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.listRoomCreateFeeInfo.roomId,
                     roomName: $that.listRoomCreateFeeInfo.roomName,
                     ownerName: $that.listRoomCreateFeeInfo.ownerName
                 });
             },
-            _getAttrValue: function(_attrs, _specCd) {
+            _getAttrValue: function (_attrs, _specCd) {
                 let _value = "";
                 _attrs.forEach(item => {
                     if (item.specCd == _specCd) {
@@ -141,7 +145,7 @@
                 });
                 return _value;
             },
-            _getDeadlineTime: function(_fee) {
+            _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
@@ -150,20 +154,20 @@
                 }
                 return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
             },
-            _getEndTime: function(_fee) {
+            _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 return vc.dateFormat(_fee.endTime);
             },
-            _openProxyFeeModal: function() { //创建代收费用
+            _openProxyFeeModal: function () { //创建代收费用
                 vc.emit('addProxyFee', 'openAddProxyFeeModal', {
                     roomId: $that.listRoomCreateFeeInfo.roomId,
                     roomName: $that.listRoomCreateFeeInfo.roomName,
                     ownerName: $that.listRoomCreateFeeInfo.ownerName
                 });
             },
-            _listRoom: function(roomId) {
+            _listRoom: function (roomId) {
                 let param = {
                     params: {
                         page: 1,
@@ -175,7 +179,7 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listRoomsWhereFeeSet',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         if (listRoomData.total < 1) {
                             return;
@@ -189,7 +193,7 @@
                         // 换存搜索条件
                         vc.emit('roomCreateFee', 'notify', {});
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

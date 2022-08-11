@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -32,32 +32,32 @@
                 storehouses: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //与字典表关联
-            vc.getDict('allocation_storehouse_apply', "state", function(_data) {
+            vc.getDict('allocation_storehouse_apply', "state", function (_data) {
                 vc.component.allocationStorehouseManageInfo.states = _data;
             });
             //与字典表关联
-            vc.getDict('allocation_storehouse_apply', "apply_type", function(_data) {
+            vc.getDict('allocation_storehouse_apply', "apply_type", function (_data) {
                 vc.component.allocationStorehouseManageInfo.applyTypes = _data;
             });
             vc.component._initDate();
             vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listStorehouses();
         },
-        _initEvent: function() {
-            vc.on('allocationStorehouse', 'listAllocationStorehouse', function(_param) {
+        _initEvent: function () {
+            vc.on('allocationStorehouse', 'listAllocationStorehouse', function (_param) {
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('allocationStorehouseManage', 'listAllocationStorehouse', function(_param) {
+            vc.on('allocationStorehouseManage', 'listAllocationStorehouse', function (_param) {
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAllocationStorehouses(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function() {
+            _initDate: function () {
                 $(".startTime").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -77,12 +77,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".startTime").val();
                         vc.component.allocationStorehouseManageInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".endTime").val();
                         vc.component.allocationStorehouseManageInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.allocationStorehouseManageInfo.conditions.startTime))
@@ -106,7 +106,7 @@
                 }
             },
             //查询方法
-            _listAllocationStorehouses: function(_page, _rows) {
+            _listAllocationStorehouses: function (_page, _rows) {
                 vc.component.allocationStorehouseManageInfo.conditions.page = _page;
                 vc.component.allocationStorehouseManageInfo.conditions.row = _rows;
                 vc.component.allocationStorehouseManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -121,7 +121,7 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStorehouseApplys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _allocationStorehouseManageInfo = JSON.parse(json);
                         vc.component.allocationStorehouseManageInfo.total = _allocationStorehouseManageInfo.total;
                         vc.component.allocationStorehouseManageInfo.records = _allocationStorehouseManageInfo.records;
@@ -132,17 +132,17 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryAllocationStorehouseMethod: function() {
+            _queryAllocationStorehouseMethod: function () {
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAllocationStorehouseMethod: function() {
+            _resetAllocationStorehouseMethod: function () {
                 vc.component.allocationStorehouseManageInfo.conditions.applyId = "";
                 vc.component.allocationStorehouseManageInfo.conditions.startTime = "";
                 vc.component.allocationStorehouseManageInfo.conditions.endTime = "";
@@ -154,7 +154,7 @@
                 vc.component.allocationStorehouseManageInfo.conditions.applyType = "";
                 vc.component._listAllocationStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listStorehouses: function(_page, _rows) {
+            _listStorehouses: function (_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -165,27 +165,27 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         vc.component.allocationStorehouseManageInfo.storehouses = _storehouseManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //取消调拨
-            _openDeleteResourceStoreModel: function(_resourceStore) {
+            _openDeleteResourceStoreModel: function (_resourceStore) {
                 vc.emit('deleteStorehouseManage', 'openDeleteStorehouseManageModal', _resourceStore);
             },
             //详情
-            _toDetail: function(_item) {
+            _toDetail: function (_item) {
                 vc.jumpToPage("/#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId + '&applyType=' + _item.applyType + '&applyTypeName=' + _item.applyTypeName);
             },
-            _openAllocationStorehouseApplyModal: function() {
+            _openAllocationStorehouseApplyModal: function () {
                 vc.jumpToPage("/#/pages/common/allocationStorehouseApplyManage");
             },
-            _openRunWorkflowImage: function(_purchaseApply) {
+            _openRunWorkflowImage: function (_purchaseApply) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -195,7 +195,7 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listRunWorkflowImage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
@@ -205,19 +205,19 @@
                             url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.allocationStorehouseManageInfo.moreCondition) {
                     vc.component.allocationStorehouseManageInfo.moreCondition = false;
                 } else {
                     vc.component.allocationStorehouseManageInfo.moreCondition = true;
                 }
             },
-            _exportExcel: function() {
+            _exportExcel: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationStorehouse&' + vc.objToGetParam($that.allocationStorehouseManageInfo.conditions));
             }
         }

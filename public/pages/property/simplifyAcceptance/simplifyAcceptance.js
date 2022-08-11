@@ -38,7 +38,7 @@
                 timer: {}
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             if (!vc.isBack()) {
                 return;
             }
@@ -67,7 +67,6 @@
                 $that.simplifyAcceptanceInfo.searchValue = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
                 $that._doSearch();
             });
-
             vc.on('simplifyAcceptance', 'selectRoom', function (_param) {
                 $that.simplifyAcceptanceInfo.searchType = '1';
                 $that.simplifyAcceptanceInfo.searchValue = _param.roomName;

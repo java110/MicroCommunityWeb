@@ -6,6 +6,12 @@
                     <h5>
                         <span><vc:i18n name="查询条件" namespace="returnPayFeeManage"></vc:i18n></span>
                     </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{returnPayFeeManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -50,6 +56,19 @@
                                        v-model="returnPayFeeManageInfo.conditions.payerObjName" class=" form-control">
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入申请开始时间','returnPayFeeManage')"
+                                       v-model="returnPayFeeManageInfo.conditions.startTime"
+                                       class="form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入申请结束时间','returnPayFeeManage')"
+                                       v-model="returnPayFeeManageInfo.conditions.endTime" class="form-control endTime">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,6 +81,12 @@
                     <h5>
                         <span><vc:i18n name="退费申请单" namespace="returnPayFeeManage"></vc:i18n></span>
                     </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="returnPayFeeManage"></vc:i18n></span>
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">

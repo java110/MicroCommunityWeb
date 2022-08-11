@@ -32,7 +32,6 @@
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listStaffs(_currentPage, DEFAULT_ROWS);
             });
-
         },
         methods: {
             _listStaffs: function(_page, _row) {
@@ -63,7 +62,6 @@
                     }
                 );
             },
-
             _queryOrgMethod: function() {
                 vc.component._listStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             },

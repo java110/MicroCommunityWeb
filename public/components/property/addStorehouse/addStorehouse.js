@@ -110,8 +110,10 @@
                             $('#addStorehouseModel').modal('hide');
                             vc.component.clearAddStorehouseInfo();
                             vc.emit('storehouseManage', 'listStorehouse', {});
-                            vc.toast("添加成功")
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {
