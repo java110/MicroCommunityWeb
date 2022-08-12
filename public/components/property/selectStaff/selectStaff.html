@@ -7,39 +7,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="row">
-                    <div class="col-md-4 border-right padding-0">
+                    <div class="col-md-6 border-right padding-0">
                         <div class="text-center">
-                            <span><vc:i18n name="公司信息" namespace="selectStaff"></vc:i18n></span>
+                            <span><vc:i18n name="组织信息" namespace="selectStaff"></vc:i18n></span>
                         </div>
-                        <div class=" staff padding padding-top-xs">
-                            <div class=" padding overflow-hidden"
-                                 :class="{'select':selectStaffInfo.curCompanyId == item.orgId}"
-                                 v-for="(item,index) in selectStaffInfo.companys" @click="_changeCompany(item)"
-                                 style="cursor:pointer">
-                                <span>
-                                    <i class="fa fa-building-o margin-right-xs" aria-hidden="true"></i>
-                                    {{item.orgName}}
-                                </span>
-                            </div>
+                        <div class="staff">
+                            <vc:create path="frame/orgTreeShow" callBackListener="selectStaff"></vc:create>
                         </div>
                     </div>
-                    <div class="col-md-4 border-right padding-0">
-                        <div class="text-center">
-                            <span><vc:i18n name="部门信息" namespace="selectStaff"></vc:i18n></span>
-                        </div>
-                        <div class="padding-left staff padding  padding-top-xs">
-                            <div class=" padding overflow-hidden"
-                                 :class="{'select':selectStaffInfo.curDepartmentId == item.orgId}"
-                                 v-for="(item,index) in selectStaffInfo.departments" @click="_changeDepartment(item)"
-                                 style="cursor:pointer">
-                                <span>
-                                    <i class="fa fa-sitemap margin-right-xs" aria-hidden="true"></i>
-                                    {{item.orgName}}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 padding-0">
+                    <div class="col-md-6 padding-0">
                         <div class="text-center">
                             <span><vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n></span>
                         </div>
