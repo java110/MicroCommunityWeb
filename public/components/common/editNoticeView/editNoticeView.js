@@ -106,9 +106,8 @@
                     return;
                 }
                 vc.component.editNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'editNotice',
-                    'update',
+                vc.http.apiPost(
+                    '/notice.updateNotice',
                     JSON.stringify(vc.component.editNoticeViewInfo),
                     {
                         emulateJSON: true

@@ -49,9 +49,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editVisit',
-                    'update',
+                vc.http.apiPost(
+                    '/visit.updateVisit',
                     JSON.stringify(vc.component.examineVisitInfo),
                     {
                         emulateJSON: true

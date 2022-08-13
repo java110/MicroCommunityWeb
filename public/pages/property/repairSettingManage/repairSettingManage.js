@@ -54,7 +54,7 @@
                 //派单类型去空
                 param.params.repairType = param.params.repairType.trim();
                 //发送get请求
-                vc.http.apiGet('repair.listRepairSettings',
+                vc.http.apiGet('/repair.listRepairSettings',
                     param,
                     function(json, res) {
                         var _repairSettingManageInfo = JSON.parse(json);

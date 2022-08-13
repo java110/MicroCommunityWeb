@@ -17,33 +17,21 @@
             }
         },
         _initMethod: function() {
-            $that._initSelectStaffInfo();
         },
         _initEvent: function() {
             vc.on('selectStaff', 'openStaff', function(_staff) {
                 //查询公司信息
-                $that._initOrg(2, '');
                 $('#selectStaffModel').modal('show');
                 $that.selectStaffInfo.staff = _staff;
                 $that.staff = _staff;
             });
 
+            vc.on('selectStaff','switchOrg',function(_param){
+                $that.loadStaff(_param);
+            })
+
         },
         methods: {
-            _initSelectStaffInfo: function() {
-
-            },
-
-            _changeCompany: function(item) {
-                $that.selectStaffInfo.curCompanyId = item.orgId;
-                //查询部门
-                $that._initOrg(3, $that.selectStaffInfo.curCompanyId);
-            },
-            _changeDepartment: function(item) {
-                $that.selectStaffInfo.curDepartmentId = item.orgId;
-                //查询部门
-                $that.loadStaff();
-            },
             _changeStaff: function(item) {
                 $that.staff.staffId = item.userId;
                 $that.staff.staffName = item.userName;
@@ -52,54 +40,13 @@
                     $that.staff.call($that.staff);
                 }
             },
-            _initOrg: function(_orgLevel, _parentOrgId) {
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 100,
-                        orgLevel: _orgLevel,
-                        parentOrgId: _parentOrgId
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('/org.listOrgs',
-                    param,
-                    function(json, res) {
-                        var _orgManageInfo = JSON.parse(json);
-                        if (_orgLevel == 2) {
-                            $that.selectStaffInfo.companys = _orgManageInfo.orgs;
-                            if (_orgManageInfo.orgs.length < 1) {
-                                return;
-                            }
-                            $that.selectStaffInfo.curCompanyId = _orgManageInfo.orgs[0].orgId
-                                //查询部门
-                            $that._initOrg(3, $that.selectStaffInfo.curCompanyId);
-                        } else if (_orgLevel == 3) {
-                            $that.selectStaffInfo.departments = _orgManageInfo.orgs;
-                            if (_orgManageInfo.orgs.length < 1) {
-                                return;
-                            }
-                            $that.selectStaffInfo.curDepartmentId = _orgManageInfo.orgs[0].orgId
-                                //查询部门
-                            $that.loadStaff();
-                        } else {
-                            $that.selectStaffInfo.staffs = _orgManageInfo.orgs;
-                        }
-
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-            loadStaff: function() {
-                var param = {
+            loadStaff: function(_org) {
+                let param = {
                     params: {
                         page: 1,
                         rows: default_row,
                         row: default_row,
-                        orgId: $that.selectStaffInfo.curDepartmentId
+                        orgId: _org.orgId
                     }
                 };
 

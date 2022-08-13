@@ -134,9 +134,8 @@
                     $('#addOwnerRepairModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addOwnerRepair',
-                    'save',
+                vc.http.apiPost(
+                    '/ownerRepair.saveOwnerRepair',
                     JSON.stringify(vc.component.addOwnerRepairInfo),
                     {
                         emulateJSON: true

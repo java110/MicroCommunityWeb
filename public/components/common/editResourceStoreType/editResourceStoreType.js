@@ -45,9 +45,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editResourceStoreType',
-                    'update',
+                vc.http.apiPost(
+                    '/resourceStoreType.updateResourceStoreType',
                     JSON.stringify(vc.component.editResourceStoreTypeInfo),
                     {
                         emulateJSON: true

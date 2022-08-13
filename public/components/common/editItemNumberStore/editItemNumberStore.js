@@ -86,9 +86,8 @@ console.log("JS加载开始");
                     return;
                 }
                 console.log("开始向后台发送请求!");
-                vc.http.post(
-                    'editResourceStore',
-                    'update',
+                vc.http.apiPost(
+                    '/resourceStore.updateResourceStore',
                     JSON.stringify(vc.component.editResourceStoreInfo),
                     {
                         emulateJSON: true

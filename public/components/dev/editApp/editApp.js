@@ -83,9 +83,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editApp',
-                    'update',
+                vc.http.apiPost(
+                    '/app.updateApp',
                     JSON.stringify(vc.component.editAppInfo),
                     {
                         emulateJSON: true

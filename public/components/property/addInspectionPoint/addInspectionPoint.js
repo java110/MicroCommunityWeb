@@ -98,9 +98,8 @@
                     $('#addInspectionPointModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addInspectionPoint',
-                    'save',
+                vc.http.apiPost(
+                    '/inspectionPoint.saveInspectionPoint',
                     JSON.stringify(vc.component.addInspectionPointInfo), {
                         emulateJSON: true
                     },

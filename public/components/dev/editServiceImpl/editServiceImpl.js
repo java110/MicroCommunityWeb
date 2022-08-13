@@ -133,9 +133,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editServiceImpl',
-                    'update',
+                vc.http.apiPost(
+                    '/serviceImpl.updateServiceImpl',
                     JSON.stringify(vc.component.editServiceImplInfo),
                     {
                         emulateJSON: true

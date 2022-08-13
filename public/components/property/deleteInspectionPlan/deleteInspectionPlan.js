@@ -14,9 +14,8 @@
         methods: {
             deleteInspectionPlan: function () {
                 vc.component.deleteInspectionPlanInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteInspectionPlan',
-                    'delete',
+                vc.http.apiPost(
+                    '/inspectionPlan.deleteInspectionPlan',
                     JSON.stringify(vc.component.deleteInspectionPlanInfo),
                     {
                         emulateJSON: true

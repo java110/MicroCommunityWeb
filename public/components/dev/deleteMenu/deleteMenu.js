@@ -20,9 +20,8 @@
         methods:{
             deleteMenu:function(){
                 //vc.component.deleteMenuInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteMenu',
-                    'delete',
+                vc.http.apiPost(
+                    '/menu.deleteMenu',
                     JSON.stringify(vc.component.deleteMenuInfo),
                     {
                         emulateJSON:true

@@ -16,9 +16,8 @@
         methods: {
             deleteApp: function () {
                 vc.component.deleteAppInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteApp',
-                    'delete',
+                vc.http.apiPost(
+                    '/app.deleteApp',
                     JSON.stringify(vc.component.deleteAppInfo),
                     {
                         emulateJSON: true

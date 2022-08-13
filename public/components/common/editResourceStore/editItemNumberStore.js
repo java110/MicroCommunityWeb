@@ -83,9 +83,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editResourceStore',
-                    'update',
+                vc.http.apiPost(
+                    '/resourceStore.updateResourceStore',
                     JSON.stringify(vc.component.editResourceStoreInfo),
                     {
                         emulateJSON: true

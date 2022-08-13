@@ -98,9 +98,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editMenu',
-                    'update',
+                vc.http.apiPost(
+                    '/menu.updateMenu',
                     JSON.stringify(vc.component.editMenuInfo),
                     {
                         emulateJSON: true

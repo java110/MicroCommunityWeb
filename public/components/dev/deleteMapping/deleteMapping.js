@@ -14,9 +14,8 @@
         methods: {
             deleteMapping: function () {
                 vc.component.deleteMappingInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteMapping',
-                    'delete',
+                vc.http.apiPost(
+                    '/mapping.deleteMapping',
                     JSON.stringify(vc.component.deleteMappingInfo),
                     {
                         emulateJSON: true

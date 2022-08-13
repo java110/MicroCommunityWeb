@@ -70,9 +70,8 @@
             _auditApplicationKeyState: function(_auditInfo) {
                 _auditInfo.applicationKeyId = vc.component.auditApplicationKeyManageInfo.currentApplicationKeyId;
                 _auditInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'auditApplicationKeyManage',
-                    'audit',
+                vc.http.apiPost(
+                    '/applicationKey.auditApplicationKey',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

@@ -81,9 +81,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editMapping',
-                    'update',
+                vc.http.apiPost(
+                    '/mapping.updateMapping',
                     JSON.stringify(vc.component.editMappingInfo), {
                         emulateJSON: true
                     },

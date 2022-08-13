@@ -105,9 +105,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addMenu',
-                    'save',
+                vc.http.apiPost(
+                    '/menu.saveMenu',
                     JSON.stringify(vc.component.addMenuInfo),
                     {
                         emulateJSON: true

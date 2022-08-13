@@ -113,9 +113,8 @@
                         appId: vc.component.serviceRegisterManageInfo.conditions.appId
                     }
                 }
-                vc.http.get(
-                    'serviceRegisterManage',
-                    'loadApp',
+                vc.http.apiGet(
+                    '/app.listApps',
                     param,
                     function(json, res) {
                         if (res.status == 200) {

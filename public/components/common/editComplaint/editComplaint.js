@@ -79,9 +79,8 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.http.post(
-                    'editComplaint',
-                    'update',
+                vc.http.apiPost(
+                    '/complaint.updateComplaint',
                     JSON.stringify(vc.component.editComplaintInfo), {
                         emulateJSON: true
                     },

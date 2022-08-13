@@ -228,9 +228,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editMachine',
-                    'update',
+                vc.http.apiPost(
+                    '/machine.updateMachine',
                     JSON.stringify(vc.component.editMachineInfo), {
                         emulateJSON: true
                     },

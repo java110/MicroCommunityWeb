@@ -19,9 +19,8 @@
         },
         methods: {
             deleteBasePrivilege: function() {
-                vc.http.post(
-                    'deleteBasePrivilege',
-                    'delete',
+                vc.http.apiPost(
+                    '/basePrivilege.deleteBasePrivilege',
                     JSON.stringify(vc.component.deleteBasePrivilegeInfo), {
                         emulateJSON: true
                     },

@@ -39,9 +39,8 @@
                     pId:vc.component.deleteStaffPrivilegeInfo._currentPId,
                     pFlag:vc.component.deleteStaffPrivilegeInfo._currentPFlag,
                 }
-                vc.http.post(
-                    'deleteStaffPrivilege',
-                    'delete',
+                vc.http.apiPost(
+                    '/delete.privilege.userPrivilege',
                     JSON.stringify(param),
                     {
                         emulateJSON:true

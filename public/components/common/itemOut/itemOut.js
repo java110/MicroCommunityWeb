@@ -65,9 +65,8 @@
                     data: vc.component.itemOutInfo.infos
                 }
 
-                vc.http.post(
-                    'itemOutBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/itemOut.itemOut',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },

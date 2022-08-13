@@ -191,9 +191,8 @@
                     $('#addInspectionPlanModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addInspectionPlan',
-                    'save',
+                vc.http.apiPost(
+                    '/inspectionPlan.saveInspectionPlan',
                     JSON.stringify(vc.component.addInspectionPlanInfo), {
                         emulateJSON: true
                     },

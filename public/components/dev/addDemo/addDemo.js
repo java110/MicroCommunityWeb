@@ -62,9 +62,8 @@
 
                     return;
                 }
-                vc.http.post(
-                    'addDemo',
-                    'saveDemo',
+                vc.http.apiPost(
+                    '/demo.saveDemoConfig',
                     JSON.stringify(vc.component.addDemoInfo),
                     {
                         emulateJSON: true

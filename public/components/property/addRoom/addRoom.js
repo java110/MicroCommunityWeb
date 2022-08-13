@@ -175,9 +175,8 @@
                     return ;
                 }
 
-                vc.http.post(
-                    'addRoom',
-                    'save',
+                vc.http.apiPost(
+                    '/room.saveRoom',
                     JSON.stringify(vc.component.addRoomInfo),
                     {
                         emulateJSON:true

@@ -54,9 +54,8 @@
                     return ;
                 }
                 vc.component.addPrivilegeGroupInfo.errorInfo = "";
-                vc.http.post(
-                    'addPrivilegeGroup',
-                    'savePrivilegeGroupInfo',
+                vc.http.apiPost(
+                    '/save.privilegeGroup.info',
                     JSON.stringify(vc.component.addPrivilegeGroupInfo),
                     {
                         emulateJSON:true

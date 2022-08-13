@@ -189,9 +189,8 @@
                     $('#addResourceStoreModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addResourceStore',
-                    'save',
+                vc.http.apiPost(
+                    '/resourceStore.saveResourceStore',
                     JSON.stringify(vc.component.addResourceStoreInfo), {
                         emulateJSON: true
                     },

@@ -20,9 +20,8 @@
         methods:{
             deleteApplicationKey:function(){
                 vc.component.deleteApplicationKeyInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteApplicationKey',
-                    'delete',
+                vc.http.apiPost(
+                    '/applicationKey.deleteApplicationKey',
                     JSON.stringify(vc.component.deleteApplicationKeyInfo),
                     {
                         emulateJSON:true

@@ -64,9 +64,8 @@
                     return ;
                 }
                 vc.component.editPrivilegeGroupInfo.errorInfo = "";
-                vc.http.post(
-                    'editPrivilegeGroup',
-                    'editPrivilegeGroupInfo',
+                vc.http.apiPost(
+                    '/edit.privilegeGroup.info',
                     JSON.stringify(vc.component.editPrivilegeGroupInfo),
                     {
                         emulateJSON:true

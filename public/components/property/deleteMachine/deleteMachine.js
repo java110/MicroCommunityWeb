@@ -20,9 +20,8 @@
         methods: {
             deleteMachine: function() {
                 vc.component.deleteMachineInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteMachine',
-                    'delete',
+                vc.http.apiPost(
+                    '/machine.deleteMachine',
                     JSON.stringify(vc.component.deleteMachineInfo), {
                         emulateJSON: true
                     },

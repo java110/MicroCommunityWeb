@@ -60,9 +60,8 @@
                     data: vc.component.addComplaintStepInfo.infos
                 }*/
                 vc.component.addComplaintStepInfo.infos[2].roomId = vc.component.addComplaintStepInfo.infos[1].roomId;
-                vc.http.post(
-                    'addComplaintStepBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/complaint.saveComplaint',
                     JSON.stringify(vc.component.addComplaintStepInfo.infos[2]), {
                         emulateJSON: true
                     },

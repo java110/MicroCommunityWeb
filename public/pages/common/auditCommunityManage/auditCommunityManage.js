@@ -61,9 +61,8 @@
             },
             _auditCommunityState: function(_auditInfo) {
                 _auditInfo.communityId = vc.component.auditCommunityManageInfo.currentCommunityId;
-                vc.http.post(
-                    'auditCommunityManage',
-                    'audit',
+                vc.http.apiPost(
+                    '/community.auditCommunity',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },

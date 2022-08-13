@@ -106,9 +106,8 @@
                     return ;
                 }
 
-                vc.http.post(
-                    'propertyPay',
-                    'payFee',
+                vc.http.apiPost(
+                    '/fee.payFee',
                     JSON.stringify(vc.component.propertyPayInfo),
                     {
                         emulateJSON:true

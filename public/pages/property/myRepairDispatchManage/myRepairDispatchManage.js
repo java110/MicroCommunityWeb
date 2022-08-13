@@ -123,9 +123,8 @@
                 } else {
                     _repairDispatchParam.state = '10003';
                 }
-                vc.http.post(
-                    'myRepairDispatch',
-                    'closeOrder',
+                vc.http.apiPost(
+                    '/ownerRepair.closeRepairDispatch',
                     JSON.stringify(_repairDispatchParam), {
                         emulateJSON: true
                     },

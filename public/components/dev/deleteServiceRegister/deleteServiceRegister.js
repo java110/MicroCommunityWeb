@@ -14,9 +14,8 @@
         methods: {
             deleteServiceRegister: function () {
                 //vc.component.deleteServiceRegisterInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteServiceRegister',
-                    'delete',
+                vc.http.apiPost(
+                    '/serviceRegister.deleteServiceRegister',
                     JSON.stringify(vc.component.deleteServiceRegisterInfo),
                     {
                         emulateJSON: true

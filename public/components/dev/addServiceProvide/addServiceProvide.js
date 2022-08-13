@@ -107,9 +107,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addServiceProvide',
-                    'save',
+                vc.http.apiPost(
+                    '/serviceProvide.saveServiceProvide',
                     JSON.stringify(vc.component.addServiceProvideInfo),
                     {
                         emulateJSON: true

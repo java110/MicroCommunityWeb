@@ -18,9 +18,8 @@
             },
             deleteExitCommunity:function(){
                 console.log("开始删除工号：",vc.component.storeExitCommunityInfo);
-                vc.http.post(
-                    'storeExitCommunity',
-                    'exit',
+                vc.http.apiPost(
+                    '/member.quit.community',
                     JSON.stringify(vc.component.storeExitCommunityInfo.communityInfo),
                     {
                         emulateJSON:true

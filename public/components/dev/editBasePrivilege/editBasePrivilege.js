@@ -78,9 +78,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editBasePrivilege',
-                    'update',
+                vc.http.apiPost(
+                    '/basePrivilege.updateBasePrivilege',
                     JSON.stringify(vc.component.editBasePrivilegeInfo), {
                         emulateJSON: true
                     },

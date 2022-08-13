@@ -110,9 +110,8 @@
                     return;
                 }
                 vc.component.editActivitiesViewInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'editActivitiesView',
-                    'update',
+                vc.http.apiPost(
+                    '/activities.updateActivities',
                     JSON.stringify(vc.component.editActivitiesViewInfo), {
                         emulateJSON: true
                     },

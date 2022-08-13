@@ -92,9 +92,8 @@
                     videoPlaying: vc.component.newVisitInfo.infos[2]['videoPlaying'],
                     reasonType: vc.component.newVisitInfo.infos[2]['reasonType']
                 }
-                vc.http.post(
-                    'addVisit',
-                    'save',
+                vc.http.apiPost(
+                    '/visit.saveVisit',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },

@@ -260,9 +260,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'editApplicationKey',
-                    'update',
+                vc.http.apiPost(
+                    '/applicationKey.updateApplicationKey',
                     JSON.stringify(vc.component.editApplicationKeyInfo),
                     {
                         emulateJSON: true

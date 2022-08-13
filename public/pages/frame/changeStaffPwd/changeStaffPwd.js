@@ -51,9 +51,8 @@
                     vc.toast('两次密码不一致');
                     return;
                 }
-                vc.http.post(
-                    'changeStaffPwd',
-                    'change',
+                vc.http.apiPost(
+                    '/user.changeStaffPwd"',
                     JSON.stringify(vc.component.changeStaffPwdInfo),
                     {
                         emulateJSON: true

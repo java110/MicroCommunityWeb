@@ -172,9 +172,8 @@
                     $('#addServiceModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addService',
-                    'save',
+                vc.http.apiPost(
+                    '/service.saveService',
                     JSON.stringify(vc.component.addServiceInfo),
                     {
                         emulateJSON: true

@@ -84,9 +84,8 @@
                     $('#addBasePrivilegeModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addBasePrivilege',
-                    'save',
+                vc.http.apiPost(
+                    '/basePrivilege.saveBasePrivilege',
                     JSON.stringify(vc.component.addBasePrivilegeInfo), {
                         emulateJSON: true
                     },

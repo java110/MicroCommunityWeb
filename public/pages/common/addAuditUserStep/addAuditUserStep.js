@@ -129,9 +129,8 @@
                 }
 
 
-                vc.http.post(
-                    'addAuditUserStepBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/auditUser.saveAuditUser',
                     JSON.stringify(vc.component.addAuditUserStepInfo.auditUserInfo), {
                         emulateJSON: true
                     },

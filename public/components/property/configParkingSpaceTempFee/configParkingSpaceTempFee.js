@@ -61,9 +61,12 @@
                     return ;
                 }
                 vc.component.changeFeeTempConfigInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'configParkingSpaceTempFee',
-                    'change',
+                let url = "/fee.saveFeeConfig";
+                if($that.changeFeeConfigInfo.configId){
+                    url = "/fee.updateFeeConfig";
+                }
+                vc.http.apiPost(
+                    url,
                     JSON.stringify(vc.component.changeFeeTempConfigInfo),
                     {
                         emulateJSON:true

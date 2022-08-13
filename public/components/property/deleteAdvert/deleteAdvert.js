@@ -13,9 +13,8 @@
         },
         methods: {
             deleteAdvert: function () {
-                vc.http.post(
-                    'deleteAdvert',
-                    'delete',
+                vc.http.apiPost(
+                    '/advert.deleteAdvert',
                     JSON.stringify(vc.component.deleteAdvertInfo),
                     {
                         emulateJSON: true

@@ -14,9 +14,8 @@
         methods: {
             deleteActivities: function () {
                 vc.component.deleteActivitiesInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteActivities',
-                    'delete',
+                vc.http.apiPost(
+                    '/activities.deleteActivities',
                     JSON.stringify(vc.component.deleteActivitiesInfo),
                     {
                         emulateJSON: true

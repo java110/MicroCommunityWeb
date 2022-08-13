@@ -197,9 +197,8 @@
                     $('#addAdvertModel').modal('hide');
                     return;
                 }
-                vc.http.post(
-                    'addAdvert',
-                    'save',
+                vc.http.apiPost(
+                    '/advert.saveAdvert',
                     JSON.stringify(vc.component.addAdvertInfo), {
                         emulateJSON: true
                     },

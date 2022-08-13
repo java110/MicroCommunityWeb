@@ -14,9 +14,8 @@
         methods: {
             deleteItemOut: function () {
                 vc.component.deleteItemOutInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deletePurchaseApply',
-                    'delete',
+                vc.http.apiPost(
+                    '/purchaseApply.deletePurchaseApply',
                     JSON.stringify(vc.component.deleteItemOutInfo),
                     {
                         emulateJSON: true

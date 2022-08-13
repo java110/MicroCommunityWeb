@@ -135,9 +135,8 @@
                     return;
                 }
                 vc.component.editOwnerRepairInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'editOwnerRepair',
-                    'update',
+                vc.http.apiPost(
+                    '/ownerRepair.updateOwnerRepair',
                     JSON.stringify(vc.component.editOwnerRepairInfo),
                     {
                         emulateJSON: true

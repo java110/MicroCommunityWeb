@@ -48,9 +48,8 @@
                     return ;
                 }
                 vc.component.addResourceEnterQuantityInfo.stock = vc.component.addResourceEnterQuantityInfo.stock + vc.component.addResourceEnterQuantityInfo.enterQuantity
-                vc.http.post(
-                    'editResourceStore',
-                    'update',
+                vc.http.apiPost(
+                    '/resourceStore.updateResourceStore',
                     JSON.stringify(vc.component.addResourceEnterQuantityInfo),
                     {
                         emulateJSON:true

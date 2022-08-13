@@ -93,9 +93,8 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-                vc.http.post(
-                    'addStaffStepBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/user.staff.add',
                     JSON.stringify(vc.component.addStaffStepInfo.staffInfo), {
                         emulateJSON: true
                     },

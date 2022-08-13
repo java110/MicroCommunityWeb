@@ -20,9 +20,8 @@
         methods:{
             deleteMachineTranslate:function(){
                 vc.component.deleteMachineTranslateInfo.communityId=vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteMachineTranslate',
-                    'delete',
+                vc.http.apiPost(
+                    '/machineTranslate.deleteMachineTranslate',
                     JSON.stringify(vc.component.deleteMachineTranslateInfo),
                     {
                         emulateJSON:true

@@ -25,9 +25,8 @@
         methods: {
             _changeInspectionPlanState: function () {
                 vc.component.inspectionPlanStateInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'updateInspectionPlanState',
-                    'update',
+                vc.http.apiPost(
+                    '/inspectionPlan.updateInspectionPlanState',
                     JSON.stringify(vc.component.inspectionPlanStateInfo),
                     {
                         emulateJSON: true

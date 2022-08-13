@@ -79,11 +79,9 @@
 
                     return;
                 }
-
                 vc.component.addOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'addOwner',
-                    'saveOwner',
+                vc.http.apiPost(
+                    '/owner.saveOwner',
                     JSON.stringify(vc.component.addOwnerInfo), {
                         emulateJSON: true
                     },

@@ -79,9 +79,8 @@
                 }
 
                 vc.component.sellRoomInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'sellRoom',
-                    'sell',
+                vc.http.apiPost(
+                    '/room.sellRoom',
                     JSON.stringify(vc.component.sellRoomInfo), {
                         emulateJSON: true
                     },

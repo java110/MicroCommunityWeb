@@ -14,9 +14,8 @@
         methods: {
             deleteNotice: function () {
                 vc.component.deleteNoticeInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.post(
-                    'deleteNotice',
-                    'delete',
+                vc.http.apiPost(
+                    '/notice.deleteNotice',
                     JSON.stringify(vc.component.deleteNoticeInfo),
                     {
                         emulateJSON: true

@@ -79,9 +79,8 @@
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-                vc.http.post(
-                    'addComplaintStepBinding',
-                    'binding',
+                vc.http.apiPost(
+                    '/complaint.saveComplaint',
                     JSON.stringify(vc.component.addRoomComplaintInfo), {
                         emulateJSON: true
                     },

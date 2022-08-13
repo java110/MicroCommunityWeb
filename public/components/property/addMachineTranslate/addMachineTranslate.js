@@ -114,9 +114,8 @@
                     return;
                 }
 
-                vc.http.post(
-                    'addMachineTranslate',
-                    'save',
+                vc.http.apiPost(
+                    '/machineTranslate.saveMachineTranslate',
                     JSON.stringify(vc.component.addMachineTranslateInfo),
                     {
                         emulateJSON: true
