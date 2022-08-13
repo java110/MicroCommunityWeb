@@ -53,7 +53,7 @@
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
-                        url: "/callComponent/inspectionRouteManage/list",
+                        url: "/app/inspectionRoute.listInspectionRoutes",
                         dataType: 'json',
                         delay: 250,
                         headers: {
