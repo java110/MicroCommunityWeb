@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             changeStaffPwdInfo: {
@@ -10,40 +10,32 @@
                 reNewPwd: ''
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-        },
+        _initMethod: function() {},
+        _initEvent: function() {},
         methods: {
-            assetImportValidate: function () {
+            assetImportValidate: function() {
                 return vc.validate.validate({
                     changeStaffPwdInfo: vc.component.changeStaffPwdInfo
                 }, {
 
-                    'changeStaffPwdInfo.oldPwd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "原始密码不能为空"
-                        }
-                    ],
-                    'changeStaffPwdInfo.newPwd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "新密码不能为空"
-                        }
-                    ],
-                    'changeStaffPwdInfo.reNewPwd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "确认密码不能为空"
-                        }
-                    ]
+                    'changeStaffPwdInfo.oldPwd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "原始密码不能为空"
+                    }],
+                    'changeStaffPwdInfo.newPwd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "新密码不能为空"
+                    }],
+                    'changeStaffPwdInfo.reNewPwd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "确认密码不能为空"
+                    }]
                 });
             },
-            _changePwd: function () {
+            _changePwd: function() {
                 if (!vc.component.assetImportValidate()) {
                     return;
                 }
@@ -52,12 +44,11 @@
                     return;
                 }
                 vc.http.apiPost(
-                    '/user.changeStaffPwd"',
-                    JSON.stringify(vc.component.changeStaffPwdInfo),
-                    {
+                    '/user.changeStaffPwd',
+                    JSON.stringify(vc.component.changeStaffPwdInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -73,7 +64,7 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
