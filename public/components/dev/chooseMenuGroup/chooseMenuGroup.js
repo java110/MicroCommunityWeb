@@ -19,7 +19,6 @@
                 vc.component._refreshChooseMenuGroupInfo();
                 vc.component._loadAllMenuGroupInfo(DEFAULT_PAGE, DEFAULT_ROWS, '');
             });
-
             vc.on('chooseMenuGroup', 'paginationPlus', 'page_event', function(_currentPage) {
                 vc.component._loadAllMenuGroupInfo(_currentPage, DEFAULT_ROWS);
             });
@@ -33,7 +32,6 @@
                         name: _name
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/menuGroup.listMenuGroups',
                     param,
@@ -74,7 +72,6 @@
                 // <option value="800900000004">物流公司</option>
                 // <option value="800900000005">商家</option>
                 // <option value="800900000000">开发团队</option>
-
                 if (_storeTypeCd == '800900000001') {
                     return "运营团队";
                 } else if (_storeTypeCd == '800900000002') {
@@ -94,6 +91,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

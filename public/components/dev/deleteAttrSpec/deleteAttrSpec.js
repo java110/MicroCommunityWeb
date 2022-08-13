@@ -26,8 +26,10 @@
                             //关闭model
                             $('#deleteAttrSpecModel').modal('hide');
                             vc.emit('attrSpecManage', 'listAttrSpec', {});
-                            vc.toast(_json.msg);
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

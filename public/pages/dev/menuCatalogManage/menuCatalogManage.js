@@ -49,6 +49,7 @@
                         vc.component.menuCatalogManageInfo.menuCatalogs = _menuCatalogManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.menuCatalogManageInfo.records,
+                            dataCount: vc.component.menuCatalogManageInfo.total,
                             currentPage: _page
                         });
                     },

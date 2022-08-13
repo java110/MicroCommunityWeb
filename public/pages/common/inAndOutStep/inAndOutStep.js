@@ -125,6 +125,9 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
+                            // 清除选择的物品信息
+                            vc.emit('chooseResourceStore3', 'clear', '');
+                            vc.emit('addPurchaseApplyViewInfo2', 'clear', '');
                             vc.jumpToPage("/#/pages/common/resourceStoreManage");
                             // if (vc.component.inAndOutStepInfo.purchaseApply.resOrderType == "10000") {
                             //     vc.jumpToPage("/#/pages/common/purchaseApplyManage");
@@ -139,6 +142,9 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
+            },
+            _goBack: function () {
+                vc.goBack();
             }
         }
     });

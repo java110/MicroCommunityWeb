@@ -3,9 +3,10 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="attrSpecManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="attrSpecManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -37,10 +38,12 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAttrSpecMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="attrSpecManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="attrSpecManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAttrSpecMethod()">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="attrSpecManage"></vc:i18n></span>
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="attrSpecManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -52,10 +55,13 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="属性配置" namespace="attrSpecManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="属性配置" namespace="attrSpecManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddAttrSpecModal()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="attrSpecManage"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="attrSpecManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -80,7 +86,12 @@
                                 <td class="text-center">{{attrSpec.domain}}</td>
                                 <td class="text-center">{{attrSpec.specName}}</td>
                                 <td class="text-center">{{attrSpec.specCd}}</td>
-                                <td class="text-center">{{attrSpec.tableName}}</td>
+                                <td class="text-center">{{attrSpec.tableName == 'building_room_attr' ? '房屋属性' : attrSpec.tableName ==
+                                    'building_owner_attr' ?
+                                    '业主属性' : attrSpec.tableName == 'building_community_attr' ? '小区属性' : attrSpec.tableName
+                                    == 'machine_attr' ?
+                                    '设备属性' : attrSpec.tableName == 'parking_area_attr' ? '停车场属性' : attrSpec.tableName ==
+                                    'owner_car_attr' ? '车辆属性' : '未知'}}</td>
                                 <td class="text-center">{{attrSpec.required == 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{attrSpec.specShow == 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{_getSpecValueTypeName(attrSpec.specValueType)}}</td>

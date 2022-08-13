@@ -44,12 +44,12 @@
                     'editMenuGroupInfo.icon': [{
                             limit: "required",
                             param: "",
-                            errInfo: "icon不能为空"
+                            errInfo: "图标不能为空"
                         },
                             {
                                 limit: "maxin",
                                 param: "2,20",
-                                errInfo: "icon必须在2至20字符之间"
+                                errInfo: "图标必须在2至20字符之间"
                             },
                         ],
                         'editMenuGroupInfo.label': [

@@ -15,7 +15,7 @@
                 conditions: {
                     businessTypeCd: '',
                     beanName: '',
-                    databusId: '',
+                    databusId: ''
                 }
             }
         },
@@ -37,6 +37,9 @@
                 var param = {
                     params: vc.component.businessDatabusManageInfo.conditions
                 };
+                param.params.businessTypeCd = param.params.businessTypeCd.trim();
+                param.params.beanName = param.params.beanName.trim();
+                param.params.databusId = param.params.databusId.trim();
                 //发送get请求
                 vc.http.apiGet('/businessDatabus/queryBusinessDatabus',
                     param,
@@ -64,7 +67,15 @@
             _openDeleteBusinessDatabusModel: function (_businessDatabus) {
                 vc.emit('deleteBusinessDatabus', 'openDeleteBusinessDatabusModal', _businessDatabus);
             },
+            //查询
             _queryBusinessDatabusMethod: function () {
+                vc.component._listBusinessDatabuss(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetBusinessDatabusMethod: function () {
+                vc.component.businessDatabusManageInfo.conditions.businessTypeCd = "";
+                vc.component.businessDatabusManageInfo.conditions.beanName = "";
+                vc.component.businessDatabusManageInfo.conditions.databusId = "";
                 vc.component._listBusinessDatabuss(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

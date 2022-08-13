@@ -47,6 +47,11 @@
             vc.on('addPurchaseApplyViewInfo2', 'onIndex', function (_index) {
                 vc.component.addPurchaseApplyViewInfo2.index = _index;
             });
+            vc.on("addPurchaseApplyViewInfo2", "clear", function (_param) {
+                vc.component.addPurchaseApplyViewInfo2.description = '';
+                vc.component.addPurchaseApplyViewInfo2.endUserName = '';
+                vc.component.addPurchaseApplyViewInfo2.endUserTel = '';
+            });
         },
         methods: {
             addComplainValidate: function () {

@@ -30,6 +30,8 @@
                             vc.emit('attrValueManage', 'listAttrValue', {});
                             vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

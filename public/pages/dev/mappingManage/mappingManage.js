@@ -3,7 +3,7 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 20;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             mappingManageInfo: {
@@ -38,6 +38,9 @@
                 var param = {
                     params: vc.component.mappingManageInfo.conditions
                 };
+                param.params.domain = param.params.domain.trim();
+                param.params.nameLike = param.params.nameLike.trim();
+                param.params.key = param.params.key.trim();
                 //发送get请求
                 vc.http.apiGet('/mapping.listMappings',
                     param,

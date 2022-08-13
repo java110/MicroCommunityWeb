@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -14,9 +14,10 @@
                 state: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('addBusinessDatabus', 'openAddBusinessDatabusModal', function() {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('addBusinessDatabus', 'openAddBusinessDatabusModal', function () {
                 $('#addBusinessDatabusModel').modal('show');
             });
         },
@@ -25,45 +26,43 @@
                 return vc.validate.validate({
                     addBusinessDatabusInfo: vc.component.addBusinessDatabusInfo
                 }, {
+                    'addBusinessDatabusInfo.databusName': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "名称不能为空"
+                    },
+                        {
+                            limit: "maxLength",
+                            param: "128",
+                            errInfo: "名称太长"
+                        }],
                     'addBusinessDatabusInfo.businessTypeCd': [{
                         limit: "required",
                         param: "",
                         errInfo: "业务类型不能为空"
                     }],
                     'addBusinessDatabusInfo.beanName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "适配器不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "适配器不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "256",
                             errInfo: "适配器名称太长"
                         },
                     ],
-                    'addBusinessDatabusInfo.databusName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "名称不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "128",
-                            errInfo: "名称太长"
-                        },
-                    ],
                     'addBusinessDatabusInfo.seq': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "顺序不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "顺序不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
                             errInfo: "顺序格式错误"
                         },
                     ],
-
                     'addBusinessDatabusInfo.state': [{
                         limit: "required",
                         param: "",
@@ -71,7 +70,7 @@
                     }]
                 });
             },
-            saveBusinessDatabusInfo: function() {
+            saveBusinessDatabusInfo: function () {
                 if (!vc.component.addBusinessDatabusValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -87,7 +86,7 @@
                     JSON.stringify(vc.component.addBusinessDatabusInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -95,22 +94,24 @@
                             $('#addBusinessDatabusModel').modal('hide');
                             vc.component.clearAddBusinessDatabusInfo();
                             vc.emit('businessDatabusManage', 'listBusinessDatabus', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
-            clearAddBusinessDatabusInfo: function() {
+            clearAddBusinessDatabusInfo: function () {
                 vc.component.addBusinessDatabusInfo = {
                     businessTypeCd: '',
                     beanName: '',
                     seq: '',
                     databusName: '',
-                    state: '',
+                    state: ''
                 };
             }
         }

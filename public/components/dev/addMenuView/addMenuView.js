@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -24,10 +23,8 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
-
             vc.on('addMenuViewInfo', 'onIndex', function (_index) {
                 vc.component.addMenuViewInfo.index = _index;
             });
@@ -90,14 +87,12 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注内容不能超过200"
-                        },
-                    ],
-
+                        }
+                    ]
                 });
             },
             saveAddMenuInfo: function () {
                 if (vc.component.addMenuValidate()) {
-
                     vc.emit('addPrivilegeViewInfo', 'syncData', {
                         name: vc.component.addMenuViewInfo.name,
                         description: vc.component.addMenuViewInfo.description,
@@ -110,5 +105,4 @@
             }
         }
     });
-
 })(window.vc);

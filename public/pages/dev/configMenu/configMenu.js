@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     vc.extends({
         data: {
             configMenuInfo: {
@@ -10,17 +10,16 @@
                 infos: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent: function() {
-            vc.on("configMenu", "notify", function(_info) {
+        _initEvent: function () {
+            vc.on("configMenu", "notify", function (_info) {
                 vc.component.configMenuInfo.infos[vc.component.configMenuInfo.index] = _info;
             });
-
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.configMenuInfo.$step = $("#step");
                 vc.component.configMenuInfo.$step.step({
                     index: 0,
@@ -29,16 +28,14 @@
                 });
                 vc.component.configMenuInfo.index = vc.component.configMenuInfo.$step.getIndex();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.configMenuInfo.$step.prevStep();
                 vc.component.configMenuInfo.index = vc.component.configMenuInfo.$step.getIndex();
-
                 vc.emit('viewMenuGroupInfo', 'onIndex', vc.component.configMenuInfo.index);
                 vc.emit('addMenuView', 'onIndex', vc.component.configMenuInfo.index);
                 vc.emit('addPrivilegeView', 'onIndex', vc.component.configMenuInfo.index);
-
             },
-            _nextStep: function() {
+            _nextStep: function () {
                 var _currentData = vc.component.configMenuInfo.infos[vc.component.configMenuInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -46,34 +43,27 @@
                 }
                 vc.component.configMenuInfo.$step.nextStep();
                 vc.component.configMenuInfo.index = vc.component.configMenuInfo.$step.getIndex();
-
                 vc.emit('viewMenuGroupInfo', 'onIndex', vc.component.configMenuInfo.index);
                 vc.emit('addMenuView', 'onIndex', vc.component.configMenuInfo.index);
                 vc.emit('addPrivilegeView', 'onIndex', vc.component.configMenuInfo.index);
-
             },
-            _finishStep: function() {
-
-
+            _finishStep: function () {
                 var _currentData = vc.component.configMenuInfo.infos[vc.component.configMenuInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
                     return;
                 }
-
                 var param = {
                     data: vc.component.configMenuInfo.infos
                 }
-
                 vc.http.post(
                     'configMenuBinding',
                     'binding',
                     JSON.stringify(param), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         if (res.status == 200) {
-
                             vc.toast('处理成功');
                             //关闭model
                             //vc.jumpToPage("/#/pages/dev/menuManage?" + vc.objToGetParam(JSON.parse(json)));
@@ -82,11 +72,11 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-                    });
+                    }
+                );
             }
         }
     });

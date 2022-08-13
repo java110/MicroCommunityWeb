@@ -112,8 +112,10 @@
                             //关闭model
                             $('#editAttrSpecModel').modal('hide');
                             vc.emit('attrSpecManage', 'listAttrSpec', {});
-                            vc.toast(_json.msg);
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function(errInfo, error) {
