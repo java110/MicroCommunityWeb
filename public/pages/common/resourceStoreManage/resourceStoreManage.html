@@ -111,15 +111,19 @@
                         <span><vc:i18n name="物品信息" namespace="resourceStoreManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_jump2InAndOutPage()" v-if="vc.hasPrivilege('502021042137960001')">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_jump2InAndOutPage()" v-if="vc.hasPrivilege('502021042137960001')">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="入库与领用" namespace="resourceStoreManage"></vc:i18n></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddResourceStoreModal()">
+
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddResourceStoreModal()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="resourceStoreManage"></vc:i18n></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_importResourceStoreModal()">
+                            <span><vc:i18n name="导入" namespace="resourceStoreManage"></vc:i18n></span>
+                         </button>
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="导出" namespace="resourceStoreManage"></vc:i18n></span>
                         </button>
@@ -258,4 +262,5 @@
     <vc:create path="common/addResourceStore" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="common/editResourceStore"></vc:create>
     <vc:create path="common/deleteResourceStore"></vc:create>
+    <vc:create path="property/importResourceStore"></vc:create>
 </div>

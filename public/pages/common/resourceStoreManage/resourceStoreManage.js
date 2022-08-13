@@ -240,7 +240,10 @@
             //导出
             _exportExcel: function() {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=resourceStoreManage&' + vc.objToGetParam($that.resourceStoreManageInfo.conditions));
-            }
+            },
+            _importResourceStoreModal: function() {
+                vc.emit('importResourceStore', 'openimportResourceStoreModal', {});
+            },
         }
     });
 })(window.vc);

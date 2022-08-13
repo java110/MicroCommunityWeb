@@ -14,9 +14,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
-                                        <input id="excelTemplate" ref="excelTemplate" type="file"
-                                               class="custom-file-input form-control" name="excelTemplate"
-                                               v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
+                                        <input id="excelTemplate" ref="excelTemplate" type="file" class="custom-file-input form-control" name="excelTemplate" v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
                                         <label for="excelTemplate" class="custom-file-label">
                                             {{importOwnerRoomInfo.excelTemplate==''?'必填，请选择数据文件':importOwnerRoomInfo.excelTemplate.name}}
                                         </label>
@@ -39,8 +37,7 @@
                                 <button class="btn btn-primary float-right" type="button" v-on:click="_importData()">
                                     <i class="fa fa-check"></i>&nbsp;导入
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                                     <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
                             </div>
