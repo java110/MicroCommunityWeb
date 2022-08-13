@@ -49,6 +49,7 @@
                         vc.component.businessTableHisManageInfo.businessTableHiss = _businessTableHisManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.businessTableHisManageInfo.records,
+                            dataCount: vc.component.businessTableHisManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

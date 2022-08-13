@@ -50,7 +50,7 @@
                         {
                             limit: "maxin",
                             param: "2,50",
-                            errInfo: "业务类型必须在2至50字符之间"
+                            errInfo: "业务名称必须在2至50字符之间"
                         },
                     ],
                     'addServiceImplInfo.invokeType': [

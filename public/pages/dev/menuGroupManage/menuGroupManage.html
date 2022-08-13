@@ -17,22 +17,21 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入组名称','menuGroupManage')"
-                                       v-model="menuGroupManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入菜单组ID','menuGroupManage')"
+                                       v-model="menuGroupManageInfo.conditions.gId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入icon','menuGroupManage')"
-                                       v-model="menuGroupManageInfo.conditions.icon" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入菜单组名称','menuGroupManage')"
+                                       v-model="menuGroupManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="menuGroupManageInfo.conditions.label">
-                                <option selected value="">{{vc.i18n('请选择标签','menuGroupManage')}}</option>
-                                <option value="HOT">HOT</option>
-                                <option value="TOP">TOP</option>
-                            </select>
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入图标','menuGroupManage')"
+                                       v-model="menuGroupManageInfo.conditions.icon" class=" form-control">
+                            </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMenuGroupMethod()">
@@ -47,6 +46,13 @@
                     </div>
                     <div class="row" v-show="menuGroupManageInfo.moreCondition == true">
                         <div class="col-sm-3">
+                            <select class="custom-select" v-model="menuGroupManageInfo.conditions.label">
+                                <option selected value="">{{vc.i18n('请选择标签','menuGroupManage')}}</option>
+                                <option value="HOT">HOT</option>
+                                <option value="TOP">TOP</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="menuGroupManageInfo.conditions.storeType">
                                 <option selected value="">{{vc.i18n('请选择归属商户','menuGroupManage')}}</option>
                                 <option value="800900000001">{{vc.i18n('运营团队','menuGroupManage')}}</option>
@@ -81,13 +87,13 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><vc:i18n name="组" namespace="menuGroupManage"></vc:i18n></span>Id
+                                <span><vc:i18n name="菜单组" namespace="menuGroupManage"></vc:i18n></span>Id
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="组名称" namespace="menuGroupManage"></vc:i18n></span>
+                                <span><vc:i18n name="菜单组名称" namespace="menuGroupManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="组类型" namespace="menuGroupManage"></vc:i18n></span>
+                                <span><vc:i18n name="菜单组类型" namespace="menuGroupManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="归属商户" namespace="menuGroupManage"></vc:i18n></span>

@@ -49,6 +49,7 @@
                 var param = {
                     params: vc.component.menuManageInfo.conditions
                 };
+                param.params.gId = param.params.gId.trim();
                 param.params.pId = param.params.pId.trim();
                 param.params.pName = param.params.pName.trim();
                 param.params.mId = param.params.mId.trim();

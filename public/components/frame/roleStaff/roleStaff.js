@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var ALL_ROWS = 100;
@@ -13,30 +13,26 @@
                 records: 1,
                 moreCondition: false,
                 pgId: '',
-                staffName: '',
-
+                staffName: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('roleStaffInfo', 'openRoleStaff', function(_param) {
+        _initEvent: function () {
+            vc.on('roleStaffInfo', 'openRoleStaff', function (_param) {
                 vc.copyObject(_param, vc.component.roleStaffInfo);
                 vc.component._listRoleStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('roleStaffInfo', 'listRoleStaff', function(_param) {
+            vc.on('roleStaffInfo', 'listRoleStaff', function (_param) {
                 //vc.copyObject(_param, vc.component.roleStaffInfo.conditions);
                 vc.component._listRoleStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listRoleStaffs(_currentPage, DEFAULT_ROWS);
             });
-
         },
         methods: {
-            _listRoleStaffs: function(_page, _rows) {
-
+            _listRoleStaffs: function (_page, _rows) {
                 let param = {
                     params: {
                         page: _page,
@@ -45,11 +41,10 @@
                         userName: $that.roleStaffInfo.staffName
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/role.listRoleStaff',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _roleStaffInfo = JSON.parse(json);
                         vc.component.roleStaffInfo.total = _roleStaffInfo.total;
                         vc.component.roleStaffInfo.records = _roleStaffInfo.records;
@@ -60,27 +55,26 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddRoleStaffModal: function() {
+            _openAddRoleStaffModal: function () {
                 vc.emit('addRoleStaff', 'openAddRoleStaffModal', {
                     roleId: vc.component.roleStaffInfo.pgId,
                     orgName: vc.component.roleStaffInfo.orgName
                 });
             },
-            _openDeleteRoleStaffModel: function(_roleStaff) {
+            _openDeleteRoleStaffModel: function (_roleStaff) {
                 _roleStaff.roleId = $that.roleStaffInfo.pgId;
                 vc.emit('deleteRoleStaff', 'openDeleteRoleStaffModal', _roleStaff);
             },
-            _queryRoleStaffMethod: function() {
+            _queryRoleStaffMethod: function () {
                 vc.component._listRoleStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _toStaffDetail:function(_roleStaff){
-                vc.jumpToPage('/#/pages/frame/staffDetail?staffId='+_roleStaff.userId)
+            _toStaffDetail: function (_roleStaff) {
+                vc.jumpToPage('/#/pages/frame/staffDetail?staffId=' + _roleStaff.userId)
             }
         }
     });

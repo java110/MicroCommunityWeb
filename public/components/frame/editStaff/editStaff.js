@@ -15,24 +15,31 @@
                 errorInfo: '',
                 videoPlaying: false,
                 photo: '',
-                photoUrl:'',
+                photoUrl: '',
                 relCd: '',
                 relCds: [],
                 branchOrgs: [],
                 departmentOrgs: [],
                 parentOrgId: '',
-                orgId: ''
+                parentOrgName: '',
+                parentTwoOrgId: '',
+                orgNewName: '',
+                orgId: '',
             }
         },
         _initMethod: function () {
             vc.getDict('u_org_staff_rel', "rel_cd", function (_data) {
                 vc.component.editStaffInfo.relCds = _data;
             });
-           
         },
         _initEvent: function () {
             vc.component.$on('edit_staff_event', function (_staffInfo) {
+                console.log("look here");
+                console.log(_staffInfo);
                 vc.component.refreshEditStaffInfo(_staffInfo);
+                console.log(vc.component.editStaffInfo.parentOrgId);
+                console.log(vc.component.editStaffInfo.orgId);
+                vc.component._editGetOrgsByOrgLevelStaff(1, 100, 2, _staffInfo.parentOrgId);
                 $('#editStaffModel').modal('show');
             });
         },
@@ -95,23 +102,23 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        let  _json = JSON.parse(json);
+                        let _json = JSON.parse(json);
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if ( _json.code == 0) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editStaffModel').modal('hide');
-                            vc.emit('staff', 'notify',{})
+                            vc.emit('staff', 'notify', {})
+                            vc.toast("修改成功");
                             return;
                         } else {
-                            vc.toast(json.response.message);
+                            vc.toast(_json.msg);
                         }
-                        $that.editStaffInfo.photoUrl =  $that.editStaffInfo.photo;
-                        vc.toast(_json.msg);
+                        $that.editStaffInfo.photoUrl = $that.editStaffInfo.photo;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         // vc.component.editStaffInfo.errorInfo = errInfo;
-                        $that.editStaffInfo.photoUrl =  $that.editStaffInfo.photo;
+                        $that.editStaffInfo.photoUrl = $that.editStaffInfo.photo;
 
                         vc.toast(errInfo)
                     });
@@ -133,10 +140,41 @@
                     reader.onloadend = function (e) {
                         vc.component.editStaffInfo.photo = reader.result;
                         vc.component.editStaffInfo.photoUrl = reader.result;
-
                     }
                 }
             },
+            _editGetOrgsByOrgLevelStaff: function (_page, _rows, _orgLevel, _parentOrgId) {
+                let param = {
+                    params: {
+                        page: _page,
+                        row: _rows,
+                        orgLevel: _orgLevel,
+                        parentOrgId: _parentOrgId
+                    }
+                };
+                //发送get请求
+                vc.http.get('staff',
+                    'list',
+                    param,
+                    function (json, res) {
+                        var _orgInfo = JSON.parse(json);
+                        console.log("123321");
+                        console.log(_orgInfo);
+                        if (_orgLevel == 2) {
+                            vc.component.editStaffInfo.branchOrgs = _orgInfo.orgs;
+                            vc.component._editGetOrgsByOrgLevelStaff(1, 100, 3, $that.editStaffInfo.parentTwoOrgId);
+                        } else {
+                            vc.component.editStaffInfo.departmentOrgs = _orgInfo.orgs;
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _editChangeBrach: function () {
+                vc.component._editGetOrgsByOrgLevelStaff(1, 100, 3, $that.editStaffInfo.parentTwoOrgId);
+            }
         },
     });
 })(window.vc);

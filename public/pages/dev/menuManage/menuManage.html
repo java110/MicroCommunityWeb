@@ -15,6 +15,12 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入菜单组ID','menuManage')"
+                                       v-model="menuManageInfo.conditions.gId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择菜单组名称','menuManage')"
                                        v-model="menuManageInfo.conditions.gName" class=" form-control">
@@ -27,16 +33,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入菜单ID','menuManage')"
                                        v-model="menuManageInfo.conditions.mId" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入菜单名称','menuManage')"
-                                       v-model="menuManageInfo.conditions.mName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -53,16 +53,24 @@
                     <div class="row" v-show="menuManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入菜单名称','menuManage')"
+                                       v-model="menuManageInfo.conditions.mName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入权限ID','menuManage')"
                                        v-model="menuManageInfo.conditions.pId" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入权限名称','menuManage')"
                                        v-model="menuManageInfo.conditions.pName" class=" form-control">
                             </div>
                         </div>
+                    </div>
+                    <div class="row" v-show="menuManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="menuManageInfo.conditions.domain">
                                 <option selected value="">{{vc.i18n('请选择商户类型','menuManage')}}</option>
@@ -72,9 +80,7 @@
                                 <option value="800900000000">{{vc.i18n('开发团队','menuManage')}}</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row" v-show="menuManageInfo.moreCondition == true">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入员工账号','menuManage')"
                                        v-model="menuManageInfo.conditions.uName" class=" form-control">
@@ -104,13 +110,16 @@
                         <thead>
                         <tr>
                             <th class="text-center">
+                                <span><vc:i18n name="菜单组ID" namespace="menuManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="菜单组名称" namespace="menuManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="菜单ID" namespace="menuManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="菜单名称" namespace="menuManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="菜单组" namespace="menuManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="归属商户" namespace="menuManage"></vc:i18n></span>
@@ -131,9 +140,10 @@
                         </thead>
                         <tbody>
                         <tr v-for="menu in menuManageInfo.menus">
+                            <td class="text-center">{{menu.gId}}</td>
+                            <td class="text-center">{{menu.gName}}</td>
                             <td class="text-center">{{menu.mId}}</td>
                             <td class="text-center">{{menu.name}}</td>
-                            <td class="text-center">{{menu.menuGroupName}}</td>
                             <td class="text-center">{{menu.storeTypeName}}</td>
                             <td class="text-center">{{menu.url}}</td>
                             <td class="text-center">{{menu.seq}}</td>

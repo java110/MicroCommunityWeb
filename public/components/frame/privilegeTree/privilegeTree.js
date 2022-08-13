@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             privilegeTreeInfo: {
@@ -9,17 +9,16 @@
                 _currentPgId: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('privilegeTree', 'loadPrivilege', function(_pgId) {
+        _initEvent: function () {
+            vc.on('privilegeTree', 'loadPrivilege', function (_pgId) {
                 $that.privilegeTreeInfo._currentPgId = _pgId;
                 $that._loadPrivilege(_pgId);
             });
         },
         methods: {
-            addPrivilegeToPrivilegeGroup: function(_selectPrivileges) {
+            addPrivilegeToPrivilegeGroup: function (_selectPrivileges) {
                 if (_selectPrivileges.length < 1) {
                     vc.toast("请先选择权限");
                     return;
@@ -40,19 +39,19 @@
                     JSON.stringify(_objData), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             return;
                         }
                         vc.toast('失败')
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast('失败')
                     });
             },
-            deletePrivilege: function(_selectPrivileges) {
+            deletePrivilege: function (_selectPrivileges) {
                 if (_selectPrivileges.length < 1) {
                     vc.toast("请先选择权限");
                     return;
@@ -73,7 +72,7 @@
                     JSON.stringify(_objData), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
@@ -81,12 +80,11 @@
                         }
                         vc.toast('删除失败');
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         vc.toast('删除失败');
                     });
             },
-            _initJsTreePrivilege: function(_privileges) {
-
+            _initJsTreePrivilege: function (_privileges) {
                 let _data = $that._doJsTreeData(_privileges);
                 $.jstree.destroy()
                 $("#jstree_privilege").jstree({
@@ -101,7 +99,7 @@
                         'data': _data
                     }
                 });
-                $('#jstree_privilege').on("changed.jstree", function(e, data) {
+                $('#jstree_privilege').on("changed.jstree", function (e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         $("#jstree_privilege").jstree("close_all");
@@ -118,24 +116,18 @@
                             _selectPrivileges.push(_dItem.substring(2));
                         }
                     });
-
                     if (_selectPrivileges.length < 1) {
                         return;
                     }
-
                     if (_selected) {
                         $that.addPrivilegeToPrivilegeGroup(_selectPrivileges);
                     } else {
                         $that.deletePrivilege(_selectPrivileges);
                     }
                 });
-
-
             },
-
-            _doJsTreeData: function(_privileges) {
+            _doJsTreeData: function (_privileges) {
                 let _mGroupTree = [];
-
                 //构建 第一层菜单组
                 _privileges.forEach(pItem => {
                     let _includeGroup = false;
@@ -144,7 +136,6 @@
                             _includeGroup = true;
                         }
                     }
-
                     if (!_includeGroup) {
                         let _groupItem = {
                             id: 'g_' + pItem.gId,
@@ -161,7 +152,7 @@
                 });
                 return _mGroupTree;
             },
-            _doJsTreeMenuData: function(_groupItem) {
+            _doJsTreeMenuData: function (_groupItem) {
                 let _privileges = $that.privilegeTreeInfo.privileges;
                 //构建菜单
                 let _children = _groupItem.children;
@@ -186,11 +177,10 @@
                             $that._doJsTreePrivilegeData(_menuItem);
                             _children.push(_menuItem);
                         }
-
                     }
                 }
             },
-            _doJsTreePrivilegeData: function(_menuItem) {
+            _doJsTreePrivilegeData: function (_menuItem) {
                 let _privileges = $that.privilegeTreeInfo.privileges;
                 //构建菜单
                 let _children = _menuItem.children;
@@ -218,11 +208,10 @@
                             };
                             _children.push(_privilegeItem);
                         }
-
                     }
                 }
             },
-            _loadPrivilege: function(_pgId) {
+            _loadPrivilege: function (_pgId) {
                 vc.component.privilegeTreeInfo.privileges = [];
                 var param = {
                     params: {
@@ -230,22 +219,19 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/query.privilegeGroup.noAddPrivilege',
                     param,
-                    function(json) {
+                    function (json) {
                         let _privileges = JSON.parse(json);
                         vc.component.privilegeTreeInfo.privileges = _privileges;
                         $that._initJsTreePrivilege(_privileges);
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-
-
         }
     });
 })(window.vc);

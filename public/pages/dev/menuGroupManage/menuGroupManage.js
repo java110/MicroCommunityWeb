@@ -13,6 +13,7 @@
                 moreCondition: false,
                 name: '',
                 conditions: {
+                    gId: '',
                     name: '',
                     icon: '',
                     label: '',
@@ -20,14 +21,14 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('menuGroupManage', 'listMenuGroup', function (_param) {
                 vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listMenuGroups(_currentPage, DEFAULT_ROWS);
             });
         },
@@ -38,12 +39,13 @@
                 let param = {
                     params: vc.component.menuGroupManageInfo.conditions
                 };
+                param.params.gId = param.params.gId.trim();
                 param.params.name = param.params.name.trim();
                 param.params.icon = param.params.icon.trim();
                 //发送get请求
                 vc.http.apiGet('/menuGroup.listMenuGroups',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _menuGroupManageInfo = JSON.parse(json);
                         vc.component.menuGroupManageInfo.total = _menuGroupManageInfo.total;
                         vc.component.menuGroupManageInfo.records = _menuGroupManageInfo.records;
@@ -54,18 +56,18 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddMenuGroupModal: function() {
+            _openAddMenuGroupModal: function () {
                 vc.emit('addMenuGroup', 'openAddMenuGroupModal', {});
             },
-            _openEditMenuGroupModel: function(_menuGroup) {
+            _openEditMenuGroupModel: function (_menuGroup) {
                 vc.emit('editMenuGroup', 'openEditMenuGroupModal', _menuGroup);
             },
-            _openDeleteMenuGroupModel: function(_menuGroup) {
+            _openDeleteMenuGroupModel: function (_menuGroup) {
                 vc.emit('deleteMenuGroup', 'openDeleteMenuGroupModal', _menuGroup);
             },
             //查询
@@ -74,20 +76,21 @@
             },
             //重置
             _resetMenuGroupMethod: function () {
+                vc.component.menuGroupManageInfo.conditions.gId = "";
                 vc.component.menuGroupManageInfo.conditions.name = "";
                 vc.component.menuGroupManageInfo.conditions.icon = "";
                 vc.component.menuGroupManageInfo.conditions.label = "";
                 vc.component.menuGroupManageInfo.conditions.storeType = "";
                 vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.menuGroupManageInfo.moreCondition) {
                     vc.component.menuGroupManageInfo.moreCondition = false;
                 } else {
                     vc.component.menuGroupManageInfo.moreCondition = true;
                 }
             },
-            _getStoreTypeName: function(_storeTypeCd) {
+            _getStoreTypeName: function (_storeTypeCd) {
                 // <option value="800900000001">运营团队</option>
                 // <option value="800900000002">代理商</option>
                 // <option value="800900000003">物业</option>
