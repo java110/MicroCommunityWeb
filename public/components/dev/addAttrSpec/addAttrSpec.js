@@ -113,8 +113,10 @@
                             $('#addAttrSpecModel').modal('hide');
                             vc.component.clearAddAttrSpecInfo();
                             vc.emit('attrSpecManage', 'listAttrSpec', {});
-                            vc.toast(_json.msg);
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function(errInfo, error) {

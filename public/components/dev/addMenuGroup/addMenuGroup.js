@@ -44,7 +44,7 @@
                     'addMenuGroupInfo.icon': [{
                             limit: "required",
                             param: "",
-                            errInfo: "icon不能为空"
+                            errInfo: "图标不能为空"
                         },
                         {
                             limit: "maxin",

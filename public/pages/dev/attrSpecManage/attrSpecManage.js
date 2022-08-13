@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -17,35 +17,33 @@
                     tableName: '',
                     specCd: '',
                     domain: ''
-
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('attrSpecManage', 'listAttrSpec', function(_param) {
+        _initEvent: function () {
+            vc.on('attrSpecManage', 'listAttrSpec', function (_param) {
                 vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAttrSpecs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAttrSpecs: function(_page, _rows) {
-
+            _listAttrSpecs: function (_page, _rows) {
                 vc.component.attrSpecManageInfo.conditions.page = _page;
                 vc.component.attrSpecManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.attrSpecManageInfo.conditions
                 };
-
+                param.params.specCd = param.params.specCd.trim();
+                param.params.specName = param.params.specName.trim();
                 //发送get请求
                 vc.http.apiGet('/attrSpec/queryAttrSpec',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _attrSpecManageInfo = JSON.parse(json);
                         vc.component.attrSpecManageInfo.total = _attrSpecManageInfo.total;
                         vc.component.attrSpecManageInfo.records = _attrSpecManageInfo.records;
@@ -56,35 +54,41 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddAttrSpecModal: function() {
+            _openAddAttrSpecModal: function () {
                 vc.emit('addAttrSpec', 'openAddAttrSpecModal', {});
             },
-            _openEditAttrSpecModel: function(_attrSpec) {
+            _openEditAttrSpecModel: function (_attrSpec) {
                 vc.emit('editAttrSpec', 'openEditAttrSpecModal', _attrSpec);
             },
-            _openDeleteAttrSpecModel: function(_attrSpec) {
+            _openDeleteAttrSpecModel: function (_attrSpec) {
                 vc.emit('deleteAttrSpec', 'openDeleteAttrSpecModal', _attrSpec);
             },
-            _queryAttrSpecMethod: function() {
+            //查询
+            _queryAttrSpecMethod: function () {
                 vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetAttrSpecMethod: function () {
+                vc.component.attrSpecManageInfo.conditions.specName = "";
+                vc.component.attrSpecManageInfo.conditions.tableName = "";
+                vc.component.attrSpecManageInfo.conditions.specCd = "";
+                vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.attrSpecManageInfo.moreCondition) {
                     vc.component.attrSpecManageInfo.moreCondition = false;
                 } else {
                     vc.component.attrSpecManageInfo.moreCondition = true;
                 }
             },
-            _getSpecValueTypeName: function(_specValueType) {
+            _getSpecValueTypeName: function (_specValueType) {
                 if (_specValueType == '1001') {
                     return "字符串";
-
                 } else if (_specValueType == '2002') {
                     return "整数";
                 } else if (_specValueType == '3003') {
@@ -94,10 +98,9 @@
                 } else if (_specValueType == '5005') {
                     return "时间";
                 }
-
                 return "未知"
             },
-            _getSpecTypeName: function(_specValue) {
+            _getSpecTypeName: function (_specValue) {
                 if (_specValue == '2233') {
                     return "input";
                 } else if (_specValue == '3344') {
@@ -105,14 +108,11 @@
                 } else if (_specValue == '4455') {
                     return "日期";
                 }
-
                 return "未知"
             },
             _openAttrSpecValue: function(_attrSpec) {
                 vc.jumpToPage('/#/pages/dev/attrValueManage?specId=' + _attrSpec.specId + '&specName=' + _attrSpec.specName + "&domain=" + _attrSpec.domain);
             }
-
-
         }
     });
 })(window.vc);

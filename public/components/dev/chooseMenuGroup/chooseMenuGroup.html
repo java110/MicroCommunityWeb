@@ -1,8 +1,11 @@
-<div id = "chooseMenuGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseMenuGroupModelLabel" aria-hidden="true" >
+<div id="chooseMenuGroupModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="chooseMenuGroupModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseMenuGroupModelLabel"><span><vc:i18n name="选择菜单组" namespace="chooseMenuGroup"></vc:i18n></span></h3>
+                <h3 class="modal-title" id="chooseMenuGroupModelLabel">
+                    <span><vc:i18n name="选择菜单组" namespace="chooseMenuGroup"></vc:i18n></span>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,53 +15,72 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-
-                                <div class="col-sm-7 m-b-xs">
-                                </div>
+                                <div class="col-sm-7 m-b-xs"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入菜单组名称','chooseMenuGroup')" type="text" v-model="chooseMenuGroupInfo._currentMenuGroupName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入菜单组名称','chooseMenuGroup')" type="text"
+                                               v-model="chooseMenuGroupInfo._currentMenuGroupName"
+                                               class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryMenuGroups()"><span><vc:i18n name="查询" namespace="chooseMenuGroup"></vc:i18n></span></button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    v-on:click="queryMenuGroups()">
+                                                <span><vc:i18n name="查询" namespace="chooseMenuGroup"></vc:i18n></span>
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                                                        <th class="text-center"><span><vc:i18n name="组" namespace="chooseMenuGroup"></vc:i18n></span>Id</th>
-                            <th class="text-center"><span><vc:i18n name="组名称" namespace="chooseMenuGroup"></vc:i18n></span></th>
-                            <th class="text-center">icon</th>
-                            <th class="text-center"><span><vc:i18n name="标签" namespace="chooseMenuGroup"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="归属商户" namespace="chooseMenuGroup"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="序列" namespace="chooseMenuGroup"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="描述" namespace="chooseMenuGroup"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseMenuGroup"></vc:i18n></span></th>
-
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="组" namespace="chooseMenuGroup"></vc:i18n></span>Id
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="组名称" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="图标" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="标签" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="归属商户" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="序列" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="描述" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="chooseMenuGroup"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="menuGroup in chooseMenuGroupInfo.menuGroups">
-                                                                        <td class="text-center">{{menuGroup.gId}}</td>
-                            <td class="text-center">{{menuGroup.name}}</td>
-                            <td class="text-center">{{menuGroup.icon}}</td>
-                            <td class="text-center">{{menuGroup.label}}</td>
-                            <td class="text-center">{{_getChooseStoreTypeName(menuGroup.storeType)}}</td>
-                            <td class="text-center">{{menuGroup.seq}}</td>
-                            <td class="text-center">{{menuGroup.description}}</td>
-
-                                            <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseMenuGroup(menuGroup)"><span><vc:i18n name="选择" namespace="chooseMenuGroup"></vc:i18n></span></button>
-                                            </td>
-                                        </tr>
+                                    <tr v-for="menuGroup in chooseMenuGroupInfo.menuGroups">
+                                        <td class="text-center">{{menuGroup.gId}}</td>
+                                        <td class="text-center">{{menuGroup.name}}</td>
+                                        <td class="text-center">{{menuGroup.icon}}</td>
+                                        <td class="text-center">{{menuGroup.label}}</td>
+                                        <td class="text-center">{{_getChooseStoreTypeName(menuGroup.storeType)}}</td>
+                                        <td class="text-center">{{menuGroup.seq}}</td>
+                                        <td class="text-center">{{menuGroup.description}}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseMenu(menuGroup)">
+                                                <span><vc:i18n name="选择" namespace="chooseMenuGroup"></vc:i18n></span>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->
                                 <vc:create namespace="chooseMenuGroup" path="frame/paginationPlus"></vc:create>
                             </div>
-
                         </div>
                     </div>
                 </div>

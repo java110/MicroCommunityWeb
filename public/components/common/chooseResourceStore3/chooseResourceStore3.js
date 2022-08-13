@@ -56,6 +56,9 @@
                     }
                 })
             });
+            vc.on('chooseResourceStore3', 'clear', function (_param) {
+                vc.component.chooseResourceStoreInfo3.selectResourceStores = [];
+            });
         },
         methods: {
             _loadAllResourceStoreInfo: function(_page, _row) {

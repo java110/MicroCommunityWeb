@@ -84,8 +84,10 @@
                             $('#addAttrValueModel').modal('hide');
                             vc.component.clearAddAttrValueInfo();
                             vc.emit('attrValueManage', 'listAttrValue', {});
-                            vc.toast(_json.msg);
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function(errInfo, error) {

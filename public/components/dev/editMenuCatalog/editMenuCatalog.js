@@ -39,12 +39,12 @@
                     'editMenuCatalogInfo.icon': [{
                         limit: "required",
                         param: "",
-                        errInfo: "图片不能为空"
+                        errInfo: "图标不能为空"
                     },
                         {
                             limit: "maxLength",
                             param: "20",
-                            errInfo: "图片不能超过20"
+                            errInfo: "图标不能超过20"
                         },
                     ],
                     'editMenuCatalogInfo.seq': [{
