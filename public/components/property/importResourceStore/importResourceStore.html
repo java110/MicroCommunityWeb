@@ -1,0 +1,52 @@
+<div id="importResourceStoreModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="物品导入" namespace="importResourceStore"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="仓库" namespace="importResourceStore"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="importResourceStoreInfo.shId">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择仓库','importResourceStore')}}</option>
+                                        <option v-for="(item,index) in importResourceStoreInfo.storehouses" :key="index"
+                                                v-bind:value="item.shId">
+                                            {{item.shName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择文件" namespace="importResourceStore"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <div class="custom-file">
+                                        <input id="excelTemplate" ref="excelTemplate" type="file" class="custom-file-input form-control" name="excelTemplate" v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
+                                        <label for="excelTemplate" class="custom-file-label">{{importResourceStoreInfo.excelTemplate==''?'必填，请选择数据文件':importResourceStoreInfo.excelTemplate.name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="下载模板" namespace="importResourceStore"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    请先下载
+                                    <a href="/import/importResourceStore.xlsx" target="_blank"><span><vc:i18n name="物品模板" namespace="importResourceStore"></vc:i18n></span>
+                                    </a> <span><vc:i18n name="准备数据后" namespace="importResourceStore"></vc:i18n></span>，上传导入
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="_importData()">
+                                    <i class="fa fa-check"></i>&nbsp;导入
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

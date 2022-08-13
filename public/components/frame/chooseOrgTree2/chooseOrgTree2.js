@@ -24,6 +24,14 @@
             vc.on('chooseOrgTree2', 'refreshTree', function(_param) {
                 $that._loadChooseOrgs2();
             });
+            vc.on('chooseOrgTree2', 'clearAll', function(_param) {
+                $that.chooseOrgTree2Info = {
+                    orgs: [],
+                    orgId: '',
+                    curOrg: {},
+                    selectOrgFlag: false
+                }
+            });
         },
         methods: {
 

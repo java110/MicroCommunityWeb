@@ -1,4 +1,4 @@
-<div class="vc-input-search text-left" v-if="inputSearchOwnerInfo.owners && inputSearchOwnerInfo.owners.length>0">
+<div class="vc-input-search text-left" @mouseleave="_doInputSearchOwnerClose()" v-if="inputSearchOwnerInfo.owners && inputSearchOwnerInfo.owners.length>0">
     <div class="close">
         <i class="fa fa-remove" @click="_doInputSearchOwnerClose()"></i>
     </div>
