@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -10,16 +10,16 @@
                 endTime: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initAddInspectionPlanStaffDateInfo();
         },
-        _initEvent: function () {
-            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function (_inspectionPlan) {
+        _initEvent: function() {
+            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function(_inspectionPlan) {
                 $('#addInspectionPlanStaffModel').modal('show');
                 $that.addInspectionPlanStaffInfo.inspectionPlanId = _inspectionPlan.inspectionPlanId;
             });
 
-            vc.on("addInspectionPlanStaff", "notify", function (_param) {
+            vc.on("addInspectionPlanStaff", "notify", function(_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addInspectionPlanStaffInfo.staffId = _param.staffId;
                     vc.component.addInspectionPlanStaffInfo.staffName = _param.staffName;
@@ -29,50 +29,44 @@
                 }
             });
 
+            vc.on('addInspectionPlanStaff', 'switchOrg', function(_org) {
+                vc.emit('addInspectionPlanStaff', 'staffSelect2', 'setStaff', _org)
+            });
+
         },
         methods: {
             addInspectionPlanStaffValidate() {
                 return vc.validate.validate({
                     addInspectionPlanStaffInfo: vc.component.addInspectionPlanStaffInfo
                 }, {
-                    'addInspectionPlanStaffInfo.inspectionPlanId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检计划不能为空"
-                        }
-                    ],
-                    'addInspectionPlanStaffInfo.staffId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "执行人不能为空"
-                        }
-                    ],
-                    'addInspectionPlanStaffInfo.staffName': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "执行人员不能为空"
-                        }
-                    ],
-                    'addInspectionPlanStaffInfo.startTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        },
-                    ],
-                    'addInspectionPlanStaffInfo.endTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        }
-                    ]
+                    'addInspectionPlanStaffInfo.inspectionPlanId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检计划不能为空"
+                    }],
+                    'addInspectionPlanStaffInfo.staffId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "执行人不能为空"
+                    }],
+                    'addInspectionPlanStaffInfo.staffName': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "执行人员不能为空"
+                    }],
+                    'addInspectionPlanStaffInfo.startTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "开始时间不能为空"
+                    }, ],
+                    'addInspectionPlanStaffInfo.endTime': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    }]
                 });
             },
-            _initAddInspectionPlanStaffDateInfo: function () {
+            _initAddInspectionPlanStaffDateInfo: function() {
                 $('.addInspectionPlanStaffStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -84,7 +78,7 @@
 
                 });
                 $('.addInspectionPlanStaffStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".addInspectionPlanStaffStartTime").val();
                         vc.component.addInspectionPlanStaffInfo.startTime = value;
                     });
@@ -98,12 +92,12 @@
                     todayBtn: true
                 });
                 $('.addInspectionPlanStaffEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".addInspectionPlanStaffEndTime").val();
                         vc.component.addInspectionPlanStaffInfo.endTime = value;
                     });
             },
-            _saveInspectionPlanStaff: function () {
+            _saveInspectionPlanStaff: function() {
                 if (!vc.component.addInspectionPlanStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -113,17 +107,16 @@
 
                 vc.http.apiPost(
                     'inspectionPlanStaff.saveInspectionPlanStaff',
-                    JSON.stringify(vc.component.addInspectionPlanStaffInfo),
-                    {
+                    JSON.stringify(vc.component.addInspectionPlanStaffInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
-                            vc.emit('inspectionPlanStaffManage','listInspectionPlanStaff', {
-                                inspectionPlanId:$that.addInspectionPlanStaffInfo.inspectionPlanId
+                            vc.emit('inspectionPlanStaffManage', 'listInspectionPlanStaff', {
+                                inspectionPlanId: $that.addInspectionPlanStaffInfo.inspectionPlanId
                             });
                             vc.component.clearaddInspectionPlanStaffInfo();
                             $('#addInspectionPlanStaffModel').modal('hide');
@@ -132,14 +125,16 @@
                         vc.toast(json);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
             },
-            clearaddInspectionPlanStaffInfo: function () {
+            clearaddInspectionPlanStaffInfo: function() {
+                vc.emit('addInspectionPlanStaff', 'staffSelect2', 'clearStaff', {});
+                vc.emit('chooseOrgTree2', 'clearAll', {});
                 vc.component.addInspectionPlanStaffInfo = {
                     inspectionPlanId: '',
                     staffId: '',
@@ -148,12 +143,11 @@
                     endTime: ''
                 };
             },
-            cleanInspectionPlanStaffAddModel: function () {
+            cleanInspectionPlanStaffAddModel: function() {
                 vc.component.clearaddInspectionPlanStaffInfo();
                 //员工select2
                 vc.emit('addInspectionPlanStaff', 'staffSelect2', 'clearStaff', {});
-                vc.emit('addInspectionPlanStaff', 'departmentSelect2', 'clearDepartment', {});
-                vc.emit('addInspectionPlanStaff', 'orgSelect2', 'clearOrg', {});
+                vc.emit('chooseOrgTree2', 'clearAll', {});
             }
         }
     });

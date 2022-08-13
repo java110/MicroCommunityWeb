@@ -17,12 +17,9 @@
             </select>
         </div>
         <div class="col-lg-4 padding-lr-0 margin-left-xs">
-            <input class="form-control"
-                   v-bind:placeholder="vc.i18n(simplifyAcceptanceInfo.searchPlaceholder, 'simplifyAcceptance')"
-                   @input="_simplifyInputOwner()" v-model="simplifyAcceptanceInfo.searchValue"
-                   @keyup.enter="_doSearch()"/>
+            <input class="form-control" v-bind:placeholder="vc.i18n(simplifyAcceptanceInfo.searchPlaceholder, 'simplifyAcceptance')" @input="_simplifyInputOwner()" v-model="simplifyAcceptanceInfo.searchValue" @keyup.enter="_doSearch()" />
             <vc:create path="property/inputSearchOwner"></vc:create>
-            <!-- <vc:create path="property/inputSearchRoom"></vc:create> -->
+            <vc:create path="property/inputSearchRoom"></vc:create>
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <button type="button" class="form-control btn btn-primary" @click="_doSearch()">
@@ -36,8 +33,7 @@
         </div>
         <div class="col-lg-1 padding-lr-0 margin-left-sm">
             <div class="">
-                <button class="form-control btn-white btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                <button class="form-control btn-white btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span><vc:i18n name="更多操作" namespace="simplifyAcceptance"></vc:i18n></span>
                 </button>
                 <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
@@ -63,8 +59,7 @@
     <div class="padding margin-top">
         <div class="">
             <div class="text-center vc-float-left" style="width: 150px;">
-                <image width="120px" height="140px" v-bind:src="simplifyAcceptanceInfo.ownerPhoto"
-                       @error="errorLoadImg"/>
+                <image width="120px" height="140px" v-bind:src="simplifyAcceptanceInfo.ownerPhoto" @error="errorLoadImg" />
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -190,8 +185,7 @@
                                 <label class="">{{simplifyAcceptanceInfo.roomArea}}</label>
                             </div>
                         </div>
-                        <div class="col-sm-3"
-                             v-if="simplifyAcceptanceInfo.roomSubType && simplifyAcceptanceInfo.roomSubType != '110'">
+                        <div class="col-sm-3" v-if="simplifyAcceptanceInfo.roomSubType && simplifyAcceptanceInfo.roomSubType != '110'">
                             <div class="form-group">
                                 <label class="col-form-label">
                                     <span><vc:i18n name="租金" namespace="simplifyAcceptance"></vc:i18n></span>
@@ -216,82 +210,62 @@
         <div class="margin-top">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}"
-                       v-on:click="changeTab('simplifyRoomFee')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyRoomFee'}" v-on:click="changeTab('simplifyRoomFee')">
                         <span><vc:i18n name="房屋费用" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}"
-                       v-on:click="changeTab('simplifyCarFee')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyCarFee'}" v-on:click="changeTab('simplifyCarFee')">
                         <span><vc:i18n name="停车费用" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}"
-                       v-on:click="changeTab('simplifyContract')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyContract'}" v-on:click="changeTab('simplifyContract')">
                         <span><vc:i18n name="业主合同" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}"
-                       v-on:click="changeTab('simplifyOwnerMember')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerMember'}" v-on:click="changeTab('simplifyOwnerMember')">
                         <span><vc:i18n name="家庭成员" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}"
-                       v-on:click="changeTab('simplifyOwnerCar')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'}" v-on:click="changeTab('simplifyOwnerCar')">
                         <span><vc:i18n name="车辆信息" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}"
-                       v-on:click="changeTab('simplifyOwnerRepair')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}" v-on:click="changeTab('simplifyOwnerRepair')">
                         <span><vc:i18n name="报修单" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}"
-                       v-on:click="changeTab('simplifyOwnerComplaint')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerComplaint'}" v-on:click="changeTab('simplifyOwnerComplaint')">
                         <span><vc:i18n name="投诉单" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}"
-                       v-on:click="changeTab('simplifyOwnerAccessContol')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}" v-on:click="changeTab('simplifyOwnerAccessContol')">
                         <span><vc:i18n name="门禁同步" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}"
-                       v-on:click="changeTab('simplifyOwnerTransactionCar')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerTransactionCar'}" v-on:click="changeTab('simplifyOwnerTransactionCar')">
                         <span><vc:i18n name="道闸同步" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item" v-if="vc.hasPrivilege('502020092373407363')">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}"
-                       v-on:click="changeTab('simplifyFeeReceipt')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyFeeReceipt'}" v-on:click="changeTab('simplifyFeeReceipt')">
                         <span><vc:i18n name="补打收据" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}"
-                       v-on:click="changeTab('simplifyShopsHireLog')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}" v-on:click="changeTab('simplifyShopsHireLog')">
                         <span><vc:i18n name="绑定记录" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                       v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'}"
-                       v-on:click="changeTab('simplifyMeterWaterFee')">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyMeterWaterFee'}" v-on:click="changeTab('simplifyMeterWaterFee')">
                         <span><vc:i18n name="抄表记录" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
@@ -341,7 +315,6 @@
     <vc:create path="property/carCreateFeeAdd"></vc:create>
     <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/addProxyFee" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1"
-               showSearchCondition="false"></vc:create>
+    <vc:create path="property/searchRoom" emitChooseRoom="simplifyAcceptance" emitLoadData="list" roomFlag="1" showSearchCondition="false"></vc:create>
     <vc:create path="property/editMachineTranslate"></vc:create>
 </div>
