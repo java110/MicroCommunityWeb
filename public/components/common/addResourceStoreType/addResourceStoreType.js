@@ -57,7 +57,7 @@
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
-                        if (_json.code != 0) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addResourceStoreTypeModel').modal('hide');
                             if (vc.component.addResourceStoreTypeInfo.parentId != null && vc.component.addResourceStoreTypeInfo.parentId != '' &&
