@@ -271,7 +271,7 @@
             },
             // 根据分类查询规格(一级分类)
             _loadResourceStoreSpecificationAdd: function () {
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
@@ -312,6 +312,15 @@
                 );
             },
             clearAddResourceStoreInfo: function () {
+
+                   let _unitCodes =  vc.component.addResourceStoreInfo.unitCodes;
+               
+                   let _isFixeds = vc.component.addResourceStoreInfo.isFixeds;
+
+                  let _resourceStoreTypes = vc.component.addResourceStoreInfo.resourceStoreTypes;
+                  let _sonResourceStoreTypes = vc.component.addResourceStoreInfo.sonResourceStoreTypes;
+                  let _resourceStoreSpecifications = vc.component.addResourceStoreInfo.resourceStoreSpecifications;
+                  
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
@@ -327,15 +336,20 @@
                     unitCode: '',
                     shId: '',
                     isFixed: '',
-                    unitCodes: [],
+                    rssId:'',
+                    miniUnitCode:'',
+                    unitCodes: _unitCodes,
                     photos: [],
                     storehouses: [],
-                    isFixeds: [],
+                    resourceStoreTypes: _resourceStoreTypes,
+                    resourceStoreSpecifications: _resourceStoreSpecifications,
+                    sonResourceStoreTypes:_sonResourceStoreTypes,
+                    isFixeds: _isFixeds,
                     warningStock: ''
                 };
             },
             _listAddStorehouses: function (_page, _rows) {
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
