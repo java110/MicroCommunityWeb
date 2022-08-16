@@ -45,9 +45,9 @@
                         if (_notices.length > 0) {
                             //filterXSS
                             _notices[0].context = filterXSS(_notices[0].context);
-                            if (_notices[0].context != null && _notices[0].context != '' && _notices[0].context != 'undefined') {
+                            /*if (_notices[0].context != null && _notices[0].context != '' && _notices[0].context != 'undefined') {
                                 _notices[0].context = _notices[0].context.substring(3).split("</p>")[0];
-                            }
+                            }*/
                             vc.copyObject(_notices[0], vc.component.noticeDetailInfo);
                         }
                     },
