@@ -215,7 +215,9 @@
             _loadAdvertItem: function() {
                 var param = {
                     params: {
-                        advertId: vc.component.editAdvertInfo.advertId
+                        advertId: vc.component.editAdvertInfo.advertId,
+                        page: 1,
+                        row: 50,
                     }
                 };
                 //发送get请求
