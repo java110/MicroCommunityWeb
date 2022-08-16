@@ -151,7 +151,7 @@
                     noticeState: '1002'
                 };
                 //发送get请求
-                vc.http.apiPost('/complaint.auditComplaint',
+                vc.http.apiPost('/purchaseApply.auditApplyOrder',
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },
