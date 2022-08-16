@@ -49,7 +49,7 @@
                     }
                 );
             },
-            chooseMenuGroup: function(_menuGroup) {
+            _chooseMenuGroup: function(_menuGroup) {
                 if (_menuGroup.hasOwnProperty('name')) {
                     _menuGroup.menuGroupName = _menuGroup.name;
                 }
