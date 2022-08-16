@@ -107,7 +107,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.component.clearaddActivitiesViewInfo();
-                            vc.emit('activitiesManage', 'pageReload', {});
+                            vc.emit('activitiesManage', 'listActivities', {});
                             vc.toast("发布成功");
                             return;
                         }
