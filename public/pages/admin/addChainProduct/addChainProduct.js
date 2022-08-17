@@ -16,7 +16,7 @@
                 carouselFigurePhoto: [],
                 productSpecs: [],
                 areaCode: '',
-                csId:''
+                csId: ''
             }
         },
         watch: {
@@ -115,7 +115,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                
+
                 vc.http.apiPost(
                     '/chainProduct.saveChainProduct',
                     JSON.stringify(vc.component.addChainProductInfo), {
@@ -138,7 +138,7 @@
                         vc.toast(errInfo);
                     });
             },
-           
+
             clearAddProductInfo: function() {
                 let _catalogs = $that.addChainProductInfo.catalogs;
                 let _csId = $that.addChainProductInfo.csId;
@@ -157,7 +157,7 @@
                     carouselFigurePhoto: [],
                     productSpecs: [],
                     areaCode: '',
-                    csId:_csId
+                    csId: _csId
                 };
             },
             _closeAddProduct: function() {
@@ -216,7 +216,7 @@
                 param.append("uploadFile", files[0]);
                 param.append('communityId', '123');
                 vc.http.upload(
-                    'addNoticeView',
+                    'uploadFile',
                     'uploadImage',
                     param, {
                         emulateJSON: true,
@@ -267,12 +267,12 @@
                 _defaultProductSpec.isDefault = "T";
                 $that.addChainProductInfo.productSpecs = JSON.parse(JSON.stringify(_product.productSpecs));
             },
-            _addChainProductSpec:function(){
+            _addChainProductSpec: function() {
                 let _productSpec = {
-                    specName:'',
-                    specValue:'',
-                    price:'',
-                    barCode:'',
+                    specName: '',
+                    specValue: '',
+                    price: '',
+                    barCode: '',
                     isDefault: "F"
                 };
                 $that.addChainProductInfo.productSpecs.push(_productSpec);
@@ -288,7 +288,7 @@
                     _productSpecs[0].isDefault = "T"
                 }
             }
-           
+
         }
     });
 })(window.vc);

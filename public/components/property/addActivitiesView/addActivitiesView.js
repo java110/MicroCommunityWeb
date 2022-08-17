@@ -210,7 +210,7 @@
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
                 vc.http.upload(
-                    'addActivitiesView',
+                    'uploadFile',
                     'uploadImage',
                     param, {
                         emulateJSON: true,

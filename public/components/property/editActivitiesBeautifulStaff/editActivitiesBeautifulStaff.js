@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -11,13 +11,13 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
             $that._initEditActivitiesBeautifulStaffInfo();
 
         },
-        _initEvent: function () {
-            vc.on('editActivitiesBeautifulStaff', 'openEditActivitiesBeautifulStaffModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editActivitiesBeautifulStaff', 'openEditActivitiesBeautifulStaffModal', function(_params) {
                 vc.component.refreshEditActivitiesBeautifulStaffInfo();
                 $('#editActivitiesBeautifulStaffModel').modal('show');
                 vc.copyObject(_params, vc.component.editActivitiesBeautifulStaffInfo);
@@ -26,12 +26,11 @@
             });
         },
         methods: {
-            editActivitiesBeautifulStaffValidate: function () {
+            editActivitiesBeautifulStaffValidate: function() {
                 return vc.validate.validate({
                     editActivitiesBeautifulStaffInfo: vc.component.editActivitiesBeautifulStaffInfo
                 }, {
-                    'editActivitiesBeautifulStaffInfo.ruleId': [
-                        {
+                    'editActivitiesBeautifulStaffInfo.ruleId': [{
                             limit: "required",
                             param: "",
                             errInfo: "活动规则不能为空"
@@ -42,8 +41,7 @@
                             errInfo: "活动规则格式错误"
                         },
                     ],
-                    'editActivitiesBeautifulStaffInfo.staffId': [
-                        {
+                    'editActivitiesBeautifulStaffInfo.staffId': [{
                             limit: "required",
                             param: "",
                             errInfo: "员工不能为空"
@@ -54,8 +52,7 @@
                             errInfo: "员工名称太长"
                         },
                     ],
-                    'editActivitiesBeautifulStaffInfo.activitiesNum': [
-                        {
+                    'editActivitiesBeautifulStaffInfo.activitiesNum': [{
                             limit: "required",
                             param: "",
                             errInfo: "员工编号不能为空"
@@ -66,8 +63,7 @@
                             errInfo: "编号必须为数字"
                         },
                     ],
-                    'editActivitiesBeautifulStaffInfo.workContent': [
-                        {
+                    'editActivitiesBeautifulStaffInfo.workContent': [{
                             limit: "required",
                             param: "",
                             errInfo: "工作简介不能为空"
@@ -78,16 +74,15 @@
                             errInfo: "工作简介说明太长"
                         },
                     ],
-                    'editActivitiesBeautifulStaffInfo.beId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "ID不能为空"
-                        }]
+                    'editActivitiesBeautifulStaffInfo.beId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "ID不能为空"
+                    }]
 
                 });
             },
-            editActivitiesBeautifulStaff: function () {
+            editActivitiesBeautifulStaff: function() {
                 if (!vc.component.editActivitiesBeautifulStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -95,11 +90,10 @@
 
                 vc.http.apiPost(
                     '/activitiesRule/updateActivitiesBeautifulStaff',
-                    JSON.stringify(vc.component.editActivitiesBeautifulStaffInfo),
-                    {
+                    JSON.stringify(vc.component.editActivitiesBeautifulStaffInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -110,13 +104,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            refreshEditActivitiesBeautifulStaffInfo: function () {
+            refreshEditActivitiesBeautifulStaffInfo: function() {
                 vc.component.editActivitiesBeautifulStaffInfo = {
                     beId: '',
                     ruleId: '',
@@ -126,7 +120,7 @@
 
                 }
             },
-            editSendFile: function ($summernote, files) {
+            editSendFile: function($summernote, files) {
                 console.log('上传图片', files);
 
                 var param = new FormData();
@@ -134,17 +128,16 @@
                 param.append('communityId', vc.getCurrentCommunity().communityId);
 
                 vc.http.upload(
-                    'addNoticeView',
+                    'uploadFile',
                     'uploadImage',
-                    param,
-                    {
+                    param, {
                         emulateJSON: true,
                         //添加请求头
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -154,22 +147,22 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
 
             },
-            _initEditActivitiesBeautifulStaffInfo: function () {
+            _initEditActivitiesBeautifulStaffInfo: function() {
                 let $summernote = $('.editSummernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入工作简介',
                     callbacks: {
-                        onImageUpload: function (files, editor, $editable) {
+                        onImageUpload: function(files, editor, $editable) {
                             vc.component.editSendFile($summernote, files);
                         },
-                        onChange: function (contents, $editable) {
+                        onChange: function(contents, $editable) {
                             vc.component.editActivitiesBeautifulStaffInfo.workContent = contents;
                         }
                     },
@@ -187,7 +180,7 @@
                     ],
                 });
             },
-            _closeEditActivitiesBeauifulStaffInfo: function () {
+            _closeEditActivitiesBeauifulStaffInfo: function() {
                 vc.emit('activitiesBeautifulStaffManage', 'listActivitiesBeautifulStaff', {});
             },
         }
