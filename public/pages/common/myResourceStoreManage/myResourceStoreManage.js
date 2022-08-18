@@ -62,7 +62,7 @@
                 param.params.searchUserId = param.params.searchUserId.trim();
                 param.params.searchUserName = param.params.searchUserName.trim();
                 //发送get请求
-                vc.http.apiGet('resourceStore.listUserStorehouses',
+                vc.http.apiGet('/resourceStore.listUserStorehouses',
                     param,
                     function(json, res) {
                         var _myResourceStoreManageInfo = JSON.parse(json);

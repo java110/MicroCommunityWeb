@@ -8,16 +8,16 @@
                 prodDesc: '',
                 unitName: '',
                 sort: '',
-               
+
                 content: '',
                 states: [],
                 state: '',
                 coverPhoto: '',
                 carouselFigurePhotos: [],
-               
+
                 productSpecs: [],
                 areaCode: '',
-                csId:''
+                csId: ''
             },
             chainCatalogs: [],
         },
@@ -35,9 +35,9 @@
             $that.editChainProductInfo.csId = vc.getParam('csId');
             $that._listEditCatalogs();
             $that._initAddProduct();
-            
+
             $that._listProducts();
-            
+
         },
         _initEvent: function() {
 
@@ -55,16 +55,16 @@
 
         },
         methods: {
-            _listProducts: function () {
+            _listProducts: function() {
                 var param = {
-                    params: {page:1,row:1,productId:$that.editChainProductInfo.productId,csId:vc.getParam('csId')}
+                    params: { page: 1, row: 1, productId: $that.editChainProductInfo.productId, csId: vc.getParam('csId') }
                 };
                 //发送get请求
                 vc.http.apiGet('/chainProduct.listChainProduct',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _chainProductInfo = JSON.parse(json);
-                        if(_chainProductInfo.code == 404){
+                        if (_chainProductInfo.code == 404) {
                             vc.message("请检查供应链信息是否正确。");
                         }
                         let product = _chainProductInfo.data[0];
@@ -76,8 +76,9 @@
                         vc.emit('editProductCarouselFigure', 'uploadImage', 'notifyPhotos', product.carouselFigurePhotos);
 
                         $(".editSummernote").summernote('code', product.content);
-                      
-                    }, function (errInfo, error) {
+
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
@@ -149,7 +150,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                
+
                 vc.http.apiPost(
                     '/chainProduct.updateChainProduct',
                     JSON.stringify(vc.component.editChainProductInfo), {
@@ -173,7 +174,7 @@
                         vc.toast(errInfo);
                     });
             },
-           
+
             clearAddProductInfo: function() {
                 let _catalogs = $that.editChainProductInfo.catalogs;
                 let _csId = $that.editChainProductInfo.csId;
@@ -192,7 +193,7 @@
                     carouselFigurePhotos: [],
                     productSpecs: [],
                     areaCode: '',
-                    csId:_csId
+                    csId: _csId
                 };
             },
             _closeAddProduct: function() {
@@ -251,7 +252,7 @@
                 param.append("uploadFile", files[0]);
                 param.append('communityId', '123');
                 vc.http.upload(
-                    'addNoticeView',
+                    'uploadFile',
                     'uploadImage',
                     param, {
                         emulateJSON: true,
@@ -302,14 +303,14 @@
                 _defaultProductSpec.isDefault = "T";
                 $that.editChainProductInfo.productSpecs = JSON.parse(JSON.stringify(_product.productSpecs));
             },
-            _editChainProductSpec:function(){
+            _editChainProductSpec: function() {
                 let _productSpec = {
-                    specName:'',
-                    specValue:'',
-                    price:'',
-                    barCode:'',
+                    specName: '',
+                    specValue: '',
+                    price: '',
+                    barCode: '',
                     isDefault: "F"
-                    
+
                 };
                 $that.editChainProductInfo.productSpecs.push(_productSpec);
                 let _productSpecs = $that.editChainProductInfo.productSpecs;
@@ -324,7 +325,7 @@
                     _productSpecs[0].isDefault = "T"
                 }
             }
-           
+
         }
     });
 })(window.vc);

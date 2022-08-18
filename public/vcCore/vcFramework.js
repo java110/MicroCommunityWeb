@@ -1607,6 +1607,53 @@
             });
     }
 
+    vcFramework.refreshSystemInfo = function(_callBack) {
+        let param = {
+            params: {
+                page: 1,
+                row: 1,
+            }
+        };
+
+        //发送get请求
+        vcFramework.http.apiGet('/system.listSystemInfo', param,
+            function(json, res) {
+                let _systemInfo = JSON.parse(json);
+
+                if (_systemInfo.code != 0) {
+                    _callBack();
+                    return;
+                }
+
+                if (!_systemInfo.data || _systemInfo.data.length < 1) {
+                    _callBack();
+                    return;
+                }
+
+                let _data = _systemInfo.data[0]
+
+                window.lang.systemName = _data.systemTitle;
+                window.lang.subSystemName = _data.subSystemTitle;
+                window.lang.companyTeam = _data.companyName;
+                window.lang.systemSimpleName = _data.systemTitle;
+                window.lang.logoUrl = _data.logoUrl;
+                _callBack();
+                document.title = _data.systemTitle;
+                let _logoImg = document.getElementById('logoImg');
+                if (_logoImg) {
+                    _logoImg.src = _data.logoUrl;
+                }
+
+                vc.saveData('java110SystemInfo', _data)
+            },
+            function(errInfo, error) {
+                console.log('请求失败处理');
+                _callBack();
+            });
+    }
+
+
+
 
 })(window.vcFramework);
 
@@ -1990,8 +2037,11 @@
  * 框架开始初始化
  */
 (function(vcFramework) {
-    //启动 框架
-    vcFramework.builderVcTree();
+    vcFramework.refreshSystemInfo(function() {
+        //启动 框架
+        vcFramework.builderVcTree();
+    });
+
 
 
 })(window.vcFramework);
@@ -2875,7 +2925,7 @@
  * 18位身份证
  * 1生日2性别3年龄
  */
- (function(vcFramework) {
+(function(vcFramework) {
     vcFramework.idCardInfoExt = function(idCard, type) {
         //通过身份证号计算年龄、性别、出生日期
         if (type == 1) {

@@ -103,13 +103,15 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0) {
                             //关闭model
                             vc.component.clearaddActivitiesViewInfo();
-                            vc.emit('activitiesManage', 'pageReload', {});
+                            vc.emit('activitiesManage', 'listActivities', {});
                             vc.toast("发布成功");
                             return;
                         }
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -208,7 +210,7 @@
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
                 vc.http.upload(
-                    'addActivitiesView',
+                    'uploadFile',
                     'uploadImage',
                     param, {
                         emulateJSON: true,

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         data: {
@@ -9,12 +9,12 @@
                 docContent: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initSysDocumentInfo();
 
         },
-        _initEvent: function () {
-            vc.on('addSysDocumentView', 'openAddSysDocumentView', function () {
+        _initEvent: function() {
+            vc.on('addSysDocumentView', 'openAddSysDocumentView', function() {
                 //vc.component._initSysDocumentInfo();
 
             });
@@ -24,8 +24,7 @@
                 return vc.validate.validate({
                     addSysDocumentViewInfo: vc.component.addSysDocumentViewInfo
                 }, {
-                    'addSysDocumentViewInfo.docTitle': [
-                        {
+                    'addSysDocumentViewInfo.docTitle': [{
                             limit: "required",
                             param: "",
                             errInfo: "文档标题不能为空"
@@ -36,8 +35,7 @@
                             errInfo: "文档标题不能超过200位"
                         },
                     ],
-                    'addSysDocumentViewInfo.docCode': [
-                        {
+                    'addSysDocumentViewInfo.docCode': [{
                             limit: "required",
                             param: "",
                             errInfo: "文档编码不能为空"
@@ -48,18 +46,16 @@
                             errInfo: "文档编码超过200位"
                         },
                     ],
-                    'addSysDocumentViewInfo.docContent': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "活动内容不能为空"
-                        }
-                    ]
+                    'addSysDocumentViewInfo.docContent': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "活动内容不能为空"
+                    }]
 
 
                 });
             },
-            saveSysDocumentInfo: function () {
+            saveSysDocumentInfo: function() {
                 if (!vc.component.addSysDocumentValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -69,11 +65,10 @@
 
                 vc.http.apiPost(
                     '/sysDocument/saveSysDocument',
-                    JSON.stringify(vc.component.addSysDocumentViewInfo),
-                    {
+                    JSON.stringify(vc.component.addSysDocumentViewInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -85,14 +80,14 @@
                         vc.toast(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.toast(errInfo);
 
                     });
             },
-            clearaddSysDocumentViewInfo: function () {
+            clearaddSysDocumentViewInfo: function() {
                 vc.component.addSysDocumentViewInfo = {
                     docId: '',
                     docTitle: '',
@@ -101,16 +96,16 @@
 
                 };
             },
-            _initSysDocumentInfo: function () {
+            _initSysDocumentInfo: function() {
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入公告内容',
                     callbacks: {
-                        onImageUpload: function (files, editor, $editable) {
+                        onImageUpload: function(files, editor, $editable) {
                             vc.component.sendFile($summernote, files);
                         },
-                        onChange: function (contents, $editable) {
+                        onChange: function(contents, $editable) {
                             vc.component.addSysDocumentViewInfo.docContent = contents;
                         }
                     },
@@ -128,11 +123,11 @@
                     ],
                 });
             },
-            closeSysDocumentInfo: function () {
+            closeSysDocumentInfo: function() {
                 vc.emit('sysDocumentManage', 'listSysDocument', {});
 
             },
-            sendFile: function ($summernote, files) {
+            sendFile: function($summernote, files) {
                 console.log('上传图片', files);
 
                 var param = new FormData();
@@ -140,17 +135,16 @@
                 param.append('communityId', vc.getCurrentCommunity().communityId);
 
                 vc.http.upload(
-                    'addActivitiesView',
+                    'uploadFile',
                     'uploadImage',
-                    param,
-                    {
+                    param, {
                         emulateJSON: true,
                         //添加请求头
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -160,7 +154,7 @@
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });

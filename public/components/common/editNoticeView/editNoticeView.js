@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
     vc.extends({
         data: {
             editNoticeViewInfo: {
@@ -10,16 +10,16 @@
                 endTime: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._initEditNoticeInfo();
         },
-        _initEvent: function () {
-            vc.on('editNoticeViewInfo', 'openEditNoticeModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editNoticeViewInfo', 'openEditNoticeModal', function(_params) {
                 vc.component.refreshEditNoticeInfo();
                 _params.context = filterXSS(_params.context);
                 vc.component.editNoticeInfo = _params;
             });
-            vc.on('editNoticeView', 'noticeEditNoticeInfo', function (_params) {
+            vc.on('editNoticeView', 'noticeEditNoticeInfo', function(_params) {
                 vc.component.refreshEditNoticeInfo();
                 _params.context = filterXSS(_params.context);
                 vc.copyObject(_params, vc.component.editNoticeViewInfo);
@@ -27,12 +27,11 @@
             });
         },
         methods: {
-            editNoticeValidate: function () {
+            editNoticeValidate: function() {
                 return vc.validate.validate({
                     editNoticeViewInfo: vc.component.editNoticeViewInfo
                 }, {
-                    'editNoticeViewInfo.title': [
-                        {
+                    'editNoticeViewInfo.title': [{
                             limit: "required",
                             param: "",
                             errInfo: "标题不能为空"
@@ -43,8 +42,7 @@
                             errInfo: "标题必须在4至100字符之间"
                         },
                     ],
-                    'editNoticeViewInfo.noticeTypeCd': [
-                        {
+                    'editNoticeViewInfo.noticeTypeCd': [{
                             limit: "required",
                             param: "",
                             errInfo: "公告类型不能为空"
@@ -55,8 +53,7 @@
                             errInfo: "公告类型错误"
                         },
                     ],
-                    'editNoticeViewInfo.context': [
-                        {
+                    'editNoticeViewInfo.context': [{
                             limit: "required",
                             param: "",
                             errInfo: "公告内容不能为空"
@@ -67,8 +64,7 @@
                             errInfo: "公告内容不能超过10000个字"
                         },
                     ],
-                    'editNoticeViewInfo.startTime': [
-                        {
+                    'editNoticeViewInfo.startTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "开始时间不能为空"
@@ -79,8 +75,7 @@
                             errInfo: "开始时间不是有效的日期"
                         },
                     ],
-                    'editNoticeViewInfo.endTime': [
-                        {
+                    'editNoticeViewInfo.endTime': [{
                             limit: "required",
                             param: "",
                             errInfo: "结束时间不能为空"
@@ -91,16 +86,14 @@
                             errInfo: "开始时间不是有效的日期"
                         },
                     ],
-                    'editNoticeViewInfo.noticeId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "公告ID不能为空"
-                        }
-                    ]
+                    'editNoticeViewInfo.noticeId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "公告ID不能为空"
+                    }]
                 });
             },
-            editNotice: function () {
+            editNotice: function() {
                 if (!vc.component.editNoticeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -108,25 +101,26 @@
                 vc.component.editNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/notice.updateNotice',
-                    JSON.stringify(vc.component.editNoticeViewInfo),
-                    {
+                    JSON.stringify(vc.component.editNoticeViewInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0) {
                             //关闭model
                             vc.emit('noticeManage', 'listNotice', {});
                             vc.toast("修改成功");
                             return;
                         }
+                        vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            refreshEditNoticeInfo: function () {
+            refreshEditNoticeInfo: function() {
                 vc.component.editNoticeViewInfo = {
                     noticeId: '',
                     title: '',
@@ -136,7 +130,7 @@
                     endTime: ''
                 }
             },
-            _initEditNoticeInfo: function () {
+            _initEditNoticeInfo: function() {
                 $('.editNoticeStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -147,7 +141,7 @@
                     todayBtn: true
                 });
                 $('.editNoticeStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".editNoticeStartTime").val();
                         vc.component.editNoticeViewInfo.startTime = value;
                     });
@@ -161,7 +155,7 @@
                     todayBtn: true
                 });
                 $('.editNoticeEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".editNoticeEndTime").val();
                         vc.component.editNoticeViewInfo.endTime = value;
                     });
@@ -170,10 +164,10 @@
                     height: 300,
                     placeholder: '必填，请输入公告内容',
                     callbacks: {
-                        onImageUpload: function (files, editor, $editable) {
+                        onImageUpload: function(files, editor, $editable) {
                             $that.sendEditFile($summernote, files);
                         },
-                        onChange: function (contents, $editable) {
+                        onChange: function(contents, $editable) {
                             vc.component.editNoticeViewInfo.context = contents;
                         }
                     }
@@ -191,40 +185,39 @@
                     e.currentTarget.blur();
                 }
             },
-            sendEditFile: function ($summernote, files) {
+            sendEditFile: function($summernote, files) {
                 console.log('上传图片', files);
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
                 vc.http.upload(
-                    'addNoticeView',
+                    'uploadFile',
                     'uploadImage',
-                    param,
-                    {
+                    param, {
                         emulateJSON: true,
                         //添加请求头
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
                             //关闭model
-                           // $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
-                           $summernote.summernote('insertImage',  data.url);
- 
-                           return;
+                            // $summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+                            $summernote.summernote('insertImage', data.url);
+
+                            return;
                         }
                         vc.toast(json);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            closeEditNoticeInfo: function () {
+            closeEditNoticeInfo: function() {
                 vc.emit('noticeManage', 'listNotice', {});
             },
         }

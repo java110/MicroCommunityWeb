@@ -56,14 +56,16 @@
                     }
                 })
             });
-            vc.on('chooseResourceStore3', 'clear', function (_param) {
+            vc.on('chooseResourceStore3', 'clear', function(_param) {
                 vc.component.chooseResourceStoreInfo3.selectResourceStores = [];
             });
         },
         methods: {
             _loadAllResourceStoreInfo: function(_page, _row) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
-                let _shType = '2806';
+                //let _shType = '2806';
+                //这里根据客户需求 调整 为 可以从小区仓库采购
+                let _shType = '';
                 // 2022-3-7新增请求标识
                 let operationType = '';
                 if (_resOrderType == '20000') {
@@ -138,7 +140,9 @@
             },
             _listStorehouses: function(_page, _rows) {
                 let _resOrderType = vc.component.chooseResourceStoreInfo3.resOrderType;
-                let _shType = '2806';
+                //let _shType = '2806';
+                //这里根据客户需求 调整 为 可以从小区仓库采购
+                let _shType = '';
                 // 2022-3-7新增请求标识
                 let operationType = '';
                 if (_resOrderType == '20000') {

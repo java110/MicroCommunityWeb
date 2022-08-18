@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -20,34 +20,37 @@
         watch: {
             addTransferStoreInfo: {
                 deep: true,
-                handler: function () {
+                handler: function() {
                     vc.component.saveAddComplainInfo();
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on("addTransferStoreInfo", "notify", function (_param) {
+            vc.on("addTransferStoreInfo", "notify", function(_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addTransferStoreInfo.staffId = _param.staffId;
                     vc.component.addTransferStoreInfo.staffName = _param.staffName;
                 }
             });
 
-            vc.on('addTransferStoreInfo', 'onIndex', function (_index) {
+            vc.on('addTransferStoreInfo', 'switchOrg', function(_org) {
+                vc.emit('addTransferStoreInfo', 'staffSelect2', 'setStaff', _org)
+            });
+
+            vc.on('addTransferStoreInfo', 'onIndex', function(_index) {
                 vc.component.addTransferStoreInfo.index = _index;
             });
         },
         methods: {
-            addComplainValidate: function () {
+            addComplainValidate: function() {
                 return vc.validate.validate({
                     addTransferStoreInfo: vc.component.addTransferStoreInfo
                 }, {
-                    'addTransferStoreInfo.description': [
-                        {
+                    'addTransferStoreInfo.description': [{
                             limit: "required",
                             param: "",
                             errInfo: "转赠说明不能为空"
@@ -85,7 +88,7 @@
 
                 });
             },
-            saveAddComplainInfo: function () {
+            saveAddComplainInfo: function() {
                 if (vc.component.addComplainValidate()) {
                     //侦听回传
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addTransferStoreInfo);

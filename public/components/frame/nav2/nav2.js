@@ -40,12 +40,12 @@
         },
         methods: {
             _initSysInfo: function() {
-                var sysInfo = vc.getData("_sysInfo");
-                if (sysInfo == null) {
+                let sysInfo = vc.getData("java110SystemInfo");
+                if (!sysInfo) {
                     this.logo = "HC";
                     return;
                 }
-                this.logo = sysInfo.logo;
+                this.logo = sysInfo.systemSimpleTitle;
             },
             initLang: function() {
                 let _lang = vc.getData('JAVA110-LANG')
@@ -100,7 +100,7 @@
                             vm.nav.storeTypeCd = tmpUserInfo.storeTypeCd;
                             //加个水印
                             if (tmpUserInfo.watermark == 'true') {
-                                vc.watermark({watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name});
+                                vc.watermark({ watermark_txt: vc.i18n('systemName') + ":" + tmpUserInfo.name });
                             }
                         }
                     },

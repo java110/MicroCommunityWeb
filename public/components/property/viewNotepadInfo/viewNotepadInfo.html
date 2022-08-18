@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="记事薄信息"  namespace="viewNotepadInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewNotepadInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectNotepadInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择记事薄"  namespace="viewNotepadInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewNotepadInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddNotepadInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加记事薄"  namespace="viewNotepadInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='类型' namespace='viewnotepadInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewNotepadInfo.noteType}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='简介' namespace='viewnotepadInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewNotepadInfo.title}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='房屋名称' namespace='viewnotepadInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewNotepadInfo.roomName}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addNotepad"
+               callBackListener="viewNotepadInfo"
+               callBackFunction="chooseNotepad"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseNotepad"
+               emitChooseNotepad="viewNotepadInfo"
+               emitLoadData="viewNotepadInfo"
+    ></vc:create>
+</div>
