@@ -55,16 +55,10 @@
                         },
                     ],
                     'addNoticeViewInfo.context': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "公告内容不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "10000",
-                            errInfo: "公告内容不能超过10000个字"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "公告内容不能为空"
+                    }, ],
                     'addNoticeViewInfo.startTime': [{
                             limit: "required",
                             param: "",
