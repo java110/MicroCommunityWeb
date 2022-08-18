@@ -10,9 +10,7 @@
                 flowComponent: 'purchaseApprovers',
                 staffId: '',
                 staffName: '',
-                companyName: '',
-                departmentName: '',
-                departmentId: '',
+                orgName: '',
                 companyId: ''
             }
         },
@@ -60,8 +58,7 @@
                         }
                         let _data = _staffInfo.data;
                         vc.copyObject(_data, $that.purchaseApproversInfo);
-                        $that.purchaseApproversInfo.companyName = _data.parentOrgName;
-                        $that.purchaseApproversInfo.departmentName = _data.orgName;
+                        $that.purchaseApproversInfo.orgName = _data.orgName;
                     },
                     function() {
                         console.log('请求失败处理');

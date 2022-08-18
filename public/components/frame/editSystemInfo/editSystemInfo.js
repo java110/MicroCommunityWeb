@@ -102,16 +102,10 @@
                         },
                     ],
                     'editSystemInfoInfo.defaultCommunityId': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "默认小区编号不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "8",
-                            errInfo: "默认小区编号不能超过8"
-                        },
-                    ],
+                        limit: "required",
+                        param: "",
+                        errInfo: "默认小区编号不能为空"
+                    }, ],
                     'editSystemInfoInfo.ownerTitle': [{
                             limit: "required",
                             param: "",
