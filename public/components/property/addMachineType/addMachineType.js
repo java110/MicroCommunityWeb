@@ -102,11 +102,12 @@
                     });
             },
             clearAddMachineTypeInfo: function () {
+                let _machine = vc.component.addMachineTypeInfo.machine;
                 vc.component.addMachineTypeInfo = {
                     typeId: '',
                     machineTypeCd: '',
                     machineTypeName: '',
-                    machine: []
+                    machine: _machine
                 };
             }
         }
