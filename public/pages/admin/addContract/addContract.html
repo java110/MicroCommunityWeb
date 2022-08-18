@@ -297,7 +297,7 @@
         </div>
     </div>
 </div>
-<div v-if="addContractInfo.audit == '1001'">
+<div v-show="addContractInfo.audit == '1001'">
     <vc:create path="property/purchaseApprovers" callBackListener="addContract" callBackFunction="notify3" flowType="50005">
     </vc:create>
 </div>
