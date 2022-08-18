@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -16,23 +16,23 @@
                     businessTypeCd: '',
                     name: '',
                     invokeType: '',
-                    messageTopic: '',
+                    messageTopic: ''
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listServiceImpls(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('serviceImplManage', 'listServiceImpl', function(_param) {
+        _initEvent: function () {
+            vc.on('serviceImplManage', 'listServiceImpl', function (_param) {
                 vc.component._listServiceImpls(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listServiceImpls(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listServiceImpls: function(_page, _rows) {
+            _listServiceImpls: function (_page, _rows) {
                 vc.component.serviceImplManageInfo.conditions.page = _page;
                 vc.component.serviceImplManageInfo.conditions.row = _rows;
                 var param = {
@@ -44,7 +44,7 @@
                 //发送get请求
                 vc.http.apiGet('/serviceImpl.listServiceImpls',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _serviceImplManageInfo = JSON.parse(json);
                         vc.component.serviceImplManageInfo.total = _serviceImplManageInfo.total;
                         vc.component.serviceImplManageInfo.records = _serviceImplManageInfo.records;
@@ -55,33 +55,33 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddServiceImplModal: function() {
+            _openAddServiceImplModal: function () {
                 vc.emit('addServiceImpl', 'openAddServiceImplModal', {});
             },
-            _openEditServiceImplModel: function(_serviceImpl) {
+            _openEditServiceImplModel: function (_serviceImpl) {
                 vc.emit('editServiceImpl', 'openEditServiceImplModal', _serviceImpl);
             },
-            _openDeleteServiceImplModel: function(_serviceImpl) {
+            _openDeleteServiceImplModel: function (_serviceImpl) {
                 vc.emit('deleteServiceImpl', 'openDeleteServiceImplModal', _serviceImpl);
             },
             //查询
-            _queryServiceImplMethod: function() {
+            _queryServiceImplMethod: function () {
                 vc.component._listServiceImpls(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetServiceImplMethod: function() {
+            _resetServiceImplMethod: function () {
                 vc.component.serviceImplManageInfo.conditions.businessTypeCd = "";
                 vc.component.serviceImplManageInfo.conditions.name = "";
                 vc.component.serviceImplManageInfo.conditions.invokeType = "";
                 vc.component.serviceImplManageInfo.conditions.messageTopic = "";
                 vc.component._listServiceImpls(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.serviceImplManageInfo.moreCondition) {
                     vc.component.serviceImplManageInfo.moreCondition = false;
                 } else {

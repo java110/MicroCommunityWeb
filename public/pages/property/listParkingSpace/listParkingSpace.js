@@ -49,8 +49,8 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        num: vc.component.listParkingSpaceInfo.num,
-                        psId: vc.component.listParkingSpaceInfo.conditions.psId,
+                        num: vc.component.listParkingSpaceInfo.num.trim(),
+                        psId: vc.component.listParkingSpaceInfo.conditions.psId.trim(),
                         area: vc.component.listParkingSpaceInfo.conditions.area,
                         paId: vc.component.listParkingSpaceInfo.conditions.paId,
                         state: vc.component.listParkingSpaceInfo.conditions.state,
@@ -113,7 +113,17 @@
                 }
                 return result;
             },
+            //查询
             _queryRoomMethod: function () {
+                vc.component._listParkingSpaceData(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetRoomMethod: function () {
+                vc.component.listParkingSpaceInfo.conditions.areaNum = "";
+                vc.component.listParkingSpaceInfo.num = "";
+                vc.component.listParkingSpaceInfo.conditions.state = "";
+                vc.component.listParkingSpaceInfo.conditions.psId = "";
+                vc.component.listParkingSpaceInfo.conditions.paId = "";
                 vc.component._listParkingSpaceData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

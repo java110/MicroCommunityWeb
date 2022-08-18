@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editAppInfo: {
@@ -8,18 +7,16 @@
                 securityCode: '',
                 whileListIp: '',
                 blackListIp: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editApp', 'openEditAppModal', function (_params) {
                 vc.component.refreshEditAppInfo();
                 $('#editAppModel').modal('show');
-                vc.copyObject(_params,vc.component.editAppInfo);
+                vc.copyObject(_params, vc.component.editAppInfo);
                 //vc.component.editAppInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -73,8 +70,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "应用Id不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editApp: function () {
@@ -82,7 +79,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/app.updateApp',
                     JSON.stringify(vc.component.editAppInfo),
@@ -95,13 +91,13 @@
                             //关闭model
                             $('#editAppModel').modal('hide');
                             vc.emit('appManage', 'listApp', {});
+                            vc.toast("修改成功");
                             return;
                         }
                         vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -112,11 +108,9 @@
                     securityCode: '',
                     whileListIp: '',
                     blackListIp: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

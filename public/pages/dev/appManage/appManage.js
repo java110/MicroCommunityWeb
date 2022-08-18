@@ -12,30 +12,29 @@
                 records: 1
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listApps(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('appManage', 'listApp', function(_param) {
+        _initEvent: function () {
+            vc.on('appManage', 'listApp', function (_param) {
                 vc.component._listApps(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listApps(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listApps: function(_page, _rows) {
+            _listApps: function (_page, _rows) {
                 var param = {
-                        params: {
-                            page: _page,
-                            row: _rows
-                        }
-
+                    params: {
+                        page: _page,
+                        row: _rows
                     }
-                    //发送get请求
+                }
+                //发送get请求
                 vc.http.apiGet('/app.listApps',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _appManageInfo = JSON.parse(json);
                         vc.component.appManageInfo.total = _appManageInfo.total;
                         vc.component.appManageInfo.records = _appManageInfo.records;
@@ -46,19 +45,19 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddAppModal: function() {
+            _openAddAppModal: function () {
                 vc.emit('addApp', 'openAddAppModal', {});
             },
-            _openEditAppModel: function(_app) {
+            _openEditAppModel: function (_app) {
                 vc.emit('editApp', 'openEditAppModal', _app);
             },
-            _openDeleteAppModel: function(_app) {
-                vc.emit('deleteApp', 'openDeleteAppModal', _app);
+            _openDeleteAppModel: function (_app) {
+                vc.emit('deleteApp', 'openDeleteAppModel', _app);
             }
         }
     });

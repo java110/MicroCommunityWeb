@@ -6,31 +6,36 @@
                     <h5>
                         <span><vc:i18n name="查询条件" namespace="cacheManage"></vc:i18n></span>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入缓存ID','cacheManage')" v-model="cacheManageInfo.conditions.id" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入缓存ID','cacheManage')"
+                                       v-model="cacheManageInfo.conditions.id" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入缓存编码','cacheManage')" v-model="cacheManageInfo.conditions.cacheCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入缓存编码','cacheManage')"
+                                       v-model="cacheManageInfo.conditions.cacheCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入缓存名称','cacheManage')" v-model="cacheManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入缓存名称','cacheManage')"
+                                       v-model="cacheManageInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryCacheMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="cacheManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="cacheManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetCacheMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="cacheManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -45,45 +50,46 @@
                     <h5>
                         <span><vc:i18n name="缓存信息" namespace="cacheManage"></vc:i18n></span>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
-                    </div>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="缓存" namespace="cacheManage"></vc:i18n></span>ID</th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="缓存编码" namespace="cacheManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="名称" namespace="cacheManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="cacheManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="缓存" namespace="cacheManage"></vc:i18n></span>ID
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="缓存编码" namespace="cacheManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="名称" namespace="cacheManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="cacheManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="cache in cacheManageInfo.caches">
-                                <td class="text-center">{{cache.id}}</td>
-                                <td class="text-center">{{cache.cacheCode}}</td>
-                                <td class="text-center">{{cache.cacheName}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_flushCache(cache)"><span><vc:i18n name="刷新缓存" namespace="cacheManage"></vc:i18n></span>
+                        <tr v-for="cache in cacheManageInfo.caches">
+                            <td class="text-center">{{cache.id}}</td>
+                            <td class="text-center">{{cache.cacheCode}}</td>
+                            <td class="text-center">{{cache.cacheName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_flushCache(cache)">
+                                        <span><vc:i18n name="刷新缓存" namespace="cacheManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -92,5 +98,4 @@
             </div>
         </div>
     </div>
-
 </div>

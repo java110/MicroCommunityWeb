@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,14 +15,13 @@
                 remark: '',
                 paId: '',
                 parkingAreas: []
-
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadAddParkingBoxs();
         },
-        _initEvent: function() {
-            vc.on('addParkingBox', 'openAddParkingBoxModal', function(param) {
+        _initEvent: function () {
+            vc.on('addParkingBox', 'openAddParkingBoxModal', function (param) {
                 $that.addParkingBoxInfo.boxId = param.boxId;
                 $('#addParkingBoxModel').modal('show');
             });
@@ -33,7 +31,8 @@
                 return vc.validate.validate({
                     addParkingBoxInfo: vc.component.addParkingBoxInfo
                 }, {
-                    'addParkingBoxInfo.boxName': [{
+                    'addParkingBoxInfo.boxName': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "岗亭名称不能为空"
@@ -44,70 +43,48 @@
                             errInfo: "岗亭名称不能超过64"
                         },
                     ],
-                    'addParkingBoxInfo.tempCarIn': [{
+                    'addParkingBoxInfo.paId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "停车场不能为空"
+                        }
+                    ],
+                    'addParkingBoxInfo.tempCarIn': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "临时车是否进场不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "临时车是否进场不能超过12"
-                        },
+                        }
                     ],
-                    'addParkingBoxInfo.fee': [{
+                    'addParkingBoxInfo.fee': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "是否收费不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "岗亭是否不能超过12"
-                        },
+                        }
                     ],
-                    'addParkingBoxInfo.blueCarIn': [{
+                    'addParkingBoxInfo.blueCarIn': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "蓝牌车进场不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "蓝牌车是否可以进场不能超过12"
-                        },
+                        }
                     ],
-                    'addParkingBoxInfo.yelowCarIn': [{
+                    'addParkingBoxInfo.yelowCarIn': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "黄牌车进场不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "黄牌车是否可以进场不能超过12"
-                        },
-                    ],
-                    'addParkingBoxInfo.remark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "备注不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "300",
-                            errInfo: "备注不能超过300"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
-            saveParkingBoxInfo: function() {
+            saveParkingBoxInfo: function () {
                 if (!vc.component.addParkingBoxValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addParkingBoxInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -115,13 +92,12 @@
                     $('#addParkingBoxModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'parkingBox.saveParkingBox',
                     JSON.stringify(vc.component.addParkingBoxInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -129,20 +105,18 @@
                             $('#addParkingBoxModel').modal('hide');
                             vc.component.clearAddParkingBoxInfo();
                             vc.emit('parkingBoxManage', 'listParkingBox', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
-            _loadAddParkingBoxs: function() {
+            _loadAddParkingBoxs: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -152,15 +126,15 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/parkingArea.listParkingAreas', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _parkingAreaManageInfo = JSON.parse(json);
                         $that.addParkingBoxInfo.parkingAreas = _parkingAreaManageInfo.parkingAreas;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            clearAddParkingBoxInfo: function() {
+            clearAddParkingBoxInfo: function () {
                 let _parkingAreas = $that.addParkingBoxInfo.parkingAreas;
                 vc.component.addParkingBoxInfo = {
                     boxName: '',
@@ -175,5 +149,4 @@
             }
         }
     });
-
 })(window.vc);

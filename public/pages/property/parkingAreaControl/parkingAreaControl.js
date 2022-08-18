@@ -1,49 +1,48 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             parkingAreaControlInfo: {
                 _currentTab: 'parkingAreaControlCarInout',
                 boxId: '',
                 inMachineId: '',
-                outMachineId: '',
-
+                outMachineId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.parkingAreaControlInfo.boxId = vc.getParam('boxId');
             $that._initParkingAreaWs();
             vc.emit('parkingAreaControlVideo', 'notify', {
                 boxId: $that.parkingAreaControlInfo.boxId
             });
         },
-        _initEvent: function() {
-            vc.on('parkingAreaControl', 'notify', function(_param) {
+        _initEvent: function () {
+            vc.on('parkingAreaControl', 'notify', function (_param) {
                 vc.copyObject(_param, $that.parkingAreaControlInfo);
             })
         },
         methods: {
-            changeTab: function(_tab) {
+            changeTab: function (_tab) {
                 $that.parkingAreaControlInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     boxId: $that.parkingAreaControlInfo.boxId
                 })
             },
-            _initParkingAreaWs: function() {
+            _initParkingAreaWs: function () {
                 let clientId = vc.uuid();
                 let heartCheck = {
                     timeout: 30000, // 9分钟发一次心跳，比server端设置的连接时间稍微小一点，在接近断开的情况下以通信的方式去重置连接时间。
                     serverTimeoutObj: null,
                     pingTime: new Date().getTime(),
-                    reset: function() {
+                    reset: function () {
                         clearTimeout(this.serverTimeoutObj);
                         return this;
                     },
-                    start: function() {
+                    start: function () {
                         let self = this;
-                        this.serverTimeoutObj = setInterval(function() {
+                        this.serverTimeoutObj = setInterval(function () {
                             if (websocket.readyState == 1) {
                                 console.log("连接状态，发送消息保持连接");
                                 let _pingTime = new Date().getTime();
@@ -62,7 +61,6 @@
                         }, this.timeout)
                     }
                 }
-
                 let _protocol = window.location.protocol;
                 let url = '';
                 if (_protocol.startsWith('https')) {
@@ -77,8 +75,6 @@
                     //     "ws://demo.homecommunity.cn:9011/ws/parkingArea/" +
                     //     $that.parkingAreaControlInfo.boxId + "/" + clientId;
                 }
-
-
                 if ("WebSocket" in window) {
                     websocket = new WebSocket(url);
                 } else if ("MozWebSocket" in window) {
@@ -86,24 +82,21 @@
                 } else {
                     websocket = new SockJS(url);
                 }
-
                 //连接发生错误的回调方法
-                websocket.onerror = function(_err) {
+                websocket.onerror = function (_err) {
                     console.log("初始化失败", _err);
                     this.$notify.error({
                         title: "错误",
                         message: "连接失败，请检查网络"
                     });
                 };
-
                 //连接成功建立的回调方法
-                websocket.onopen = function() {
+                websocket.onopen = function () {
                     heartCheck.reset().start();
                     console.log("ws初始化成功");
                 };
-
                 //接收到消息的回调方法
-                websocket.onmessage = function(event) {
+                websocket.onmessage = function (event) {
                     heartCheck.reset().start();
                     console.log("event", event);
                     let _data = event.data;
@@ -112,16 +105,14 @@
                     } catch (err) {
                         return;
                     }
-
                     vc.emit('parkingAreaControlCarInout', 'notify', {
                         data: _data,
                         parkingAreaControl: $that.parkingAreaControlInfo
                     });
                     vc.emit('parkingAreaControlFee', 'notify', _data);
                 };
-
                 //连接关闭的回调方法
-                websocket.onclose = function() {
+                websocket.onclose = function () {
                     console.log("初始化失败");
                     //$that._initParkingAreaWs();
                     this.$notify.error({
@@ -129,9 +120,8 @@
                         message: "连接关闭，请刷新浏览器"
                     });
                 };
-
                 //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-                window.onbeforeunload = function() {
+                window.onbeforeunload = function () {
                     websocket.close();
                 };
             }

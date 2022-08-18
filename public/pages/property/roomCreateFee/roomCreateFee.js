@@ -366,7 +366,7 @@
                 vc.component.roomCreateFeeInfo.conditions.ownerName = "";
                 vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            _viewRoomFeeConfig: function(_fee) {
+            _viewRoomFeeConfig: function (_fee) {
                 let param = {
                     params: {
                         page: 1,
@@ -377,7 +377,7 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         let _feeConfig = _feeConfigManageInfo.feeConfigs[0];
                         vc.emit('viewData', 'openViewDataModal', {
@@ -399,13 +399,13 @@
                             }
                         })
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            _viewRoomFee: function(_fee) {
+            _viewRoomFee: function (_fee) {
                 let _data = {
                     "费用ID": _fee.feeId,
                     "费用标识": _fee.feeFlagName,
@@ -427,7 +427,7 @@
                     data: _data
                 });
             },
-            _viewRoomData: function() {
+            _viewRoomData: function () {
                 vc.emit('viewRoomData', 'showData', {
                     roomId: $that.roomCreateFeeInfo.roomId
                 })

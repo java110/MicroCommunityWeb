@@ -1,16 +1,13 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editApplyRoomDiscountTypeInfo: {
                 applyType: '',
                 typeName: '',
-                typeDesc: '',
-
+                typeDesc: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editApplyRoomDiscountType', 'openEditApplyRoomDiscountTypeModal', function (_params) {
@@ -49,8 +46,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "类型不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editApplyRoomDiscountType: function () {
@@ -58,7 +55,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/applyRoomDiscount/updateApplyRoomDiscountType',
                     JSON.stringify(vc.component.editApplyRoomDiscountTypeInfo),
@@ -72,13 +68,14 @@
                             //关闭model
                             $('#editApplyRoomDiscountTypeModel').modal('hide');
                             vc.emit('applyRoomDiscountTypeManage', 'listApplyRoomDiscountType', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -86,11 +83,9 @@
                 vc.component.editApplyRoomDiscountTypeInfo = {
                     applyType: '',
                     typeName: '',
-                    typeDesc: '',
-
+                    typeDesc: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

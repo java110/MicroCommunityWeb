@@ -19,7 +19,7 @@
                     tel: '',
                     staffId: '',
                     parentOrgName: '',
-                    orgNewName: ''
+                    parentTwoOrgId: ''
                 }
             },
             staffData: [],

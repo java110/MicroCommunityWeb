@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -9,12 +8,10 @@
             addApplyRoomDiscountTypeInfo: {
                 applyType: '',
                 typeName: '',
-                typeDesc: '',
-
+                typeDesc: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addApplyRoomDiscountType', 'openAddApplyRoomDiscountTypeModal', function () {
@@ -44,20 +41,14 @@
                             param: "512",
                             errInfo: "类型描述错误"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveApplyRoomDiscountTypeInfo: function () {
                 if (!vc.component.addApplyRoomDiscountTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addApplyRoomDiscountTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -65,7 +56,6 @@
                     $('#addApplyRoomDiscountTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/applyRoomDiscount/saveApplyRoomDiscountType',
                     JSON.stringify(vc.component.addApplyRoomDiscountTypeInfo),
@@ -80,27 +70,23 @@
                             $('#addApplyRoomDiscountTypeModel').modal('hide');
                             vc.component.clearAddApplyRoomDiscountTypeInfo();
                             vc.emit('applyRoomDiscountTypeManage', 'listApplyRoomDiscountType', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddApplyRoomDiscountTypeInfo: function () {
                 vc.component.addApplyRoomDiscountTypeInfo = {
                     typeName: '',
-                    typeDesc: '',
-
+                    typeDesc: ''
                 };
             }
         }
     });
-
 })(window.vc);

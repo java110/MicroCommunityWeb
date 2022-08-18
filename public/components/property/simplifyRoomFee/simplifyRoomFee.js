@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -26,34 +26,34 @@
                 ownerId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.popover('popover-show');
             vc.popover('popover-show-endTime');
             vc.popover('popover-show-deadlineTime');
         },
-        _initEvent: function() {
+        _initEvent: function () {
             //切换 至费用页面
-            vc.on('simplifyRoomFee', 'switch', function(_param) {
+            vc.on('simplifyRoomFee', 'switch', function (_param) {
                 $that.clearSimplifyRoomFeeInfo();
                 if (_param.roomId == '') {
                     return;
                 }
                 vc.copyObject(_param, $that.simplifyRoomFeeInfo)
                 $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
-                vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
+                vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                     $that.simplifyRoomFeeInfo.feeTypeCds = _data;
                 });
             });
-            vc.on('simplifyRoomFee', 'notify', function() {
+            vc.on('simplifyRoomFee', 'notify', function () {
                 $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('simplifyRoomFee', 'paginationPlus', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     vc.component._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            getOnePrice1: function(fee) {
+            getOnePrice1: function (fee) {
                 let _price = fee.mwPrice;
                 if (!_price) {
                     return fee.squarePrice;
@@ -63,7 +63,7 @@
                 }
                 return fee.squarePrice;
             },
-            _listSimplifyRoomFee: function(_page, _row) {
+            _listSimplifyRoomFee: function (_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -84,7 +84,7 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listFee',
                     param,
-                    function(json) {
+                    function (json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         vc.component.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
@@ -100,12 +100,12 @@
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _roomFeeCompare: function(a, b) {
+            _roomFeeCompare: function (a, b) {
                 var val1 = a.payerObjName;
                 var val2 = b.payerObjName;
                 if (val1 < val2) {
@@ -116,10 +116,10 @@
                     return 0;
                 }
             },
-            _toOwnerPayFee: function() {
+            _toOwnerPayFee: function () {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.simplifyRoomFeeInfo.roomName);
             },
-            _openRoomCreateFeeAddModal: function() {
+            _openRoomCreateFeeAddModal: function () {
                 $that.simplifyRoomFeeInfo.ownerName = $that.simplifyRoomFeeInfo.name;
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
                     isMore: false,
@@ -127,14 +127,14 @@
                     ownerName: $that.simplifyRoomFeeInfo.name
                 });
             },
-            _openAddMeterWaterSimplifyModal: function() {
+            _openAddMeterWaterSimplifyModal: function () {
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,
                     ownerName: $that.simplifyRoomFeeInfo.name
                 });
             },
-            _getAttrValue: function(_attrs, _specCd) {
+            _getAttrValue: function (_attrs, _specCd) {
                 let _value = "";
                 _attrs.forEach(item => {
                     if (item.specCd == _specCd) {
@@ -144,7 +144,7 @@
                 });
                 return _value;
             },
-            _getDeadlineTime: function(_fee) {
+            _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
@@ -154,54 +154,54 @@
                 //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
                 return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
             },
-            _getEndTime: function(_fee) {
+            _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 return vc.dateFormat(_fee.endTime);
             },
-            _openProxyFeeModal: function() { //创建代收费用
+            _openProxyFeeModal: function () { //创建代收费用
                 vc.emit('addProxyFee', 'openAddProxyFeeModal', {
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,
                     ownerName: $that.simplifyRoomFeeInfo.name
                 });
             },
-            _payFee: function(_fee) {
+            _payFee: function (_fee) {
                 _fee.roomName = $that.simplifyRoomFeeInfo.roomName;
                 _fee.builtUpArea = $that.simplifyRoomFeeInfo.builtUpArea;
                 // vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
                 vc.jumpToPage('/#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
-            _editFee: function(_fee) {
+            _editFee: function (_fee) {
                 // 计费结束时间
                 _fee.maxEndTime = $that._getDeadlineTime(_fee);
                 vc.emit('editFee', 'openEditFeeModal', _fee);
             },
-            _payFeeHis: function(_fee) {
+            _payFeeHis: function (_fee) {
                 _fee.builtUpArea = $that.simplifyRoomFeeInfo.builtUpArea;
                 vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
             },
-            _deleteFee: function(_fee) {
+            _deleteFee: function (_fee) {
                 vc.emit('deleteFee', 'openDeleteFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
             },
-            _finishFee: function(_fee) {
+            _finishFee: function (_fee) {
                 vc.emit('finishFee', 'openFinishFeeModal', {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeId: _fee.feeId
                 });
             },
-            _openTempImportRoomFeeModal: function() {
+            _openTempImportRoomFeeModal: function () {
                 vc.emit('tempImportRoomFee', 'openImportRoomFeeModal', {
                     roomId: $that.simplifyRoomFeeInfo.roomId,
                     roomName: $that.simplifyRoomFeeInfo.roomName,
                     ownerName: $that.simplifyRoomFeeInfo.name
                 })
             },
-            clearSimplifyRoomFeeInfo: function() {
+            clearSimplifyRoomFeeInfo: function () {
                 let _feeConfigs = $that.roomCreateFeeAddInfo.feeTypeCds;
                 $that.simplifyRoomFeeInfo = {
                     total: 0,
@@ -224,7 +224,7 @@
                     ownerId: ''
                 }
             },
-            _changeSimplifyRoomFeeFeeTypeCd: function(_feeTypeCd) {
+            _changeSimplifyRoomFeeFeeTypeCd: function (_feeTypeCd) {
                 $that.simplifyRoomFeeInfo.configId = '';
                 vc.emit('simplifyRoomFee', 'notify', {});
                 var param = {
@@ -239,23 +239,23 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.simplifyRoomFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _changeSimplifyRoomConfigId: function() {
+            _changeSimplifyRoomConfigId: function () {
                 vc.emit('simplifyRoomFee', 'notify', {});
             },
-            _simplifyRoomGetFeeOwnerInfo: function(attrs) {
+            _simplifyRoomGetFeeOwnerInfo: function (attrs) {
                 let ownerName = $that._getAttrValue(attrs, '390008');
                 let ownerLink = $that._getAttrValue(attrs, '390009');
                 return '业主：' + ownerName + ',电话：' + ownerLink;
             },
-            _getSimplifyRoomFeeRoomName: function(fee) {
+            _getSimplifyRoomFeeRoomName: function (fee) {
                 if ($that.simplifyRoomFeeInfo.ownerFee != 'Y') {
                     return '';
                 }
@@ -267,15 +267,15 @@
                 })
                 return _feeName;
             },
-            _openBatchPayRoomFeeModal: function() {
+            _openBatchPayRoomFeeModal: function () {
                 vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&payerObjType=3333")
             },
-            _openRoomCreateFeeComboModal: function() {
+            _openRoomCreateFeeComboModal: function () {
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
                     $that.simplifyRoomFeeInfo.roomId +
                     "&payerObjName=" + $that.simplifyRoomFeeInfo.roomName + "&payerObjType=3333")
             },
-            _viewRoomFeeConfig: function(_fee) {
+            _viewRoomFeeConfig: function (_fee) {
                 let param = {
                     params: {
                         page: 1,
@@ -286,7 +286,7 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         let _feeConfig = _feeConfigManageInfo.feeConfigs[0];
                         vc.emit('viewData', 'openViewDataModal', {
@@ -308,13 +308,13 @@
                             }
                         })
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
 
             },
-            _viewRoomFee: function(_fee) {
+            _viewRoomFee: function (_fee) {
                 let _data = {
                     "费用ID": _fee.feeId,
                     "费用标识": _fee.feeFlagName,
@@ -327,7 +327,6 @@
                     "计费结束时间": $that._getDeadlineTime(_fee),
                     "批次": _fee.batchId,
                 };
-
                 _fee.feeAttrs.forEach(attr => {
                     _data[attr.specCdName] = attr.value;
                 })
@@ -336,7 +335,6 @@
                     data: _data
                 });
             }
-
         }
     });
 })(window.vc);
