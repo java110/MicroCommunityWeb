@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             parentModal: vc.propTypes.string
@@ -19,22 +19,22 @@
         watch: {
             orgSelect2Info: {
                 deep: true,
-                handler: function () {
+                handler: function() {
                     vc.emit($namespace, 'departmentSelect2', "setDepartment", this.orgSelect2Info);
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             this._initOrgSelect2();
         },
-        _initEvent: function () {
-            vc.on('orgSelect2', 'setOrg', function (_param) {
+        _initEvent: function() {
+            vc.on('orgSelect2', 'setOrg', function(_param) {
                 vc.copyObject(_param, this.orgSelect2Info);
                 var option = new Option(_param.orgName, _param.orgId, true, true);
                 this.orgSelect2Info.orgSelector.append(option);
             });
 
-            vc.on('orgSelect2', 'clearOrg', function (_param) {
+            vc.on('orgSelect2', 'clearOrg', function(_param) {
                 this.orgSelect2Info = {
                     orgs: [],
                     orgId: '-1',
@@ -44,19 +44,18 @@
             });
         },
         methods: {
-            _initOrgSelect2: function () {
+            _initOrgSelect2: function() {
                 console.log("调用_initOrgSelect2方法");
-                $.fn.modal.Constructor.prototype.enforceFocus = function () {
-                };
+                $.fn.modal.Constructor.prototype.enforceFocus = function() {};
                 $.fn.select2.defaults.set('width', '100%');
                 this.orgSelect2Info.orgSelector = $('#orgSelector').select2({
                     placeholder: '必填，请选择公司',
-                    allowClear: true,//允许清空
-                    escapeMarkup: function (markup) {
+                    allowClear: true, //允许清空
+                    escapeMarkup: function(markup) {
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
-                        url: "/callComponent/orgManage/list",
+                        url: "/app/org.listOrgs",
                         dataType: 'json',
                         delay: 250,
                         headers: {
@@ -65,7 +64,7 @@
                             'REQ-TIME': vc.getDateYYYYMMDDHHMISS(),
                             'SIGN': ''
                         },
-                        data: function (params) {
+                        data: function(params) {
                             var _term = "";
                             if (params.hasOwnProperty("term")) {
                                 _term = params.term;
@@ -78,7 +77,7 @@
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
-                        processResults: function (data) {
+                        processResults: function(data) {
                             return {
                                 results: this._filterOrgData(data.orgs)
                             };
@@ -86,7 +85,7 @@
                         cache: true
                     }
                 });
-                $('#orgSelector').on("select2:select", function (evt) {
+                $('#orgSelector').on("select2:select", function(evt) {
                     //这里是选中触发的事件
                     //evt.params.data 是选中项的信息
                     console.log('select', evt);
@@ -95,7 +94,7 @@
                     this.orgSelect2Info.companyId = evt.params.data.id;
                 });
 
-                $('#orgSelector').on("select2:unselect", function (evt) {
+                $('#orgSelector').on("select2:unselect", function(evt) {
                     //这里是取消选中触发的事件
                     //如配置allowClear: true后，触发
                     console.log('unselect', evt);
@@ -104,7 +103,7 @@
 
                 });
             },
-            _filterOrgData: function (_Orgs) {
+            _filterOrgData: function(_Orgs) {
                 var _tmpOrgs = [];
                 for (var i = 0; i < _Orgs.length; i++) {
                     var _tmpOrg = {
