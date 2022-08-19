@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -14,19 +14,19 @@
                 menuValue: '',
                 appId: '',
                 pagepath: '',
-                seq:'',
-                parentMenuId:''
+                seq: '',
+                parentMenuId: ''
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('addWechatMenu', 'openAddWechatMenuModal', function (_param) {
+        _initEvent: function() {
+            vc.on('addWechatMenu', 'openAddWechatMenuModal', function(_param) {
                 $that.addWechatMenuInfo.menuLevel = _param.menuLevel;
                 $that.addWechatMenuInfo.parentMenuId = _param.parentMenuId;
-                if(  _param.menuLevel == '202'){
+                if (_param.menuLevel == '202') {
                     $that.addWechatMenuInfo.menuType = 'view';
                 }
                 $('#addWechatMenuModel').modal('show');
@@ -37,8 +37,7 @@
                 return vc.validate.validate({
                     addWechatMenuInfo: vc.component.addWechatMenuInfo
                 }, {
-                    'addWechatMenuInfo.menuName': [
-                        {
+                    'addWechatMenuInfo.menuName': [{
                             limit: "required",
                             param: "",
                             errInfo: "菜单名称不能为空"
@@ -49,8 +48,7 @@
                             errInfo: "菜单名称不能超过7位"
                         },
                     ],
-                    'addWechatMenuInfo.menuType': [
-                        {
+                    'addWechatMenuInfo.menuType': [{
                             limit: "required",
                             param: "",
                             errInfo: "菜单类型不能为空"
@@ -61,8 +59,7 @@
                             errInfo: "菜单类型格式错误"
                         },
                     ],
-                    'addWechatMenuInfo.menuLevel': [
-                        {
+                    'addWechatMenuInfo.menuLevel': [{
                             limit: "required",
                             param: "",
                             errInfo: "菜单级别不能为空"
@@ -73,34 +70,28 @@
                             errInfo: "菜单级别格式错误"
                         },
                     ],
-                    'addWechatMenuInfo.menuValue': [
-                        {
-                            limit: "maxLength",
-                            param: "200",
-                            errInfo: "值不能超过200位"
-                        }
-                    ],
-                    'addWechatMenuInfo.appId': [
-                        {
-                            limit: "maxLength",
-                            param: "64",
-                            errInfo: "AppId不能超过64位"
-                        },
-                    ],
-                    'addWechatMenuInfo.pagepath': [
-                        {
-                            limit: "maxLength",
-                            param: "64",
-                            errInfo: "小程序地址不能超过200位"
-                        },
-                    ],
+                    'addWechatMenuInfo.menuValue': [{
+                        limit: "maxLength",
+                        param: "200",
+                        errInfo: "值不能超过200位"
+                    }],
+                    'addWechatMenuInfo.appId': [{
+                        limit: "maxLength",
+                        param: "64",
+                        errInfo: "AppId不能超过64位"
+                    }, ],
+                    'addWechatMenuInfo.pagepath': [{
+                        limit: "maxLength",
+                        param: "64",
+                        errInfo: "小程序地址不能超过200位"
+                    }, ],
 
 
 
 
                 });
             },
-            saveWechatMenuInfo: function () {
+            saveWechatMenuInfo: function() {
                 if (!vc.component.addWechatMenuValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -117,13 +108,13 @@
 
                 vc.http.apiPost(
                     'smallWeChat.saveWechatMenu',
-                    JSON.stringify(vc.component.addWechatMenuInfo),
-                    {
+                    JSON.stringify(vc.component.addWechatMenuInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addWechatMenuModel').modal('hide');
                             vc.component.clearAddWechatMenuInfo();
@@ -134,14 +125,14 @@
                         vc.message(json);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddWechatMenuInfo: function () {
+            clearAddWechatMenuInfo: function() {
                 vc.component.addWechatMenuInfo = {
                     menuName: '',
                     menuType: '',
@@ -149,7 +140,7 @@
                     menuValue: '',
                     appId: '',
                     pagepath: '',
-                    seq:''
+                    seq: ''
                 };
             }
         }
