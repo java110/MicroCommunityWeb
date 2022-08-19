@@ -28,7 +28,7 @@
                     vc.component.addLocationInfo.locationObjName = _param.floorNum;
                 } else if ($that.addLocationInfo.locationType == '2000') { //单元
                     vc.component.addLocationInfo.locationObjId = _param.unitId;
-                    vc.component.addLocationInfo.locationObjName = _param.name;
+                    vc.component.addLocationInfo.locationObjName = _param.floorNum + _param.unitNum;
                 } else if ($that.addLocationInfo.locationType == '4000') { //岗亭
                     vc.component.addLocationInfo.locationObjId = _param.boxId;
                     vc.component.addLocationInfo.locationObjName = _param.boxName;
