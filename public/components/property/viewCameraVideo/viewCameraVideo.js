@@ -120,7 +120,10 @@
             },
             _closeViewCameraVideo: function() {
                 clearInterval($that.viewCameraVideoInfo.timer);
-                $that.viewCameraVideoInfo.sdk.close();
+                if ($that.viewCameraVideoInfo.sdk) {
+                    $that.viewCameraVideoInfo.sdk.close();
+                }
+
                 $('#viewCameraVideoModel').modal('hide');
             }
         }
