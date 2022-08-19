@@ -1630,7 +1630,11 @@
                     return;
                 }
 
-                let _data = _systemInfo.data[0]
+                let _data = _systemInfo.data[0];
+
+                if (!window.lang) {
+                    return;
+                }
 
                 window.lang.systemName = _data.systemTitle;
                 window.lang.subSystemName = _data.subSystemTitle;
