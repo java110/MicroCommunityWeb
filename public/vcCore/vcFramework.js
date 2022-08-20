@@ -1,7 +1,7 @@
 /**
  * vcFramework
  *
- * @author Kevin Law
+ * @author 吴学文
  *
  * @version 0.3
  *
@@ -9,9 +9,9 @@
  *
  * @time 2020-03-04
  *
- * @qq 58957118
+ * @qq 928255095
  *
- * @mail 58957118@qq.com
+ * @mail 928255095@qq.com
  *
  */
 /**
@@ -58,9 +58,9 @@
     vcFramework = {
         version: "v0.0.3",
         name: "vcFramework",
-        author: 'Kevin Law',
-        email: '58957118@qq.com',
-        qq: '58957118',
+        author: '吴学文',
+        email: '928255095@qq.com',
+        qq: '928255095',
         description: 'vcFramework 是自研的一套组件开发套件',
         vueCache: _vueCache,
         vmOptions: _vmOptions,
@@ -1607,7 +1607,7 @@
             });
     }
 
-    vcFramework.refreshSystemInfo = function(_callBack) {
+    vcFramework.refreshSystemInfo = function() {
         let param = {
             params: {
                 page: 1,
@@ -1621,38 +1621,42 @@
                 let _systemInfo = JSON.parse(json);
 
                 if (_systemInfo.code != 0) {
-                    _callBack();
                     return;
                 }
 
                 if (!_systemInfo.data || _systemInfo.data.length < 1) {
-                    _callBack();
                     return;
                 }
 
                 let _data = _systemInfo.data[0];
 
-                if (!window.lang) {
-                    return;
+
+                document.title = _data.systemTitle;
+                let _logoImg = document.getElementsByClassName('java110-logo');
+                if (_logoImg && _logoImg.length>0) {
+                    let _image = document.createElement('img')
+                    _image.src = _data.logoUrl;
+                    _image.style.width = "300px";
+                    _image.style.height = "80px";
+
+                    _logoImg[0].appendChild(_image);
                 }
 
-                window.lang.systemName = _data.systemTitle;
-                window.lang.subSystemName = _data.subSystemTitle;
-                window.lang.companyTeam = _data.companyName;
-                window.lang.systemSimpleName = _data.systemTitle;
-                window.lang.logoUrl = _data.logoUrl;
-                _callBack();
-                document.title = _data.systemTitle;
-                let _logoImg = document.getElementById('logoImg');
-                if (_logoImg) {
-                    _logoImg.src = _data.logoUrl;
+                let _subSystemName = document.getElementsByClassName('java110-sub-system-name');
+                if(_subSystemName && _subSystemName.length>0){
+                    _subSystemName[0].innerHTML = _data.subSystemTitle;
                 }
+                let _companyTeam = document.getElementsByClassName('java110-company-team');
+                if(_companyTeam && _companyTeam.length>0){
+                    _companyTeam[0].innerHTML = _data.companyName;
+                }
+
+               
 
                 vc.saveData('java110SystemInfo', _data)
             },
             function(errInfo, error) {
                 console.log('请求失败处理');
-                _callBack();
             });
     }
 
@@ -2041,11 +2045,9 @@
  * 框架开始初始化
  */
 (function(vcFramework) {
-    vcFramework.refreshSystemInfo(function() {
-        //启动 框架
-        vcFramework.builderVcTree();
-    });
-
+    
+    vcFramework.builderVcTree();
+    vcFramework.refreshSystemInfo();
 
 
 })(window.vcFramework);
@@ -2352,7 +2354,7 @@
      *      name:"Kevin",
      *      age:"19",
      *      emailInfo:{
-     *          email:"58957118@qq.com"
+     *          email:"928255095@qq.com"
      *      }
      * }
      *
