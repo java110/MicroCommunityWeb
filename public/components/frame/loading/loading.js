@@ -29,6 +29,10 @@
     **/
     vc.loading = function(_flag) {
 
+        if (vm.loadingInfo.count < 0) {
+            vm.loadingInfo.count = 0;
+        }
+
         if (_flag == 'open') {
             vm.loadingInfo.count++;
             if (vm.loadingInfo.count == 1) {
@@ -36,7 +40,9 @@
             }
             return;
         }
-
+        if (vm.loadingInfo.count < 0) {
+            vm.loadingInfo.count = 1;
+        }
         vm.loadingInfo.count--;
 
         if (vm.loadingInfo.count == 0) {
