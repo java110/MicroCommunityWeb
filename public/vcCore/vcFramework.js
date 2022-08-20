@@ -1057,6 +1057,7 @@
             vcFramework.loading('open');
             Vue.http.post(_api, param, options)
                 .then(function(res) {
+                    vcFramework.loading('close');
                     try {
                         let _header = res.headers.map;
                         //console.log('res', res);
@@ -1067,10 +1068,9 @@
                         successCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
-                    } finally {
-                        vcFramework.loading('close');
-                    }
+                    } finally {}
                 }, function(res) {
+                    vcFramework.loading('close');
                     try {
                         if (res.status == 401 && res.headers.map["location"]) {
                             let _header = res.headers.map;
@@ -1085,9 +1085,7 @@
                         errorCallback(res.bodyText, res);
                     } catch (e) {
                         console.error(e);
-                    } finally {
-                        vcFramework.loading('close');
-                    }
+                    } finally {}
                 });
         },
         apiGet: function(api, param, successCallback, errorCallback) {
@@ -1633,7 +1631,7 @@
 
                 document.title = _data.systemTitle;
                 let _logoImg = document.getElementsByClassName('java110-logo');
-                if (_logoImg && _logoImg.length>0) {
+                if (_logoImg && _logoImg.length > 0) {
                     let _image = document.createElement('img')
                     _image.src = _data.logoUrl;
                     _image.style.width = "300px";
@@ -1643,15 +1641,15 @@
                 }
 
                 let _subSystemName = document.getElementsByClassName('java110-sub-system-name');
-                if(_subSystemName && _subSystemName.length>0){
+                if (_subSystemName && _subSystemName.length > 0) {
                     _subSystemName[0].innerHTML = _data.subSystemTitle;
                 }
                 let _companyTeam = document.getElementsByClassName('java110-company-team');
-                if(_companyTeam && _companyTeam.length>0){
+                if (_companyTeam && _companyTeam.length > 0) {
                     _companyTeam[0].innerHTML = _data.companyName;
                 }
 
-               
+
 
                 vc.saveData('java110SystemInfo', _data)
             },
@@ -2045,7 +2043,7 @@
  * 框架开始初始化
  */
 (function(vcFramework) {
-    
+
     vcFramework.builderVcTree();
     vcFramework.refreshSystemInfo();
 

@@ -93,7 +93,7 @@
             },
             _loadReceiptDetail: function() {
 
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
