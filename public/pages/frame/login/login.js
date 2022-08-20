@@ -3,8 +3,8 @@
         data: {
             loginInfo: {
                 logo: '',
-                username: 'wuxw',
-                passwd: 'admin',
+                username: '',
+                passwd: '',
                 validateCode: '',
                 errorInfo: ''
             }
