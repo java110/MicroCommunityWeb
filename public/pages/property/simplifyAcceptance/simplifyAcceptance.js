@@ -186,6 +186,13 @@
                     roomNum: $that.simplifyAcceptanceInfo.roomNum
                 })
             },
+            _toSimplifyNotepadPage: function() {
+                if (!$that.simplifyAcceptanceInfo.ownerId) {
+                    vc.toast('请先选择房屋');
+                    return;
+                }
+                vc.jumpToPage('/#/pages/property/simplifyNotepadManage?roomId=' + $that.simplifyAcceptanceInfo.roomId + "&ownerId=" + $that.simplifyAcceptanceInfo.ownerId)
+            },
             errorLoadImg: function() {
                 vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
             },

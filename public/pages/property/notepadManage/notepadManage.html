@@ -7,28 +7,24 @@
                             <vc:i18n name="查询条件"></vc:i18n>
                         </span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{notepadManageInfo.moreCondition == true?'隐藏':'更多'}}</button>
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{notepadManageInfo.moreCondition == true?'隐藏':'更多'}}</button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择类型','notepadManage')"
-                                    v-model="notepadManageInfo.conditions.noteType" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择类型','notepadManage')" v-model="notepadManageInfo.conditions.noteType" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择简介','notepadManage')"
-                                    v-model="notepadManageInfo.conditions.title" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择简介','notepadManage')" v-model="notepadManageInfo.conditions.title" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择业主名称','notepadManage')"
-                                    v-model="notepadManageInfo.conditions.objName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择业主名称','notepadManage')" v-model="notepadManageInfo.conditions.objName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-1">
@@ -42,8 +38,7 @@
                     <div class="row">
                         <div class="col-sm-4" v-if="notepadManageInfo.moreCondition == true">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择登记人','notepadManage')"
-                                    v-model="notepadManageInfo.conditions.createUserName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择登记人','notepadManage')" v-model="notepadManageInfo.conditions.createUserName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="notepadManageInfo.moreCondition == true">
@@ -64,12 +59,12 @@
                         </span></h5>
                     <span style="font-size: 10px;">(业主反馈记录)</span>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddNotepadModal()">
+                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddNotepadModal()">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>
                                 <vc:i18n name="登记" namespace="notepadManage"></vc:i18n>
                             </span>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -77,7 +72,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                             
+
                                 <th class="text-center"><span>
                                         <vc:i18n name='类型' namespace='notepadManage'></vc:i18n>
                                     </span></th>
@@ -96,28 +91,23 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='操作'></vc:i18n>
                                     </span></th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="notepad in notepadManageInfo.notepads">
-                                
                                 <td class="text-center">{{notepad.noteType}}</td>
                                 <td class="text-center">{{notepad.title}}</td>
                                 <td class="text-center">{{notepad.roomName}}</td>
                                 <td class="text-center">{{notepad.ownerName}}</td>
                                 <td class="text-center">{{notepad.createTime}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditNotepadModel(notepad)"><span>
+                                    <!-- <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditNotepadModel(notepad)"><span>
                                                 <vc:i18n name='修改'></vc:i18n>
                                             </span></button>
-                                    </div>
+                                    </div> -->
                                     <div class="btn-group">
-                                        <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteNotepadModel(notepad)"><span>
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteNotepadModel(notepad)"><span>
                                                 <vc:i18n name='删除'></vc:i18n>
                                             </span></button>
                                     </div>
@@ -134,7 +124,16 @@
                         </tfoot>
                     </table>
                     <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                温馨提示：请到业务受理页面登记
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

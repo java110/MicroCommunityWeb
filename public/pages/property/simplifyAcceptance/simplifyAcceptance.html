@@ -235,6 +235,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyNotepad'}" v-on:click="_toSimplifyNotepadPage()">
+                        <span><vc:i18n name="业主反馈" namespace="simplifyAcceptance"></vc:i18n></span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'}" v-on:click="changeTab('simplifyOwnerRepair')">
                         <span><vc:i18n name="报修单" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
@@ -246,7 +251,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyOwnerAccessContol'}" v-on:click="changeTab('simplifyOwnerAccessContol')">
-                        <span><vc:i18n name="门禁同步" namespace="simplifyAcceptance"></vc:i18n></span>
+                        <span><vc:i18n name="设备同步" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -261,7 +266,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:simplifyAcceptanceInfo._currentTab == 'simplifyShopsHireLog'}" v-on:click="changeTab('simplifyShopsHireLog')">
-                        <span><vc:i18n name="绑定记录" namespace="simplifyAcceptance"></vc:i18n></span>
+                        <span><vc:i18n name="历史业主" namespace="simplifyAcceptance"></vc:i18n></span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -283,6 +288,7 @@
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerCar'">
             <vc:create path="property/simplifyOwnerCar"></vc:create>
         </div>
+
         <div v-if="simplifyAcceptanceInfo._currentTab == 'simplifyOwnerRepair'">
             <vc:create path="property/simplifyOwnerRepair"></vc:create>
         </div>
