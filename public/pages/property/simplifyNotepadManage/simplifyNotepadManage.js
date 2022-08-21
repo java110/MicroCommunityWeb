@@ -20,6 +20,7 @@
                     objName: '',
                     createUserName: '',
                     state: '',
+                    objId: ''
 
                 }
             }
@@ -29,6 +30,7 @@
             let _ownerId = vc.getParam('ownerId');
             $that.simplifyNotepadManageInfo.roomId = _roomId;
             $that.simplifyNotepadManageInfo.ownerId = _ownerId;
+            $that.simplifyNotepadManageInfo.conditions.objId = _ownerId;
             vc.component._listNotepads(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
@@ -72,6 +74,12 @@
                     roomId: $that.simplifyNotepadManageInfo.roomId,
                     ownerId: $that.simplifyNotepadManageInfo.ownerId
                 });
+            },
+            _openAddNotepadDetailModal: function(_notepad) {
+                vc.emit('addNotepadDetail', 'openAddNotepadModal', _notepad);
+            },
+            _openListNotepadDetailModal: function(_notepad) {
+                vc.emit('notepadDetail', 'openNotepadDetailModal', _notepad);
             },
             _openEditNotepadModel: function(_notepad) {
                 vc.emit('editNotepad', 'openEditNotepadModal', _notepad);

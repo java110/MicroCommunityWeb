@@ -40,6 +40,9 @@
                                         <vc:i18n name='联系电话' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
+                                        <vc:i18n name='状态' namespace='simplifyNotepadManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
                                         <vc:i18n name='记录时间' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
@@ -59,10 +62,21 @@
                                 <td class="text-center">{{notepad.roomName}}</td>
                                 <td class="text-center">{{notepad.objName}}</td>
                                 <td class="text-center">{{notepad.link}}</td>
+                                <td class="text-center">{{notepad.state=='F'?'完成':'跟进中'}}</td>
                                 <td class="text-center">{{notepad.createTime}}</td>
                                 <td class="text-center">{{notepad.createUserName}}</td>
                                 <td class="text-center">{{notepad.title}}</td>
                                 <td class="text-center">
+                                    <div class="btn-group" v-if="notepad.state == 'W'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAddNotepadDetailModal(notepad)"><span>
+                                                <vc:i18n name='跟进'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openListNotepadDetailModal(notepad)"><span>
+                                                <vc:i18n name='进度'></vc:i18n>
+                                            </span></button>
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openEditNotepadModel(notepad)"><span>
                                                 <vc:i18n name='修改'></vc:i18n>
@@ -106,5 +120,9 @@
     <vc:create path="property/addNotepad" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editNotepad"></vc:create>
     <vc:create path="property/deleteNotepad"></vc:create>
+
+    <vc:create path="property/addNotepadDetail" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/notepadDetail" callBackListener="" callBackFunction=""></vc:create>
+
 
 </div>

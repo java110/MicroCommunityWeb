@@ -1,0 +1,36 @@
+<div id="notepadDetailModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span><vc:i18n name="跟进进度" namespace="notepadDetail"></vc:i18n></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><span><vc:i18n name="序号" namespace="notepadDetail"></vc:i18n></span></th>
+                                    <th scope="col"><span><vc:i18n name="处理人" namespace="notepadDetail"></vc:i18n></span></th>
+                                    <th scope="col"><span><vc:i18n name="处理时间" namespace="notepadDetail"></vc:i18n></span></th>
+                                    <th scope="col"><span><vc:i18n name="处理内容" namespace="notepadDetail"></vc:i18n></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item,index) in notepadDetailInfo.details">
+                                    <th scope="row">{{index+1}}</th>
+                                    <td>{{item.createUserName }}</td>
+                                    <td>{{item.createTime}}</td>
+                                    <td>{{item.content}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
