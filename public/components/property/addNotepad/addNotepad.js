@@ -102,9 +102,6 @@
                             vc.component.clearAddNotepadInfo();
                             vc.emit('notepadManage', 'listNotepad', {});
                             vc.emit('simplifyNotepadManage', 'listNotepad', {});
-
-
-
                             return;
                         }
                         vc.message(_json.msg);
