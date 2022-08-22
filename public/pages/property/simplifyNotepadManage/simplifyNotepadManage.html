@@ -62,7 +62,7 @@
                                 <td class="text-center">{{notepad.roomName}}</td>
                                 <td class="text-center">{{notepad.objName}}</td>
                                 <td class="text-center">{{notepad.link}}</td>
-                                <td class="text-center">{{notepad.state=='F'?'完成':'跟进中'}}</td>
+                                <td class="text-center">{{notepad.state=='F'?'完成':'跟进中'}}<span v-if="notepad.thridId">(已转报修单)</span></td>
                                 <td class="text-center">{{notepad.createTime}}</td>
                                 <td class="text-center">{{notepad.createUserName}}</td>
                                 <td class="text-center">{{notepad.title}}</td>
@@ -75,6 +75,16 @@
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openListNotepadDetailModal(notepad)"><span>
                                                 <vc:i18n name='进度'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group" v-if="!notepad.thridId">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAddRepairModal(notepad)"><span>
+                                                <vc:i18n name='转报修单'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group" v-if="notepad.thridId">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toRepairDetail(notepad)"><span>
+                                                <vc:i18n name='报修详情'></vc:i18n>
                                             </span></button>
                                     </div>
                                     <div class="btn-group">
@@ -123,6 +133,7 @@
 
     <vc:create path="property/addNotepadDetail" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/notepadDetail" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/notepadOwnerRepair"></vc:create>
 
 
 </div>

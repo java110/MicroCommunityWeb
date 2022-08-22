@@ -12,17 +12,20 @@
                 records: 1,
                 moreCondition: false,
                 noteId: '',
+                noteTypes: [],
                 conditions: {
                     noteType: '',
-                    title: '',
+                    roomName: '',
                     objName: '',
                     createUserName: '',
                     state: '',
-
                 }
             }
         },
         _initMethod: function() {
+            vc.getDict('notepad', 'note_type', function(_data) {
+                $that.notepadManageInfo.noteTypes = _data;
+            })
             vc.component._listNotepads(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
@@ -79,6 +82,12 @@
             _queryNotepadMethod: function() {
                 vc.component._listNotepads(DEFAULT_PAGE, DEFAULT_ROWS);
 
+            },
+            _openAddRepairModal: function(_notepad) {
+                vc.emit('notepadOwnerRepair', 'openAddOwnerRepairModal', _notepad);
+            },
+            _toRepairDetail: function(_notepad) {
+                vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _notepad.thridId)
             },
             _moreCondition: function() {
                 if (vc.component.notepadManageInfo.moreCondition) {

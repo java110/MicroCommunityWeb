@@ -87,9 +87,14 @@
             _openDeleteNotepadModel: function(_notepad) {
                 vc.emit('deleteNotepad', 'openDeleteNotepadModal', _notepad);
             },
+            _openAddRepairModal: function(_notepad) {
+                vc.emit('notepadOwnerRepair', 'openAddOwnerRepairModal', _notepad);
+            },
+            _toRepairDetail: function(_notepad) {
+                vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _notepad.thridId)
+            },
             _queryNotepadMethod: function() {
                 vc.component._listNotepads(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function() {
                 if (vc.component.simplifyNotepadManageInfo.moreCondition) {
