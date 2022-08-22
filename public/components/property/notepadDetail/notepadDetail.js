@@ -14,6 +14,8 @@
                 vc.copyObject(_params, vc.component.notepadDetailInfo);
                 $that._loadNotepadDetails();
             });
+
+
         },
         methods: {
             refreshnotepadDetailInfo: function() {
@@ -46,7 +48,31 @@
                         console.log('请求失败处理');
                     }
                 );
-            }
+            },
+            _doDeleteNotepadDetail: function(_detail) {
+                vc.component.deleteNotepadInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.http.apiPost(
+                    '/notepad.deleteNotepadDetail',
+                    JSON.stringify(_detail), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            $that._loadNotepadDetails();
+                            vc.emit('simplifyNotepadManage', 'listNotepad', {});
+                            return;
+                        }
+                        vc.toast(_json.msg);
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.message(json);
+
+                    });
+            },
         }
     });
 })(window.vc, window.vc.component);

@@ -55,9 +55,9 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span>
-                            <vc:i18n name="服务记录" namespace="notepadManage"></vc:i18n>
-                        </span></h5>
-                    <span style="font-size: 10px;">(业主反馈记录)</span>
+                            <vc:i18n name="业主反馈" namespace="notepadManage"></vc:i18n>
+                        </span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddNotepadModal()">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -68,25 +68,32 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-
                                 <th class="text-center"><span>
-                                        <vc:i18n name='类型' namespace='notepadManage'></vc:i18n>
+                                        <vc:i18n name='类型' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
-                                        <vc:i18n name='简介' namespace='notepadManage'></vc:i18n>
+                                        <vc:i18n name='房屋' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
-                                        <vc:i18n name='房屋' namespace='notepadManage'></vc:i18n>
+                                        <vc:i18n name='联系人' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
-                                        <vc:i18n name='业主' namespace='notepadManage'></vc:i18n>
+                                        <vc:i18n name='联系电话' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
-                                        <vc:i18n name='记录时间' namespace='notepadManage'></vc:i18n>
+                                        <vc:i18n name='状态' namespace='simplifyNotepadManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='记录时间' namespace='simplifyNotepadManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='登记人' namespace='simplifyNotepadManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='登记内容' namespace='simplifyNotepadManage'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
                                         <vc:i18n name='操作'></vc:i18n>
@@ -95,17 +102,30 @@
                         </thead>
                         <tbody>
                             <tr v-for="notepad in notepadManageInfo.notepads">
-                                <td class="text-center">{{notepad.noteType}}</td>
-                                <td class="text-center">{{notepad.title}}</td>
+                                <td class="text-center">{{notepad.noteTypeName}}</td>
                                 <td class="text-center">{{notepad.roomName}}</td>
-                                <td class="text-center">{{notepad.ownerName}}</td>
+                                <td class="text-center">{{notepad.objName}}</td>
+                                <td class="text-center">{{notepad.link}}</td>
+                                <td class="text-center">{{notepad.state=='F'?'完成':'跟进中'}}</td>
                                 <td class="text-center">{{notepad.createTime}}</td>
+                                <td class="text-center">{{notepad.createUserName}}</td>
+                                <td class="text-center">{{notepad.title}}</td>
                                 <td class="text-center">
-                                    <!-- <div class="btn-group">
+                                    <div class="btn-group" v-if="notepad.state == 'W'">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openAddNotepadDetailModal(notepad)"><span>
+                                                <vc:i18n name='跟进'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openListNotepadDetailModal(notepad)"><span>
+                                                <vc:i18n name='进度'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openEditNotepadModel(notepad)"><span>
                                                 <vc:i18n name='修改'></vc:i18n>
                                             </span></button>
-                                    </div> -->
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteNotepadModel(notepad)"><span>
                                                 <vc:i18n name='删除'></vc:i18n>
@@ -141,8 +161,10 @@
 
 
 
-    <vc:create path="property/addNotepad" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editNotepad"></vc:create>
     <vc:create path="property/deleteNotepad"></vc:create>
+
+    <vc:create path="property/addNotepadDetail" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/notepadDetail" callBackListener="" callBackFunction=""></vc:create>
 
 </div>
