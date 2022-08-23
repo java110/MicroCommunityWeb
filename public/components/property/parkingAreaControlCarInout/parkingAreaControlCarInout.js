@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             parkingAreaControlCarInoutInfo: {
@@ -10,22 +10,22 @@
 
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
 
         },
-        _initEvent: function () {
-            vc.on('parkingAreaControlCarInout', 'notify', function (_param) {
+        _initEvent: function() {
+            vc.on('parkingAreaControlCarInout', 'notify', function(_param) {
                 let _parkingAreaControl = _param.parkingAreaControl;
                 let _data = _param.data;
                 if (_data.action != 'IN_OUT') {
                     return;
                 }
                 if (_parkingAreaControl.inMachineId == _data.extMachineId) {
-                    $that.parkingAreaControlCarInoutInfo.inImg = "data:image/png;base64," + _data.img;
+                    $that.parkingAreaControlCarInoutInfo.inImg = _data.img;
                 }
 
                 if (_parkingAreaControl.outMachineId == _data.extMachineId) {
-                    $that.parkingAreaControlCarInoutInfo.outImg = "data:image/png;base64," + _data.img;
+                    $that.parkingAreaControlCarInoutInfo.outImg = _data.img;
                 }
 
             })
