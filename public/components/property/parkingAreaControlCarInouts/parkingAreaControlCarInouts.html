@@ -1,8 +1,7 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-3 padding-right-xs padding-left-xl">
-            <input v-model="parkingAreaControlCarInoutsInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlCarInouts')"
-                class="form-control">
+            <input v-model="parkingAreaControlCarInoutsInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlCarInouts')" class="form-control">
 
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
@@ -22,8 +21,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="_qureyParkingAreaControlCarInouts()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_qureyParkingAreaControlCarInouts()">
                 查询
             </button>
         </div>
@@ -39,12 +37,13 @@
                     <th class="text-center"><span><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="收费金额" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="说明" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
                     <td class="text-center">{{carIn.inoutId}}</td>
-                    <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}</td>
+                    <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
                     <td class="text-center">{{carIn.carNum}}</td>
                     <td class="text-center">{{carIn.inTime}}</td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
@@ -52,6 +51,8 @@
                     <td class="text-center">{{carIn.hours}}<span><vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n></span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></span></td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
                     <td class="text-center" v-else>{{carIn.realCharge}}</td>
+                    <td class="text-center">{{carIn.remark}}</td>
+
 
                 </tr>
             </tbody>
