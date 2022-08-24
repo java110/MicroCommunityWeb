@@ -147,7 +147,7 @@
                     return;
                 }
                 vc.http.apiPost(
-                    'fee.saveTempCarFeeConfig',
+                    '/fee.saveTempCarFeeConfig',
                     JSON.stringify(vc.component.addTempCarFeeConfigInfo),
                     {
                         emulateJSON: true

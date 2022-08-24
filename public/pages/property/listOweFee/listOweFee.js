@@ -23,7 +23,8 @@
                     roomNum: '',
                     unitId: '',
                     roomSubType: '',
-                    ownerName: ''
+                    ownerName: '',
+                    communityId : vc.getCurrentCommunity().communityId
                 },
                 feeConfigs: [],
                 feeConfigNames: [],
@@ -88,7 +89,7 @@
             _loadListOweFeeInfo: function (_page, _row) {
                 vc.component.listOweFeeInfo.conditions.page = _page;
                 vc.component.listOweFeeInfo.conditions.row = _row;
-                vc.component.listOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+               // vc.component.listOweFeeInfo.conditions.;
                 let _configIds = "";
                 $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
@@ -228,7 +229,9 @@
                 if (_configIds.endsWith(',')) {
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=listOweFee&configIds=" + _configIds);
+
+                let _conditions = vc.objToGetParam($that.listOweFeeInfo.conditions)
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=listOweFee&configIds=' + _configIds+"&"+_conditions);
             },
             _toFeeCollectionOrderManage: function () {
                 vc.jumpToPage('/#/pages/property/feeCollectionOrderManage');
