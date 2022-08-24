@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写商铺编号 格式 楼栋-商铺','shops')" class="form-control form-control-sm" v-model="shopsInfo.conditions.roomName">
+                                <input type="text" :placeholder="vc.i18n('请填写商铺编号 格式 楼栋-商铺','shops')" class="form-control form-control-sm" v-model="shopsInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -165,11 +165,11 @@
                             </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="13">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="13">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
