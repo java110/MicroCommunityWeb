@@ -95,6 +95,8 @@
                                 </td>
                                 <td class="text-center">{{machine.createTime}}</td>
                                 <td class="text-center">
+                                    <button class="btn-white btn btn-xs" v-if="machine.direction == '3307'" v-on:click="_openQrCode(machine)"><span><vc:i18n name="出场二维码" namespace="barrierGateMachineManage"></vc:i18n></span>
+                                    </button>
                                     <button class="btn-white btn btn-xs" v-on:click="_openEditMachineModel(machine)"><span><vc:i18n name="修改" namespace="barrierGateMachineManage"></vc:i18n></span>
                                     </button>
                                     <button class="btn-white btn btn-xs" v-on:click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除" namespace="barrierGateMachineManage"></vc:i18n></span>
@@ -120,4 +122,5 @@
     <vc:create path="property/editBarrierGateMachine"></vc:create>
     <vc:create path="property/deleteMachine"></vc:create>
     <vc:create path="property/machineState"></vc:create>
+    <vc:create path="property/barrierGateMachineQrCode"></vc:create>
 </div>

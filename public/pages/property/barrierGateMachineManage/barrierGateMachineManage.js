@@ -82,6 +82,9 @@
             _openDeleteMachineModel: function(_machine) {
                 vc.emit('deleteMachine', 'openDeleteMachineModal', _machine);
             },
+            _openQrCode: function(_machine) {
+                vc.emit('barrierGateMachineQrCode', 'openQrCodeModal', _machine);
+            },
             _queryMachineMethod: function() {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
 
