@@ -1,5 +1,4 @@
-<div id="editCarModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div id="editCarModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -14,8 +13,7 @@
                                     <span><vc:i18n name="车牌号" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarInfo.carNum" type="text"
-                                           :placeholder="vc.i18n('必填，请填写车牌号','editCar')" class="form-control">
+                                    <input v-model="editCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','editCar')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -23,8 +21,7 @@
                                     <span><vc:i18n name="车品牌" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarInfo.carBrand" type="text"
-                                           :placeholder="vc.i18n('可选，请填写车品牌，如 宝马X6','editCar')" class="form-control">
+                                    <input v-model="editCarInfo.carBrand" type="text" :placeholder="vc.i18n('可选，请填写车品牌，如 宝马X6','editCar')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -45,8 +42,7 @@
                                     <span><vc:i18n name="颜色" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarInfo.carColor" type="text"
-                                           :placeholder="vc.i18n('可选，请填写车颜色，如白色','editCar')" class="form-control">
+                                    <input v-model="editCarInfo.carColor" type="text" :placeholder="vc.i18n('可选，请填写车颜色，如白色','editCar')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -54,9 +50,7 @@
                                     <span><vc:i18n name="起租时间" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarInfo.startTime" type="text"
-                                           :placeholder="vc.i18n('必填，请填写起租时间','editCar')"
-                                           class="form-control editCarStartTime">
+                                    <input v-model="editCarInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写起租时间','editCar')" class="form-control editCarStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -64,9 +58,7 @@
                                     <span><vc:i18n name="结租时间" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarInfo.endTime" type="text"
-                                           :placeholder="vc.i18n('必填，请填写结租时间','editCar')"
-                                           class="form-control editCarEndTime">
+                                    <input v-model="editCarInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结租时间','editCar')" class="form-control editCarEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -74,8 +66,7 @@
                                     <span><vc:i18n name="备注" namespace="editCar"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editCarInfo.remark" type="text"
-                                              :placeholder="vc.i18n('请填写备注信息','editCar')" rows="3" class="form-control">
+                                    <textarea v-model="editCarInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','editCar')" rows="3" class="form-control">
                                     </textarea>
                                 </div>
                             </div>
@@ -86,8 +77,7 @@
                     <button class="btn btn-primary float-right" type="button" v-on:click="_submitEditCarInfo()">
                         <i class="fa fa-check"></i>&nbsp;保存
                     </button>
-                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                            data-dismiss="modal">
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
                         <span><vc:i18n name="取消" namespace="editCar"></vc:i18n></span>
                     </button>
                 </div>

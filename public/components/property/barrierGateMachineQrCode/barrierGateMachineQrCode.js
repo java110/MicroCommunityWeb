@@ -11,11 +11,11 @@
         _initEvent: function() {
             vc.on('barrierGateMachineQrCode', 'openQrCodeModal', function(_param) {
                 $('#barrierGateMachineQrCodeModel').modal('show');
-                $that._loadQrCodeUrl(_param);
+                $that._loadOutMachineQrCodeUrl(_param);
             });
         },
         methods: {
-            _loadQrCodeUrl: function(_machine) {
+            _loadOutMachineQrCodeUrl: function(_machine) {
                 //判断是否支付
                 var param = {
                     params: {
@@ -29,7 +29,7 @@
                     param,
                     function(json, res) {
                         let _info = JSON.parse(json);
-                        $that._viewQr(_info.data.url)
+                        $that._viewOutMachineQr(_info.data.url)
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -37,9 +37,9 @@
                 );
             },
             // 两分钟后显示遮罩层
-            _viewQr: function(_url) {
-                document.getElementById("qrcode").innerHTML = "";
-                let qrcode = new QRCode(document.getElementById("qrcode"), {
+            _viewOutMachineQr: function(_url) {
+                document.getElementById("outMachineQrcode").innerHTML = "";
+                let qrcode = new QRCode(document.getElementById("outMachineQrcode"), {
                     text: "213", //你想要填写的文本
                     width: 200, //生成的二维码的宽度
                     height: 200, //生成的二维码的高度

@@ -217,6 +217,52 @@
                         vc.toast(json);
                     });
             },
+            _closeDoor: function(_inOut) {
+                let _machines = [];
+                let _machineId = "";
+                if (_inOut == 'in') {
+                    _machines = $that.parkingAreaControlVideoInfo.inMachines;
+                    _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
+                } else {
+                    _machines = $that.parkingAreaControlVideoInfo.outMachines;
+                    _machineId = $that.parkingAreaControlVideoInfo.outMachineId;
+                }
+
+                if (_machines.length == 0) {
+                    vc.toast('请先选择设备');
+                    return;
+                }
+                let _machineCode = '';
+                _machines.forEach(item => {
+                    if (item.machineId == _machineId) {
+                        _machineCode = item.machineCode;
+                    }
+                })
+                let _data = {
+                    "machineCode": _machineCode,
+                    "stateName": "关门",
+                    "state": "1500",
+                    "url": "/machine/closeDoor",
+                    "userRole": "staff",
+                    "communityId": vc.getCurrentCommunity().communityId
+                };
+                vc.http.apiPost('/machine/closeDoor',
+                    JSON.stringify(_data), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        let _data = JSON.parse(json);
+                        if (_data.code != 0) {
+                            vc.toast(_data.msg);
+                        } else {
+                            vc.toast('已请求设备');
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(json);
+                    });
+            },
             customCarIn: function(_type) {
                 let _machineId = $that.parkingAreaControlVideoInfo.inMachineId;
                 if (_type != '1101') {
@@ -242,6 +288,19 @@
                     type: '1101',
                     machineId: _machineId
                 })
+            },
+            _outPayFeeQrCode: function() {
+                let _machineId = $that.parkingAreaControlVideoInfo.outMachineId;
+
+                if (!_machineId) {
+                    vc.toast('请选择出场摄像头');
+                    return;
+                }
+
+                vc.emit('barrierGateMachineQrCode', 'openQrCodeModal', {
+                    machineId: _machineId,
+                    locationObjId: $that.parkingAreaControlVideoInfo.boxId
+                });
             }
 
 
