@@ -80,7 +80,7 @@
                             "结束时间": _feeConfig.endTime,
                         };
 
-                        _feeConfig.tempCarFeeConfigAttrs.for(_item => {
+                        _feeConfig.tempCarFeeConfigAttrs.forEach(_item => {
                             _data[_item.specName] = _item.value
                         })
                         vc.emit('viewData', 'openViewDataModal', {
