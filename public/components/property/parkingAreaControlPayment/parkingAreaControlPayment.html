@@ -1,8 +1,7 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-3 padding-right-xs padding-left-xl">
-            <input v-model="parkingAreaControlPaymentInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlPayment')"
-                class="form-control">
+            <input v-model="parkingAreaControlPaymentInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlPayment')" class="form-control">
 
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
@@ -22,8 +21,7 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="_qureyParkingAreaControlPayment()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_qureyParkingAreaControlPayment()">
                 查询
             </button>
         </div>
@@ -39,6 +37,7 @@
                     <th class="text-center"><span><vc:i18n name="收费类型" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="应收金额" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="实收金额" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="支付时间" namespace="parkingAreaControlPayment"></vc:i18n></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +49,8 @@
                     <td class="text-center">{{carIn.payTypeName}}</td>
                     <td class="text-center">{{carIn.payCharge}}</td>
                     <td class="text-center">{{carIn.realCharge}}</td>
+                    <td class="text-center">{{carIn.createTime}}</td>
+
 
                 </tr>
             </tbody>
