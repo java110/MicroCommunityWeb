@@ -1,8 +1,7 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-3 padding-right-xs padding-left-xl">
-            <input v-model="parkingAreaControlInCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlInCar')"
-                class="form-control">
+            <input v-model="parkingAreaControlInCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlInCar')" class="form-control">
 
         </div>
         <div class="col-lg-3 padding-right-xs padding-left-xl">
@@ -34,6 +33,7 @@
                     <th class="text-center"><span><vc:i18n name="进出场" namespace="parkingAreaControlInCar"></vc:i18n></span>ID</th>
                     <th class="text-center"><span><vc:i18n name="车辆状态" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="在场时间" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车费用" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
@@ -44,9 +44,13 @@
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.stateName}}</td>
                     <td class="text-center">{{carIn.carNum}}</td>
+                    <td class="text-center">{{carIn.carNum}}</td>
+                    <td class="text-center">{{carIn.carType == '1001'?'月租车':'临时车'}}</td>
                     <td class="text-center">{{carIn.inTime}}</td>
                     <td class="text-center">{{carIn.hours}}<span><vc:i18n name="小时" namespace="parkingAreaControlInCar"></vc:i18n></span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlInCar"></vc:i18n></span></td>
-                    <td class="text-center">{{carIn.payCharge}}<span><vc:i18n name="元" namespace="parkingAreaControlInCar"></vc:i18n></span></td>
+                    <td class="text-center" v-if="carIn.carType == '1003'">{{carIn.payCharge}}<span><vc:i18n name="元" namespace="parkingAreaControlInCar"></vc:i18n></span></td>
+                    <td class="text-center" v-else>-</td>
+
                 </tr>
             </tbody>
             <tfoot>
