@@ -7,7 +7,7 @@
                         <label class="col-sm-4 col-form-label text-right"><span><vc:i18n name="入场" namespace="parkingAreaControlVideo"></vc:i18n></span></label>
                         <div class="col-sm-8 padding-0">
                             <select class="custom-select" v-model="parkingAreaControlVideoInfo.inMachineId" @change="_swatchVedio()">
-                                <option selected disabled value="">{{vc.i18n('请选择入场摄像头','parkingAreaControlVideo')}}</option>
+                                <option selected  value="">{{vc.i18n('请选择入场摄像头','parkingAreaControlVideo')}}</option>
                                 <option :value="item.machineId"
                                     v-for="(item,index) in parkingAreaControlVideoInfo.inMachines">{{item.machineName}}
                                 </option>
@@ -43,7 +43,7 @@
                         <label class="col-sm-4 col-form-label text-right"><span><vc:i18n name="出场" namespace="parkingAreaControlVideo"></vc:i18n></span></label>
                         <div class="col-sm-8 padding-0">
                             <select class="custom-select" v-model="parkingAreaControlVideoInfo.outMachineId" @change="_swatchOutVedio()">
-                                <option selected disabled value="">{{vc.i18n('请选择出场摄像头','parkingAreaControlVideo')}}</option>
+                                <option selected  value="">{{vc.i18n('请选择出场摄像头','parkingAreaControlVideo')}}</option>
                                 <option :value="item.machineId"
                                     v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
                                 </option>

@@ -33,6 +33,8 @@
                     <th class="text-center"><span><vc:i18n name="进出场编号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车辆状态" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="停车场" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="计费规则" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
@@ -46,6 +48,10 @@
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
                     <td class="text-center">{{carIn.carNum}}</td>
+                    <td class="text-center">{{carIn.areaNum}}</td>
+                    <td class="text-center" @click="_viewTempFeeConfigInOutCar(carIn.configId)">{{carIn.feeName}}
+                        <span class="fa fa-info-circle"></span>
+                    </td>
                     <td class="text-center">{{carIn.carType == '1001'?'月租车':'临时车'}}</td>
                     <td class="text-center">{{carIn.inTime}}</td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
