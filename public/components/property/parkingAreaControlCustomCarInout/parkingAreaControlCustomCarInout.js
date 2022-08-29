@@ -55,10 +55,10 @@
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _data = JSON.parse(json);
-                        $('#parkingAreaControlCustomCarInoutModel').modal('hide');
                         if (_data.code != 0) {
                             vc.toast(_data.msg);
                         } else {
+                            $('#parkingAreaControlCustomCarInoutModel').modal('hide');
                             vc.toast(_data.msg);
                             vc.emit('parkingAreaControlFee', 'clear', {})
                         }
@@ -106,9 +106,10 @@
                             vc.toast('未查询在场车辆,请检查！');
                             return;
                         }
-                        $that.parkingAreaControlCustomCarInout.payCharge = _data[0].payCharge;
-                        $that.parkingAreaControlCustomCarInout.inoutId = _data[0].inoutId;
-                        $that.parkingAreaControlCustomCarInout.costMin = _data[0].hours + "时" + _data[0].min + "分";
+                        $that.parkingAreaControlCustomCarInoutInfo.payCharge = _data[0].payCharge;
+                        $that.parkingAreaControlCustomCarInoutInfo.amount = _data[0].payCharge;
+                        $that.parkingAreaControlCustomCarInoutInfo.inoutId = _data[0].inoutId;
+                        $that.parkingAreaControlCustomCarInoutInfo.costMin = _data[0].hours + "时" + _data[0].min + "分";
                     },
                     function() {
                         console.log('请求失败处理');
