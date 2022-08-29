@@ -274,7 +274,8 @@
                 }
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: _type,
-                    machineId: _machineId
+                    machineId: _machineId,
+                    boxId: $that.parkingAreaControlVideoInfo.boxId
                 })
             },
             unlicensedCarIn: function(_type) {

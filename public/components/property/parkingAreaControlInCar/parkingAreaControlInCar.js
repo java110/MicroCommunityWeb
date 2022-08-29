@@ -35,7 +35,7 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         boxId: $that.parkingAreaControlInCarInfo.boxId,
                         carNum: $that.parkingAreaControlInCarInfo.carNum,
-                        state: $that.parkingAreaControlInCarInfo.carNum
+                        state: $that.parkingAreaControlInCarInfo.state
                     }
                 };
                 //发送get请求

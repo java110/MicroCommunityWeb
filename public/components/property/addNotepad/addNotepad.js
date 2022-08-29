@@ -119,7 +119,7 @@
                     params: {
                         page: 1,
                         row: 1,
-                        roomId: '',
+                        roomId: $that.addNotepadInfo.roomId,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
