@@ -45,7 +45,7 @@
                         state: $that.parkingAreaControlPaymentInfo.state,
                         carNum: $that.parkingAreaControlPaymentInfo.carNum,
                         startTime: $that.parkingAreaControlPaymentInfo.startTime,
-                        endTime: $that.parkingAreaControlPaymentInfo.startTime
+                        endTime: $that.parkingAreaControlPaymentInfo.endTime
                     }
                 };
                 //发送get请求
