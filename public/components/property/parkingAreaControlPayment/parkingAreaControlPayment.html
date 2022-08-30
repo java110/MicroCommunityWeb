@@ -1,10 +1,10 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
-        <div class="col-lg-3 padding-right-xs padding-left-xl">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
             <input v-model="parkingAreaControlPaymentInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlPayment')" class="form-control">
 
         </div>
-        <div class="col-lg-3 padding-right-xs padding-left-xl">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select" v-model="parkingAreaControlPaymentInfo.state">
                 <option disabled value="">{{vc.i18n('请选择车辆状态','parkingAreaControlPayment')}}</option>
                 <option value="100300">{{vc.i18n('进场状态','parkingAreaControlPayment')}}</option>
@@ -15,10 +15,10 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
-
+            <input v-model="parkingAreaControlPaymentInfo.startTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlPayment')" class="form-control paymentStartTime">
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
-
+            <input v-model="parkingAreaControlPaymentInfo.endTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlPayment')" class="form-control paymentEndTime">
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_qureyParkingAreaControlPayment()">
@@ -63,6 +63,18 @@
             </tfoot>
         </table>
         <!-- 分页 -->
-        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlPayment"></vc:create>
+        <div class="row margin-top-xs">
+            <div class="col-sm-9">
+                <div v-if="parkingAreaControlPaymentInfo.payments && parkingAreaControlPaymentInfo.payments.length>0">
+                    <span><vc:i18n name="应收合计" namespace="reportFeeSummary"></vc:i18n></span> {{parkingAreaControlPaymentInfo.payments[0].payChargeTotal}}元
+                </div>
+                <div v-if="parkingAreaControlPaymentInfo.payments && parkingAreaControlPaymentInfo.payments.length>0">
+                    <span><vc:i18n name="实收合计" namespace="reportFeeSummary"></vc:i18n></span> {{parkingAreaControlPaymentInfo.payments[0].realChargeTotal}}元
+                </div>
+            </div>
+            <div class="col-sm-3 float-right">
+                <vc:create path="frame/paginationPlus" namespace="parkingAreaControlPayment"></vc:create>
+            </div>
+        </div>
     </div>
 </div>

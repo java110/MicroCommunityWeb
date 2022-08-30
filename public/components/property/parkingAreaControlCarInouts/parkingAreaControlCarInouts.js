@@ -10,11 +10,18 @@
                 carIns: [],
                 boxId: '',
                 state: '',
-                carNum: ''
+                carNum: '',
+                startTime: '',
+                endTime: '',
             }
         },
         _initMethod: function() {
-
+            vc.initDate('carInoutsStartTime', function(_value) {
+                $that.parkingAreaControlCarInoutsInfo.startTime = _value;
+            });
+            vc.initDate('carInoutsEndTime', function(_value) {
+                $that.parkingAreaControlCarInoutsInfo.endTime = _value;
+            })
         },
         _initEvent: function() {
             vc.on('parkingAreaControlCarInouts', 'switch', function(_data) {
@@ -36,7 +43,9 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         boxId: $that.parkingAreaControlCarInoutsInfo.boxId,
                         state: $that.parkingAreaControlCarInoutsInfo.state,
-                        carNum: $that.parkingAreaControlCarInoutsInfo.carNum
+                        carNum: $that.parkingAreaControlCarInoutsInfo.carNum,
+                        startTime: $that.parkingAreaControlCarInoutsInfo.startTime,
+                        endTime: $that.parkingAreaControlCarInoutsInfo.endTime
                     }
                 };
                 //发送get请求

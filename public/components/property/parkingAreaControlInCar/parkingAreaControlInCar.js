@@ -10,16 +10,24 @@
                 carIns: [],
                 boxId: '',
                 state: '',
-                carNum: ''
+                carNum: '',
+                startTime: '',
+                endTime: '',
             }
         },
         _initMethod: function() {
-
+            vc.initDate('inCarStartTime', function(_value) {
+                $that.parkingAreaControlInCarInfo.startTime = _value;
+            });
+            vc.initDate('inCarEndTime', function(_value) {
+                $that.parkingAreaControlInCarInfo.endTime = _value;
+            })
         },
         _initEvent: function() {
             vc.on('parkingAreaControlInCar', 'switch', function(_data) {
                 $that.parkingAreaControlInCarInfo.boxId = _data.boxId;
                 $that._loadParkingAreaControlInCarData(DEFAULT_PAGE, DEFAULT_ROWS);
+
             });
             vc.on('parkingAreaControlInCar', 'paginationPlus', 'page_event',
                 function(_currentPage) {
@@ -35,7 +43,9 @@
                         communityId: vc.getCurrentCommunity().communityId,
                         boxId: $that.parkingAreaControlInCarInfo.boxId,
                         carNum: $that.parkingAreaControlInCarInfo.carNum,
-                        state: $that.parkingAreaControlInCarInfo.state
+                        state: $that.parkingAreaControlInCarInfo.state,
+                        startTime: $that.parkingAreaControlInCarInfo.startTime,
+                        endTime: $that.parkingAreaControlInCarInfo.endTime
                     }
                 };
                 //发送get请求
