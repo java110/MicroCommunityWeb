@@ -16,11 +16,12 @@
         },
         _initEvent: function() {
             vc.on('editPropertyCommunity', 'openEditPropertyCommunityModal', function(_param) {
+                $that.editPropertyCommunityInfo.groupIds = [];
+                $that.editPropertyCommunityInfo.communityId = _param.communityId;
                 $that._listEditPropertyCommunityMenuGroups();
                 $that._listMenuGroupCommunity();
 
                 $that.editPropertyCommunityInfo.memberId = _param.storeId;
-                $that.editPropertyCommunityInfo.communityId = _param.communityId;
                 $that.editPropertyCommunityInfo.name = _param.name;
                 $('#editPropertyCommunityModel').modal('show');
             });
@@ -66,11 +67,13 @@
             changeEditAllCommunity: function() {
                 $that.editPropertyCommunityInfo.groupIds = [];
                 if (!$that.editPropertyCommunityInfo.isAll) {
+                    $that.editPropertyCommunityInfo.isAll = true;
                     return;
                 }
 
                 $that.editPropertyCommunityInfo.menuGroups.forEach(item => {
-                    $that.editPropertyCommunityInfo.groupIds.push(item.groupId);
+                    //$that.editPropertyCommunityInfo.groupIds.push(item.groupId);
+                    $that.editPropertyCommunityInfo.groupIds.push(item.gId);
                 });
             },
             changeEditItemCommunity: function() {
@@ -97,6 +100,7 @@
                         let _propertyCompanyManageInfo = JSON.parse(json);
                         $that.editPropertyCommunityInfo.menuGroups = _propertyCompanyManageInfo.data;
 
+                        $that._listMenuGroupCommunity();
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -122,7 +126,7 @@
                         _propertyCompanyManageInfo.data.forEach(item => {
                             $that.editPropertyCommunityInfo.groupIds.push(item.gId);
                         })
-
+                        $that.changeEditItemCommunity();
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');

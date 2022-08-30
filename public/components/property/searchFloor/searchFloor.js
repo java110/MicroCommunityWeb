@@ -19,7 +19,7 @@
                 vc.component._loadAllFloorInfo(1, 10);
             });
             vc.on('searchFloor', 'paginationPlus', 'page_event', function(_currentPage) {
-                vc.component._loadAllFloorInfo(_currentPage, 10);
+                $that._loadAllFloorInfo(_currentPage, 10);
             });
         },
         methods: {
