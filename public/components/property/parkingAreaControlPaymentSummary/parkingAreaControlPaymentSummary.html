@@ -1,0 +1,18 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlPaymentSummaryInfo.startTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlPaymentSummary')" class="form-control paymentSummaryStartTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlPaymentSummaryInfo.endTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlPaymentSummary')" class="form-control paymentSummaryEndTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_qureyParkingAreaControlPayment()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <div id="paymentSummary" style="width: 100%; height:300px"></div>
+    </div>
+</div>

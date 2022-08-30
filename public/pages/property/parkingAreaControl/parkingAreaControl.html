@@ -49,6 +49,11 @@
                             <span><vc:i18n name="剩余车位" namespace="parkingAreaControl"></vc:i18n></span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlPaymentSummary'}" v-on:click="changeTab('parkingAreaControlPaymentSummary')">
+                            <span><vc:i18n name="收费统计" namespace="parkingAreaControl"></vc:i18n></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'">
@@ -78,6 +83,10 @@
             <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlRemaining'">
                 <vc:create path="property/parkingAreaControlRemaining"></vc:create>
             </div>
+            <div v-show="parkingAreaControlInfo._currentTab == 'parkingAreaControlPaymentSummary'">
+                <vc:create path="property/parkingAreaControlPaymentSummary"></vc:create>
+            </div>
+
         </div>
         <div class="col-md-3">
             <vc:create path="property/parkingAreaControlFee"></vc:create>
