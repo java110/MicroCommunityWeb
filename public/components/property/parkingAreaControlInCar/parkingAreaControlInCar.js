@@ -13,6 +13,8 @@
                 carNum: '',
                 startTime: '',
                 endTime: '',
+                updateCarNum: '',
+                updateInoutId: '',
             }
         },
         _initMethod: function() {
@@ -102,6 +104,43 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            editCarInfoCarNum: function(_inout) {
+                $that.parkingAreaControlInCarInfo.updateCarNum = _inout.carNum;
+                $that.parkingAreaControlInCarInfo.updateInoutId = _inout.inoutId;
+                $('#editCarInfoCarNumModel').modal('show');
+            },
+            _doUpdateCarInfoCarNum: function() {
+                if (!$that.parkingAreaControlInCarInfo.updateCarNum) {
+                    vc.toast('未包含车牌号');
+                    return;
+                }
+                let _data = {
+                    carNum: $that.parkingAreaControlInCarInfo.updateCarNum,
+                    inoutId: $that.parkingAreaControlInCarInfo.updateInoutId,
+                    communityId: vc.getCurrentCommunity().communityId
+                }
+                vc.http.apiPost(
+                    '/carInout.updateCarInoutNum',
+                    JSON.stringify(_data), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _data = JSON.parse(json);
+                        if (_data.code != 0) {
+                            vc.toast(_data.msg);
+                        } else {
+                            $('#editCarInfoCarNumModel').modal('hide');
+                            vc.toast(_data.msg);
+                            $that._loadParkingAreaControlInCarData(DEFAULT_PAGE, DEFAULT_ROWS);
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+
+                        vc.toast(errInfo);
+                    });
             }
         }
     });
