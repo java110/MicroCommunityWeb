@@ -19,6 +19,7 @@
                     objName: '',
                     createUserName: '',
                     state: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
