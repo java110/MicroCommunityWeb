@@ -4,6 +4,7 @@
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
+    var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
             listPropertyRightRegistrationDetailInfo: {
@@ -52,6 +53,37 @@
                         vc.component.listPropertyRightRegistrationDetailInfo.total = _propertyRightRegistrationDetailsInfo.total;
                         vc.component.listPropertyRightRegistrationDetailInfo.records = _propertyRightRegistrationDetailsInfo.records;
                         vc.component.listPropertyRightRegistrationDetailInfo.propertyRightRegistrationDetails = _propertyRightRegistrationDetailsInfo.data;
+                        vc.component.listPropertyRightRegistrationDetailInfo.propertyRightRegistrationDetails.forEach((item) => {
+                            if(item.securities == '001' && item.idCardUrl){
+                                item.idCardUrl = item.idCardUrl.split(',');
+                                item.idCardUrlShow = [];
+                                item.idCardUrl.forEach((url) => {
+                                    item.idCardUrlShow.push(photoUrl + "?fileId=" + url + "&communityId=-1&time=" + new Date());
+                                })
+                            }
+                            if(item.securities == '002' && item.housePurchaseUrl){
+                                item.housePurchaseUrl = item.housePurchaseUrl.split(',');
+                                item.housePurchaseUrlShow = [];
+                                item.housePurchaseUrl.forEach((url) => {
+                                    item.housePurchaseUrlShow.push(photoUrl + "?fileId=" + url + "&communityId=-1&time=" + new Date());
+                                })
+                            }
+                            if(item.securities == '003' && item.repairUrl){
+                                item.repairUrl = item.repairUrl.split(',');
+                                item.repairUrlShow = [];
+                                item.repairUrl.forEach((url) => {
+                                    item.repairUrlShow.push(photoUrl + "?fileId=" + url + "&communityId=-1&time=" + new Date());
+                                })
+                            }
+                            if(item.securities == '004' && item.deedTaxUrl){
+                                item.deedTaxUrl = item.deedTaxUrl.split(',');
+                                item.deedTaxUrlShow = [];
+                                item.deedTaxUrl.forEach((url) => {
+                                    item.deedTaxUrlShow.push(photoUrl + "?fileId=" + url + "&communityId=-1&time=" + new Date());
+                                })
+                            }
+                        })
+                        $that.$forceUpdate();
                         vc.emit('pagination', 'init', {
                             total: vc.component.listPropertyRightRegistrationDetailInfo.records,
                             dataCount: vc.component.listPropertyRightRegistrationDetailInfo.total,

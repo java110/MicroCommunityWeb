@@ -55,7 +55,8 @@
                         <span><vc:i18n name="员工管理" namespace="staff"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStaffStepPage()"
+                                v-if="vc.hasPrivilege('502022082992310001')">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="staff"></vc:i18n></span>
                         </button>
@@ -106,7 +107,8 @@
                             <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)">
+                                    <button class="btn-white btn btn-xs" v-on:click="openEditStaff(staff)"
+                                            v-if="vc.hasPrivilege('502022082992300002')">
                                         <span><vc:i18n name="修改" namespace="staff"></vc:i18n></span>
                                     </button>
                                 </div>
@@ -116,7 +118,8 @@
                                     </button>
                                 </div>
                                 <div v-if="staff.relCd != 600311000001" class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)">
+                                    <button class="btn-white btn btn-xs" v-on:click="openDeleteStaff(staff)"
+                                            v-if="vc.hasPrivilege('502022082920350003')">
                                         <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
                                     </button>
                                 </div>
@@ -138,12 +141,12 @@
                     </table>
                     <!-- 分页 -->
                     <div class="row margin-top-xs">
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <div>
-                                温馨提示：新添加员工默认密码为123456，组织分配小区和员工分配权限后登录
+                                温馨提示：新添加员工默认密码为123456，角色权限分配小区并且角色关联员工后可登录
                             </div>
                         </div>
-                        <div class="col-sm-3 float-right">
+                        <div class="col-sm-4 float-right">
                             <vc:create path="frame/pagination"></vc:create>
                         </div>
                     </div>

@@ -3,31 +3,38 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="inspectionItemManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="inspectionItemManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入项目编号','inspectionItemManage')" v-model="inspectionItemManageInfo.conditions.itemId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入项目编号','inspectionItemManage')"
+                                       v-model="inspectionItemManageInfo.conditions.itemId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入巡检项目','inspectionItemManage')" v-model="inspectionItemManageInfo.conditions.itemName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入巡检项目','inspectionItemManage')"
+                                       v-model="inspectionItemManageInfo.conditions.itemName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInspectionItemMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="inspectionItemManage"></vc:i18n></span>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryInspectionItemMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="inspectionItemManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionItemMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="inspectionItemManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -36,52 +43,69 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="巡检项目" namespace="inspectionItemManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="巡检项目" namespace="inspectionItemManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionItemModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            添加
+                            <i class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name="编号" namespace="inspectionItemManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="巡检项目" namespace="inspectionItemManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="创建时间" namespace="inspectionItemManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="备注" namespace="inspectionItemManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="操作" namespace="inspectionItemManage"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="编号" namespace="inspectionItemManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="巡检项目" namespace="inspectionItemManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="inspectionItemManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="备注" namespace="inspectionItemManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="inspectionItemManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="inspectionItem in inspectionItemManageInfo.inspectionItems">
-                                <td class="text-center">{{inspectionItem.itemId}}</td>
-                                <td class="text-center">{{inspectionItem.itemName}}</td>
-                                <td class="text-center">{{inspectionItem.createTime}}</td>
-                                <td class="text-center">{{inspectionItem.remark}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionItemModel(inspectionItem)"><span><vc:i18n name="修改" namespace="inspectionItemManage"></vc:i18n></span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionItemModel(inspectionItem)"><span><vc:i18n name="删除" namespace="inspectionItemManage"></vc:i18n></span></button>
-                                    </div>
-
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_toTitle(inspectionItem)"><span><vc:i18n name="题目" namespace="inspectionItemManage"></vc:i18n></span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr v-for="inspectionItem in inspectionItemManageInfo.inspectionItems">
+                            <td class="text-center">{{inspectionItem.itemId}}</td>
+                            <td class="text-center">{{inspectionItem.itemName}}</td>
+                            <td class="text-center">{{inspectionItem.createTime}}</td>
+                            <td class="text-center">{{inspectionItem.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditInspectionItemModel(inspectionItem)">
+                                        <span><vc:i18n name="修改" namespace="inspectionItemManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteInspectionItemModel(inspectionItem)">
+                                        <span><vc:i18n name="删除" namespace="inspectionItemManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_toTitle(inspectionItem)">
+                                        <span><vc:i18n name="题目" namespace="inspectionItemManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -90,11 +114,7 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="property/addInspectionItem" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="property/editInspectionItem"></vc:create>
     <vc:create path="property/deleteInspectionItem"></vc:create>
-
 </div>

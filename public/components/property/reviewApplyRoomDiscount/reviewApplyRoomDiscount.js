@@ -1,4 +1,5 @@
 (function(vc, vm) {
+    var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
             reviewApplyRoomDiscountInfo: {
@@ -16,6 +17,7 @@
                 fees: [],
                 selectedFees: [],
                 urls: [],
+                images: [],
                 url: '',
                 // feeTypeCds: [],
                 // feeTypeCd: '',
@@ -36,6 +38,12 @@
                 vc.component.refreshReviewApplyRoomDiscountInfo();
                 $('#reviewApplyRoomDiscountModel').modal('show');
                 vc.copyObject(_params, vc.component.reviewApplyRoomDiscountInfo);
+                // 图片显示处理
+                vc.component.reviewApplyRoomDiscountInfo.urls.forEach((item) => {
+                    vc.urlToBase64(photoUrl + "?fileId=" + item + "&communityId=-1&time=" + new Date(), function (_base64Data) {
+                        vc.component.reviewApplyRoomDiscountInfo.images.push(_base64Data);
+                    })
+                })
                 vc.component.reviewApplyRoomDiscountInfo.communityId = vc.getCurrentCommunity().communityId;
                 //与字典表费用类型关联
                 // vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
@@ -248,6 +256,7 @@
                     feeTypeCd: '',
                     feeConfigDtos: [],
                     urls: [],
+                    images: [],
                     url: '',
                     configId: '',
                     returnWay: '1001',

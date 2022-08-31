@@ -4,6 +4,7 @@
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
+    var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
             questionAnswerManageInfo: {
@@ -48,6 +49,12 @@
                         vc.component.questionAnswerManageInfo.total = _questionAnswerManageInfo.total;
                         vc.component.questionAnswerManageInfo.records = _questionAnswerManageInfo.records;
                         vc.component.questionAnswerManageInfo.questionAnswers = _questionAnswerManageInfo.data;
+                        vc.component.questionAnswerManageInfo.questionAnswers.forEach((item) => {
+                            item.fileUrlsShow = [];
+                            item.fileUrls.forEach((fileId) => {
+                                item.fileUrlsShow.push(photoUrl + "?fileId=" + fileId + "&communityId=-1&time=" + new Date());
+                            })
+                        })
                         vc.emit('pagination', 'init', {
                             total: vc.component.questionAnswerManageInfo.records,
                             dataCount: vc.component.questionAnswerManageInfo.total,

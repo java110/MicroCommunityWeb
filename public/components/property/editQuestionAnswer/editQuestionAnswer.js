@@ -27,7 +27,14 @@
                 vc.component.editQuestionAnswerInfo.communityId = vc.getCurrentCommunity().communityId;
             });
             vc.on("editQuestionAnswer", "notifyUploadImage", function (_param) {
-                vc.component.editQuestionAnswerInfo.photos = _param;
+                if (_param.length > 0) {
+                    vc.component.editQuestionAnswerInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.editQuestionAnswerInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editQuestionAnswerInfo.photos = [];
+                }
             });
         },
         methods: {
@@ -173,6 +180,8 @@
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
                             vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {
@@ -193,7 +202,7 @@
                 }
             },
             _freshPhoto: function (_photos) {
-                vc.emit('editQuestionAnswer', 'uploadImage', 'notifyPhotos', _photos);
+                vc.emit('editQuestionAnswer', 'uploadImageUrl', 'notifyPhotos', _photos);
             },
         }
     });

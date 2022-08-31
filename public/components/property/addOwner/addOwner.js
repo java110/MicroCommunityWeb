@@ -16,6 +16,7 @@
                 remark: '',
                 ownerId: '',
                 ownerPhoto: '',
+                ownerPhotoUrl: '',
                 idCard: '',
                 videoPlaying: true,
                 mediaStreamTrack: null,
@@ -142,6 +143,7 @@
                     remark: '',
                     ownerId: '',
                     ownerPhoto: '',
+                    ownerPhotoUrl: '',
                     idCard: '',
                     videoPlaying: true,
                     mediaStreamTrack: null,
@@ -203,7 +205,9 @@
                     canvas.height = h;
                     canvas.getContext('2d').drawImage(video, 0, 0, w, h);
                     var data = canvas.toDataURL('image/jpeg', 0.3);
-                    vc.component.addOwnerInfo.ownerPhoto = data;
+                    // 改为异步上传图片
+                    this._doUploadImageAddOwner(data);
+                    // vc.component.addOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                     //关闭拍照摄像头
                     $that._closeVedio();
@@ -212,7 +216,6 @@
                 }
             },
             _uploadPhoto: function (event) {
-                console.log('上传图片');
                 //vc.component.addOwnerInfo.ownerPhoto = "";
                 $("#uploadOwnerPhoto").trigger("click")
             },
@@ -225,17 +228,53 @@
                         vc.toast("图片大小不能超过 1MB!")
                         return false;
                     }
-                    var reader = new FileReader(); //新建FileReader对象
-                    reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
-                        vc.translate(reader.result, function (_data) {
-                            vc.component.addOwnerInfo.ownerPhoto = _data;
-                        })
-                    }
+                    // 改为异步上传图片
+                    $that._doUploadImageAddOwner(file);
+                    // var reader = new FileReader(); //新建FileReader对象
+                    // reader.readAsDataURL(file); //读取为base64
+                    // reader.onloadend = function (e) {
+                    //     vc.translate(reader.result, function (_data) {
+                    //         vc.component.addOwnerInfo.ownerPhoto = _data;
+                    //     })
+                    // }
                 }
+            },
+            // 异步上传图片
+            _doUploadImageAddOwner: function (_file) {
+                var param = new FormData();
+                param.append("uploadFile", _file);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+                //发送get请求
+                vc.http.upload('uploadFile',
+                    'uploadImage',
+                    param, {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        console.log(res);
+                        // if (res.status != 200) {
+                        //     vc.toast("上传文件失败");
+                        //     return;
+                        // }
+                        var data = JSON.parse(json);
+                        console.log(data);
+                        vc.component.addOwnerInfo.ownerPhoto = data.fileId;
+                        vc.component.addOwnerInfo.ownerPhotoUrl = data.url;
+                        console.log(vc.component.addOwnerInfo.ownerPhotoUrl)
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
             },
             _reOpenVedio: function () {
                 vc.component.addOwnerInfo.ownerPhoto = "";
+                vc.component.addOwnerInfo.ownerPhotoUrl = "";
                 vc.component._initAddOwnerMedia();
             },
             _closeVedio: function () {

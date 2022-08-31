@@ -26,7 +26,14 @@
                 $('#addQuestionAnswerModel').modal('show');
             });
             vc.on("addQuestionAnswer", "notifyUploadImage", function (_param) {
-                vc.component.addQuestionAnswerInfo.photos = _param;
+                if (_param.length > 0) {
+                    vc.component.addQuestionAnswerInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.addQuestionAnswerInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addQuestionAnswerInfo.photos = [];
+                }
             });
         },
         methods: {

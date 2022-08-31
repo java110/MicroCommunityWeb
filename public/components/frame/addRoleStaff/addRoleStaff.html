@@ -1,4 +1,5 @@
-<div id="addRoleStaffModel" class="modal fade" role="dialog" aria-labelledby="addRoleStaffModelLabel" aria-hidden="true">
+<div id="addRoleStaffModel" class="modal fade" role="dialog" aria-labelledby="addRoleStaffModelLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,15 +15,17 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-
-                                <div class="col-sm-7 m-b-xs">
-                                </div>
+                                <div class="col-sm-7 m-b-xs"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入员工名称','addRoleStaff')" type="text" v-model="addRoleStaffInfo.staffName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入员工名称','addRoleStaff')" type="text"
+                                               v-model="addRoleStaffInfo.staffName"
+                                               class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryStaffs()"><span><vc:i18n name="查询" namespace="addRoleStaff"></vc:i18n></span></button>
+                                                        v-on:click="queryStaffs()">
+                                                    <span><vc:i18n name="查询" namespace="addRoleStaff"></vc:i18n></span>
+                                                </button>
                                         </span>
                                     </div>
                                 </div>
@@ -30,44 +33,46 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <input type="checkbox" class="i-checks " @click="checkAll($event)" id="quan">
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="员工编号" namespace="addRoleStaff"></vc:i18n></span></th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="员工名称" namespace="addRoleStaff"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="员工地址" namespace="addRoleStaff"></vc:i18n></span>
-                                            </th>
-
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <input type="checkbox" class="i-checks " @click="checkAll($event)"
+                                                   id="quan">
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工编号" namespace="addRoleStaff"></vc:i18n></span></th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工名称" namespace="addRoleStaff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工地址" namespace="addRoleStaff"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="staff in addRoleStaffInfo.staffs">
-                                            <td class="text-center">
-                                                <input type="checkbox" class="i-checks checkItem" v-bind:value="staff.userId" v-model="addRoleStaffInfo.selectStaffs">
-                                            </td>
-                                            <td class="text-center">{{staff.userId}}</td>
-                                            <td class="text-center">{{staff.name}}</td>
-                                            <td class="text-center">{{staff.address}}</td>
-                                        </tr>
+                                    <tr v-for="staff in addRoleStaffInfo.staffs">
+                                        <td class="text-center">
+                                            <input type="checkbox" class="i-checks checkItem"
+                                                   v-bind:value="staff.userId" v-model="addRoleStaffInfo.selectStaffs">
+                                        </td>
+                                        <td class="text-center">{{staff.userId}}</td>
+                                        <td class="text-center">{{staff.name}}</td>
+                                        <td class="text-center">{{staff.address}}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <!-- 分页 -->
                                 <vc:create namespace="addRoleStaff" path="frame/paginationPlus"></vc:create>
                                 <div class="ibox-content" v-if="addRoleStaffInfo.staffs.length > 0">
-
-                                    <button class="btn btn-primary float-right" type="button" v-on:click="addRoleStaff()"><i
-                                            class="fa fa-check"></i>&nbsp;提交
+                                    <button class="btn btn-primary float-right" type="button"
+                                            v-on:click="addRoleStaff()">
+                                        <i class="fa fa-check"></i>&nbsp;提交
                                     </button>
-                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addRoleStaff"></vc:i18n></span>
+                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                            data-dismiss="modal">
+                                        <span><vc:i18n name="取消" namespace="addRoleStaff"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

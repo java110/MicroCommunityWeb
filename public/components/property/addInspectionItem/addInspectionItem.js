@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -9,15 +8,13 @@
             addInspectionItemInfo: {
                 itemId: '',
                 itemName: '',
-                remark: '',
-
+                remark: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addInspectionItem', 'openAddInspectionItemModal', function() {
+        _initEvent: function () {
+            vc.on('addInspectionItem', 'openAddInspectionItemModal', function () {
                 $('#addInspectionItemModel').modal('show');
             });
         },
@@ -27,10 +24,10 @@
                     addInspectionItemInfo: vc.component.addInspectionItemInfo
                 }, {
                     'addInspectionItemInfo.itemName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检项目不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检项目不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "256",
@@ -38,10 +35,10 @@
                         },
                     ],
                     'addInspectionItemInfo.remark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "备注不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "备注不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "512",
@@ -50,13 +47,11 @@
                     ],
                 });
             },
-            saveInspectionItemInfo: function() {
+            saveInspectionItemInfo: function () {
                 if (!vc.component.addInspectionItemValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addInspectionItemInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -64,13 +59,12 @@
                     $('#addInspectionItemModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/inspectionItem.saveInspectionItem',
                     JSON.stringify(vc.component.addInspectionItemInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -80,25 +74,22 @@
                             vc.emit('inspectionItemManage', 'listInspectionItem', {});
                             vc.toast('成功，请记得设置题目');
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
-                    });
+                    }
+                );
             },
-            clearAddInspectionItemInfo: function() {
+            clearAddInspectionItemInfo: function () {
                 vc.component.addInspectionItemInfo = {
                     itemName: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

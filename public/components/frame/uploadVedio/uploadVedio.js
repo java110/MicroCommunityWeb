@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -22,11 +21,9 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('uploadVedio', 'openAddApplicationKeyModal', function () {
-
             });
             vc.on('uploadVedio', 'clearVedio', function () {
                 this.uploadVedioInfo = {
@@ -64,7 +61,6 @@
                 var param = new FormData();
                 param.append("uploadFile", _file);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
-
                 //发送get请求
                 vc.http.upload('uploadVedio',
                     'upload',

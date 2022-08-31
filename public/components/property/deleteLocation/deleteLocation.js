@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteLocationInfo: {
-
-            }
+            deleteLocationInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteLocation', 'openDeleteLocationModal', function (_params) {
-
                 vc.component.deleteLocationInfo = _params;
                 $('#deleteLocationModel').modal('show');
-
             });
         },
         methods: {
@@ -32,14 +26,15 @@
                             //关闭model
                             $('#deleteLocationModel').modal('hide');
                             vc.emit('locationManage', 'listLocation', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteLocationModel: function () {
@@ -47,5 +42,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

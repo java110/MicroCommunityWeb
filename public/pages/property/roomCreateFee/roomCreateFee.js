@@ -38,14 +38,12 @@
             vc.emit('roomTreeDiv', 'initRoomTreeDiv', {
                 callName: 'roomCreateFee'
             });
-
             $(".popover-show").mouseover(() => {
                 $('.popover-show').popover('show');
             })
             $(".popover-show").mouseleave(() => {
                 $('.popover-show').popover('hide');
             })
-
             $(".popover-show-endTime").mouseover(() => {
                 $('.popover-show-endTime').popover('show');
             })
@@ -395,7 +393,6 @@
                                 "公式": _feeConfig.computingFormulaName,
                                 "计费单价": _feeConfig.computingFormula == '2002' ? '-' : _feeConfig.squarePrice,
                                 "附加/固定费用": _feeConfig.additionalAmount,
-
                             }
                         })
                     },
@@ -403,7 +400,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _viewRoomFee: function (_fee) {
                 let _data = {
@@ -418,7 +414,6 @@
                     "计费结束时间": $that._getDeadlineTime(_fee),
                     "批次": _fee.batchId,
                 };
-
                 _fee.feeAttrs.forEach(attr => {
                     _data[attr.specCdName] = attr.value;
                 })

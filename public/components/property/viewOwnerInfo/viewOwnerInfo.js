@@ -1,7 +1,7 @@
 /**
-    权限组
-**/
-(function(vc) {
+ 权限组
+ **/
+(function (vc) {
     var _fileUrl = '/callComponent/download/getFile/fileByObjId';
     vc.extends({
         propTypes: {
@@ -26,37 +26,30 @@
                 attrs: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._loadOwnerInfo();
         },
-        _initEvent: function() {
-            vc.on('viewOwnerInfo', 'onIndex', function(_index) {
+        _initEvent: function () {
+            vc.on('viewOwnerInfo', 'onIndex', function (_index) {
                 /*if(_index == 2){
                    vc.emit($props.callBackListener,$props.callBackFunction,vc.component.viewOwnerInfo);
                 }*/
             });
-
-            vc.on('viewOwnerInfo', 'chooseOwner', function(_owner) {
+            vc.on('viewOwnerInfo', 'chooseOwner', function (_owner) {
                 vc.copyObject(_owner, vc.component.viewOwnerInfo);
             });
-
-            vc.on('viewOwnerInfo', 'callBackOwnerInfo', function(_info) {
+            vc.on('viewOwnerInfo', 'callBackOwnerInfo', function (_info) {
                 vc.emit($props.callBackListener, $props.callBackFunction, vc.component.viewOwnerInfo);
             });
-
         },
         methods: {
-
-            _loadOwnerInfo: function() {
+            _loadOwnerInfo: function () {
                 //加载 业主信息
                 var _ownerId = vc.getParam('ownerId')
-
                 if (!vc.notNull(_ownerId)) {
                     return;
                 }
-
                 vc.component.viewOwnerInfo.viewOwnerFlag = 'Owner';
-
                 let param = {
                     params: {
                         ownerId: _ownerId,
@@ -66,39 +59,35 @@
                         ownerTypeCd: '1001'
                     }
                 }
-
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwners',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var listOwnerData = JSON.parse(json);
                         vc.copyObject(listOwnerData.owners[0], vc.component.viewOwnerInfo);
                         $that.viewOwnerInfo.attrs = listOwnerData.owners[0].ownerAttrDtos
-                            //加载图片
+                        //加载图片
                         vc.component._loadOwnerPhoto();
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             },
-            _callBackListOwner: function(_ownerId) {
+            _callBackListOwner: function (_ownerId) {
                 // vc.jumpToPage("/#/pages/property/listOwner?ownerId="+_ownerId);
                 vc.goBack();
             },
-            _loadOwnerPhoto: function() {
+            _loadOwnerPhoto: function () {
                 vc.component.viewOwnerInfo.ownerPhoto = _fileUrl + "?objId=" +
                     vc.component.viewOwnerInfo.ownerId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
             },
-            errorLoadImg: function() {
+            errorLoadImg: function () {
                 vc.component.viewOwnerInfo.ownerPhoto = "/img/noPhoto.jpg";
             },
-            _openChooseOwner: function() {
+            _openChooseOwner: function () {
                 vc.emit('searchOwner', 'openSearchOwnerModel', {});
             }
-
         }
     });
-
 })(window.vc);

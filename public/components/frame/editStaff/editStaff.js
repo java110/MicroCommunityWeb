@@ -24,7 +24,7 @@
                 parentOrgName: '',
                 parentTwoOrgId: '',
                 orgNewName: '',
-                orgId: '',
+                orgId: ''
             }
         },
         _initMethod: function () {
@@ -34,11 +34,7 @@
         },
         _initEvent: function () {
             vc.component.$on('edit_staff_event', function (_staffInfo) {
-                console.log("look here");
-                console.log(_staffInfo);
                 vc.component.refreshEditStaffInfo(_staffInfo);
-                console.log(vc.component.editStaffInfo.parentOrgId);
-                console.log(vc.component.editStaffInfo.orgId);
                 vc.component._editGetOrgsByOrgLevelStaff(1, 100, 2, _staffInfo.parentOrgId);
                 $('#editStaffModel').modal('show');
             });
@@ -47,6 +43,7 @@
             refreshEditStaffInfo(_staffInfo) {
                 vc.copyObject(_staffInfo, vc.component.editStaffInfo);
                 vc.component.editStaffInfo.username = _staffInfo.name;
+                vc.component.editStaffInfo.photo = _staffInfo.urls && _staffInfo.urls.length > 0 ? _staffInfo.urls[0] : '';
                 vc.component.editStaffInfo.photoUrl = _fileUrl + "?objId=" +
                     vc.component.editStaffInfo.userId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=12000&time=" + new Date();
             },
@@ -119,7 +116,6 @@
                         console.log('请求失败处理');
                         // vc.component.editStaffInfo.errorInfo = errInfo;
                         $that.editStaffInfo.photoUrl = $that.editStaffInfo.photo;
-
                         vc.toast(errInfo)
                     });
             },
@@ -135,13 +131,44 @@
                         vc.toast("图片大小不能超过 2MB!")
                         return false;
                     }
-                    let reader = new FileReader(); //新建FileReader对象
-                    reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
-                        vc.component.editStaffInfo.photo = reader.result;
-                        vc.component.editStaffInfo.photoUrl = reader.result;
-                    }
+                    // 改为异步上传图片
+                    this._doUploadImageEditStaff(file);
+                    // let reader = new FileReader(); //新建FileReader对象
+                    // reader.readAsDataURL(file); //读取为base64
+                    // reader.onloadend = function (e) {
+                    //     vc.component.editStaffInfo.photo = reader.result;
+                    //     vc.component.editStaffInfo.photoUrl = reader.result;
+                    // }
                 }
+            },
+            _doUploadImageEditStaff: function (_file) {
+                var param = new FormData();
+                param.append("uploadFile", _file);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+                //发送get请求
+                vc.http.upload('uploadFile',
+                    'uploadImage',
+                    param, {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        if (res.status != 200) {
+                            vc.toast("上传文件失败");
+                            return;
+                        }
+                        var data = JSON.parse(json);
+                        vc.component.editStaffInfo.photo = data.fileId;
+                        vc.component.editStaffInfo.photoUrl = data.url;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
             },
             _editGetOrgsByOrgLevelStaff: function (_page, _rows, _orgLevel, _parentOrgId) {
                 let param = {
@@ -158,8 +185,6 @@
                     param,
                     function (json, res) {
                         var _orgInfo = JSON.parse(json);
-                        console.log("123321");
-                        console.log(_orgInfo);
                         if (_orgLevel == 2) {
                             vc.component.editStaffInfo.branchOrgs = _orgInfo.orgs;
                             vc.component._editGetOrgsByOrgLevelStaff(1, 100, 3, $that.editStaffInfo.parentTwoOrgId);

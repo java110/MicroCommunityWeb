@@ -32,13 +32,13 @@
             });
         },
         methods: {
-            //查询方法
             _listActivitiesRules: function (_page, _rows) {
                 vc.component.activitiesRuleManageInfo.conditions.page = _page;
                 vc.component.activitiesRuleManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.activitiesRuleManageInfo.conditions
                 };
+                param.params.ruleName = param.params.ruleName.trim();
                 //发送get请求
                 vc.http.apiGet('/activitiesRule/queryActivitiesRule',
                     param,
@@ -58,7 +58,7 @@
                 );
             },
             //重置方法
-            _resetActivitiesRules: function (_page, _rows) {
+            /*_resetActivitiesRules: function (_page, _rows) {
                 vc.component.activitiesRuleManageInfo.conditions.ruleType = "";
                 vc.component.activitiesRuleManageInfo.conditions.ruleName = "";
                 vc.component.activitiesRuleManageInfo.conditions.activitiesObj = "";
@@ -81,7 +81,7 @@
                         console.log('请求失败处理');
                     }
                 );
-            },
+            },*/
             _openAddActivitiesRuleModal: function () {
                 vc.emit('addActivitiesRule', 'openAddActivitiesRuleModal', {});
             },
@@ -97,7 +97,10 @@
             },
             //重置
             _resetActivitiesRuleMethod: function () {
-                vc.component._resetActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component.activitiesRuleManageInfo.conditions.ruleType = "";
+                vc.component.activitiesRuleManageInfo.conditions.ruleName = "";
+                vc.component.activitiesRuleManageInfo.conditions.activitiesObj = "";
+                vc.component._listActivitiesRules(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.activitiesRuleManageInfo.moreCondition) {

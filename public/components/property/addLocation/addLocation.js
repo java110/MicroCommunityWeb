@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -14,15 +13,13 @@
                 locationObjName: '',
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addLocation', 'openAddLocationModal', function() {
+        _initEvent: function () {
+            vc.on('addLocation', 'openAddLocationModal', function () {
                 $('#addLocationModel').modal('show');
             });
-
-            vc.on("addLocation", "notify", function(_param) {
+            vc.on("addLocation", "notify", function (_param) {
                 if ($that.addLocationInfo.locationType == '6000') { //楼栋
                     vc.component.addLocationInfo.locationObjId = _param.floorId;
                     vc.component.addLocationInfo.locationObjName = _param.floorNum;
@@ -37,7 +34,7 @@
                     vc.component.addLocationInfo.locationObjName = _param.num;
                 }
             });
-            vc.on('addLocation', 'switchOrg', function(_org) {
+            vc.on('addLocation', 'switchOrg', function (_org) {
                 if ($that.addLocationInfo.locationType == '5000') { //部门
                     vc.component.addLocationInfo.locationObjId = _org.orgId;
                     vc.component.addLocationInfo.locationObjName = _org.allOrgName;
@@ -50,10 +47,10 @@
                     addLocationInfo: vc.component.addLocationInfo
                 }, {
                     'addLocationInfo.locationName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "位置名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "位置名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,100",
@@ -61,10 +58,10 @@
                         },
                     ],
                     'addLocationInfo.locationType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "位置类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "位置类型不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -73,7 +70,7 @@
                     ],
                 });
             },
-            saveLocationInfo: function() {
+            saveLocationInfo: function () {
                 if ($that.addLocationInfo.locationType == '1000') { //楼栋
                     vc.component.addLocationInfo.locationObjId = vc.getCurrentCommunity().communityId;
                     vc.component.addLocationInfo.locationObjName = vc.getCurrentCommunity().name;
@@ -82,7 +79,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.addLocationInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -90,40 +86,36 @@
                     $('#addLocationModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'communityLocation.saveCommunityLocation',
                     JSON.stringify(vc.component.addLocationInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#addLocationModel').modal('hide');
                             vc.component.clearAddLocationInfo();
                             vc.emit('locationManage', 'listLocation', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
-            clearAddLocationInfo: function() {
+            clearAddLocationInfo: function () {
                 vc.component.addLocationInfo = {
                     locationName: '',
                     locationType: '',
                     locationObjId: '',
                     locationObjName: '',
                 };
-
                 vc.emit('addLocation', 'floorSelect2', 'clearFloor', {});
                 vc.emit('addLocation', 'unitSelect2', 'clearUnit', {});
                 vc.emit('addLocation', 'parkingBoxSelect2', 'clearParkingBox', {});
@@ -131,11 +123,10 @@
                 vc.emit('addLocation', 'orgSelect2', 'clearOrg', {});
                 vc.emit('addLocation', 'departmentSelect2', 'clearDepartment', {});
             },
-            _changeLocationType: function() {
+            _changeLocationType: function () {
                 vc.component.addLocationInfo.locationObjId = '';
                 vc.component.addLocationInfo.locationObjName = '';
             }
         }
     });
-
 })(window.vc);

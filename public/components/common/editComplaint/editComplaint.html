@@ -8,10 +8,10 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉类型" namespace="editComplaint"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="类型" namespace="editComplaint"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editComplaintInfo.typeCd">
-                                        <option selected disabled value="">{{vc.i18n('必填','editComplaint')}}，请选择投诉类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填','editComplaint')}}，请选择类型</option>
                                         <option value="809001">{{vc.i18n('投诉','editComplaint')}}</option>
                                         <option value="809002">{{vc.i18n('建议','editComplaint')}}</option>
                                         <option value="809003">{{vc.i18n('咨询','editComplaint')}}</option>
@@ -19,23 +19,23 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉人" namespace="editComplaint"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系人" namespace="editComplaint"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editComplaintInfo.complaintName" type="text" :placeholder="vc.i18n('必填，请填写投诉人','editComplaint')"
+                                    <input v-model="editComplaintInfo.complaintName" type="text" :placeholder="vc.i18n('必填，请填写联系人','editComplaint')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉人电话" namespace="editComplaint"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="联系电话" namespace="editComplaint"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editComplaintInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写投诉人电话','editComplaint')"
+                                    <input v-model="editComplaintInfo.tel" type="text" :placeholder="vc.i18n('必填，请填写联系电话','editComplaint')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="投诉内容" namespace="editComplaint"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="内容" namespace="editComplaint"></vc:i18n></span></label>
                                 <div class="col-sm-10">
-                                    <textarea :placeholder="vc.i18n('必填，请填写投诉内容','editComplaint')" class="form-control"
+                                    <textarea :placeholder="vc.i18n('必填，请填写内容','editComplaint')" class="form-control"
                                               v-model="editComplaintInfo.context"></textarea>
                                 </div>
                             </div>

@@ -3,32 +3,43 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="流转" namespace="inspectionTaskTransfer"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="流转" namespace="inspectionTaskTransfer"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="流转对象" namespace="inspectionTaskTransfer"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="流转对象" namespace="inspectionTaskTransfer"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-3">
                                     <vc:create path="frame/orgSelect2" parentModal="inspectionTaskManageModel"
-                                        callBackListener="inspectionTaskTransfer" callBackFunction="notify" namespace="inspectionTaskTransfer">
+                                               callBackListener="inspectionTaskTransfer" callBackFunction="notify"
+                                               namespace="inspectionTaskTransfer">
                                     </vc:create>
                                 </div>
                                 <div class="col-sm-3">
                                     <vc:create path="frame/departmentSelect2" parentModal="inspectionTaskManageModel"
-                                        callBackListener="inspectionTaskTransfer" callBackFunction="notify" namespace="inspectionTaskTransfer">
+                                               callBackListener="inspectionTaskTransfer" callBackFunction="notify"
+                                               namespace="inspectionTaskTransfer">
                                     </vc:create>
                                 </div>
                                 <div class="col-sm-3">
                                     <vc:create path="frame/staffSelect2" parentModal="inspectionTaskManageModel"
-                                        callBackListener="inspectionTaskTransfer" callBackFunction="notify" namespace="inspectionTaskTransfer">
+                                               callBackListener="inspectionTaskTransfer" callBackFunction="notify"
+                                               namespace="inspectionTaskTransfer">
                                     </vc:create>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="流转说明" namespace="inspectionTaskTransfer"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="流转说明" namespace="inspectionTaskTransfer"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea :placeholder="vc.i18n('必填，请填写转赠说明','inspectionTaskTransfer')" class="form-control" v-model="inspectionTaskTransferInfo.transferDesc"></textarea>
+                                    <textarea :placeholder="vc.i18n('必填，请填写转赠说明','inspectionTaskTransfer')"
+                                              class="form-control" v-model="inspectionTaskTransferInfo.transferDesc">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="ibox-content">

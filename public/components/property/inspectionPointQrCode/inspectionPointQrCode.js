@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             inspectionPointQrCodeInfo: {
@@ -7,9 +6,10 @@
                 inspectionName: '',
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('inspectionPointQrCode', 'openInspectionPointQrCodeModal', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('inspectionPointQrCode', 'openInspectionPointQrCodeModal', function (_param) {
                 vc.copyObject(_param, $that.inspectionPointQrCodeInfo);
                 $('#inspectionPointQrCodeModel').modal('show');
                 $that._viewQr($that.inspectionPointQrCodeInfo.url);
@@ -17,7 +17,7 @@
         },
         methods: {
             // 两分钟后显示遮罩层
-            _viewQr: function(_url) {
+            _viewQr: function (_url) {
                 document.getElementById("qrcode").innerHTML = "";
                 let qrcode = new QRCode(document.getElementById("qrcode"), {
                     text: "213", //你想要填写的文本
@@ -31,5 +31,4 @@
             }
         }
     });
-
 })(window.vc);

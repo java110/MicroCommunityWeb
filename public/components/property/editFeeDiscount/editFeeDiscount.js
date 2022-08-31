@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editFeeDiscountInfo: {
@@ -10,11 +9,9 @@
                 discountDesc: '',
                 rules: [],
                 feeDiscountRuleSpecs: []
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editFeeDiscount', 'openEditFeeDiscountModal', function (_params) {
@@ -81,7 +78,6 @@
                             param: "",
                             errInfo: "折扣ID不能为空"
                         }]
-
                 });
             },
             editFeeDiscount: function () {
@@ -89,7 +85,19 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
+                let _saveFlag = true;
+                if ($that.editFeeDiscountInfo.feeDiscountRuleSpecs != null || $that.editFeeDiscountInfo.feeDiscountRuleSpecs.length > 0) {
+                    $that.editFeeDiscountInfo.feeDiscountRuleSpecs.forEach(item => {
+                        if (item.specValue == null || item.specValue == '' || item.specValue == undefined) {
+                            vc.toast(item.specName + "不能为空！");
+                            _saveFlag = false;
+                            throw new Error(item.specName + "不能为空！");
+                        }
+                    });
+                }
+                if (!_saveFlag) {
+                    return;
+                }
                 vc.http.apiPost(
                     '/feeDiscount/updateFeeDiscount',
                     JSON.stringify(vc.component.editFeeDiscountInfo),
@@ -103,13 +111,14 @@
                             //关闭model
                             $('#editFeeDiscountModel').modal('hide');
                             vc.emit('feeDiscountManage', 'listFeeDiscount', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -122,15 +131,12 @@
                     discountDesc: '',
                     rules: [],
                     feeDiscountRuleSpecs: []
-
                 }
             },
             _loadEditFeeDiscountRules: function () {
-
                 if ($that.editFeeDiscountInfo.discountType == '') {
                     return;
                 }
-
                 var param = {
                     params: {
                         page: 1,
@@ -157,7 +163,6 @@
                             specItem.specValue = "";
                         })
                         $that.editFeeDiscountInfo.feeDiscountRuleSpecs = item.feeDiscountRuleSpecs;
-
                     }
                 });
             },
@@ -166,5 +171,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

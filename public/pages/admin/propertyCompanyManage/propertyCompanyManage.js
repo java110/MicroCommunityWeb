@@ -62,8 +62,6 @@
                 vc.emit('addPropertyCompany', 'openAddPropertyCompanyModal', {});
             },
             _openEditPropertyCompanyModel: function (_propertyCompany) {
-                console.log("123")
-                console.log(_propertyCompany)
                 vc.emit('editPropertyCompany', 'openEditPropertyCompanyModal', _propertyCompany);
             },
             _openDeletePropertyCompanyModel: function (_propertyCompany) {

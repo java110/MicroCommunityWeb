@@ -34,7 +34,14 @@
                 $('#roomDecorationRecordModel').modal('show');
             });
             vc.on("roomDecorationRecord", "notifyUploadImage", function (_param) {
-                vc.component.roomDecorationRecordInfo.photos = _param;
+                if(_param.length > 0){
+                    vc.component.roomDecorationRecordInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.roomDecorationRecordInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.roomDecorationRecordInfo.photos = [];
+                }
             });
             vc.on("roomDecorationRecord", "notifyUploadVedio", function (_param) {
                 vc.component.roomDecorationRecordInfo.videoName = _param.realFileName;
@@ -122,6 +129,8 @@
                     });
             },
             clearRoomDecorationRecordInfo: function () {
+                vc.emit('roomDecorationRecord', 'uploadImage', 'clearImage', {});
+                vc.emit('roomDecorationRecord', 'uploadVedio', 'clearVedio', {});
                 vc.component.roomDecorationRecordInfo = {
                     rId: '',
                     state: '',
@@ -135,6 +144,42 @@
                     isTrues: []
                 };
             },
+            // sendFile: function (files) {
+            //     console.log('上传图片', files);
+            //     var param = new FormData();
+            //     param.append("uploadFile", files[0]);
+            //     param.append('communityId', vc.getCurrentCommunity().communityId);
+            //     console.log(files[0]);
+            //     console.log("123: " + param);
+            //     vc.http.upload(
+            //         'uploadFile',
+            //         'uploadImage',
+            //         param, {
+            //             emulateJSON: true,
+            //             //添加请求头
+            //             headers: {
+            //                 "Content-Type": "multipart/form-data"
+            //             }
+            //         },
+            //         function (json, res) {
+            //             //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+            //             if (res.status == 200) {
+            //                 var data = JSON.parse(json);
+            //                 console.log("look")
+            //                 console.log(data)
+            //                 //关闭model
+            //                 //$summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
+            //                 $('#uploadImg').summernote('insertImage', data.url);
+            //                 return;
+            //             }
+            //             vc.toast(json);
+            //         },
+            //         function (errInfo, error) {
+            //             console.log('请求失败处理');
+            //             vc.toast(errInfo);
+            //         }
+            //     );
+            // }
         }
     });
 })(window.vc);

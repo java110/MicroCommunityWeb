@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editFeePrintSpecInfo: {
@@ -7,11 +6,10 @@
                 specCd: '',
                 content: '',
                 qrImg: '',
-                printName:'',
+                printName: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editFeePrintSpec', 'openEditFeePrintSpecModal', function (_params) {
@@ -19,14 +17,16 @@
                 $('#editFeePrintSpecModel').modal('show');
                 vc.copyObject(_params, vc.component.editFeePrintSpecInfo);
                 vc.component.editFeePrintSpecInfo.communityId = vc.getCurrentCommunity().communityId;
-                var photos = [];
-                photos.push(_params.qrImg);
-                vc.emit('editFeePrintSpec', 'uploadImage', 'notifyPhotos', photos);
+                if(_params.qrImg){
+                    var photos = [];
+                    photos.push(_params.qrImg);
+                    vc.emit('editFeePrintSpec', 'uploadImageUrl', 'notifyPhotos', photos);
+                }
             });
-
             vc.on("editFeePrintSpec", "notifyUploadImage", function (_param) {
+                console.log(_param);
                 if (!vc.isEmpty(_param) && _param.length > 0) {
-                    vc.component.editFeePrintSpecInfo.qrImg = _param[0];
+                    vc.component.editFeePrintSpecInfo.qrImg = _param[0].fileId;
                 } else {
                     vc.component.editFeePrintSpecInfo.qrImg = '';
                 }
@@ -80,7 +80,6 @@
                     //         errInfo: "必填不能为空"
                     //     }
                     // ]
-
                 });
             },
             editFeePrintSpec: function () {
@@ -88,7 +87,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feePrintSpec/updateFeePrintSpec',
                     JSON.stringify(vc.component.editFeePrintSpecInfo),
@@ -102,13 +100,14 @@
                             //关闭model
                             $('#editFeePrintSpecModel').modal('hide');
                             vc.emit('feePrintSpecManage', 'listFeePrintSpec', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -118,10 +117,9 @@
                     specCd: '',
                     content: '',
                     qrImg: '',
-                    printName:'',
+                    printName: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

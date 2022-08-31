@@ -3,14 +3,19 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-6 m-b-xs">
-
-                    </div>
+                    <div class="col-sm-6 m-b-xs"></div>
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <input :placeholder="vc.i18n('请输入员工名称','orgRelStaff')" type="text" v-model="orgRelStaffInfo.name" class="form-control form-control-sm">
+                            <input :placeholder="vc.i18n('请输入员工名称','orgRelStaff')" type="text"
+                                   v-model.trim="orgRelStaffInfo.name" class="form-control form-control-sm">
                             <span class="input-group-append">
-                                <button type="button" class="btn btn-sm btn-primary" v-on:click="_queryOrgRelStaffs()"><vc:i18n name="查询" namespace="orgRelStaff"></vc:i18n></button>
+                                <button type="button" class="btn btn-sm btn-primary" v-on:click="_queryOrgRelStaffs()">
+                                    <vc:i18n name="查询" namespace="orgRelStaff"></vc:i18n>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                        v-on:click="_resetOrgRelStaffs()">
+                                    <vc:i18n name="重置" namespace="orgRelStaff"></vc:i18n>
+                                </button>
                             </span>
                         </div>
                     </div>
@@ -21,41 +26,55 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <input type="checkbox" class="i-checks" v-bind:checked="orgRelStaffInfo.quanGroup == true" @click="checkAllGroup($event)">
-                                            </th>
-                                            <th>
-                                                <span><vc:i18n name="员工名称" namespace="orgRelStaff"></vc:i18n></span>
-                                            </th>
-                                            <th>
-                                                <span><vc:i18n name="员工电话" namespace="orgRelStaff"></vc:i18n></span>
-                                            </th>
-                                            <th>
-                                                <span><vc:i18n name="员工编号" namespace="orgRelStaff"></vc:i18n></span>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <input type="checkbox" class="i-checks"
+                                                   v-bind:checked="orgRelStaffInfo.quanGroup == true"
+                                                   @click="checkAllGroup($event)">
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工名称" namespace="orgRelStaff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工电话" namespace="orgRelStaff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工编号" namespace="orgRelStaff"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="staff in orgRelStaffInfo.staffs">
-                                            <td class="text-center">
-                                                <input type="checkbox" class="i-checks checkGroupItem" v-bind:value="staff.userId" v-model="orgRelStaffInfo.selectStaffs">
-                                            </td>
-                                            <td>{{staff.name}}</td>
-                                            <td>{{staff.tel}}</td>
-                                            <td>{{staff.userId}}</td>
-                                        </tr>
+                                    <tr v-for="staff in orgRelStaffInfo.staffs">
+                                        <td class="text-center">
+                                            <input type="checkbox" class="i-checks checkGroupItem"
+                                                   v-bind:value="staff.userId" v-model="orgRelStaffInfo.selectStaffs">
+                                        </td>
+                                        <td class="text-center">{{staff.name}}</td>
+                                        <td class="text-center">{{staff.tel}}</td>
+                                        <td class="text-center">{{staff.userId}}</td>
+                                    </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
+                <vc:create path="frame/paginationPlus" namespace="orgRelStaff"></vc:create>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><span><vc:i18n name="关闭" namespace="orgRelStaff"></vc:i18n></span></button>
-                <button type="button" class="btn btn-primary" v-on:click="_saveOrgRelStaff()"><span><vc:i18n name="提交" namespace="orgRelStaff"></vc:i18n></span></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <span><vc:i18n name="关闭" namespace="orgRelStaff"></vc:i18n></span>
+                </button>
+                <button type="button" class="btn btn-primary" v-on:click="_saveOrgRelStaff()">
+                    <span><vc:i18n name="提交" namespace="orgRelStaff"></vc:i18n></span>
+                </button>
             </div>
         </div>
     </div>

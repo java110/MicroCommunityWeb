@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editMachineTypeInfo: {
@@ -63,7 +62,6 @@
                             errInfo: "设备类型名称不能超过30"
                         },
                     ]
-
                 });
             },
             editMachineType: function () {
@@ -71,7 +69,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'machineType.updateMachineType',
                     JSON.stringify(vc.component.editMachineTypeInfo),
@@ -85,13 +82,14 @@
                             //关闭model
                             $('#editMachineTypeModel').modal('hide');
                             vc.emit('machineTypeManage', 'listMachineType', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -106,5 +104,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -23,24 +23,24 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadActivitiesType();
         },
-        _initEvent: function() {
-            vc.on('activitiesManage', 'listActivities', function(_param) {
+        _initEvent: function () {
+            vc.on('activitiesManage', 'listActivities', function (_param) {
                 vc.component.activitiesManageInfo.componentShow = 'activitiesList';
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('activitiesManage', 'pageReload', function() {
+            vc.on('activitiesManage', 'pageReload', function () {
                 location.reload();
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listActivitiess(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listActivitiess: function(_page, _rows) {
+            _listActivitiess: function (_page, _rows) {
                 vc.component.activitiesManageInfo.conditions.page = _page;
                 vc.component.activitiesManageInfo.conditions.row = _rows;
                 vc.component.activitiesManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -53,7 +53,7 @@
                 //发送get请求
                 vc.http.apiGet('/activities.listActivitiess',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _activitiesManageInfo = JSON.parse(json);
                         vc.component.activitiesManageInfo.total = _activitiesManageInfo.total;
                         vc.component.activitiesManageInfo.records = _activitiesManageInfo.records;
@@ -64,42 +64,42 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddActivitiesModal: function() {
+            _openAddActivitiesModal: function () {
                 vc.component.activitiesManageInfo.componentShow = 'addActivitiesView';
                 vc.emit('addActivitiesView', 'openAddActivitiesView', {});
             },
-            _openEditActivitiesModel: function(_activities) {
+            _openEditActivitiesModel: function (_activities) {
                 vc.emit('editActivitiesView', 'activitiesEditActivitiesInfo', _activities);
                 vc.component.activitiesManageInfo.componentShow = 'editActivitiesView';
             },
-            _openDeleteActivitiesModel: function(_activities) {
+            _openDeleteActivitiesModel: function (_activities) {
                 vc.emit('deleteActivities', 'openDeleteActivitiesModal', _activities);
             },
             //查询
-            _queryActivitiesMethod: function() {
+            _queryActivitiesMethod: function () {
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetActivitiesMethod: function() {
+            _resetActivitiesMethod: function () {
                 vc.component.activitiesManageInfo.conditions.activitiesId = "";
                 vc.component.activitiesManageInfo.conditions.title = "";
                 vc.component.activitiesManageInfo.conditions.typeCd = "";
                 vc.component.activitiesManageInfo.conditions.staffName = "";
                 vc.component._listActivitiess(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.activitiesManageInfo.moreCondition) {
                     vc.component.activitiesManageInfo.moreCondition = false;
                 } else {
                     vc.component.activitiesManageInfo.moreCondition = true;
                 }
             },
-            _loadActivitiesType: function() {
+            _loadActivitiesType: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -110,12 +110,12 @@
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _activitiesTypeManageInfo = JSON.parse(json);
                         let _data = _activitiesTypeManageInfo.data;
                         $that.activitiesManageInfo.typeCds = _data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

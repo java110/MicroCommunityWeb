@@ -53,7 +53,14 @@
                 $that._listEditResourceStoreSonType();
             });
             vc.on("editResourceStore", "notifyUploadImage", function(_param) {
-                vc.component.editResourceStoreInfo.fileUrls = _param;
+                if(_param.length > 0){
+                    vc.component.editResourceStoreInfo.fileUrls = [];
+                    _param.forEach((item) => {
+                        vc.component.editResourceStoreInfo.fileUrls.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editResourceStoreInfo.fileUrls = [];
+                }
             });
         },
         methods: {
@@ -199,7 +206,7 @@
                     });
             },
             _freshPhoto: function(_photos) {
-                vc.emit('editResourceStore', 'uploadImage', 'notifyPhotos', _photos);
+                vc.emit('editResourceStore', 'uploadImageUrl', 'notifyPhotos', _photos);
             },
             //查询物品类型
             _listEditResourceStoreType: function() {

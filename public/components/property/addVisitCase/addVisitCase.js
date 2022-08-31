@@ -9,7 +9,8 @@
                 reasonType: "",
                 reasonTypes: [],
                 videoPlaying: false,
-                visitPhoto: ""
+                visitPhoto: "",
+                visitPhotoUrl: ""
             }
         },
         watch: {
@@ -117,7 +118,9 @@
                     canvas.height = video.videoHeight;
                     canvas.getContext('2d').drawImage(video, 0, 0);
                     var data = canvas.toDataURL('image/jpeg', 1.0);
-                    vc.component.addVisitCase.visitPhoto = data;
+                    // 改为异步上传图片
+                    this._doUploadImageAddVisitCase(data);
+                    // vc.component.addVisitCase.visitPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
             },
@@ -133,19 +136,52 @@
                         vc.toast("图片大小不能超过 2MB!")
                         return false;
                     }
-                    var reader = new FileReader(); //新建FileReader对象
-                    reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
-                        vc.component.addVisitCase.visitPhoto = reader.result;
-                    }
+                    // 改为异步上传图片
+                    this._doUploadImageAddVisitCase(file);
+                    // var reader = new FileReader(); //新建FileReader对象
+                    // reader.readAsDataURL(file); //读取为base64
+                    // reader.onloadend = function (e) {
+                    //     vc.component.addVisitCase.visitPhoto = reader.result;
+                    // }
                 }
+            },
+            // 异步上传图片
+            _doUploadImageAddVisitCase: function (_file) {
+                var param = new FormData();
+                param.append("uploadFile", _file);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+                //发送get请求
+                vc.http.upload('uploadFile',
+                    'uploadImage',
+                    param, {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        if (res.status != 200) {
+                            vc.toast("上传文件失败");
+                            return;
+                        }
+                        var data = JSON.parse(json);
+                        vc.component.addVisitCase.visitPhoto = data.fileId;
+                        vc.component.addVisitCase.visitPhotoUrl = data.url;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
             },
             _clearAddVisitCaseInfo: function () {
                 vc.component.addVisitCase.visitCase = '';
                 vc.component.addVisitCase.reasonType = '';
                 // vc.component.addVisitCase.reasonTypes = [];
                 vc.component.addVisitCase.videoPlaying = false;
-                vc.component.addVisitCase.visitPhoto = '/img/defaultAvatar.png';
+                vc.component.addVisitCase.visitPhoto = '';
+                vc.component.addVisitCase.visitPhotoUrl = '/img/defaultAvatar.png';
             }
         }
     });

@@ -1,5 +1,5 @@
-(function(vc) {
-    var DEFAULT_ROWS = 10
+(function (vc) {
+    var DEFAULT_ROWS = 10;
     vc.extends({
         propTypes: {
             emitListener: vc.propTypes.string,
@@ -26,21 +26,21 @@
                 deep: true // 深度监视
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('addRoleStaff', 'openAddRoleStaffModal', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('addRoleStaff', 'openAddRoleStaffModal', function (_param) {
                 vc.component._refreshChooseOrgInfo();
                 $('#addRoleStaffModel').modal('show');
                 vc.copyObject(_param, vc.component.addRoleStaffInfo);
                 vc.component._loadAllStaffInfo(1, 10, '');
             });
-
-            vc.on('addRoleStaff', 'paginationPlus', 'page_event', function(_currentPage) {
+            vc.on('addRoleStaff', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllStaffInfo(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _loadAllStaffInfo: function(_page, _row, _name) {
+            _loadAllStaffInfo: function (_page, _row, _name) {
                 let param = {
                     params: {
                         page: _page,
@@ -49,11 +49,10 @@
                         roleId: vc.component.addRoleStaffInfo.roleId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/role.listStaffsNoRole',
                     param,
-                    function(json) {
+                    function (json) {
                         var _staffInfo = JSON.parse(json);
                         vc.component.addRoleStaffInfo.staffs = _staffInfo.data;
                         vc.emit('addRoleStaff', 'paginationPlus', 'init', {
@@ -61,12 +60,12 @@
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            addRoleStaff: function(_org) {
+            addRoleStaff: function (_org) {
                 var _selectStaffs = vc.component.addRoleStaffInfo.selectStaffs;
                 var _tmpStaffs = vc.component.addRoleStaffInfo.staffs;
                 if (_selectStaffs.length < 1) {
@@ -93,25 +92,27 @@
                     JSON.stringify(_objData), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         $('#addRoleStaffModel').modal('hide');
                         let _json = JSON.parse(json)
                         if (_json.code == 0) {
                             vc.emit($props.emitListener, $props.emitFunction, {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
                 $('#addRoleStaffModel').modal('hide');
             },
-            queryStaffs: function() {
+            queryStaffs: function () {
                 vc.component._loadAllStaffInfo(1, 10, vc.component.addRoleStaffInfo.staffName);
             },
-            _refreshChooseOrgInfo: function() {
+            _refreshChooseOrgInfo: function () {
                 vc.component.addRoleStaffInfo = {
                     staffs: [],
                     staffName: '',
@@ -120,7 +121,7 @@
                     selectStaffs: []
                 };
             },
-            checkAll: function(e) {
+            checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {

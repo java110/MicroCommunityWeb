@@ -14,7 +14,8 @@
                                     <span><vc:i18n name="题目类型" namespace="editQuestionAnswerTitle"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editQuestionAnswerTitleInfo.titleType">
+                                    <select class="custom-select" v-model="editQuestionAnswerTitleInfo.titleType"
+                                            @change="_changeEditTitleType()">
                                         <option selected disabled value="">
                                             {{vc.i18n('必填','editQuestionAnswerTitle')}}，请选择题目类型
                                         </option>
@@ -34,7 +35,8 @@
                                            class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group row" v-for="(item,index) in editQuestionAnswerTitleInfo.titleValues">
+                            <div class="form-group row" v-if="editQuestionAnswerTitleInfo.titleType != '3003'"
+                                 v-for="(item,index) in editQuestionAnswerTitleInfo.titleValues">
                                 <label class="col-sm-2 col-form-label">
                                     <span><vc:i18n name="选项" namespace="editQuestionAnswerTitle"></vc:i18n></span>{{item.seq}}
                                 </label>

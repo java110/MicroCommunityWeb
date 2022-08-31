@@ -90,33 +90,55 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><span><vc:i18n name="业主" namespace="listOwner"></vc:i18n></span></span>ID
+                                <span>
+                                    <span><vc:i18n name="业主" namespace="listOwner"></vc:i18n></span>
+                                </span>ID
                             </th>
                             <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="姓名" namespace="listOwner"></vc:i18n></span></span>
+                                <span>
+                                    <span><vc:i18n name="姓名" namespace="listOwner"></vc:i18n></span>
+                                </span>
                             </th>
-                            <!-- <th data-hide="phone"><span><span><vc:i18n name="房屋编号" namespace="listOwner"></vc:i18n></span></span></th> -->
+                            <!-- <th data-hide="phone">
+                            <span>
+                                 <span><vc:i18n name="房屋编号" namespace="listOwner"></vc:i18n></span>
+                            </span>
+                            </th> -->
                             <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="性别" namespace="listOwner"></vc:i18n></span></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="年龄" namespace="listOwner"></vc:i18n></span></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="身份证" namespace="listOwner"></vc:i18n></span></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="联系方式" namespace="listOwner"></vc:i18n></span></span>
-                            </th>
-                            <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="家庭住址" namespace="listOwner"></vc:i18n></span></span>
+                                <span>
+                                    <span><vc:i18n name="性别" namespace="listOwner"></vc:i18n></span>
+                                </span>
                             </th>
                             <th data-hide="phone" class="text-center">
-                                <span><span><vc:i18n name="创建员工" namespace="listOwner"></vc:i18n></span></span>
+                                <span>
+                                    <span><vc:i18n name="年龄" namespace="listOwner"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span>
+                                    <span><vc:i18n name="身份证" namespace="listOwner"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span>
+                                    <span><vc:i18n name="联系方式" namespace="listOwner"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span>
+                                    <span><vc:i18n name="家庭住址" namespace="listOwner"></vc:i18n></span>
+                                </span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span>
+                                    <span><vc:i18n name="创建员工" namespace="listOwner"></vc:i18n></span>
+                                </span>
                             </th>
                             <th v-for="(item,index) in listOwnerInfo.listColumns" class="text-center">{{item}}</th>
                             <th class="text-center">
-                                <span><span><vc:i18n name="操作" namespace="listOwner"></vc:i18n></span></span>
+                                <span>
+                                    <span><vc:i18n name="操作" namespace="listOwner"></vc:i18n></span>
+                                </span>
                             </th>
                         </tr>
                         </thead>
@@ -168,27 +190,37 @@
                                     <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
                                         <p style="margin:10px 0;">
                                             <a href="javascript:void(0)" v-on:click="_openEditOwnerModel(owner)">
-                                                <span><span><vc:i18n name="修改业主" namespace="listOwner"></vc:i18n></span></span>
+                                                <span>
+                                                    <span><vc:i18n name="修改业主" namespace="listOwner"></vc:i18n></span>
+                                                </span>
                                             </a>
                                             <span>|</span>
                                             <a href="javascript:void(0)" v-on:click="_openDelOwnerModel(owner)">
-                                                <span><span><vc:i18n name="删除业主" namespace="listOwner"></vc:i18n></span></span>
+                                                <span>
+                                                    <span><vc:i18n name="删除业主" namespace="listOwner"></vc:i18n></span>
+                                                </span>
                                             </a>
                                         </p>
                                         <p style="margin:10px 0;">
                                             <a href="javascript:void(0)" v-on:click="_openAddOwnerRoom(owner)">
-                                                <span><span><vc:i18n name="入住房屋" namespace="listOwner"></vc:i18n></span></span>
+                                                <span>
+                                                    <span><vc:i18n name="入住房屋" namespace="listOwner"></vc:i18n></span>
+                                                </span>
                                             </a>
                                             <span>|</span>
                                             <a href="javascript:void(0)" v-on:click="_openDeleteOwnerRoom(owner)">
-                                                <span><span><vc:i18n name="房屋解绑" namespace="listOwner"></vc:i18n></span></span>
+                                                <span>
+                                                    <span><vc:i18n name="房屋解绑" namespace="listOwner"></vc:i18n></span>
+                                                </span>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs " v-on:click="_openOwnerDetailModel(owner)">
-                                        <span><span><vc:i18n name="详情" namespace="listOwner"></vc:i18n></span></span>
+                                        <span>
+                                            <span><vc:i18n name="详情" namespace="listOwner"></vc:i18n></span>
+                                        </span>
                                     </button>
                                 </div>
                             </td>

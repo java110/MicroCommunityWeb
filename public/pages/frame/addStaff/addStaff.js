@@ -21,13 +21,14 @@
         },
         _initEvent: function () {
             vc.on('addStaff', 'notifyUploadCoverImage', function (data) {
-                $that.addStaffInfo.photo = data;
+                if (data.length > 0) {
+                    $that.addStaffInfo.photo = data[0].fileId;
+                }
             });
             vc.on('addStaff', 'switchOrg', function (_org) {
                 $that.addStaffInfo.orgId = _org.orgId;
                 $that.addStaffInfo.orgName = _org.allOrgName;
             });
-
         },
         methods: {
             addStaffValidate() {
@@ -49,7 +50,7 @@
                         limit: "required",
                         param: "",
                         errInfo: "员工性别不能为空"
-                    },],
+                    }],
                     'addStaffInfo.relCd': [{
                         limit: "required",
                         param: "",
@@ -76,6 +77,12 @@
                             param: "200",
                             errInfo: "家庭住址不能超过200位"
                         },
+                    ],
+                    'addStaffInfo.orgId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "关联组织不能为空"
+                    }
                     ]
                 });
             },
