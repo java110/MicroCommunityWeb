@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             addActivitiesViewInfo: {
@@ -13,19 +13,19 @@
                 isMoreCommunity: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initActivitiesInfo();
             $that._loadAddActivitiesType();
         },
-        _initEvent: function() {
-            vc.on('addActivitiesView', 'openAddActivitiesView', function() {
+        _initEvent: function () {
+            vc.on('addActivitiesView', 'openAddActivitiesView', function () {
                 //vc.component._initActivitiesInfo();
             });
-            vc.on("addActivitiesView", "notifyUploadImage", function(_param) {
-                if (!vc.isEmpty(_param) && _param.length > 0) {
-                    vc.component.addActivitiesViewInfo.headerImg = _param[0];
-                } else {
-                    vc.component.addActivitiesViewInfo.headerImg = '';
+            vc.on("addActivitiesView", "notifyUploadImage", function (_param) {
+                if(_param.length > 0){
+                    vc.component.addActivitiesViewInfo.headerImg = _param[0].fileId;
+                }else{
+                    vc.component.addActivitiesViewInfo.headerImg = ''
                 }
             });
         },
@@ -35,10 +35,10 @@
                     addActivitiesViewInfo: vc.component.addActivitiesViewInfo
                 }, {
                     'addActivitiesViewInfo.title': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "活动标题不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "活动标题不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,200",
@@ -46,10 +46,10 @@
                         },
                     ],
                     'addActivitiesViewInfo.typeCd': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "活动类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "活动类型不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -67,10 +67,10 @@
                         errInfo: "活动内容不能为空"
                     }],
                     'addActivitiesViewInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "开始时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -78,10 +78,10 @@
                         },
                     ],
                     'addActivitiesViewInfo.endTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -90,7 +90,7 @@
                     ]
                 });
             },
-            saveActivitiesInfo: function() {
+            saveActivitiesInfo: function () {
                 if (!vc.component.addActivitiesValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -101,7 +101,7 @@
                     JSON.stringify(vc.component.addActivitiesViewInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
                         if (_json.code == 0) {
@@ -113,12 +113,12 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearaddActivitiesViewInfo: function() {
+            clearaddActivitiesViewInfo: function () {
                 let _typeCds = $that.addActivitiesViewInfo.typeCds;
                 vc.component.addActivitiesViewInfo = {
                     activitiesId: '',
@@ -132,7 +132,7 @@
                     isMoreCommunity: ''
                 };
             },
-            _initActivitiesInfo: function() {
+            _initActivitiesInfo: function () {
                 vc.component.addActivitiesViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 $('.activitiesStartTime').datetimepicker({
                     language: 'zh-CN',
@@ -144,7 +144,7 @@
                     todayBtn: true
                 });
                 $('.activitiesStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".activitiesStartTime").val();
                         vc.component.addActivitiesViewInfo.startTime = value;
                     });
@@ -158,7 +158,7 @@
                     todayBtn: true
                 });
                 $('.activitiesEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".activitiesEndTime").val();
                         vc.component.addActivitiesViewInfo.endTime = value;
                     });
@@ -180,10 +180,10 @@
                     height: 300,
                     placeholder: '必填，请输入公告内容',
                     callbacks: {
-                        onImageUpload: function(files, editor, $editable) {
+                        onImageUpload: function (files, editor, $editable) {
                             vc.component.sendFile($summernote, files);
                         },
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
                             vc.component.addActivitiesViewInfo.context = contents;
                         }
                     },
@@ -201,10 +201,10 @@
                     ],
                 });
             },
-            closeActivitiesInfo: function() {
+            closeActivitiesInfo: function () {
                 vc.emit('activitiesManage', 'listActivities', {});
             },
-            sendFile: function($summernote, files) {
+            sendFile: function ($summernote, files) {
                 console.log('上传图片', files);
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
@@ -219,7 +219,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -230,12 +230,12 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _loadAddActivitiesType: function() {
+            _loadAddActivitiesType: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -246,12 +246,12 @@
                 //发送get请求
                 vc.http.apiGet('/activitiesType/queryActivitiesType',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _activitiesTypeManageInfo = JSON.parse(json);
                         let _data = _activitiesTypeManageInfo.data;
                         $that.addActivitiesViewInfo.typeCds = _data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

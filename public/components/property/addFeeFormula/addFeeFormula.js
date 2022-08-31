@@ -47,6 +47,11 @@
                             param: "",
                             errInfo: "单价填写有误，如1.5000"
                         },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "单价必须是数字"
+                        }
                     ],
                     'addFeeFormulaInfo.formulaDesc': [
                         {
@@ -83,9 +88,11 @@
                             $('#addFeeFormulaModel').modal('hide');
                             vc.component.clearAddFeeFormulaInfo();
                             vc.emit('feeFormulaManage', 'listFeeFormula', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

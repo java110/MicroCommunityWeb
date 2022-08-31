@@ -33,10 +33,17 @@
                         _photos.push(item);
                     })
                 }
-                vc.emit('editApplyRoomDiscount', 'uploadImage', 'notifyPhotos', _photos);
+                vc.emit('editApplyRoomDiscount', 'uploadImageUrl', 'notifyPhotos', _photos);
             });
             vc.on("editApplyRoomDiscount", "notifyUploadImage", function (_param) {
-                vc.component.editApplyRoomDiscountInfo.photos = _param;
+                if (_param.length > 0) {
+                    vc.component.editApplyRoomDiscountInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.editApplyRoomDiscountInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editApplyRoomDiscountInfo.photos = [];
+                }
             });
         },
         methods: {
@@ -160,6 +167,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#editApplyRoomDiscountModel').modal('hide');
+                            vc.component.refreshEditApplyRoomDiscountInfo();
                             vc.emit('applyRoomDiscountManage', 'listApplyRoomDiscount', {});
                             vc.toast("验房通过");
                             return;

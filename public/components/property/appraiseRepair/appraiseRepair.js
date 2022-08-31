@@ -63,9 +63,11 @@
                             $('#appraiseRepairModel').modal('hide');
                             vc.component.clearAppraiseRepairInfo();
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

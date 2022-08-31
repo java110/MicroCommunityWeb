@@ -44,6 +44,8 @@
                 var param = {
                     params: vc.component.questionAnswerTitleManageInfo.conditions
                 };
+                param.params.titleId = param.params.titleId.trim();
+                param.params.qaTitle = param.params.qaTitle.trim();
                 //发送get请求
                 vc.http.apiGet('/questionAnswer/queryQuestionAnswerTitle',
                     param,
@@ -76,7 +78,15 @@
             _openDeleteQuestionAnswerTitleModel: function (_questionAnswerTitle) {
                 vc.emit('deleteQuestionAnswerTitle', 'openDeleteQuestionAnswerTitleModal', _questionAnswerTitle);
             },
+            //查询
             _queryQuestionAnswerTitleMethod: function () {
+                vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            //重置
+            _resetQuestionAnswerTitleMethod: function () {
+                vc.component.questionAnswerTitleManageInfo.conditions.titleType = "";
+                vc.component.questionAnswerTitleManageInfo.conditions.qaTitle = "";
+                vc.component.questionAnswerTitleManageInfo.conditions.titleId = "";
                 vc.component._listQuestionAnswerTitles(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _goBack: function () {

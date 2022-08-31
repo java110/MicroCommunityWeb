@@ -107,7 +107,7 @@
                             <td class="text-center">{{questionAnswer.remark}}</td>
                             <td class="text-center">
                                 <div style="position: relative; display: inline-block;"
-                                     v-for="url in questionAnswer.fileUrls">
+                                     v-for="url in questionAnswer.fileUrlsShow">
                                     <div v-on:click="showImg(url)">
                                         <img width="50" height="50" v-bind:src="url"
                                              onerror="this.src='/img/noPhoto.jpg';">

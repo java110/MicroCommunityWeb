@@ -1,7 +1,6 @@
 (function (vc) {
     vc.extends({
-        propTypes: {
-        },
+        propTypes: {},
         data: {
             inspectionTaskTransferInfo: {
                 flowComponent: 'inspectionTaskManage',
@@ -38,7 +37,6 @@
                 vc.copyObject(_inspectionTask, vc.component.inspectionTaskTransferInfo);
                 $('#inspectionTaskTransferModel').modal('show');
             });
-
             vc.on("inspectionTaskTransfer", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.inspectionTaskTransferInfo.staffId = _param.staffId;
@@ -77,7 +75,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                if (vc.component.inspectionTaskTransferInfo.staffId == vc.component.inspectionTaskTransferInfo.planUserId){
+                if (vc.component.inspectionTaskTransferInfo.staffId == vc.component.inspectionTaskTransferInfo.planUserId) {
                     vc.toast("不能流转给当前巡检人");
                     return;
                 }
@@ -96,9 +94,11 @@
                             $('#inspectionTaskTransferModel').modal('hide');
                             vc.component.clearInspectionTaskTransferInfo();
                             vc.emit('inspectionTaskManage', 'pageReload', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

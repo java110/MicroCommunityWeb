@@ -50,7 +50,14 @@
                 $('#addResourceStoreModel').modal('show');
             });
             vc.on("addResourceStore", "notifyUploadImage", function (_param) {
-                vc.component.addResourceStoreInfo.photos = _param;
+                if(_param.length > 0){
+                    vc.component.addResourceStoreInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.addResourceStoreInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addResourceStoreInfo.photos = [];
+                }
             });
         },
         methods: {

@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,11 +14,10 @@
                 titleValues: []
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addInspectionItemTitle', 'openAddInspectionItemTitleModal', function(_param) {
+        _initEvent: function () {
+            vc.on('addInspectionItemTitle', 'openAddInspectionItemTitleModal', function (_param) {
                 vc.copyObject(_param, $that.addInspectionItemTitleInfo);
                 $('#addInspectionItemTitleModel').modal('show');
             });
@@ -30,10 +28,10 @@
                     addInspectionItemTitleInfo: vc.component.addInspectionItemTitleInfo
                 }, {
                     'addInspectionItemTitleInfo.titleType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "题目类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "题目类型不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -41,10 +39,10 @@
                         },
                     ],
                     'addInspectionItemTitleInfo.itemTitle': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "问卷题目不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "问卷题目不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "256",
@@ -52,10 +50,10 @@
                         },
                     ],
                     'addInspectionItemTitleInfo.seq': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "顺序不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "顺序不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -64,25 +62,23 @@
                     ]
                 });
             },
-            saveInspectionItemTitleInfo: function() {
+            saveInspectionItemTitleInfo: function () {
                 console.log(vc.component.addInspectionItemTitleInfo.titleValues);
                 if (!vc.component.addInspectionItemTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 // 验证必填项
                 let msg = '';
                 vc.component.addInspectionItemTitleInfo.titleValues.forEach((item) => {
-                    if(!vc.validate.required(item.itemValue)){
+                    if (!vc.validate.required(item.itemValue)) {
                         msg = '请填写选项内容';
                     }
                 });
-                if(msg){
+                if (msg) {
                     vc.toast(msg);
                     return;
                 }
-
                 vc.component.addInspectionItemTitleInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -95,7 +91,7 @@
                     JSON.stringify(vc.component.addInspectionItemTitleInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -103,20 +99,18 @@
                             $('#addInspectionItemTitleModel').modal('hide');
                             vc.component.clearAddInspectionItemTitleInfo();
                             vc.emit('inspectionItemTitleManage', 'listInspectionItemTitle', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
-            clearAddInspectionItemTitleInfo: function() {
+            clearAddInspectionItemTitleInfo: function () {
                 vc.component.addInspectionItemTitleInfo = {
                     titleId: '',
                     titleType: '',
@@ -126,27 +120,24 @@
                     titleValues: []
                 };
             },
-            _changeAddTitleType: function() {
-
+            _changeAddTitleType: function () {
                 let _titleType = $that.addInspectionItemTitleInfo.titleType;
-
                 if (_titleType == '3003') {
                     $that.addInspectionItemTitleInfo.titleValues = [];
                     return;
                 }
-
                 $that.addInspectionItemTitleInfo.titleValues = [{
                     itemValue: '',
                     seq: 1
                 }];
             },
-            _addTitleValue: function() {
+            _addTitleValue: function () {
                 $that.addInspectionItemTitleInfo.titleValues.push({
                     itemValue: '',
                     seq: $that.addInspectionItemTitleInfo.titleValues.length + 1
                 });
             },
-            _deleteTitleValue: function(_seq) {
+            _deleteTitleValue: function (_seq) {
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.addInspectionItemTitleInfo.titleValues;
                 _tmpTitleValues.forEach(item => {
@@ -157,10 +148,8 @@
                         })
                     }
                 });
-
                 $that.addInspectionItemTitleInfo.titleValues = _newTitleValues;
             }
         }
     });
-
 })(window.vc);

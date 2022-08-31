@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteFeeDiscountInfo: {
-
-            }
+            deleteFeeDiscountInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteFeeDiscount', 'openDeleteFeeDiscountModal', function (_params) {
-
                 vc.component.deleteFeeDiscountInfo = _params;
                 $('#deleteFeeDiscountModel').modal('show');
-
             });
         },
         methods: {
@@ -33,14 +27,15 @@
                             //关闭model
                             $('#deleteFeeDiscountModel').modal('hide');
                             vc.emit('feeDiscountManage', 'listFeeDiscount', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteFeeDiscountModel: function () {
@@ -48,5 +43,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

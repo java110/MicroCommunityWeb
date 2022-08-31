@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -28,7 +27,6 @@
                 return vc.validate.validate({
                     addMachineTypeInfo: vc.component.addMachineTypeInfo
                 }, {
-                    
                     'addMachineTypeInfo.machineTypeCd': [
                         {
                             limit: "required",
@@ -53,19 +51,13 @@
                             errInfo: "设备类型名称不能超过30"
                         },
                     ]
-
-
-
-
                 });
             },
             saveMachineTypeInfo: function () {
                 if (!vc.component.addMachineTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addMachineTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -73,7 +65,6 @@
                     $('#addMachineTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'machineType.saveMachineType',
                     JSON.stringify(vc.component.addMachineTypeInfo),
@@ -88,18 +79,17 @@
                             $('#addMachineTypeModel').modal('hide');
                             vc.component.clearAddMachineTypeInfo();
                             vc.emit('machineTypeManage', 'listMachineType', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
-                    });
+                    }
+                );
             },
             clearAddMachineTypeInfo: function () {
                 let _machine = vc.component.addMachineTypeInfo.machine;
@@ -112,5 +102,4 @@
             }
         }
     });
-
 })(window.vc);

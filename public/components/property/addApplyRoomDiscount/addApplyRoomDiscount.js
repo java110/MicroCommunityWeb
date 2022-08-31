@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -21,20 +21,27 @@
                 photos: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddApplyRoomDiscountDateInfo();
             $that._listAddApplyRoomDiscountTypes();
         },
-        _initEvent: function() {
-            vc.on('addApplyRoomDiscount', 'openAddApplyRoomDiscountModal', function() {
+        _initEvent: function () {
+            vc.on('addApplyRoomDiscount', 'openAddApplyRoomDiscountModal', function () {
                 $('#addApplyRoomDiscountModel').modal('show');
             });
-            vc.on("addApplyRoomDiscount", "notifyUploadImage", function(_param) {
-                vc.component.addApplyRoomDiscountInfo.photos = _param;
+            vc.on("addApplyRoomDiscount", "notifyUploadImage", function (_param) {
+                if (_param.length > 0) {
+                    vc.component.addApplyRoomDiscountInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.addApplyRoomDiscountInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addApplyRoomDiscountInfo.photos = [];
+                }
             });
         },
         methods: {
-            _initAddApplyRoomDiscountDateInfo: function() {
+            _initAddApplyRoomDiscountDateInfo: function () {
                 $('.addStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -46,7 +53,7 @@
                     todayBtn: true
                 });
                 $('.addStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addStartTime").val();
                         vc.component.addApplyRoomDiscountInfo.startTime = value;
                     });
@@ -61,7 +68,7 @@
                     todayBtn: true
                 });
                 $('.addEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addEndTime").val();
                         var start = Date.parse(new Date(vc.component.addApplyRoomDiscountInfo.startTime))
                         var end = Date.parse(new Date(value))
@@ -90,10 +97,10 @@
                     addApplyRoomDiscountInfo: vc.component.addApplyRoomDiscountInfo
                 }, {
                     'addApplyRoomDiscountInfo.roomName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "房屋不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "64",
@@ -101,10 +108,10 @@
                         },
                     ],
                     'addApplyRoomDiscountInfo.applyType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "申请类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "申请类型不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -117,10 +124,10 @@
                         errInfo: "费用项不能为空"
                     }],
                     'addApplyRoomDiscountInfo.createUserName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "申请人不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "申请人不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "64",
@@ -128,10 +135,10 @@
                         },
                     ],
                     'addApplyRoomDiscountInfo.createUserTel': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "申请电话不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "申请电话不能为空"
+                    },
                         {
                             limit: "phone",
                             param: "",
@@ -139,10 +146,10 @@
                         },
                     ],
                     'addApplyRoomDiscountInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "开始时间不能为空"
+                    },
                         {
                             limit: "datetime",
                             param: "",
@@ -150,10 +157,10 @@
                         },
                     ],
                     'addApplyRoomDiscountInfo.endTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    },
                         {
                             limit: "datetime",
                             param: "",
@@ -161,10 +168,10 @@
                         },
                     ],
                     'addApplyRoomDiscountInfo.createRemark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "申请说明不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "申请说明不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "512",
@@ -173,7 +180,7 @@
                     ],
                 });
             },
-            saveApplyRoomDiscountInfo: function() {
+            saveApplyRoomDiscountInfo: function () {
                 if (!vc.component.addApplyRoomDiscountValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -190,7 +197,7 @@
                     JSON.stringify(vc.component.addApplyRoomDiscountInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -204,12 +211,12 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
-            clearAddApplyRoomDiscountInfo: function() {
+            clearAddApplyRoomDiscountInfo: function () {
                 let _applyTypes = $that.addApplyRoomDiscountInfo.applyTypes;
                 vc.component.addApplyRoomDiscountInfo = {
                     roomName: '',
@@ -222,10 +229,11 @@
                     createRemark: '',
                     applyTypes: _applyTypes,
                     feeTypeCds: [],
-                    feeId: ''
+                    feeId: '',
+                    photos: []
                 };
             },
-            _queryAddApplyRoomDiscountRoom: function() {
+            _queryAddApplyRoomDiscountRoom: function () {
                 let _allNum = $that.addApplyRoomDiscountInfo.roomName;
                 if (_allNum == '') {
                     return;
@@ -250,7 +258,7 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listRoomsWhereFeeSet',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         let _rooms = listRoomData.rooms;
                         if (_rooms.length < 1) {
@@ -263,13 +271,13 @@
                         $that.addApplyRoomDiscountInfo.createUserTel = _rooms[0].link;
                         $that._queryRoomFees();
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 查询该房屋的费用项
-            _queryRoomFees: function() {
+            _queryRoomFees: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -282,16 +290,16 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listFee',
                     param,
-                    function(json) {
+                    function (json) {
                         let _feeConfigInfo = JSON.parse(json);
                         vc.component.addApplyRoomDiscountInfo.feeTypeCds = _feeConfigInfo.fees;
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listAddApplyRoomDiscountTypes: function(_page, _rows) {
+            _listAddApplyRoomDiscountTypes: function (_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -302,11 +310,11 @@
                 //发送get请求
                 vc.http.apiGet('/applyRoomDiscount/queryApplyRoomDiscountType',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _applyRoomDiscountTypeManageInfo = JSON.parse(json);
                         vc.component.addApplyRoomDiscountInfo.applyTypes = _applyRoomDiscountTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

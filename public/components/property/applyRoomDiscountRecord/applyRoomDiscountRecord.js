@@ -33,7 +33,14 @@
                 $('#applyRoomDiscountRecordModel').modal('show');
             });
             vc.on("applyRoomDiscountRecord", "notifyUploadImage", function (_param) {
-                vc.component.applyRoomDiscountRecordInfo.photos = _param;
+                if (_param.length > 0) {
+                    vc.component.applyRoomDiscountRecordInfo.photos = [];
+                    _param.forEach((item) => {
+                        vc.component.applyRoomDiscountRecordInfo.photos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.applyRoomDiscountRecordInfo.photos = [];
+                }
             });
             vc.on("applyRoomDiscountRecord", "notifyUploadVedio", function (_param) {
                 vc.component.applyRoomDiscountRecordInfo.videoName = _param.realFileName;
@@ -110,9 +117,10 @@
                             $('#applyRoomDiscountRecordModel').modal('hide');
                             vc.component.clearApplyRoomDiscountRecordInfo();
                             vc.emit('listApplyRoomDiscountRecord', 'listApplyRoomDiscountRecords', {});
-                            location.reload();
-                            vc.toast(_json.msg);
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

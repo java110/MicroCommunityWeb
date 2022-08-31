@@ -79,6 +79,19 @@
                     $('#addQuestionAnswerTitleModel').modal('hide');
                     return;
                 }
+                let _saveFlag = true;
+                if ($that.addQuestionAnswerTitleInfo.titleValues != null && $that.addQuestionAnswerTitleInfo.titleValues.length > 0) {
+                    $that.addQuestionAnswerTitleInfo.titleValues.forEach(item => {
+                        if (item.qaValue == null || item.qaValue == '' || item.qaValue == undefined) {
+                            vc.toast("选项内容不能为空！");
+                            _saveFlag = false;
+                            return;
+                        }
+                    });
+                }
+                if (!_saveFlag) {
+                    return;
+                }
                 vc.http.apiPost(
                     '/questionAnswer/saveQuestionAnswerTitle',
                     JSON.stringify(vc.component.addQuestionAnswerTitleInfo),
@@ -120,13 +133,25 @@
                 if (_titleType == '3003') {
                     $that.addQuestionAnswerTitleInfo.titleValues = [];
                     return;
+                } else if (_titleType == '1001') {
+                    $that.addQuestionAnswerTitleInfo.titleValues = [
+                        {
+                            qaValue: '',
+                            seq: 1
+                        }
+                    ];
+                } else {
+                    $that.addQuestionAnswerTitleInfo.titleValues = [
+                        {
+                            qaValue: '',
+                            seq: 1
+                        },
+                        {
+                            qaValue: '',
+                            seq: 2
+                        }
+                    ];
                 }
-                $that.addQuestionAnswerTitleInfo.titleValues = [
-                    {
-                        qaValue: '',
-                        seq: 1
-                    }
-                ];
             },
             _addTitleValue: function () {
                 $that.addQuestionAnswerTitleInfo.titleValues.push(

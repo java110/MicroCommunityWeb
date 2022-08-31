@@ -73,7 +73,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                if (vc.component.dispatchRepairInfo.action == "TRANSFER" && vc.component.dispatchRepairInfo.currentUserId == vc.component.dispatchRepairInfo.staffId){
+                if (vc.component.dispatchRepairInfo.action == "TRANSFER" && vc.component.dispatchRepairInfo.currentUserId == vc.component.dispatchRepairInfo.staffId) {
                     vc.toast("不能转单给自己");
                     return;
                 }
@@ -94,7 +94,7 @@
                             vc.emit('repairPoolManage', 'listRepairPool', {});
                             vc.emit('repairDispatchManage', 'listOwnerRepair', {});
                             vc.toast("操作成功");
-                        } else if(_json.code == 5010){
+                        } else if (_json.code == 5010) {
                             vc.toast(_json.msg);
                         }
                     },

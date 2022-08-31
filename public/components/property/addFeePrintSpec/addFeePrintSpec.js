@@ -7,7 +7,6 @@
         data: {
             addFeePrintSpecInfo: {
                 specCd: '',
-                specCd: '',
                 content: '',
                 qrImg: '',
                 printName: '',
@@ -20,7 +19,11 @@
                 $('#addFeePrintSpecModel').modal('show');
             });
             vc.on('addFeePrintSpec', 'notifyUploadImage', function (_img) {
-                $that.addFeePrintSpecInfo.qrImg = _img[0];
+                if (!vc.isEmpty(_img) && _img.length > 0) {
+                    $that.addFeePrintSpecInfo.qrImg = _img[0].fileId;
+                } else {
+                    $that.addFeePrintSpecInfo.qrImg = '';
+                }
             })
         },
         methods: {
@@ -99,9 +102,11 @@
                             $('#addFeePrintSpecModel').modal('hide');
                             vc.component.clearAddFeePrintSpecInfo();
                             vc.emit('feePrintSpecManage', 'listFeePrintSpec', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

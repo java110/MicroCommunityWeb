@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,8 +15,7 @@
                 conditions: {
                     locationName: '',
                     locationId: '',
-                    locationType: '',
-
+                    locationType: ''
                 }
             }
         },
@@ -24,7 +23,6 @@
             vc.component._listLocations(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('locationManage', 'listLocation', function (_param) {
                 vc.component._listLocations(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,14 +32,14 @@
         },
         methods: {
             _listLocations: function (_page, _rows) {
-
                 vc.component.locationManageInfo.conditions.page = _page;
                 vc.component.locationManageInfo.conditions.row = _rows;
                 vc.component.locationManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.locationManageInfo.conditions
                 };
-
+                param.params.locationId = param.params.locationId.trim();
+                param.params.locationName = param.params.locationName.trim();
                 //发送get请求
                 vc.http.apiGet('communityLocation.listCommunityLocations',
                     param,
@@ -69,9 +67,16 @@
             _openDeleteLocationModel: function (_location) {
                 vc.emit('deleteLocation', 'openDeleteLocationModal', _location);
             },
+            //查询
             _queryLocationMethod: function () {
                 vc.component._listLocations(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetLocationMethod: function () {
+                vc.component.locationManageInfo.conditions.locationName = "";
+                vc.component.locationManageInfo.conditions.locationId = "";
+                vc.component.locationManageInfo.conditions.locationType = "";
+                vc.component._listLocations(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.locationManageInfo.moreCondition) {
@@ -80,8 +85,6 @@
                     vc.component.locationManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

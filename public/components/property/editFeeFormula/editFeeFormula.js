@@ -1,16 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editFeeFormulaInfo: {
                 formulaId: '',
                 formulaValue: '',
                 formulaDesc: '',
-                price:''
+                price: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editFeeFormula', 'openEditFeeFormulaModal', function (_params) {
@@ -43,16 +41,16 @@
                             param: "",
                             errInfo: "单价不能为空"
                         },
-                        // {
-                        //     limit: "money",
-                        //     param: "",
-                        //     errInfo: "单价填写有误，如1.50"
-                        // },
                         {
                             limit: "moneyModulus",
                             param: "",
                             errInfo: "单价填写有误，如1.5000"
                         },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "单价必须是数字"
+                        }
                     ],
                     'editFeeFormulaInfo.formulaDesc': [
                         {
@@ -67,7 +65,6 @@
                             param: "",
                             errInfo: "公式ID不能为空"
                         }]
-
                 });
             },
             editFeeFormula: function () {
@@ -75,7 +72,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/feeFormula/updateFeeFormula',
                     JSON.stringify(vc.component.editFeeFormulaInfo),
@@ -89,13 +85,14 @@
                             //关闭model
                             $('#editFeeFormulaModel').modal('hide');
                             vc.emit('feeFormulaManage', 'listFeeFormula', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -104,10 +101,9 @@
                     formulaId: '',
                     formulaValue: '',
                     formulaDesc: '',
-                    price:''
+                    price: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

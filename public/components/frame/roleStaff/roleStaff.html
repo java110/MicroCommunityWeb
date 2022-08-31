@@ -12,6 +12,7 @@
                 <span><vc:i18n name="查询" namespace="room"></vc:i18n></span>
             </button>
             <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRoleStaffModal()">
+                <i class="fa fa-plus"></i>
                 <span><vc:i18n name="关联员工"></vc:i18n></span>
             </button>
         </div>
@@ -49,7 +50,8 @@
         <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
         <td class="text-center">
             <div class="btn-group">
-                <button class="btn-white btn btn-xs" v-on:click="_openDeleteRoleStaffModel(staff)">
+                <button class="btn-white btn btn-xs" v-on:click="_openDeleteRoleStaffModel(staff)"
+                        v-if="vc.hasPrivilege('502022082920040010')">
                     <span><vc:i18n name="删除"></vc:i18n></span>
                 </button>
             </div>
@@ -70,7 +72,8 @@
     </tfoot>
 </table>
 <!-- 分页 -->
-<vc:create path="frame/pagination"></vc:create>
+<!-- <vc:create path="frame/pagination"></vc:create> -->
+<vc:create path="frame/paginationPlus" namespace="roleStaffInfo"></vc:create>
 <vc:create path="frame/addRoleStaff" emitListener="roleStaffInfo" emitFunction="listRoleStaff"></vc:create>
 <vc:create path="frame/deleteRoleStaff"></vc:create>
 </div>

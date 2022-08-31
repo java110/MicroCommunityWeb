@@ -1,49 +1,43 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
-            deleteRoleStaffInfo: {
-
-            }
+            deleteRoleStaffInfo: {}
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('deleteRoleStaff', 'openDeleteRoleStaffModal', function(_params) {
-
+        _initEvent: function () {
+            vc.on('deleteRoleStaff', 'openDeleteRoleStaffModal', function (_params) {
                 vc.component.deleteRoleStaffInfo = _params;
                 $('#deleteRoleStaffModel').modal('show');
-
             });
         },
         methods: {
-            deleteRoleStaff: function() {
+            deleteRoleStaff: function () {
                 vc.http.apiPost(
                     '/role.deleteRoleStaff',
                     JSON.stringify(vc.component.deleteRoleStaffInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#deleteRoleStaffModel').modal('hide');
                             vc.emit('roleStaffInfo', 'listRoleStaff', {});
+                            vc.toast("删除成功")
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
                     });
             },
-            closeDeleteRoleStaffModel: function() {
+            closeDeleteRoleStaffModel: function () {
                 $('#deleteRoleStaffModel').modal('hide');
             }
         }
     });
-
 })(window.vc, window.vc.component);

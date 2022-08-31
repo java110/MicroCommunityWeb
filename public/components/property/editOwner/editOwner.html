@@ -73,11 +73,11 @@
                         </div>
                         <div class="col-sm-6" style="text-align:center">
                             <div class="form-group row">
-                                <div style="width: 100%;height: 10rem;" v-show="editOwnerInfo.ownerPhoto != ''">
-                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhoto"
+                                <div style="width: 100%;height: 10rem;" v-show="editOwnerInfo.ownerPhotoUrl != ''">
+                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhotoUrl"
                                          onerror="this.src='/img/noPhoto.jpg';" :alt="vc.i18n('业主照片','editOwner')">
                                 </div>
-                                <div style="width: 100%;" v-show="editOwnerInfo.ownerPhoto == ''">
+                                <div style="width: 100%;" v-show="editOwnerInfo.ownerPhotoUrl == ''">
                                     <div v-show="editOwnerInfo.videoPlaying == true">
                                         <video id="ownerPhotoForEdit" style="width: 100%;height: 10rem;"></video>
                                         <canvas id="canvasForEdit" style="display:none;"></canvas>
@@ -89,13 +89,13 @@
                                 </div>
                                 <div style="margin: 10px auto 0px auto;" class="text-center">
                                     <button class="btn btn-primary" type="button"
-                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto != ''"
+                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhotoUrl != ''"
                                             v-on:click="_reOpenVedioForEdit()">
                                         <span class="fa fa-camera"></span>
                                         <span><vc:i18n name="摄像头" namespace="editOwner"></vc:i18n></span>
                                     </button>
                                     <button class="btn btn-primary" type="button"
-                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhoto == ''"
+                                            v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhotoUrl == ''"
                                             v-on:click="_takePhotoForEdit()">
                                         <span class="fa fa-camera"></span>
                                         <span><vc:i18n name="拍照" namespace="editOwner"></vc:i18n></span>

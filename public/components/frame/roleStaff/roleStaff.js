@@ -27,7 +27,7 @@
                 //vc.copyObject(_param, vc.component.roleStaffInfo.conditions);
                 vc.component._listRoleStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('roleStaffInfo', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._listRoleStaffs(_currentPage, DEFAULT_ROWS);
             });
         },
@@ -49,7 +49,7 @@
                         vc.component.roleStaffInfo.total = _roleStaffInfo.total;
                         vc.component.roleStaffInfo.records = _roleStaffInfo.records;
                         vc.component.roleStaffInfo.staffs = _roleStaffInfo.data;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('roleStaffInfo', 'paginationPlus', 'init', {
                             total: vc.component.roleStaffInfo.records,
                             dataCount: vc.component.roleStaffInfo.total,
                             currentPage: _page

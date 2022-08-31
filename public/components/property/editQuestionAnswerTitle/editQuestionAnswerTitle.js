@@ -78,6 +78,19 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                let _saveFlag = true;
+                if ($that.editQuestionAnswerTitleInfo.titleValues != null && $that.editQuestionAnswerTitleInfo.titleValues.length > 0) {
+                    $that.editQuestionAnswerTitleInfo.titleValues.forEach(item => {
+                        if (item.qaValue == null || item.qaValue == '' || item.qaValue == undefined) {
+                            vc.toast("选项内容不能为空！");
+                            _saveFlag = false;
+                            return;
+                        }
+                    });
+                }
+                if (!_saveFlag) {
+                    return;
+                }
                 vc.http.apiPost(
                     '/questionAnswer/updateQuestionAnswerTitle',
                     JSON.stringify(vc.component.editQuestionAnswerTitleInfo),
@@ -91,6 +104,7 @@
                             //关闭model
                             $('#editQuestionAnswerTitleModel').modal('hide');
                             vc.emit('questionAnswerTitleManage', 'listQuestionAnswerTitle', {});
+                            vc.component.refreshEditQuestionAnswerTitleInfo();
                             vc.toast("修改成功");
                             return;
                         } else {
@@ -120,6 +134,31 @@
                         seq: $that.editQuestionAnswerTitleInfo.titleValues.length + 1
                     }
                 );
+            },
+            _changeEditTitleType: function () {
+                let _titleType = $that.editQuestionAnswerTitleInfo.titleType;
+                if (_titleType == '3003') {
+                    $that.editQuestionAnswerTitleInfo.titleValues = [];
+                    return;
+                } else if (_titleType == '1001') {
+                    $that.editQuestionAnswerTitleInfo.titleValues = [
+                        {
+                            qaValue: '',
+                            seq: 1
+                        }
+                    ];
+                } else {
+                    $that.editQuestionAnswerTitleInfo.titleValues = [
+                        {
+                            qaValue: '',
+                            seq: 1
+                        },
+                        {
+                            qaValue: '',
+                            seq: 2
+                        }
+                    ];
+                }
             },
             _deleteEditTitleValue: function (_seq) {
                 let _newTitleValues = [];

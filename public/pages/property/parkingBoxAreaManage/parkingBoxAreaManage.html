@@ -18,10 +18,13 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><vc:i18n name="停车场" namespace="parkingBoxAreaManage"></vc:i18n></span>
+                                <span><vc:i18n name="关系ID" namespace="parkingBoxAreaManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="停车场编号" namespace="parkingBoxAreaManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="停车场" namespace="parkingBoxAreaManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="默认停车场" namespace="parkingBoxAreaManage"></vc:i18n></span>
@@ -39,8 +42,9 @@
                         </thead>
                         <tbody>
                         <tr v-for="parkingBoxArea in parkingBoxAreaManageInfo.parkingBoxAreas">
-                            <td class="text-center">{{parkingBoxArea.paNum}}</td>
+                            <td class="text-center">{{parkingBoxArea.baId}}</td>
                             <td class="text-center">{{parkingBoxArea.paId}}</td>
+                            <td class="text-center">{{parkingBoxArea.paNum}}</td>
                             <td class="text-center">{{parkingBoxArea.defaultArea == 'T'?'是':'否'}}</td>
                             <td class="text-center">{{parkingBoxArea.createTime}}</td>
                             <td class="text-center">{{parkingBoxArea.remark}}</td>

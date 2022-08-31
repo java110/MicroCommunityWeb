@@ -36,7 +36,7 @@
                 vc.component.finishRepairInfo.beforeRepairPhotos = [];
                 _param.forEach((item) => {
                     vc.component.finishRepairInfo.beforeRepairPhotos.push({
-                        'photo': item
+                        'photo': item.fileId
                     })
                 })
             });
@@ -44,24 +44,19 @@
                 vc.component.finishRepairInfo.afterRepairPhotos = [];
                 _param.forEach((item) => {
                     vc.component.finishRepairInfo.afterRepairPhotos.push({
-                        'photo': item
+                        'photo': item.fileId
                     })
                 })
             });
             vc.on('finishRepairInfo', 'chooseSingleResource', function (_data) {
-                console.log('here is data ', _data);
                 $that.finishRepairInfo.choosedGoodsList.push(_data);
                 // if ($that.finishRepairInfo.choosedGoodsList.length < 1) {
                 //     $that.finishRepairInfo.choosedGoodsList.push(_data);
                 // } else {
                 //     $that.finishRepairInfo.choosedGoodsList.forEach((oldItem, index) => {
                 //         if (_data.resId == oldItem.resId && _data.price == oldItem.price) {
-                //             console.log('1111');
-                //             console.log(_data.price,oldItem.price);
-                //             console.log(parseInt(oldItem.useNumber) + parseInt(_data.useNumber));
                 //             $that.finishRepairInfo.choosedGoodsList[index].useNumber = parseInt(oldItem.useNumber) + parseInt(_data.useNumber);
                 //         } else {
-                //             console.log('2222');
                 //             $that.finishRepairInfo.choosedGoodsList.push(_data);
                 //         }
                 //     })

@@ -4,13 +4,11 @@
             startRepairInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('startRepair', 'openStartRepairModal', function (_params) {
                 vc.component.startRepairInfo = _params;
                 $('#startRepairModel').modal('show');
-
             });
         },
         methods: {

@@ -76,11 +76,11 @@
                         </div>
                         <div class="col-sm-6" style="text-align:center">
                             <div class="form-group row">
-                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhoto != ''">
-                                    <img width="80%" height="150rem" v-bind:src="addOwnerInfo.ownerPhoto"
+                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhotoUrl != ''">
+                                    <img width="80%" height="150rem" v-bind:src="addOwnerInfo.ownerPhotoUrl"
                                          alt="vc.i18n('业主照片','addOwner')">
                                 </div>
-                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhoto == ''">
+                                <div style="width: 100%;" v-show="addOwnerInfo.ownerPhotoUrl == ''">
                                     <div v-show="addOwnerInfo.videoPlaying == true">
                                         <video id="ownerPhoto" style="width: 100%;height: 10rem;"></video>
                                         <canvas id="canvas" style="display:none;"></canvas>
@@ -92,13 +92,13 @@
                                 </div>
                                 <div style="margin: 10px auto 0px auto;" class="text-center">
                                     <button class="btn btn-primary" type="button"
-                                            v-if="addOwnerInfo.videoPlaying == true && addOwnerInfo.ownerPhoto != ''"
+                                            v-if="addOwnerInfo.videoPlaying == true && addOwnerInfo.ownerPhotoUrl != ''"
                                             v-on:click="_reOpenVedio()">
                                         <span class="fa fa-camera"></span>
                                         <span><vc:i18n name="摄像头" namespace="addOwner"></vc:i18n></span>
                                     </button>
                                     <button class="btn btn-primary" type="button"
-                                            v-if="addOwnerInfo.videoPlaying == true && addOwnerInfo.ownerPhoto == ''"
+                                            v-if="addOwnerInfo.videoPlaying == true && addOwnerInfo.ownerPhotoUrl == ''"
                                             v-on:click="_takePhoto()">
                                         <span class="fa fa-camera"></span>
                                         <span><vc:i18n name="拍照" namespace="addOwner"></vc:i18n></span>

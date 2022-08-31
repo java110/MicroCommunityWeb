@@ -48,6 +48,7 @@
                         $that.parkingBoxAreaManageInfo.parkingBoxAreas = _parkingBoxAreaManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingBoxAreaManageInfo.records,
+                            dataCount: vc.component.parkingBoxAreaManageInfo.total,
                             currentPage: _page
                         });
                     },

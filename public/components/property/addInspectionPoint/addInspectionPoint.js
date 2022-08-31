@@ -104,8 +104,8 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addInspectionPointModel').modal('hide');
                             vc.component.clearAddInspectionPointInfo();
@@ -114,9 +114,11 @@
                                 machineName: '必填，请选择设备',
                             });
                             vc.emit('inspectionPointManage', 'listInspectionPoint', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

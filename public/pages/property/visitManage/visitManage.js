@@ -4,6 +4,7 @@
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
+    var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
             appManageInfo: {
@@ -98,6 +99,11 @@
                         vc.component.appManageInfo.total = _visitManageInfo.total;
                         vc.component.appManageInfo.records = _visitManageInfo.records;
                         vc.component.appManageInfo.visits = _visitManageInfo.visits;
+                        vc.component.appManageInfo.visits.forEach((item) => {
+                            vc.urlToBase64(photoUrl + "?fileId=" + item.url + "&communityId=-1&time=" + new Date(), function (_base64Data) {
+                                item.url = _base64Data;
+                            })
+                        })
                         vc.emit('pagination', 'init', {
                             total: _visitManageInfo.records,
                             dataCount: _visitManageInfo.total,

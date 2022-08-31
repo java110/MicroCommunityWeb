@@ -88,6 +88,19 @@
                     $('#addFeeDiscountModel').modal('hide');
                     return;
                 }
+                let _saveFlag = true;
+                if ($that.addFeeDiscountInfo.feeDiscountRuleSpecs != null || $that.addFeeDiscountInfo.feeDiscountRuleSpecs.length > 0) {
+                    $that.addFeeDiscountInfo.feeDiscountRuleSpecs.forEach(item => {
+                        if (item.specValue == null || item.specValue == '' || item.specValue == undefined) {
+                            vc.toast(item.specName + "不能为空！");
+                            _saveFlag = false;
+                            throw new Error(item.specName + "不能为空！");
+                        }
+                    });
+                }
+                if (!_saveFlag) {
+                    return;
+                }
                 vc.http.apiPost(
                     '/feeDiscount/saveFeeDiscount',
                     JSON.stringify(vc.component.addFeeDiscountInfo),
@@ -102,9 +115,11 @@
                             $('#addFeeDiscountModel').modal('hide');
                             vc.component.clearAddFeeDiscountInfo();
                             vc.emit('feeDiscountManage', 'listFeeDiscount', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -1,4 +1,4 @@
-(function(vc, vm) {
+(function (vc, vm) {
     vc.extends({
         data: {
             editInspectionPointInfo: {
@@ -15,12 +15,13 @@
                 nfcCode: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('editInspectionPoint', 'openEditInspectionPointModal', function(_params) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('editInspectionPoint', 'openEditInspectionPointModal', function (_params) {
                 vc.component.refreshEditInspectionPointInfo();
                 //与字典表关联
-                vc.getDict('inspection_point', "point_obj_type", function(_data) {
+                vc.getDict('inspection_point', "point_obj_type", function (_data) {
                     vc.component.editInspectionPointInfo.pointObjTypes = _data;
                 });
                 $('#editInspectionPointModel').modal('show');
@@ -35,7 +36,7 @@
                 vc.component.editInspectionPointInfo.communityId = vc.getCurrentCommunity().communityId;
                 $that._listEditInspectionItems();
             });
-            vc.on("editInspectionPointInfo", "notify", function(_param) {
+            vc.on("editInspectionPointInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("machineId") && $that.editInspectionPointInfo.pointObjType == '1001') {
                     vc.component.editInspectionPointInfo.pointObjId = _param.machineId;
                     vc.component.editInspectionPointInfo.pointObjName = _param.machineName;
@@ -43,15 +44,15 @@
             });
         },
         methods: {
-            editInspectionPointValidate: function() {
+            editInspectionPointValidate: function () {
                 return vc.validate.validate({
                     editInspectionPointInfo: vc.component.editInspectionPointInfo
                 }, {
                     'editInspectionPointInfo.inspectionName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "巡检点名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "巡检点名称不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "100",
@@ -62,27 +63,27 @@
                         limit: "required",
                         param: "",
                         errInfo: "位置信息不能为空"
-                    }, ],
+                    },],
                     'editInspectionPointInfo.pointObjType': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检类型不能为空"
-                    }, ],
+                    },],
                     'editInspectionPointInfo.pointObjName': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检位置不能为空"
-                    }, ],
+                    },],
                     'editInspectionPointInfo.itemId': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检项目不能为空"
-                    }, ],
+                    },],
                     'editInspectionPointInfo.remark': [{
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注信息不能超过200位"
-                    }, ],
+                    },],
                     'editInspectionPointInfo.inspectionId': [{
                         limit: "required",
                         param: "",
@@ -90,7 +91,7 @@
                     }]
                 });
             },
-            _pointObjTypeChange: function(){
+            _pointObjTypeChange: function () {
                 let type = vc.component.editInspectionPointInfo.pointObjType;
                 vc.component.editInspectionPointInfo.pointObjId = '';
                 vc.component.editInspectionPointInfo.pointObjName = '';
@@ -101,7 +102,7 @@
                     });
                 }
             },
-            editInspectionPoint: function() {
+            editInspectionPoint: function () {
                 if ($that.editInspectionPointInfo.pointObjType == '2002') {
                     $that.editInspectionPointInfo.pointObjId = '-1';
                 }
@@ -114,22 +115,24 @@
                     JSON.stringify(vc.component.editInspectionPointInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editInspectionPointModel').modal('hide');
                             vc.emit('inspectionPointManage', 'listInspectionPoint', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _listEditInspectionItems: function(_page, _rows) {
+            _listEditInspectionItems: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -137,21 +140,19 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/inspectionItem.listInspectionItem',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _inspectionItemManageInfo = JSON.parse(json);
-
                         vc.component.editInspectionPointInfo.items = _inspectionItemManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            refreshEditInspectionPointInfo: function() {
+            refreshEditInspectionPointInfo: function () {
                 vc.component.editInspectionPointInfo = {
                     inspectionId: '',
                     pointObjId: '',

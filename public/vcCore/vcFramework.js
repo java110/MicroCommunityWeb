@@ -2799,7 +2799,7 @@
             routes.splice(loction, 1);
         }
 
-        if (routes.length > 20) {
+        if (routes.length > 10) {
             routes.shift();
         }
 

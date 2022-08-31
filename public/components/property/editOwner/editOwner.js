@@ -19,6 +19,7 @@
                 sex: '',
                 remark: '',
                 ownerPhoto: '',
+                ownerPhotoUrl: '',
                 idCard: '',
                 card: '',
                 videoPlaying: true,
@@ -37,7 +38,8 @@
                 }
                 vc.copyObject(_owner, vc.component.editOwnerInfo);
                 //根据memberId 查询 照片信息
-                vc.component.editOwnerInfo.ownerPhoto = _fileUrl + "?objId=" +
+                vc.component.editOwnerInfo.ownerPhoto = _owner.urls && _owner.urls.length > 0 ? _owner.urls[0] : '';
+                vc.component.editOwnerInfo.ownerPhotoUrl = _fileUrl + "?objId=" +
                     vc.component.editOwnerInfo.memberId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
                 $('#editOwnerModel').modal('show');
                 vc.component._initAddOwnerMediaForEdit();
@@ -117,8 +119,8 @@
                 }
                 vc.component.editOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
                 //编辑时 ownerPhoto 中内容不是照片内容，则清空
-                if (vc.component.editOwnerInfo.ownerPhoto.indexOf(_fileUrl) != -1) {
-                    vc.component.editOwnerInfo.ownerPhoto = "";
+                if (vc.component.editOwnerInfo.ownerPhotoUrl.indexOf(_fileUrl) != -1) {
+                    vc.component.editOwnerInfo.ownerPhotoUrl = "";
                 }
                 vc.http.apiPost(
                     '/owner.editOwner',
@@ -159,6 +161,7 @@
                     sex: '',
                     remark: '',
                     ownerPhoto: '',
+                    ownerPhotoUrl: '',
                     idCard: '',
                     videoPlaying: true,
                     mediaStreamTrack: null,
@@ -222,7 +225,9 @@
                     }
                     canvas.getContext('2d').drawImage(video, 0, 0, w, h);
                     var data = canvas.toDataURL('image/jpeg', 0.3);
-                    vc.component.editOwnerInfo.ownerPhoto = data;
+                    // 改为异步上传图片
+                    this._doUploadImageEditOwner(data);
+                    // vc.component.editOwnerInfo.ownerPhoto = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 } else {
                     vc.toast('未检测到摄像头');
@@ -240,17 +245,50 @@
                         vc.toast("图片大小不能超过 2MB!")
                         return false;
                     }
-                    var reader = new FileReader(); //新建FileReader对象
-                    reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
-                        vc.translate(reader.result, function (_data) {
-                            vc.component.editOwnerInfo.ownerPhoto = _data;
-                        })
-                    }
+                    // 改为异步上传图片
+                    this._doUploadImageEditOwner(file);
+                    // var reader = new FileReader(); //新建FileReader对象
+                    // reader.readAsDataURL(file); //读取为base64
+                    // reader.onloadend = function (e) {
+                    //     vc.translate(reader.result, function (_data) {
+                    //         vc.component.editOwnerInfo.ownerPhoto = _data;
+                    //     })
+                    // }
                 }
+            },
+            // 异步上传图片
+            _doUploadImageEditOwner: function (_file) {
+                var param = new FormData();
+                param.append("uploadFile", _file);
+                param.append('communityId', vc.getCurrentCommunity().communityId);
+                //发送get请求
+                vc.http.upload('uploadFile',
+                    'uploadImage',
+                    param, {
+                        emulateJSON: true,
+                        //添加请求头
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    },
+                    function (json, res) {
+                        if (res.status != 200) {
+                            vc.toast("上传文件失败");
+                            return;
+                        }
+                        var data = JSON.parse(json);
+                        vc.component.editOwnerInfo.ownerPhoto = data.fileId;
+                        vc.component.editOwnerInfo.ownerPhotoUrl = data.url;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    }
+                );
             },
             _reOpenVedioForEdit: function () {
                 vc.component.editOwnerInfo.ownerPhoto = "";
+                vc.component.editOwnerInfo.ownerPhotoUrl = "";
                 vc.component._initAddOwnerMediaForEdit();
             },
             _closeVedioForEdit: function () {

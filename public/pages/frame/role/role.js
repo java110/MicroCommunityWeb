@@ -13,7 +13,13 @@
         _initEvent: function () {
             vc.on('role', 'switchRole', function (_param) {
                 $that.roleInfo.curRole = _param;
-                $that._changeRoleTab('privilege')
+                if (vc.hasPrivilege('502022082955280007')) {
+                    $that._changeRoleTab('privilege')
+                } else if (vc.hasPrivilege('502022082965160008')) {
+                    $that._changeRoleTab('community')
+                } else if (vc.hasPrivilege('502022082961190009')) {
+                    $that._changeRoleTab('staff')
+                }
             })
         },
         methods: {

@@ -1,102 +1,94 @@
-(function(vc){
-
+(function (vc) {
     vc.extends({
-        data:{
-            editPrivilegeGroupInfo:{
-                pgId:'',
-                name:'',
-                description:'',
-                errorInfo:''
+        data: {
+            editPrivilegeGroupInfo: {
+                pgId: '',
+                name: '',
+                description: '',
+                errorInfo: ''
             }
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-             vc.on('editPrivilegeGroup','openPrivilegeGroupModel',function(_params){
-                vc.copyObject(_params,vc.component.editPrivilegeGroupInfo)
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('editPrivilegeGroup', 'openPrivilegeGroupModel', function (_params) {
+                vc.copyObject(_params, vc.component.editPrivilegeGroupInfo)
                 $('#editPrivilegeGroupModel').modal('show');
             });
         },
-        methods:{
-            editPrivilegeGroupValidate(){
+        methods: {
+            editPrivilegeGroupValidate() {
                 return vc.validate.validate({
-                    editPrivilegeGroupInfo:vc.component.editPrivilegeGroupInfo
-                },{
-                    'editPrivilegeGroupInfo.pgId':[
+                    editPrivilegeGroupInfo: vc.component.editPrivilegeGroupInfo
+                }, {
+                    'editPrivilegeGroupInfo.pgId': [
                         {
-                            limit:"required",
-                            param:"",
-                            errInfo:"权限组ID不能为空"
+                            limit: "required",
+                            param: "",
+                            errInfo: "角色ID不能为空"
                         }
-
                     ],
-                    'editPrivilegeGroupInfo.name':[
+                    'editPrivilegeGroupInfo.name': [
                         {
-                            limit:"required",
-                            param:"",
-                            errInfo:"权限组名不能为空"
+                            limit: "required",
+                            param: "",
+                            errInfo: "角色名称不能为空"
                         },
                         {
-                            limit:"maxin",
-                            param:"2,10",
-                            errInfo:"权限组名长度必须在2位至10位"
+                            limit: "maxin",
+                            param: "2,10",
+                            errInfo: "角色名称长度必须在2位至10位"
                         },
                     ],
-                    'editPrivilegeGroupInfo.description':[
+                    'editPrivilegeGroupInfo.description': [
                         {
-                            limit:"required",
-                            param:"",
-                            errInfo:"权限组描述不能为空"
-                        },
-                        {
-                            limit:"maxLength",
-                            param:"200",
-                            errInfo:"权限组描述长度不能超过200位"
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "角色描述长度不能超过200位"
                         },
                     ]
-
                 });
             },
-            saveEditPrivilegeGroup:function(){
-                if(!vc.component.editPrivilegeGroupValidate()){
-                    vc.component.editPrivilegeGroupInfo.errorInfo = vc.validate.errInfo;
-                    return ;
+            saveEditPrivilegeGroup: function () {
+                if (!vc.component.editPrivilegeGroupValidate()) {
+                    vc.toast(vc.validate.errInfo);
+                    return;
                 }
                 vc.component.editPrivilegeGroupInfo.errorInfo = "";
                 vc.http.apiPost(
                     '/edit.privilegeGroup.info',
                     JSON.stringify(vc.component.editPrivilegeGroupInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if(res.status == 200){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editPrivilegeGroupModel').modal('hide');
                             vc.component.clearEditPrivilegeGroupInfo();
-                            vc.component.$emit('privilegeGroup_loadPrivilegeGroup',{});
-                            vc.emit('roleDiv', '_loadRole',{})
-                            return ;
+                            vc.component.$emit('privilegeGroup_loadPrivilegeGroup', {});
+                            vc.emit('roleDiv', '_loadRole', {})
+                            vc.toast("修改成功");
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                         vc.component.editPrivilegeGroupInfo.errorInfo = json;
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.component.editPrivilegeGroupInfo.errorInfo = errInfo;
-                     });
+                    });
             },
-            clearEditPrivilegeGroupInfo:function(){
+            clearEditPrivilegeGroupInfo: function () {
                 vc.component.editPrivilegeGroupInfo = {
-                    pgId:'',
-                    name:'',
-                    description:'',
-                    errorInfo:''
+                    pgId: '',
+                    name: '',
+                    description: '',
+                    errorInfo: ''
                 };
             }
         }
     });
-
 })(window.vc);

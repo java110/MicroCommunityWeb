@@ -14,25 +14,32 @@
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-sm-2">
-                        <image width="120px" class="border-radius" height="140px" v-bind:src="staffDetailInfo.photo" @error="errorLoadImg" />
+                        <image width="120px" class="border-radius" height="140px" v-bind:src="staffDetailInfo.photo"
+                               @error="errorLoadImg"/>
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="编号" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="编号" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.staffId}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="名称" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="名称" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.userName}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="邮箱" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="邮箱" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.email}}</label>
                                 </div>
                             </div>
@@ -40,19 +47,25 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="手机" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="手机" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.tel}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="性别" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="性别" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.sex == '0'?'男':'女'}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label"><span><vc:i18n name="住址" namespace="staffDetailInfo"></vc:i18n></span></label>：
+                                    <label class="col-form-label">
+                                        <span><vc:i18n name="住址" namespace="staffDetailInfo"></vc:i18n></span>
+                                    </label>：
                                     <label class="">{{staffDetailInfo.address}}</label>
                                 </div>
                             </div>
@@ -60,7 +73,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="ibox-title margin-top">
                 <h5>
                     <span><vc:i18n name="关联组织" namespace="staffDetailInfo"></vc:i18n></span>
@@ -68,46 +80,48 @@
             </div>
             <div class="ibox-content">
                 <div class="row" v-for="(item,index) in staffDetailInfo.orgs">
-                    <div class="col-md-6" >组织：{{item.orgName}} </div>
-                    <div class="col-md-6" >岗位：{{item.relCdName}} </div>
+                    <div class="col-md-6">组织：{{item.orgName}}</div>
+                    <div class="col-md-6">岗位：{{item.relCdName}}</div>
                 </div>
             </div>
-
+<!--            <div class="ibox-title margin-top">-->
+<!--                <h5>-->
+<!--                    <span><vc:i18n name="关联小区" namespace="staffDetailInfo"></vc:i18n></span>-->
+<!--                </h5>-->
+<!--            </div>-->
+<!--            <div class="ibox-content">-->
+<!--                <div class="row" v-for="(item,index) in staffDetailInfo.communitys">-->
+<!--                    <div class="col-md-4">{{item.name}}</div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="ibox-title margin-top">
                 <h5>
-                    <span><vc:i18n name="关联小区" namespace="staffDetailInfo"></vc:i18n></span>
-                </h5>
-            </div>
-            <div class="ibox-content">
-                <div class="row" v-for="(item,index) in staffDetailInfo.communitys">
-                    <div class="col-md-4" >{{item.name}} </div>
-                </div>
-            </div>
-
-            <div class="ibox-title margin-top">
-                <h5>
-                    <span><vc:i18n name="关联角色" namespace="staffDetailInfo"></vc:i18n></span>
+                    <span><vc:i18n name="关联角色及小区" namespace="staffDetailInfo"></vc:i18n></span>
                 </h5>
             </div>
             <div class="ibox-content">
                 <div class="row" v-for="(item,index) in staffDetailInfo.roles">
-                    <div class="col-md-4" >{{item.roleName}} </div>
+                    <div class="col-md-12">
+                        <p v-if="item.roleCommunityDtoList.length>0">
+                        {{item.roleName}}
+                        (
+                        <span  v-for="(item1,index1) in item.roleCommunityDtoList">
+                            {{item1.communityName}}
+                            {{index1 === item.roleCommunityDtoList.length-1 ? " ":" 、 "}}
+                        </span>
+                        )
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="mail-box-header">
-            <h2>
-                员工权限
-            </h2>
+            <h2>员工权限</h2>
         </div>
         <div class="mail-box">
-
-            <div id="jstree_privilege">
-
-            </div>
-
+            <div id="jstree_privilege"></div>
         </div>
     </div>
 </div>

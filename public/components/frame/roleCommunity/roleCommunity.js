@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
- (function (vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var ALL_ROWS = 100;
@@ -12,12 +12,10 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                pgId:'',
-
+                pgId: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('roleCommunityInfo', 'openRoleCommunity', function (_param) {
@@ -28,22 +26,19 @@
                 //vc.copyObject(_param, vc.component.roleCommunityInfo.conditions);
                 vc.component._listRoleCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('roleCommunityInfo', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._listRoleCommunitys(_currentPage, DEFAULT_ROWS);
             });
-
         },
         methods: {
             _listRoleCommunitys: function (_page, _rows) {
-
                 var param = {
                     params: {
-                        page:_page,
-                        row:_rows,
-                        roleId:vc.component.roleCommunityInfo.pgId
+                        page: _page,
+                        row: _rows,
+                        roleId: vc.component.roleCommunityInfo.pgId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/roleCommunity.listRoleCommunity',
                     param,
@@ -52,7 +47,7 @@
                         vc.component.roleCommunityInfo.total = _roleCommunityInfo.total;
                         vc.component.roleCommunityInfo.records = _roleCommunityInfo.records;
                         vc.component.roleCommunityInfo.roleCommunitys = _roleCommunityInfo.data;
-                        vc.emit('pagination', 'init', {
+                        vc.emit('roleCommunityInfo', 'paginationPlus', 'init', {
                             total: vc.component.roleCommunityInfo.records,
                             dataCount: vc.component.roleCommunityInfo.total,
                             currentPage: _page
@@ -63,19 +58,18 @@
                 );
             },
             _openAddRoleCommunityModal: function () {
-                vc.emit('addRoleCommunity','openAddRoleCommunityModal', {
+                vc.emit('addRoleCommunity', 'openAddRoleCommunityModal', {
                     roleId: vc.component.roleCommunityInfo.pgId,
                     orgName: vc.component.roleCommunityInfo.orgName
                 });
             },
             _openDeleteRoleCommunityModel: function (_roleCommunity) {
-                vc.emit('deleteRoleCommunity','openDeleteRoleCommunityModal', _roleCommunity);
+                vc.emit('deleteRoleCommunity', 'openDeleteRoleCommunityModal', _roleCommunity);
             },
-            _openBeyondRoleCommunity:function(_roleCommunity){
+            _openBeyondRoleCommunity: function (_roleCommunity) {
             },
             _queryRoleCommunityMethod: function () {
                 vc.component._listRoleCommunitys(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.roleCommunityInfo.moreCondition) {
@@ -84,13 +78,9 @@
                     vc.component.roleCommunityInfo.moreCondition = true;
                 }
             },
-            _goBack:function(){
-                vc.emit('orgManage','onBack',{});
+            _goBack: function () {
+                vc.emit('orgManage', 'onBack', {});
             }
-
-
-
-
         }
     });
 })(window.vc);

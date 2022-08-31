@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -26,27 +26,56 @@
                 deedTaxPhotos: []
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('addPropertyRightRegistration', 'openAddPropertyRightRegistrationModal', function() {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('addPropertyRightRegistration', 'openAddPropertyRightRegistrationModal', function () {
                 $('#addPropertyRightRegistrationModel').modal('show');
             });
             vc.component._queryFloor();
             //身份证照片上传
-            vc.on("addPropertyRightRegistration", "notifyUploadIdCardImage", function(_param) {
-                vc.component.addPropertyRightRegistrationInfo.idCardPhotos = _param;
+            vc.on("addPropertyRightRegistration", "notifyUploadIdCardImage", function (_param) {
+                if (_param.length > 0) {
+                    vc.component.addPropertyRightRegistrationInfo.idCardPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.addPropertyRightRegistrationInfo.idCardPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addPropertyRightRegistrationInfo.idCardPhotos = [];
+                }
             });
             //购房合同图片上传
-            vc.on("addPropertyRightRegistration", "notifyUploadHousePurchaseImage", function(_param) {
-                vc.component.addPropertyRightRegistrationInfo.housePurchasePhotos = _param;
+            vc.on("addPropertyRightRegistration", "notifyUploadHousePurchaseImage", function (_param) {
+                if (_param.length > 0) {
+                    vc.component.addPropertyRightRegistrationInfo.housePurchasePhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.addPropertyRightRegistrationInfo.housePurchasePhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addPropertyRightRegistrationInfo.housePurchasePhotos = [];
+                }
             });
             //维修基金图片上传
-            vc.on("addPropertyRightRegistration", "notifyUploadRepairImage", function(_param) {
-                vc.component.addPropertyRightRegistrationInfo.repairPhotos = _param;
+            vc.on("addPropertyRightRegistration", "notifyUploadRepairImage", function (_param) {
+                if (_param.length > 0) {
+                    vc.component.addPropertyRightRegistrationInfo.repairPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.addPropertyRightRegistrationInfo.repairPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addPropertyRightRegistrationInfo.repairPhotos = [];
+                }
             });
             //契税证明图片上传
-            vc.on("addPropertyRightRegistration", "notifyUploadDeedTaxImage", function(_param) {
-                vc.component.addPropertyRightRegistrationInfo.deedTaxPhotos = _param;
+            vc.on("addPropertyRightRegistration", "notifyUploadDeedTaxImage", function (_param) {
+                if (_param.length > 0) {
+                    vc.component.addPropertyRightRegistrationInfo.deedTaxPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.addPropertyRightRegistrationInfo.deedTaxPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.addPropertyRightRegistrationInfo.deedTaxPhotos = [];
+                }
             });
         },
         methods: {
@@ -70,10 +99,10 @@
                         errInfo: "房屋不能为空"
                     }],
                     'addPropertyRightRegistrationInfo.name': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "姓名不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "姓名不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "2,64",
@@ -84,12 +113,12 @@
                         limit: "required",
                         param: "",
                         errInfo: "联系方式不能为空"
-                    }, ],
+                    },],
                     'addPropertyRightRegistrationInfo.idCard': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "身份证号不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "身份证号不能为空"
+                    },
                         {
                             limit: "idCard",
                             param: "",
@@ -97,10 +126,10 @@
                         }
                     ],
                     'addPropertyRightRegistrationInfo.address': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "地址不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "地址不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "255",
@@ -119,7 +148,7 @@
                     }]
                 });
             },
-            savePropertyRightRegistrationInfo: function() {
+            savePropertyRightRegistrationInfo: function () {
                 if (!vc.component.addPropertyRightRegistrationValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -130,7 +159,7 @@
                     JSON.stringify(vc.component.addPropertyRightRegistrationInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -138,18 +167,19 @@
                             $('#addPropertyRightRegistrationModel').modal('hide');
                             vc.component.clearAddPropertyRightRegistrationInfo();
                             vc.emit('propertyRightRegistrationManage', 'listPropertyRightRegistration', {});
-                            //location.reload();
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             //查询楼栋
-            _queryFloor: function() {
+            _queryFloor: function () {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -160,17 +190,17 @@
                 vc.http.apiGet(
                     '/floor.queryFloors',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var listFloorData = JSON.parse(json);
                         vc.component.addPropertyRightRegistrationInfo.floors = listFloorData.apiFloorDataVoList;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             //查询单元
-            _queryUnit: function() {
+            _queryUnit: function () {
                 var param = {
                     params: {
                         floorId: vc.component.addPropertyRightRegistrationInfo.floorId,
@@ -181,17 +211,17 @@
                 };
                 vc.http.apiGet('/unit.queryUnits',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var listUnitData = JSON.parse(json);
                         vc.component.addPropertyRightRegistrationInfo.units = listUnitData;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             //查询房屋
-            _queryRoom: function() {
+            _queryRoom: function () {
                 var param = {
                     params: {
                         unitId: vc.component.addPropertyRightRegistrationInfo.unitId,
@@ -202,16 +232,16 @@
                 };
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var listRoomData = JSON.parse(json);
                         vc.component.addPropertyRightRegistrationInfo.rooms = listRoomData.rooms;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddPropertyRightRegistrationInfo: function() {
+            clearAddPropertyRightRegistrationInfo: function () {
                 vc.emit('addPropertyRightRegistration1', 'uploadImage', 'clearImage', {});
                 vc.emit('addPropertyRightRegistration2', 'uploadImage', 'clearImage', {});
                 vc.emit('addPropertyRightRegistration3', 'uploadImage', 'clearImage', {});

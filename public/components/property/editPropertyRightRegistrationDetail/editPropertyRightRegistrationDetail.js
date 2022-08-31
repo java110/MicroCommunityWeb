@@ -21,6 +21,7 @@
         },
         _initEvent: function () {
             vc.on('editPropertyRightRegistrationDetail', 'openEditPropertyRightRegistrationDetailModal', function (_params) {
+                console.log(_params);
                 vc.component.refreshEditPropertyRightRegistrationDetailInfo();
                 $('#editPropertyRightRegistrationDetailModel').modal('show');
                 vc.copyObject(_params, vc.component.editPropertyRightRegistrationDetailInfo);
@@ -29,19 +30,47 @@
             });
             //身份证照片上传
             vc.on("editPropertyRightRegistrationDetail", "notifyUploadIdCardImage", function (_param) {
-                vc.component.editPropertyRightRegistrationDetailInfo.idCardPhotos = _param;
+                if (_param.length > 0) {
+                    vc.component.editPropertyRightRegistrationDetailInfo.idCardPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.editPropertyRightRegistrationDetailInfo.idCardPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editPropertyRightRegistrationDetailInfo.idCardPhotos = [];
+                }
             });
             //购房合同图片上传
             vc.on("editPropertyRightRegistrationDetail", "notifyUploadHousePurchaseImage", function (_param) {
-                vc.component.editPropertyRightRegistrationDetailInfo.housePurchasePhotos = _param;
+                if (_param.length > 0) {
+                    vc.component.editPropertyRightRegistrationDetailInfo.housePurchasePhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.editPropertyRightRegistrationDetailInfo.housePurchasePhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editPropertyRightRegistrationDetailInfo.housePurchasePhotos = [];
+                }
             });
             //维修基金图片上传
             vc.on("editPropertyRightRegistrationDetail", "notifyUploadRepairImage", function (_param) {
-                vc.component.editPropertyRightRegistrationDetailInfo.repairPhotos = _param;
+                if (_param.length > 0) {
+                    vc.component.editPropertyRightRegistrationDetailInfo.repairPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.editPropertyRightRegistrationDetailInfo.repairPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editPropertyRightRegistrationDetailInfo.repairPhotos = [];
+                }
             });
             //契税证明图片上传
             vc.on("editPropertyRightRegistrationDetail", "notifyUploadDeedTaxImage", function (_param) {
-                vc.component.editPropertyRightRegistrationDetailInfo.deedTaxPhotos = _param;
+                if (_param.length > 0) {
+                    vc.component.editPropertyRightRegistrationDetailInfo.deedTaxPhotos = [];
+                    _param.forEach((item) => {
+                        vc.component.editPropertyRightRegistrationDetailInfo.deedTaxPhotos.push(item.fileId);
+                    })
+                }else{
+                    vc.component.editPropertyRightRegistrationDetailInfo.deedTaxPhotos = [];
+                }
             });
         },
         methods: {
@@ -85,21 +114,21 @@
                     });
             },
             freshPhotos: function (_info) {
-                if (_info.securities == '001' && _info.idCardUrl != null && _info.idCardUrl && _info.idCardUrl != "undefined" && _info.idCardUrl.split(",").length > 0) {
+                if (_info.securities == '001' && _info.idCardUrl && _info.idCardUrl.length > 0) {
                     //身份证展示
-                    vc.emit('editPropertyRightRegistrationDetail1', 'uploadImage', 'notifyPhotos', _info.idCardUrl.split(','));
+                    vc.emit('editPropertyRightRegistrationDetail1', 'uploadImageUrl', 'notifyPhotos', _info.idCardUrl);
                 }
-                if (_info.securities == '002' && _info.housePurchaseUrl != null && _info.housePurchaseUrl && _info.housePurchaseUrl != "undefined" && _info.housePurchaseUrl.split(",").length > 0) {
+                if (_info.securities == '002' && _info.housePurchaseUrl && _info.housePurchaseUrl.length > 0) {
                     //购房合同展示
-                    vc.emit('editPropertyRightRegistrationDetail2', 'uploadImage', 'notifyPhotos', _info.housePurchaseUrl.split(','));
+                    vc.emit('editPropertyRightRegistrationDetail2', 'uploadImageUrl', 'notifyPhotos', _info.housePurchaseUrl);
                 }
-                if (_info.securities == '003' && _info.repairUrl != null && _info.repairUrl && _info.repairUrl != "undefined" && _info.repairUrl.split(",").length > 0) {
+                if (_info.securities == '003' && _info.repairUrl && _info.repairUrl.length > 0) {
                     //维修基金展示
-                    vc.emit('editPropertyRightRegistrationDetail3', 'uploadImage', 'notifyPhotos', _info.repairUrl.split(','));
+                    vc.emit('editPropertyRightRegistrationDetail3', 'uploadImageUrl', 'notifyPhotos', _info.repairUrl);
                 }
-                if (_info.securities == '004' && _info.deedTaxUrl != null && _info.deedTaxUrl && _info.deedTaxUrl != "undefined" && _info.deedTaxUrl.split(",").length > 0) {
+                if (_info.securities == '004' && _info.deedTaxUrl && _info.deedTaxUrl.length > 0) {
                     //契税展示
-                    vc.emit('editPropertyRightRegistrationDetail4', 'uploadImage', 'notifyPhotos', _info.deedTaxUrl.split(','));
+                    vc.emit('editPropertyRightRegistrationDetail4', 'uploadImageUrl', 'notifyPhotos', _info.deedTaxUrl);
                 }
             },
             refreshEditPropertyRightRegistrationDetailInfo: function () {
