@@ -54,7 +54,7 @@
                     }
                 );
             },
-            _qureyParkingAreaControlPayment: function() {
+            _qureyParkingAreaControlPaymentSummary: function() {
                 $that._loadParkingAreaControlPaymentSummary(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _initPaymentSummaryChart: function(_data) {
