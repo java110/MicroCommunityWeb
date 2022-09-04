@@ -14,7 +14,8 @@
                 remark: "",
                 startTime: '',
                 endTime: '',
-                carNumType: ''
+                carNumType: '',
+                leaseType: '',
             },
             carTypes: [{
                     key: '9901',

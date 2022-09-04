@@ -17,7 +17,7 @@
                 remark: "",
                 startTime: '',
                 endTime: '',
-                carNumType: '',
+                leaseType: '',
                 carAttrs: '',
                 attrs: [],
                 value: ''
@@ -132,8 +132,8 @@
                 });
             },
             saveAddCarInfo: function() {
-                let _carNumType = $that.addCarInfo.carNumType;
-                if (_carNumType == 'S') {
+                let _leaseType = $that.addCarInfo.leaseType;
+                if (_leaseType != 'H') {
                     $that.addCarInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                     $that.addCarInfo.endTime = '2037-01-01';
                 }

@@ -39,20 +39,22 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌类型" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
-                                <select class="custom-select" v-model="addCarInfo.carNumType">
+                                <select class="custom-select" v-model="addCarInfo.leaseType">
                                     <option selected disabled value="">{{vc.i18n('必填，请选择车牌类型','addCar')}}</option>
                                     <option value="H">{{vc.i18n('月租车','addCar')}}</option>
                                     <option value="S">{{vc.i18n('出售车辆','addCar')}}</option>
+                                    <option value="I">{{vc.i18n('内部车','addCar')}}</option>
+                                    <option value="NM">{{vc.i18n('免费车','addCar')}}</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row" v-show="addCarInfo.carNumType == 'H'">
+                        <div class="form-group row" v-show="addCarInfo.leaseType == 'H'">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="起租时间" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="addCarInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写起租时间','addCar')" class="form-control startTime">
                             </div>
                         </div>
-                        <div class="form-group row" v-show="addCarInfo.carNumType == 'H'">
+                        <div class="form-group row" v-show="addCarInfo.leaseType == 'H'">
                             <label class="col-sm-2 col-form-label"><span><vc:i18n name="结租时间" namespace="addCar"></vc:i18n></span></label>
                             <div class="col-sm-10">
                                 <input v-model="addCarInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结租时间','addCar')" class="form-control endTime">
