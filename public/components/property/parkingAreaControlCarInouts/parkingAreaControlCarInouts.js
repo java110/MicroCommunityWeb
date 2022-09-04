@@ -13,6 +13,7 @@
                 carNum: '',
                 startTime: '',
                 endTime: '',
+                carType: ''
             }
         },
         _initMethod: function() {
@@ -45,7 +46,8 @@
                         state: $that.parkingAreaControlCarInoutsInfo.state,
                         carNum: $that.parkingAreaControlCarInoutsInfo.carNum,
                         startTime: $that.parkingAreaControlCarInoutsInfo.startTime,
-                        endTime: $that.parkingAreaControlCarInoutsInfo.endTime
+                        endTime: $that.parkingAreaControlCarInoutsInfo.endTime,
+                        carType: $that.parkingAreaControlCarInoutsInfo.carType
                     }
                 };
                 //发送get请求

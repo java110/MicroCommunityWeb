@@ -14,7 +14,8 @@
                     carNumLike: '',
                     num: '',
                     valid: '',
-                    carTypeCd: '1001'
+                    carTypeCd: '1001',
+                    leaseType: ''
                 },
                 listColumns: [],
             }

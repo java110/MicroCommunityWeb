@@ -44,11 +44,13 @@
                     <div class="row" v-show="listOwnerCarInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.carTypeCd">
+                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.leaseType">
                                     <option selected value="">必填，请选择车辆类型</option>
-                                    <option value="1001">业主车辆</option>
-                                    <option value="1002">成员车辆</option>
-                                    <option value="1003">临时车</option>
+                                    <option value="T">临时车</option>
+                                    <option value="S">出售车辆</option>
+                                    <option value="H">月租车</option>
+                                    <option value="I">内部车</option>
+                                    <option value="NM">免费车</option>
                                 </select>
                             </div>
                         </div>
@@ -132,9 +134,6 @@
                                 </td>
                                 <td class="text-center">
                                     {{car.leaseTypeName}}
-                                </td>
-                                <td class="text-center">
-                                    {{car.carTypeName}}
                                 </td>
                                 <td class="text-center">
                                     {{car.carTypeName}}

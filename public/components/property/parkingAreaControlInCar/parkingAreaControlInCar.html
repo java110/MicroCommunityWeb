@@ -15,6 +15,19 @@
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlInCarInfo.carType">
+                <option  value="">{{vc.i18n('请选择车牌类型','parkingAreaControlInCar')}}</option>
+                <option value="T">{{vc.i18n('临时车','parkingAreaControlInCar')}}</option>
+                <option value="S">{{vc.i18n('出售车辆','parkingAreaControlInCar')}}</option>
+                <option value="H">{{vc.i18n('月租车','parkingAreaControlInCar')}}</option>
+                <option value="W">{{vc.i18n('白名单','parkingAreaControlInCar')}}</option>
+                <option value="B">{{vc.i18n('黑名单','parkingAreaControlInCar')}}</option>
+                <option value="I">{{vc.i18n('内部车','parkingAreaControlInCar')}}</option>
+                <option value="NM">{{vc.i18n('免费车','parkingAreaControlInCar')}}</option>
+            </select>
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
             <input v-model="parkingAreaControlInCarInfo.startTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlInCar')" class="form-control inCarStartTime">
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
@@ -35,7 +48,7 @@
                     <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车场" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="计费规则" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
-                    <th class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车牌类型" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="在场时间" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车费用" namespace="parkingAreaControlInCar"></vc:i18n></span></th>

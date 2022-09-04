@@ -8,9 +8,21 @@
             <select class="custom-select" v-model="parkingAreaControlCarInoutsInfo.state">
                 <option  value="">{{vc.i18n('请选择车辆状态','parkingAreaControlCarInouts')}}</option>
                 <option value="100300">{{vc.i18n('进场状态','parkingAreaControlCarInouts')}}</option>
-                <option value="100400">{{vc.i18n('支付完成','parkingAreaControlInCar')}}</option>
-                <option value="100500">{{vc.i18n('离场状态','parkingAreaControlInCar')}}</option>
-                <option value="100600">{{vc.i18n('支付超时重新支付','parkingAreaControlInCar')}}</option>
+                <option value="100400">{{vc.i18n('支付完成','parkingAreaControlCarInouts')}}</option>
+                <option value="100500">{{vc.i18n('离场状态','parkingAreaControlCarInouts')}}</option>
+                <option value="100600">{{vc.i18n('支付超时重新支付','parkingAreaControlCarInouts')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlCarInoutsInfo.carType">
+                <option  value="">{{vc.i18n('请选择车牌类型','parkingAreaControlCarInouts')}}</option>
+                <option value="T">{{vc.i18n('临时车','parkingAreaControlCarInouts')}}</option>
+                <option value="S">{{vc.i18n('出售车辆','parkingAreaControlCarInouts')}}</option>
+                <option value="H">{{vc.i18n('月租车','parkingAreaControlCarInouts')}}</option>
+                <option value="W">{{vc.i18n('白名单','parkingAreaControlCarInouts')}}</option>
+                <option value="B">{{vc.i18n('黑名单','parkingAreaControlCarInouts')}}</option>
+                <option value="I">{{vc.i18n('内部车','parkingAreaControlCarInouts')}}</option>
+                <option value="NM">{{vc.i18n('免费车','parkingAreaControlCarInouts')}}</option>
             </select>
 
         </div>
@@ -35,7 +47,7 @@
                     <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车场" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="计费规则" namespace="parkingAreaControlInCar"></vc:i18n></span></th>
-                    <th class="text-center"><span><vc:i18n name="车辆类型" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
+                    <th class="text-center"><span><vc:i18n name="车牌类型" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="进场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="停车时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
@@ -57,9 +69,10 @@
                     <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
                     <td class="text-center" v-else>{{carIn.outTime}}</td>
                     <td class="text-center">{{carIn.hours}}<span><vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n></span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></span></td>
-                    <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
-                    <td class="text-center" v-else-if="carIn.carType != 'T'">-</td>
-                    <td class="text-center" v-else>{{carIn.realCharge}}</td>
+                    <td class="text-center" v-if="carIn.carType != 'T'">-</td>
+                    <!-- <td class="text-center" v-else-if="carIn.carInout != '3307">{{carIn.payCharge}}</td> -->
+                    <!-- <td class="text-center" v-else>{{carIn.realCharge}}</td> -->
+                    <td class="text-center" v-else>{{carIn.payCharge}}</td>
                     <td class="text-center">{{carIn.remark}}</td>
 
 

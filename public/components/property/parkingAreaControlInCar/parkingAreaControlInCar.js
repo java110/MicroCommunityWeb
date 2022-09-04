@@ -15,6 +15,7 @@
                 endTime: '',
                 updateCarNum: '',
                 updateInoutId: '',
+                carType: ''
             }
         },
         _initMethod: function() {
@@ -47,7 +48,8 @@
                         carNum: $that.parkingAreaControlInCarInfo.carNum,
                         state: $that.parkingAreaControlInCarInfo.state,
                         startTime: $that.parkingAreaControlInCarInfo.startTime,
-                        endTime: $that.parkingAreaControlInCarInfo.endTime
+                        endTime: $that.parkingAreaControlInCarInfo.endTime,
+                        carType: $that.parkingAreaControlInCarInfo.carType
                     }
                 };
                 //发送get请求
