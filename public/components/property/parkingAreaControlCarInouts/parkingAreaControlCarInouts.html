@@ -52,13 +52,13 @@
                     <td class="text-center" @click="_viewTempFeeConfigInOutCar(carIn.configId)">{{carIn.feeName}}
                         <span class="fa fa-info-circle"></span>
                     </td>
-                    <td class="text-center">{{carIn.carType == '1001'?'月租车':'临时车'}}</td>
+                    <td class="text-center">{{carIn.carTypeName}}</td>
                     <td class="text-center">{{carIn.inTime}}</td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
                     <td class="text-center" v-else>{{carIn.outTime}}</td>
                     <td class="text-center">{{carIn.hours}}<span><vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n></span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></span></td>
                     <td class="text-center" v-if="carIn.carInout != '3307'">{{carIn.payCharge}}</td>
-                    <td class="text-center" v-else-if="carIn.carType == '1003'">-</td>
+                    <td class="text-center" v-else-if="carIn.carType != 'T'">-</td>
                     <td class="text-center" v-else>{{carIn.realCharge}}</td>
                     <td class="text-center">{{carIn.remark}}</td>
 
