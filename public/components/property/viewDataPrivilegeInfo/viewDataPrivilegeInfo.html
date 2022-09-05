@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="数据权限信息"  namespace="viewDataPrivilegeInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewDataPrivilegeInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectDataPrivilegeInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择数据权限"  namespace="viewDataPrivilegeInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewDataPrivilegeInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddDataPrivilegeInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加数据权限"  namespace="viewDataPrivilegeInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='名称' namespace='viewdataPrivilegeInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewDataPrivilegeInfo.name}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='编号' namespace='viewdataPrivilegeInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewDataPrivilegeInfo.code}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='communityId' namespace='viewdataPrivilegeInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewDataPrivilegeInfo.communityId}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='备注' namespace='viewdataPrivilegeInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewDataPrivilegeInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addDataPrivilege"
+               callBackListener="viewDataPrivilegeInfo"
+               callBackFunction="chooseDataPrivilege"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseDataPrivilege"
+               emitChooseDataPrivilege="viewDataPrivilegeInfo"
+               emitLoadData="viewDataPrivilegeInfo"
+    ></vc:create>
+</div>
