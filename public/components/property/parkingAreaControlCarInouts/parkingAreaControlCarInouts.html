@@ -59,7 +59,8 @@
                 <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
-                    <td class="text-center">{{carIn.carNum}}</td>
+                    <td class="text-center">{{carIn.carNum}}
+                    </td>
                     <td class="text-center">{{carIn.areaNum}}</td>
                     <td class="text-center" @click="_viewTempFeeConfigInOutCar(carIn.configId)">{{carIn.feeName}}
                         <span class="fa fa-info-circle"></span>
@@ -72,7 +73,9 @@
                     <td class="text-center" v-if="carIn.carType != 'T'">-</td>
                     <!-- <td class="text-center" v-else-if="carIn.carInout != '3307">{{carIn.payCharge}}</td> -->
                     <!-- <td class="text-center" v-else>{{carIn.realCharge}}</td> -->
-                    <td class="text-center" v-else>{{carIn.payCharge}}</td>
+                    <td class="text-center" v-else>{{carIn.payCharge}}(
+                        <a href="javascript:void(0)" @click="_carInoutTempCarPayFee(carIn)">收费出场</a>)
+                    </td>
                     <td class="text-center">{{carIn.remark}}</td>
 
 

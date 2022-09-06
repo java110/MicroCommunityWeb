@@ -71,7 +71,10 @@
                         <span><vc:i18n name="小时" namespace="parkingAreaControlInCar"></vc:i18n>
                         </span>{{carIn.min}}<span><vc:i18n name="分" namespace="parkingAreaControlInCar"></vc:i18n></span>
                     </td>
-                    <td class="text-center" v-if="carIn.carType == 'T'">{{carIn.payCharge}}<span><vc:i18n name="元" namespace="parkingAreaControlInCar"></vc:i18n></span></td>
+                    <td class="text-center" v-if="carIn.carType == 'T'">
+                        {{carIn.payCharge}}
+                        (<a href="javascript:void(0)" @click="_carInTempCarPayFee(carIn)">收费出场</a>)
+                    </td>
                     <td class="text-center" v-else>-</td>
 
                 </tr>
