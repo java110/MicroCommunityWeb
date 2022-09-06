@@ -28,6 +28,7 @@
                 // = _params;
                 vc.copyObject(_params, vc.component.parkingAreaControlCustomCarInoutInfo);
                 vc.component.parkingAreaControlCustomCarInoutInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that._queryCustomCarMoney();
             });
         },
         methods: {

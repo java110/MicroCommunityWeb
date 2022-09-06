@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             parkingAreaControlFeeInfo: {
@@ -13,16 +13,16 @@
                 open: "",
                 openMsg: "",
                 machineId: '-1',
-                showRefresh:'',
-                boxId:''
+                showRefresh: '',
+                boxId: ''
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that.parkingAreaControlFeeInfo.boxId = vc.getParam('boxId');
             $that._loadQrCodeUrl();
         },
-        _initEvent: function () {
-            vc.on('parkingAreaControlFee', 'notify', function (_data) {
+        _initEvent: function() {
+            vc.on('parkingAreaControlFee', 'notify', function(_data) {
                 if (_data.action != 'FEE_INFO') {
                     return;
                 }
@@ -33,16 +33,16 @@
                 $that.parkingAreaControlFeeInfo.remark = '';
                 $that.parkingAreaControlFeeInfo.machineId = _machineId;
             });
-            vc.on('parkingAreaControlFee', 'changeMachine', function (_data) {
+            vc.on('parkingAreaControlFee', 'changeMachine', function(_data) {
                 $that.parkingAreaControlFeeInfo.machineId = _data.machineId;
             })
-            vc.on('parkingAreaControlFee', 'clear', function () {
+            vc.on('parkingAreaControlFee', 'clear', function() {
                 $that.clearParkingAreaControlFeeInfo();
             });
 
         },
         methods: {
-            _loadQrCodeUrl:function(){
+            _loadQrCodeUrl: function() {
                 //判断是否支付
                 var param = {
                     params: {
@@ -54,25 +54,28 @@
                 //发送get请求
                 vc.http.apiGet('/machine.getCarMachineQrCodeUrl',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _info = JSON.parse(json);
                         $that._viewQr(_info.data)
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            saveTempFeeInfo: function () {
+            saveTempFeeInfo: function() {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
                     carNum: $that.parkingAreaControlFeeInfo.carNum,
                     amount: $that.parkingAreaControlFeeInfo.pay,
                     payCharge: $that.parkingAreaControlFeeInfo.payCharge,
-                    machineId: $that.parkingAreaControlFeeInfo.machineId
+                    machineId: $that.parkingAreaControlFeeInfo.machineId,
+                    boxId: $that.parkingAreaControlFeeInfo.boxId,
                 })
             },
-            clearParkingAreaControlFeeInfo: function () {
+            clearParkingAreaControlFeeInfo: function() {
                 let _machineId = $that.parkingAreaControlFeeInfo.machineId;
+                let _boxId = $that.parkingAreaControlFeeInfo.boxId;
 
                 $that.parkingAreaControlFeeInfo = {
                     carNum: "",
@@ -82,13 +85,14 @@
                     remark: "",
                     open: "",
                     openMsg: "",
-                    machineId: _machineId
+                    machineId: _machineId,
+                    boxId: _boxId
                 }
             },
-            _viewQr: function (_data) {
+            _viewQr: function(_data) {
                 document.getElementById("qrcode").innerHTML = "";
                 let qrcode = new QRCode(document.getElementById("qrcode"), {
-                    text: "临时车收费二维码",  //你想要填写的文本
+                    text: "临时车收费二维码", //你想要填写的文本
                     width: 200, //生成的二维码的宽度
                     height: 200, //生成的二维码的高度
                     colorDark: "#000000", // 生成的二维码的深色部分

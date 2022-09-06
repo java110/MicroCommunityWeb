@@ -1,10 +1,10 @@
 <div class="margin-top">
     <div class="row">
         <div class="col-md-6">
-            <img :src="parkingAreaControlCarInoutInfo.inImg" width="100%" height="350px" />
+            <img :src="parkingAreaControlCarInoutInfo.inImg" :onerror="imgOnErrorIn()" width="100%" height="350px" />
         </div>
         <div class="col-md-6">
-            <img :src="parkingAreaControlCarInoutInfo.outImg" width="100%" height="350px" />
+            <img :src="parkingAreaControlCarInoutInfo.outImg" :onerror="imgOnErrorOut()" width="100%" height="350px" />
         </div>
     </div>
 </div>
