@@ -106,17 +106,17 @@
                     },
                     function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
-                            var _json = JSON.parse(json);
                             $('#contractCreateFeeAddModel').modal('hide');
                             $that.clearAddFeeConfigInfo();
-                            vc.toast("创建收费成功，总共[" + _json.totalRoom + "]合同，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
+                            vc.toast("创建收费成功，总共[" + _json.data.totalRoom + "]合同，成功[" + _json.data.successRoom + "],失败[" + _json.data.errorRoom + "]", 8000);
                             vc.emit('listContractFee', 'notify', {});
                             vc.emit('simplifyContractFee', 'notify', {});
                             return;
                         }
-                        vc.toast(json);
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
