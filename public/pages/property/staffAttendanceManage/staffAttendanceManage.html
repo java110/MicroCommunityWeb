@@ -4,13 +4,13 @@
             <div class="margin-xs-r bg-white padding">
                 <input type="text" :placeholder="vc.i18n('请选择月份','monthAttendanceManage')" v-model="staffAttendanceManageInfo.curDate" class=" form-control queryDate">
             </div>
-            <div class="margin-xs-r bg-white padding">
+            <div class="margin-xs-r bg-white padding-bottom padding-lr">
                 <input v-model="staffAttendanceManageInfo.orgName" readonly @focus="_staffAttendanceChangeOrg()" type="text" :placeholder="vc.i18n('必填，请填写组织','staffAttendanceManage')" class="form-control">
             </div>
             <div class="margin-xs-r bg-white treeview">
                 <ul class="list-group text-center border-radius">
-                    <!-- :class="{'vc-node-selected':newOaWorkflowInfo.switchValue=='newOaWorkflowPool'}" -->
-                    <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatch(item)">
+                    <!--  -->
+                    <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatchStaff(item)" :class="{'vc-node-selected':staffAttendanceManageInfo.curStaffId==item.userId}">
                         {{item.name}}
                     </li>
                 </ul>
@@ -18,11 +18,11 @@
         </div>
         <div class="col-md-10 ">
             <div class="row  bg-white border-radius padding">
-                <div class="col-md-1 text-center border padding-lg" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
+                <div class="col-md-2 text-center border padding-lg" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
                     <div>{{staffAttendanceManageInfo.curYear}}-{{staffAttendanceManageInfo.curMonth}}-{{index}}</div>
-                    <div>考勤状态：{{_getAttendanceState(index)}}</div>
-                    <div>考勤时间：</div>
-                    <div>考勤时间：</div>
+                    <div>状态：
+                        <span v-html="_getAttendanceState(index)"></span></div>
+                    <div v-for="(item,detailIndex) in _getAttendanceDetail(index)">{{item.specName}}：{{item.stateName}}（{{item.checkTime}}）</div>
                 </div>
             </div>
         </div>

@@ -15,13 +15,17 @@
                 conditions: {
                     classesName: '',
                     departmentName: '',
-                    date: vc.dateFormat(new Date())
+                    date: ''
                 }
             }
         },
         _initMethod: function () {
             vc.component._listMonthAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.component._initDate();
+            let _date = new Date(new Date());
+            $that.monthAttendanceManageInfo.conditions.date = _date.getFullYear()+"-"+(_date.getMonth() + 1);
+            vc.initDateMonth('queryDate',function(_value){
+                $that.monthAttendanceManageInfo.conditions.date = _value;
+            })
         },
         _initEvent: function () {
             vc.on('monthAttendanceManage', 'listMonthAttendance', function (_param) {
@@ -32,35 +36,15 @@
             });
         },
         methods: {
-            _initDate: function () {
-                $(".queryDate").datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd',
-                    minView: "month",
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
-                });
-                $('.queryDate').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".queryDate").val();
-                        vc.component.monthAttendanceManageInfo.conditions.date = value;
-                    });
-                //防止多次点击时间插件失去焦点
-                document.getElementsByClassName(' form-control queryDate')[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-            },
+            
             _listMonthAttendances: function (_page, _rows) {
                 vc.component.monthAttendanceManageInfo.conditions.page = _page;
                 vc.component.monthAttendanceManageInfo.conditions.row = _rows;
-                var param = {
+                let param = {
                     params: vc.component.monthAttendanceManageInfo.conditions
                 };
                 param.params.classesName = param.params.classesName.trim();
+                param.params.date = param.params.date+"-01";
                 param.params.departmentName = param.params.departmentName.trim();
                 //发送get请求
                 vc.http.apiGet('/attendanceClass/getMonthAttendance',

@@ -8,12 +8,14 @@
         data: {
             staffAttendanceManageInfo: {
                 staffs: [],
+                attendances:[],
                 classesId: '',
                 orgId: '',
                 orgName: '',
-                curDate: vc.dateFormat(new Date()),
+                curDate: '',
                 curYear: '',
                 curMonth: '',
+                curStaffId:'',
                 maxDay: '',
             }
         },
@@ -22,11 +24,16 @@
             $that.initStaffDate();
         },
         _initEvent: function() {
-            vc.on('monthAttendanceManage', 'listMonthAttendance', function(_param) {
+            vc.on('staffAttendanceManage', 'listMonthAttendance', function(_param) {
                 vc.component._listMonthAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listMonthAttendances(_currentPage, DEFAULT_ROWS);
+            });
+            vc.on('staffAttendanceManage', 'switchOrg', function(_org) {
+                $that.staffAttendanceManageInfo.orgId = _org.orgId;
+                $that.staffAttendanceManageInfo.orgName = _org.allOrgName;
+               $that._loadStaffs();
             });
         },
         methods: {
@@ -46,6 +53,11 @@
                         let staffList = _staffInfo.staffs;
                         $that.staffAttendanceManageInfo.staffs = staffList;
 
+                        if(staffList && staffList.length>0){
+                            $that.staffAttendanceManageInfo.curStaffId = staffList[0].userId;
+                            $that._loadStaffAttendances();
+                        }
+
                     },
                     function() {
                         console.log('请求失败处理');
@@ -53,13 +65,48 @@
                 );
             },
             initStaffDate: function() {
-                let _date = new Date($that.staffAttendanceManageInfo.curDate);
+                let _date = new Date(new Date());
                 $that.staffAttendanceManageInfo.curMonth = _date.getMonth() + 1
                 $that.staffAttendanceManageInfo.curYear = _date.getFullYear();
+                $that.staffAttendanceManageInfo.curDate = _date.getFullYear()+"-"+(_date.getMonth() + 1);
                 $that.staffAttendanceManageInfo.maxDay = new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate();
-            },
-            _getAttendanceState: function() {
 
+                vc.initDateMonth('queryDate',function(_value){
+                    $that.staffAttendanceManageInfo.curDate = _value;
+                    $that._loadStaffAttendances();
+                })
+            },
+            _getAttendanceState: function(_day) {
+                let _attendance = $that._getDayAttendance(_day);
+                if(!_attendance){
+                    return "<span style='color:rgb(220, 53, 69)'>未考勤</span>";
+                }
+
+                
+                return "<span style='color:rgb(18, 150, 219)'>"+_attendance.stateName+"</span>";
+            },
+            _getAttendanceDetail:function(_day){
+                let _attendance = $that._getDayAttendance(_day);
+                if(!_attendance){
+                    return [];
+                }
+
+                return _attendance.attendanceClassesTaskDetails;
+            },
+            _getDayAttendance:function(_day){
+                let _attendance = null;
+
+                if(!$that.staffAttendanceManageInfo.attendances){
+                    return _attendance;
+                }
+
+                $that.staffAttendanceManageInfo.attendances.forEach(item => {
+                    if(item.taskDay == _day){
+                        _attendance = item;
+                    }
+                });
+
+                return _attendance;
             },
             _getBgColor: function(_curDay) {
 
@@ -67,7 +114,38 @@
             },
 
             _staffAttendanceChangeOrg: function() {
-
+                vc.emit('chooseOrgTree', 'openOrgModal', {});
+            },
+            swatchStaff:function(_staff){
+                $that.staffAttendanceManageInfo.curStaffId = _staff.userId;
+                $that._loadStaffAttendances();
+            },
+            _loadStaffAttendances:function(){
+                if( !$that.staffAttendanceManageInfo.curStaffId){
+                    return ;
+                }
+                if( !$that.staffAttendanceManageInfo.curDate){
+                    return ;
+                }
+                let param = {
+                    params:{
+                        page:1,
+                        row:1000,
+                        date:$that.staffAttendanceManageInfo.curDate,
+                        staffId: $that.staffAttendanceManageInfo.curStaffId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/attendanceClass/queryAttendanceClassesTask',
+                    param,
+                    function(json, res) {
+                        var _todayAttendanceManageInfo = JSON.parse(json);
+                        vc.component.staffAttendanceManageInfo.attendances = _todayAttendanceManageInfo.data;
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });
