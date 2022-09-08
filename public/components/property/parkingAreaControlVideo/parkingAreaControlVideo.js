@@ -122,6 +122,18 @@
                     boxId: $that.parkingAreaControlVideoInfo.boxId
                 });
 
+                vc.emit('parkingAreaControlInCar', 'changeMachine', {
+                    machineId: _outMachineId,
+                    boxId: $that.parkingAreaControlVideoInfo.boxId
+                });
+
+                vc.emit('parkingAreaControlCarInouts', 'changeMachine', {
+                    machineId: _outMachineId,
+                    boxId: $that.parkingAreaControlVideoInfo.boxId
+                });
+
+                
+
                 let paId = "";
                 $that.parkingAreaControlVideoInfo.outMachines.forEach((item) => {
                     if (item.machineId == _outMachineId) {
