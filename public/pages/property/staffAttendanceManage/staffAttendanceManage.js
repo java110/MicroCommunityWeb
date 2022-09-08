@@ -73,6 +73,10 @@
 
                 vc.initDateMonth('queryDate',function(_value){
                     $that.staffAttendanceManageInfo.curDate = _value;
+                    let _values = _value.split('-');
+                    $that.staffAttendanceManageInfo.curYear = _values[0];
+
+                    $that.staffAttendanceManageInfo.curMonth = _values[1];
                     $that._loadStaffAttendances();
                 })
             },
