@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -15,24 +15,25 @@
                 conditions: {
                     classesName: '',
                     departmentName: '',
-                    date: vc.dateFormat(new Date())
+                    date: vc.dateFormat(new Date()),
+                    staffName: ''
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._initDate();
         },
-        _initEvent: function () {
-            vc.on('todayAttendanceManage', 'listTodayAttendance', function (_param) {
+        _initEvent: function() {
+            vc.on('todayAttendanceManage', 'listTodayAttendance', function(_param) {
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listTodayAttendances(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function () {
+            _initDate: function() {
                 $(".queryDate").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -43,7 +44,7 @@
                     todayBtn: true
                 });
                 $('.queryDate').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".queryDate").val();
                         vc.component.todayAttendanceManageInfo.conditions.date = value;
                     });
@@ -54,7 +55,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listTodayAttendances: function (_page, _rows) {
+            _listTodayAttendances: function(_page, _rows) {
                 vc.component.todayAttendanceManageInfo.conditions.page = _page;
                 vc.component.todayAttendanceManageInfo.conditions.row = _rows;
                 var param = {
@@ -65,7 +66,7 @@
                 //发送get请求
                 vc.http.apiGet('/attendanceClass/queryAttendanceClassesTask',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _todayAttendanceManageInfo = JSON.parse(json);
                         vc.component.todayAttendanceManageInfo.total = _todayAttendanceManageInfo.total;
                         vc.component.todayAttendanceManageInfo.records = _todayAttendanceManageInfo.records;
@@ -75,26 +76,27 @@
                             dataCount: vc.component.todayAttendanceManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAttendanceDetailModel: function (_attendance) {
+            _openAttendanceDetailModel: function(_attendance) {
                 vc.emit('todayAttendanceDetail', 'openTodayAttendanceDetail', _attendance);
             },
             //查询
-            _queryTodayAttendanceMethod: function () {
+            _queryTodayAttendanceMethod: function() {
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetTodayAttendanceMethod: function () {
+            _resetTodayAttendanceMethod: function() {
                 vc.component.todayAttendanceManageInfo.conditions.classesName = "";
                 vc.component.todayAttendanceManageInfo.conditions.departmentName = "";
                 vc.component.todayAttendanceManageInfo.conditions.date = vc.dateFormat(new Date());
                 vc.component._listTodayAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.todayAttendanceManageInfo.moreCondition) {
                     vc.component.todayAttendanceManageInfo.moreCondition = false;
                 } else {

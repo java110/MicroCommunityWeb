@@ -194,6 +194,14 @@
     padding-right: 0;
 }
 
+.padding-r-0 {
+    padding-right: 0;
+}
+
+.padding-l-0 {
+    padding-left: 0;
+}
+
 .padding-xs {
     padding: 5px;
 }
@@ -342,6 +350,10 @@
 .padding-tb-xl {
     padding-top: 25px;
     padding-bottom: 25px;
+}
+
+.border {
+    border: 1px solid #e7eaec;
 }
 
 .border-right {
