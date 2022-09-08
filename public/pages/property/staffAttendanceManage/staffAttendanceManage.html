@@ -22,7 +22,8 @@
                     <div>{{staffAttendanceManageInfo.curYear}}-{{staffAttendanceManageInfo.curMonth}}-{{index}}</div>
                     <div>状态：
                         <span v-html="_getAttendanceState(index)"></span></div>
-                    <div v-for="(item,detailIndex) in _getAttendanceDetail(index)">{{item.specName}}：{{item.stateName}}（{{item.checkTime}}）</div>
+                    <div v-for="(item,detailIndex) in _getAttendanceDetail(index)">{{item.specName}}：{{item.stateName}}
+                        <span v-if="item.checkTime">({{item.checkTime}})</span></div>
                 </div>
             </div>
         </div>
