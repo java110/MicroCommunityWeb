@@ -902,7 +902,7 @@ nav-link nav-link-breadcrumb active:active {
 }
 
 .attendance-staff {
-    height: 650px;
+    height: 500px;
     overflow-y: auto;
     scrollbar-width: none;
     /* firefox */
