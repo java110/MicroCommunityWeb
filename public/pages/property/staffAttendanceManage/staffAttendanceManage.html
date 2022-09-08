@@ -7,7 +7,7 @@
             <div class="margin-xs-r bg-white padding-bottom padding-lr">
                 <input v-model="staffAttendanceManageInfo.orgName" readonly @focus="_staffAttendanceChangeOrg()" type="text" :placeholder="vc.i18n('必填，请填写组织','staffAttendanceManage')" class="form-control">
             </div>
-            <div class="margin-xs-r bg-white treeview">
+            <div class="margin-xs-r bg-white treeview attendance-staff">
                 <ul class="list-group text-center border-radius">
                     <!--  -->
                     <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatchStaff(item)" :class="{'vc-node-selected':staffAttendanceManageInfo.curStaffId==item.userId}">

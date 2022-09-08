@@ -900,3 +900,19 @@ nav-link nav-link-breadcrumb active:active {
 .vc-org-page .role-menu .active {
     color: #1890FF;
 }
+
+.attendance-staff {
+    height: 650px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.attendance-staff::-webkit-scrollbar {
+
+    display: none;
+    /* Chrome Safari */
+
+}
