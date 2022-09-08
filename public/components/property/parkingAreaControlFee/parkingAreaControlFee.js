@@ -12,29 +12,39 @@
                 remark: "",
                 open: "",
                 openMsg: "",
-                machineId: '-1',
+                outMachineId: '-1',
                 showRefresh: '',
-                boxId: ''
+                boxId: '',
+                feeCarNum: '',
+                costMin: ''
             }
         },
         _initMethod: function() {
             $that.parkingAreaControlFeeInfo.boxId = vc.getParam('boxId');
-            $that._loadQrCodeUrl();
+
         },
         _initEvent: function() {
             vc.on('parkingAreaControlFee', 'notify', function(_data) {
                 if (_data.action != 'FEE_INFO') {
                     return;
                 }
-                let _machineId = $that.parkingAreaControlFeeInfo.machineId;
+                let _machineId = $that.parkingAreaControlFeeInfo.outMachineId;
                 vc.copyObject(_data, $that.parkingAreaControlFeeInfo);
                 $that.parkingAreaControlFeeInfo.openMsg = _data.remark;
-                $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
-                $that.parkingAreaControlFeeInfo.remark = '';
-                $that.parkingAreaControlFeeInfo.machineId = _machineId;
+
+                //出场摄像头
+                if (_machineId == _data.extMachineId) {
+                    $that.parkingAreaControlFeeInfo.feeCarNum = _data.carNum;
+                    $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.hours + "分钟"
+                    $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
+                    $that.parkingAreaControlFeeInfo.remark = '';
+
+                }
+
+
             });
             vc.on('parkingAreaControlFee', 'changeMachine', function(_data) {
-                $that.parkingAreaControlFeeInfo.machineId = _data.machineId;
+                $that.parkingAreaControlFeeInfo.outMachineId = _data.machineId;
             })
             vc.on('parkingAreaControlFee', 'clear', function() {
                 $that.clearParkingAreaControlFeeInfo();
@@ -42,39 +52,19 @@
 
         },
         methods: {
-            _loadQrCodeUrl: function() {
-                //判断是否支付
-                var param = {
-                    params: {
-                        communityId: vc.getCurrentCommunity().communityId,
-                        boxId: $that.parkingAreaControlFeeInfo.boxId,
-                        machineId: $that.parkingAreaControlFeeInfo.machineId,
-                    }
-                };
-                //发送get请求
-                vc.http.apiGet('/machine.getCarMachineQrCodeUrl',
-                    param,
-                    function(json, res) {
-                        let _info = JSON.parse(json);
-                        $that._viewQr(_info.data)
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
+
             saveTempFeeInfo: function() {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
-                    carNum: $that.parkingAreaControlFeeInfo.carNum,
-                    amount: $that.parkingAreaControlFeeInfo.pay,
+                    carNum: $that.parkingAreaControlFeeInfo.feeCarNum,
+                    amount: $that.parkingAreaControlFeeInfo.payCharge,
                     payCharge: $that.parkingAreaControlFeeInfo.payCharge,
-                    machineId: $that.parkingAreaControlFeeInfo.machineId,
+                    machineId: $that.parkingAreaControlFeeInfo.outMachineId,
                     boxId: $that.parkingAreaControlFeeInfo.boxId,
                 })
             },
             clearParkingAreaControlFeeInfo: function() {
-                let _machineId = $that.parkingAreaControlFeeInfo.machineId;
+                let _machineId = $that.parkingAreaControlFeeInfo.outMachineId;
                 let _boxId = $that.parkingAreaControlFeeInfo.boxId;
 
                 $that.parkingAreaControlFeeInfo = {
@@ -85,22 +75,18 @@
                     remark: "",
                     open: "",
                     openMsg: "",
-                    machineId: _machineId,
-                    boxId: _boxId
+                    outMachineId: _machineId,
+                    boxId: _boxId,
+                    feeCarNum: '',
+                    costMin: ''
                 }
             },
-            _viewQr: function(_data) {
-                document.getElementById("qrcode").innerHTML = "";
-                let qrcode = new QRCode(document.getElementById("qrcode"), {
-                    text: "临时车收费二维码", //你想要填写的文本
-                    width: 200, //生成的二维码的宽度
-                    height: 200, //生成的二维码的高度
-                    colorDark: "#000000", // 生成的二维码的深色部分
-                    colorLight: "#ffffff", //生成二维码的浅色部分
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-                qrcode.makeCode(_data.url);
+            _showInParkingAreaQrCode: function() {
+                vc.emit('barrierGateQrCode', 'openQrCodeModal', {
+                    boxId: $that.parkingAreaControlFeeInfo.boxId
+                })
             },
+
         }
     });
 })(window.vc);

@@ -4,57 +4,61 @@
     </div>
     <div class="col-md-11">
         <div>
-            <h3><span><vc:i18n name="收费信息" namespace="parkingAreaControlFee"></vc:i18n></span></h3>
-        </div>
-        <div class="form-group  margin-top margin-bottom-xs">
-            <label class="col-form-label"><span><vc:i18n name="车辆" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <input v-model="parkingAreaControlFeeInfo.carNum" disabled="disabled" type="text" :placeholder="vc.i18n('车牌号','parkingAreaControlFee')" class="form-control">
+            <div>
+                <h3><span><vc:i18n name="开门信息" namespace="parkingAreaControlFee"></vc:i18n></span></h3>
+            </div>
+            <div class="form-group  margin-top margin-bottom-xs">
+                <label class="col-form-label"><span><vc:i18n name="车辆" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.carNum" disabled="disabled" type="text" :placeholder="vc.i18n('车牌号','parkingAreaControlFee')" class="form-control">
+                </div>
+            </div>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span><vc:i18n name="开门时间" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.inOutTime" disabled="disabled" type="text" :placeholder="vc.i18n('开门时间','parkingAreaControlFee')" class="form-control">
+                </div>
+            </div>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span><vc:i18n name="开门" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.open" disabled="disabled" type="text" :placeholder="vc.i18n('开门状态','parkingAreaControlFee')" class="form-control">
+                </div>
+            </div>
+            <div class="form-group margin-bottom-xs">
+                <label class="col-form-label"><span><vc:i18n name="开门说明" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <textarea v-model="parkingAreaControlFeeInfo.openMsg" disabled="disabled" :placeholder="vc.i18n('开门说明','parkingAreaControlFee')" class="form-control"></textarea>
+                </div>
             </div>
         </div>
-        <div class="form-group margin-bottom-xs">
-            <label class=" col-form-label"><span><vc:i18n name="停车时间" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <input v-model="parkingAreaControlFeeInfo.inOutTime" disabled="disabled" type="text" :placeholder="vc.i18n('停车时间','parkingAreaControlFee')" class="form-control">
+        <div style="margin-top: 30px;">
+            <div>
+                <h3><span><vc:i18n name="收费信息" namespace="parkingAreaControlFee"></vc:i18n></span></h3>
             </div>
-        </div>
-        <div class="form-group margin-bottom-xs">
-            <label class=" col-form-label"><span><vc:i18n name="开门" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <input v-model="parkingAreaControlFeeInfo.open" disabled="disabled" type="text" :placeholder="vc.i18n('开门状态','parkingAreaControlFee')" class="form-control">
+            <div class="form-group  margin-top-xs margin-bottom-xs">
+                <label class="col-form-label"><span><vc:i18n name="收费车辆" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.feeCarNum" disabled="disabled" type="text" :placeholder="vc.i18n('车牌号','parkingAreaControlFee')" class="form-control">
+                </div>
             </div>
-        </div>
-        <div class="form-group margin-bottom-xs">
-            <label class="col-form-label"><span><vc:i18n name="开门说明" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <textarea v-model="parkingAreaControlFeeInfo.openMsg" disabled="disabled" :placeholder="vc.i18n('开门说明','parkingAreaControlFee')" class="form-control"></textarea>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span><vc:i18n name="停车时间" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.costMin" disabled="disabled" type="text" :placeholder="vc.i18n('停车时间','parkingAreaControlFee')" class="form-control">
+                </div>
             </div>
-        </div>
-        <div class="form-group margin-bottom-xs">
-            <label class=" col-form-label"><span><vc:i18n name="应收" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <input v-model="parkingAreaControlFeeInfo.payCharge" type="text" disabled="disabled" :placeholder="vc.i18n('应收','parkingAreaControlFee')" class="form-control">
-            </div>
-        </div>
-        <div class="form-group margin-bottom-xs">
-            <label class=" col-form-label"><span><vc:i18n name="实收" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <input v-model="parkingAreaControlFeeInfo.pay" type="text" :placeholder="vc.i18n('实收','parkingAreaControlFee')" class="form-control">
-            </div>
-        </div>
-        <div class="form-group margin-bottom-xs">
-            <label class=" col-form-label"><span><vc:i18n name="备注" namespace="parkingAreaControlFee"></vc:i18n></span></label>
-            <div class="">
-                <textarea v-model="parkingAreaControlFeeInfo.remark" :placeholder="vc.i18n('备注','parkingAreaControlFee')" class="form-control"></textarea>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span><vc:i18n name="应收" namespace="parkingAreaControlFee"></vc:i18n></span></label>
+                <div class="">
+                    <input v-model="parkingAreaControlFeeInfo.payCharge" type="text" disabled="disabled" :placeholder="vc.i18n('应收','parkingAreaControlFee')" class="form-control">
+                </div>
             </div>
         </div>
         <div class="form-group text-center margin-top">
+            <button class="btn btn-white" type="button" v-on:click="_showInParkingAreaQrCode()"><span><vc:i18n name="场内二维码" namespace="parkingAreaControlFee"></vc:i18n></span></button>
             <button class="btn btn-primary" type="button" :disabled="parkingAreaControlFeeInfo.pay==0" v-on:click="saveTempFeeInfo()"><span><vc:i18n name="临时车收费" namespace="parkingAreaControlFee"></vc:i18n></span></button>
         </div>
-        <!--收费二维码-->
-        <div class="form-group text-center " style="margin-top: 20px;">
-            <div id="qrcode" style="width:200px; height:200px;margin:0 auto "></div>
-            <div class="margin-top"><span><vc:i18n name="场内收费二维码" namespace="parkingAreaControlFee"></vc:i18n></span></div>
-        </div>
     </div>
+    <vc:create path="property/barrierGateQrCode"></vc:create>
 </div>
