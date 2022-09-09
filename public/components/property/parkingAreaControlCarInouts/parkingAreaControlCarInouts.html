@@ -59,7 +59,9 @@
             <tbody>
                 <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
                     <td class="text-center" style="white-space: nowrap;">
-                        <img style="width: 60px; height: 60px;" v-bind:src="carIn.photoJpg" v-on:click="_carInoutOpenFile(carIn.photoJpg)" />
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-if="carIn.photoJpg" v-bind:src="carIn.photoJpg" v-on:click="_carInoutOpenFile(carIn.photoJpg)" />
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
+
                     </td>
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
@@ -77,8 +79,10 @@
                     <td class="text-center" v-if="carIn.carType != 'T'">-</td>
                     <!-- <td class="text-center" v-else-if="carIn.carInout != '3307">{{carIn.payCharge}}</td> -->
                     <!-- <td class="text-center" v-else>{{carIn.realCharge}}</td> -->
-                    <td class="text-center" v-else>{{carIn.payCharge}}(
-                        <a href="javascript:void(0)" @click="_carInoutTempCarPayFee(carIn)">收费出场</a>)
+                    <td class="text-center" v-else>{{carIn.payCharge}}
+                        <span v-if="carIn.inState == '100300' || carIn.inState == '100400' ||  carIn.inState == '100600'">
+                            (<a href="javascript:void(0)" @click="_carInoutTempCarPayFee(carIn)">出场</a>)
+                        </span>
                     </td>
                     <td class="text-center">{{carIn.remark}}</td>
 
