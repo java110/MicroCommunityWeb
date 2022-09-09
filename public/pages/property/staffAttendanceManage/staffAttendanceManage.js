@@ -154,7 +154,7 @@
             _checkInLog: function(_day) {
                 vc.emit('staffAttendanceDetail', 'openModel', {
                     staffId: $that.staffAttendanceManageInfo.curStaffId,
-                    date: $that.staffAttendanceManageInfo.curYear + "-" + $that.staffAttendanceManageInfo.curMonth + '-' + $that.staffAttendanceManageInfo.curDate
+                    date: $that.staffAttendanceManageInfo.curYear + "-" + $that.staffAttendanceManageInfo.curMonth + '-' + _day
                 })
             }
         }

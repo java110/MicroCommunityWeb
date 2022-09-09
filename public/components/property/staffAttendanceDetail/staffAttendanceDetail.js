@@ -9,7 +9,7 @@
         _initEvent: function() {
             vc.on('staffAttendanceDetail', 'openModel', function(_param) {
                 $('#staffAttendanceDetailModel').modal('show');
-                $that.staffAttendanceDetailInfo.feeDetailDiscounts = [];
+                $that.staffAttendanceDetailInfo.details = [];
                 vc.component._loadStaffAttendanceDetailInfo(_param);
             });
         },
