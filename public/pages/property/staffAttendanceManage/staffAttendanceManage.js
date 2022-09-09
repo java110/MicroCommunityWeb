@@ -152,9 +152,17 @@
                 );
             },
             _checkInLog: function(_day) {
+                let _curMonth = $that.staffAttendanceManageInfo.curMonth;
+                if (_curMonth < 10) {
+                    _curMonth = "0" + _curMonth;
+                }
+
+                if (_day < 10) {
+                    _day = "0" + _day;
+                }
                 vc.emit('staffAttendanceDetail', 'openModel', {
                     staffId: $that.staffAttendanceManageInfo.curStaffId,
-                    date: $that.staffAttendanceManageInfo.curYear + "-" + $that.staffAttendanceManageInfo.curMonth + '-' + _day
+                    date: $that.staffAttendanceManageInfo.curYear + "-" + _curMonth + '-' + _day
                 })
             }
         }
