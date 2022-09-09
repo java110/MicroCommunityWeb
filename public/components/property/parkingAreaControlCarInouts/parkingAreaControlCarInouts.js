@@ -14,7 +14,7 @@
                 startTime: '',
                 endTime: '',
                 carType: '',
-                machineId:''
+                machineId: ''
             }
         },
         _initMethod: function() {
@@ -34,9 +34,9 @@
                 function(_currentPage) {
                     vc.component._loadParkingAreaControlCarInouts(_currentPage, DEFAULT_ROWS);
                 });
-                vc.on('parkingAreaControlCarInouts', 'changeMachine',function(_data){
-                    $that.parkingAreaControlCarInoutsInfo.machineId = _data.machineId;
-                })
+            vc.on('parkingAreaControlCarInouts', 'changeMachine', function(_data) {
+                $that.parkingAreaControlCarInoutsInfo.machineId = _data.machineId;
+            })
         },
         methods: {
 
@@ -109,16 +109,21 @@
                     }
                 );
             },
-            _carInoutTempCarPayFee:function(carIn){
+            _carInoutTempCarPayFee: function(carIn) {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
                     carNum: carIn.carNum,
                     amount: carIn.payCharge,
                     payCharge: carIn.payCharge,
-                    machineId:$that.parkingAreaControlCarInoutsInfo.machineId,
+                    machineId: $that.parkingAreaControlCarInoutsInfo.machineId,
                     boxId: $that.parkingAreaControlCarInoutsInfo.boxId,
                 })
-            }
+            },
+            _carInoutOpenFile: function(_url) {
+                vc.emit('viewImage', 'showImage', {
+                    url: _url
+                });
+            },
 
         }
     });

@@ -42,6 +42,7 @@
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
+                    <th class="text-center"><span><vc:i18n name="进场图" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="进出场编号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车辆状态" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
@@ -57,6 +58,9 @@
             </thead>
             <tbody>
                 <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
+                    <td class="text-center" style="white-space: nowrap;">
+                        <img style="width: 60px; height: 60px;" v-bind:src="carIn.photoJpg" v-on:click="_carInoutOpenFile(carIn.photoJpg)" />
+                    </td>
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
                     <td class="text-center">{{carIn.carNum}}
@@ -92,4 +96,5 @@
         <!-- 分页 -->
         <vc:create path="frame/paginationPlus" namespace="parkingAreaControlCarInouts"></vc:create>
     </div>
+    <vc:create path="common/viewImage"></vc:create>
 </div>

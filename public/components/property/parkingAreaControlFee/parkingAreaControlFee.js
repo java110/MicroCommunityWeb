@@ -29,16 +29,19 @@
                     return;
                 }
                 let _machineId = $that.parkingAreaControlFeeInfo.outMachineId;
+                //进场覆盖问题
+                let _oldPayCharge = $that.parkingAreaControlFeeInfo.payCharge;
                 vc.copyObject(_data, $that.parkingAreaControlFeeInfo);
                 $that.parkingAreaControlFeeInfo.openMsg = _data.remark;
 
                 //出场摄像头
                 if (_machineId == _data.extMachineId) {
                     $that.parkingAreaControlFeeInfo.feeCarNum = _data.carNum;
-                    $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.hours + "分钟"
+                    $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.min + "分钟"
                     $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.remark = '';
-
+                } else {
+                    $that.parkingAreaControlFeeInfo.pay = _oldPayCharge;
                 }
 
 
