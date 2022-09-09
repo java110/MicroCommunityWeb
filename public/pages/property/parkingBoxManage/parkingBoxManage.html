@@ -102,7 +102,7 @@
                                         <span><vc:i18n name="共享岗亭" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
                                     </div>
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502022090904120022')">
                                         <button class="btn-white btn btn-xs" v-on:click="_openParkingAreaControl(parkingBox)">
                                         <span><vc:i18n name="控制台" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
