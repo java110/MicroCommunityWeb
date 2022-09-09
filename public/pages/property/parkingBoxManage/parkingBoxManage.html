@@ -12,14 +12,12 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入岗亭编号','parkingBoxManage')"
-                                       v-model="parkingBoxManageInfo.conditions.boxId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入岗亭编号','parkingBoxManage')" v-model="parkingBoxManageInfo.conditions.boxId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入岗亭名称','parkingBoxManage')"
-                                       v-model="parkingBoxManageInfo.conditions.boxName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入岗亭名称','parkingBoxManage')" v-model="parkingBoxManageInfo.conditions.boxName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -58,79 +56,76 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">
-                                <span><vc:i18n name="岗亭编号" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="岗亭名称" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="停车场" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="临时车进场" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="是否收费" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="蓝牌车进场" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="黄牌车进场" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="备注" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="操作" namespace="parkingBoxManage"></vc:i18n></span>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <span><vc:i18n name="岗亭编号" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="岗亭名称" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="停车场" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="临时车进场" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="是否收费" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="蓝牌车进场" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="黄牌车进场" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="备注" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                                <th class="text-center">
+                                    <span><vc:i18n name="操作" namespace="parkingBoxManage"></vc:i18n></span>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="parkingBox in parkingBoxManageInfo.parkingBoxs">
-                            <td class="text-center">{{parkingBox.boxId}}</td>
-                            <td class="text-center">{{parkingBox.boxName}}</td>
-                            <td class="text-center">{{parkingBox.paNum}}</td>
-                            <td class="text-center">{{parkingBox.tempCarIn== 'Y'?'是':'否'}}</td>
-                            <td class="text-center">{{parkingBox.fee == 'Y'?'是':'否'}}</td>
-                            <td class="text-center">{{parkingBox.blueCarIn== 'Y'?'是':'否'}}</td>
-                            <td class="text-center">{{parkingBox.yelowCarIn== 'Y'?'是':'否'}}</td>
-                            <td class="text-center">{{parkingBox.remark}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_parkingBoxArea(parkingBox)">
+                            <tr v-for="parkingBox in parkingBoxManageInfo.parkingBoxs">
+                                <td class="text-center">{{parkingBox.boxId}}</td>
+                                <td class="text-center">{{parkingBox.boxName}}</td>
+                                <td class="text-center">{{parkingBox.paNum}}</td>
+                                <td class="text-center">{{parkingBox.tempCarIn== 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{parkingBox.fee == 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{parkingBox.blueCarIn== 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{parkingBox.yelowCarIn== 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{parkingBox.remark}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502022090982540017')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_parkingBoxArea(parkingBox)">
                                         <span><vc:i18n name="共享岗亭" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openParkingAreaControl(parkingBox)">
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openParkingAreaControl(parkingBox)">
                                         <span><vc:i18n name="控制台" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditParkingBoxModel(parkingBox)">
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502022090964370018')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditParkingBoxModel(parkingBox)">
                                         <span><vc:i18n name="修改" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteParkingBoxModel(parkingBox)">
+                                    </div>
+                                    <div class="btn-group" v-if="vc.hasPrivilege('502022090909800019')">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteParkingBoxModel(parkingBox)">
                                         <span><vc:i18n name="删除" namespace="parkingBoxManage"></vc:i18n></span>
                                     </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
