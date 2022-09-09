@@ -1,19 +1,21 @@
 <div>
     <div class="row">
-        <div class="col-md-2 ">
-            <div class="margin-xs-r bg-white padding">
-                <input type="text" :placeholder="vc.i18n('请选择月份','monthAttendanceManage')" v-model="staffAttendanceManageInfo.curDate" class=" form-control queryDate">
-            </div>
-            <div class="margin-xs-r bg-white padding-bottom padding-lr">
-                <input v-model="staffAttendanceManageInfo.orgName" readonly @focus="_staffAttendanceChangeOrg()" type="text" :placeholder="vc.i18n('填写组织','staffAttendanceManage')" class="form-control">
-            </div>
-            <div class="margin-xs-r bg-white treeview attendance-staff">
-                <ul class="list-group text-center border-radius">
-                    <!--  -->
-                    <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatchStaff(item)" :class="{'vc-node-selected':staffAttendanceManageInfo.curStaffId==item.userId}">
-                        {{item.name}}
-                    </li>
-                </ul>
+        <div class="col-md-2">
+            <div class=" border-radius bg-white padding">
+                <div class="margin-xs margin-bottom">
+                    <input type="text" :placeholder="vc.i18n('请选择月份','monthAttendanceManage')" v-model="staffAttendanceManageInfo.curDate" class=" form-control queryDate">
+                </div>
+                <div class="margin-xs margin-bottom">
+                    <input v-model="staffAttendanceManageInfo.orgName" readonly @focus="_staffAttendanceChangeOrg()" type="text" :placeholder="vc.i18n('填写组织','staffAttendanceManage')" class="form-control">
+                </div>
+                <div class="margin-xs-r bg-white treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatchStaff(item)" :class="{'vc-node-selected':staffAttendanceManageInfo.curStaffId==item.userId}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-md-10 ">
@@ -24,11 +26,15 @@
                         <span v-html="_getAttendanceState(index)"></span></div>
                     <div v-for="(item,detailIndex) in _getAttendanceDetail(index)">{{item.specName}}：{{item.stateName}}
                         <span v-if="item.checkTime">({{item.checkTime}})</span></div>
+                    <div>
+                        <a href="javascript:void(0)" @click="_checkInLog(index)">考勤记录</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <vc:create path="frame/chooseOrgTree" callBackListener="staffAttendanceManage"></vc:create>
+    <vc:create path="property/staffAttendanceDetail" callBackListener="staffAttendanceManage"></vc:create>
 
 </div>

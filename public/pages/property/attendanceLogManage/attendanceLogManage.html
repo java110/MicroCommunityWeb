@@ -11,31 +11,33 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入班组名称','attendanceLogManage')"
-                                       v-model="attendanceLogManageInfo.conditions.classesName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入班组名称','attendanceLogManage')" v-model="attendanceLogManageInfo.conditions.classesName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入部门名称','attendanceLogManage')"
-                                       v-model="attendanceLogManageInfo.conditions.departmentName"
-                                       class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入部门名称','attendanceLogManage')" v-model="attendanceLogManageInfo.conditions.departmentName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" :placeholder="vc.i18n('请选择打卡时间','attendanceLogManage')" v-model="attendanceLogManageInfo.conditions.date"
-                                   class=" form-control queryDate">
+                            <input type="text" :placeholder="vc.i18n('请选择打卡时间','attendanceLogManage')" v-model="attendanceLogManageInfo.conditions.date" class=" form-control queryDate">
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryAttendanceLogMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAttendanceLogMethod()">
                                 <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="attendanceLogManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_resetAttendanceLogMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAttendanceLogMethod()">
                                 <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="attendanceLogManage"></vc:i18n></span>
                             </button>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入员工名称','attendanceLogManage')" v-model="attendanceLogManageInfo.conditions.staffName" class=" form-control">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -52,27 +54,27 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center"><span><vc:i18n name="部门名称" namespace="attendanceLogManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="员工名称" namespace="attendanceLogManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="员工" namespace="attendanceLogManage"></vc:i18n></span>ID</th>
-                            <th class="text-center"><span><vc:i18n name="考勤时间" namespace="attendanceLogManage"></vc:i18n></span></th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="部门名称" namespace="attendanceLogManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="员工名称" namespace="attendanceLogManage"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="员工" namespace="attendanceLogManage"></vc:i18n></span>ID</th>
+                                <th class="text-center"><span><vc:i18n name="考勤时间" namespace="attendanceLogManage"></vc:i18n></span></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="attendance in attendanceLogManageInfo.attendances">
-                            <td class="text-center">{{attendance.departmentName}}</td>
-                            <td class="text-center">{{attendance.staffName}}</td>
-                            <td class="text-center">{{attendance.staffId}}</td>
-                            <td class="text-center">{{attendance.clockTime}}</td>
-                        </tr>
+                            <tr v-for="attendance in attendanceLogManageInfo.attendances">
+                                <td class="text-center">{{attendance.departmentName}}</td>
+                                <td class="text-center">{{attendance.staffName}}</td>
+                                <td class="text-center">{{attendance.staffId}}</td>
+                                <td class="text-center">{{attendance.clockTime}}</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

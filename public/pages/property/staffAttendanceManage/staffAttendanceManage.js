@@ -8,14 +8,14 @@
         data: {
             staffAttendanceManageInfo: {
                 staffs: [],
-                attendances:[],
+                attendances: [],
                 classesId: '',
                 orgId: '',
                 orgName: '',
                 curDate: '',
                 curYear: '',
                 curMonth: '',
-                curStaffId:'',
+                curStaffId: '',
                 maxDay: '',
             }
         },
@@ -33,7 +33,7 @@
             vc.on('staffAttendanceManage', 'switchOrg', function(_org) {
                 $that.staffAttendanceManageInfo.orgId = _org.orgId;
                 $that.staffAttendanceManageInfo.orgName = _org.allOrgName;
-               $that._loadStaffs();
+                $that._loadStaffs();
             });
         },
         methods: {
@@ -53,7 +53,7 @@
                         let staffList = _staffInfo.staffs;
                         $that.staffAttendanceManageInfo.staffs = staffList;
 
-                        if(staffList && staffList.length>0){
+                        if (staffList && staffList.length > 0) {
                             $that.staffAttendanceManageInfo.curStaffId = staffList[0].userId;
                             $that._loadStaffAttendances();
                         }
@@ -68,10 +68,10 @@
                 let _date = new Date(new Date());
                 $that.staffAttendanceManageInfo.curMonth = _date.getMonth() + 1
                 $that.staffAttendanceManageInfo.curYear = _date.getFullYear();
-                $that.staffAttendanceManageInfo.curDate = _date.getFullYear()+"-"+(_date.getMonth() + 1);
+                $that.staffAttendanceManageInfo.curDate = _date.getFullYear() + "-" + (_date.getMonth() + 1);
                 $that.staffAttendanceManageInfo.maxDay = new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate();
 
-                vc.initDateMonth('queryDate',function(_value){
+                vc.initDateMonth('queryDate', function(_value) {
                     $that.staffAttendanceManageInfo.curDate = _value;
                     let _values = _value.split('-');
                     $that.staffAttendanceManageInfo.curYear = _values[0];
@@ -82,30 +82,30 @@
             },
             _getAttendanceState: function(_day) {
                 let _attendance = $that._getDayAttendance(_day);
-                if(!_attendance){
+                if (!_attendance) {
                     return "<span style='color:rgb(220, 53, 69)'>未考勤</span>";
                 }
 
-                
-                return "<span style='color:rgb(18, 150, 219)'>"+_attendance.stateName+"</span>";
+
+                return "<span style='color:rgb(18, 150, 219)'>" + _attendance.stateName + "</span>";
             },
-            _getAttendanceDetail:function(_day){
+            _getAttendanceDetail: function(_day) {
                 let _attendance = $that._getDayAttendance(_day);
-                if(!_attendance){
+                if (!_attendance) {
                     return [];
                 }
 
                 return _attendance.attendanceClassesTaskDetails;
             },
-            _getDayAttendance:function(_day){
+            _getDayAttendance: function(_day) {
                 let _attendance = null;
 
-                if(!$that.staffAttendanceManageInfo.attendances){
+                if (!$that.staffAttendanceManageInfo.attendances) {
                     return _attendance;
                 }
 
                 $that.staffAttendanceManageInfo.attendances.forEach(item => {
-                    if(item.taskDay == _day){
+                    if (item.taskDay == _day) {
                         _attendance = item;
                     }
                 });
@@ -120,22 +120,22 @@
             _staffAttendanceChangeOrg: function() {
                 vc.emit('chooseOrgTree', 'openOrgModal', {});
             },
-            swatchStaff:function(_staff){
+            swatchStaff: function(_staff) {
                 $that.staffAttendanceManageInfo.curStaffId = _staff.userId;
                 $that._loadStaffAttendances();
             },
-            _loadStaffAttendances:function(){
-                if( !$that.staffAttendanceManageInfo.curStaffId){
-                    return ;
+            _loadStaffAttendances: function() {
+                if (!$that.staffAttendanceManageInfo.curStaffId) {
+                    return;
                 }
-                if( !$that.staffAttendanceManageInfo.curDate){
-                    return ;
+                if (!$that.staffAttendanceManageInfo.curDate) {
+                    return;
                 }
                 let param = {
-                    params:{
-                        page:1,
-                        row:1000,
-                        date:$that.staffAttendanceManageInfo.curDate,
+                    params: {
+                        page: 1,
+                        row: 1000,
+                        date: $that.staffAttendanceManageInfo.curDate,
                         staffId: $that.staffAttendanceManageInfo.curStaffId
                     }
                 };
@@ -150,6 +150,12 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+            _checkInLog: function(_day) {
+                vc.emit('staffAttendanceManage', 'openModel', {
+                    staffId: $that.staffAttendanceManageInfo.curStaffId,
+                    date: $that.staffAttendanceManageInfo.curYear + "-" + $that.staffAttendanceManageInfo.curMonth + '-' + $that.staffAttendanceManageInfo.curDate
+                })
             }
         }
     });
