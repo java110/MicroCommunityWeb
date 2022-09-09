@@ -1,9 +1,9 @@
-<div id="staffAttendanceManageModel" class="modal fade" role="dialog" aria-labelledby="staffAttendanceManageModel" aria-hidden="true">
+<div id="staffAttendanceDetailModel" class="modal fade" role="dialog" aria-labelledby="staffAttendanceDetailModel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="chooseFloorModelLabel">
-                    <span><vc:i18n name="考勤明细" namespace="staffAttendanceManage"></vc:i18n></span>
+                    <span><vc:i18n name="考勤明细" namespace="staffAttendanceDetail"></vc:i18n></span>
                 </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -18,15 +18,15 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-                                                <span><vc:i18n name="员工名称" namespace="staffAttendanceManage"></vc:i18n></span>
+                                                <span><vc:i18n name="员工名称" namespace="staffAttendanceDetail"></vc:i18n></span>
                                             </th>
                                             <th class="text-center">
-                                                <span><vc:i18n name="考勤时间" namespace="staffAttendanceManage"></vc:i18n></span>
+                                                <span><vc:i18n name="考勤时间" namespace="staffAttendanceDetail"></vc:i18n></span>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="detail in staffAttendanceManageInfo.details">
+                                        <tr v-for="detail in staffAttendanceDetailInfo.details">
                                             <td class="text-center">{{detail.staffName}}</td>
                                             <td class="text-center">{{detail.clockTime}}</td>
                                         </tr>

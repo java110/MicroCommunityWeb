@@ -1,15 +1,15 @@
 (function(vc) {
     vc.extends({
         data: {
-            staffAttendanceManageInfo: {
+            staffAttendanceDetailInfo: {
                 details: []
             }
         },
         _initMethod: function() {},
         _initEvent: function() {
-            vc.on('staffAttendanceManage', 'openModel', function(_param) {
-                $('#staffAttendanceManageModel').modal('show');
-                $that.staffAttendanceManageInfo.feeDetailDiscounts = [];
+            vc.on('staffAttendanceDetail', 'openModel', function(_param) {
+                $('#staffAttendanceDetailModel').modal('show');
+                $that.staffAttendanceDetailInfo.feeDetailDiscounts = [];
                 vc.component._loadStaffAttendanceDetailInfo(_param);
             });
         },
@@ -29,7 +29,7 @@
                     param,
                     function(json, res) {
                         let _attendanceLogManageInfo = JSON.parse(json);
-                        vc.component.staffAttendanceManageInfo.details = _attendanceLogManageInfo.data;
+                        vc.component.staffAttendanceDetailInfo.details = _attendanceLogManageInfo.data;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
