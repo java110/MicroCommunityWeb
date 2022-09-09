@@ -39,9 +39,10 @@
                     $that.parkingAreaControlFeeInfo.feeCarNum = _data.carNum;
                     $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.min + "分钟"
                     $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
+                    $that.parkingAreaControlFeeInfo.payCharge = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.remark = '';
                 } else {
-                    $that.parkingAreaControlFeeInfo.pay = _oldPayCharge;
+                    $that.parkingAreaControlFeeInfo.payCharge = _oldPayCharge;
                 }
 
 
