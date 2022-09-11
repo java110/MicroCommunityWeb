@@ -54,6 +54,11 @@
                             <span><vc:i18n name="收费统计" namespace="parkingAreaControl"></vc:i18n></span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlManualOpenDoorLog'}" v-on:click="changeTab('parkingAreaControlManualOpenDoorLog')">
+                            <span><vc:i18n name="开闸日志" namespace="parkingAreaControl"></vc:i18n></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div v-if="parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'">
@@ -86,6 +91,10 @@
             <div v-show="parkingAreaControlInfo._currentTab == 'parkingAreaControlPaymentSummary'">
                 <vc:create path="property/parkingAreaControlPaymentSummary"></vc:create>
             </div>
+            <div v-show="parkingAreaControlInfo._currentTab == 'parkingAreaControlManualOpenDoorLog'">
+                <vc:create path="property/parkingAreaControlManualOpenDoorLog"></vc:create>
+            </div>
+
 
         </div>
         <div class="col-md-3">
@@ -93,5 +102,7 @@
         </div>
         <vc:create path="property/parkingAreaControlCustomCarInout"></vc:create>
         <vc:create path="property/unlicensedCarMachineQrCode"></vc:create>
+
+        <vc:create path="common/viewImage"></vc:create>
     </div>
 </div>

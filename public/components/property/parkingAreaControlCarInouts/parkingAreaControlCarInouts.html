@@ -61,7 +61,6 @@
                     <td class="text-center" style="white-space: nowrap;">
                         <img style="width: 60px; height: 60px;" class="border-radius" v-if="carIn.photoJpg" v-bind:src="carIn.photoJpg" v-on:click="_carInoutOpenFile(carIn.photoJpg)" />
                         <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
-
                     </td>
                     <td class="text-center">{{carIn.inoutId}}</td>
                     <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
@@ -100,5 +99,5 @@
         <!-- 分页 -->
         <vc:create path="frame/paginationPlus" namespace="parkingAreaControlCarInouts"></vc:create>
     </div>
-    <vc:create path="common/viewImage"></vc:create>
+
 </div>
