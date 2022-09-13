@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
     vc.extends({
         data: {
             editHousekeepingTypeInfo: {
@@ -21,11 +21,11 @@
                 products: []
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listEditShops();
         },
-        _initEvent: function () {
-            vc.on('editHousekeepingType', 'openEditHousekeepingTypeModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editHousekeepingType', 'openEditHousekeepingTypeModal', function(_params) {
                 vc.component.refreshEditHousekeepingTypeInfo();
                 $('#editHousekeepingTypeModel').modal('show');
                 vc.copyObject(_params, vc.component.editHousekeepingTypeInfo);
@@ -45,22 +45,23 @@
                 }
                 vc.emit('editHousekeepingType', 'uploadImage', 'notifyPhotos', _photos);
             });
-            vc.on("editHousekeepingType", "notifyUploadCoverImage", function (_param) {
-                if (_param.length > 0) {
-                    console.log(_param);
-                    vc.component.editHousekeepingTypeInfo.hktIcon = _param[0];
+            vc.on("editHousekeepingType", "notifyUploadCoverImage", function(_param) {
+
+                if (_param.hasOwnProperty('fileId')) {
+                    vc.component.editHousekeepingTypeInfo.hktIcon = _param.fileId
                 } else {
                     vc.component.editHousekeepingTypeInfo.hktIcon = '';
                 }
+
+
             });
         },
         methods: {
-            editHousekeepingTypeValidate: function () {
+            editHousekeepingTypeValidate: function() {
                 return vc.validate.validate({
                     editHousekeepingTypeInfo: vc.component.editHousekeepingTypeInfo
                 }, {
-                    'editHousekeepingTypeInfo.hktName': [
-                        {
+                    'editHousekeepingTypeInfo.hktName': [{
                             limit: "required",
                             param: "",
                             errInfo: "类别名称不能为空"
@@ -71,29 +72,22 @@
                             errInfo: "类别名称名称太长"
                         },
                     ],
-                    'editHousekeepingTypeInfo.hktIcon': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "小图标不能为空"
-                        }
-                    ],
-                    'editHousekeepingTypeInfo.hktDesc': [
-                        {
-                            limit: "maxLength",
-                            param: "50",
-                            errInfo: "服务描述太长"
-                        },
-                    ],
-                    'editHousekeepingTypeInfo.label': [
-                        {
-                            limit: "maxLength",
-                            param: "15",
-                            errInfo: "标签描述太长"
-                        },
-                    ],
-                    'editHousekeepingTypeInfo.seq': [
-                        {
+                    'editHousekeepingTypeInfo.hktIcon': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "小图标不能为空"
+                    }],
+                    'editHousekeepingTypeInfo.hktDesc': [{
+                        limit: "maxLength",
+                        param: "50",
+                        errInfo: "服务描述太长"
+                    }, ],
+                    'editHousekeepingTypeInfo.label': [{
+                        limit: "maxLength",
+                        param: "15",
+                        errInfo: "标签描述太长"
+                    }, ],
+                    'editHousekeepingTypeInfo.seq': [{
                             limit: "required",
                             param: "",
                             errInfo: "排序不能为空"
@@ -104,8 +98,7 @@
                             errInfo: "排序不是有效数字"
                         },
                     ],
-                    'editHousekeepingTypeInfo.isShow': [
-                        {
+                    'editHousekeepingTypeInfo.isShow': [{
                             limit: "required",
                             param: "",
                             errInfo: "是否显示不能为空"
@@ -116,22 +109,19 @@
                             errInfo: "是否显示格式错误"
                         },
                     ],
-                    'editHousekeepingTypeInfo.hktId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "服务ID不能为空"
-                        }],
-                    'editHousekeepingTypeInfo.typeCd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "请选择类型"
-                        }
-                    ]
+                    'editHousekeepingTypeInfo.hktId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "服务ID不能为空"
+                    }],
+                    'editHousekeepingTypeInfo.typeCd': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "请选择类型"
+                    }]
                 });
             },
-            saveEditHousekeepingType: function () {
+            saveEditHousekeepingType: function() {
                 if (!vc.component.editHousekeepingTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -158,11 +148,10 @@
                 $that.editHousekeepingTypeInfo.shopId = '9999';
                 vc.http.apiPost(
                     '/housekeepingType/updateHousekeepingType',
-                    JSON.stringify(vc.component.editHousekeepingTypeInfo),
-                    {
+                    JSON.stringify(vc.component.editHousekeepingTypeInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -173,13 +162,13 @@
                         }
                         vc.message(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            _listEditShops: function () {
+            _listEditShops: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -189,15 +178,16 @@
                 //发送get请求
                 vc.http.apiGet('/shop/queryShopsByAdmin',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _shopManageInfo = JSON.parse(json);
                         vc.component.editHousekeepingType.shops = _shopManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listEditProducts: function () {
+            _listEditProducts: function() {
                 var param = {
                     params: {
                         page: 1,
@@ -209,16 +199,17 @@
                 //发送get请求
                 vc.http.apiGet('/product/queryProduct',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _productManageInfo = JSON.parse(json);
                         vc.component.editHousekeepingType.products = _productManageInfo.data;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 分类改变事件
-            selEditProducts: function () {
+            selEditProducts: function() {
                 if (vc.component.editHousekeepingTypeInfo.shopId == '') {
                     vc.component.editHousekeepingType.products = [];
                     return;
@@ -232,7 +223,7 @@
                     vc.component._listEditProducts();
                 }
             },
-            refreshEditHousekeepingTypeInfo: function () {
+            refreshEditHousekeepingTypeInfo: function() {
                 vc.component.editHousekeepingTypeInfo = {
                     hktId: '',
                     hktName: '',

@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         propTypes: {
@@ -18,22 +18,22 @@
         watch: {
             uploadImageInfo: {
                 deep: true,
-                handler: function () {
-                    vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
+                handler: function() {
+                    //vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             let _imageCount = $props.imageCount;
             if (_imageCount != 99) {
                 this.uploadImageInfo.imageCount = _imageCount;
             }
         },
-        _initEvent: function () {
-            vc.on('uploadImage', 'openAddApplicationKeyModal', function () {
+        _initEvent: function() {
+            vc.on('uploadImage', 'openAddApplicationKeyModal', function() {
 
             });
-            vc.on('uploadImage', 'clearImage', function () {
+            vc.on('uploadImage', 'clearImage', function() {
                 let _imageCount = this.uploadImageInfo.imageCount;
                 this.uploadImageInfo = {
                     photos: [],
@@ -43,41 +43,41 @@
                     progress: 0
                 }
             });
-            vc.on('uploadImage', 'notifyPhotos', function (_photos) {
+            vc.on('uploadImage', 'notifyPhotos', function(_photos) {
                 let _imageCount = this.uploadImageInfo.imageCount;
                 this.uploadImageInfo = {
                     photos: [],
                     imageCount: _imageCount
                 };
-                _photos.forEach(function (_photo) {
+                _photos.forEach(function(_photo) {
                     //?objId=772019092507000013&communityId=7020181217000001&fileTypeCd=10000
                     if (_photo.indexOf('base64,') > -1) {
                         this.uploadImageInfo.photos.push(_photo);
                         return;
                     }
                     if (_photo.indexOf("https") > -1 || _photo.indexOf("http") > -1) {
-                        vc.urlToBase64(_photo, function (_base64Data) {
+                        vc.urlToBase64(_photo, function(_base64Data) {
                             this.uploadImageInfo.photos.push(_base64Data);
                         });
                         return;
                     }
                     if (_photo.indexOf(photoUrl) > -1) {
-                        vc.urlToBase64(_photo, function (_base64Data) {
+                        vc.urlToBase64(_photo, function(_base64Data) {
                             this.uploadImageInfo.photos.push(_base64Data);
                         });
                         return;
                     }
-                    vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=-1&time=" + new Date(), function (_base64Data) {
+                    vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=-1&time=" + new Date(), function(_base64Data) {
                         this.uploadImageInfo.photos.push(_base64Data);
                     })
                 });
             });
         },
         methods: {
-            _uploadPhoto: function (event) {
+            _uploadPhoto: function(event) {
                 $("#uploadImage").trigger("click")
             },
-            _choosePhoto: function (event) {
+            _choosePhoto: function(event) {
                 var photoFiles = event.target.files;
                 if (photoFiles && photoFiles.length > 0) {
                     // 获取目前上传的文件
@@ -88,7 +88,7 @@
                     }
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
-                    reader.onloadend = function (e) {
+                    reader.onloadend = function(e) {
                         this.uploadImageInfo.photos.push(reader.result);
                     }
                     this.uploadImageInfo.fileName = file.name;
@@ -96,7 +96,7 @@
                 }
                 event.target.value = null;
             },
-            _removeImage: function (_photo) {
+            _removeImage: function(_photo) {
                 var _tmpPhotos = this.uploadImageInfo.photos;
                 this.uploadImageInfo.photos = [];
                 for (var _photoIndex = 0; _photoIndex < _tmpPhotos.length; _photoIndex++) {
@@ -105,7 +105,7 @@
                     }
                 }
             },
-            _doUploadImage: function (_file) {
+            _doUploadImage: function(_file) {
                 var param = new FormData();
                 param.append("uploadFile", _file);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
@@ -119,7 +119,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function (json, res) {
+                    function(json, res) {
                         if (res.status != 200) {
                             vc.toast("上传文件失败");
                             return;
@@ -132,7 +132,7 @@
                         this.uploadImageInfo.realFileName = data.realFileName;
                         vc.emit($props.callBackListener, $props.callBackFunction, data);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
