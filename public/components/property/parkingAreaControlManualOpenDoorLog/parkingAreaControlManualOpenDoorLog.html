@@ -24,7 +24,7 @@
             <thead>
                 <tr>
                     <th class="text-center"><span><vc:i18n name="抓拍图" namespace="parkingAreaControlCarInouts"></vc:i18n></span></th>
-                    <th class="text-center"><span><vc:i18n name="开闸时间" namespace="parkingAreaControlManualOpenDoorLog"></vc:i18n></span>ID</th>
+                    <th class="text-center"><span><vc:i18n name="开闸时间" namespace="parkingAreaControlManualOpenDoorLog"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="员工" namespace="parkingAreaControlManualOpenDoorLog"></vc:i18n></span></th>
                     <th class="text-center"><span><vc:i18n name="摄像头名称" namespace="parkingAreaControlManualOpenDoorLog"></vc:i18n></span></th>
                 </tr>
@@ -32,7 +32,7 @@
             <tbody>
                 <tr v-for="log in parkingAreaControlManualOpenDoorLog.logs">
                     <td class="text-center" style="white-space: nowrap;">
-                        <img style="width: 60px; height: 60px;" class="border-radius" v-if="carIn.photoJpg" v-bind:src="log.photoJpg" v-on:click="_openDoorLogOpenFile(log.photoJpg)" />
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-if="log.photoJpg" v-bind:src="log.photoJpg" v-on:click="_openDoorLogOpenFile(log.photoJpg)" />
                         <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
                     </td>
                     <td class="text-center">{{log.createTime}}</td>
