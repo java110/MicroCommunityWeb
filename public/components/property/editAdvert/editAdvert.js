@@ -51,7 +51,14 @@
                 }
             });
             vc.on("editAdvert", "notifyUploadImage", function(_param) {
-                vc.component.editAdvertInfo.photos = _param;
+            
+                if(!_param || _param.length<1){
+                    return;
+                }
+                vc.component.editAdvertInfo.photos = [];
+                _param.forEach(item=>{
+                    vc.component.editAdvertInfo.photos.push(item.fileId)
+                });
             });
             vc.on("editAdvert", "notifyUploadVedio", function(_param) {
                 vc.component.editAdvertInfo.vedioName = _param.realFileName;
