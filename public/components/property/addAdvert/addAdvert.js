@@ -47,7 +47,13 @@
                 }
             });
             vc.on("addAdvert", "notifyUploadImage", function (_param) {
-                vc.component.addAdvertInfo.photos = _param;
+                if(!_param || _param.length<1){
+                    return;
+                }
+                vc.component.addAdvertInfo.photos = [];
+                _param.forEach(item=>{
+                    vc.component.addAdvertInfo.photos.push(item.fileId)
+                });
             });
             vc.on("addAdvert", "notifyUploadVedio", function (_param) {
                 vc.component.addAdvertInfo.vedioName = _param.realFileName;
