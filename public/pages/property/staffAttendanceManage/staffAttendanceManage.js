@@ -166,7 +166,25 @@
                 });
             },
             _replenishCheckIn:function(_day){
-                vc.emit('staffAttendanceReplenishCheckIn', 'openModel',$that._getAttendanceDetail(_day))
+                let _details = $that._getAttendanceDetail(_day);
+                if(!_details || _details.length<1){
+                    vc.toast('不存在 补考勤任务');
+                    return ;
+                }
+
+                let _newDetails = [];
+                _details.forEach(item=>{
+                    if(item.state == '10000'){
+                        _newDetails.push(item)
+                    }
+                });
+
+                if(_newDetails.length<1){
+                    vc.toast('不存在 补考勤任务');
+                    return ;
+                }
+
+                vc.emit('staffAttendanceReplenishCheckIn', 'openModel',_newDetails);
             }
         }
     });

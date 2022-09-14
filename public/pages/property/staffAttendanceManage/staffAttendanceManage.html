@@ -23,7 +23,7 @@
                 <div class="col-md-2 text-center border padding-lg labeling-strip" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" 
                 :style="{'background-color': _getBgColor(index)}"
                  style="border-radius: 5px;cursor:pointer">
-                    <div class="strip">
+                    <div class="strip" v-if="_getDayAttendance(index) && _getDayAttendance(index).state != '30000'">
                         <span @click="_replenishCheckIn(index)">补考勤</span>
                     </div>
                     <div>{{staffAttendanceManageInfo.curYear}}-{{staffAttendanceManageInfo.curMonth}}-{{index}}</div>
