@@ -19,8 +19,13 @@
             </div>
         </div>
         <div class="col-md-10 ">
-            <div class="row  bg-white border-radius padding">
-                <div class="col-md-2 text-center border padding-lg" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
+            <div class="row  bg-white border-radius padding ">
+                <div class="col-md-2 text-center border padding-lg labeling-strip" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" 
+                :style="{'background-color': _getBgColor(index)}"
+                 style="border-radius: 5px;cursor:pointer">
+                    <div class="strip">
+                        <span @click="_replenishCheckIn(index)">补考勤</span>
+                    </div>
                     <div>{{staffAttendanceManageInfo.curYear}}-{{staffAttendanceManageInfo.curMonth}}-{{index}}</div>
                     <div>状态：
                         <span v-html="_getAttendanceState(index)"></span></div>
@@ -36,5 +41,7 @@
 
     <vc:create path="frame/chooseOrgTree" callBackListener="staffAttendanceManage"></vc:create>
     <vc:create path="property/staffAttendanceDetail" callBackListener="staffAttendanceManage"></vc:create>
+    <vc:create path="property/staffAttendanceReplenishCheckIn" callBackListener="staffAttendanceManage"></vc:create>
 
+    
 </div>

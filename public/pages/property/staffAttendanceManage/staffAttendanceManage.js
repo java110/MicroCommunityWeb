@@ -163,7 +163,10 @@
                 vc.emit('staffAttendanceDetail', 'openModel', {
                     staffId: $that.staffAttendanceManageInfo.curStaffId,
                     date: $that.staffAttendanceManageInfo.curYear + "-" + _curMonth + '-' + _day
-                })
+                });
+            },
+            _replenishCheckIn:function(_day){
+                vc.emit('staffAttendanceReplenishCheckIn', 'openModel',$that._getAttendanceDetail(_day))
             }
         }
     });
