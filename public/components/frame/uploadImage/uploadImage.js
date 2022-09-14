@@ -19,7 +19,7 @@
             uploadImageInfo: {
                 deep: true,
                 handler: function() {
-                    //vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
+                    vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
                 }
             }
         },
@@ -89,7 +89,7 @@
                     var reader = new FileReader(); //新建FileReader对象
                     reader.readAsDataURL(file); //读取为base64
                     reader.onloadend = function(e) {
-                        this.uploadImageInfo.photos.push(reader.result);
+                        //this.uploadImageInfo.photos.push(reader.result);
                     }
                     this.uploadImageInfo.fileName = file.name;
                     this._doUploadImage(file);
@@ -124,13 +124,14 @@
                             vc.toast("上传文件失败");
                             return;
                         }
-                        var data = JSON.parse(json);
+                        let data = JSON.parse(json);
                         //关闭model
                         //$summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
                         //$summernote.summernote('insertImage', data.url);
                         this.uploadImageInfo.fileName = data.fileName;
                         this.uploadImageInfo.realFileName = data.realFileName;
-                        vc.emit($props.callBackListener, $props.callBackFunction, data);
+                        this.uploadImageInfo.photos.push(data);
+                        vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
