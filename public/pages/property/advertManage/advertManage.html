@@ -30,7 +30,7 @@
                                 <option value="9006">{{vc.i18n('互联网','advertManage')}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
                             <select class="custom-select" v-model="advertManageInfo.conditions.state">
                                 <option selected value="">{{vc.i18n('请选择广告状态','advertManage')}}</option>
                                 <option value="1000">{{vc.i18n('未审核','advertManage')}}</option>
@@ -39,7 +39,7 @@
                                 <option value="4000">{{vc.i18n('未播放','advertManage')}}</option>
                                 <option value="5000">{{vc.i18n('播放中','advertManage')}}</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAdvertMethod()">
                                 <i class="fa fa-search"></i>
@@ -106,9 +106,9 @@
                             <th class="text-center">
                                 <span><vc:i18n name="结束时间" namespace="advertManage"></vc:i18n></span>
                             </th>
-                            <th class="text-center">
+                            <!-- <th class="text-center">
                                 <span><vc:i18n name="广告状态" namespace="advertManage"></vc:i18n></span>
-                            </th>
+                            </th> -->
                             <th class="text-center">
                                 <span><vc:i18n name="创建时间" namespace="advertManage"></vc:i18n></span>
                             </th>
@@ -126,7 +126,7 @@
                             <td class="text-center">{{advertManageInfo.advertTypeName[advert.advertType]}}</td>
                             <td class="text-center">{{advert.startTime}}</td>
                             <td class="text-center">{{advert.endTime}}</td>
-                            <td class="text-center">{{advert.stateName}}</td>
+                            <!-- <td class="text-center">{{advert.stateName}}</td> -->
                             <td class="text-center">{{advert.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
