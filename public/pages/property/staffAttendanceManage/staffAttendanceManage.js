@@ -25,10 +25,10 @@
         },
         _initEvent: function() {
             vc.on('staffAttendanceManage', 'listMonthAttendance', function(_param) {
-                vc.component._listMonthAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
+                vc.component._loadStaffAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
-                vc.component._listMonthAttendances(_currentPage, DEFAULT_ROWS);
+                vc.component._loadStaffAttendances(_currentPage, DEFAULT_ROWS);
             });
             vc.on('staffAttendanceManage', 'switchOrg', function(_org) {
                 $that.staffAttendanceManageInfo.orgId = _org.orgId;
@@ -165,26 +165,26 @@
                     date: $that.staffAttendanceManageInfo.curYear + "-" + _curMonth + '-' + _day
                 });
             },
-            _replenishCheckIn:function(_day){
+            _replenishCheckIn: function(_day) {
                 let _details = $that._getAttendanceDetail(_day);
-                if(!_details || _details.length<1){
+                if (!_details || _details.length < 1) {
                     vc.toast('不存在 补考勤任务');
-                    return ;
+                    return;
                 }
 
                 let _newDetails = [];
-                _details.forEach(item=>{
-                    if(item.state == '10000'){
+                _details.forEach(item => {
+                    if (item.state == '10000') {
                         _newDetails.push(item)
                     }
                 });
 
-                if(_newDetails.length<1){
+                if (_newDetails.length < 1) {
                     vc.toast('不存在 补考勤任务');
-                    return ;
+                    return;
                 }
 
-                vc.emit('staffAttendanceReplenishCheckIn', 'openModel',_newDetails);
+                vc.emit('staffAttendanceReplenishCheckIn', 'openModel', _newDetails);
             }
         }
     });
