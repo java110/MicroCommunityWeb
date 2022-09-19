@@ -241,7 +241,7 @@
             },
             _freshPhotoOrVedio: function(_advertItems) {
 
-                if (!_advertItems || _advertItems.size() < 1) {
+                if (!_advertItems || _advertItems.length < 1) {
                     vc.emit('editAdvert', 'uploadImage', 'notifyPhotos', []);
                 }
                 //判断属性中是否有照片
