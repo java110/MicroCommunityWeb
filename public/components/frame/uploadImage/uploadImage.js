@@ -15,14 +15,6 @@
                 progress: 0
             }
         },
-        watch: {
-            uploadImageInfo: {
-                deep: true,
-                handler: function() {
-                    vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
-                }
-            }
-        },
         _initMethod: function() {
             let _imageCount = $props.imageCount;
             if (_imageCount != 99) {
@@ -30,9 +22,6 @@
             }
         },
         _initEvent: function() {
-            vc.on('uploadImage', 'openAddApplicationKeyModal', function() {
-
-            });
             vc.on('uploadImage', 'clearImage', function() {
                 let _imageCount = this.uploadImageInfo.imageCount;
                 this.uploadImageInfo = {
@@ -56,9 +45,7 @@
                         return;
                     }
                     if (_photo.indexOf("https") > -1 || _photo.indexOf("http") > -1) {
-                        vc.urlToBase64(_photo, function(_base64Data) {
-                            this.uploadImageInfo.photos.push(_base64Data);
-                        });
+                        this.uploadImageInfo.photos.push(_photo);
                         return;
                     }
                     if (_photo.indexOf(photoUrl) > -1) {
@@ -67,9 +54,7 @@
                         });
                         return;
                     }
-                    vc.urlToBase64(photoUrl + "?fileId=" + _photo + "&communityId=-1&time=" + new Date(), function(_base64Data) {
-                        this.uploadImageInfo.photos.push(_base64Data);
-                    })
+                    this.uploadImageInfo.photos.push(_photo);
                 });
             });
         },
@@ -125,12 +110,7 @@
                             return;
                         }
                         let data = JSON.parse(json);
-                        //关闭model
-                        //$summernote.summernote('insertImage', "/callComponent/download/getFile/file?fileId=" + data.fileId + "&communityId=" + vc.getCurrentCommunity().communityId);
-                        //$summernote.summernote('insertImage', data.url);
-                        this.uploadImageInfo.fileName = data.fileName;
-                        this.uploadImageInfo.realFileName = data.realFileName;
-                        this.uploadImageInfo.photos.push(data);
+                        this.uploadImageInfo.photos.push(data.url);
                         vc.emit($props.callBackListener, $props.callBackFunction, this.uploadImageInfo.photos);
                     },
                     function(errInfo, error) {

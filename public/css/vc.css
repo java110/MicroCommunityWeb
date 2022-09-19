@@ -521,6 +521,11 @@ ul li {
     border-bottom: 2px solid #F6F6F7;
 }
 
+.line-y {
+    height: 100%;
+    border-right: 2px solid #F6F6F7;
+}
+
 .vc-input-search {
     position: absolute;
     transform: translate3d(0px, 33px, 0px);
@@ -911,17 +916,15 @@ nav-link nav-link-breadcrumb active:active {
 }
 
 .attendance-staff::-webkit-scrollbar {
-
     display: none;
     /* Chrome Safari */
-
 }
 
-.labeling-strip{
+.labeling-strip {
     overflow: hidden;
 }
 
-.labeling-strip .strip{
+.labeling-strip .strip {
     width: 50%;
     height: 50%;
     position: absolute;
@@ -930,7 +933,7 @@ nav-link nav-link-breadcrumb active:active {
     transform: rotate(45deg);
 }
 
-.labeling-strip .strip span{
+.labeling-strip .strip span {
     background: #36A8FF;
     position: absolute;
     bottom: px;
