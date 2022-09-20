@@ -48,7 +48,7 @@
             vc.on("editHousekeepingType", "notifyUploadCoverImage", function(_param) {
 
                 if (_param) {
-                    vc.component.editHousekeepingTypeInfo.hktIcon = _param
+                    vc.component.editHousekeepingTypeInfo.hktIcon = _param[0]
                 } else {
                     vc.component.editHousekeepingTypeInfo.hktIcon = '';
                 }

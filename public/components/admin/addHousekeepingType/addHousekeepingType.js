@@ -35,7 +35,7 @@
             });
             vc.on("addHousekeepingType", "notifyUploadCoverImage", function(_param) {
                 if (_param) {
-                    vc.component.addHousekeepingTypeInfo.hktIcon = _param
+                    vc.component.addHousekeepingTypeInfo.hktIcon = _param[0]
                 } else {
                     vc.component.addHousekeepingTypeInfo.hktIcon = '';
                 }
