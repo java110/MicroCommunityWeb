@@ -10,7 +10,7 @@
             orgTreeShowInfo: {
                 orgs: [],
                 orgId: '',
-                curOrg:{}
+                curOrg: {}
             }
         },
         _initMethod: function() {
@@ -18,7 +18,9 @@
 
         },
         _initEvent: function() {
-            
+
+
+
         },
         methods: {
 
@@ -72,7 +74,7 @@
 
                     vc.emit($props.callBackListener, 'switchOrg', {
                         orgId: data.node.original.id,
-                        orgName:$that.orgTreeShowInfo.curOrg.text
+                        orgName: $that.orgTreeShowInfo.curOrg.text
                     })
 
                 });
