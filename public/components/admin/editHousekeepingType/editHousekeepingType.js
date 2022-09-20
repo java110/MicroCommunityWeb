@@ -47,8 +47,8 @@
             });
             vc.on("editHousekeepingType", "notifyUploadCoverImage", function(_param) {
 
-                if (_param.hasOwnProperty('fileId')) {
-                    vc.component.editHousekeepingTypeInfo.hktIcon = _param.fileId
+                if (_param) {
+                    vc.component.editHousekeepingTypeInfo.hktIcon = _param
                 } else {
                     vc.component.editHousekeepingTypeInfo.hktIcon = '';
                 }

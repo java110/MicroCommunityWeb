@@ -34,8 +34,8 @@
                 $('#addHousekeepingTypeModel').modal('show');
             });
             vc.on("addHousekeepingType", "notifyUploadCoverImage", function(_param) {
-                if (_param.hasOwnProperty('fileId')) {
-                    vc.component.addHousekeepingTypeInfo.hktIcon = _param.fileId
+                if (_param) {
+                    vc.component.addHousekeepingTypeInfo.hktIcon = _param
                 } else {
                     vc.component.addHousekeepingTypeInfo.hktIcon = '';
                 }
