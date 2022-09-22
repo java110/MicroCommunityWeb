@@ -9,8 +9,19 @@
                 inMachineId: '',
                 outMachineId: '',
                 inMachines: [],
-                outMachines: []
-
+                outMachines: [],
+                inMachineInfo:{
+                    carNum:'',
+                    inOutTime:'',
+                    open:'',
+                    openMsg:''
+                },
+                outMachineInfo:{
+                    carNum:'',
+                    inOutTime:'',
+                    open:'',
+                    openMsg:''
+                }
             }
         },
         _initMethod: function() {
@@ -22,7 +33,15 @@
                     $that.parkingAreaControlVideoInfo.boxId = param.boxId;
                     $that._listMachines();
                 }
-            })
+            });
+
+            vc.on('parkingAreaControlVideo', 'carIn', function(param) {
+                vc.copyObject(param,$that.parkingAreaControlVideoInfo.inMachineInfo);
+            });
+
+            vc.on('parkingAreaControlVideo', 'carOut', function(param) {
+                vc.copyObject(param,$that.parkingAreaControlVideoInfo.outMachineInfo);
+            });
         },
         methods: {
             _listMachines: function() {

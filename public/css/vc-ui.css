@@ -2161,6 +2161,12 @@ table.table-mail tr td {
     background: -webkit-linear-gradient(top, #fff -4%, #1ab394 50%, #fff 100%);
 }
 
+.vc-line-primary {
+    width: 100%;
+    height: 2px;
+    background: -webkit-linear-gradient(left, #fff -4%, #007bff 50%, #fff 100%);
+}
+
 .vc-table-border {
     border: 1px solid #000000;
 }

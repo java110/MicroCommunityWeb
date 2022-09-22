@@ -2,21 +2,15 @@
     <div class="row">
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-right"><span><vc:i18n name="入场" namespace="parkingAreaControlVideo"></vc:i18n></span></label>
-                        <div class="col-sm-8 padding-0">
-                            <select class="custom-select" v-model="parkingAreaControlVideoInfo.inMachineId" @change="_swatchVedio()">
-                                <option selected  value="">{{vc.i18n('请选择入场摄像头','parkingAreaControlVideo')}}</option>
-                                <option :value="item.machineId"
-                                    v-for="(item,index) in parkingAreaControlVideoInfo.inMachines">{{item.machineName}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-md-4">
+                    <select class="custom-select custom-select-sm" v-model="parkingAreaControlVideoInfo.inMachineId" @change="_swatchVedio()">
+                        <option selected  value="">{{vc.i18n('选择入场摄像头','parkingAreaControlVideo')}}</option>
+                        <option :value="item.machineId"
+                            v-for="(item,index) in parkingAreaControlVideoInfo.inMachines">{{item.machineName}}
+                        </option>
+                    </select>
                 </div>
-                <div class="col-md-6">
-
+                <div class="col-md-8">
                     <div class="form-group row">
                         <div class="col-sm-12 text-right">
                             <button type="button" class="btn btn-white btn-sm" v-on:click="unlicensedCarIn()">
@@ -38,20 +32,15 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-right"><span><vc:i18n name="出场" namespace="parkingAreaControlVideo"></vc:i18n></span></label>
-                        <div class="col-sm-8 padding-0">
-                            <select class="custom-select" v-model="parkingAreaControlVideoInfo.outMachineId" @change="_swatchOutVedio()">
-                                <option selected  value="">{{vc.i18n('请选择出场摄像头','parkingAreaControlVideo')}}</option>
-                                <option :value="item.machineId"
-                                    v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-md-4">
+                    <select class="custom-select custom-select-sm" v-model="parkingAreaControlVideoInfo.outMachineId" @change="_swatchOutVedio()">
+                        <option selected  value="">{{vc.i18n('选择出场摄像头','parkingAreaControlVideo')}}</option>
+                        <option :value="item.machineId"
+                            v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
+                        </option>
+                    </select> 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="form-group row">
                         <div class="col-sm-12 text-right">
                             <button type="button" class="btn btn-white btn-sm" v-on:click="_outPayFeeQrCode()">
@@ -75,12 +64,34 @@
     <div class="row">
         <div class="col-md-6">
             <div id="receiver1Div" style="border: 1px solid #dee2e6;">
-                <img width="100%" src="../../../img/init.jpg" height="350px" id="receiver1" style="border: 1;" />
+                <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver1" style="border: 1;" />
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.inMachineInfo.carNum">
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInfo.inOutTime}}</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInfo.carNum}}</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInfo.open}};</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInfo.openMsg}}</span>
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>没有进场车辆</span>
             </div>
         </div>
         <div class="col-md-6">
             <div id="receiver2Div" style="border: 1px solid #dee2e6;">
-                <img width="100%" src="../../../img/init.jpg" height="350px" id="receiver2" />
+                <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver2" />
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.outMachineInfo.carNum">
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInfo.inOutTime}}</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInfo.carNum}}</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInfo.open}};</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInfo.openMsg}}</span>
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>没有出场车辆</span>
             </div>
         </div>
     </div>

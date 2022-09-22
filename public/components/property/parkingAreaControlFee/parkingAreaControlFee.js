@@ -16,7 +16,8 @@
                 showRefresh: '',
                 boxId: '',
                 feeCarNum: '',
-                costMin: ''
+                costMin: '',
+                carInoutInfos:[]
             }
         },
         _initMethod: function() {
@@ -35,15 +36,32 @@
                 $that.parkingAreaControlFeeInfo.openMsg = _data.remark;
 
                 //出场摄像头
+                let _inoutType = "2002";
                 if (_machineId == _data.extMachineId) {
+                    vc.emit('parkingAreaControlVideo', 'carOut',$that.parkingAreaControlFeeInfo);
                     $that.parkingAreaControlFeeInfo.feeCarNum = _data.carNum;
                     $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.min + "分钟"
                     $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.payCharge = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.remark = '';
                 } else {
+                    vc.emit('parkingAreaControlVideo', 'carIn',$that.parkingAreaControlFeeInfo);
                     $that.parkingAreaControlFeeInfo.payCharge = _oldPayCharge;
+                    _inoutType = "1001";
                 }
+
+                $that.parkingAreaControlFeeInfo.carInoutInfos.unshift({
+                    carNum:_data.carNum,
+                    inOutTime:_data.inOutTime,
+                    open:_data.open,
+                    openMsg:_data.remark,
+                    inoutType:_inoutType
+                });
+
+                if($that.parkingAreaControlFeeInfo.carInoutInfos.length > 10){
+                    $that.parkingAreaControlFeeInfo.carInoutInfos.pop();
+                }
+
 
 
             });

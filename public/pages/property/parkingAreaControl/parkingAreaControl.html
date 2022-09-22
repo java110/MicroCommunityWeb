@@ -2,11 +2,12 @@
     <div class="row">
         <div class="col-md-9">
             <vc:create path="property/parkingAreaControlVideo"></vc:create>
-            <div class="margin-top">
+            <div class="vc-line-primary margin-top"></div>
+            <div class="margin-top-sm">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link" v-bind:class="{active:parkingAreaControlInfo._currentTab == 'parkingAreaControlCarInout'}" v-on:click="changeTab('parkingAreaControlCarInout')">
-                            <span><vc:i18n name="出入场信息" namespace="parkingAreaControl"></vc:i18n></span>
+                            <span><vc:i18n name="出入场" namespace="parkingAreaControl"></vc:i18n></span>
                         </a>
                     </li>
                     <li class="nav-item">
