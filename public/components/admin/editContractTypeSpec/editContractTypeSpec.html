@@ -1,83 +1,119 @@
 <div id="editContractTypeSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="m-t-none m-b "><span><vc:i18n name="修改扩展信息" namespace="editContractTypeSpec"></vc:i18n></span></h3>
-        <div class="ibox-content">
-          <div>
-            <div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格名称" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <input v-model="editContractTypeSpecInfo.specName" type="text" :placeholder="vc.i18n('必填，请填写规格名称','editContractTypeSpec')"
-                    class="form-control">
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改扩展信息" namespace="editContractTypeSpec"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格名称" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editContractTypeSpecInfo.specName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规格名称','editContractTypeSpec')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="说明" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editContractTypeSpecInfo.specHoldplace" type="text"
+                                           :placeholder="vc.i18n('选填，请填写说明','editContractTypeSpec')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('必填','editContractTypeSpec')}}</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editContractTypeSpecInfo.required">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editContractTypeSpec')}}，请选择{{vc.i18n('必填','editContractTypeSpec')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="展示" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editContractTypeSpecInfo.specShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editContractTypeSpec')}}，请选择展示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="值类型" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editContractTypeSpecInfo.specValueType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editContractTypeSpec')}}，请选择值类型
+                                        </option>
+                                        <option value="1001">{{vc.i18n('字符串','editContractTypeSpec')}}</option>
+                                        <option value="2002">{{vc.i18n('整数','editContractTypeSpec')}}</option>
+                                        <option value="3003">{{vc.i18n('金额','editContractTypeSpec')}}</option>
+                                        <option value="4004">{{vc.i18n('日期','editContractTypeSpec')}}</option>
+                                        <option value="5005">{{vc.i18n('时间','editContractTypeSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格类型" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editContractTypeSpecInfo.specType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editContractTypeSpec')}}，请选择规格类型
+                                        </option>
+                                        <option value="2233">{{vc.i18n('文本框','editContractTypeSpec')}}</option>
+                                        <option value="3344">{{vc.i18n('选项框','editContractTypeSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="查询显示" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editContractTypeSpecInfo.listShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editContractTypeSpec')}}，请选择查询显示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editContractTypeSpec()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editContractTypeSpec"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="说明" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <input v-model="editContractTypeSpecInfo.specHoldplace" type="text" :placeholder="vc.i18n('选填，请填写说明','editContractTypeSpec')"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">{{vc.i18n('必填','editContractTypeSpec')}}</label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editContractTypeSpecInfo.required">
-                    <option selected disabled value="">{{vc.i18n('必填','editContractTypeSpec')}}，请选择{{vc.i18n('必填','editContractTypeSpec')}}</option>
-                    <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
-                    <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
-                  </select> </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="展示" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editContractTypeSpecInfo.specShow">
-                    <option selected disabled value="">{{vc.i18n('必填','editContractTypeSpec')}}，请选择展示</option>
-                    <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
-                    <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
-                  </select> </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="值类型" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editContractTypeSpecInfo.specValueType">
-                    <option selected disabled value="">{{vc.i18n('必填','editContractTypeSpec')}}，请选择值类型</option>
-                    <option value="1001">{{vc.i18n('字符串','editContractTypeSpec')}}</option>
-                    <option value="2002">{{vc.i18n('整数','editContractTypeSpec')}}</option>
-                    <option value="3003">{{vc.i18n('金额','editContractTypeSpec')}}</option>
-                  </select> </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格类型" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editContractTypeSpecInfo.specType">
-                    <option selected disabled value="">{{vc.i18n('必填','editContractTypeSpec')}}，请选择规格类型</option>
-                    <option value="2233">{{vc.i18n('文本框','editContractTypeSpec')}}</option>
-                    <option value="3344">{{vc.i18n('选项框','editContractTypeSpec')}}</option>
-                  </select> </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label"><span><vc:i18n name="查询显示" namespace="editContractTypeSpec"></vc:i18n></span></label>
-                <div class="col-sm-10">
-                  <select class="custom-select" v-model="editContractTypeSpecInfo.listShow">
-                    <option selected disabled value="">{{vc.i18n('必填','editContractTypeSpec')}}，请选择查询显示</option>
-                    <option value="Y">{{vc.i18n('是','editContractTypeSpec')}}</option>
-                    <option value="N">{{vc.i18n('否','editContractTypeSpec')}}</option>
-                  </select> </div>
-              </div>
-
-              <div class="ibox-content">
-                <button class="btn btn-primary float-right" type="button" v-on:click="editContractTypeSpec()"><i
-                    class="fa fa-check"></i>&nbsp;保存</button>
-                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                  data-dismiss="modal"><span><vc:i18n name="取消" namespace="editContractTypeSpec"></vc:i18n></span></button>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

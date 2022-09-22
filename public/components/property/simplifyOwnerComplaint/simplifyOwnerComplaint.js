@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -10,13 +10,11 @@
                 roomName: ''
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
+        _initEvent: function () {
             //切换 至费用页面
-            vc.on('simplifyOwnerComplaint', 'switch', function(_param) {
-
+            vc.on('simplifyOwnerComplaint', 'switch', function (_param) {
                 if (_param.roomId == '') {
                     return;
                 }
@@ -25,13 +23,12 @@
                 $that._listSimplifyOwnerComplaint(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('simplifyOwnerComplaint', 'paginationPlus', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     $that._listSimplifyOwnerComplaint(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
-            _listSimplifyOwnerComplaint: function(_page, _row) {
-
+            _listSimplifyOwnerComplaint: function (_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -40,27 +37,26 @@
                         roomId: $that.simplifyOwnerComplaintInfo.roomId
                     }
                 }
-
                 //发送get请求
                 vc.http.apiGet('/complaint.listComplaints',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _complaintManageInfo = JSON.parse(json);
                         vc.component.simplifyOwnerComplaintInfo.total = _complaintManageInfo.total;
                         vc.component.simplifyOwnerComplaintInfo.records = _complaintManageInfo.records;
                         vc.component.simplifyOwnerComplaintInfo.complaints = _complaintManageInfo.complaints;
                         vc.emit('simplifyOwnerComplaint', 'paginationPlus', 'init', {
                             total: vc.component.simplifyOwnerComplaintInfo.records,
+                            dataCount: vc.component.simplifyOwnerComplaintInfo.total,
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             },
-            openRunWorkflowImage: function(_complaint) {
+            openRunWorkflowImage: function (_complaint) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -70,38 +66,37 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listRunWorkflowImage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
-
                             return;
                         }
                         vc.emit('viewImage', 'showImage', {
                             url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openComplaintDetailModel: function(_complaint) {
+            _openComplaintDetailModel: function (_complaint) {
                 vc.emit('complaintDetail', 'openComplaintDetailModal', _complaint);
             },
-            clearSimplifyOwnerComplaintInfo: function() {
+            clearSimplifyOwnerComplaintInfo: function () {
                 $that.simplifyOwnerComplaintInfo = {
                     complaints: [],
                     ownerId: '',
                     roomId: ''
                 }
             },
-            _openAddComplaintModal: function() {
+            _openAddComplaintModal: function () {
                 //vc.emit('addComplaint', 'openAddComplaintModal', {});
                 vc.jumpToPage("/#/pages/common/addRoomComplaint?roomId=" + $that.simplifyOwnerComplaintInfo.roomId)
             },
             // 流程图
-            _openRunWorkflowImage: function(_complaint) {
+            _openRunWorkflowImage: function (_complaint) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -111,24 +106,21 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listRunWorkflowImage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
-
                             return;
                         }
                         vc.emit('viewImage', 'showImage', {
                             url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             }
-
         }
-
     });
 })(window.vc);

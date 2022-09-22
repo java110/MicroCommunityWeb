@@ -80,6 +80,7 @@
                         console.log(vc.component.housekeepingServManageInfo.housekeepingServs);
                         vc.emit('pagination', 'init', {
                             total: vc.component.housekeepingServManageInfo.records,
+                            dataCount: vc.component.housekeepingServManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

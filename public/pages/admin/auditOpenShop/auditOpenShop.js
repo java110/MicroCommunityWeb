@@ -57,6 +57,7 @@
                         vc.component.auditOpenShopInfo.shops = _auditOpenShopInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditOpenShopInfo.records,
+                            dataCount: vc.component.auditOpenShopInfo.total,
                             currentPage: _page
                         });
                     },

@@ -6,35 +6,42 @@
                     <h5>{{addContractInfo.parentContractCode?'续签合同':'起草合同'}}</h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
-              <i class="glyphicon glyphicon-plus"></i>
-              返回
-            </button>
+                            <i class="fa fa-close"></i>返回
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <div class="row" v-if="addContractInfo.parentContractCode">
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="父合同名称" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="父合同名称" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.parentContractName" disabled type="text" :placeholder="vc.i18n('必填，请填写父合同名称','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.parentContractName" disabled type="text"
+                                           :placeholder="vc.i18n('必填，请填写父合同名称','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="父合同编号" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="父合同编号" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.parentContractCode" disabled type="text" :placeholder="vc.i18n('必填，请填写父合同编号','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.parentContractCode" disabled type="text"
+                                           :placeholder="vc.i18n('必填，请填写父合同编号','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="父合同状态" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="父合同状态" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.parentStateName" disabled type="text" :placeholder="vc.i18n('必填，请填写父合同状态','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.parentStateName" disabled type="text"
+                                           :placeholder="vc.i18n('必填，请填写父合同状态','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -42,28 +49,40 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同名称" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="合同名称" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.contractName" type="text" :placeholder="vc.i18n('必填，请填写合同名称','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.contractName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写合同名称','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同编号" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="合同编号" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.contractCode" type="text" :placeholder="vc.i18n('必填，请填写合同编号','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.contractCode" type="text"
+                                           :placeholder="vc.i18n('必填，请填写合同编号','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同类型" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="合同类型" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <select class="custom-select" v-model="addContractInfo.contractType" @change="_changeContractType()">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择合同类型','addContract')}}</option>
+                                    <select class="custom-select" v-model="addContractInfo.contractType"
+                                            @change="_changeContractType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择合同类型','addContract')}}
+                                        </option>
                                         <option v-for="(item,index) in addContractInfo.contractTypes" :key="index"
-                                        :value="item.contractTypeId">{{item.typeName}}</option>
+                                                :value="item.contractTypeId">{{item.typeName}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -72,29 +91,42 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="甲方" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <select class="custom-select" v-model="addContractInfo.partyA" @change="_changeContractPartyA()">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择甲方','addContract')}}</option>
-                                        <option v-for="(item,index) in addContractInfo.contractPartyAs" :key="index" :value="item.partyA">
-                                        {{item.partyA}}</option>
+                                    <select class="custom-select" v-model="addContractInfo.partyA"
+                                            @change="_changeContractPartyA()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择甲方','addContract')}}
+                                        </option>
+                                        <option v-for="(item,index) in addContractInfo.contractPartyAs" :key="index"
+                                                :value="item.partyA">
+                                            {{item.partyA}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方联系人" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="甲方联系人" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.aContacts" type="text" :placeholder="vc.i18n('必填，请填写甲方联系人','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.aContacts" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写甲方联系人','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="甲方联系电话" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="甲方联系电话" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.aLink" type="text" :placeholder="vc.i18n('必填，请填写甲方联系电话','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.aLink" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写甲方联系电话','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -102,54 +134,38 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="乙方" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-7 padding-lr-xs">
-                                    <input v-model="addContractInfo.partyB" type="text" disabled :placeholder="vc.i18n('必填，请选择乙方','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.partyB" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请选择乙方','addContract')" class="form-control">
                                 </div>
                                 <div class="col-sm-2 padding-lr-xs">
-                                    <button type="button" class="btn btn-link btn-sm" v-on:click="_searchOwner()">选择</button>
+                                    <button type="button" class="btn btn-link btn-sm" v-on:click="_searchOwner()">选择
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方联系人" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="乙方联系人" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.bContacts" type="text" :placeholder="vc.i18n('必填，请填写乙方联系人','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.bContacts" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写乙方联系人','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="乙方联系电话" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="乙方联系电话" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.bLink" type="text" :placeholder="vc.i18n('必填，请填写乙方联系电话','addContract')" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="经办人" namespace="addContract"></vc:i18n></span></label>
-                                <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.operator" type="text" :placeholder="vc.i18n('必填，请填写经办人','addContract')" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="联系电话" namespace="addContract"></vc:i18n></span></label>
-                                <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.operatorLink" type="text" :placeholder="vc.i18n('必填，请填写联系电话','addContract')" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="合同金额" namespace="addContract"></vc:i18n></span></label>
-                                <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.amount" type="text" :placeholder="vc.i18n('选填，请填写合同金额','addContract')" class="form-control">
+                                    <input v-model="addContractInfo.bLink" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写乙方联系电话','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -157,25 +173,72 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="开始时间" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="经办人" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','addContract')" class="form-control addStartTime">
+                                    <input v-model="addContractInfo.operator" type="text"
+                                           :placeholder="vc.i18n('必填，请填写经办人','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="结束时间" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="联系电话" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','addContract')" class="form-control addEndTime">
+                                    <input v-model="addContractInfo.operatorLink" type="text"
+                                           :placeholder="vc.i18n('必填，请填写联系电话','addContract')" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label padding-lr-sm text-right"><span><vc:i18n name="签订时间" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="合同金额" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-9 padding-lr-xs">
-                                    <input v-model="addContractInfo.signingTime" type="text" :placeholder="vc.i18n('必填，请填写签订时间','addContract')" class="form-control addSigningTime">
+                                    <input v-model="addContractInfo.amount" type="text"
+                                           :placeholder="vc.i18n('选填，请填写合同金额','addContract')" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="开始时间" namespace="addContract"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-9 padding-lr-xs">
+                                    <input v-model="addContractInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','addContract')"
+                                           class="form-control addStartTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="结束时间" namespace="addContract"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-9 padding-lr-xs">
+                                    <input v-model="addContractInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','addContract')"
+                                           class="form-control addEndTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label padding-lr-sm text-right">
+                                    <span><vc:i18n name="签订时间" namespace="addContract"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-9 padding-lr-xs">
+                                    <input v-model="addContractInfo.signingTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写签订时间','addContract')"
+                                           class="form-control addSigningTime">
                                 </div>
                             </div>
                         </div>
@@ -186,7 +249,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{item.specName}}</label>
                                     <div class="col-sm-9 padding-lr-xs">
-                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                                               class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +258,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{addContractInfo.contractTypeSpecs[index+1].specName}}</label>
                                     <div class="col-sm-9 padding-lr-xs">
-                                        <input v-model="addContractInfo.contractTypeSpecs[index+1].value" type="text" :placeholder="addContractInfo.contractTypeSpecs[index+1].specHoldplace" class="form-control">
+                                        <input v-model="addContractInfo.contractTypeSpecs[index+1].value" type="text"
+                                               :placeholder="addContractInfo.contractTypeSpecs[index+1].specHoldplace"
+                                               class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +268,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label padding-lr-sm text-right">{{addContractInfo.contractTypeSpecs[index+2].specName}}</label>
                                     <div class="col-sm-9 padding-lr-xs">
-                                        <input v-model="addContractInfo.contractTypeSpecs[index+2].value" type="text" :placeholder="addContractInfo.contractTypeSpecs[index+2].specHoldplace" class="form-control">
+                                        <input v-model="addContractInfo.contractTypeSpecs[index+2].value" type="text"
+                                               :placeholder="addContractInfo.contractTypeSpecs[index+2].specHoldplace"
+                                               class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -211,84 +279,115 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="合同附件" namespace="addContract"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="合同附件" namespace="addContract"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <div class="row " style="margin-left: 0px;">
-                                        <button type="button" class="btn btn-primary" @click="addFileStep()"><span><vc:i18n name="添加附件" namespace="addContract"></vc:i18n></span></button>
+                                        <button type="button" class="btn btn-primary" @click="addFileStep()">
+                                            <span><vc:i18n name="添加附件" namespace="addContract"></vc:i18n></span>
+                                        </button>
                                     </div>
                                     <div v-for="(item,index) in addContractInfo.contractFilePo">
                                         <div class="row margin-0 margin-top">
                                             <div class="col-sm-1 text-center">
-                                                <label class="col-form-label"><span><vc:i18n name="第" namespace="addContract"></vc:i18n></span>{{index+1}}<span><vc:i18n name="个" namespace="addContract"></vc:i18n></span></label>
+                                                <label class="col-form-label">
+                                                    <span><vc:i18n name="第" namespace="addContract"></vc:i18n></span>{{index+1}}
+                                                    <span><vc:i18n name="个" namespace="addContract"></vc:i18n></span>
+                                                </label>
                                             </div>
-                                            <input type="file" class="custom-file-input form-control" name="excelTemplate" style="width: 11%;opacity: 1;" v-on:change="getFile($event,index)" accept=".png,.pdf,.jpg">
+                                            <input type="file" class="custom-file-input form-control"
+                                                   name="excelTemplate" style="width: 11%;opacity: 1;"
+                                                   v-on:change="getFile($event,index)" accept=".png,.pdf,.jpg">
                                             <label class="col-sm-5 col-form-label padding-lr-sm text-right">{{item.fileRealName}}</label>
                                             <div>
-                                                <button type="button" class="btn btn-link" @click="deleteStep(item)"><span><vc:i18n name="删除附件" namespace="addContract"></vc:i18n></span></button>
+                                                <button type="button" class="btn btn-link" @click="deleteStep(item)">
+                                                    <span><vc:i18n name="删除附件" namespace="addContract"></vc:i18n></span>
+                                                </button>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="关联房屋" namespace="addContract"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="关联房屋" namespace="addContract"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_selectRoom()">
-              <i class="glyphicon glyphicon-plus"></i>
-              添加
-            </button>
+                            <i class="fa fa-plus"></i>添加
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                           data-page-size="10">
                         <thead>
-                            <tr>
-                                <!-- <th><span><vc:i18n name="房屋" namespace="addContract"></vc:i18n></span>ID</th> -->
-                                <th data-hide="phone" class="text-center"><span><vc:i18n name="房屋" namespace="addContract"></vc:i18n></span></th>
-                                <th data-hide="phone" class="text-center"><span><vc:i18n name="业主" namespace="addContract"></vc:i18n></span></th>
-                                <th data-hide="phone" class="text-center"><span><vc:i18n name="电话" namespace="addContract"></vc:i18n></span></th>
-                                <th data-hide="phone" class="text-center"><span><vc:i18n name="建筑面积" namespace="addContract"></vc:i18n></span></th>
-                                <th data-hide="phone" class="text-center"><span><vc:i18n name="房屋状态" namespace="addContract"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="操作" namespace="addContract"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <!-- <th><span><vc:i18n name="房屋" namespace="addContract"></vc:i18n></span>ID</th> -->
+                            <th data-hide="phone" class="text-center">
+                                <span><vc:i18n name="房屋" namespace="addContract"></vc:i18n></span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span><vc:i18n name="业主" namespace="addContract"></vc:i18n></span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span><vc:i18n name="电话" namespace="addContract"></vc:i18n></span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span><vc:i18n name="建筑面积" namespace="addContract"></vc:i18n></span>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <span><vc:i18n name="房屋状态" namespace="addContract"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="addContract"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="room in addContractInfo.rooms">
-                                <td class="text-center">
-                                    {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
-                                </td>
-                                <td class="text-center">
-                                    {{room.ownerName}}
-                                </td>
-                                <td class="text-center">
-                                    {{room.link}}
-                                </td>
-                                <td class="text-center">
-                                    {{room.builtUpArea}}<span><vc:i18n name="平方米" namespace="addContract"></vc:i18n></span>
-                                </td>
-                                <td class="text-center">
-                                    {{room.stateName}}
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)"><span><vc:i18n name="删除" namespace="addContract"></vc:i18n></span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr v-for="room in addContractInfo.rooms">
+                            <td class="text-center">
+                                {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
+                            </td>
+                            <td class="text-center">
+                                {{room.ownerName}}
+                            </td>
+                            <td class="text-center">
+                                {{room.link}}
+                            </td>
+                            <td class="text-center">
+                                {{room.builtUpArea}}
+                                <span><vc:i18n name="平方米" namespace="addContract"></vc:i18n></span>
+                            </td>
+                            <td class="text-center">
+                                {{room.stateName}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDelRoomModel(room)">
+                                        <span><vc:i18n name="删除" namespace="addContract"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
                     <!-- 分页 -->
                     <vc:create path="frame/pagination"></vc:create>
@@ -298,15 +397,18 @@
     </div>
 </div>
 <div v-show="addContractInfo.audit == '1001'">
-    <vc:create path="property/purchaseApprovers" callBackListener="addContract" callBackFunction="notify3" flowType="50005">
+    <vc:create path="property/purchaseApprovers" callBackListener="addContract" callBackFunction="notify3"
+               flowType="50005">
     </vc:create>
 </div>
-
 <div class="row">
     <div class="col-md-12 text-right">
-        <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()"><span><vc:i18n name="返回" namespace="addContract"></vc:i18n></span></button>
-        <button class="btn btn-primary" type="button" v-on:click="saveContractInfo()"><i
-        class="fa fa-check"></i>&nbsp;提交</button>
+        <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
+            <span><vc:i18n name="返回" namespace="addContract"></vc:i18n></span>
+        </button>
+        <button class="btn btn-primary" type="button" v-on:click="saveContractInfo()">
+            <i class="fa fa-check"></i>&nbsp;提交
+        </button>
     </div>
 </div>
 <vc:create path="property/searchRoom" emitChooseRoom="addContract" emitLoadData="addContract" roomFlag="">

@@ -96,8 +96,6 @@
                     param,
                     function (json, res) {
                         var _staffFeeManageInfo = JSON.parse(json);
-                        console.log("123321")
-                        console.log(_staffFeeManageInfo)
                         vc.component.staffFeeManageInfo.total = _staffFeeManageInfo.total;
                         vc.component.staffFeeManageInfo.records = parseInt(_staffFeeManageInfo.total / _rows + 1);
                         vc.component.staffFeeManageInfo.staffFees = _staffFeeManageInfo.staffFees;

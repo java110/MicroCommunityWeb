@@ -1,19 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            stopContractInfo: {
-
-            }
+            stopContractInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('stopContract', 'openStopContractModal', function (_params) {
                 vc.component.stopContractInfo = _params;
                 $('#stopContractModel').modal('show');
-
             });
         },
         methods: {
@@ -31,14 +26,15 @@
                             //关闭model
                             $('#stopContractModel').modal('hide');
                             vc.emit('contractManage', 'listContract', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeStopContractModel: function () {
@@ -46,5 +42,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

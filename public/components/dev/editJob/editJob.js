@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editJobInfo: {
@@ -13,7 +12,6 @@
             }
         },
         _initMethod: function () {
-           
         },
         _initEvent: function () {
             vc.on('editJob', 'openEditJobModal', function (_params) {
@@ -40,23 +38,22 @@
                             limit: "maxin",
                             param: "2,50",
                             errInfo: "任务名称必须在2至50字符之间"
-                        },
+                        }
                     ],
                     'editJobInfo.templateId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "模板不能为空"
-                        },
+                        }
                     ],
                     'editJobInfo.taskCron': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "定时不能为空"
-                        },
+                        }
                     ]
-
                 });
             },
             editJob: function () {
@@ -64,7 +61,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'task.updateTask',
                     JSON.stringify(vc.component.editJobInfo),
@@ -80,13 +76,14 @@
                             $('#editJobModel').modal('hide');
                             vc.component.refreshEditJobInfo();
                             vc.emit('jobManage', 'listJob', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -101,7 +98,6 @@
                 vc.http.apiGet('task.listTaskTemplate',
                     _param,
                     function (json, res) {
-                        console.log('task.listTaskTemplate', json);
                         let _json = JSON.parse(json);
                         let data = _json.data;
                         if (_json.code == 0) {
@@ -132,7 +128,7 @@
                         if (_json.code == 0) {
                             data.forEach(item => {
                                 $that.editJobInfo.taskAttr.forEach(tmd => {
-                                    if(item.specCd == tmd.specCd && item.templateId == $that.editJobInfo.templateId){
+                                    if (item.specCd == tmd.specCd && item.templateId == $that.editJobInfo.templateId) {
                                         item.value = tmd.value;
                                         item.attrId = tmd.attrId;
                                     }
@@ -154,10 +150,8 @@
                     taskAttr: [],
                     templates: [],
                     templateSpecs: []
-
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

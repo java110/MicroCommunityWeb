@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteComponentConditionInfo: {
-
-            }
+            deleteComponentConditionInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteComponentCondition', 'openDeleteComponentConditionModal', function (_params) {
-
                 vc.component.deleteComponentConditionInfo = _params;
                 $('#deleteComponentConditionModel').modal('show');
-
             });
         },
         methods: {
@@ -32,14 +26,15 @@
                             //关闭model
                             $('#deleteComponentConditionModel').modal('hide');
                             vc.emit('componentConditionManage', 'listComponentCondition', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteComponentConditionModel: function () {
@@ -47,5 +42,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

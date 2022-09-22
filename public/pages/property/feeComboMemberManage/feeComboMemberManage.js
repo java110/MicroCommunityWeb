@@ -50,6 +50,7 @@
                         vc.component.feeComboMemberManageInfo.feeComboMembers = _feeComboMemberManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeComboMemberManageInfo.records,
+                            dataCount: vc.component.feeComboMemberManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -67,6 +68,9 @@
             },
             _queryFeeComboMemberMethod: function () {
                 vc.component._listFeeComboMembers(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _goBack: function () {
+                vc.goBack();
             },
             _moreCondition: function () {
                 if (vc.component.feeComboMemberManageInfo.moreCondition) {

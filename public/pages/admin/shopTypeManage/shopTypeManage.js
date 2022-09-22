@@ -51,6 +51,7 @@
                         vc.component.shopTypeManageInfo.shopTypes = _shopTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.shopTypeManageInfo.records,
+                            dataCount: vc.component.shopTypeManageInfo.total,
                             currentPage: _page
                         });
                     },

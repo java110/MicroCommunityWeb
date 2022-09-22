@@ -36,7 +36,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "数据异常"
-                        }]
+                        }
+                    ]
                 });
             },
             editRepairTypeUser: function () {
@@ -51,14 +52,16 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editRepairTypeUserModel').modal('hide');
                             vc.emit('repairTypeUserManage', 'listRepairTypeUser', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

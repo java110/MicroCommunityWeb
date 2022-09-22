@@ -1,4 +1,5 @@
 (function (vc, vm) {
+    var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
             complaintDetailInfo: {
@@ -15,6 +16,7 @@
                 currentUserId: '',
                 showCurrentUser: true,
                 photos: [],
+                photosShow: [],
                 comments: []
             }
         },
@@ -26,6 +28,9 @@
                 $('#complaintDetailModel').modal('show');
                 let _roomName = _params.floorNum + '号楼' + _params.unitNum + '单元' + _params.roomNum + '室';
                 vc.copyObject(_params, vc.component.complaintDetailInfo);
+                vc.component.complaintDetailInfo.photos.forEach((item) => {
+                    vc.component.complaintDetailInfo.photosShow.push({url: photoUrl + "?fileId=" + item.url + "&communityId=-1&time=" + new Date()});
+                })
                 $that.complaintDetailInfo.roomName = _roomName;
                 if (!_params.hasOwnProperty('currentUserName')) {
                     $that.complaintDetailInfo.showCurrentUser = false;
@@ -53,6 +58,7 @@
                     currentUserId: '',
                     showCurrentUser: true,
                     photos: [],
+                    photosShow: [],
                     comments: []
                 }
             },

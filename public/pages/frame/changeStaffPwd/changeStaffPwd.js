@@ -1,7 +1,7 @@
 /**
  权限组
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             changeStaffPwdInfo: {
@@ -10,10 +10,12 @@
                 reNewPwd: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {},
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+        },
         methods: {
-            assetImportValidate: function() {
+            assetImportValidate: function () {
                 return vc.validate.validate({
                     changeStaffPwdInfo: vc.component.changeStaffPwdInfo
                 }, {
@@ -35,7 +37,7 @@
                     }]
                 });
             },
-            _changePwd: function() {
+            _changePwd: function () {
                 if (!vc.component.assetImportValidate()) {
                     return;
                 }
@@ -48,7 +50,7 @@
                     JSON.stringify(vc.component.changeStaffPwdInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -59,12 +61,13 @@
                             vc.component.changeStaffPwdInfo.reNewPwd = '';
                             vc.clearTabToLocal();
                             vc.jumpToPage("/user.html#/pages/frame/login");
+                            vc.toast("修改成功");
                             return;
                         } else {
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });

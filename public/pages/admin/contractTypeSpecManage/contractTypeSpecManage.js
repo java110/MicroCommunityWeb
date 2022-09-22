@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -18,20 +18,17 @@
                     specName: '',
                     specShow: '',
                     specCd: '',
-                    contractTypeId:''
-
+                    contractTypeId: ''
                 }
             }
         },
         _initMethod: function () {
-
             $that.contractTypeSpecManageInfo.contractTypeId = vc.getParam('contractTypeId');
             $that.contractTypeSpecManageInfo.conditions.contractTypeId = vc.getParam('contractTypeId');
             $that.contractTypeSpecManageInfo.typeName = vc.getParam('typeName');
             vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('contractTypeSpecManage', 'listContractTypeSpec', function (_param) {
                 vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -41,13 +38,13 @@
         },
         methods: {
             _listContractTypeSpecs: function (_page, _rows) {
-
                 vc.component.contractTypeSpecManageInfo.conditions.page = _page;
                 vc.component.contractTypeSpecManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.contractTypeSpecManageInfo.conditions
                 };
-
+                param.params.specName = param.params.specName.trim();
+                param.params.specCd = param.params.specCd.trim();
                 //发送get请求
                 vc.http.apiGet('/contract/queryContractTypeSpec',
                     param,
@@ -77,11 +74,18 @@
             _openDeleteContractTypeSpecModel: function (_contractTypeSpec) {
                 vc.emit('deleteContractTypeSpec', 'openDeleteContractTypeSpecModal', _contractTypeSpec);
             },
+            //查询
             _queryContractTypeSpecMethod: function () {
                 vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _goBack:function(){
+            //重置
+            _resetContractTypeSpecMethod: function () {
+                vc.component.contractTypeSpecManageInfo.conditions.specName = "";
+                vc.component.contractTypeSpecManageInfo.conditions.specShow = "";
+                vc.component.contractTypeSpecManageInfo.conditions.specCd = "";
+                vc.component._listContractTypeSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _goBack: function () {
                 vc.goBack();
             },
             _moreCondition: function () {
@@ -91,8 +95,6 @@
                     vc.component.contractTypeSpecManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

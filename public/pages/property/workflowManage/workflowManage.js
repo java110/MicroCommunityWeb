@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -17,39 +17,37 @@
                     flowName: '',
                     flowId: '',
                     flowType: ''
-
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('workflow', "flow_type", function(_data) {
+            vc.getDict('workflow', "flow_type", function (_data) {
                 $that.workflowManageInfo.flowTypes = _data;
             });
         },
-        _initEvent: function() {
-
-            vc.on('workflowManage', 'listWorkflow', function(_param) {
+        _initEvent: function () {
+            vc.on('workflowManage', 'listWorkflow', function (_param) {
                 vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listWorkflows(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listWorkflows: function(_page, _rows) {
-
+            _listWorkflows: function (_page, _rows) {
                 vc.component.workflowManageInfo.conditions.page = _page;
                 vc.component.workflowManageInfo.conditions.row = _rows;
                 vc.component.workflowManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.workflowManageInfo.conditions
                 };
-
+                param.params.flowId = param.params.flowId.trim();
+                param.params.flowName = param.params.flowName.trim();
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflows',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         vc.component.workflowManageInfo.total = _workflowManageInfo.total;
                         vc.component.workflowManageInfo.records = _workflowManageInfo.records;
@@ -60,58 +58,57 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openEditWorkflowModel: function(_workflow) {
-
+            _openEditWorkflowModel: function (_workflow) {
                 vc.jumpToPage('/#/pages/property/workflowSettingManage?' + vc.objToGetParam(_workflow));
-
             },
-            _queryWorkflowMethod: function() {
+            //查询
+            _queryWorkflowMethod: function () {
                 vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetWorkflowMethod: function () {
+                vc.component.workflowManageInfo.conditions.flowName = "";
+                vc.component.workflowManageInfo.conditions.flowType = "";
+                vc.component.workflowManageInfo.conditions.flowId = "";
+                vc.component._listWorkflows(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.workflowManageInfo.moreCondition) {
                     vc.component.workflowManageInfo.moreCondition = false;
                 } else {
                     vc.component.workflowManageInfo.moreCondition = true;
                 }
             },
-            _openWorkflowImage: function(_workflow) {
-
+            _openWorkflowImage: function (_workflow) {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         flowId: _workflow.flowId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowImage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _workflowManageInfo = JSON.parse(json);
                         if (_workflowManageInfo.code != '0') {
                             vc.toast(_workflowManageInfo.msg);
-
                             return;
                         }
                         vc.emit('viewImage', 'showImage', {
                             url: 'data:image/png;base64,' + _workflowManageInfo.data
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-
             }
-
-
         }
     });
 })(window.vc);

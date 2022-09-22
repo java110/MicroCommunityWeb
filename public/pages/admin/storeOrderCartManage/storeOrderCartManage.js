@@ -56,6 +56,7 @@
                         $that.storeOrderCartManageInfo.orderCarts = _storeOrderCartManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.storeOrderCartManageInfo.records,
+                            dataCount: vc.component.storeOrderCartManageInfo.total,
                             currentPage: _page
                         });
                     },

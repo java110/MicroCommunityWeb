@@ -1,17 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editContractPartyaInfo: {
                 partyaId: '',
                 partyA: '',
                 aContacts: '',
-                aLink: '',
-
+                aLink: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editContractPartya', 'openEditContractPartyaModal', function (_params) {
@@ -47,7 +44,7 @@
                         {
                             limit: "maxLength",
                             param: "64",
-                            errInfo: "仓库类型格式错误"
+                            errInfo: "甲方联系人不能超过64"
                         },
                     ],
                     'editContractPartyaInfo.aLink': [
@@ -67,8 +64,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "甲方编号不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editContractPartya: function () {
@@ -76,7 +73,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contractPartya/updateContractPartya',
                     JSON.stringify(vc.component.editContractPartyaInfo),
@@ -90,13 +86,14 @@
                             //关闭model
                             $('#editContractPartyaModel').modal('hide');
                             vc.emit('contractPartyaManage', 'listContractPartya', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -105,11 +102,9 @@
                     partyaId: '',
                     partyA: '',
                     aContacts: '',
-                    aLink: '',
-
+                    aLink: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

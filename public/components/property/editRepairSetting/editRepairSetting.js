@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editRepairSettingInfo: {
@@ -12,11 +11,9 @@
                 payFeeFlag: '',
                 priceScope: '',
                 returnVisitFlag: ''
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editRepairSetting', 'openEditRepairSettingModal', function (_params) {
@@ -95,8 +92,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "设置不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editRepairSetting: function () {
@@ -107,7 +104,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'repair.updateRepairSetting',
                     JSON.stringify(vc.component.editRepairSettingInfo),
@@ -115,18 +111,19 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editRepairSettingModel').modal('hide');
                             vc.emit('repairSettingManage', 'listRepairSetting', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -141,10 +138,8 @@
                     payFeeFlag: '',
                     priceScope: '',
                     returnVisitFlag: ''
-
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

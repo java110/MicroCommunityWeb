@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,18 +15,16 @@
                 objName: '',
                 objType: '3309',
                 link: '',
-                noteTypes: [],
-
+                noteTypes: []
             }
         },
-        _initMethod: function() {
-            vc.getDict('notepad', 'note_type', function(_data) {
-                $that.addNotepadInfo.noteTypes = _data;
-            })
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addNotepad', 'openAddNotepadModal', function(_param) {
+        _initEvent: function () {
+            vc.on('addNotepad', 'openAddNotepadModal', function (_param) {
+                vc.getDict('notepad', 'note_type', function (_data) {
+                    $that.addNotepadInfo.noteTypes = _data;
+                })
                 vc.copyObject(_param, $that.addNotepadInfo);
                 $that.listNotepadRoom();
                 $('#addNotepadModel').modal('show');
@@ -38,7 +35,39 @@
                 return vc.validate.validate({
                     addNotepadInfo: vc.component.addNotepadInfo
                 }, {
-                    'addNotepadInfo.noteType': [{
+                    'addNotepadInfo.roomName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "128",
+                            errInfo: "房屋不能超过128"
+                        }
+                    ],
+                    'addNotepadInfo.objName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系人不能为空"
+                        }
+                    ],
+                    'addNotepadInfo.link': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系电话不能为空"
+                        },
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "联系电话格式错误"
+                        }
+                    ],
+                    'addNotepadInfo.noteType': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "类型不能为空"
@@ -47,39 +76,27 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "类型不能超过12"
-                        },
+                        }
                     ],
-                    'addNotepadInfo.title': [{
+                    'addNotepadInfo.title': [
+                        {
                             limit: "required",
                             param: "",
-                            errInfo: "简介不能为空"
+                            errInfo: "内容不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "256",
-                            errInfo: "简介不能超过256"
-                        },
-                    ],
-                    'addNotepadInfo.roomName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋名称不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "128",
-                            errInfo: "房屋名称不能超过128"
-                        },
-                    ],
+                            errInfo: "内容不能超过256"
+                        }
+                    ]
                 });
             },
-            saveNotepadInfo: function() {
+            saveNotepadInfo: function () {
                 if (!vc.component.addNotepadValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addNotepadInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -87,13 +104,12 @@
                     $('#addNotepadModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'notepad.saveNotepad',
                     JSON.stringify(vc.component.addNotepadInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -102,19 +118,18 @@
                             vc.component.clearAddNotepadInfo();
                             vc.emit('notepadManage', 'listNotepad', {});
                             vc.emit('simplifyNotepadManage', 'listNotepad', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
-
-            listNotepadRoom: function(_page, _row) {
+            listNotepadRoom: function (_page, _row) {
                 let param = {
                     params: {
                         page: 1,
@@ -126,19 +141,18 @@
                 //发送get请求
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         vc.copyObject(listRoomData.rooms[0], $that.addNotepadInfo);
                         $that.addNotepadInfo.objId = listRoomData.rooms[0].ownerId;
                         $that.addNotepadInfo.objName = listRoomData.rooms[0].ownerName;
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddNotepadInfo: function() {
+            clearAddNotepadInfo: function () {
                 vc.component.addNotepadInfo = {
                     noteId: '',
                     noteType: '',
@@ -149,12 +163,9 @@
                     objName: '',
                     objType: '3309',
                     link: '',
-                    noteTypes: [],
-
-
+                    noteTypes: []
                 };
             }
         }
     });
-
 })(window.vc);

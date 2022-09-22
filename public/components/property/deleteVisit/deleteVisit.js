@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc, vm) {
     vc.extends({
         data: {
             deleteVisitInfo: {}
@@ -26,7 +26,6 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteVisitModel').modal('hide');
-
                             vc.emit('appManage', 'listApp', {});
                             vc.toast("删除成功");
                             return;

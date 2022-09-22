@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -13,12 +12,10 @@
                 queryModel: '',
                 componentSql: '',
                 javaScript: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addReportCustomComponent', 'openAddReportCustomComponentModal', function () {
@@ -40,7 +37,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "组件名称不能超过64"
-                        },
+                        }
                     ],
                     'addReportCustomComponentInfo.componentType': [
                         {
@@ -52,7 +49,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "组件类型不能超过12"
-                        },
+                        }
                     ],
                     'addReportCustomComponentInfo.queryModel': [
                         {
@@ -64,14 +61,14 @@
                             limit: "maxLength",
                             param: "1",
                             errInfo: "查询方式不能超过1"
-                        },
+                        }
                     ],
                     'addReportCustomComponentInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
+                        }
                     ],
                 });
             },
@@ -86,7 +83,6 @@
                     $('#addReportCustomComponentModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomComponent.saveReportCustomComponent',
                     JSON.stringify(vc.component.addReportCustomComponentInfo),
@@ -101,16 +97,15 @@
                             $('#addReportCustomComponentModel').modal('hide');
                             vc.component.clearAddReportCustomComponentInfo();
                             vc.emit('reportCustomComponentManage', 'listReportCustomComponent', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddReportCustomComponentInfo: function () {
@@ -120,10 +115,9 @@
                     queryModel: '',
                     componentSql: '',
                     javaScript: '',
-                    remark: '',
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

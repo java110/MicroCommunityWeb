@@ -1,39 +1,58 @@
 <div id="transactionLogMessageModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="日志报文" namespace="transactionLogMessage"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="日志报文" namespace="transactionLogMessage"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="请求头" namespace="transactionLogMessage"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="请求头" namespace="transactionLogMessage"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="transactionLogMessageInfo.requestHeader" rows="3" disabled="disabled"  class="form-control"></textarea>
+                                    <textarea v-model="transactionLogMessageInfo.requestHeader" rows="3"
+                                              disabled="disabled" class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="请求报文" namespace="transactionLogMessage"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="请求报文" namespace="transactionLogMessage"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="transactionLogMessageInfo.requestMessage"  rows="4" disabled="disabled"  class="form-control"></textarea>
+                                    <textarea v-model="transactionLogMessageInfo.requestMessage" rows="4"
+                                              disabled="disabled" class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="返回头" namespace="transactionLogMessage"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="返回头" namespace="transactionLogMessage"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                        <textarea v-model="transactionLogMessageInfo.responseHeader"  rows="3"  disabled="disabled" class="form-control"></textarea>
+                                    <textarea v-model="transactionLogMessageInfo.responseHeader" rows="3"
+                                              disabled="disabled" class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="返回报文" namespace="transactionLogMessage"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="返回报文" namespace="transactionLogMessage"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="transactionLogMessageInfo.responseMessage"  rows="4" disabled="disabled" class="form-control"></textarea>
+                                    <textarea v-model="transactionLogMessageInfo.responseMessage" rows="4"
+                                              disabled="disabled" class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="ibox-content">
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                    data-dismiss="modal"><span><vc:i18n name="取消" namespace="transactionLogMessage"></vc:i18n></span>
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="transactionLogMessage"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

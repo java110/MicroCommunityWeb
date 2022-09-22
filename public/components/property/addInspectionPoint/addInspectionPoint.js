@@ -41,22 +41,37 @@
                 return vc.validate.validate({
                     addInspectionPointInfo: vc.component.addInspectionPointInfo
                 }, {
-                    'addInspectionPointInfo.inspectionName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "巡检点名称不能为空"
-                    },
+                    'addInspectionPointInfo.inspectionName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "巡检点名称不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "100",
                             errInfo: "巡检点名称不能超过100位"
-                        },
+                        }
                     ],
                     'addInspectionPointInfo.pointObjType': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "巡检类型不能为空"
+                        }
+                    ],
+                    'addInspectionPointInfo.pointObjId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "位置信息不能为空"
+                        }
+                    ],
+                    'addInspectionPointInfo.pointObjName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "巡检位置不能为空"
                         }
                     ],
                     'addInspectionPointInfo.itemId': [
@@ -72,7 +87,7 @@
                             param: "200",
                             errInfo: "备注信息不能超过200位"
                         }
-                    ],
+                    ]
                 });
             },
             saveInspectionPointInfo: function () {

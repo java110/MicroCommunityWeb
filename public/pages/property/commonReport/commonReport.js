@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 100;
@@ -45,15 +45,15 @@
                     function (json, res) {
                         let _reportCustomManageInfo = JSON.parse(json);
                         $that.commonReportInfo.reportCustoms = _reportCustomManageInfo.data;
-                        if (_reportCustomManageInfo.data.length > 0) {
+                        if (_reportCustomManageInfo.data != null && _reportCustomManageInfo.data != '' &&
+                            _reportCustomManageInfo.data != undefined && _reportCustomManageInfo.data.length > 0) {
                             $that.swatch(_reportCustomManageInfo.data[0]);
                         }
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
-            },
-
+            }
         }
     });
 })(window.vc);

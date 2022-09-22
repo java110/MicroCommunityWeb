@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -8,7 +8,7 @@
         data: {
             dictManageInfo: {
                 dicts: [],
-                dictSpecs:[],
+                dictSpecs: [],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -17,8 +17,7 @@
                     id: '',
                     statusCd: '',
                     name: '',
-                    specId:''
-
+                    specId: ''
                 }
             }
         },
@@ -27,7 +26,6 @@
             vc.component._listDicts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('dictManage', 'listDict', function (_param) {
                 vc.component._listDicts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -37,13 +35,13 @@
         },
         methods: {
             _listDicts: function (_page, _rows) {
-
                 vc.component.dictManageInfo.conditions.page = _page;
                 vc.component.dictManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.dictManageInfo.conditions
                 };
-
+                param.params.statusCd = param.params.statusCd.trim();
+                param.params.name = param.params.name.trim();
                 //发送get请求
                 vc.http.apiGet('/dict.listDict',
                     param,
@@ -54,6 +52,7 @@
                         vc.component.dictManageInfo.dicts = _dictManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.dictManageInfo.records,
+                            dataCount: vc.component.dictManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -64,8 +63,8 @@
             _listDictSpecs: function () {
                 let param = {
                     params: {
-                        page:1,
-                        row:1000
+                        page: 1,
+                        row: 1000
                     }
                 };
                 //发送get请求
@@ -88,9 +87,16 @@
             _openDeleteDictModel: function (_dict) {
                 vc.emit('deleteDict', 'openDeleteDictModal', _dict);
             },
+            //查询
             _queryDictMethod: function () {
                 vc.component._listDicts(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetDictMethod: function () {
+                vc.component.dictManageInfo.conditions.specId = "";
+                vc.component.dictManageInfo.conditions.statusCd = "";
+                vc.component.dictManageInfo.conditions.name = "";
+                vc.component._listDicts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.dictManageInfo.moreCondition) {
@@ -99,8 +105,6 @@
                     vc.component.dictManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

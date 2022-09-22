@@ -52,6 +52,7 @@
                         vc.component.accountDetailManageInfo.accountDetails = _accountDetailManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountDetailManageInfo.records,
+                            dataCount: vc.component.accountDetailManageInfo.total,
                             currentPage: _page
                         });
                     },

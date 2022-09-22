@@ -7,6 +7,7 @@
     vc.extends({
         data: {
             simplifyMeterWaterFeeInfo: {
+                meterTypes: [],
                 meterWaters: [],
                 roomId: '',
                 roomName: '',
@@ -18,17 +19,16 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             //切换 至费用页面
             vc.on('simplifyMeterWaterFee', 'switch', function (_param) {
-                console.log('onload params : ',_param);
                 if (_param.roomId == '') {
                     return;
                 }
                 $that.clearSimplifyMeterWaterFeeInfo();
-                vc.copyObject(_param, $that.simplifyMeterWaterFeeInfo)
+                vc.copyObject(_param, $that.simplifyMeterWaterFeeInfo);
+                $that._listMeterTypes();
                 $that._listSimplifyMeterWaterFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
@@ -54,12 +54,12 @@
                     param,
                     function (json) {
                         let _meterWaterInfo = JSON.parse(json);
-                        console.log('query res : ', _meterWaterInfo.data);
                         vc.component.simplifyMeterWaterFeeInfo.total = _meterWaterInfo.total;
                         vc.component.simplifyMeterWaterFeeInfo.records = _meterWaterInfo.records;
                         vc.component.simplifyMeterWaterFeeInfo.meterWaters = _meterWaterInfo.data;
                         vc.emit('simplifyMeterWaterFee', 'paginationPlus', 'init', {
                             total: _meterWaterInfo.records,
+                            dataCount: _meterWaterInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -77,9 +77,9 @@
             },
             clearSimplifyMeterWaterFeeInfo: function () {
                 $that.simplifyMeterWaterFeeInfo = {
+                    meterTypes: [],
                     meterWaters: [],
                     roomId: '',
-                    roomName: '',
                     name: '',
                     roomName: '',
                     floorNum: '',
@@ -95,6 +95,26 @@
                     return "水表";
                 }
                 return "煤气费";
+            },
+            _listMeterTypes: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('meterType.listMeterType',
+                    param,
+                    function (json, res) {
+                        var _meterTypeManageInfo = JSON.parse(json);
+                        $that.simplifyMeterWaterFeeInfo.meterTypes = _meterTypeManageInfo.data;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
             }
         }
     });

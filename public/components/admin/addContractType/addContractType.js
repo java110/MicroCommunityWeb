@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -11,14 +10,16 @@
                 typeName: '',
                 audit: '',
                 remark: '',
-
+                audits: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addContractType', 'openAddContractTypeModal', function () {
+                vc.getDict('contract_type', "audit", function(_data) {
+                    vc.component.addContractTypeInfo.audits = _data;
+                });
                 $('#addContractTypeModel').modal('show');
             });
         },
@@ -57,20 +58,14 @@
                             param: "200",
                             errInfo: "描述超过200位"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveContractTypeInfo: function () {
                 if (!vc.component.addContractTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addContractTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -78,7 +73,6 @@
                     $('#addContractTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contract/saveContractType',
                     JSON.stringify(vc.component.addContractTypeInfo),
@@ -93,17 +87,15 @@
                             $('#addContractTypeModel').modal('hide');
                             vc.component.clearAddContractTypeInfo();
                             vc.emit('contractTypeManage', 'listContractType', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddContractTypeInfo: function () {
@@ -111,10 +103,9 @@
                     typeName: '',
                     audit: '',
                     remark: '',
-
+                    audits: []
                 };
             }
         }
     });
-
 })(window.vc);

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             emitChooseContract: vc.propTypes.string,
@@ -21,8 +20,6 @@
             }
         },
         _initMethod: function () {
-
-
         },
         _initEvent: function () {
             vc.on('contractChangeAssets', 'contractInfo', function (param) {
@@ -43,7 +40,6 @@
                 vc.emit('searchRoom', 'openSearchRoomModel', {})
             },
             _openDelRoomModel: function (_room) {
-
                 let _tmpRooms = [];
                 $that.contractChangeAssetsInfo.rooms.forEach(item => {
                     if (item.roomId != _room.roomId) {
@@ -73,5 +69,4 @@
             },
         }
     });
-
 })(window.vc);

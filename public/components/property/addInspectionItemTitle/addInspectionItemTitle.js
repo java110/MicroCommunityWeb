@@ -63,7 +63,6 @@
                 });
             },
             saveInspectionItemTitleInfo: function () {
-                console.log(vc.component.addInspectionItemTitleInfo.titleValues);
                 if (!vc.component.addInspectionItemTitleValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -126,10 +125,26 @@
                     $that.addInspectionItemTitleInfo.titleValues = [];
                     return;
                 }
-                $that.addInspectionItemTitleInfo.titleValues = [{
-                    itemValue: '',
-                    seq: 1
-                }];
+                if (_titleType == '1001') {
+                    $that.addInspectionItemTitleInfo.titleValues = [
+                        {
+                            itemValue: '',
+                            seq: 1
+                        }
+                    ];
+                }
+                if (_titleType == '2002') {
+                    $that.addInspectionItemTitleInfo.titleValues = [
+                        {
+                            itemValue: '',
+                            seq: 1
+                        },
+                        {
+                            itemValue: '',
+                            seq: 2
+                        }
+                    ];
+                }
             },
             _addTitleValue: function () {
                 $that.addInspectionItemTitleInfo.titleValues.push({

@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -20,24 +20,24 @@
                 remark: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddInspectionPlanDateInfo();
-            vc.getDict('inspection_plan', "inspection_plan_period", function(_data) {
+            vc.getDict('inspection_plan', "inspection_plan_period", function (_data) {
                 console.log("收到字典参数:" + _data);
                 vc.component.addInspectionPlanInfo.inspectionPlanPeriods = _data;
             });
-            vc.getDict('inspection_plan', "state", function(_data) {
+            vc.getDict('inspection_plan', "state", function (_data) {
                 vc.component.addInspectionPlanInfo.states = _data;
             });
-            vc.getDict('inspection_plan', "sign_type", function(_data) {
+            vc.getDict('inspection_plan', "sign_type", function (_data) {
                 vc.component.addInspectionPlanInfo.signTypes = _data;
             });
         },
-        _initEvent: function() {
-            vc.on('addInspectionPlan', 'openAddInspectionPlanModal', function() {
+        _initEvent: function () {
+            vc.on('addInspectionPlan', 'openAddInspectionPlanModal', function () {
                 $('#addInspectionPlanModel').modal('show');
             });
-            vc.on("addInspectionPlanInfo", "notify", function(_param) {
+            vc.on("addInspectionPlanInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addInspectionPlanInfo.staffId = _param.staffId;
                     vc.component.addInspectionPlanInfo.staffName = _param.staffName;
@@ -46,7 +46,6 @@
                     vc.component.addInspectionPlanInfo.inspectionRouteId = _param.inspectionRouteId;
                 }
             });
-
         },
         methods: {
             addInspectionPlanValidate() {
@@ -54,10 +53,10 @@
                     addInspectionPlanInfo: vc.component.addInspectionPlanInfo
                 }, {
                     'addInspectionPlanInfo.inspectionPlanName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "计划名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "计划名称不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,100",
@@ -70,10 +69,10 @@
                         errInfo: "巡检路线不能为空"
                     }],
                     'addInspectionPlanInfo.inspectionPlanPeriod': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "执行周期不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "执行周期不能为空"
+                    },
                         {
                             limit: "maxin",
                             param: "1,12",
@@ -81,10 +80,10 @@
                         },
                     ],
                     'addInspectionPlanInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "计划开始时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "计划开始时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -92,10 +91,10 @@
                         },
                     ],
                     'addInspectionPlanInfo.endTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "计划结束时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "计划结束时间不能为空"
+                    },
                         {
                             limit: "dateTime",
                             param: "",
@@ -103,10 +102,10 @@
                         },
                     ],
                     'addInspectionPlanInfo.signType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "签到方式不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "签到方式不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -114,10 +113,10 @@
                         },
                     ],
                     'addInspectionPlanInfo.state': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "状态不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "状态不能为空"
+                    },
                         {
                             limit: "num",
                             param: "",
@@ -128,10 +127,10 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注信息不能超过200位"
-                    }, ],
+                    }],
                 });
             },
-            _initAddInspectionPlanDateInfo: function() {
+            _initAddInspectionPlanDateInfo: function () {
                 $('.addInspectionPlanStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -142,7 +141,7 @@
                     todayBtn: true
                 });
                 $('.addInspectionPlanStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addInspectionPlanStartTime").val();
                         vc.component.addInspectionPlanInfo.startTime = value;
                     });
@@ -156,7 +155,7 @@
                     todayBtn: true
                 });
                 $('.addInspectionPlanEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addInspectionPlanEndTime").val();
                         vc.component.addInspectionPlanInfo.endTime = value;
                         let start = Date.parse(new Date(vc.component.addInspectionPlanInfo.startTime))
@@ -179,7 +178,7 @@
                     e.currentTarget.blur();
                 }
             },
-            saveInspectionPlanInfo: function() {
+            saveInspectionPlanInfo: function () {
                 if (!vc.component.addInspectionPlanValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -196,24 +195,25 @@
                     JSON.stringify(vc.component.addInspectionPlanInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
                             vc.component.clearAddInspectionPlanInfo();
                             vc.emit('inspectionPlanManage', 'reload', {});
                             vc.toast('成功，请记得设置巡检人')
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddInspectionPlanInfo: function() {
+            clearAddInspectionPlanInfo: function () {
                 var states = vc.component.addInspectionPlanInfo.states;
                 var inspectionPlanPeriods = vc.component.addInspectionPlanInfo.inspectionPlanPeriods;
                 var signTypes = vc.component.addInspectionPlanInfo.signTypes;
@@ -232,7 +232,7 @@
                     inspectionPlanPeriods: inspectionPlanPeriods
                 };
             },
-            cleanInspectionPlanAddModel: function() {
+            cleanInspectionPlanAddModel: function () {
                 vc.component.clearAddInspectionPlanInfo();
                 //员工select2
                 vc.emit('addInspectionPlan', 'inspectionRouteSelect2', 'clearInspectionRoute', {});

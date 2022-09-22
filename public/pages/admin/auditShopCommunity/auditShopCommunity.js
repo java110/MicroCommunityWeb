@@ -55,6 +55,7 @@
                         vc.component.auditShopCommunityInfo.shopCommunitys = _auditShopCommunityInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.auditShopCommunityInfo.records,
+                            dataCount: vc.component.auditShopCommunityInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

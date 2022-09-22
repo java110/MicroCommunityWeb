@@ -30,6 +30,7 @@
         },
         _initEvent: function () {
             vc.on('orgRelStaff', 'orgRelStaffModel', function (_params) {
+                vc.component._refreshChooseOrgRelStaffInfo();
                 $('#orgRelStaffModel').modal('show');
                 // 初始化时清空已选择权限
                 vc.component.orgRelStaffInfo.selectStaffs = [];
@@ -54,8 +55,7 @@
                 vc.http.apiGet(
                     '/user.listStaffsNoInOrg',
                     param,
-                    function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                    function (json) {
                         let _staffsNoInOrg = JSON.parse(json)
                         vc.component.orgRelStaffInfo.total = _staffsNoInOrg.total;
                         vc.component.orgRelStaffInfo.records = _staffsNoInOrg.records;
@@ -65,16 +65,9 @@
                             dataCount: vc.component.orgRelStaffInfo.total,
                             currentPage: _page
                         });
-                        // if (_json.code == 0) {
-                        //     vc.component.orgRelStaffInfo.staffs = _json.data;
-                        //     return;
-                        // } else {
-                        //     vc.toast(_json.msg);
-                        // }
                     },
-                    function (errInfo, error) {
+                    function () {
                         console.log('请求失败处理');
-                        vc.component.orgRelStaffInfo.errorInfo = errInfo;
                     });
             },
             _saveOrgRelStaff: function () {
@@ -121,6 +114,16 @@
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
                     vc.component.orgRelStaffInfo.selectStaffs = [];
                 }
+            },
+            _refreshChooseOrgRelStaffInfo: function () {
+                vc.component.orgRelStaffInfo = {
+                    orgId: '',
+                    name: '',
+                    description: '',
+                    staffs: [],
+                    selectStaffs: [],
+                    quanGroup: false
+                };
             },
             //查询
             _queryOrgRelStaffs: function () {

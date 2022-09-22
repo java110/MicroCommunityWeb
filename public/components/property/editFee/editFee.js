@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             editFeeInfo: {
@@ -13,12 +13,12 @@
                 rateStartTime: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initEditFeeDateInfo();
         },
-        _initEvent: function() {
+        _initEvent: function () {
             vc.on('editFee', 'openEditFeeModal',
-                function(_fee) {
+                function (_fee) {
                     $that.clearAddFeeConfigInfo();
                     vc.copyObject(_fee, $that.editFeeInfo);
                     if (_fee.startTime.indexOf(":") == -1) {
@@ -32,7 +32,7 @@
                 });
         },
         methods: {
-            _initEditFeeDateInfo: function() {
+            _initEditFeeDateInfo: function () {
                 $('.editFeeStartTime').datetimepicker({
                     minView: "month",
                     language: 'zh-CN',
@@ -44,7 +44,7 @@
                     todayBtn: true
                 });
                 $('.editFeeStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".editFeeStartTime").val();
                         vc.component.editFeeInfo.startTime = value;
                     });
@@ -59,7 +59,7 @@
                     todayBtn: true
                 });
                 $('.editFeeEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".editFeeEndTime").val();
                         var start = Date.parse(new Date(vc.component.editFeeInfo.startTime))
                         var end = Date.parse(new Date(value))
@@ -70,7 +70,7 @@
                             vc.component.editFeeInfo.endTime = value;
                         }
                     });
-                vc.initDate('editRoomRateStartTime', function(_endTime) {
+                vc.initDate('editRoomRateStartTime', function (_endTime) {
                     $that.editFeeInfo.rateStartTime = _endTime;
                     let start = Date.parse(new Date($that.editFeeInfo.startTime))
                     let end = Date.parse(new Date($that.editFeeInfo.rateStartTime))
@@ -79,8 +79,7 @@
                         $that.editFeeInfo.rateStartTime = '';
                     }
                 });
-
-                vc.initDate('editFeeMaxEndTime', function(_maxEndTime) {
+                vc.initDate('editFeeMaxEndTime', function (_maxEndTime) {
                     $that.editFeeInfo.maxEndTime = _maxEndTime;
                     let start = Date.parse(new Date($that.editFeeInfo.startTime))
                     let end = Date.parse(new Date($that.editFeeInfo.maxEndTime))
@@ -111,15 +110,15 @@
                         limit: "required",
                         param: "",
                         errInfo: "建账时间不能为空"
-                    }, ],
+                    }],
                     'editFeeInfo.endTime': [{
                         limit: "required",
                         param: "",
                         errInfo: "计费起始时间不能为空"
-                    }, ]
+                    }]
                 });
             },
-            _doEidtFee: function() {
+            _doEidtFee: function () {
                 if (!vc.component.editFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -128,9 +127,9 @@
                 vc.http.apiPost('fee.updateFee', JSON.stringify(vc.component.editFeeInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editFeeModel').modal('hide');
                             vc.component.clearAddFeeConfigInfo();
@@ -142,14 +141,16 @@
                             vc.emit('simplifyContractFee', 'notify', {});
                             vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddFeeConfigInfo: function() {
+            clearAddFeeConfigInfo: function () {
                 vc.component.editFeeInfo = {
                     feeId: '',
                     startTime: '',

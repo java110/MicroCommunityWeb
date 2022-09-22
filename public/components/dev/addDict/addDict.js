@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,9 +11,7 @@
                 name: '',
                 description: '',
                 specId: '',
-
-                dictSpecs:[],
-
+                dictSpecs: []
             }
         },
         _initMethod: function () {
@@ -29,8 +26,8 @@
             _listAddDictSpecs: function () {
                 let param = {
                     params: {
-                        page:1,
-                        row:1000
+                        page: 1,
+                        row: 1000
                     }
                 };
                 //发送get请求
@@ -48,17 +45,12 @@
                 return vc.validate.validate({
                     addDictInfo: vc.component.addDictInfo
                 }, {
-                    'addDictInfo.statusCd': [
+                    'addDictInfo.specId': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "值不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "64",
-                            errInfo: "值不能超过64"
-                        },
+                            errInfo: "类型不能为空"
+                        }
                     ],
                     'addDictInfo.name': [
                         {
@@ -72,6 +64,18 @@
                             errInfo: "名称不能超过50"
                         },
                     ],
+                    'addDictInfo.statusCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "值不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "值不能超过64"
+                        },
+                    ],
                     'addDictInfo.description': [
                         {
                             limit: "required",
@@ -83,24 +87,12 @@
                             param: "200",
                             errInfo: "描述不能超过200"
                         },
-                    ],
-                    'addDictInfo.specId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "类型说明不能为空"
-                        }
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveDictInfo: function () {
                 if (!vc.component.addDictValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.http.apiPost(
@@ -117,17 +109,15 @@
                             $('#addDictModel').modal('hide');
                             vc.component.clearAddDictInfo();
                             vc.emit('dictManage', 'listDict', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddDictInfo: function () {
@@ -136,11 +126,10 @@
                     statusCd: '',
                     name: '',
                     description: '',
-                    specId:'',
-                    dictSpecs:_dictSpecs
+                    specId: '',
+                    dictSpecs: _dictSpecs
                 };
             }
         }
     });
-
 })(window.vc);

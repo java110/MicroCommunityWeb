@@ -83,7 +83,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.emit('parkingBoxAreaManage', 'listParkingBoxArea', {});
-                            vc.toast("修改成功");
+                            vc.toast("设置成功");
                             return;
                         } else {
                             vc.toast(_json.msg);

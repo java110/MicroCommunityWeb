@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             emitChooseContract: vc.propTypes.string,
@@ -28,7 +27,6 @@
         _initMethod: function () {
         },
         _initEvent: function () {
-
         },
         methods: {
             clearcontractChangeMainBodyInfo: function () {
@@ -41,10 +39,8 @@
                     bContacts: '',
                     bLink: '',
                     planType: '1001'
-
                 };
             }
         }
     });
-
 })(window.vc);

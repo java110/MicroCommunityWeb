@@ -1,4 +1,5 @@
 (function (vc) {
+    var photoUrl = '/callComponent/download/getFile/file';
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
@@ -37,6 +38,13 @@
                     function (json) {
                         var _taskDetailInfo = JSON.parse(json);
                         $that.inspectionTaskDetailInfo.taskDetails = _taskDetailInfo.inspectionTaskDetails;
+                        $that.inspectionTaskDetailInfo.taskDetails.forEach((item) => {
+                            if(item.photos && item.photos.length>0){
+                                item.photos.forEach((photo) => {
+                                    photo.url = photoUrl + "?fileId=" + photo.url + "&communityId=-1&time=" + new Date()
+                                })
+                            }
+                        })
                         vc.emit('inspectionTaskDetail', 'paginationPlus', 'init', {
                             total: _taskDetailInfo.records,
                             currentPage: _page

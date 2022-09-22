@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             addInspectionPlanStaffInfo: {
@@ -10,16 +9,15 @@
                 endTime: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddInspectionPlanStaffDateInfo();
         },
-        _initEvent: function() {
-            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function(_inspectionPlan) {
+        _initEvent: function () {
+            vc.on('addInspectionPlanStaff', 'openAddInspectionPlanStaffModal', function (_inspectionPlan) {
                 $('#addInspectionPlanStaffModel').modal('show');
                 $that.addInspectionPlanStaffInfo.inspectionPlanId = _inspectionPlan.inspectionPlanId;
             });
-
-            vc.on("addInspectionPlanStaff", "notify", function(_param) {
+            vc.on("addInspectionPlanStaff", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addInspectionPlanStaffInfo.staffId = _param.staffId;
                     vc.component.addInspectionPlanStaffInfo.staffName = _param.staffName;
@@ -28,11 +26,10 @@
                     vc.component.addInspectionPlanStaffInfo.inspectionPlanId = _param.inspectionPlanId;
                 }
             });
-
-            vc.on('addInspectionPlanStaff', 'switchOrg', function(_org) {
+            vc.on('addInspectionPlanStaff', 'switchOrg', function (_org) {
+                _org.departmentId = _org.orgId;
                 vc.emit('addInspectionPlanStaff', 'staffSelect2', 'setStaff', _org)
             });
-
         },
         methods: {
             addInspectionPlanStaffValidate() {
@@ -58,7 +55,7 @@
                         limit: "required",
                         param: "",
                         errInfo: "开始时间不能为空"
-                    }, ],
+                    }],
                     'addInspectionPlanStaffInfo.endTime': [{
                         limit: "required",
                         param: "",
@@ -66,7 +63,7 @@
                     }]
                 });
             },
-            _initAddInspectionPlanStaffDateInfo: function() {
+            _initAddInspectionPlanStaffDateInfo: function () {
                 $('.addInspectionPlanStaffStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -75,10 +72,9 @@
                     startView: 'day',
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addInspectionPlanStaffStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addInspectionPlanStaffStartTime").val();
                         vc.component.addInspectionPlanStaffInfo.startTime = value;
                     });
@@ -92,27 +88,37 @@
                     todayBtn: true
                 });
                 $('.addInspectionPlanStaffEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addInspectionPlanStaffEndTime").val();
                         vc.component.addInspectionPlanStaffInfo.endTime = value;
                     });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control addInspectionPlanStaffStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control addInspectionPlanStaffEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
             },
-            _saveInspectionPlanStaff: function() {
+            _saveInspectionPlanStaff: function () {
                 if (!vc.component.addInspectionPlanStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.addInspectionPlanStaffInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     'inspectionPlanStaff.saveInspectionPlanStaff',
                     JSON.stringify(vc.component.addInspectionPlanStaffInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addInspectionPlanModel').modal('hide');
                             vc.emit('inspectionPlanStaffManage', 'listInspectionPlanStaff', {
@@ -120,19 +126,18 @@
                             });
                             vc.component.clearaddInspectionPlanStaffInfo();
                             $('#addInspectionPlanStaffModel').modal('hide');
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
-            clearaddInspectionPlanStaffInfo: function() {
+            clearaddInspectionPlanStaffInfo: function () {
                 vc.emit('addInspectionPlanStaff', 'staffSelect2', 'clearStaff', {});
                 vc.emit('chooseOrgTree2', 'clearAll', {});
                 vc.component.addInspectionPlanStaffInfo = {
@@ -143,7 +148,7 @@
                     endTime: ''
                 };
             },
-            cleanInspectionPlanStaffAddModel: function() {
+            cleanInspectionPlanStaffAddModel: function () {
                 vc.component.clearaddInspectionPlanStaffInfo();
                 //员工select2
                 vc.emit('addInspectionPlanStaff', 'staffSelect2', 'clearStaff', {});
@@ -151,5 +156,4 @@
             }
         }
     });
-
 })(window.vc);

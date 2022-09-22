@@ -125,44 +125,48 @@
                 return vc.validate.validate({
                     addMeterWaterInfo: vc.component.addMeterWaterInfo
                 }, {
-                    'addMeterWaterInfo.preDegrees': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "上期度数不能为空"
-                    },
+                    'addMeterWaterInfo.preDegrees': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "上期度数不能为空"
+                        },
                         {
                             limit: "money",
                             param: "",
                             errInfo: "上期度数格式错误"
                         },
                     ],
-                    'addMeterWaterInfo.curDegrees': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "本期度数不能为空"
-                    },
+                    'addMeterWaterInfo.curDegrees': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "本期度数不能为空"
+                        },
                         {
                             limit: "money",
                             param: "",
                             errInfo: "本期度数格式错误"
                         },
                     ],
-                    'addMeterWaterInfo.preReadingTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "上期读表时间不能为空"
-                    },
+                    'addMeterWaterInfo.preReadingTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "上期读表时间不能为空"
+                        },
                         {
                             limit: "dateTime",
                             param: "",
                             errInfo: "上期读表时间格式错误"
                         },
                     ],
-                    'addMeterWaterInfo.curReadingTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "本期读表时间不能为空"
-                    },
+                    'addMeterWaterInfo.curReadingTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "本期读表时间不能为空"
+                        },
                         {
                             limit: "dateTime",
                             param: "",
@@ -188,7 +192,7 @@
                         limit: "maxLength",
                         param: "500",
                         errInfo: "备注格式错误"
-                    },],
+                    }],
                 });
             },
             saveMeterWaterInfo: function () {
@@ -213,8 +217,8 @@
                     },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        let _json = JSON.parse(json);
-                        if (_json.code == 0) {
+                        var _json = JSON.parse(json);
+                        if (res.status == 200) {
                             //关闭model
                             $('#addMeterWaterModel').modal('hide');
                             vc.component.clearAddMeterWaterInfo();

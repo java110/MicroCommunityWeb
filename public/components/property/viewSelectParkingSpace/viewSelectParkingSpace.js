@@ -31,7 +31,6 @@
                 vc.emit('hireParkingSpaceFee', 'parkingSpaceInfo', vc.component.parkingSpaceInfo);
                 vc.emit('sellParkingSpaceFee', 'parkingSpaceInfo', vc.component.parkingSpaceInfo);
             });
-
             vc.on('viewSelectParkingSpace', 'showParkingSpace', function (_parkingSpace) {
                 vc.copyObject(_parkingSpace, vc.component.parkingSpaceInfo);
             });
@@ -42,8 +41,6 @@
             },
             loadParkingSpaceData: function () {
                 vc.component.parkingSpaceInfo.psId = vc.getParam("psId");
-                console.log("here")
-                console.log(vc.getParam("psId"))
                 vc.component.parkingSpaceInfo.num = vc.getParam("num");
                 vc.component.parkingSpaceInfo.area = vc.getParam("area");
                 vc.component.parkingSpaceInfo.state = vc.getParam("state");

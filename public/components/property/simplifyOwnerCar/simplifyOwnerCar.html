@@ -1,10 +1,10 @@
 <div>
     <div class="row margin-top">
-        <div class="col-lg-10 text-right">
-        </div>
+        <div class="col-lg-10 text-right"></div>
         <div class="col-lg-2 text-right" v-if="simplifyOwnerCarInfo.ownerId">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_addOwnerCar()">
-                <i class="fa fa-plus"></i><span><vc:i18n name="添加车辆" namespace="simplifyOwnerCar"></vc:i18n></span>
+                <i class="fa fa-plus"></i>
+                <span><vc:i18n name="添加车辆" namespace="simplifyOwnerCar"></vc:i18n></span>
             </button>
         </div>
     </div>
@@ -102,6 +102,11 @@
                 </td>
             </tr>
             </tbody>
+            <tr>
+                <td colspan="10">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
         </table>
     </div>
     <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>

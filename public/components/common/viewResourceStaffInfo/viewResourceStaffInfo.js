@@ -21,6 +21,7 @@
             }
         },
         _initMethod: function () {
+            vc.component._clearViewResourceStaffInfo();
         },
         _initEvent: function () {
             vc.on('viewResourceStaffInfo', 'setResourcesOut', function (_resOrderType) {
@@ -67,6 +68,19 @@
                 })
                 // 同时移除子页面复选框选项
                 vc.emit('chooseResourceStaff', 'removeSelectResourceStaffItem', resId);
+            },
+            _clearViewResourceStaffInfo: function () {
+                vc.component.viewResourceStaffInfo = {
+                    index: 0,
+                    flowComponent: 'viewResourceStaffInfo',
+                    resName: '',
+                    resCode: '',
+                    price: '',
+                    stock: '',
+                    description: '',
+                    resourceStores: [],
+                    resOrderType: ''
+                };
             }
         }
     });

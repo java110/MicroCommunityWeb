@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editContractTypeSpecInfo: {
@@ -15,7 +14,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editContractTypeSpec', 'openEditContractTypeSpecModal', function (_params) {
@@ -54,13 +52,15 @@
                             limit: "required",
                             param: "",
                             errInfo: "必填不能为空"
-                        }],
+                        }
+                    ],
                     'editContractTypeSpecInfo.specShow': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "展示不能为空"
-                        }],
+                        }
+                    ],
                     'editContractTypeSpecInfo.specValueType': [
                         {
                             limit: "required",
@@ -90,13 +90,15 @@
                             limit: "required",
                             param: "",
                             errInfo: "查询显示不能为空"
-                        }],
+                        }
+                    ],
                     'editContractTypeSpecInfo.specCd': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "规格不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editContractTypeSpec: function () {
@@ -104,7 +106,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contract/updateContractTypeSpec',
                     JSON.stringify(vc.component.editContractTypeSpecInfo),
@@ -118,13 +119,14 @@
                             //关闭model
                             $('#editContractTypeSpecModel').modal('hide');
                             vc.emit('contractTypeSpecManage', 'listContractTypeSpec', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -143,5 +145,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,7 +16,7 @@
                 conditions: {
                     componentId: '',
                     name: '',
-                    param: '',
+                    param: ''
                 }
             }
         },
@@ -26,7 +26,6 @@
             vc.component._listComponentConditions(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('componentConditionManage', 'listComponentCondition', function (_param) {
                 vc.component._listComponentConditions(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,13 +35,11 @@
         },
         methods: {
             _listComponentConditions: function (_page, _rows) {
-
                 vc.component.componentConditionManageInfo.conditions.page = _page;
                 vc.component.componentConditionManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.componentConditionManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportCustomComponentCondition.listReportCustomComponentCondition',
                     param,
@@ -73,7 +70,6 @@
             },
             _queryComponentConditionMethod: function () {
                 vc.component._listComponentConditions(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _goBack: function () {
                 vc.goBack();
@@ -85,8 +81,6 @@
                     vc.component.componentConditionManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

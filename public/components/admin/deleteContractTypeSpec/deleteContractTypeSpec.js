@@ -1,13 +1,9 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteContractTypeSpecInfo: {
-
-            }
+            deleteContractTypeSpecInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteContractTypeSpec', 'openDeleteContractTypeSpecModal', function (_params) {
@@ -31,14 +27,15 @@
                             //关闭model
                             $('#deleteContractTypeSpecModel').modal('hide');
                             vc.emit('contractTypeSpecManage', 'listContractTypeSpec', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteContractTypeSpecModel: function () {
@@ -46,5 +43,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

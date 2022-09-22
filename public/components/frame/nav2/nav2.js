@@ -135,8 +135,6 @@
                     function(json, res) {
                         if (res.status == 200) {
                             vm.nav.communityInfos = JSON.parse(json).communitys;
-                            console.log("looooook")
-                            console.log(vm.nav.communityInfos)
                             if (vm.nav.communityInfos == null || vm.nav.communityInfos.length == 0) {
                                 vm.nav._currentCommunity = {
                                     name: "还没有入驻小区"

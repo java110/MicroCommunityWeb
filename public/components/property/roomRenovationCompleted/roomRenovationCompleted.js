@@ -24,9 +24,11 @@
                         if (_json.code == 0) {
                             $('#roomRenovationCompletedModel').modal('hide');
                             vc.emit('roomRenovationManage', 'listRoomRenovation', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

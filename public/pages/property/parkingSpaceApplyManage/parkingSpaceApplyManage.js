@@ -53,6 +53,7 @@
                         vc.component.parkingSpaceApplyManageInfo.parkingSpaceApplys = _parkingSpaceApplyManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingSpaceApplyManageInfo.records,
+                            dataCount: vc.component.parkingSpaceApplyManageInfo.total,
                             currentPage: _page
                         });
                     },

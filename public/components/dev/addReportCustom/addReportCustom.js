@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -8,15 +7,15 @@
         data: {
             addReportCustomInfo: {
                 groupId: '',
+                total: 0,
+                records: 1,
                 title: '',
                 seq: '',
                 remark: '',
-                reportCustomGroups:[]
-
+                reportCustomGroups: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addReportCustom', 'openAddReportCustomModal', function () {
@@ -33,13 +32,13 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "组编号不能为空"
+                            errInfo: "报表组不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "30",
-                            errInfo: "组编号不能超过30"
-                        },
+                            errInfo: "报表组不能超过30"
+                        }
                     ],
                     'addReportCustomInfo.title': [
                         {
@@ -51,7 +50,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "选项标题不能超过64"
-                        },
+                        }
                     ],
                     'addReportCustomInfo.seq': [
                         {
@@ -63,25 +62,20 @@
                             limit: "maxLength",
                             param: "11",
                             errInfo: "排序不能超过11"
-                        },
+                        }
                     ],
                     'addReportCustomInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
             saveReportCustomInfo: function () {
                 if (!vc.component.addReportCustomValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 //不提交数据将数据 回调给侦听处理
@@ -90,7 +84,6 @@
                     $('#addReportCustomModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustom.saveReportCustom',
                     JSON.stringify(vc.component.addReportCustomInfo),
@@ -105,17 +98,15 @@
                             $('#addReportCustomModel').modal('hide');
                             vc.component.clearAddReportCustomInfo();
                             vc.emit('reportCustomManage', 'listReportCustom', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddReportCustomInfo: function () {
@@ -125,25 +116,24 @@
                     title: '',
                     seq: '',
                     remark: '',
-                    reportCustomGroups:[]
+                    reportCustomGroups: []
                 };
             },
             _listAddReportCustomGroups: function (_page, _rows) {
                 var param = {
                     params: {
-                        page:1,
-                        row:50
+                        page: 1,
+                        row: 50
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportCustomGroup.listReportCustomGroup',
                     param,
                     function (json, res) {
                         var _reportCustomGroupManageInfo = JSON.parse(json);
-                       $that.addReportCustomInfo.reportCustomGroups = _reportCustomGroupManageInfo.data;
+                        $that.addReportCustomInfo.reportCustomGroups = _reportCustomGroupManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.reportCustomGroupManageInfo.records,
+                            total: vc.component.addReportCustomInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -153,5 +143,4 @@
             },
         }
     });
-
 })(window.vc);

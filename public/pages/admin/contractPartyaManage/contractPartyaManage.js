@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -15,8 +15,7 @@
                 conditions: {
                     partyA: '',
                     aContacts: '',
-                    aLink: '',
-
+                    aLink: ''
                 }
             }
         },
@@ -24,7 +23,6 @@
             vc.component._listContractPartyas(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('contractPartyaManage', 'listContractPartya', function (_param) {
                 vc.component._listContractPartyas(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +32,14 @@
         },
         methods: {
             _listContractPartyas: function (_page, _rows) {
-
                 vc.component.contractPartyaManageInfo.conditions.page = _page;
                 vc.component.contractPartyaManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.contractPartyaManageInfo.conditions
                 };
-
+                param.params.partyA = param.params.partyA.trim();
+                param.params.aContacts = param.params.aContacts.trim();
+                param.params.aLink = param.params.aLink.trim();
                 //发送get请求
                 vc.http.apiGet('/contractPartya/queryContractPartya',
                     param,
@@ -68,9 +67,16 @@
             _openDeleteContractPartyaModel: function (_contractPartya) {
                 vc.emit('deleteContractPartya', 'openDeleteContractPartyaModal', _contractPartya);
             },
+            //查询
             _queryContractPartyaMethod: function () {
                 vc.component._listContractPartyas(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetContractPartyaMethod: function () {
+                vc.component.contractPartyaManageInfo.conditions.partyA = "";
+                vc.component.contractPartyaManageInfo.conditions.aContacts = "";
+                vc.component.contractPartyaManageInfo.conditions.aLink = "";
+                vc.component._listContractPartyas(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.contractPartyaManageInfo.moreCondition) {
@@ -79,8 +85,6 @@
                     vc.component.contractPartyaManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

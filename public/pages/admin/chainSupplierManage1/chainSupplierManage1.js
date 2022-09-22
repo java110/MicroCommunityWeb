@@ -53,6 +53,7 @@
                         }
                         vc.emit('pagination', 'init', {
                             total: vc.component.chainSupplierManageInfo.records,
+                            dataCount: vc.component.chainSupplierManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

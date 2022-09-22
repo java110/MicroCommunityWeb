@@ -2,52 +2,75 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="登记" namespace="addNotepad"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="登记" namespace="addNotepad"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='房屋' namespace='addNotepad'></vc:i18n></span></label>
+                            <div class="form-group row" disabled>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='房屋' namespace='addNotepad'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addNotepadInfo.roomName" type="text" :placeholder="vc.i18n('必填，请填写内容','addNotepad')" class="form-control" />
+                                    <input v-model="addNotepadInfo.roomName" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写房屋','addNotepad')" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row" disabled>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='联系人' namespace='addNotepad'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addNotepadInfo.objName" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写联系人','addNotepad')" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row" disabled>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='联系电话' namespace='addNotepad'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addNotepadInfo.link" type="text" disabled
+                                           :placeholder="vc.i18n('必填，请填写联系电话','addNotepad')" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='联系人' namespace='addNotepad'></vc:i18n></span></label>
-                                <div class="col-sm-10">
-                                    <input v-model="addNotepadInfo.objName" type="text" :placeholder="vc.i18n('必填，请填写内容','addNotepad')" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='联系电话' namespace='addNotepad'></vc:i18n></span></label>
-                                <div class="col-sm-10">
-                                    <input v-model="addNotepadInfo.link" type="text" :placeholder="vc.i18n('必填，请填写内容','addNotepad')" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='类型' namespace='addNotepad'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='类型' namespace='addNotepad'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addNotepadInfo.noteType">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择反馈类型','addNotepadInfo')}}</option>
-                                        <option v-for="(item,index) in addNotepadInfo.noteTypes" :value="item.statusCd">{{item.name}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择反馈类型','addNotepadInfo')}}
+                                        </option>
+                                        <option v-for="(item,index) in addNotepadInfo.noteTypes" :value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='内容' namespace='addNotepad'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='内容' namespace='addNotepad'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addNotepadInfo.title" rows="10" :placeholder="vc.i18n('必填，请填写内容','addNotepad')" class="form-control"></textarea>
+                                    <textarea v-model="addNotepadInfo.title" rows="10"
+                                              :placeholder="vc.i18n('必填，请填写内容','addNotepad')"
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveNotepadInfo()"><i class="fa fa-check"></i>&nbsp;
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveNotepadInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;
                                     <span><vc:i18n name="保存"></vc:i18n></span>
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
                                     <span><vc:i18n name="取消"></vc:i18n></span>
-                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>

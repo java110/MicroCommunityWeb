@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editNotepadInfo: {
@@ -12,16 +11,16 @@
                 objName: '',
                 objType: '',
                 link: '',
-                noteTypes: [],
+                noteTypes: []
             }
         },
-        _initMethod: function() {
-            vc.getDict('notepad', 'note_type', function(_data) {
+        _initMethod: function () {
+            vc.getDict('notepad', 'note_type', function (_data) {
                 $that.editNotepadInfo.noteTypes = _data;
             })
         },
-        _initEvent: function() {
-            vc.on('editNotepad', 'openEditNotepadModal', function(_params) {
+        _initEvent: function () {
+            vc.on('editNotepad', 'openEditNotepadModal', function (_params) {
                 vc.component.refreshEditNotepadInfo();
                 $('#editNotepadModel').modal('show');
                 vc.copyObject(_params, vc.component.editNotepadInfo);
@@ -29,11 +28,50 @@
             });
         },
         methods: {
-            editNotepadValidate: function() {
+            editNotepadValidate: function () {
                 return vc.validate.validate({
                     editNotepadInfo: vc.component.editNotepadInfo
                 }, {
-                    'editNotepadInfo.noteType': [{
+                    'editNotepadInfo.noteId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "编号不能为空"
+                        }
+                    ],
+                    'editNotepadInfo.roomName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "128",
+                            errInfo: "房屋不能超过128"
+                        }
+                    ],
+                    'editNotepadInfo.objName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系人不能为空"
+                        }
+                    ],
+                    'editNotepadInfo.link': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "联系电话不能为空"
+                        },
+                        {
+                            limit: "phone",
+                            param: "",
+                            errInfo: "联系电话格式错误"
+                        }
+                    ],
+                    'editNotepadInfo.noteType': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "类型不能为空"
@@ -42,39 +80,23 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "类型不能超过12"
-                        },
+                        }
                     ],
-                    'editNotepadInfo.title': [{
+                    'editNotepadInfo.title': [
+                        {
                             limit: "required",
                             param: "",
-                            errInfo: "简介不能为空"
+                            errInfo: "内容不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "256",
-                            errInfo: "简介不能超过256"
-                        },
-                    ],
-                    'editNotepadInfo.roomName': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "房屋名称不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "128",
-                            errInfo: "房屋名称不能超过128"
-                        },
-                    ],
-                    'editNotepadInfo.noteId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "编号不能为空"
-                    }]
-
+                            errInfo: "内容不能超过256"
+                        }
+                    ]
                 });
             },
-            editNotepad: function() {
+            editNotepad: function () {
                 if (!vc.component.editNotepadValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -85,7 +107,7 @@
                     JSON.stringify(vc.component.editNotepadInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -93,17 +115,18 @@
                             $('#editNotepadModel').modal('hide');
                             vc.emit('notepadManage', 'listNotepad', {});
                             vc.emit('simplifyNotepadManage', 'listNotepad', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
-            refreshEditNotepadInfo: function() {
+            refreshEditNotepadInfo: function () {
                 let _noteTypes = $that.editNotepadInfo.noteTypes
                 vc.component.editNotepadInfo = {
                     noteId: '',
@@ -115,11 +138,9 @@
                     objName: '',
                     objType: '',
                     link: '',
-                    noteTypes: _noteTypes,
-
+                    noteTypes: _noteTypes
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

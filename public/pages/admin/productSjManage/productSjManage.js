@@ -57,6 +57,7 @@
                         vc.component.productManageInfo.products = _productManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.productManageInfo.records,
+                            dataCount: vc.component.productManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

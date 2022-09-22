@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -7,7 +6,7 @@
         },
         data: {
             addTransferStoreInfo: {
-                flowComponent: 'addTransferStoreView',
+                flowComponent: '',
                 description: '',
                 endUserName: '',
                 endUserTel: '',
@@ -20,41 +19,39 @@
         watch: {
             addTransferStoreInfo: {
                 deep: true,
-                handler: function() {
+                handler: function () {
                     vc.component.saveAddComplainInfo();
                 }
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
+            vc.component._clearAddTransferStoreInfo()
         },
-        _initEvent: function() {
-
-            vc.on("addTransferStoreInfo", "notify", function(_param) {
+        _initEvent: function () {
+            vc.on("addTransferStoreInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
                     vc.component.addTransferStoreInfo.staffId = _param.staffId;
                     vc.component.addTransferStoreInfo.staffName = _param.staffName;
                 }
             });
-
-            vc.on('addTransferStoreInfo', 'switchOrg', function(_org) {
-                vc.emit('addTransferStoreInfo', 'staffSelect2', 'setStaff', _org)
+            vc.on('addTransferStoreInfo', 'switchOrg', function (_org) {
+                _org.departmentId = _org.orgId;
+                vc.emit('addTransferStoreView', 'staffSelect2', 'setStaff', _org)
             });
-
-            vc.on('addTransferStoreInfo', 'onIndex', function(_index) {
+            vc.on('addTransferStoreInfo', 'onIndex', function (_index) {
                 vc.component.addTransferStoreInfo.index = _index;
             });
         },
         methods: {
-            addComplainValidate: function() {
+            addComplainValidate: function () {
                 return vc.validate.validate({
                     addTransferStoreInfo: vc.component.addTransferStoreInfo
                 }, {
                     'addTransferStoreInfo.description': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "转赠说明不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "转赠说明不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "200",
@@ -85,17 +82,27 @@
                     //         errInfo: "不是有效手机号"
                     //     },
                     // ]
-
                 });
             },
-            saveAddComplainInfo: function() {
+            saveAddComplainInfo: function () {
                 if (vc.component.addComplainValidate()) {
                     //侦听回传
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addTransferStoreInfo);
                     return;
                 }
+            },
+            _clearAddTransferStoreInfo: function () {
+                vc.component.addTransferStoreInfo = {
+                    flowComponent: '',
+                    description: '',
+                    endUserName: '',
+                    endUserTel: '',
+                    staffId: '',
+                    staffName: '',
+                    resOrderType: '',
+                    index: ''
+                };
             }
         }
     });
-
 })(window.vc);

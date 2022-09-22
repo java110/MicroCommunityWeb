@@ -51,6 +51,7 @@
                         vc.component.accountWithdrawalApplyListManageInfo.accountWithdrawalApplyLists = _accountWithdrawalApplyListManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountWithdrawalApplyListManageInfo.records,
+                            dataCount: vc.component.accountWithdrawalApplyListManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

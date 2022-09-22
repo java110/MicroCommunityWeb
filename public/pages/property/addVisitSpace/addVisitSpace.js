@@ -106,7 +106,7 @@
                         vc.emit('addVisit', 'clearInfo', '');
                         vc.emit('visitForOwner', 'clearInfo', '');
                         vc.emit('addVisitCase', 'clearInfo', '');
-                        if (res.status == 200 && _json.code == '0') {
+                        if (_json.code == 0) {
                             //关闭model
                             vc.toast("添加成功");
                             vc.goBack();

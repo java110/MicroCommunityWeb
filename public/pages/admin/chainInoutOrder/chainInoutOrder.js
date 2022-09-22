@@ -52,6 +52,7 @@
                         vc.component.chainInoutOrderInfo.inoutOrders = _chainInoutOrderInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.chainInoutOrderInfo.records,
+                            dataCount: vc.component.chainInoutOrderInfo.total,
                             currentPage: _page
                         });
                     },

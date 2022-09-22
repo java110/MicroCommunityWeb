@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editComponentConditionInfo: {
@@ -10,11 +9,10 @@
                 param: '',
                 type: '',
                 remark: '',
-                seq:''
+                seq: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editComponentCondition', 'openEditComponentConditionModal', function (_params) {
@@ -38,7 +36,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "组件ID不能超过30"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.name': [
                         {
@@ -50,7 +48,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "名称不能超过64"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.holdpace': [
                         {
@@ -62,7 +60,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "提示不能超过64"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.param': [
                         {
@@ -74,7 +72,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "参数不能超过64"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.type': [
                         {
@@ -86,7 +84,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "类型不能超过12"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.seq': [
                         {
@@ -98,22 +96,22 @@
                             limit: "num",
                             param: "",
                             errInfo: "排序必须为数字"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
+                        }
                     ],
                     'editComponentConditionInfo.conditionId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "条件ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editComponentCondition: function () {
@@ -121,7 +119,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomComponentCondition.updateReportCustomComponentCondition',
                     JSON.stringify(vc.component.editComponentConditionInfo),
@@ -135,13 +132,14 @@
                             //关闭model
                             $('#editComponentConditionModel').modal('hide');
                             vc.emit('componentConditionManage', 'listComponentCondition', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -154,10 +152,9 @@
                     param: '',
                     type: '',
                     remark: '',
-                    seq:''
+                    seq: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -1,4 +1,4 @@
-(function(vc, vm) {
+(function (vc, vm) {
     var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
@@ -27,13 +27,12 @@
                 feeId: '',
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initReviewApplyRoomDiscountDateInfo();
         },
-        _initEvent: function() {
-            vc.on('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', function(_params) {
+        _initEvent: function () {
+            vc.on('reviewApplyRoomDiscount', 'openReviewApplyRoomDiscountModal', function (_params) {
                 _params = JSON.parse(_params);
-                console.log('params here', _params);
                 delete _params.state;
                 vc.component.refreshReviewApplyRoomDiscountInfo();
                 $('#reviewApplyRoomDiscountModel').modal('show');
@@ -53,7 +52,7 @@
             });
         },
         methods: {
-            _initReviewApplyRoomDiscountDateInfo: function() {
+            _initReviewApplyRoomDiscountDateInfo: function () {
                 $('.reviewStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -64,7 +63,7 @@
                     todayBtn: true
                 });
                 $('.reviewStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".reviewStartTime").val();
                         vc.component.reviewApplyRoomDiscountInfo.startTime = value;
                     });
@@ -78,7 +77,7 @@
                     todayBtn: true
                 });
                 $('.reviewEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".reviewEndTime").val();
                         var start = Date.parse(new Date(vc.component.reviewApplyRoomDiscountInfo.startTime))
                         var end = Date.parse(new Date(value))
@@ -102,15 +101,15 @@
                     e.currentTarget.blur();
                 }
             },
-            reviewApplyRoomDiscountValidate: function() {
+            reviewApplyRoomDiscountValidate: function () {
                 return vc.validate.validate({
                     reviewApplyRoomDiscountInfo: vc.component.reviewApplyRoomDiscountInfo
                 }, {
                     'reviewApplyRoomDiscountInfo.discountId': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "折扣名称不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "折扣名称不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "30",
@@ -118,10 +117,10 @@
                         },
                     ],
                     'reviewApplyRoomDiscountInfo.discountType': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "折扣类型不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "折扣类型不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "30",
@@ -129,10 +128,10 @@
                         },
                     ],
                     'reviewApplyRoomDiscountInfo.returnWay': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "返还方式不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "返还方式不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "30",
@@ -140,10 +139,10 @@
                         },
                     ],
                     'reviewApplyRoomDiscountInfo.startTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "开始时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "开始时间不能为空"
+                    },
                         {
                             limit: "datetime",
                             param: "",
@@ -151,10 +150,10 @@
                         },
                     ],
                     'reviewApplyRoomDiscountInfo.endTime': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "结束时间不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "结束时间不能为空"
+                    },
                         {
                             limit: "datetime",
                             param: "",
@@ -162,10 +161,10 @@
                         },
                     ],
                     'reviewApplyRoomDiscountInfo.reviewRemark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "审批说明不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "审批说明不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "512",
@@ -184,15 +183,15 @@
                     }]
                 });
             },
-            reviewApplyRoomDiscountStateValidate: function() {
+            reviewApplyRoomDiscountStateValidate: function () {
                 return vc.validate.validate({
                     reviewApplyRoomDiscountInfo: vc.component.reviewApplyRoomDiscountInfo
                 }, {
                     'reviewApplyRoomDiscountInfo.reviewRemark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "审批说明不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "审批说明不能为空"
+                    },
                         {
                             limit: "maxLength",
                             param: "512",
@@ -201,7 +200,7 @@
                     ]
                 });
             },
-            reviewApplyRoomDiscount: function() {
+            reviewApplyRoomDiscount: function () {
                 console.log(vc.component.reviewApplyRoomDiscountInfo.selectedFees);
                 if (!vc.component.reviewApplyRoomDiscountValidate() && vc.component.reviewApplyRoomDiscountInfo.state != '5') {
                     vc.toast(vc.validate.errInfo);
@@ -219,7 +218,7 @@
                     JSON.stringify(vc.component.reviewApplyRoomDiscountInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -232,12 +231,12 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            refreshReviewApplyRoomDiscountInfo: function() {
+            refreshReviewApplyRoomDiscountInfo: function () {
                 let _discounts = $that.reviewApplyRoomDiscountInfo.discounts;
                 vc.component.reviewApplyRoomDiscountInfo = {
                     ardId: '',
@@ -263,7 +262,7 @@
                     feeId: '',
                 }
             },
-            _changeApplyRoomDiscountType: function() {
+            _changeApplyRoomDiscountType: function () {
                 if ($that.reviewApplyRoomDiscountInfo.discountType == '') {
                     return;
                 }
@@ -279,44 +278,44 @@
                 //发送get请求
                 vc.http.apiGet('/feeDiscount/queryFeeDiscount',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _feeDiscountManageInfo = JSON.parse(json);
                         $that.reviewApplyRoomDiscountInfo.discounts = _feeDiscountManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
 
             // 查询缴费历史v2
-            _listFees: function() {
+            _listFees: function () {
                 console.log(vc.component.reviewApplyRoomDiscountInfo);
                 var param = {
-                        params: {
-                            page: 1,
-                            row: 50,
-                            communityId: vc.getCurrentCommunity().communityId,
-                            feeId: vc.component.reviewApplyRoomDiscountInfo.feeId,
-                            state: '1400'
-                                // startTime: vc.component.reviewApplyRoomDiscountInfo.startTime,
-                                // endTime: vc.component.reviewApplyRoomDiscountInfo.endTime
-                        }
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        feeId: vc.component.reviewApplyRoomDiscountInfo.feeId,
+                        state: '1400'
+                        // startTime: vc.component.reviewApplyRoomDiscountInfo.startTime,
+                        // endTime: vc.component.reviewApplyRoomDiscountInfo.endTime
                     }
-                    //发送get请求
+                }
+                //发送get请求
                 vc.http.apiGet('/fee.queryFeeDetail',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listFeeDetailData = JSON.parse(json);
                         vc.component.reviewApplyRoomDiscountInfo.fees = listFeeDetailData.feeDetails;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            showImg: function(e) {
-                vc.emit('viewImage', 'showImage', { url: e });
+            showImg: function (e) {
+                vc.emit('viewImage', 'showImage', {url: e});
             }
         }
     });

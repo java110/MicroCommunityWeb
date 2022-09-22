@@ -1,13 +1,9 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteReportCustomInfo: {
-
-            }
+            deleteReportCustomInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteReportCustom', 'openDeleteReportCustomModal', function (_params) {
@@ -30,14 +26,15 @@
                             //关闭model
                             $('#deleteReportCustomModel').modal('hide');
                             vc.emit('reportCustomManage', 'listReportCustom', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteReportCustomModel: function () {
@@ -45,5 +42,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editContractTypeInfo: {
@@ -7,14 +6,16 @@
                 typeName: '',
                 audit: '',
                 remark: '',
-
+                audits: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editContractType', 'openEditContractTypeModal', function (_params) {
+                vc.getDict('contract_type', "audit", function(_data) {
+                    vc.component.editContractTypeInfo.audits = _data;
+                });
                 vc.component.refreshEditContractTypeInfo();
                 $('#editContractTypeModel').modal('show');
                 vc.copyObject(_params, vc.component.editContractTypeInfo);
@@ -62,8 +63,8 @@
                             limit: "required",
                             param: "",
                             errInfo: "类型ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editContractType: function () {
@@ -71,7 +72,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contract/updateContractType',
                     JSON.stringify(vc.component.editContractTypeInfo),
@@ -85,13 +85,14 @@
                             //关闭model
                             $('#editContractTypeModel').modal('hide');
                             vc.emit('contractTypeManage', 'listContractType', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -101,10 +102,9 @@
                     typeName: '',
                     audit: '',
                     remark: '',
-
+                    audits: []
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);
