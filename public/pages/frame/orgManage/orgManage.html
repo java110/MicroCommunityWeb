@@ -21,9 +21,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写员工名称','org')"
-                                               v-model.trim="orgManageInfo.conditions.staffName"
-                                               class="form-control form-control-sm">
+                                        <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model.trim="orgManageInfo.conditions.staffName" class="form-control form-control-sm">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -52,8 +50,7 @@
                                 <span v-else><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openOrgRelStaff()"
-                                        v-if="vc.hasPrivilege('502022082917040004')">
+                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openOrgRelStaff()" v-if="vc.hasPrivilege('502022082917040004') || vc.hasPrivilege('502022092211010004')">
                                     <i class="fa fa-plus"></i>
                                     <span><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
                                 </button>
@@ -62,60 +59,58 @@
                         <div class="ibox-content">
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
-                                <tr>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="岗位" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="地址" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
-                                    </th>
-                                </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="岗位" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="地址" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX" v-for="staff in orgManageInfo.staffs">
-                                    <td class="text-center">{{staff.name}}</td>
-                                    <td class="text-center">{{staff.tel}}</td>
-                                    <td class="text-center">{{staff.relCdName}}</td>
-                                    <td class="text-center">{{staff.email}}</td>
-                                    <td class="text-center">{{staff.address}}</td>
-                                    <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs"
-                                                    v-if="vc.hasPrivilege('502022082955220005')"
-                                                    v-on:click="_openDeleteOrgRelStaff(staff)">
+                                    <tr class="gradeX" v-for="staff in orgManageInfo.staffs">
+                                        <td class="text-center">{{staff.name}}</td>
+                                        <td class="text-center">{{staff.tel}}</td>
+                                        <td class="text-center">{{staff.relCdName}}</td>
+                                        <td class="text-center">{{staff.email}}</td>
+                                        <td class="text-center">{{staff.address}}</td>
+                                        <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022082955220005') || vc.hasPrivilege('502022092283880005')" v-on:click="_openDeleteOrgRelStaff(staff)">
                                                 <span><vc:i18n name="删除" namespace="staff"></vc:i18n></span>
                                             </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" v-on:click="_toStaffDetail(staff)">
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs" v-on:click="_toStaffDetail(staff)">
                                                 <span><vc:i18n name="详情" namespace="staff"></vc:i18n></span>
                                             </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <td colspan="10">
-                                        <ul class="pagination float-right"></ul>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="10">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
                                 </tfoot>
                             </table>
                             <!-- 分页 -->
