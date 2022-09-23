@@ -50,6 +50,7 @@
                         vc.component.reportProficientRoomFeeInfo.fees = _feeConfigInfo.data;
                         vc.emit('reportProficientRoomFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportProficientRoomFeeInfo.total,
                             currentPage: _page
                         });
                         //取 属性列

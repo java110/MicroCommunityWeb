@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,31 +14,28 @@
                 objType: '1000',
                 objId: '',
                 mchId: '',
-                mchName:'',
+                mchName: '',
                 remarks: '',
                 objTypes: '',
                 types: '',
                 weChatType: '',
-                certPath: '',
-
+                certPath: ''
             }
         },
-        _initMethod: function() {
-            vc.getDict('small_wechat', "obj_type", function(_data) {
+        _initMethod: function () {
+            vc.getDict('small_wechat', "obj_type", function (_data) {
                 vc.component.addSmallWeChatInfo.objTypes = _data;
             });
-            vc.getDict('small_wechat', "wechat_type", function(_data) {
+            vc.getDict('small_wechat', "wechat_type", function (_data) {
                 vc.component.addSmallWeChatInfo.types = _data;
             });
-
         },
-        _initEvent: function() {
-            vc.on('addSmallWeChat', 'openAddSmallWeChatModal', function(type) {
-                console.log(type);
+        _initEvent: function () {
+            vc.on('addSmallWeChat', 'openAddSmallWeChatModal', function (type) {
                 vc.component.addSmallWeChatInfo.weChatType = type;
                 $('#addSmallWeChatModel').modal('show');
             });
-            vc.on('addSmallWeChat', 'notifyCert', function(_param) {
+            vc.on('addSmallWeChat', 'notifyCert', function (_param) {
                 $that.addSmallWeChatInfo.certPath = _param.realFileName;
             })
         },
@@ -48,7 +44,8 @@
                 return vc.validate.validate({
                     addSmallWeChatInfo: vc.component.addSmallWeChatInfo
                 }, {
-                    'addSmallWeChatInfo.name': [{
+                    'addSmallWeChatInfo.name': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "名称不能为空"
@@ -57,9 +54,10 @@
                             limit: "maxIn",
                             param: "1,100",
                             errInfo: "名称不能超过100位"
-                        },
+                        }
                     ],
-                    'addSmallWeChatInfo.appId': [{
+                    'addSmallWeChatInfo.appId': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "appId不能为空"
@@ -68,9 +66,10 @@
                             limit: "maxin",
                             param: "1,100",
                             errInfo: "appId不能超过100位"
-                        },
+                        }
                     ],
-                    'addSmallWeChatInfo.appSecret': [{
+                    'addSmallWeChatInfo.appSecret': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "应用密钥不能为空"
@@ -79,9 +78,10 @@
                             limit: "maxin",
                             param: "1,200",
                             errInfo: "应用密钥不能超过200个字符"
-                        },
+                        }
                     ],
-                    'addSmallWeChatInfo.payPassword': [{
+                    'addSmallWeChatInfo.payPassword': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "支付密码不能为空"
@@ -90,24 +90,22 @@
                             limit: "maxin",
                             param: "1,200",
                             errInfo: "支付密码不能超过200个字符"
-                        },
+                        }
                     ],
-                    'addSmallWeChatInfo.mchId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "小程序商户id不能为空"
-                    }],
-
-
+                    'addSmallWeChatInfo.mchId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "小程序商户id不能为空"
+                        }
+                    ]
                 });
             },
-            saveSmallWeChatInfo: function() {
+            saveSmallWeChatInfo: function () {
                 if (!vc.component.addSmallWeChatValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addSmallWeChatInfo);
@@ -120,7 +118,7 @@
                     JSON.stringify(vc.component.addSmallWeChatInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
                         if (_json.code == '0') {
@@ -128,20 +126,18 @@
                             $('#addSmallWeChatModel').modal('hide');
                             vc.component.clearAddSmallWeChatInfo();
                             vc.emit('smallWeChatManage', 'listSmallWeChat', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
-            clearAddSmallWeChatInfo: function() {
+            clearAddSmallWeChatInfo: function () {
                 vc.component.addSmallWeChatInfo = {
                     weChatId: '',
                     name: '',
@@ -151,20 +147,17 @@
                     objType: '',
                     objId: '',
                     mchId: '',
-                    mchName:'',
+                    mchName: '',
                     weChatType: '',
                     types: vc.component.addSmallWeChatInfo.types,
                     remarks: '',
                     objTypes: vc.component.addSmallWeChatInfo.objTypes,
                     certPath: '',
                 };
-
                 vc.emit('addSmallWeChat', 'uploadFile', 'clearVedio', {})
             },
-            getObjType: function() {
-
+            getObjType: function () {
             }
         }
     });
-
 })(window.vc);

@@ -185,6 +185,9 @@
                                 <span><vc:i18n name="缴费时间" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </th>
                             <th class="text-center">
+                                <span><vc:i18n name="应缴金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="应收金额" namespace="reportPayFeeDetail"></vc:i18n></span>(元)
                             </th>
                             <th class="text-center">
@@ -232,6 +235,7 @@
                                 {{vc.dateSubOneDay(vc.dateFormat(fee.startTime),vc.dateFormat(fee.endTime),fee.feeFlag)}}
                             </td>
                             <td class="text-center">{{fee.createTime}}</td>
+                            <td class="text-center">{{fee.payableAmount}}</td>
                             <td class="text-center">{{fee.receivableAmount}}</td>
                             <td class="text-center">{{fee.receivedAmount}}</td>
                             <td class="text-center">{{fee.preferentialAmount}}</td>

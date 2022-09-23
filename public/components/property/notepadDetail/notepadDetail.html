@@ -2,7 +2,9 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><span><vc:i18n name="跟进进度" namespace="notepadDetail"></vc:i18n></span></h5>
+                <h5 class="modal-title">
+                    <span><vc:i18n name="跟进进度" namespace="notepadDetail"></vc:i18n></span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,30 +14,38 @@
                     <div>
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th scope="col"><span><vc:i18n name="序号" namespace="notepadDetail"></vc:i18n></span></th>
-                                    <th scope="col"><span><vc:i18n name="处理人" namespace="notepadDetail"></vc:i18n></span></th>
-                                    <th scope="col"><span><vc:i18n name="处理时间" namespace="notepadDetail"></vc:i18n></span></th>
-                                    <th scope="col"><span><vc:i18n name="处理内容" namespace="notepadDetail"></vc:i18n></span></th>
-                                    <th scope="col"><span><vc:i18n name="操作" namespace="notepadDetail"></vc:i18n></span></th>
-                                </tr>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="序号" namespace="notepadDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="处理人" namespace="notepadDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="处理时间" namespace="notepadDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="处理内容" namespace="notepadDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="操作" namespace="notepadDetail"></vc:i18n></span>
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(item,index) in notepadDetailInfo.details">
-                                    <th scope="row">{{index+1}}</th>
-                                    <td>{{item.createUserName }}</td>
-                                    <td>{{item.createTime}}</td>
-                                    <td>{{item.content}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" v-on:click="_doDeleteNotepadDetail(item)"><span>
-                                                    <vc:i18n name='删除'></vc:i18n>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </td>
-
-                                </tr>
+                            <tr v-for="(item,index) in notepadDetailInfo.details">
+                                <th scope="row" class="text-center">{{index+1}}</th>
+                                <td class="text-center">{{item.createUserName }}</td>
+                                <td class="text-center">{{item.createTime}}</td>
+                                <td class="text-center">{{item.content}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_doDeleteNotepadDetail(item)">
+                                            <span><vc:i18n name='删除'></vc:i18n></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

@@ -8,10 +8,8 @@
         },
         _initEvent: function () {
             vc.on('editVisit', 'openEditVisitModel', function (_params) {
-                console.log("这里")
-                console.log(_params)
-                vc.component.refreshEditAppInfo();
-                $('#editAppModel').modal('show');
+                vc.component.refreshEditVisitInfo();
+                $('#editVisitModel').modal('show');
                 vc.component.editVisitInfo = _params;
             });
         },
@@ -64,7 +62,7 @@
                     e.currentTarget.blur();
                 }
             },
-            editAppValidate: function () {
+            editVisitValidate: function () {
                 return vc.validate.validate({
                     editVisitInfo: vc.component.editVisitInfo
                 }, {
@@ -113,12 +111,12 @@
                             limit: "required",
                             param: "",
                             errInfo: "访客到访原因不能为空"
-                        },
+                        }
                     ]
                 });
             },
             editVisit: function () {
-                if (!vc.component.editAppValidate()) {
+                if (!vc.component.editVisitValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
@@ -129,13 +127,15 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
-                            $('#editAppModel').modal('hide');
-                            vc.emit('appManage', 'listApp', {});
+                            $('#editVisitModel').modal('hide');
+                            vc.emit('visitManage', 'listVisit', {});
                             vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {
@@ -143,8 +143,8 @@
                         vc.toast(errInfo);
                     });
             },
-            refreshEditAppInfo: function () {
-                vc.component.editAppInfo = {
+            refreshEditVisitInfo: function () {
+                vc.component.editVisitInfo = {
                     vName: '',
                     visitGender: '',
                     phoneNumber: '',

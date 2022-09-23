@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             emitChooseParkingSpace: vc.propTypes.string,
@@ -18,28 +18,24 @@
                 showSearchCondition: $props.showSearchCondition
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('searchParkingSpace', 'openSearchParkingSpaceModel', function(_param) {
+        _initEvent: function () {
+            vc.on('searchParkingSpace', 'openSearchParkingSpaceModel', function (_param) {
                 $('#searchParkingSpaceModel').modal('show');
                 vc.component._refreshSearchParkingSpaceData();
                 vc.component._loadAllParkingSpaceInfo(1, 10);
             });
-
-            vc.on('searchParkingSpace', 'showOwnerParkingSpaces', function(_parkingSpaces) {
+            vc.on('searchParkingSpace', 'showOwnerParkingSpaces', function (_parkingSpaces) {
                 $('#searchParkingSpaceModel').modal('show');
                 vc.component.searchParkingSpaceInfo.parkingSpaces = _parkingSpaces;
             });
-
-            vc.on('searchParkingSpace', 'paginationPlus', 'page_event', function(_currentPage) {
+            vc.on('searchParkingSpace', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllParkingSpaceInfo(_currentPage, 10);
             });
         },
         methods: {
-            _loadAllParkingSpaceInfo: function(_page, _row) {
-
+            _loadAllParkingSpaceInfo: function (_page, _row) {
                 let param = {
                     params: {
                         page: _page,
@@ -51,37 +47,37 @@
                         state: $props.parkingSpaceFlag
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/parkingSpace.queryParkingSpaces',
                     param,
-                    function(json) {
+                    function (json) {
                         var _parkingSpaceInfo = JSON.parse(json);
                         vc.component.searchParkingSpaceInfo.parkingSpaces = _parkingSpaceInfo.parkingSpaces;
                         vc.emit('searchParkingSpace', 'paginationPlus', 'init', {
                             total: _parkingSpaceInfo.records,
+                            dataCount: _parkingSpaceInfo.total,
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseParkingSpace: function(_parkingSpace) {
+            chooseParkingSpace: function (_parkingSpace) {
                 vc.emit($props.emitChooseParkingSpace, 'chooseParkingSpace', _parkingSpace);
                 vc.emit($props.emitLoadData, 'listParkingSpaceData', {
                     psId: _parkingSpace.psId
                 });
                 $('#searchParkingSpaceModel').modal('hide');
             },
-            searchParkingSpaces: function() {
+            searchParkingSpaces: function () {
                 vc.component._loadAllParkingSpaceInfo(1, 15);
             },
-            _refreshSearchParkingSpaceData: function() {
+            _refreshSearchParkingSpaceData: function () {
                 vc.component.searchParkingSpaceInfo.num = "";
             },
-            _viewParkingSpaceState: function(state) {
+            _viewParkingSpaceState: function (state) {
                 if (state == 'F') {
                     return "空闲";
                 } else if (state == 'S') {
@@ -91,8 +87,7 @@
                 } else {
                     return "未知";
                 }
-            },
+            }
         }
-
     });
 })(window.vc);

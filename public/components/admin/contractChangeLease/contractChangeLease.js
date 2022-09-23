@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             emitChooseContract: vc.propTypes.string,
@@ -9,7 +8,6 @@
             contractChangeLeaseInfo: {
                 startTime: '',
                 endTime: '',
-
                 planType: '2002'
             }
         },
@@ -28,10 +26,8 @@
             vc.initDateTime('changeEndTime', function (_value) {
                 $that.contractChangeLeaseInfo.endTime = _value;
             });
-
         },
         _initEvent: function () {
-
         },
         methods: {
             clearcontractChangeLeaseInfo: function () {
@@ -43,5 +39,4 @@
             }
         }
     });
-
 })(window.vc);

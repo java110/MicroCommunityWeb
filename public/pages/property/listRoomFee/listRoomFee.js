@@ -60,6 +60,7 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         payerObjId: vc.component.listRoomCreateFeeInfo.roomId,
+                        ownerId: vc.component.listRoomCreateFeeInfo.urlOwnerId,
                         payerObjType: '3333'
                         // ownerId: $that.listRoomCreateFeeInfo.urlOwnerId
                     }

@@ -52,6 +52,7 @@
                         vc.component.reportInfoBackCityManageInfo.reportInfoBackCitys = _reportInfoBackCityManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportInfoBackCityManageInfo.records,
+                            dataCount: vc.component.reportInfoBackCityManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

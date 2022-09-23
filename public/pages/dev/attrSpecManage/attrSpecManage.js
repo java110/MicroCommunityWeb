@@ -40,6 +40,7 @@
                 };
                 param.params.specCd = param.params.specCd.trim();
                 param.params.specName = param.params.specName.trim();
+                param.params.domain = param.params.domain.trim();
                 //发送get请求
                 vc.http.apiGet('/attrSpec/queryAttrSpec',
                     param,
@@ -77,6 +78,7 @@
                 vc.component.attrSpecManageInfo.conditions.specName = "";
                 vc.component.attrSpecManageInfo.conditions.tableName = "";
                 vc.component.attrSpecManageInfo.conditions.specCd = "";
+                vc.component.attrSpecManageInfo.conditions.domain = "";
                 vc.component._listAttrSpecs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
@@ -110,7 +112,7 @@
                 }
                 return "未知"
             },
-            _openAttrSpecValue: function(_attrSpec) {
+            _openAttrSpecValue: function (_attrSpec) {
                 vc.jumpToPage('/#/pages/dev/attrValueManage?specId=' + _attrSpec.specId + '&specName=' + _attrSpec.specName + "&domain=" + _attrSpec.domain);
             }
         }

@@ -57,6 +57,7 @@
                         vc.component.oaWorkflowManageInfo.oaWorkflows = _oaWorkflowManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.oaWorkflowManageInfo.records,
+                            dataCount: vc.component.oaWorkflowManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

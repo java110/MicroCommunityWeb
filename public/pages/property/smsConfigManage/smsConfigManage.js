@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -22,7 +22,6 @@
             vc.component._listSmsConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('smsConfigManage', 'listSmsConfig', function (_param) {
                 vc.component._listSmsConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -32,13 +31,11 @@
         },
         methods: {
             _listSmsConfigs: function (_page, _rows) {
-
                 vc.component.smsConfigManageInfo.conditions.page = _page;
                 vc.component.smsConfigManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.smsConfigManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/smsConfig/querySmsConfig',
                     param,
@@ -49,6 +46,7 @@
                         vc.component.smsConfigManageInfo.smsConfigs = _smsConfigManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.smsConfigManageInfo.records,
+                            dataCount: vc.component.smsConfigManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -64,7 +62,6 @@
             },
             _querySmsConfigMethod: function () {
                 vc.component._listSmsConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.smsConfigManageInfo.moreCondition) {
@@ -73,8 +70,6 @@
                     vc.component.smsConfigManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

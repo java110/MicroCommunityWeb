@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,12 +9,10 @@
                 partyaId: '',
                 partyA: '',
                 aContacts: '',
-                aLink: '',
-
+                aLink: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addContractPartya', 'openAddContractPartyaModal', function () {
@@ -48,7 +45,7 @@
                         {
                             limit: "maxLength",
                             param: "64",
-                            errInfo: "仓库类型格式错误"
+                            errInfo: "甲方联系人不能超过64"
                         },
                     ],
                     'addContractPartyaInfo.aLink': [
@@ -62,20 +59,14 @@
                             param: "",
                             errInfo: "联系电话格式错误"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveContractPartyaInfo: function () {
                 if (!vc.component.addContractPartyaValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addContractPartyaInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -83,7 +74,6 @@
                     $('#addContractPartyaModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contractPartya/saveContractPartya',
                     JSON.stringify(vc.component.addContractPartyaInfo),
@@ -91,35 +81,30 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#addContractPartyaModel').modal('hide');
                             vc.component.clearAddContractPartyaInfo();
                             vc.emit('contractPartyaManage', 'listContractPartya', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddContractPartyaInfo: function () {
                 vc.component.addContractPartyaInfo = {
                     partyA: '',
                     aContacts: '',
-                    aLink: '',
-
+                    aLink: ''
                 };
             }
         }
     });
-
 })(window.vc);

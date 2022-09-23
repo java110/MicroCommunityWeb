@@ -21,14 +21,14 @@
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入巡检点名称','inspectionPointManage')"
                                        v-model="inspectionPointManageInfo.conditions.inspectionName"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="inspectionPointManageInfo.conditions.pointObjType">
                                 <option selected value="">{{vc.i18n('请选择巡检点类型','inspectionPointManage')}}</option>
                                 <option v-for="(item,index) in inspectionPointManageInfo.pointObjTypes" :key="index"

@@ -78,14 +78,13 @@
                             return {
                                 name: _term,
                                 page: 1,
-                                row: 50,
+                                row: 100,
                                 parentOrgId: this.staffSelect2Info.orgId,
                                 orgId:this.staffSelect2Info.departmentId,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterstaffData(data.staffs));
                             return {
                                 results: this._filterstaffData(data.staffs)
                             };
@@ -96,7 +95,6 @@
                 $('#staffSelector').on("select2:select", function (evt) {
                     //这里是选中触发的事件
                     //evt.params.data 是选中项的信息
-                    console.log('select', evt);
                     this.staffSelect2Info.staffId = evt.params.data.id;
                     this.staffSelect2Info.staffName = evt.params.data.text;
                 });

@@ -10,14 +10,14 @@
         },
         _initEvent: function () {
             vc.on('examineVisit', 'openExamineVisitModel', function (_params) {
-                vc.component.refreshExamineAppInfo();
-                $('#examineAppModel').modal('show');
+                vc.component.refreshExamineVisitInfo();
+                $('#examineVisitModel').modal('show');
                 vc.component.examineVisitInfo = _params;
                 vc.component.examineVisitInfo.flag = "1";
             });
         },
         methods: {
-            examineAppValidate: function () {
+            examineVisitValidate: function () {
                 return vc.validate.validate({
                     examineVisitInfo: vc.component.examineVisitInfo
                 }, {
@@ -40,12 +40,12 @@
                             limit: "required",
                             param: "",
                             errInfo: "审核状态不能为空"
-                        },
+                        }
                     ]
                 });
             },
             examineVisit: function () {
-                if (!vc.component.examineAppValidate()) {
+                if (!vc.component.examineVisitValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
@@ -59,14 +59,14 @@
                         let _json = JSON.parse(json);
                         if (res.status == 200 && _json.code != 404 && _json.code != 5010) {
                             //关闭model
-                            $('#examineAppModel').modal('hide');
-                            vc.emit('appManage', 'listApp', {});
+                            $('#examineVisitModel').modal('hide');
+                            vc.emit('visitManage', 'listVisit', {});
                             vc.toast("审核成功");
                             return;
                         } else if (_json.code == 5010) {
                             //关闭model
-                            $('#examineAppModel').modal('hide');
-                            vc.emit('appManage', 'listApp', {});
+                            $('#examineVisitModel').modal('hide');
+                            vc.emit('visitManage', 'listVisit', {});
                             vc.toast(_json.msg);
                             return;
                         } else {
@@ -80,7 +80,7 @@
                         vc.toast(errInfo);
                     });
             },
-            refreshExamineAppInfo: function () {
+            refreshExamineVisitInfo: function () {
                 vc.component.examineVisitInfo = {
                     vId: '',
                     vName: '',

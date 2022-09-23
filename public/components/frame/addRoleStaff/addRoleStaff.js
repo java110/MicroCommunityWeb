@@ -7,6 +7,8 @@
         },
         data: {
             addRoleStaffInfo: {
+                total: 0,
+                records: 1,
                 staffs: [],
                 staffName: '',
                 roleId: '',
@@ -54,9 +56,12 @@
                     param,
                     function (json) {
                         var _staffInfo = JSON.parse(json);
+                        vc.component.addRoleStaffInfo.total = _staffInfo.total;
+                        vc.component.addRoleStaffInfo.records = _staffInfo.records;
                         vc.component.addRoleStaffInfo.staffs = _staffInfo.data;
                         vc.emit('addRoleStaff', 'paginationPlus', 'init', {
-                            total: _staffInfo.records,
+                            total: vc.component.addRoleStaffInfo.records,
+                            dataCount: vc.component.addRoleStaffInfo.total,
                             currentPage: _page
                         });
                     },
@@ -134,6 +139,5 @@
                 }
             }
         }
-
     });
 })(window.vc);

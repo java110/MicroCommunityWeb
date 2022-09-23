@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -16,7 +16,7 @@
                 conditions: {
                     componentId: '',
                     name: '',
-                    queryModel: '',
+                    queryModel: ''
                 }
             }
         },
@@ -26,7 +26,6 @@
             vc.component._listReportCustomComponentFooters(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('reportCustomComponentFooterManage', 'listReportCustomComponentFooter', function (_param) {
                 vc.component._listReportCustomComponentFooters(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,13 +35,11 @@
         },
         methods: {
             _listReportCustomComponentFooters: function (_page, _rows) {
-
                 vc.component.reportCustomComponentFooterManageInfo.conditions.page = _page;
                 vc.component.reportCustomComponentFooterManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.reportCustomComponentFooterManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportCustomComponentFooter.listReportCustomComponentFooter',
                     param,
@@ -53,6 +50,7 @@
                         vc.component.reportCustomComponentFooterManageInfo.reportCustomComponentFooters = _reportCustomComponentFooterManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportCustomComponentFooterManageInfo.records,
+                            dataCount: vc.component.reportCustomComponentFooterManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -74,7 +72,7 @@
             _queryReportCustomComponentFooterMethod: function () {
                 vc.component._listReportCustomComponentFooters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             },
             _moreCondition: function () {
@@ -84,8 +82,6 @@
                     vc.component.reportCustomComponentFooterManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

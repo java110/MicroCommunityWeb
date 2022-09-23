@@ -9,7 +9,6 @@
             vc.on('deleteFee', 'openDeleteFeeModal', function (_params) {
                 vc.component.deleteFeeInfo = _params;
                 $('#deleteFeeModel').modal('show');
-
             });
         },
         methods: {
@@ -35,8 +34,9 @@
                             vc.toast("删除费用成功");
                             vc.emit('listRoomFee', 'notify', {});
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

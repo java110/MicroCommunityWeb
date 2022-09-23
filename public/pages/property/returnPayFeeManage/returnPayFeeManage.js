@@ -154,6 +154,7 @@
             },
             _auditReturnPayFeeState: function (_auditInfo) {
                 vc.component.returnPayFeeManageInfo.returnPayFee.state = _auditInfo.state;
+                vc.component.returnPayFeeManageInfo.returnPayFee.payableAmount = 0.0;
                 //vc.component.returnPayFeeManageInfo.returnPayFee.remark = _auditInfo.remark;
                 let _returnPayFee = vc.component.returnPayFeeManageInfo.returnPayFee;
                 vc.http.apiPost(

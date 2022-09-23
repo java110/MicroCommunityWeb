@@ -49,6 +49,7 @@
                         vc.component.feeComboManageInfo.feeCombos = _feeComboManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeComboManageInfo.records,
+                            dataCount: vc.component.feeComboManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

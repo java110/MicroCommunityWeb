@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -16,11 +15,9 @@
                 payFeeFlag: 'F',
                 priceScope: '',
                 returnVisitFlag: ''
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addRepairSetting', 'openAddRepairSettingModal', function () {
@@ -90,24 +87,17 @@
                             param: "500",
                             errInfo: "说明不能超过500位"
                         },
-                    ],
-
-
-
-
+                    ]
                 });
             },
             saveRepairSettingInfo: function () {
-
                 if ($that.addRepairSettingInfo.payFeeFlag == 'F') {
                     $that.addRepairSettingInfo.priceScope = '不收费';
                 }
                 if (!vc.component.addRepairSettingValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addRepairSettingInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -115,7 +105,6 @@
                     $('#addRepairSettingModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'repair.saveRepairSetting',
                     JSON.stringify(vc.component.addRepairSettingInfo),
@@ -130,17 +119,15 @@
                             $('#addRepairSettingModel').modal('hide');
                             vc.component.clearAddRepairSettingInfo();
                             vc.emit('repairSettingManage', 'listRepairSetting', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddRepairSettingInfo: function () {
@@ -157,5 +144,4 @@
             }
         }
     });
-
 })(window.vc);

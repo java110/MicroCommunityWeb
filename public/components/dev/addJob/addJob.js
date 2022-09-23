@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         data: {
             addJobInfo: {
@@ -8,11 +7,9 @@
                 taskCron: '',
                 templates: [],
                 templateSpecs: []
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addJob', 'openAddJobModal', function () {
@@ -35,33 +32,30 @@
                             limit: "maxin",
                             param: "2,50",
                             errInfo: "任务名称必须在2至50字符之间"
-                        },
+                        }
                     ],
                     'addJobInfo.templateId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "模板不能为空"
-                        },
+                        }
                     ],
                     'addJobInfo.taskCron': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "定时不能为空"
-                        },
+                        }
                     ]
                 });
             },
             saveJobInfo: function () {
                 if (!vc.component.addJobValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //vc.component.addJobInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     'task.saveTask',
                     JSON.stringify(vc.component.addJobInfo),
@@ -76,16 +70,15 @@
                             $('#addJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
                             vc.emit('jobManage', 'listJob', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             queryTempalte: function () {
@@ -99,7 +92,6 @@
                 vc.http.apiGet('task.listTaskTemplate',
                     _param,
                     function (json, res) {
-                        console.log('task.listTaskTemplate',json);
                         let _json = JSON.parse(json);
                         let data = _json.data;
                         if (_json.code == 0) {
@@ -149,5 +141,4 @@
             }
         }
     });
-
 })(window.vc);

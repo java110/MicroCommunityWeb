@@ -1,17 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportCustomGroupInfo: {
                 groupId: '',
                 name: '',
                 url: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editReportCustomGroup', 'openEditReportCustomGroupModal', function (_params) {
@@ -35,7 +32,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "组名称不能超过128"
-                        },
+                        }
                     ],
                     'editReportCustomGroupInfo.url': [
                         {
@@ -47,7 +44,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "组url不能超过512"
-                        },
+                        }
                     ],
                     'editReportCustomGroupInfo.remark': [
                         {
@@ -59,15 +56,15 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
+                        }
                     ],
                     'editReportCustomGroupInfo.groupId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "组ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportCustomGroup: function () {
@@ -75,7 +72,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomGroup.updateReportCustomGroup',
                     JSON.stringify(vc.component.editReportCustomGroupInfo),
@@ -89,13 +85,14 @@
                             //关闭model
                             $('#editReportCustomGroupModel').modal('hide');
                             vc.emit('reportCustomGroupManage', 'listReportCustomGroup', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -104,11 +101,9 @@
                     groupId: '',
                     name: '',
                     url: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

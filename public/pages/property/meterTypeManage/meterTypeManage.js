@@ -50,6 +50,7 @@
                         vc.component.meterTypeManageInfo.meterTypes = _meterTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.meterTypeManageInfo.records,
+                            dataCount: vc.component.meterTypeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

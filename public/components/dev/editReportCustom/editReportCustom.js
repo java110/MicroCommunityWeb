@@ -1,20 +1,16 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportCustomInfo: {
-                customId: '',
                 customId: '',
                 groupId: '',
                 title: '',
                 seq: '',
                 remark: '',
                 reportCustomGroups: []
-
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editReportCustom', 'openEditReportCustomModal', function (_params) {
@@ -22,7 +18,6 @@
                 $that._listEditReportCustomGroups();
                 $('#editReportCustomModel').modal('show');
                 vc.copyObject(_params, vc.component.editReportCustomInfo);
-
             });
         },
         methods: {
@@ -30,18 +25,17 @@
                 return vc.validate.validate({
                     editReportCustomInfo: vc.component.editReportCustomInfo
                 }, {
-
                     'editReportCustomInfo.groupId': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "组编号不能为空"
+                            errInfo: "报表组不能为空"
                         },
                         {
                             limit: "maxLength",
                             param: "30",
-                            errInfo: "组编号不能超过30"
-                        },
+                            errInfo: "报表组不能超过30"
+                        }
                     ],
                     'editReportCustomInfo.title': [
                         {
@@ -53,7 +47,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "选项标题不能超过64"
-                        },
+                        }
                     ],
                     'editReportCustomInfo.seq': [
                         {
@@ -65,22 +59,22 @@
                             limit: "maxLength",
                             param: "11",
                             errInfo: "排序不能超过11"
-                        },
+                        }
                     ],
                     'editReportCustomInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
+                        }
                     ],
                     'editReportCustomInfo.customId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "报表ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportCustom: function () {
@@ -88,7 +82,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustom.updateReportCustom',
                     JSON.stringify(vc.component.editReportCustomInfo),
@@ -102,44 +95,42 @@
                             //关闭model
                             $('#editReportCustomModel').modal('hide');
                             vc.emit('reportCustomManage', 'listReportCustom', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
             refreshEditReportCustomInfo: function () {
                 vc.component.editReportCustomInfo = {
                     customId: '',
-                    customId: '',
                     groupId: '',
                     title: '',
                     seq: '',
                     remark: '',
                     reportCustomGroups: []
-
                 }
             },
             _listEditReportCustomGroups: function (_page, _rows) {
                 var param = {
                     params: {
-                        page:1,
-                        row:50
+                        page: 1,
+                        row: 50
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/reportCustomGroup.listReportCustomGroup',
                     param,
                     function (json, res) {
                         var _reportCustomGroupManageInfo = JSON.parse(json);
-                       $that.editReportCustomInfo.reportCustomGroups = _reportCustomGroupManageInfo.data;
+                        $that.editReportCustomInfo.reportCustomGroups = _reportCustomGroupManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.reportCustomGroupManageInfo.records,
+                            total: vc.component.editReportCustomInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -149,5 +140,4 @@
             },
         }
     });
-
 })(window.vc, window.vc.component);

@@ -52,38 +52,36 @@
                         limit: "required",
                         param: "",
                         errInfo: "巡检点名称不能为空"
-                    },
-                        {
-                            limit: "maxLength",
-                            param: "100",
-                            errInfo: "巡检点名称不能超过100位"
-                        },
-                    ],
+                    }, {
+                        limit: "maxLength",
+                        param: "100",
+                        errInfo: "巡检点名称不能超过100位"
+                    }],
                     'editInspectionPointInfo.pointObjId': [{
                         limit: "required",
                         param: "",
                         errInfo: "位置信息不能为空"
-                    },],
+                    }],
                     'editInspectionPointInfo.pointObjType': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检类型不能为空"
-                    },],
+                    }],
                     'editInspectionPointInfo.pointObjName': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检位置不能为空"
-                    },],
+                    }],
                     'editInspectionPointInfo.itemId': [{
                         limit: "required",
                         param: "",
                         errInfo: "巡检项目不能为空"
-                    },],
+                    }],
                     'editInspectionPointInfo.remark': [{
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注信息不能超过200位"
-                    },],
+                    }],
                     'editInspectionPointInfo.inspectionId': [{
                         limit: "required",
                         param: "",

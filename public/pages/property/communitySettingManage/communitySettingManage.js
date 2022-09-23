@@ -54,6 +54,7 @@
                         vc.component.communitySettingManageInfo.communitySettings = _communitySettingManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.communitySettingManageInfo.records,
+                            dataCount: vc.component.communitySettingManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

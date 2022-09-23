@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportCustomComponentInfo: {
@@ -9,12 +8,10 @@
                 queryModel: '',
                 componentSql: '',
                 javaScript: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editReportCustomComponent', 'openEditReportCustomComponentModal', function (_params) {
@@ -28,6 +25,13 @@
                 return vc.validate.validate({
                     editReportCustomComponentInfo: vc.component.editReportCustomComponentInfo
                 }, {
+                    'editReportCustomComponentInfo.componentId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "组件ID不能为空"
+                        }
+                    ],
                     'editReportCustomComponentInfo.name': [
                         {
                             limit: "required",
@@ -38,7 +42,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "组件名称不能超过64"
-                        },
+                        }
                     ],
                     'editReportCustomComponentInfo.componentType': [
                         {
@@ -50,7 +54,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "组件类型不能超过12"
-                        },
+                        }
                     ],
                     'editReportCustomComponentInfo.queryModel': [
                         {
@@ -62,22 +66,15 @@
                             limit: "maxLength",
                             param: "1",
                             errInfo: "查询方式不能超过1"
-                        },
+                        }
                     ],
                     'editReportCustomComponentInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
-                    ],
-                    'editReportCustomComponentInfo.componentId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "组件ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportCustomComponent: function () {
@@ -85,7 +82,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomComponent.updateReportCustomComponent',
                     JSON.stringify(vc.component.editReportCustomComponentInfo),
@@ -99,13 +95,14 @@
                             //关闭model
                             $('#editReportCustomComponentModel').modal('hide');
                             vc.emit('reportCustomComponentManage', 'listReportCustomComponent', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -117,11 +114,9 @@
                     queryModel: '',
                     componentSql: '',
                     javaScript: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -57,6 +57,7 @@
                         vc.component.addRoleCommunityInfo.communitys = _communityInfo.communitys;
                         vc.emit('addRoleCommunity', 'paginationPlus', 'init', {
                             total: _communityInfo.records,
+                            dataCount: _communityInfo.total,
                             currentPage: _page
                         });
                     }, function () {

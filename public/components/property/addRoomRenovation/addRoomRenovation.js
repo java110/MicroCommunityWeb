@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -19,14 +19,14 @@
                 // postponeTime: '',
                 renovationCompany: '',
                 personMain: '',
-                personMainTel: '',
+                personMainTel: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddRoomRenovationInfo();
         },
-        _initEvent: function() {
-            vc.on('addRoomRenovation', 'openAddRoomRenovationModal', function(_param) {
+        _initEvent: function () {
+            vc.on('addRoomRenovation', 'openAddRoomRenovationModal', function (_param) {
                 // vc.component.addRoomRenovationInfo.userId = _param[0].userId
                 $('#addRoomRenovationModel').modal('show');
             });
@@ -44,7 +44,7 @@
              });*/
         },
         methods: {
-            _initAddRoomRenovationInfo: function() {
+            _initAddRoomRenovationInfo: function () {
                 $('.addStartTime').datetimepicker({
                     minView: "month",
                     language: 'zh-CN',
@@ -56,7 +56,7 @@
                     todayBtn: true
                 });
                 $('.addStartTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addStartTime").val();
                         vc.component.addRoomRenovationInfo.startTime = value;
                     });
@@ -71,7 +71,7 @@
                     todayBtn: true
                 });
                 $('.addEndTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addEndTime").val();
                         var start = Date.parse(new Date(vc.component.addRoomRenovationInfo.startTime))
                         var end = Date.parse(new Date(value))
@@ -111,7 +111,6 @@
                 }
 
                 // document.getElementsByClassName("form-control addPostponeTime")[0].addEventListener('click', myfunc)
-
                 // function myfunc(e) {
                 //     e.currentTarget.blur();
                 // }
@@ -120,7 +119,8 @@
                 return vc.validate.validate({
                     addRoomRenovationInfo: vc.component.addRoomRenovationInfo
                 }, {
-                    'addRoomRenovationInfo.roomName': [{
+                    'addRoomRenovationInfo.roomName': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "房屋不能为空"
@@ -129,9 +129,10 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "房屋格式错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.personName': [{
+                    'addRoomRenovationInfo.personName': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "联系人不能为空"
@@ -140,9 +141,10 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "联系人格式错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.personTel': [{
+                    'addRoomRenovationInfo.personTel': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "联系电话不能为空"
@@ -151,9 +153,10 @@
                             limit: "phone",
                             param: "",
                             errInfo: "联系电话错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.startTime': [{
+                    'addRoomRenovationInfo.startTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "装修时间不能为空"
@@ -162,9 +165,10 @@
                             limit: "date",
                             param: "",
                             errInfo: "装修时间错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.endTime': [{
+                    'addRoomRenovationInfo.endTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "结束时间不能为空"
@@ -173,7 +177,7 @@
                             limit: "date",
                             param: "",
                             errInfo: "结束时间错误"
-                        },
+                        }
                     ],
                     // 'addRoomRenovationInfo.isPostpone': [
                     //     {
@@ -182,7 +186,8 @@
                     //         errInfo: "是否延期不能为空"
                     //     }
                     // ],
-                    'addRoomRenovationInfo.renovationCompany': [{
+                    'addRoomRenovationInfo.renovationCompany': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "装修单位不能为空"
@@ -191,9 +196,10 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "装修单位格式错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.personMain': [{
+                    'addRoomRenovationInfo.personMain': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "装修负责人不能为空"
@@ -202,9 +208,10 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "装修负责人格式错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.personMainTel': [{
+                    'addRoomRenovationInfo.personMainTel': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "装修负责人电话不能为空"
@@ -213,22 +220,18 @@
                             limit: "phone",
                             param: "",
                             errInfo: "装修负责人电话错误"
-                        },
+                        }
                     ],
-                    'addRoomRenovationInfo.remark': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "装修详情不能为空"
-                        },
+                    'addRoomRenovationInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注太长"
-                        },
+                        }
                     ]
                 });
             },
-            saveRoomRenovationInfo: function() {
+            saveRoomRenovationInfo: function () {
                 if (!vc.component.addRoomRenovationValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -247,7 +250,7 @@
                     JSON.stringify(vc.component.addRoomRenovationInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -255,16 +258,18 @@
                             $('#addRoomRenovationModel').modal('hide');
                             vc.component.clearAddRoomRenovationInfo();
                             vc.emit('roomRenovationManage', 'listRoomRenovation', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
-            clearAddRoomRenovationInfo: function() {
+            clearAddRoomRenovationInfo: function () {
                 vc.component.addRoomRenovationInfo = {
                     roomId: '',
                     roomName: '',
@@ -277,10 +282,10 @@
                     // postponeTime: '',
                     renovationCompany: '',
                     personMain: '',
-                    personMainTel: '',
+                    personMainTel: ''
                 };
             },
-            _queryRoom: function() {
+            _queryRoom: function () {
                 let _allNum = $that.addRoomRenovationInfo.roomName;
                 if (_allNum == '') {
                     return;
@@ -304,7 +309,7 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listRoomsWhereFeeSet',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         let _rooms = listRoomData.rooms;
                         if (_rooms.length < 1) {
@@ -316,7 +321,7 @@
                         $that.addRoomRenovationInfo.personName = _rooms[0].ownerName;
                         $that.addRoomRenovationInfo.personTel = _rooms[0].link;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo)
                         $that.addRoomRenovationInfo.roomId = "";

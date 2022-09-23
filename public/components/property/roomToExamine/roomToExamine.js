@@ -47,7 +47,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "状态格式错误"
-                        },
+                        }
                     ],
                     'roomToExamineInfo.examineRemark': [
                         {
@@ -59,7 +59,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "审核意见错误"
-                        },
+                        }
                     ],
                     'roomToExamineInfo.rId': [
                         {
@@ -101,9 +101,11 @@
                             $('#roomToExamineModel').modal('hide');
                             vc.component.clearRoomToExamineInfo();
                             vc.emit('roomRenovationManage', 'listRoomRenovation', {});
+                            vc.toast("审核完成");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

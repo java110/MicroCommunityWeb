@@ -42,7 +42,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "状态格式错误"
-                        },
+                        }
                     ],
                     'roomDecorationAcceptanceInfo.remark': [
                         {
@@ -54,7 +54,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "说明错误"
-                        },
+                        }
                     ],
                     'roomDecorationAcceptanceInfo.rId': [
                         {
@@ -93,9 +93,10 @@
                             $('#roomDecorationAcceptanceModel').modal('hide');
                             vc.component.clearRoomDecorationAcceptanceInfo();
                             vc.emit('roomRenovationManage', 'listRoomRenovation', {});
+                            vc.toast("验收成功");
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

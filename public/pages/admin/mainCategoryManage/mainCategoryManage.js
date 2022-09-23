@@ -50,6 +50,7 @@
                         vc.component.mainCategoryManageInfo.mainCategorys = _mainCategoryManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.mainCategoryManageInfo.records,
+                            dataCount: vc.component.mainCategoryManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

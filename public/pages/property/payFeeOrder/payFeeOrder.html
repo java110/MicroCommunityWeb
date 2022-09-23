@@ -5,7 +5,8 @@
                 <div class="ibox-title">
                     <h5>
                         <span><vc:i18n name="订单收费" namespace="payFeeOrder"></vc:i18n></span>({{payFeeOrderInfo.payerObjName}}
-                        <span @click="_viewRoomData()" v-if="payFeeOrderInfo.payerObjType == '3333'"><vc:create path="property/viewRoomData"></vc:create></span> )
+                        <span @click="_viewRoomData()" v-if="payFeeOrderInfo.payerObjType == '3333'">
+                            <vc:create path="property/viewRoomData"></vc:create></span> )
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
@@ -20,14 +21,22 @@
                     <div class="row">
                         <div class="col-7" style="border-right: solid #f4f4f4 1px;padding-left: 30px;">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><span><vc:i18n name="费用" namespace="payFeeOrder"></vc:i18n></span></span>ID</label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                         <span><vc:i18n name="费用" namespace="payFeeOrder"></vc:i18n></span>
+                                    </span>ID
+                                </label>
                                 <div class="col-sm-10" @click="_viewFee()">
                                     <label class=" col-form-label hand">{{payFeeOrderInfo.feeId}}</label>
                                     <span><vc:create path="property/viewFeeData"></vc:create></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><span><vc:i18n name="费用项目" namespace="payFeeOrder"></vc:i18n></span></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <span><vc:i18n name="费用项目" namespace="payFeeOrder"></vc:i18n></span>
+                                    </span>
+                                </label>
                                 <div class="col-sm-10 " @click="_viewFeeConfig()">
                                     <label class=" col-form-label hand">{{payFeeOrderInfo.feeName}}</label>
                                     <span><vc:create path="property/viewFeeConfigData"></vc:create></span>

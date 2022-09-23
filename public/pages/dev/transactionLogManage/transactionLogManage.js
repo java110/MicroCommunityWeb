@@ -16,7 +16,7 @@
                 conditions: {
                     appId: '',
                     serviceCode: '',
-                    transactionId: '',
+                    transactionId: ''
                 }
             }
         },
@@ -33,13 +33,14 @@
         },
         methods: {
             _listLogs: function (_page, _rows) {
-
                 vc.component.transactionLogManageInfo.conditions.page = _page;
                 vc.component.transactionLogManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.transactionLogManageInfo.conditions
                 };
-
+                param.params.appId = param.params.appId.trim();
+                param.params.serviceCode = param.params.serviceCode.trim();
+                param.params.transactionId = param.params.transactionId.trim();
                 //发送get请求
                 vc.http.apiGet('/transactionLog/queryTransactionLog',
                     param,
@@ -61,9 +62,16 @@
             viewLogMessage: function (_transactionLog) {
                 vc.emit('transactionLogMessage', 'openModal', _transactionLog);
             },
+            //查询
             _queryLogMethod: function () {
                 vc.component._listLogs(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            //重置
+            _resetLogMethod: function () {
+                vc.component.transactionLogManageInfo.conditions.serviceCode = "";
+                vc.component.transactionLogManageInfo.conditions.appId = "";
+                vc.component.transactionLogManageInfo.conditions.transactionId = "";
+                vc.component._listLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
                 if (vc.component.transactionLogManageInfo.moreCondition) {
@@ -72,8 +80,6 @@
                     vc.component.transactionLogManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

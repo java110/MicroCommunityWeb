@@ -90,7 +90,6 @@
             _toCarMember: function (car) {
                 vc.jumpToPage('/#/pages/property/listOwnerCarMember?carId=' + car.carId)
             }
-
         }
     });
 })(window.vc);

@@ -51,6 +51,7 @@
                         vc.component.machineTypeManageInfo.machineTypes = _machineTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.machineTypeManageInfo.records,
+                            dataCount: vc.component.machineTypeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

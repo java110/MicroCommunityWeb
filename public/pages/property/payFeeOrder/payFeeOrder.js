@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -59,13 +59,13 @@
         watch: {
             'payFeeOrderInfo.receivedAmount': {
                 deep: true,
-                handler: function() {
+                handler: function () {
                     //计算折扣金额和转存金额
                     $that._doComputeAccountRedepositDeduction();
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initCustEndDate();
             if (vc.notNull(vc.getParam("feeId"))) {
                 vc.component.payFeeOrderInfo.feeId = vc.getParam('feeId');
@@ -98,7 +98,7 @@
             vc.component.payFeeOrderInfo.totalFeePrice = $that._mathToFixed2(vc.getParam('feePrice'));
             vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
             //与字典表支付方式关联
-            vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
+            vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 vc.component.payFeeOrderInfo.primeRates = _data;
             });
             $that._listFeePrintPages();
@@ -106,13 +106,13 @@
             vc.emit('payFeeUserAccount', 'computeFeeUserAmount', {
                 feeId: $that.payFeeOrderInfo.feeId,
             });
-            vc.initDateTime('payFeeOrderCreateTime', function(_value) {
+            vc.initDateTime('payFeeOrderCreateTime', function (_value) {
                 $that.payFeeOrderInfo.createTime = _value;
             });
         },
-        _initEvent: function() {
+        _initEvent: function () {
             // 子组件折扣change事件
-            vc.on('payFeeOrder', 'changeDiscountPrice', function(_param) {
+            vc.on('payFeeOrder', 'changeDiscountPrice', function (_param) {
                 // 用未格式化的总金额减优惠金额
                 let _totalFeePrice = $that.payFeeOrderInfo.totalFeePrice;
                 if (_totalFeePrice < 0) {
@@ -130,7 +130,7 @@
                 $that.payFeeOrderInfo.receivedAmount = $that._getFixedNum(receivedAmount);
             });
             // 用户账户组件事件
-            vc.on('payFeeOrder', 'changeUserAmountPrice', function(_param) {
+            vc.on('payFeeOrder', 'changeUserAmountPrice', function (_param) {
                 $that.payFeeOrderInfo.selectUserAccount = _param.selectAccount;
                 $that.payFeeOrderInfo.accountAmount = _param.totalUserAmount;
                 $that.payFeeOrderInfo.accountList = _param.accountList;
@@ -140,12 +140,12 @@
                 $that._doComputeAccountRedepositDeduction();
             });
             // 账户预缴弹窗
-            vc.on('payFeeOrder', 'openAddModalWithParams', function(_param) {
+            vc.on('payFeeOrder', 'openAddModalWithParams', function (_param) {
                 _param.redepositAmount = vc.component.payFeeOrderInfo.redepositAmount;
                 _param.receivedAmount = vc.component.payFeeOrderInfo.receivedAmount;
                 vc.emit('prestoreAccount2', 'openAddModalWithParams', _param)
             });
-            vc.on('payFeeOrder', 'initData', function(_param) {
+            vc.on('payFeeOrder', 'initData', function (_param) {
                 // 重新赋值下拉列表
                 $that.payFeeOrderInfo.paymentCycles = [];
                 for (let _index = 1; _index < 7; _index++) {
@@ -157,13 +157,13 @@
             })
         },
         methods: {
-            popOverShowMsg1: function() {
+            popOverShowMsg1: function () {
                 $('.popover-show1').popover('show');
             },
-            popOverHideMsg1: function() {
+            popOverHideMsg1: function () {
                 $('.popover-show1').popover('hide');
             },
-            _initCustEndDate: function() {
+            _initCustEndDate: function () {
                 $(".cust-endTime").datetimepicker({
                     minView: "month",
                     language: 'zh-CN',
@@ -175,7 +175,7 @@
                     todayBtn: true
                 });
                 $('.cust-endTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".cust-endTime").val();
                         vc.component.payFeeOrderInfo.custEndTime = value;
                         let start = Date.parse(new Date($that.payFeeOrderInfo.endTime))
@@ -194,7 +194,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _useUserAccountChange: function(e) {
+            _useUserAccountChange: function (e) {
                 if (e.target.checked) {
                     // 查询用户账户
                     vc.emit('payFeeUserAccount', 'computeFeeUserAmount', {
@@ -205,7 +205,7 @@
                     vc.emit('payFeeUserAccount', 'clear', {});
                 }
             },
-            payFeeValidate: function() {
+            payFeeValidate: function () {
                 return vc.validate.validate({
                     payFeeOrderInfo: vc.component.payFeeOrderInfo
                 }, {
@@ -225,10 +225,10 @@
                         errInfo: "支付方式不能为空"
                     }],
                     'payFeeOrderInfo.receivedAmount': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "实收金额不能为空"
-                        },
+                        limit: "required",
+                        param: "",
+                        errInfo: "实收金额不能为空"
+                    },
                         {
                             limit: "money",
                             param: "",
@@ -240,7 +240,7 @@
             /**
              * 点击 “提交缴费”
              */
-            _openPayFee: function(_type) {
+            _openPayFee: function (_type) {
                 // 周期不为空且不是自定义周期
                 if ($that.payFeeOrderInfo.tempCycles != "" && $that.payFeeOrderInfo.tempCycles != '-102') {
                     $that.payFeeOrderInfo.cycles = $that.payFeeOrderInfo.tempCycles;
@@ -285,7 +285,7 @@
                     let number = 0.0;
                     let number2 = 0.0;
                     if (item.acctType == "2004") { //积分账户
-                        if (item.amount > item.maximumNumber) {
+                        if (parseFloat(item.amount) > parseFloat(item.maximumNumber)) {
                             number2 = parseFloat($that.payFeeOrderInfo.receivedAmount * item.deductionProportion);
                             if (item.maximumNumber > number2) {
                                 number = parseFloat(number2 / item.deductionProportion);
@@ -324,7 +324,7 @@
                     setTimeout('document.getElementById("authCode").focus()', 1000);
                 }
             },
-            _closeDoPayFeeModal: function() {
+            _closeDoPayFeeModal: function () {
                 //关闭model
                 $("#doPayFeeModal").modal('hide')
                 $that.payFeeOrderInfo.showEndTime = '';
@@ -334,7 +334,7 @@
                 $that.payFeeOrderInfo.integralAmount = '';
                 $that.payFeeOrderInfo.cashAmount = '';
             },
-            _qrCodePayFee: function() {
+            _qrCodePayFee: function () {
                 let _printFees = [];
                 _printFees.push({
                     feeId: $that.payFeeOrderInfo.feeId,
@@ -349,7 +349,7 @@
                     JSON.stringify(vc.component.payFeeOrderInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
                             vc.toast(_data.msg);
@@ -367,13 +367,13 @@
                             show: true
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
-            _qrCodeCheckPayFinish: function() {
+            _qrCodeCheckPayFinish: function () {
                 let _printFees = [];
                 _printFees.push({
                     feeId: $that.payFeeOrderInfo.feeId,
@@ -389,7 +389,7 @@
                     JSON.stringify(vc.component.payFeeOrderInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
                             vc.toast(_data.msg);
@@ -407,7 +407,7 @@
                             show: true
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
@@ -416,7 +416,7 @@
             /**
              * 点击模态框 “确定收费”
              */
-            _payFee: function(_page, _row) {
+            _payFee: function (_page, _row) {
                 $that._closeDoPayFeeModal();
                 let _printFees = [];
                 _printFees.push({
@@ -431,9 +431,9 @@
                     JSON.stringify(vc.component.payFeeOrderInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json)
-                            //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (_json.code == 0) {
                             // let _feeInfo = {
                             //     totalAmount: $that.payFeeOrderInfo.receivedAmount,
@@ -443,21 +443,22 @@
                             //vc.saveData('_feeInfo', _feeInfo);
                             //查询收据
                             let _data = _json.data;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $that._queryPayFeeReceiptId(_data);
                             }, 1000);
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
             //查询收据
-            _queryPayFeeReceiptId: function(_data) {
+            _queryPayFeeReceiptId: function (_data) {
                 if (!_data) {
                     $("#payFeeResult").modal({
                         backdrop: "static", //点击空白处不关闭对话框
@@ -476,7 +477,7 @@
                 vc.http.apiGet(
                     '/feeReceipt/queryFeeReceipt',
                     _param,
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
                         if (_json.code == 0 && _json.data && _json.data.length > 0) {
@@ -487,7 +488,7 @@
                             show: true
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
@@ -497,7 +498,7 @@
              * 下拉 change 事件
              * @param {*} _cycles
              */
-            _changeMonth: function(_cycles) {
+            _changeMonth: function (_cycles) {
                 vc.component.payFeeOrderInfo.custEndTime = '';
                 if ('-102' == _cycles) {
                     vc.component.payFeeOrderInfo.totalFeePrice = 0.00;
@@ -523,7 +524,7 @@
              * 输入 自定义 缴费周期
              * @param {*} _cycles
              */
-            changeCycle: function(_cycles) {
+            changeCycle: function (_cycles) {
                 if (_cycles == '') {
                     return;
                 }
@@ -533,7 +534,7 @@
             /**
              * 格式化数字
              */
-            _getFixedNum: function(num) {
+            _getFixedNum: function (num) {
                 if ($that.payFeeOrderInfo.toFixedSign == 2) {
                     return $that._mathToFixed1(num);
                 } else if ($that.payFeeOrderInfo.toFixedSign == 3) {
@@ -546,52 +547,52 @@
                     return $that._mathToFixed2(num);
                 }
             },
-            _back: function() {
+            _back: function () {
                 $('#payFeeResult').modal("hide");
                 vc.getBack();
             },
-            _goBack: function(_param) {
+            _goBack: function (_param) {
                 vc.goBack();
             },
-            _printAndBack: function() {
+            _printAndBack: function () {
                 //$('#payFeeResult').modal("hide");
                 window.open($that.payFeeOrderInfo.printUrl + "?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
-            _printSmallAndBack: function() {
+            _printSmallAndBack: function () {
                 //$('#payFeeResult').modal("hide");
                 window.open("/smallPrint.html#/pages/property/printSmallPayFee?receiptId=" + $that.payFeeOrderInfo.receiptId)
             },
             /**
              * 向上取整
              */
-            _mathCeil: function(_price) {
+            _mathCeil: function (_price) {
                 return Math.ceil(_price);
             },
             /**
              * 向下取整
              */
-            _mathFloor: function(_price) {
+            _mathFloor: function (_price) {
                 return Math.floor(_price);
             },
             /**
              * 四首五入取整
              */
-            _mathRound: function(_price) {
+            _mathRound: function (_price) {
                 return Math.round(_price);
             },
             /**
              * 保留小数点后一位
              */
-            _mathToFixed1: function(_price) {
+            _mathToFixed1: function (_price) {
                 return parseFloat(_price).toFixed(1);
             },
             /**
              * 保留小数点后两位
              */
-            _mathToFixed2: function(_price) {
+            _mathToFixed2: function (_price) {
                 return parseFloat(_price).toFixed(2);
             },
-            listPayFeeOrderRoom: function() {
+            listPayFeeOrderRoom: function () {
                 if (!vc.notNull($that.payFeeOrderInfo.feeId)) {
                     return;
                 }
@@ -606,7 +607,7 @@
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         vc.copyObject(listRoomData.data, $that.payFeeOrderInfo);
                         // 由于返回的键与档期那页面自定义的键不一致，单独赋值toFiexedSign
@@ -627,12 +628,12 @@
                             });
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            getComputedAmount: function(_cycles) {
+            getComputedAmount: function (_cycles) {
                 if (!vc.notNull($that.payFeeOrderInfo.feeId)) {
                     return;
                 }
@@ -653,18 +654,16 @@
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         vc.component.payFeeOrderInfo.totalFeePrice = $that._getFixedNum(listRoomData.data.feeTotalPrice);
                         vc.component.payFeeOrderInfo.receivedAmount = vc.component.payFeeOrderInfo.totalFeePrice;
-
                         let _deadlineTime = new Date(listRoomData.data.deadlineTime);
                         let _maxEndTime = new Date(listRoomData.data.maxEndTime);
                         if (_deadlineTime.getTime() > _maxEndTime.getTime()) {
                             vc.toast('超过最大计费结束时间，' + vc.dateSub(listRoomData.data.maxEndTime, listRoomData.data.feeFlag) + ",请用更小缴费周期或者自定义结束时间缴费");
                             return;
                         }
-
                         vc.emit('payFeeDiscount', 'computeFeeDiscount', {
                             feeId: $that.payFeeOrderInfo.feeId,
                             cycles: _cycles,
@@ -673,7 +672,7 @@
                             endTime: $that.payFeeOrderInfo.endTime
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
@@ -685,7 +684,7 @@
              redepositAmount: 0.0, //转存金额
              * 使用用户钱包余额
              */
-            computeAccountRedepositDeduction: function() {
+            computeAccountRedepositDeduction: function () {
                 //计算折扣金额和转存金额
                 $that._doComputeAccountRedepositDeduction();
             },
@@ -698,7 +697,7 @@
              needDeductionAmount: false,
              redepositAmount: 0.0, //转存金额
              */
-            _doComputeAccountRedepositDeduction: function() {
+            _doComputeAccountRedepositDeduction: function () {
                 let receivedAmount = $that.payFeeOrderInfo.receivedAmount; //实缴
                 //计算
                 let accountAmount = $that.payFeeOrderInfo.accountAmount;
@@ -730,7 +729,7 @@
                     }
                 }
             },
-            _listFeePrintPages: function(_page, _rows) {
+            _listFeePrintPages: function (_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -742,29 +741,29 @@
                 //发送get请求
                 vc.http.apiGet('/feePrintPage.listFeePrintPage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         let feePrintPages = _feePrintPageManageInfo.data;
                         if (feePrintPages && feePrintPages.length > 0) {
                             $that.payFeeOrderInfo.printUrl = feePrintPages[0].url;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _viewFeeConfig: function() {
+            _viewFeeConfig: function () {
                 vc.emit('viewFeeConfigData', 'showData', {
                     configId: $that.payFeeOrderInfo.configId
                 })
             },
-            _viewFee: function() {
+            _viewFee: function () {
                 vc.emit('viewFeeData', 'showData', {
                     feeId: $that.payFeeOrderInfo.feeId
                 })
             },
-            _viewRoomData: function() {
+            _viewRoomData: function () {
                 vc.emit('viewRoomData', 'showData', {
                     roomId: $that.payFeeOrderInfo.payerObjId
                 })

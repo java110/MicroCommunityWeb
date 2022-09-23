@@ -121,6 +121,7 @@
                         vc.component.feeDetailInfo.feeDetails = listFeeDetailData.feeDetails;
                         vc.emit('pagination', 'init', {
                             total: vc.component.feeDetailInfo.records,
+                            dataCount: vc.component.feeDetailInfo.total,
                             currentPage: _page
                         });
                     },

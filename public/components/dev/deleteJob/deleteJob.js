@@ -1,32 +1,26 @@
-(function(vc,vm){
-
+(function (vc, vm) {
     vc.extends({
-        data:{
-            deleteJobInfo:{
-
-            }
+        data: {
+            deleteJobInfo: {}
         },
-         _initMethod:function(){
-
-         },
-         _initEvent:function(){
-             vc.on('deleteJob','openDeleteJobModal',function(_params){
-
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteJob', 'openDeleteJobModal', function (_params) {
                 vc.component.deleteJobInfo = _params;
                 $('#deleteJobModel').modal('show');
-
             });
         },
-        methods:{
-            deleteJob:function(){
+        methods: {
+            deleteJob: function () {
                 //vc.component.deleteJobInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'task.deleteTask',
                     JSON.stringify(vc.component.deleteJobInfo),
                     {
-                        emulateJSON:true
-                     },
-                     function(json,res){
+                        emulateJSON: true
+                    },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         //let data = res.data;
@@ -35,20 +29,20 @@
                             $('#deleteJobModel').modal('hide');
                             vc.component.clearAddJobInfo();
                             vc.emit('jobManage', 'listJob', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
-                     },
-                     function(errInfo,error){
+                    },
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
-                     });
+                    });
             },
-            closeDeleteJobModel:function(){
+            closeDeleteJobModel: function () {
                 $('#deleteJobModel').modal('hide');
             }
         }
     });
-
-})(window.vc,window.vc.component);
+})(window.vc, window.vc.component);

@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -13,11 +12,10 @@
                 param: '',
                 type: '',
                 remark: '',
-                seq:''
+                seq: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addComponentCondition', 'openAddComponentConditionModal', function (_param) {
@@ -40,7 +38,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "组件ID不能超过30"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.name': [
                         {
@@ -52,7 +50,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "名称不能超过64"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.holdpace': [
                         {
@@ -64,7 +62,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "提示不能超过64"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.param': [
                         {
@@ -76,7 +74,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "参数不能超过64"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.type': [
                         {
@@ -88,7 +86,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "类型不能超过12"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.seq': [
                         {
@@ -100,31 +98,28 @@
                             limit: "num",
                             param: "",
                             errInfo: "排序必须是数字"
-                        },
+                        }
                     ],
                     'addComponentConditionInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
             saveComponentConditionInfo: function () {
                 if (!vc.component.addComponentConditionValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addComponentConditionInfo);
                     $('#addComponentConditionModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomComponentCondition.saveReportCustomComponentCondition',
                     JSON.stringify(vc.component.addComponentConditionInfo),
@@ -139,17 +134,15 @@
                             $('#addComponentConditionModel').modal('hide');
                             vc.component.clearAddComponentConditionInfo();
                             vc.emit('componentConditionManage', 'listComponentCondition', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddComponentConditionInfo: function () {
@@ -160,10 +153,9 @@
                     param: '',
                     type: '',
                     remark: '',
-                    seq:''
+                    seq: ''
                 };
             }
         }
     });
-
 })(window.vc);

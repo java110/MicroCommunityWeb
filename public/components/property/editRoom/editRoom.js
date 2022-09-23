@@ -196,8 +196,7 @@
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注长度不能超过200位"
-                    },]
-
+                    }]
                 });
             },
             editRoom: function () {
@@ -225,6 +224,8 @@
                             });
                             vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

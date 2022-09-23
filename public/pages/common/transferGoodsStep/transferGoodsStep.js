@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             transferGoodsStepInfo: {
@@ -17,16 +17,15 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
         },
-        _initEvent: function() {
-            vc.on("transferGoodsStep", "notify", function(goodsInfo) {
+        _initEvent: function () {
+            vc.on("transferGoodsStep", "notify", function (goodsInfo) {
                 vc.component.transferGoodsStepInfo.purchaseApply.resourceStores = goodsInfo.resourceStores;
                 vc.component.transferGoodsStepInfo.infos[0] = goodsInfo.resourceStores;
             });
-            vc.on("transferGoodsStep", "notify2", function(info) {
-                console.log('noti2', info);
+            vc.on("transferGoodsStep", "notify2", function (info) {
                 if (info.hasOwnProperty("staffId") && info.staffId != '-1') {
                     vc.component.transferGoodsStepInfo.purchaseApply.description = info.description;
                     vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId = info.staffId;
@@ -38,7 +37,7 @@
             });
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.transferGoodsStepInfo.$step = $("#step");
                 vc.component.transferGoodsStepInfo.$step.step({
                     index: 0,
@@ -47,12 +46,12 @@
                 });
                 vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.transferGoodsStepInfo.$step.prevStep();
                 vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
                 vc.emit('viewResourceStaffInfo', 'onIndex', vc.component.transferGoodsStepInfo.index);
             },
-            _nextStep: function() {
+            _nextStep: function () {
                 vc.emit('viewResourceStaffInfo', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.transferGoodsStepInfo.purchaseApply.resourceStores;
                 if (_resourceStores.length <= 0) {
@@ -80,13 +79,12 @@
                 vc.component.transferGoodsStepInfo.index = vc.component.transferGoodsStepInfo.$step.getIndex();
                 vc.emit('addTransferStoreInfo', 'onIndex', vc.component.transferGoodsStepInfo.index);
             },
-            _finishStep: function() {
+            _finishStep: function () {
                 let currentUserId = vc.getData("/nav/getUserInfo").userId;
                 if (currentUserId == vc.component.transferGoodsStepInfo.purchaseApply.acceptUserId) {
                     vc.toast("不能转赠给自己");
                     return;
                 }
-
                 var _currentData = vc.component.transferGoodsStepInfo.infos[vc.component.transferGoodsStepInfo.index];
                 if (_currentData == null || _currentData == undefined) {
                     vc.toast("请选择或填写必选信息");
@@ -96,21 +94,24 @@
                     JSON.stringify(vc.component.transferGoodsStepInfo.purchaseApply), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             vc.jumpToPage("/#/pages/common/myResourceStoreManage");
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
-            }
+            },
+
         }
     });
 })(window.vc);

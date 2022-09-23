@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -10,12 +9,10 @@
                 groupId: '',
                 name: '',
                 url: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addReportCustomGroup', 'openAddReportCustomGroupModal', function () {
@@ -37,7 +34,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "组名称不能超过128"
-                        },
+                        }
                     ],
                     'addReportCustomGroupInfo.url': [
                         {
@@ -49,7 +46,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "组url不能超过512"
-                        },
+                        }
                     ],
                     'addReportCustomGroupInfo.remark': [
                         {
@@ -61,28 +58,21 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述不能超过512"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
             saveReportCustomGroupInfo: function () {
                 if (!vc.component.addReportCustomGroupValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addReportCustomGroupInfo);
                     $('#addReportCustomGroupModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomGroup.saveReportCustomGroup',
                     JSON.stringify(vc.component.addReportCustomGroupInfo),
@@ -97,28 +87,24 @@
                             $('#addReportCustomGroupModel').modal('hide');
                             vc.component.clearAddReportCustomGroupInfo();
                             vc.emit('reportCustomGroupManage', 'listReportCustomGroup', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddReportCustomGroupInfo: function () {
                 vc.component.addReportCustomGroupInfo = {
                     name: '',
                     url: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

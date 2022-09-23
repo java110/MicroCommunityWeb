@@ -109,12 +109,12 @@
                 if (vc.component.editOwnerInfo.idCard != null && vc.component.editOwnerInfo.idCard != '' &&
                     vc.component.editOwnerInfo.idCard != undefined) {
                     $that.obtainEditAge();
-                    if ($that.editOwnerInfo.flag != null && $that.editOwnerInfo.flag != '' &&
-                        $that.editOwnerInfo.flag != undefined && $that.editOwnerInfo.flag == 1) {
-                        vc.component.editOwnerInfo.idCard = vc.component.editOwnerInfo.card;
-                        // vc.toast("身份证格式不对，请重新填写");
-                        return;
-                    }
+                    // if ($that.editOwnerInfo.flag != null && $that.editOwnerInfo.flag != '' &&
+                    //     $that.editOwnerInfo.flag != undefined && $that.editOwnerInfo.flag == 1) {
+                    //     vc.component.editOwnerInfo.idCard = vc.component.editOwnerInfo.card;
+                    //     // vc.toast("身份证格式不对，请重新填写");
+                    //     return;
+                    // }
                     // return;
                 }
                 vc.component.editOwnerInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -324,7 +324,6 @@
             },
             obtainEditAge: function () {
                 $that.checkIdCard($that.editOwnerInfo.idCard);
-                console.log(vc.component.editOwnerInfo.idCard)
                 let param = {
                     idCard: vc.component.editOwnerInfo.idCard,
                     communityId: vc.getCurrentCommunity().communityId
@@ -337,7 +336,7 @@
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
-                        if (_json.code == 0) {
+                        if (res.status == 200) {
                             vc.component.editOwnerInfo.age = _json.age;
                         } else {
                             vc.toast(_json.msg);

@@ -52,6 +52,7 @@
                         vc.component.accountBondManageInfo.accountBonds = _accountBondManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountBondManageInfo.records,
+                            dataCount: vc.component.accountBondManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

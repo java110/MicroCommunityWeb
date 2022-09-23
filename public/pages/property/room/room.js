@@ -89,12 +89,12 @@
                     param.params.roomId = '';
                     param.params.unitId = '';
                     param.params.floorId = '';
-                }else if(_allNums.length >3){
+                } else if (_allNums.length > 3) {
                     param.params.floorNum = _allNums[0].trim();
                     param.params.unitNum = _allNums[1].trim();
                     param.params.roomNum = _allNums[2].trim();
-                    for(let _numIndex = 3;_numIndex < _allNums.length;_numIndex++){
-                        param.params.roomNum += ('-'+_allNums[_numIndex].trim());
+                    for (let _numIndex = 3; _numIndex < _allNums.length; _numIndex++) {
+                        param.params.roomNum += ('-' + _allNums[_numIndex].trim());
                     }
                     param.params.roomId = '';
                     param.params.unitId = '';

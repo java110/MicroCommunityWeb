@@ -2,19 +2,23 @@
     <div class="col-lg-12">
         <div class="ibox">
             <div class="ibox-title">
-                <h5><span><vc:i18n name="合同模板" namespace="addTemplateView"></vc:i18n></span></h5>
-                <div class="ibox-tools" style="top:10px;">
-
-                </div>
+                <h5>
+                    <span><vc:i18n name="合同模板" namespace="addTemplateView"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;"></div>
             </div>
             <div class="ibox-content">
                 <div class="form-group row">
-                        <button v-for="(item,index) in contractTypeManageInfo.contractTypeAttrs"  class="btn btn-primary float-right" style="margin-right: 10px;margin-top: 10px;" type="button" v-on:click="insertAttrs(item)">
-                            {{item}}
-                        </button>
+                    <button v-for="(item,index) in contractTypeManageInfo.contractTypeAttrs"
+                            class="btn btn-primary float-right" style="margin-right: 10px;margin-top: 10px;"
+                            type="button" v-on:click="insertAttrs(item)">
+                        {{item}}
+                    </button>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="模板内容" namespace="addTemplateView"></vc:i18n></span></label>
+                    <label class="col-sm-2 col-form-label">
+                        <span><vc:i18n name="模板内容" namespace="addTemplateView"></vc:i18n></span>
+                    </label>
                     <div class="col-sm-10 ">
                         <div class="no-padding">
                             <div class="summernote"></div>
@@ -22,14 +26,14 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <button class="btn btn-primary float-right" type="button" v-on:click="saveTemplateInfo()"><i
-                            class="fa fa-check"></i>&nbsp;提交
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveTemplateInfo()">
+                        <i class="fa fa-check"></i>&nbsp;提交
                     </button>
                     <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                            v-on:click="closeTemplateInfo()"><span><vc:i18n name="取消" namespace="addTemplateView"></vc:i18n></span>
+                            v-on:click="closeTemplateInfo()">
+                        <span><vc:i18n name="取消" namespace="addTemplateView"></vc:i18n></span>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>

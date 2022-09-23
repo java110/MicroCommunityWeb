@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             ownerRepairDetailInfo: {
@@ -32,7 +32,7 @@
                 average: 0.0
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             let repairId = vc.getParam('repairId');
             if (!vc.notNull(repairId)) {
                 vc.toast('非法操作');
@@ -42,9 +42,10 @@
             $that.ownerRepairDetailInfo.repairId = repairId;
             $that._listRepairPools()
         },
-        _initEvent: function() {},
+        _initEvent: function () {
+        },
         methods: {
-            _getRoom: function() {
+            _getRoom: function () {
                 var param = {
                     params: {
                         roomId: vc.component.ownerRepairDetailInfo.roomId,
@@ -56,7 +57,7 @@
                 //查询房屋信息 业主信息
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         if (res.status == 200) {
                             var _roomInfos = JSON.parse(json);
                             if (!_roomInfos.hasOwnProperty("rooms")) {
@@ -70,13 +71,13 @@
                             vc.toast("非法操作，未找到房屋信息");
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("非法操作，未找到房屋信息");
                     }
                 );
             },
-            _listRepairPools: function() {
+            _listRepairPools: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -88,7 +89,7 @@
                 //发送get请求
                 vc.http.apiGet('/ownerRepair.listOwnerRepairs',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _repairPoolManageInfo = JSON.parse(json);
                         let _repairs = _repairPoolManageInfo.data;
                         if (_repairs.length < 1) {
@@ -106,12 +107,12 @@
                         //查询处理轨迹
                         $that._loadRepairUser();
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadResourceStoreList: function() {
+            _loadResourceStoreList: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -123,7 +124,7 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreUseRecords',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _repairResourceStoreInfo = JSON.parse(json);
                         let _resource = _repairResourceStoreInfo.data;
                         $that.ownerRepairDetailInfo.resourceStoreInfo = _resource;
@@ -133,12 +134,12 @@
                             }
                         })
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadRepairUser: function() {
+            _loadRepairUser: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -150,20 +151,20 @@
                 //发送get请求
                 vc.http.apiGet('ownerRepair.listRepairStaffs',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _repairPoolManageInfo = JSON.parse(json);
                         let _repairs = _repairPoolManageInfo.data;
                         $that.ownerRepairDetailInfo.repairUsers = _repairs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack()
             },
-            openFile: function(_photo) {
+            openFile: function (_photo) {
                 vc.emit('viewImage', 'showImage', {
                     url: _photo.url
                 });
@@ -171,7 +172,7 @@
             /**
              * 新增打印功能，跳转打印页面
              */
-            _printRepairDetail: function() {
+            _printRepairDetail: function () {
                 window.open("/print.html#/pages/property/printRepairDetail?repairId=" + $that.ownerRepairDetailInfo.repairId + "&repairType=" + $that.ownerRepairDetailInfo.repairType)
             },
         }

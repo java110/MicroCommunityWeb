@@ -120,13 +120,25 @@
             },
             _changeEditTitleType: function () {
                 let _titleType = $that.editInspectionItemTitleInfo.titleType;
-                if (_titleType == '1001' || _titleType == '2002') {
-                    if ($that.editInspectionItemTitleInfo.titleValues.length <= 0) {
-                        $that.editInspectionItemTitleInfo.titleValues = [{
+                if (_titleType == '1001') {
+                    $that.editInspectionItemTitleInfo.titleValues = [
+                        {
                             itemValue: '',
                             seq: 1
-                        }];
-                    }
+                        }
+                    ];
+                }
+                if (_titleType == '2002') {
+                    $that.editInspectionItemTitleInfo.titleValues = [
+                        {
+                            itemValue: '',
+                            seq: 1
+                        },
+                        {
+                            itemValue: '',
+                            seq: 2
+                        }
+                    ];
                 }
             },
             _addEditTitleValue: function () {

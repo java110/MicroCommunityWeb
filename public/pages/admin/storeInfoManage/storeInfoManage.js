@@ -69,6 +69,7 @@
                         vc.component.storeInfoManageInfo.storeInfos = _storeInfoManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.storeInfoManageInfo.records,
+                            dataCount: vc.component.storeInfoManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

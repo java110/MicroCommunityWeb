@@ -1,7 +1,7 @@
 /**
  审核订单
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -23,29 +23,28 @@
                 audit: '1'
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._loadStepStaff();
         },
-        _initEvent: function() {
-            vc.on('allocationStorehouseAuditOrders', 'list', function(_param) {
+        _initEvent: function () {
+            vc.on('allocationStorehouseAuditOrders', 'list', function (_param) {
                 $that.allocationStorehouseAuditOrdersInfo.audit = '1';
             });
-            vc.on('allocationStorehouseAuditOrders', 'listAuditOrders', function(_param) {
+            vc.on('allocationStorehouseAuditOrders', 'listAuditOrders', function (_param) {
                 $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAuditOrders(_currentPage, DEFAULT_ROWS);
             });
-
-            vc.on('allocationStorehouseAuditOrders', 'notifyAudit', function(_auditInfo) {
+            vc.on('allocationStorehouseAuditOrders', 'notifyAudit', function (_auditInfo) {
                 $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component._auditOrderInfo(_auditInfo);
             });
         },
         methods: {
-            _listAuditOrders: function(_page, _rows) {
+            _listAuditOrders: function (_page, _rows) {
                 $that.allocationStorehouseAuditOrdersInfo.audit = '1';
                 vc.component.allocationStorehouseAuditOrdersInfo.conditions.page = _page;
                 vc.component.allocationStorehouseAuditOrdersInfo.conditions.row = _rows;
@@ -53,11 +52,10 @@
                     params: vc.component.allocationStorehouseAuditOrdersInfo.conditions
                 };
                 param.params.communityId = vc.getCurrentCommunity().communityId;
-
                 //发送get请求
                 vc.http.apiGet('resourceStore.listAllocationStoreAuditOrders',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _allocationStorehouseAuditOrdersInfo = JSON.parse(json);
                         vc.component.allocationStorehouseAuditOrdersInfo.total = _allocationStorehouseAuditOrdersInfo.total;
                         vc.component.allocationStorehouseAuditOrdersInfo.records = _allocationStorehouseAuditOrdersInfo.records;
@@ -68,22 +66,22 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAuditOrderModel: function(_auditOrder) {
+            _openAuditOrderModel: function (_auditOrder) {
                 vc.component.allocationStorehouseAuditOrdersInfo.orderInfo = _auditOrder;
                 //_auditOrder.startUserId = _auditOrder.userId;
                 $that.allocationStorehouseAuditOrdersInfo.audit = '2';
                 vc.emit('flowAudit', 'openAuditModal', _auditOrder);
             },
-            _queryAuditOrdersMethod: function() {
+            _queryAuditOrdersMethod: function () {
                 vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //提交审核信息
-            _auditOrderInfo: function(_auditInfo) {
+            _auditOrderInfo: function (_auditInfo) {
                 _auditInfo.taskId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.taskId;
                 _auditInfo.applyId = vc.component.allocationStorehouseAuditOrdersInfo.orderInfo.applyId;
                 _auditInfo.procure = vc.component.allocationStorehouseAuditOrdersInfo.procure;
@@ -100,17 +98,17 @@
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         vc.toast("处理成功");
                         vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
             },
-            _finishAuditOrder: function(_auditOrder) {
+            _finishAuditOrder: function (_auditOrder) {
                 let _auditInfo = {
                     taskId: _auditOrder.taskId,
                     applyId: _auditOrder.applyId,
@@ -122,17 +120,17 @@
                     JSON.stringify(_auditInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         vc.toast("处理成功");
                         vc.component._listAuditOrders(DEFAULT_PAGE, DEFAULT_ROWS);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast("处理失败：" + errInfo);
                     }
                 );
             },
-            _loadStepStaff: function() {
+            _loadStepStaff: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -145,18 +143,18 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowStepStaffs',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _json = JSON.parse(json);
                         if (_json.data.length > 0) {
                             $that.allocationStorehouseAuditOrdersInfo.procure = true;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _toDetail: function(_item) {
+            _toDetail: function (_item) {
                 vc.jumpToPage("/#/pages/common/allocationStorehouseDetail?applyId=" + _item.applyId);
             }
         }

@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteContractChangeInfo: {
-
-            }
+            deleteContractChangeInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteContractChange', 'openDeleteContractPlanModal', function (_params) {
-
                 vc.component.deleteContractChangeInfo = _params;
                 $('#deleteContractChangeModel').modal('show');
-
             });
         },
         methods: {
@@ -32,14 +26,15 @@
                             //关闭model
                             $('#deleteContractChangeModel').modal('hide');
                             vc.emit('contractManage', 'listContract', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteContractModel: function () {
@@ -47,5 +42,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

@@ -53,6 +53,7 @@
                         vc.component.mainCategoryProductManageInfo.mainCategoryProducts = _mainCategoryProductManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.mainCategoryProductManageInfo.records,
+                            dataCount: vc.component.mainCategoryProductManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

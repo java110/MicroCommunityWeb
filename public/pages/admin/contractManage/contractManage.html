@@ -3,41 +3,47 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="contractManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="contractManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同名称','contractManage')" v-model="contractManageInfo.conditions.contractNameLike" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同名称','contractManage')"
+                                       v-model="contractManageInfo.conditions.contractNameLike" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同编号','contractManage')" v-model="contractManageInfo.conditions.contractCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同编号','contractManage')"
+                                       v-model="contractManageInfo.conditions.contractCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="contractManageInfo.conditions.contractType">
                                     <option selected value="">请选择合同类型</option>
-                                    <option :value="item.contractTypeId" v-for="(item,index) in contractManageInfo.contractTypes">
+                                    <option :value="item.contractTypeId"
+                                            v-for="(item,index) in contractManageInfo.contractTypes">
                                         {{item.typeName}}
                                     </option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryContractMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询" namespace="contractManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="contractManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetContractMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="contractManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -46,64 +52,93 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="合同信息" namespace="contractManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="合同信息" namespace="contractManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name="合同名称" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="合同编号" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="父合同编号" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="合同类型" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="经办人" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="合同金额" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="开始时间" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="结束时间" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="起草时间" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="状态" namespace="contractManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="操作" namespace="contractManage"></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="合同名称" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="合同编号" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="父合同编号" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="合同类型" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="经办人" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="合同金额" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="开始时间" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="结束时间" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="起草时间" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="contractManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="contract in contractManageInfo.contracts">
-                                <td class="text-center">{{contract.contractName}}</td>
-                                <td class="text-center">{{contract.contractCode}}</td>
-                                <td class="text-center">
-                                    {{contract.parentContractCode?contract.parentContractCode:'-'}}</td>
-                                <td class="text-center">{{contract.contractTypeName}}</td>
-                                <td class="text-center">{{contract.operator}}</td>
-                                <td class="text-center">{{contract.amount}}</td>
-                                <td class="text-center">{{contract.startTime}}</td>
-                                <td class="text-center">{{contract.endTime}}</td>
-                                <td class="text-center">{{contract.createTime}}</td>
-                                <td class="text-center">{{contract.stateName}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openContractFee(contract)"><span><vc:i18n name="费用" namespace="contractManage"></vc:i18n></span></button>
-                                    </div>
-                                    <button class="btn-white btn btn-xs" v-on:click="_viewContract(contract)"><span><vc:i18n name="查看" namespace="contractManage"></vc:i18n></span>
+                        <tr v-for="contract in contractManageInfo.contracts">
+                            <td class="text-center">{{contract.contractName}}</td>
+                            <td class="text-center">{{contract.contractCode}}</td>
+                            <td class="text-center">
+                                {{contract.parentContractCode?contract.parentContractCode:'-'}}
+                            </td>
+                            <td class="text-center">{{contract.contractTypeName}}</td>
+                            <td class="text-center">{{contract.operator}}</td>
+                            <td class="text-center">{{contract.amount}}</td>
+                            <td class="text-center">{{contract.startTime}}</td>
+                            <td class="text-center">{{contract.endTime}}</td>
+                            <td class="text-center">{{contract.createTime}}</td>
+                            <td class="text-center">{{contract.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openContractFee(contract)">
+                                        <span><vc:i18n name="费用" namespace="contractManage"></vc:i18n></span>
                                     </button>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_printContract(contract)"><span><vc:i18n name="打印" namespace="contractManage"></vc:i18n></span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteContractModel(contract)"><span><vc:i18n name="删除" namespace="contractManage"></vc:i18n></span></button>
-                                    </div>
-                                </td>
-
-                            </tr>
+                                </div>
+                                <button class="btn-white btn btn-xs" v-on:click="_viewContract(contract)">
+                                    <span><vc:i18n name="查看" namespace="contractManage"></vc:i18n></span>
+                                </button>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_printContract(contract)">
+                                        <span><vc:i18n name="打印" namespace="contractManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteContractModel(contract)">
+                                        <span><vc:i18n name="删除" namespace="contractManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="12">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -112,10 +147,6 @@
             </div>
         </div>
     </div>
-
-
-
     <vc:create path="admin/editContract"></vc:create>
     <vc:create path="admin/deleteContract"></vc:create>
-
 </div>

@@ -2,34 +2,47 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="跟进" namespace="addNotepadDetail"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="跟进" namespace="addNotepadDetail"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='状态' namespace='addNotepad'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='状态' namespace='addNotepad'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addNotepadDetailInfo.state">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择状态','addNotepadInfo')}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择状态','addNotepadInfo')}}
+                                        </option>
                                         <option value="W">跟进中</option>
                                         <option value="F">完成</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='跟进内容' namespace='addNotepadDetail'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='跟进内容' namespace='addNotepadDetail'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="addNotepadDetailInfo.content" rows="10" :placeholder="vc.i18n('必填，请填写跟进内容','addNotepadDetail')" class="form-control"></textarea>
+                                    <textarea v-model="addNotepadDetailInfo.content" rows="10"
+                                              :placeholder="vc.i18n('必填，请填写跟进内容','addNotepadDetail')"
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveNotepadDetailInfo()"><i class="fa fa-check"></i>&nbsp;
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveNotepadDetailInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;
                                     <span><vc:i18n name="保存"></vc:i18n></span>
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
                                     <span><vc:i18n name="取消"></vc:i18n></span>
-                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>

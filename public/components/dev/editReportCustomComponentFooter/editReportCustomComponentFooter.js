@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editReportCustomComponentFooterInfo: {
@@ -9,12 +8,10 @@
                 queryModel: '',
                 javaScript: '',
                 componentSql: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editReportCustomComponentFooter', 'openEditReportCustomComponentFooterModal', function (_params) {
@@ -38,7 +35,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "组件ID不能超过30"
-                        },
+                        }
                     ],
                     'editReportCustomComponentFooterInfo.name': [
                         {
@@ -50,7 +47,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "名称不能超过64"
-                        },
+                        }
                     ],
                     'editReportCustomComponentFooterInfo.queryModel': [
                         {
@@ -62,22 +59,22 @@
                             limit: "maxLength",
                             param: "1",
                             errInfo: "查询方式不能超过1"
-                        },
+                        }
                     ],
                     'editReportCustomComponentFooterInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "描述'不能超过512"
-                        },
+                        }
                     ],
                     'editReportCustomComponentFooterInfo.footerId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "统计ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editReportCustomComponentFooter: function () {
@@ -85,7 +82,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/reportCustomComponentFooter.updateReportCustomComponentFooter',
                     JSON.stringify(vc.component.editReportCustomComponentFooterInfo),
@@ -99,13 +95,14 @@
                             //关闭model
                             $('#editReportCustomComponentFooterModel').modal('hide');
                             vc.emit('reportCustomComponentFooterManage', 'listReportCustomComponentFooter', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -117,11 +114,9 @@
                     queryModel: '',
                     javaScript: '',
                     componentSql: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

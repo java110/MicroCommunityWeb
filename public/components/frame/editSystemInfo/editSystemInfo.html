@@ -3,111 +3,120 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <span>
-            <vc:i18n name="修改" namespace="editSystemInfo"></vc:i18n>
-          </span>
+                    <span><vc:i18n name="修改" namespace="editSystemInfo"></vc:i18n></span>
                 </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='标题名称' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='标题名称' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.systemTitle" type="text" :placeholder="vc.i18n('必填，请填写标题名称','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.systemTitle" type="text"
+                                           :placeholder="vc.i18n('必填，请填写标题名称','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='副标题' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='副标题' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.subSystemTitle" type="text" :placeholder="vc.i18n('必填，请填写副标题','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.subSystemTitle" type="text"
+                                           :placeholder="vc.i18n('必填，请填写副标题','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='简写标题' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='简写标题' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.systemSimpleTitle" type="text" :placeholder="vc.i18n('必填，请填写简写标题','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.systemSimpleTitle" type="text"
+                                           :placeholder="vc.i18n('必填，请填写简写标题','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='公司名称' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='公司名称' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.companyName" type="text" :placeholder="vc.i18n('必填，请填写公司名称','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.companyName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写公司名称','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='logo地址' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='logo地址' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.logoUrl" type="text" :placeholder="vc.i18n('必填，请填写logo地址','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.logoUrl" type="text"
+                                           :placeholder="vc.i18n('必填，请填写logo地址','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='静态url' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='静态url' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.imgUrl" type="text" :placeholder="vc.i18n('必填，请填写静态url','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.imgUrl" type="text"
+                                           :placeholder="vc.i18n('必填，请填写静态url','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='默认小区编号' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='默认小区编号' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.defaultCommunityId" type="text" :placeholder="vc.i18n('必填，请填写默认小区编号','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.defaultCommunityId" type="text"
+                                           :placeholder="vc.i18n('必填，请填写默认小区编号','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='业主标题' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='业主标题' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.ownerTitle" type="text" :placeholder="vc.i18n('必填，请填写业主标题','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.ownerTitle" type="text"
+                                           :placeholder="vc.i18n('必填，请填写业主标题','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='物业手机标题' namespace='editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='物业手机标题' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.propertyTitle" type="text" :placeholder="vc.i18n('必填，请填写物业手机标题','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.propertyTitle" type="text"
+                                           :placeholder="vc.i18n('必填，请填写物业手机标题','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='qq地图key' namespace='editSystemInfo'></vc:i18n>
-                  </span> 
-                </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='qq地图key' namespace='editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.qqMapKey" type="text" :placeholder="vc.i18n('必填，请填写qq地图key','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.qqMapKey" type="text"
+                                           :placeholder="vc.i18n('必填，请填写qq地图key','editSystemInfo')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
-                    <vc:i18n name='商城地址' namespace=' editSystemInfo'></vc:i18n>
-                  </span> </label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='商城地址' namespace=' editSystemInfo'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editSystemInfoInfo.mallUrl" type="text" :placeholder="vc.i18n('必填，请填写商城地址','editSystemInfo')" class="form-control">
+                                    <input v-model="editSystemInfoInfo.mallUrl" type="text"
+                                           :placeholder="vc.i18n('必填，请填写商城地址','editSystemInfo')" class="form-control">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editSystemInfo()"><i
-                    class="fa fa-check"></i>&nbsp;<span>
-                    <vc:i18n name="保存"></vc:i18n>
-                  </span></button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span>
-                    <vc:i18n name="取消"></vc:i18n>
-                  </span></button>
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editSystemInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存"></vc:i18n></span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

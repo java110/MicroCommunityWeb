@@ -1,4 +1,5 @@
-<div id="editReportCustomComponentModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editReportCustomComponentModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,54 +10,81 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组件名称" namespace="editReportCustomComponent"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="组件名称" namespace="editReportCustomComponent"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editReportCustomComponentInfo.name" type="text" :placeholder="vc.i18n('必填，请填写组件名称','editReportCustomComponent')" class="form-control">
+                                    <input v-model="editReportCustomComponentInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写组件名称','editReportCustomComponent')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="组件类型" namespace="editReportCustomComponent"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="组件类型" namespace="editReportCustomComponent"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editReportCustomComponentInfo.componentType">
-                    <option selected disabled value="">{{vc.i18n('必填，请选择组件类型','editReportCustomComponent')}}</option>
-                    <option value="1001">{{vc.i18n('表格','editReportCustomComponent')}}</option>
-                    <option value="2002">{{vc.i18n('饼状图','editReportCustomComponent')}}</option>
-                  </select>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择组件类型','editReportCustomComponent')}}
+                                        </option>
+                                        <option value="1001">{{vc.i18n('表格','editReportCustomComponent')}}</option>
+                                        <option value="2002">{{vc.i18n('饼状图','editReportCustomComponent')}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="查询方式" namespace="editReportCustomComponent"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="查询方式" namespace="editReportCustomComponent"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editReportCustomComponentInfo.queryModel">
-                    <option selected disabled value="">{{vc.i18n('必填，请选择查询方式','editReportCustomComponent')}}</option>
-                    <option value="1">sql</option>
-                    <option value="2">java</option>
-                  </select>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择查询方式','editReportCustomComponent')}}
+                                        </option>
+                                        <option value="1">sql</option>
+                                        <option value="2">java</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editReportCustomComponentInfo.queryModel == 1">
                                 <label class="col-sm-2 col-form-label">sql</label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editReportCustomComponentInfo.componentSql" rows="15" :placeholder="vc.i18n('选填，请填写执行sql','editReportCustomComponent')" class="form-control"></textarea>
+                                    <textarea v-model="editReportCustomComponentInfo.componentSql" rows="15"
+                                              :placeholder="vc.i18n('选填，请填写执行sql','editReportCustomComponent')"
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editReportCustomComponentInfo.queryModel == 2">
                                 <label class="col-sm-2 col-form-label">java</label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editReportCustomComponentInfo.javaScript" rows="15" :placeholder="vc.i18n('选填，请填写执行java脚本代码','editReportCustomComponent')" class="form-control"></textarea>
+                                    <textarea v-model="editReportCustomComponentInfo.javaScript" rows="15"
+                                              :placeholder="vc.i18n('选填，请填写执行java脚本代码','editReportCustomComponent')"
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="描述" namespace="editReportCustomComponent"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="描述" namespace="editReportCustomComponent"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editReportCustomComponentInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写描述','editReportCustomComponent')" class="form-control"></textarea>
+                                    <textarea v-model="editReportCustomComponentInfo.remark" type="text"
+                                              :placeholder="vc.i18n('选填，请填写描述','editReportCustomComponent')"
+                                              class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editReportCustomComponent()"><i
-                    class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editReportCustomComponent"></vc:i18n></span></button>
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editReportCustomComponent()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editReportCustomComponent"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

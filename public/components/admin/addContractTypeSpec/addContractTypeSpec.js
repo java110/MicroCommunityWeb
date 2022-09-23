@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,11 +14,10 @@
                 specValueType: '',
                 specType: '',
                 listShow: '',
-                contractTypeId: '',
+                contractTypeId: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addContractTypeSpec', 'openAddContractTypeSpecModal', function (_parma) {
@@ -56,13 +54,15 @@
                             limit: "required",
                             param: "",
                             errInfo: "必填不能为空"
-                        }],
+                        }
+                    ],
                     'addContractTypeSpecInfo.specShow': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "展示不能为空"
-                        }],
+                        }
+                    ],
                     'addContractTypeSpecInfo.specValueType': [
                         {
                             limit: "required",
@@ -92,17 +92,15 @@
                             limit: "required",
                             param: "",
                             errInfo: "查询显示不能为空"
-                        },
+                        }
                     ]
                 });
             },
             saveContractTypeSpecInfo: function () {
                 if (!vc.component.addContractTypeSpecValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addContractTypeSpecInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -110,7 +108,6 @@
                     $('#addContractTypeSpecModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/contract/saveContractTypeSpec',
                     JSON.stringify(vc.component.addContractTypeSpecInfo),
@@ -125,17 +122,15 @@
                             $('#addContractTypeSpecModel').modal('hide');
                             vc.component.clearAddContractTypeSpecInfo();
                             vc.emit('contractTypeSpecManage', 'listContractTypeSpec', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddContractTypeSpecInfo: function () {
@@ -148,10 +143,8 @@
                     specType: '',
                     listShow: '',
                     contractTypeId: ''
-
                 };
             }
         }
     });
-
 })(window.vc);

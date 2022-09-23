@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             addTemplateViewInfo: {
@@ -8,17 +7,15 @@
                 templateId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initTemplateInfo();
         },
-        _initEvent: function() {
-
-            vc.on('addTemplateView', 'openTemplate', function(_param) {
+        _initEvent: function () {
+            vc.on('addTemplateView', 'openTemplate', function (_param) {
                 $that.clearaddTemplateViewInfo();
                 $that.addTemplateViewInfo.contractTypeId = _param.contractTypeId;
                 $that._loadTemplate();
             })
-
         },
         methods: {
             addTemplateValidate() {
@@ -34,60 +31,56 @@
                         limit: "required",
                         param: "",
                         errInfo: "模板内容必填"
-                    }, ]
-
+                    }]
                 });
             },
-            saveTemplateInfo: function() {
+            saveTemplateInfo: function () {
                 let _url = "/contract/saveContractTypeTemplate";
                 if ($that.addTemplateViewInfo.templateId != '' && $that.addTemplateViewInfo.templateId != '-1') {
                     _url = "/contract/updateContractTypeTemplate";
                 }
-
                 vc.http.apiPost(_url,
                     JSON.stringify(vc.component.addTemplateViewInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             vc.component.clearaddTemplateViewInfo();
                             vc.emit('contractTypeManage', 'componentShow', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
-            insertAttrs: function(_attr) {
+            insertAttrs: function (_attr) {
                 $('.summernote').summernote('editor.insertText', _attr)
             },
-            clearaddTemplateViewInfo: function() {
+            clearaddTemplateViewInfo: function () {
                 vc.component.addTemplateViewInfo = {
                     contractTypeId: '',
                     context: '',
                     templateId: ''
-
                 };
             },
-            _initTemplateInfo: function() {
+            _initTemplateInfo: function () {
                 vc.component.addTemplateViewInfo.startTime = vc.dateTimeFormat(new Date().getTime());
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入合同模板',
                     callbacks: {
-                        onImageUpload: function(files, editor, $editable) {
+                        onImageUpload: function (files, editor, $editable) {
                             vc.component.sendFile($summernote, files);
                         },
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
                             vc.component.addTemplateViewInfo.context = contents;
                         }
                     },
@@ -105,42 +98,35 @@
                     ],
                 });
             },
-            closeTemplateInfo: function() {
+            closeTemplateInfo: function () {
                 vc.emit('contractTypeManage', 'componentShow', {});
-
             },
-
-            _loadTemplate: function() {
+            _loadTemplate: function () {
                 let param = {
-                        params: {
-                            page: 1,
-                            row: 1,
-                            contractTypeId: $that.addTemplateViewInfo.contractTypeId
-                        }
+                    params: {
+                        page: 1,
+                        row: 1,
+                        contractTypeId: $that.addTemplateViewInfo.contractTypeId
                     }
-                    //发送get请求
+                }
+                //发送get请求
                 vc.http.apiGet('/contract/queryContractTypeTemplate',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _contractTypeManageInfo = JSON.parse(json);
-
                         let _contractTypeTemplates = _contractTypeManageInfo.data;
-
                         if (_contractTypeTemplates.length < 1) {
                             return;
                         }
                         $that.addTemplateViewInfo.templateId = _contractTypeTemplates[0].templateId;
                         $that.addTemplateViewInfo.context = _contractTypeTemplates[0].context;
                         $(".summernote").summernote('code', $that.addTemplateViewInfo.context);
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             }
-
         }
     });
-
 })(window.vc);

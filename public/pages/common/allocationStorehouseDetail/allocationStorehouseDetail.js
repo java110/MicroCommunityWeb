@@ -10,10 +10,10 @@
                 applyId: '',
                 resourceStores: [],
                 remark: '',
-                startUserName:'',
-                createTime:'',
+                startUserName: '',
+                createTime: '',
                 auditUsers: [],
-                stateName:'',
+                stateName: '',
                 applyType: '',
                 applyTypeName: ''
             }

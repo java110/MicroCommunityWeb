@@ -1,4 +1,5 @@
-<div id="editAttrSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editAttrSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -29,21 +30,30 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="域" namespace="addAttrSpec"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="域" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.domain" type="text" :placeholder="vc.i18n('必填，请填写域','addAttrSpec')" class="form-control">
+                                    <input v-model="editAttrSpecInfo.domain" type="text"
+                                           :placeholder="vc.i18n('必填，请填写域','addAttrSpec')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格名称" namespace="editAttrSpec"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格名称" namespace="editAttrSpec"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.specName" type="text" :placeholder="vc.i18n('必填，请填写规格名称','editAttrSpec')" class="form-control">
+                                    <input v-model="editAttrSpecInfo.specName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规格名称','editAttrSpec')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="规格编码" namespace="addAttrSpec"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格编码" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.specCd" type="text" :placeholder="vc.i18n('必填，请填写规格编码','addAttrSpec')" class="form-control">
+                                    <input v-model="editAttrSpecInfo.specCd" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规格编码','addAttrSpec')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -51,15 +61,16 @@
                                     <span><vc:i18n name="说明" namespace="editAttrSpec"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttrSpecInfo.specHoldplace" type="text" :placeholder="vc.i18n('必填，请填写说明','editAttrSpec')" class="form-control">
+                                    <input v-model="editAttrSpecInfo.specHoldplace" type="text"
+                                           :placeholder="vc.i18n('必填，请填写说明','editAttrSpec')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{vc.i18n('必填','editAttrSpec')}}</label>
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('是否必填','editAttrSpec')}}</label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttrSpecInfo.required">
                                         <option selected disabled value="">
-                                            {{vc.i18n('必填','editAttrSpec')}}，请选择{{vc.i18n('必填','editAttrSpec')}}
+                                            {{vc.i18n('必填','editAttrSpec')}}，请选择{{vc.i18n('是否必填','editAttrSpec')}}
                                         </option>
                                         <option value="Y">{{vc.i18n('是','editAttrSpec')}}</option>
                                         <option value="N">{{vc.i18n('否','editAttrSpec')}}</option>
@@ -127,7 +138,8 @@
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editAttrSpec()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
                                     <i class="fa fa-close"></i>&nbsp;取消
                                 </button>
                             </div>

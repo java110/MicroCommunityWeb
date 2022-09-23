@@ -4,11 +4,11 @@
 (function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
-    var photoUrl = '/callComponent/download/getFile/file';
+    // var photoUrl = '/callComponent/download/getFile/file';
     vc.extends({
         data: {
-            appManageInfo: {
-                apps: [],
+            visitManageInfo: {
+                visits: [],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -23,7 +23,7 @@
         _initMethod: function() {
             // location.reload();
             vc.component._initDate();
-            vc.component._listApps(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.component._listVisits(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
             vc.on('appManage', 'listApp', function(_param) {
@@ -56,17 +56,17 @@
                 $('.visitStartTime').datetimepicker()
                     .on('changeDate', function(ev) {
                         var value = $(".visitStartTime").val();
-                        vc.component.appManageInfo.conditions.visitStartTime = value;
+                        vc.component.visitManageInfo.conditions.visitStartTime = value;
                     });
                 $('.visitEndTime').datetimepicker()
                     .on('changeDate', function(ev) {
                         var value = $(".visitEndTime").val();
-                        vc.component.appManageInfo.conditions.visitEndTime = value;
-                        let start = Date.parse(new Date($that.appManageInfo.conditions.visitStartTime))
-                        let end = Date.parse(new Date($that.appManageInfo.conditions.visitEndTime))
+                        vc.component.visitManageInfo.conditions.visitEndTime = value;
+                        let start = Date.parse(new Date($that.visitManageInfo.conditions.visitStartTime))
+                        let end = Date.parse(new Date($that.visitManageInfo.conditions.visitEndTime))
                         if (start - end >= 0) {
                             vc.toast("结束时间必须大于开始时间")
-                            $that.appManageInfo.conditions.visitEndTime = '';
+                            $that.visitManageInfo.conditions.visitEndTime = '';
                         }
                     });
                 //防止多次点击时间插件失去焦点
@@ -87,10 +87,11 @@
                 vc.component.appManageInfo.conditions.row = _rows;
                 vc.component.appManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.appManageInfo.conditions
+                    params: vc.component.visitManageInfo.conditions
                 };
                 param.params.vName = param.params.vName.trim();
                 param.params.phoneNumber = param.params.phoneNumber.trim();
+                param.params.channel = "PC";
                 //发送get请求
                 vc.http.apiGet('/visit.listVisits',
                     param,
@@ -131,7 +132,7 @@
                 if (vc.component.appManageInfo.moreCondition) {
                     vc.component.appManageInfo.moreCondition = false;
                 } else {
-                    vc.component.appManageInfo.moreCondition = true;
+                    vc.component.visitManageInfo.moreCondition = true;
                 }
             },
             _openAddVisitModal: function() {

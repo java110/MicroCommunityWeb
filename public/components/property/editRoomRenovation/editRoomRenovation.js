@@ -17,17 +17,17 @@
                 postponeTime: '',
                 renovationCompany: '',
                 personMain: '',
-                personMainTel: '',
+                personMainTel: ''
             }
         },
         watch: {
             editRoomRenovationInfo: {
-                handler(val, oldVal){
-                    if(val.isPostpone == 'N'){
+                handler(val, oldVal) {
+                    if (val.isPostpone == 'N') {
                         vc.component.editRoomRenovationInfo.postponeTime = '';
                     }
                 },
-                deep:true
+                deep: true
             }
         },
         _initMethod: function () {
@@ -149,7 +149,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "房屋格式错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.personName': [
                         {
@@ -161,7 +161,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "联系人格式错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.personTel': [
                         {
@@ -173,7 +173,7 @@
                             limit: "phone",
                             param: "",
                             errInfo: "联系电话错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.startTime': [
                         {
@@ -185,7 +185,7 @@
                             limit: "date",
                             param: "",
                             errInfo: "装修时间错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.endTime': [
                         {
@@ -197,7 +197,7 @@
                             limit: "date",
                             param: "",
                             errInfo: "结束时间错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.isPostpone': [
                         {
@@ -216,7 +216,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "装修单位格式错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.personMain': [
                         {
@@ -228,7 +228,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "装修负责人格式错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.personMainTel': [
                         {
@@ -240,21 +240,22 @@
                             limit: "phone",
                             param: "",
                             errInfo: "装修负责人电话错误"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注太长"
-                        },
+                        }
                     ],
                     'editRoomRenovationInfo.rId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "装修ID不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editRoomRenovation: function () {
@@ -279,9 +280,11 @@
                             //关闭model
                             $('#editRoomRenovationModel').modal('hide');
                             vc.emit('roomRenovationManage', 'listRoomRenovation', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -305,7 +308,7 @@
                     postponeTime: '',
                     renovationCompany: '',
                     personMain: '',
-                    personMainTel: '',
+                    personMainTel: ''
                 }
             }
         }

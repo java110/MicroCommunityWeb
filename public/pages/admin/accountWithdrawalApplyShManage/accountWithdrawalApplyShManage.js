@@ -55,6 +55,7 @@
                         vc.component.accountWithdrawalApplyShManageInfo.accountWithdrawalApplyShs = _accountWithdrawalApplyShManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.accountWithdrawalApplyShManageInfo.records,
+                            dataCount: vc.component.accountWithdrawalApplyShManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

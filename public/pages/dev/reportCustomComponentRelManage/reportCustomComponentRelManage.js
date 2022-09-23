@@ -54,6 +54,7 @@
                         vc.component.reportCustomComponentRelManageInfo.reportCustomComponentRels = _reportCustomComponentRelManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportCustomComponentRelManageInfo.records,
+                            dataCount: vc.component.reportCustomComponentRelManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {

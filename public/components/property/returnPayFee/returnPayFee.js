@@ -84,14 +84,16 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             $('#returnPayFeeModel').modal('hide');
-                            vc.emit('propertyFee', 'listParkingSpaceData', vc.component.returnFeeDetailInfo);
+                            vc.emit('propertyFee', 'listFeeDetail', vc.component.returnFeeDetailInfo);
                             vc.component.refreshFeeDetailInfo();
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
-
                     },
                     function (errInfo, error) {
                         vc.toast(errInfo);

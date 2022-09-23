@@ -50,6 +50,7 @@
                         vc.component.parkingBoxManageInfo.parkingBoxs = _parkingBoxManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.parkingBoxManageInfo.records,
+                            dataCount: vc.component.parkingBoxManageInfo.total,
                             currentPage: _page
                         });
                     },

@@ -50,6 +50,7 @@
                         vc.component.reportProficientCarFeeInfo.fees = _feeConfigInfo.data;
                         vc.emit('reportProficientCarFee', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportProficientCarFeeInfo.total,
                             currentPage: _page
                         });
                         //取 属性列

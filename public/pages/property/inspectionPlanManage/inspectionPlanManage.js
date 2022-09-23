@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,28 +22,28 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('inspection_plan', "state", function(_data) {
+            vc.getDict('inspection_plan', "state", function (_data) {
                 vc.component.inspectionPlanManageInfo.states = _data;
             });
         },
-        _initEvent: function() {
-            vc.on('inspectionPlanManage', 'listInspectionPlan', function(_param) {
+        _initEvent: function () {
+            vc.on('inspectionPlanManage', 'listInspectionPlan', function (_param) {
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('inspectionPlanManage', 'reload', function(_param) {
+            vc.on('inspectionPlanManage', 'reload', function (_param) {
                 location.reload();
             });
-            vc.on('inspectionPlanManage', 'goBack', function(_param) {
+            vc.on('inspectionPlanManage', 'goBack', function (_param) {
                 vc.component.inspectionPlanManageInfo.inspectionPlanStaffModel = false;
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listInspectionPlans(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listInspectionPlans: function(_page, _rows) {
+            _listInspectionPlans: function (_page, _rows) {
                 vc.component.inspectionPlanManageInfo.conditions.page = _page;
                 vc.component.inspectionPlanManageInfo.conditions.row = _rows;
                 vc.component.inspectionPlanManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -56,7 +56,7 @@
                 //发送get请求
                 vc.http.apiGet('/inspectionPlan.listInspectionPlans',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _inspectionPlanManageInfo = JSON.parse(json);
                         vc.component.inspectionPlanManageInfo.total = _inspectionPlanManageInfo.total;
                         vc.component.inspectionPlanManageInfo.records = _inspectionPlanManageInfo.records;
@@ -67,33 +67,33 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddInspectionPlanModal: function() {
+            _openAddInspectionPlanModal: function () {
                 vc.emit('addInspectionPlan', 'openAddInspectionPlanModal', {});
             },
-            _openEditInspectionPlanModel: function(_inspectionPlan) {
+            _openEditInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('editInspectionPlan', 'openEditInspectionPlanModal', _inspectionPlan);
             },
-            _openDeleteInspectionPlanModel: function(_inspectionPlan) {
+            _openDeleteInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('deleteInspectionPlan', 'openDeleteInspectionPlanModal', _inspectionPlan);
             },
             //查询
-            _queryInspectionPlanMethod: function() {
+            _queryInspectionPlanMethod: function () {
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetInspectionPlanMethod: function() {
+            _resetInspectionPlanMethod: function () {
                 vc.component.inspectionPlanManageInfo.conditions.inspectionPlanName = "";
                 vc.component.inspectionPlanManageInfo.conditions.inspectionPlanId = "";
                 vc.component.inspectionPlanManageInfo.conditions.state = "";
                 vc.component._listInspectionPlans(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //启用计划
-            _openEnabledInspectionPlanModel: function(_inspectionPlan) {
+            _openEnabledInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('inspectionPlanState', 'openInspectionPlanStateModal', {
                     inspectionPlanId: _inspectionPlan.inspectionPlanId,
                     stateName: '启用',
@@ -101,21 +101,21 @@
                 });
             },
             //停用计划
-            _openDisabledInspectionPlanModel: function(_inspectionPlan) {
+            _openDisabledInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('inspectionPlanState', 'openInspectionPlanStateModal', {
                     inspectionPlanId: _inspectionPlan.inspectionPlanId,
                     stateName: '停用',
                     state: '2020026'
                 });
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.inspectionPlanManageInfo.moreCondition) {
                     vc.component.inspectionPlanManageInfo.moreCondition = false;
                 } else {
                     vc.component.inspectionPlanManageInfo.moreCondition = true;
                 }
             },
-            _openPlanStaff: function(_inspectionPlan) {
+            _openPlanStaff: function (_inspectionPlan) {
                 $that.inspectionPlanManageInfo.inspectionPlanStaffModel = true;
                 vc.emit('inspectionPlanStaffManage', 'listInspectionPlanStaff', _inspectionPlan);
             }
