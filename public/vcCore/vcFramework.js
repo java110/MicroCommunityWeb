@@ -1399,6 +1399,18 @@
         }
     };
 
+    vcFramework.copyArray = function(org) {
+        let res = []
+        if (!org) {
+            return res;
+        }
+
+        for (let i = 0; i < org.length; i++) {
+            res.push(org[i])
+        }
+        return res
+    };
+
     vcFramework.resetObject = function(org) {
         if (!org) {
             return;
