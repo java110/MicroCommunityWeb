@@ -10,18 +10,16 @@
                 outMachineId: '',
                 inMachines: [],
                 outMachines: [],
-                inMachineInfo:{
-                    carNum:'',
-                    inOutTime:'',
-                    open:'',
-                    openMsg:''
-                },
-                outMachineInfo:{
-                    carNum:'',
-                    inOutTime:'',
-                    open:'',
-                    openMsg:''
-                }
+
+                inMachineCarNum: '',
+                inMachineInOutTime: '',
+                inMachineOpen: '',
+                inMachineOpenMsg: '',
+                outMachineCarNum: '',
+                outMachineInOutTime: '',
+                outMachineOpen: '',
+                outMachineOpenMsg: ''
+
             }
         },
         _initMethod: function() {
@@ -36,11 +34,17 @@
             });
 
             vc.on('parkingAreaControlVideo', 'carIn', function(param) {
-                vc.copyObject(param,$that.parkingAreaControlVideoInfo.inMachineInfo);
+                $that.parkingAreaControlVideoInfo.inMachineCarNum = param.carNum;
+                $that.parkingAreaControlVideoInfo.inMachineInOutTime = param.inOutTime;
+                $that.parkingAreaControlVideoInfo.inMachineOpen = param.open;
+                $that.parkingAreaControlVideoInfo.inMachineOpenMsg = param.remark;
             });
 
             vc.on('parkingAreaControlVideo', 'carOut', function(param) {
-                vc.copyObject(param,$that.parkingAreaControlVideoInfo.outMachineInfo);
+                $that.parkingAreaControlVideoInfo.outMachineCarNum = param.carNum;
+                $that.parkingAreaControlVideoInfo.outMachineInOutTime = param.inOutTime;
+                $that.parkingAreaControlVideoInfo.outMachineOpen = param.open;
+                $that.parkingAreaControlVideoInfo.outMachineOpenMsg = param.remark;
             });
         },
         methods: {
@@ -151,7 +155,7 @@
                     boxId: $that.parkingAreaControlVideoInfo.boxId
                 });
 
-                
+
 
                 let paId = "";
                 $that.parkingAreaControlVideoInfo.outMachines.forEach((item) => {

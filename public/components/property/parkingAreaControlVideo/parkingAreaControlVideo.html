@@ -38,7 +38,7 @@
                         <option :value="item.machineId"
                             v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
                         </option>
-                    </select> 
+                    </select>
                 </div>
                 <div class="col-md-8">
                     <div class="form-group row">
@@ -66,12 +66,12 @@
             <div id="receiver1Div" style="border: 1px solid #dee2e6;">
                 <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver1" style="border: 1;" />
             </div>
-            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.inMachineInfo.carNum">
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.inMachineCarNum">
                 <span class="fa fa-bell" style="color: #007bff;"></span>
-                <span>{{parkingAreaControlVideoInfo.inMachineInfo.inOutTime}}</span>
-                <span>{{parkingAreaControlVideoInfo.inMachineInfo.carNum}}</span>
-                <span>{{parkingAreaControlVideoInfo.inMachineInfo.open}};</span>
-                <span>{{parkingAreaControlVideoInfo.inMachineInfo.openMsg}}</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInOutTime}}</span>
+                <!-- <span>{{parkingAreaControlVideoInfo.inMachineCarNum}}</span> -->
+                <span>{{parkingAreaControlVideoInfo.inMachineOpen}};</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineOpenMsg}}</span>
             </div>
             <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
                 <span class="fa fa-bell" style="color: #007bff;"></span>
@@ -82,12 +82,12 @@
             <div id="receiver2Div" style="border: 1px solid #dee2e6;">
                 <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver2" />
             </div>
-            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.outMachineInfo.carNum">
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.outMachineCarNum">
                 <span class="fa fa-bell" style="color: #007bff;"></span>
-                <span>{{parkingAreaControlVideoInfo.outMachineInfo.inOutTime}}</span>
-                <span>{{parkingAreaControlVideoInfo.outMachineInfo.carNum}}</span>
-                <span>{{parkingAreaControlVideoInfo.outMachineInfo.open}};</span>
-                <span>{{parkingAreaControlVideoInfo.outMachineInfo.openMsg}}</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInOutTime}}</span>
+                <!-- <span>{{parkingAreaControlVideoInfo.outMachineCarNum}}</span> -->
+                <span>{{parkingAreaControlVideoInfo.outMachineOpen}};</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineOpenMsg}}</span>
             </div>
             <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
                 <span class="fa fa-bell" style="color: #007bff;"></span>

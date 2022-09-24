@@ -17,7 +17,7 @@
                 boxId: '',
                 feeCarNum: '',
                 costMin: '',
-                carInoutInfos:[]
+                carInoutInfos: []
             }
         },
         _initMethod: function() {
@@ -32,37 +32,39 @@
                 let _machineId = $that.parkingAreaControlFeeInfo.outMachineId;
                 //进场覆盖问题
                 let _oldPayCharge = $that.parkingAreaControlFeeInfo.payCharge;
-                vc.copyObject(_data, $that.parkingAreaControlFeeInfo);
+                //vc.copyObject(_data, $that.parkingAreaControlFeeInfo);
                 $that.parkingAreaControlFeeInfo.openMsg = _data.remark;
 
                 //出场摄像头
                 let _inoutType = "2002";
                 if (_machineId == _data.extMachineId) {
-                    vc.emit('parkingAreaControlVideo', 'carOut',$that.parkingAreaControlFeeInfo);
+                    vc.emit('parkingAreaControlVideo', 'carOut', _data);
                     $that.parkingAreaControlFeeInfo.feeCarNum = _data.carNum;
                     $that.parkingAreaControlFeeInfo.costMin = _data.hours + "小时" + _data.min + "分钟"
                     $that.parkingAreaControlFeeInfo.pay = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.payCharge = _data.payCharge;
                     $that.parkingAreaControlFeeInfo.remark = '';
                 } else {
-                    vc.emit('parkingAreaControlVideo', 'carIn',$that.parkingAreaControlFeeInfo);
+                    vc.emit('parkingAreaControlVideo', 'carIn', _data);
                     $that.parkingAreaControlFeeInfo.payCharge = _oldPayCharge;
                     _inoutType = "1001";
                 }
 
-                $that.parkingAreaControlFeeInfo.carInoutInfos.unshift({
-                    carNum:_data.carNum,
-                    inOutTime:_data.inOutTime,
-                    open:_data.open,
-                    openMsg:_data.remark,
-                    inoutType:_inoutType
+                let _carInoutInfos = $that.parkingAreaControlFeeInfo.carInoutInfos.reverse();
+
+                _carInoutInfos.push({
+                    carNum: _data.carNum,
+                    inOutTime: _data.inOutTime,
+                    open: _data.open,
+                    openMsg: _data.remark,
+                    inoutType: _inoutType,
+                    payCharge: _data.payCharge
                 });
-
-                if($that.parkingAreaControlFeeInfo.carInoutInfos.length > 10){
-                    $that.parkingAreaControlFeeInfo.carInoutInfos.pop();
+                _carInoutInfos = _carInoutInfos.reverse();
+                if (_carInoutInfos.length > 10) {
+                    _carInoutInfos.pop();
                 }
-
-
+                $that.parkingAreaControlFeeInfo.carInoutInfos = _carInoutInfos;
 
             });
             vc.on('parkingAreaControlFee', 'changeMachine', function(_data) {
@@ -85,9 +87,20 @@
                     boxId: $that.parkingAreaControlFeeInfo.boxId,
                 })
             },
+
+            _parkingAreaControlFeeArrayCarOut: function(item) {
+                vc.emit('parkingAreaControlCustomCarInout', 'open', {
+                    type: "1102", //1101 手动入场 1102 手动出场
+                    carNum: item.carNum,
+                    machineId: $that.parkingAreaControlFeeInfo.outMachineId,
+                    boxId: $that.parkingAreaControlFeeInfo.boxId,
+                })
+            },
+
             clearParkingAreaControlFeeInfo: function() {
                 let _machineId = $that.parkingAreaControlFeeInfo.outMachineId;
                 let _boxId = $that.parkingAreaControlFeeInfo.boxId;
+                let _carInoutInfos = $that.parkingAreaControlFeeInfo.carInoutInfos;
 
                 $that.parkingAreaControlFeeInfo = {
                     carNum: "",
@@ -100,7 +113,8 @@
                     outMachineId: _machineId,
                     boxId: _boxId,
                     feeCarNum: '',
-                    costMin: ''
+                    costMin: '',
+                    carInoutInfos: _carInoutInfos
                 }
             },
             _showInParkingAreaQrCode: function() {
