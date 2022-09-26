@@ -39,7 +39,7 @@
                 _machines.forEach(item =>{
                     if(item.machineId == _data.extMachineId){
                         setTimeout(function() {
-                            item.inOutImg = _data.img;
+                            item.inOutImg = _data.img.replace('.jpg','_plate.jpg');
                         }, 1500);
                     }
                 })
