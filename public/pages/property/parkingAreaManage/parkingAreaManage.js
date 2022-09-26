@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,24 +20,24 @@
                 }
             }
         },
-        _initMethod: function () {
-            $that._getColumns(function () {
+        _initMethod: function() {
+            $that._getColumns(function() {
                 vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
-        _initEvent: function () {
+        _initEvent: function() {
             vc.on('parkingAreaManage', 'listParkingArea',
-                function (_param) {
+                function(_param) {
                     vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
                 });
             vc.on('pagination', 'page_event',
-                function (_currentPage) {
+                function(_currentPage) {
                     vc.component._listParkingAreas(_currentPage, DEFAULT_ROWS);
                 }
             );
         },
         methods: {
-            _listParkingAreas: function (_page, _rows) {
+            _listParkingAreas: function(_page, _rows) {
                 vc.component.parkingAreaManageInfo.conditions.page = _page;
                 vc.component.parkingAreaManageInfo.conditions.row = _rows;
                 vc.component.parkingAreaManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -48,7 +48,7 @@
                 param.params.paId = param.params.paId.trim();
                 //发送get请求
                 vc.http.apiGet('/parkingArea.listParkingAreas', param,
-                    function (json, res) {
+                    function(json, res) {
                         var _parkingAreaManageInfo = JSON.parse(json);
                         vc.component.parkingAreaManageInfo.total = _parkingAreaManageInfo.total;
                         vc.component.parkingAreaManageInfo.records = _parkingAreaManageInfo.records;
@@ -60,43 +60,43 @@
                             currentPage: _page
                         });
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _openAddParkingAreaModal: function () {
+            _openAddParkingAreaModal: function() {
                 vc.emit('addParkingArea', 'openAddParkingAreaModal', {});
             },
-            _openEditParkingAreaModel: function (_parkingArea) {
+            _openEditParkingAreaModel: function(_parkingArea) {
                 vc.emit('editParkingArea', 'openEditParkingAreaModal', _parkingArea);
             },
-            _openDeleteParkingAreaModel: function (_parkingArea) {
+            _openDeleteParkingAreaModel: function(_parkingArea) {
                 vc.emit('deleteParkingArea', 'openDeleteParkingAreaModal', _parkingArea);
             },
             //查询
-            _queryParkingAreaMethod: function () {
+            _queryParkingAreaMethod: function() {
                 vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //删除
-            _resetParkingAreaMethod: function () {
+            _resetParkingAreaMethod: function() {
                 vc.component.parkingAreaManageInfo.conditions.num = "";
                 vc.component.parkingAreaManageInfo.conditions.typeCd = "";
                 vc.component.parkingAreaManageInfo.conditions.paId = "";
                 vc.component._listParkingAreas(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.parkingAreaManageInfo.moreCondition) {
                     vc.component.parkingAreaManageInfo.moreCondition = false;
                 } else {
                     vc.component.parkingAreaManageInfo.moreCondition = true;
                 }
             },
-            dealParkingAreaAttr: function (parkingAreas) {
+            dealParkingAreaAttr: function(parkingAreas) {
                 parkingAreas.forEach(item => {
                     $that._getColumnsValue(item);
                 });
             },
-            _getColumnsValue: function (_parkingArea) {
+            _getColumnsValue: function(_parkingArea) {
                 _parkingArea.listValues = [];
                 console.log('attr', _parkingArea)
                 if (!_parkingArea.hasOwnProperty('attrs') || _parkingArea.attrs.length < 1) {
@@ -116,10 +116,10 @@
                     _parkingArea.listValues.push(_tmpValue);
                 })
             },
-            _getColumns: function (_call) {
+            _getColumns: function(_call) {
                 console.log('_getColumns');
                 $that.parkingAreaManageInfo.listColumns = [];
-                vc.getAttrSpec('parking_area_attr', function (data) {
+                vc.getAttrSpec('parking_area_attr', function(data) {
                     $that.parkingAreaManageInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
@@ -132,9 +132,12 @@
                     _call();
                 });
             },
-            _openParkingAreaText: function (_parkingArea) {
+            _openParkingAreaText: function(_parkingArea) {
                 vc.jumpToPage('/#/pages/property/parkingAreaText?paId=' + _parkingArea.paId)
             },
+            _openParkingAreaTotalControl: function(_parkingArea) {
+                vc.jumpToPage('/#/pages/property/parkingAreaTotalControl?paId=' + _parkingArea.paId);
+            }
         }
     });
 })(window.vc);
