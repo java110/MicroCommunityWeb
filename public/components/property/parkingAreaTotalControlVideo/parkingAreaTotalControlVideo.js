@@ -28,8 +28,8 @@
             });
 
             vc.on('parkingAreaTotalControlVideo', 'notify', function (_data) {
-                $that._showCarInoutMachineImgInfo(_data);
                 $that._showCarInoutMachineInoutInfo(_data);
+                $that._showCarInoutMachineImgInfo(_data);
 
                 let _machines = $that.parkingAreaTotalControlVideoInfo.machines;
 
@@ -57,6 +57,8 @@
                     if (item.machineId == _data.extMachineId) {
                         setTimeout(function () {
                             item.inOutImg = _data.img.replace('.jpg', '_plate.jpg');
+                            //强制刷新下
+                            $that.$forceUpdate();
                         }, 1500);
                     }
                 })
@@ -65,12 +67,13 @@
                 if (_data.action != 'FEE_INFO') {
                     return;
                 }
+                let _machines = $that.parkingAreaTotalControlVideoInfo.machines;
                 _machines.forEach(item => {
                     if (item.machineId == _data.extMachineId) {
-                        item.carNum = param.carNum;
-                        item.inOutTime = param.inOutTime;
-                        item.open = param.open;
-                        item.openMsg = param.remark;
+                        item.carNum = _data.carNum;
+                        item.inOutTime = _data.inOutTime;
+                        item.open = _data.open;
+                        item.openMsg = _data.remark;
                     }
                 })
             },

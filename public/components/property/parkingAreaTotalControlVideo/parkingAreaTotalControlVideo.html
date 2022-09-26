@@ -27,7 +27,7 @@
                 <div :id="'receiverDiv'+item.machineId" style="border: 1px solid #dee2e6;">
                     <img width="100%" src="../../../img/init.jpg" height="300px" :id="'receiver'+item.machineId"
                         style="border: 1;" />
-                    <img :src="item.inOutImg" style="position: absolute;left: 15px;bottom: 50px;"/>
+                    <img :src="item.inOutImg" style="position: absolute;left: 0px;bottom: 0px;height: 70px;z-index:1;"/>
                 </div>
                 <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="item.carNum">
                     <span class="fa fa-bell" style="color: #007bff;"></span>
