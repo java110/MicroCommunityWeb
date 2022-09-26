@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             addPurchaseApplyStepInfo: {
@@ -21,19 +21,19 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initStep();
             //10000 采购 20000出库
             vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType = vc.getParam('resOrderType');
             vc.emit("viewResourceStoreInfo2", "setResourcesOut", vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType);
             vc.emit("chooseResourceStore2", "setResourcesOut", vc.component.addPurchaseApplyStepInfo.purchaseApply.resOrderType);
         },
-        _initEvent: function() {
-            vc.on("addPurchaseApplyStep", "notify", function(viewResourceStoreInfo2) {
+        _initEvent: function () {
+            vc.on("addPurchaseApplyStep", "notify", function (viewResourceStoreInfo2) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores = viewResourceStoreInfo2.resourceStores;
                 vc.component.addPurchaseApplyStepInfo.infos[0] = viewResourceStoreInfo2.resourceStores;
             });
-            vc.on("addPurchaseApplyStep", "notify2", function(info) {
+            vc.on("addPurchaseApplyStep", "notify2", function (info) {
                 vc.component.addPurchaseApplyStepInfo.infos[1] = info;
                 if (info) {
                     vc.component.addPurchaseApplyStepInfo.purchaseApply.description = info.description;
@@ -41,14 +41,14 @@
                     vc.component.addPurchaseApplyStepInfo.purchaseApply.endUserTel = info.endUserTel;
                 }
             });
-            vc.on("addPurchaseApplyStep", "notify3", function(info) {
+            vc.on("addPurchaseApplyStep", "notify3", function (info) {
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.staffId = info.staffId;
                 vc.component.addPurchaseApplyStepInfo.purchaseApply.staffName = info.staffName;
                 vc.component.addPurchaseApplyStepInfo.infos[2] = info;
             });
         },
         methods: {
-            _initStep: function() {
+            _initStep: function () {
                 vc.component.addPurchaseApplyStepInfo.$step = $("#step");
                 vc.component.addPurchaseApplyStepInfo.$step.step({
                     index: 0,
@@ -57,13 +57,13 @@
                 });
                 vc.component.addPurchaseApplyStepInfo.index = vc.component.addPurchaseApplyStepInfo.$step.getIndex();
             },
-            _prevStep: function() {
+            _prevStep: function () {
                 vc.component.addPurchaseApplyStepInfo.$step.prevStep();
                 vc.component.addPurchaseApplyStepInfo.index = vc.component.addPurchaseApplyStepInfo.$step.getIndex();
                 vc.emit('viewResourceStoreInfo2', 'onIndex', vc.component.addPurchaseApplyStepInfo.index);
                 vc.emit('addPurchaseApplyView', 'onIndex', vc.component.addPurchaseApplyStepInfo.index);
             },
-            _nextStep: function() {
+            _nextStep: function () {
                 vc.emit('viewResourceStoreInfo2', 'getSelectResourceStores', null);
                 let _resourceStores = vc.component.addPurchaseApplyStepInfo.purchaseApply.resourceStores;
                 if (_resourceStores.length <= 0) {
@@ -93,7 +93,7 @@
                 vc.emit('viewResourceStoreInfo2', 'onIndex', vc.component.addPurchaseApplyStepInfo.index);
                 vc.emit('addPurchaseApplyView', 'onIndex', vc.component.addPurchaseApplyStepInfo.index);
             },
-            _finishStep: function() {
+            _finishStep: function () {
                 vc.emit('addPurchaseApplyViewInfo', 'setPurchaseApplyInfo', null);
                 var _currentData = vc.component.addPurchaseApplyStepInfo.infos[vc.component.addPurchaseApplyStepInfo.index];
                 if (vc.component.addPurchaseApplyStepInfo.index != 2) {
@@ -107,7 +107,7 @@
                     JSON.stringify(vc.component.addPurchaseApplyStepInfo.purchaseApply), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
@@ -116,13 +116,12 @@
                             // } else {
                             //     vc.jumpToPage("/#/pages/common/itemOutManage");
                             // }
-
                             vc.goBack();
                             return;
                         }
                         vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });

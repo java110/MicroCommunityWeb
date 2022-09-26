@@ -3,10 +3,13 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="staffFeeManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="staffFeeManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                 v-on:click="_moreCondition()">{{staffFeeManageInfo.moreCondition == true ? '隐藏' : '更多'}}
+                                 v-on:click="_moreCondition()">
+                                 {{staffFeeManageInfo.moreCondition == true ? '隐藏' : '更多'}}
                          </button>-->
                     </div>
                 </div>
@@ -19,7 +22,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input size="16" type="text" :placeholder="vc.i18n('请选择开始时间','staffFeeManage')" readonly
-                                       class="form-control  start_time" v-model="staffFeeManageInfo.conditions.startTime">
+                                       class="form-control  start_time"
+                                       v-model="staffFeeManageInfo.conditions.startTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -30,10 +34,12 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_querystaffFeeMethod()">
-                                <i class="fa fa-search"><span><vc:i18n name="查询" namespace="staffFeeManage"></vc:i18n></span></i>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="staffFeeManage"></vc:i18n></span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetstaffFeeMethod()">
-                                <i class="fa fa-repeat"><span><vc:i18n name="重置" namespace="staffFeeManage"></vc:i18n></span></i>
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="staffFeeManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -45,10 +51,13 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="员工收费" namespace="staffFeeManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="员工收费" namespace="staffFeeManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="导出" namespace="staffFeeManage"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="staffFeeManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
@@ -57,18 +66,30 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="员工编码" namespace="staffFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="员工名称" namespace="staffFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="应收金额" namespace="staffFeeManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="实收金额" namespace="staffFeeManage"></vc:i18n></span></th>
+                            <th class="text-center">
+                                <span><vc:i18n name="员工编码" namespace="staffFeeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="员工名称" namespace="staffFeeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应收金额" namespace="staffFeeManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="实收金额" namespace="staffFeeManage"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="staffFee in staffFeeManageInfo.staffFees">
                             <td class="text-center">{{staffFee.userId}}</td>
                             <td class="text-center">{{staffFee.userName}}</td>
-                            <td class="text-center">{{staffFee.receivableAmount}}<span><vc:i18n name="元" namespace="staffFeeManage"></vc:i18n></span></td>
-                            <td class="text-center">{{staffFee.receivedAmount}}<span><vc:i18n name="元" namespace="staffFeeManage"></vc:i18n></span></td>
+                            <td class="text-center">{{staffFee.receivableAmount}}
+                                <span><vc:i18n name="元" namespace="staffFeeManage"></vc:i18n></span>
+                            </td>
+                            <td class="text-center">{{staffFee.receivedAmount}}
+                                <span><vc:i18n name="元" namespace="staffFeeManage"></vc:i18n></span>
+                            </td>
                         </tr>
                         </tbody>
                         <tfoot>
