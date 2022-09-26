@@ -106,11 +106,8 @@
                     } catch (err) {
                         return;
                     }
-                    vc.emit('parkingAreaTotalControlCarInout', 'notify', {
-                        data: _data,
-                        parkingAreaTotalControl: $that.parkingAreaTotalControlInfo
-                    });
-                    vc.emit('parkingAreaTotalControlFee', 'notify', _data);
+                    vc.emit('parkingAreaTotalControlVideo', 'notify', _data);
+                    
                 };
                 //连接关闭的回调方法
                 websocket.onclose = function() {

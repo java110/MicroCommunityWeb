@@ -13,7 +13,7 @@
 
             let _paId = vc.getParam('paId');
 
-            if(_paId) {
+            if (_paId) {
                 $that.parkingAreaTotalControlVideoInfo.paId = _paId;
                 $that._listMachines();
             }
@@ -27,20 +27,50 @@
                 // }
             });
 
-            vc.on('parkingAreaTotalControlVideo', 'notify', function (param) {
-                console.log(param);
+            vc.on('parkingAreaTotalControlVideo', 'notify', function (_data) {
+                $that._showCarInoutMachineImgInfo(_data);
+                $that._showCarInoutMachineInoutInfo(_data);
+
+                let _machines = $that.parkingAreaTotalControlVideoInfo.machines;
+
+                _machines.forEach(item => {
+                    if (item.machineId == _data.extMachineId) {
+                        vc.emit('parkingAreaTotalControlFee', 'notify', {
+                            machine:item,
+                            data:_data
+                        });
+                    }
+                })
+
+               
             });
 
         },
         methods: {
-            _showCarInoutMachineInfo:function(_data){
+            _showCarInoutMachineImgInfo: function (_data) {
+                if (_data.action != 'IN_OUT') {
+                    return;
+                }
                 let _machines = $that.parkingAreaTotalControlVideoInfo.machines;
 
-                _machines.forEach(item =>{
-                    if(item.machineId == _data.extMachineId){
-                        setTimeout(function() {
-                            item.inOutImg = _data.img.replace('.jpg','_plate.jpg');
+                _machines.forEach(item => {
+                    if (item.machineId == _data.extMachineId) {
+                        setTimeout(function () {
+                            item.inOutImg = _data.img.replace('.jpg', '_plate.jpg');
                         }, 1500);
+                    }
+                })
+            },
+            _showCarInoutMachineInoutInfo:function(_data){
+                if (_data.action != 'FEE_INFO') {
+                    return;
+                }
+                _machines.forEach(item => {
+                    if (item.machineId == _data.extMachineId) {
+                        item.carNum = param.carNum;
+                        item.inOutTime = param.inOutTime;
+                        item.open = param.open;
+                        item.openMsg = param.remark;
                     }
                 })
             },
@@ -79,10 +109,12 @@
 
                 let _machines = $that.parkingAreaTotalControlVideoInfo.machines;
                 let wsUrl = "";
-                _machines.forEach(item => {
-                    $that._swatchVedio(item);
+                setTimeout(function () {
+                    _machines.forEach(item => {
+                        $that._swatchVedio(item);
+                    })
+                }, 2000)
 
-                })
 
             },
             _swatchVedio: function (_machine) {
@@ -104,9 +136,9 @@
                 wsUrl =
                     "ws://" + wsUrl;
                 // }
-                let image = document.getElementById("receiver"+_machine.machineId);
+                let image = document.getElementById("receiver" + _machine.machineId);
                 if (wsUrl.endsWith(".flv")) {
-                    image = document.getElementById("receiverDiv"+_machine.machineId);
+                    image = document.getElementById("receiverDiv" + _machine.machineId);
                     let jessibuca = new Jessibuca({
                         container: image,
                         videoBuffer: 0.2,
@@ -131,7 +163,7 @@
                 };
             },
             _openDoor: function (_machine) {
-                
+
                 let _data = {
                     "machineCode": _machine.machineCode,
                     "stateName": "开门",
@@ -183,7 +215,7 @@
                         vc.toast(json);
                     });
             },
-            customCarIn: function (_machine,_type) {
+            customCarIn: function (_machine, _type) {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: _type,
                     machineId: _machine.machineId,
