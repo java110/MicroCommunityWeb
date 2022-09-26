@@ -65,11 +65,11 @@
                 let url = '';
                 if (_protocol.startsWith('https')) {
                     url =
-                        "wss://" + window.location.host + "/ws/parkingArea/" +
+                        "wss://" + window.location.host + "/ws/parkingBox/" +
                         $that.parkingAreaControlInfo.boxId + "/" + clientId;
                 } else {
                     url =
-                        "ws://" + window.location.host + "/ws/parkingArea/" +
+                        "ws://" + window.location.host + "/ws/parkingBox/" +
                         $that.parkingAreaControlInfo.boxId + "/" + clientId;
                     // url =
                     //     "ws://demo.homecommunity.cn:8008/ws/parkingArea/" +

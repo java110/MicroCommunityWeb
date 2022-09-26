@@ -1,33 +1,39 @@
 <div class="margin-top">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 margin-bottom" v-for="(item,index) in parkingAreaTotalControlVideoInfo.machines">
             <div class="flex justify-between">
                 <div class="" style="font-size: 16px; font-weight: 600;">
-                    <span>进场视频1</span>
+                    <span>{{item.machineName}}</span>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-right">
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1101')">
-                                手动进场
-                            </button>
-                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor('in')">
-                                开闸
-                            </button>
-                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor('in')">
-                                关闸
-                            </button>
+                        <button v-if="item.direction == '3306'" type="button" class="btn btn-white btn-sm"
+                            v-on:click="customCarIn(item,'1101')">
+                            手动进场
+                        </button>
+                        <button v-else type="button" class="btn btn-white btn-sm" v-on:click="customCarIn(item,'1102')">
+                            手动出场
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor(item)">
+                            开闸
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor(item)">
+                            关闸
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="margin-top-sm">
-                <div id="receiver1Div" style="border: 1px solid #dee2e6;">
-                    <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver1" style="border: 1;" />
+                <div :id="'receiverDiv'+item.machineId" style="border: 1px solid #dee2e6;">
+                    <img width="100%" src="../../../img/init.jpg" height="300px" :id="'receiver'+item.machineId"
+                        style="border: 1;" />
+                    <img src="sdfsdf" style="position: absolute;left: 15px;bottom: 50px;"/>
                 </div>
-                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaTotalControlVideoInfo.inMachineCarNum">
+                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="item.carNum">
                     <span class="fa fa-bell" style="color: #007bff;"></span>
-                    <span>{{parkingAreaTotalControlVideoInfo.inMachineInOutTime}}</span>
-                    <span>{{parkingAreaTotalControlVideoInfo.inMachineOpen}};</span>
-                    <span>{{parkingAreaTotalControlVideoInfo.inMachineOpenMsg}}</span>
+                    <span>{{item.inOutTime}}</span>
+                    <span>{{item.open}};</span>
+                    <span>{{item.openMsg}}</span>
                 </div>
                 <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
                     <span class="fa fa-bell" style="color: #007bff;"></span>
@@ -35,47 +41,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="flex justify-between">
-                <div class="">
-                    <div class="" style="font-size: 16px; font-weight: 600;">
-                        <span>进场视频2</span>
-                    </div>
-                </div>
-                <div class="">
-                    <div class=" row">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1102')">
-                                手动出场
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor('out')">
-                                开闸
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor('out')">
-                                关闸
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="margin-top-sm">
-                <div id="receiver2Div" style="border: 1px solid #dee2e6;">
-                    <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver2" />
-                </div>
-                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaTotalControlVideoInfo.outMachineCarNum">
-                    <span class="fa fa-bell" style="color: #007bff;"></span>
-                    <span>{{parkingAreaTotalControlVideoInfo.outMachineInOutTime}}</span>
-                    <span>{{parkingAreaTotalControlVideoInfo.outMachineOpen}};</span>
-                    <span>{{parkingAreaTotalControlVideoInfo.outMachineOpenMsg}}</span>
-                </div>
-                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
-                    <span class="fa fa-bell" style="color: #007bff;"></span>
-                    <span>没有出场车辆</span>
-                </div>
-            </div>
-        </div>
+       
     </div>
-    <div class="vc-line-primary margin-top"></div>
-
-    <vc:create path="property/barrierGateMachineQrCode"></vc:create>
 </div>

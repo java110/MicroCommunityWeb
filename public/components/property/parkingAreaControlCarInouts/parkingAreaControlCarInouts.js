@@ -9,6 +9,7 @@
             parkingAreaControlCarInoutsInfo: {
                 carIns: [],
                 boxId: '',
+                paId:'',
                 state: '',
                 carNum: '',
                 startTime: '',
@@ -28,6 +29,7 @@
         _initEvent: function() {
             vc.on('parkingAreaControlCarInouts', 'switch', function(_data) {
                 $that.parkingAreaControlCarInoutsInfo.boxId = _data.boxId;
+                $that.parkingAreaControlCarInoutsInfo.paId = _data.paId;
                 $that._loadParkingAreaControlCarInouts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlCarInouts', 'paginationPlus', 'page_event',
@@ -51,7 +53,8 @@
                         carNum: $that.parkingAreaControlCarInoutsInfo.carNum,
                         startTime: $that.parkingAreaControlCarInoutsInfo.startTime,
                         endTime: $that.parkingAreaControlCarInoutsInfo.endTime,
-                        carType: $that.parkingAreaControlCarInoutsInfo.carType
+                        carType: $that.parkingAreaControlCarInoutsInfo.carType,
+                        paId:$that.parkingAreaControlCarInoutsInfo.paId
                     }
                 };
                 //发送get请求

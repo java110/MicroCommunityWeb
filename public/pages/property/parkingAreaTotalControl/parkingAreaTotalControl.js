@@ -13,6 +13,7 @@
         },
         _initMethod: function() {
             $that.parkingAreaTotalControlInfo.paId = vc.getParam('paId');
+           
             $that._initParkingAreaWs();
             vc.emit('parkingAreaTotalControlVideo', 'notify', {
                 paId: $that.parkingAreaTotalControlInfo.paId
@@ -27,7 +28,7 @@
             changeTab: function(_tab) {
                 $that.parkingAreaTotalControlInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
-                    boxId: $that.parkingAreaTotalControlInfo.boxId
+                    paId: $that.parkingAreaTotalControlInfo.paId
                 })
             },
             _initParkingAreaWs: function() {
@@ -66,11 +67,11 @@
                 if (_protocol.startsWith('https')) {
                     url =
                         "wss://" + window.location.host + "/ws/parkingArea/" +
-                        $that.parkingAreaTotalControlInfo.boxId + "/" + clientId;
+                        $that.parkingAreaTotalControlInfo.paId + "/" + clientId;
                 } else {
                     url =
                         "ws://" + window.location.host + "/ws/parkingArea/" +
-                        $that.parkingAreaTotalControlInfo.boxId + "/" + clientId;
+                        $that.parkingAreaTotalControlInfo.paId + "/" + clientId;
                     // url =
                     //     "ws://demo.homecommunity.cn:8008/ws/parkingArea/" +
                     //     $that.parkingAreaTotalControlInfo.boxId + "/" + clientId;

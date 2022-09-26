@@ -9,6 +9,7 @@
             parkingAreaControlPaymentInfo: {
                 payments: [],
                 boxId: '',
+                paId:'',
                 state: '',
                 carNum: '',
                 startTime: '',
@@ -26,6 +27,7 @@
         _initEvent: function() {
             vc.on('parkingAreaControlPayment', 'switch', function(_data) {
                 $that.parkingAreaControlPaymentInfo.boxId = _data.boxId;
+                $that.parkingAreaControlPaymentInfo.paId = _data.paId;
                 $that._loadParkingAreaControlPayments(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('parkingAreaControlPayment', 'paginationPlus', 'page_event',
@@ -42,6 +44,7 @@
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
                         boxId: $that.parkingAreaControlPaymentInfo.boxId,
+                        paId: $that.parkingAreaControlPaymentInfo.paId,
                         state: $that.parkingAreaControlPaymentInfo.state,
                         carNum: $that.parkingAreaControlPaymentInfo.carNum,
                         startTime: $that.parkingAreaControlPaymentInfo.startTime,

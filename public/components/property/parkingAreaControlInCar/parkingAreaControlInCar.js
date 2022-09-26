@@ -9,6 +9,7 @@
             parkingAreaControlInCarInfo: {
                 carIns: [],
                 boxId: '',
+                paId: '',
                 state: '',
                 carNum: '',
                 startTime: '',
@@ -30,6 +31,7 @@
         _initEvent: function() {
             vc.on('parkingAreaControlInCar', 'switch', function(_data) {
                 $that.parkingAreaControlInCarInfo.boxId = _data.boxId;
+                $that.parkingAreaControlInCarInfo.paId = _data.paId;
                 $that._loadParkingAreaControlInCarData(DEFAULT_PAGE, DEFAULT_ROWS);
 
             });
@@ -53,7 +55,8 @@
                         state: $that.parkingAreaControlInCarInfo.state,
                         startTime: $that.parkingAreaControlInCarInfo.startTime,
                         endTime: $that.parkingAreaControlInCarInfo.endTime,
-                        carType: $that.parkingAreaControlInCarInfo.carType
+                        carType: $that.parkingAreaControlInCarInfo.carType,
+                        paId:$that.parkingAreaControlInCarInfo.paId,
                     }
                 };
                 //发送get请求
