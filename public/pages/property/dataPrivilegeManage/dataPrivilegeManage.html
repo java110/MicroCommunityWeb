@@ -1,93 +1,28 @@
 <div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
+    <div class="row ">
+        <div class="col-md-2" style="padding-right:0px">
+            <vc:create path="frame/dataPrivilegeDiv" callBackListener="dataPrivilege"></vc:create>
+        </div>
+        <div class="col-md-10 margin-top-xs vc-org-page">
+            <div class="bg-white border-radius padding">
+                <h5 class="dataPrivilege-title">{{dataPrivilegeManageInfo.curDataPrivilege.name}}</h5>
+                <div class="dataPrivilege-context ">{{dataPrivilegeManageInfo.curDataPrivilege.description}}</div>
+                <div class="line-x margin-top"></div>
+                <div class="dataPrivilege-menu flex justify-start">
+                    <div class="item margin-right" :class="{'active':dataPrivilegeManageInfo.tabName == 'unit'}"
+                         @click="_changeDataPrivilegeTab('unit')">单元授权
+                    </div>
+                    <div class="item margin-right" :class="{'active':dataPrivilegeManageInfo.tabName == 'staff'}"
+                         @click="_changeDataPrivilegeTab('staff')">员工关联
                     </div>
                 </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择名称','dataPrivilegeManage')" v-model="dataPrivilegeManageInfo.conditions.name" class=" form-control">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryDataPrivilegeMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询"></vc:i18n></span>
-                            </button>
-                        </div>
-                    </div>
-
-
+                <div v-if="dataPrivilegeManageInfo.tabName == 'unit' ">
+                    <vc:create path="frame/dataPrivilegeUnit"></vc:create>
+                </div>
+                <div v-if="dataPrivilegeManageInfo.tabName == 'staff'">
+                    <vc:create path="frame/dataPrivilegeStaff"></vc:create>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5><span><vc:i18n name="数据权限"  namespace="dataPrivilegeManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddDataPrivilegeModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span><vc:i18n name="添加"  namespace="dataPrivilegeManage"></vc:i18n></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="ibox-content">
-
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                        <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name='名称' namespace='dataPrivilegeManage'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='编号' namespace='dataPrivilegeManage'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='创建时间' namespace='dataPrivilegeManage'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='备注' namespace='dataPrivilegeManage'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='操作'></vc:i18n></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="dataPrivilege in dataPrivilegeManageInfo.dataPrivileges">
-                                <td class="text-center">{{dataPrivilege.name}}</td>
-                                <td class="text-center">{{dataPrivilege.code}}</td>
-                                <td class="text-center">{{dataPrivilege.createTime}}</td>
-                                <td class="text-center">{{dataPrivilege.remark}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditDataPrivilegeModel(dataPrivilege)"><span><vc:i18n name='修改'></vc:i18n></span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteDataPrivilegeModel(dataPrivilege)"><span><vc:i18n name='删除'></vc:i18n></span></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <vc:create path="property/addDataPrivilege" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="property/editDataPrivilege"></vc:create>
-    <vc:create path="property/deleteDataPrivilege"></vc:create>
-
 </div>

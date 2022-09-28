@@ -1,0 +1,47 @@
+<div class=" margin-top">
+    <div class="text-left">
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddDataPrivilegeUnitModal()">
+            <span><vc:i18n name="关联单元"></vc:i18n></span>
+        </button>
+    </div>
+    <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+        <thead>
+        <tr>
+            <th class="text-center">
+                <span><vc:i18n name="楼栋" namespace="dataPrivilegeUnit"></vc:i18n></span>
+            </th>
+            <th class="text-center">
+                <span><vc:i18n name="单元" namespace="dataPrivilegeUnit"></vc:i18n></span>
+            </th>
+            <th class="text-center">
+                <span><vc:i18n name="操作" namespace="dataPrivilegeUnit"></vc:i18n></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="dataPrivilegeUnit in dataPrivilegeUnitInfo.dataPrivilegeUnits">
+            <td class="text-center">{{dataPrivilegeUnit.floorNum}}</td>
+            <td class="text-center">{{dataPrivilegeUnit.unitNum}}</td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteDataPrivilegeUnitModel(dataPrivilegeUnit)">
+                        <span><vc:i18n name="删除"></vc:i18n></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7">
+                <ul class="pagination float-right"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <vc:create path="frame/paginationPlus" namespace="dataPrivilegeUnitInfo"></vc:create>
+    <!-- <vc:create path="frame/addDataPrivilegeUnit" emitListener="dataPrivilegeUnitInfo" emitFunction="listDataPrivilegeUnit">
+    </vc:create>
+    <vc:create path="frame/deleteDataPrivilegeUnit"></vc:create> -->
+</div>

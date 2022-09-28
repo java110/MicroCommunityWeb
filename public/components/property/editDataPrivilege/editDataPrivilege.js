@@ -96,7 +96,8 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#editDataPrivilegeModel').modal('hide');
-                            vc.emit('dataPrivilegeManage', 'listDataPrivilege', {});
+                            vc.emit('dataPrivilegeDiv', '_loadDataPrivilege', {});
+
                             return;
                         }
                         vc.message(_json.msg);

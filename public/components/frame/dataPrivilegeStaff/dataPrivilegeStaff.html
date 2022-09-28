@@ -1,0 +1,79 @@
+<div class=" margin-top">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model="dataPrivilegeStaffInfo.staffName"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryDataPrivilegeStaffMethod()">
+                <i class="fa fa-search"></i>
+                <span><vc:i18n name="查询" namespace="room"></vc:i18n></span>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddDataPrivilegeStaffModal()">
+                <i class="fa fa-plus"></i>
+                <span><vc:i18n name="关联员工"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+</div>
+<table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+    <thead>
+    <tr>
+        <th class="text-center">
+            <span><vc:i18n name="名称" namespace="staff"></vc:i18n></span>
+        </th>
+        <th class="text-center">
+            <span><vc:i18n name="手机号" namespace="staff"></vc:i18n></span>
+        </th>
+        <th class="text-center">
+            <span><vc:i18n name="邮箱" namespace="staff"></vc:i18n></span>
+        </th>
+        <th class="text-center">
+            <span><vc:i18n name="地址" namespace="staff"></vc:i18n></span>
+        </th>
+        <th class="text-center">
+            <span><vc:i18n name="性别" namespace="staff"></vc:i18n></span>
+        </th>
+        <th class="text-center">
+            <span><vc:i18n name="操作" namespace="staff"></vc:i18n></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="staff in dataPrivilegeStaffInfo.staffs">
+        <td class="text-center">{{staff.name}}</td>
+        <td class="text-center">{{staff.tel}}</td>
+        <td class="text-center">{{staff.email}}</td>
+        <td class="text-center">{{staff.address}}</td>
+        <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
+        <td class="text-center">
+            <div class="btn-group">
+                <button class="btn-white btn btn-xs" v-on:click="_openDeleteDataPrivilegeStaffModel(staff)"
+                        v-if="vc.hasPrivilege('502022082920040010')">
+                    <span><vc:i18n name="删除"></vc:i18n></span>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn-white btn btn-xs" v-on:click="_toStaffDetail(staff)">
+                    <span><vc:i18n name="详情"></vc:i18n></span>
+                </button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7">
+            <ul class="pagination float-right"></ul>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<!-- 分页 -->
+<!-- <vc:create path="frame/pagination"></vc:create> -->
+<vc:create path="frame/paginationPlus" namespace="dataPrivilegeStaffInfo"></vc:create>
+<!-- <vc:create path="frame/addDataPrivilegeStaff" emitListener="dataPrivilegeStaffInfo" emitFunction="listDataPrivilegeStaff"></vc:create>
+<vc:create path="frame/deleteDataPrivilegeStaff"></vc:create> -->
+</div>

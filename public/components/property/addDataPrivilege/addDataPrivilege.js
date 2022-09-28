@@ -105,7 +105,7 @@
                             //关闭model
                             $('#addDataPrivilegeModel').modal('hide');
                             vc.component.clearAddDataPrivilegeInfo();
-                            vc.emit('dataPrivilegeManage', 'listDataPrivilege', {});
+                            vc.emit('dataPrivilegeDiv', '_loadDataPrivilege', {});
 
                             return;
                         }

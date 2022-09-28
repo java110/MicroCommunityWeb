@@ -31,14 +31,15 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteDataPrivilegeModel').modal('hide');
-                            vc.emit('dataPrivilegeManage', 'listDataPrivilege', {});
+                            vc.emit('dataPrivilegeDiv', '_loadDataPrivilege', {});
+
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
-                        vc.message(json);
+                        vc.toast(json);
 
                     });
             },
