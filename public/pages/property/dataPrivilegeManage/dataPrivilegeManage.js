@@ -24,10 +24,10 @@
             _changeDataPrivilegeTab: function (_tabName) {
                 $that.dataPrivilegeManageInfo.tabName = _tabName;
                 if (_tabName == 'unit') {
-                    vc.emit('privilegeTree', 'loadPrivilege', $that.dataPrivilegeManageInfo.curDataPrivilege.pgId);
+                    vc.emit('privilegeTree', 'loadPrivilege', $that.dataPrivilegeManageInfo.curDataPrivilege.dpId);
                 }
                 if (_tabName == 'staff') {
-                    vc.emit('dataPrivilegeStaffInfo', 'openDataPrivilegeStaff', {pgId: $that.dataPrivilegeManageInfo.curDataPrivilege.pgId});
+                    vc.emit('dataPrivilegeStaffInfo', 'openDataPrivilegeStaff', {dpId: $that.dataPrivilegeManageInfo.curDataPrivilege.dpId});
                 }
             }
 

@@ -12,7 +12,7 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                pgId: '',
+                dpId: '',
                 staffName: ''
             }
         },
@@ -37,12 +37,12 @@
                     params: {
                         page: _page,
                         row: _rows,
-                        roleId: vc.component.dataPrivilegeStaffInfo.pgId,
-                        userName: $that.dataPrivilegeStaffInfo.staffName
+                        dpId: vc.component.dataPrivilegeStaffInfo.dpId,
+                        staffName: $that.dataPrivilegeStaffInfo.staffName
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/role.listDataPrivilegeStaff',
+                vc.http.apiGet('/dataPrivilegeStaff.listDataPrivilegeStaff',
                     param,
                     function (json, res) {
                         var _dataPrivilegeStaffInfo = JSON.parse(json);
@@ -62,19 +62,18 @@
             },
             _openAddDataPrivilegeStaffModal: function () {
                 vc.emit('addDataPrivilegeStaff', 'openAddDataPrivilegeStaffModal', {
-                    roleId: vc.component.dataPrivilegeStaffInfo.pgId,
-                    orgName: vc.component.dataPrivilegeStaffInfo.orgName
+                    dpId: vc.component.dataPrivilegeStaffInfo.dpId,
                 });
             },
             _openDeleteDataPrivilegeStaffModel: function (_dataPrivilegeStaff) {
-                _dataPrivilegeStaff.roleId = $that.dataPrivilegeStaffInfo.pgId;
+                _dataPrivilegeStaff.dpId = $that.dataPrivilegeStaffInfo.dpId;
                 vc.emit('deleteDataPrivilegeStaff', 'openDeleteDataPrivilegeStaffModal', _dataPrivilegeStaff);
             },
             _queryDataPrivilegeStaffMethod: function () {
                 vc.component._listDataPrivilegeStaffs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _toStaffDetail: function (_dataPrivilegeStaff) {
-                vc.jumpToPage('/#/pages/frame/staffDetail?staffId=' + _dataPrivilegeStaff.userId)
+                vc.jumpToPage('/#/pages/frame/staffDetail?staffId=' + _dataPrivilegeStaff.staffId)
             }
         }
     });

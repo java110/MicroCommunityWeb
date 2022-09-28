@@ -5,10 +5,10 @@
         </div>
         <div class="col-md-10 margin-top-xs vc-org-page">
             <div class="bg-white border-radius padding">
-                <h5 class="dataPrivilege-title">{{dataPrivilegeManageInfo.curDataPrivilege.name}}</h5>
-                <div class="dataPrivilege-context ">{{dataPrivilegeManageInfo.curDataPrivilege.description}}</div>
+                <h5 class="role-title">{{dataPrivilegeManageInfo.curDataPrivilege.name}}</h5>
+                <div class="role-context ">{{dataPrivilegeManageInfo.curDataPrivilege.description}}</div>
                 <div class="line-x margin-top"></div>
-                <div class="dataPrivilege-menu flex justify-start">
+                <div class="role-menu flex justify-start">
                     <div class="item margin-right" :class="{'active':dataPrivilegeManageInfo.tabName == 'unit'}"
                          @click="_changeDataPrivilegeTab('unit')">单元授权
                     </div>

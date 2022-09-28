@@ -43,15 +43,14 @@
     </thead>
     <tbody>
     <tr v-for="staff in dataPrivilegeStaffInfo.staffs">
-        <td class="text-center">{{staff.name}}</td>
+        <td class="text-center">{{staff.staffName}}</td>
         <td class="text-center">{{staff.tel}}</td>
         <td class="text-center">{{staff.email}}</td>
         <td class="text-center">{{staff.address}}</td>
         <td class="text-center">{{staff.sex == 0 ? '男' : '女'}}</td>
         <td class="text-center">
             <div class="btn-group">
-                <button class="btn-white btn btn-xs" v-on:click="_openDeleteDataPrivilegeStaffModel(staff)"
-                        v-if="vc.hasPrivilege('502022082920040010')">
+                <button class="btn-white btn btn-xs" v-on:click="_openDeleteDataPrivilegeStaffModel(staff)">
                     <span><vc:i18n name="删除"></vc:i18n></span>
                 </button>
             </div>
@@ -74,6 +73,6 @@
 <!-- 分页 -->
 <!-- <vc:create path="frame/pagination"></vc:create> -->
 <vc:create path="frame/paginationPlus" namespace="dataPrivilegeStaffInfo"></vc:create>
-<!-- <vc:create path="frame/addDataPrivilegeStaff" emitListener="dataPrivilegeStaffInfo" emitFunction="listDataPrivilegeStaff"></vc:create>
-<vc:create path="frame/deleteDataPrivilegeStaff"></vc:create> -->
+ <vc:create path="frame/addDataPrivilegeStaff" emitListener="dataPrivilegeStaffInfo" emitFunction="listDataPrivilegeStaff"></vc:create>
+<vc:create path="frame/deleteDataPrivilegeStaff"></vc:create>
 </div>
