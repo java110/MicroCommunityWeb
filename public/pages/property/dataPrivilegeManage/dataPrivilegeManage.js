@@ -24,7 +24,7 @@
             _changeDataPrivilegeTab: function (_tabName) {
                 $that.dataPrivilegeManageInfo.tabName = _tabName;
                 if (_tabName == 'unit') {
-                    vc.emit('privilegeTree', 'loadPrivilege', $that.dataPrivilegeManageInfo.curDataPrivilege.dpId);
+                    vc.emit('dataPrivilegeUnitInfo', 'openDataPrivilegeUnit', {dpId: $that.dataPrivilegeManageInfo.curDataPrivilege.dpId});
                 }
                 if (_tabName == 'staff') {
                     vc.emit('dataPrivilegeStaffInfo', 'openDataPrivilegeStaff', {dpId: $that.dataPrivilegeManageInfo.curDataPrivilege.dpId});

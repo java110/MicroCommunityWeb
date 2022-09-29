@@ -12,7 +12,7 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                pgId: ''
+                dpId: ''
             }
         },
         _initMethod: function () {
@@ -59,8 +59,7 @@
             },
             _openAddDataPrivilegeUnitModal: function () {
                 vc.emit('addDataPrivilegeUnit', 'openAddDataPrivilegeUnitModal', {
-                    roleId: vc.component.dataPrivilegeUnitInfo.pgId,
-                    orgName: vc.component.dataPrivilegeUnitInfo.orgName
+                    dpId: vc.component.dataPrivilegeUnitInfo.dpId,
                 });
             },
             _openDeleteDataPrivilegeUnitModel: function (_dataPrivilegeUnit) {
