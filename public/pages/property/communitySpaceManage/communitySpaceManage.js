@@ -65,12 +65,14 @@
             _openEditCommunitySpaceModel: function(_communitySpace) {
                 vc.emit('editCommunitySpace', 'openEditCommunitySpaceModal', _communitySpace);
             },
+            _openEditOpenTime: function(_communitySpace) {
+                vc.emit('editCommunitySpaceOpenTime', 'openEditCommunitySpaceModal', _communitySpace);
+            },
             _openDeleteCommunitySpaceModel: function(_communitySpace) {
                 vc.emit('deleteCommunitySpace', 'openDeleteCommunitySpaceModal', _communitySpace);
             },
             _queryCommunitySpaceMethod: function() {
                 vc.component._listCommunitySpaces(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function() {
                 if (vc.component.communitySpaceManageInfo.moreCondition) {
