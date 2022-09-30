@@ -1,0 +1,61 @@
+<div id="editCommunitySpacePersonModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改预约" namespace="editCommunitySpacePerson"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='预约场地' namespace='editCommunitySpacePerson'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editCommunitySpacePersonInfo.spaceId">
+                                          <option selected  value="">{{vc.i18n('请选择预约场地','editCommunitySpacePerson')}}</option>
+                                          <option  :value="item.spaceId" v-for="(item,index) in editCommunitySpacePersonInfo.spaces">{{item.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2">
+                                    <span><vc:i18n name='预约人' namespace='editCommunitySpacePerson'></vc:i18n></span>
+                                    </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCommunitySpacePersonInfo.personName" type="text" :placeholder="vc.i18n('必填，请填写预约人','editCommunitySpacePerson')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"> <span><vc:i18n name='预约电话' namespace='editCommunitySpacePerson'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCommunitySpacePersonInfo.personTel" type="text" :placeholder="vc.i18n('必填，请填写预约电话','editCommunitySpacePerson')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='预约日期' namespace='addCommunitySpacePerson'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCommunitySpacePersonInfo.appointmentDate" type="text" :placeholder="vc.i18n('必填，请填写预约日期','addCommunitySpacePerson')" class="form-control editAppointmentDate">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"> <span><vc:i18n name='预约时间' namespace='editCommunitySpacePerson'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCommunitySpacePersonInfo.appointmentTime" type="text" :placeholder="vc.i18n('必填，请填写预约时间','editCommunitySpacePerson')" class="form-control editAppointmentTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"><span><vc:i18n name='remark' namespace='editCommunitySpacePerson'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editCommunitySpacePersonInfo.remark" type="text" :placeholder="vc.i18n('必填，请填写remark','editCommunitySpacePerson')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editCommunitySpacePerson()"><i class="fa fa-check"></i>&nbsp;<span><vc:i18n name="保存"></vc:i18n></span></button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

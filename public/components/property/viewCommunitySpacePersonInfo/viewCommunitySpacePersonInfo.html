@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="场地预约人信息"  namespace="viewCommunitySpacePersonInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewCommunitySpacePersonInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectCommunitySpacePersonInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择场地预约人"  namespace="viewCommunitySpacePersonInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewCommunitySpacePersonInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddCommunitySpacePersonInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加场地预约人"  namespace="viewCommunitySpacePersonInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='预约ID' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.cspId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='场地ID' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.spaceId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='预约人' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.personName}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='预约电话' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.personTel}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='预约时间' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.appointmentTime}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='应收金额' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.receivableAmount}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='实收金额' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.receivedAmount}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='支付方式' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.payWay}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='state' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.state}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='remark' namespace='viewcommunitySpacePersonInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewCommunitySpacePersonInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addCommunitySpacePerson"
+               callBackListener="viewCommunitySpacePersonInfo"
+               callBackFunction="chooseCommunitySpacePerson"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseCommunitySpacePerson"
+               emitChooseCommunitySpacePerson="viewCommunitySpacePersonInfo"
+               emitLoadData="viewCommunitySpacePersonInfo"
+    ></vc:create>
+</div>
