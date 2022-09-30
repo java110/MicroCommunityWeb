@@ -11,9 +11,11 @@
                 costMin: '0',
                 machineId: '',
                 boxId: '',
+                paId: '',
                 payType: '',
                 payTypes: [],
-                inoutId: ''
+                inoutId: '',
+                machines: []
             }
         },
         _initMethod: function() {
@@ -80,10 +82,12 @@
                     payCharge: '',
                     machineId: '',
                     boxId: '',
+                    paId: '',
                     costMin: '',
                     payType: '',
                     payTypes: _payTypes,
-                    inoutId: ''
+                    inoutId: '',
+                    machines: []
                 }
             },
             _loadParkingAreaControlCustomCarInoutData: function() {
@@ -93,6 +97,7 @@
                         row: 1,
                         communityId: vc.getCurrentCommunity().communityId,
                         boxId: $that.parkingAreaControlCustomCarInoutInfo.boxId,
+                        paId: $that.parkingAreaControlCustomCarInoutInfo.paId,
                         carNum: $that.parkingAreaControlCustomCarInoutInfo.carNum,
                     }
                 };
@@ -124,8 +129,34 @@
                 if ($that.parkingAreaControlCustomCarInoutInfo.type == '1101') {
                     return;
                 }
+                if ($that.parkingAreaControlCustomCarInoutInfo.paId && !$that.parkingAreaControlCustomCarInoutInfo.machineId) {
+                    $that._loadOutMachinesByPaId();
+                }
                 $that._loadParkingAreaControlCustomCarInoutData();
-            }
+            },
+            _loadOutMachinesByPaId: function() {
+                let param = {
+                        params: {
+                            paId: $that.parkingAreaTotalControlVideoInfo.paId,
+                            page: 1,
+                            row: 100,
+                            direction: '3307',
+                            communityId: vc.getCurrentCommunity().communityId
+                        }
+                    }
+                    //发送get请求
+                vc.http.apiGet('/machine.listParkingAreaMachines',
+                    param,
+                    function(json, res) {
+                        let _machineManageInfo = JSON.parse(json);
+                        let _machines = _machineManageInfo.data;
+                        $that.parkingAreaControlCustomCarInoutInfo.machines = _machines;
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 

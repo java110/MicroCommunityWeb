@@ -13,7 +13,7 @@
         },
         _initMethod: function() {
             $that.parkingAreaTotalControlInfo.paId = vc.getParam('paId');
-           
+
             $that._initParkingAreaWs();
             vc.emit('parkingAreaTotalControlVideo', 'notify', {
                 paId: $that.parkingAreaTotalControlInfo.paId
@@ -107,7 +107,7 @@
                         return;
                     }
                     vc.emit('parkingAreaTotalControlVideo', 'notify', _data);
-                    
+
                 };
                 //连接关闭的回调方法
                 websocket.onclose = function() {

@@ -12,6 +12,17 @@
                                     <input v-model="parkingAreaControlCustomCarInoutInfo.carNum" type="text" @blur="_queryCustomCarMoney()" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlCustomCarInout')" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101' && parkingAreaControlCustomCarInoutInfo.machines && parkingAreaControlCustomCarInoutInfo.machines.length>0">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="出场道闸" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="parkingAreaControlCustomCarInoutInfo.machineId">
+                                        <option selected  value="">{{vc.i18n('请选择出场道闸','parkingAreaControlCustomCarInout')}}</option>
+                                        <option :value="item.machineId" v-if="item.direction == '3307'"
+                                            v-for="(item,index) in parkingAreaControlCustomCarInoutInfo.machines">{{item.machineName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101'">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="应收金额" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
                                 <div class="col-sm-10"><input v-model="parkingAreaControlCustomCarInoutInfo.payCharge" disabled type="text" :placeholder="vc.i18n('必填，请填写收费金额','parkingAreaControlCustomCarInout')" class="form-control"></div>
@@ -35,6 +46,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
                                 <div class="col-sm-10"><textarea cols="5" v-model="parkingAreaControlCustomCarInoutInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','parkingAreaControlCustomCarInout')" class="form-control"></textarea></div>

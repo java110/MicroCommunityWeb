@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             parkingAreaTotalControlFeeInfo: {
@@ -13,15 +13,16 @@
                 paId: '',
                 feeCarNum: '',
                 costMin: '',
-                carInoutInfos: []
+                carInoutInfos: [],
+                machineId: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that.parkingAreaTotalControlFeeInfo.paId = vc.getParam('paId');
 
         },
-        _initEvent: function () {
-            vc.on('parkingAreaTotalControlFee', 'notify', function (_param) {
+        _initEvent: function() {
+            vc.on('parkingAreaTotalControlFee', 'notify', function(_param) {
                 let _data = _param.data;
                 if (_data.action != 'FEE_INFO') {
                     return;
@@ -39,6 +40,7 @@
                     $that.parkingAreaTotalControlFeeInfo.pay = _data.payCharge;
                     $that.parkingAreaTotalControlFeeInfo.payCharge = _data.payCharge;
                     $that.parkingAreaTotalControlFeeInfo.remark = '';
+                    $that.parkingAreaTotalControlFeeInfo.machineId = _data.extMachineId;
                 } else {
                     $that.parkingAreaTotalControlFeeInfo.payCharge = _oldPayCharge;
                     _inoutType = "1001";
@@ -61,34 +63,35 @@
                 $that.parkingAreaTotalControlFeeInfo.carInoutInfos = _carInoutInfos;
 
             });
-            vc.on('parkingAreaTotalControlFee', 'clear', function () {
+            vc.on('parkingAreaTotalControlFee', 'clear', function() {
                 $that.clearParkingAreaTotalControlFeeInfo();
             });
 
         },
         methods: {
 
-            saveTempFeeInfo: function () {
+            saveTempFeeInfo: function() {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
                     carNum: $that.parkingAreaTotalControlFeeInfo.feeCarNum,
                     amount: $that.parkingAreaTotalControlFeeInfo.payCharge,
                     payCharge: $that.parkingAreaTotalControlFeeInfo.payCharge,
-                    machineId: $that.parkingAreaTotalControlFeeInfo.outMachineId,
-                    boxId: $that.parkingAreaTotalControlFeeInfo.boxId,
+                    machineId: $that.parkingAreaTotalControlFeeInfo.machineId,
+                    paId: $that.parkingAreaTotalControlFeeInfo.paId,
                 })
             },
 
-            _parkingAreaTotalControlFeeArrayCarOut: function (item) {
+            _parkingAreaTotalControlFeeArrayCarOut: function(item) {
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: "1102", //1101 手动入场 1102 手动出场
                     carNum: item.carNum,
-                    machineId: $that.parkingAreaTotalControlFeeInfo.outMachineId,
+                    machineId: $that.parkingAreaTotalControlFeeInfo.machineId,
                     boxId: $that.parkingAreaTotalControlFeeInfo.boxId,
+                    paId: $that.parkingAreaTotalControlFeeInfo.paId,
                 })
             },
 
-            clearParkingAreaTotalControlFeeInfo: function () {
+            clearParkingAreaTotalControlFeeInfo: function() {
                 let _paId = $that.parkingAreaTotalControlFeeInfo.paId;
                 let _carInoutInfos = $that.parkingAreaTotalControlFeeInfo.carInoutInfos;
 
@@ -101,10 +104,11 @@
                     paId: _paId,
                     feeCarNum: '',
                     costMin: '',
-                    carInoutInfos: _carInoutInfos
+                    carInoutInfos: _carInoutInfos,
+                    machineId: '',
                 }
             },
-            _showInParkingAreaQrCode: function () {
+            _showInParkingAreaQrCode: function() {
                 vc.emit('barrierGateQrCode', 'openQrCodeModal', {
                     boxId: $that.parkingAreaTotalControlFeeInfo.boxId
                 })

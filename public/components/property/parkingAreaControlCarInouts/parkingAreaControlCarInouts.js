@@ -9,7 +9,7 @@
             parkingAreaControlCarInoutsInfo: {
                 carIns: [],
                 boxId: '',
-                paId:'',
+                paId: '',
                 state: '',
                 carNum: '',
                 startTime: '',
@@ -54,7 +54,7 @@
                         startTime: $that.parkingAreaControlCarInoutsInfo.startTime,
                         endTime: $that.parkingAreaControlCarInoutsInfo.endTime,
                         carType: $that.parkingAreaControlCarInoutsInfo.carType,
-                        paId:$that.parkingAreaControlCarInoutsInfo.paId
+                        paId: $that.parkingAreaControlCarInoutsInfo.paId
                     }
                 };
                 //发送get请求
@@ -120,6 +120,7 @@
                     payCharge: carIn.payCharge,
                     machineId: $that.parkingAreaControlCarInoutsInfo.machineId,
                     boxId: $that.parkingAreaControlCarInoutsInfo.boxId,
+                    paId: $that.parkingAreaControlCarInoutsInfo.paId,
                 })
             },
             _carInoutOpenFile: function(_url) {
