@@ -73,7 +73,7 @@
                                     <span><vc:i18n name="是否收费" namespace="parkingBoxManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
-                                    <span><vc:i18n name="蓝牌车进场" namespace="parkingBoxManage"></vc:i18n></span>
+                                    <span><vc:i18n name="已在场" namespace="parkingBoxManage"></vc:i18n></span>
                                 </th>
                                 <th class="text-center">
                                     <span><vc:i18n name="未在场" namespace="parkingBoxManage"></vc:i18n></span>
@@ -93,7 +93,7 @@
                                 <td class="text-center">{{parkingBox.paNum}}</td>
                                 <td class="text-center">{{parkingBox.tempCarIn== 'Y'?'是':'否'}}</td>
                                 <td class="text-center">{{parkingBox.fee == 'Y'?'是':'否'}}</td>
-                                <td class="text-center">{{parkingBox.blueCarIn== 'Y'?'是':'否'}}</td>
+                                <td class="text-center">{{parkingBox.blueCarIn== 'Y'?'可进场':'不可进场'}}</td>
                                 <td class="text-center">{{parkingBox.yelowCarIn== 'Y'?'可出场':'不可出场'}}</td>
                                 <td class="text-center">{{parkingBox.remark}}</td>
                                 <td class="text-center">
