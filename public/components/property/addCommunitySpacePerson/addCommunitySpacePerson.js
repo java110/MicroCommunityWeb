@@ -17,19 +17,15 @@
                 payWay: '',
                 state: 'S',
                 remark: '',
-                appointmentDate: '',
+                openTimes:[],
                 spaces: []
             }
         },
         _initMethod: function() {
 
             vc.initDate('addAppointmentDate', function(_value) {
-                $that.addCommunitySpacePersonInfo.appointmentDate = _value;
-            });
-            vc.initHourMinute('addAppointmentTime', function(_value) {
                 $that.addCommunitySpacePersonInfo.appointmentTime = _value;
             });
-
 
         },
         _initEvent: function() {
@@ -144,10 +140,17 @@
                     ],
                 });
             },
+            _chanageAddCommunitySpace:function(){
+
+                $that.addCommunitySpacePersonInfo.spaces.forEach(item=>{
+                    if(item.spaceId == $that.addCommunitySpacePersonInfo.spaceId){
+                        $that.addCommunitySpacePersonInfo.openTimes = item.openTimes;
+                    }
+                })
+            },
             saveCommunitySpacePersonInfo: function() {
                 if (!vc.component.addCommunitySpacePersonValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
 
@@ -197,7 +200,7 @@
                     payWay: '',
                     state: 'S',
                     remark: '',
-                    appointmentDate: '',
+                    openTimes:[],
                     spaces: []
                 };
             },
@@ -217,6 +220,34 @@
                         let _communitySpaceManageInfo = JSON.parse(json);
 
                         vc.component.addCommunitySpacePersonInfo.spaces = _communitySpaceManageInfo.data;
+
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+
+            _chanageAddCommunitySpaceAppointmentTime: function(_page, _rows) {
+
+                if(!$that.addCommunitySpacePersonInfo.spaceId){
+                    return ;
+                }
+                let param = {
+                    params: {
+                        spaceId: $that.addCommunitySpacePersonInfo.spaceId,
+                        appointmentTime: $that.addCommunitySpacePersonInfo.appointmentTime,
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/communitySpace.listCommunitySpaceOpenTime',
+                    param,
+                    function(json, res) {
+                        let _communitySpaceManageInfo = JSON.parse(json);
+
+                        vc.component.addCommunitySpacePersonInfo.openTimes = _communitySpaceManageInfo.data;
 
                     },
                     function(errInfo, error) {

@@ -72,8 +72,8 @@
                     spaceId: $that.communitySpacePersonManageInfo.conditions.spaceId
                 });
             },
-            _openEditCommunitySpacePersonModel: function(_communitySpacePerson) {
-                vc.emit('editCommunitySpacePerson', 'openEditCommunitySpacePersonModal', _communitySpacePerson);
+            _openCommunitySpacePersonTimeModel: function(_communitySpacePerson) {
+                vc.emit('communitySpacePersonTime', 'openEditCommunitySpaceModal', _communitySpacePerson.times);
             },
             _openDeleteCommunitySpacePersonModel: function(_communitySpacePerson) {
                 vc.emit('deleteCommunitySpacePerson', 'openDeleteCommunitySpacePersonModal', _communitySpacePerson);

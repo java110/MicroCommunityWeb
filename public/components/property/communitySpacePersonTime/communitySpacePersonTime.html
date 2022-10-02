@@ -1,19 +1,19 @@
-<div id="editCommunitySpaceOpenTimeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="communitySpacePersonTimeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="开放时间" namespace="editCommunitySpaceOpenTime"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="开放时间" namespace="communitySpacePersonTime"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <div class="col-sm-4" v-for="(item,index) in editCommunitySpaceOpenTimeInfo.openTimes">
+                                <div class="col-sm-4" v-for="(item,index) in communitySpacePersonTimeInfo.openTimes">
                                     <div class="row margin-bottom">
                                         <label class="col-sm-4 text-right">{{item.hours}}点</label>
                                         <div class="col-sm-8">
                                             <select class="custom-select" v-model="item.isOpen" @change="_changeOpenTime(item)">
-                                                <option value="Y">{{vc.i18n('可预约','editCommunitySpaceOpenTime')}}</option>
-                                                <option value="N">{{vc.i18n('不可预约','editCommunitySpaceOpenTime')}}</option>
+                                                <option value="Y">{{vc.i18n('可预约','communitySpacePersonTime')}}</option>
+                                                <option value="N">{{vc.i18n('不可预约','communitySpacePersonTime')}}</option>
                                             </select>
                                         </div>
                                     </div>

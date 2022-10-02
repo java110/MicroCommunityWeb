@@ -8,37 +8,48 @@
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name='预约场地' namespace='editCommunitySpacePerson'></vc:i18n></span></label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editCommunitySpacePersonInfo.spaceId">
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editCommunitySpacePersonInfo.spaceId" @change="_chanageEditCommunitySpace()">
                                           <option selected  value="">{{vc.i18n('请选择预约场地','editCommunitySpacePerson')}}</option>
                                           <option  :value="item.spaceId" v-for="(item,index) in editCommunitySpacePersonInfo.spaces">{{item.name}}</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-sm-2">
                                     <span><vc:i18n name='预约人' namespace='editCommunitySpacePerson'></vc:i18n></span>
                                     </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input v-model="editCommunitySpacePersonInfo.personName" type="text" :placeholder="vc.i18n('必填，请填写预约人','editCommunitySpacePerson')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2"> <span><vc:i18n name='预约电话' namespace='editCommunitySpacePerson'></vc:i18n></span> </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input v-model="editCommunitySpacePersonInfo.personTel" type="text" :placeholder="vc.i18n('必填，请填写预约电话','editCommunitySpacePerson')" class="form-control">
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><span><vc:i18n name='预约日期' namespace='addCommunitySpacePerson'></vc:i18n></span></label>
-                                <div class="col-sm-10">
-                                    <input v-model="editCommunitySpacePersonInfo.appointmentDate" type="text" :placeholder="vc.i18n('必填，请填写预约日期','addCommunitySpacePerson')" class="form-control editAppointmentDate">
+                                <div class="col-sm-4">
+                                    <input v-model="editCommunitySpacePersonInfo.appointmentTime" type="text" :placeholder="vc.i18n('必填，请填写预约日期','addCommunitySpacePerson')" class="form-control editAppointmentDate">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2"> <span><vc:i18n name='预约时间' namespace='editCommunitySpacePerson'></vc:i18n></span> </label>
+                                <label class="col-sm-2 col-form-label text-right"><span>
+                                        <vc:i18n name='预约时间' namespace='editCommunitySpacePerson'></vc:i18n>
+                                    </span></label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCommunitySpacePersonInfo.appointmentTime" type="text" :placeholder="vc.i18n('必填，请填写预约时间','editCommunitySpacePerson')" class="form-control editAppointmentTime">
+                                    <div class="row">
+                                        <div class="col-sm-4 row"
+                                            v-for="(item,index) in editCommunitySpacePersonInfo.openTimes">
+                                            <label class="col-sm-4 col-form-label text-right">{{item.hours}}点</label>
+                                            <div class="col-sm-8">
+                                                <select class="custom-select" v-model="item.isOpen">
+                                                    <option value="Y">{{vc.i18n('可预约','addCommunitySpacePerson')}}
+                                                    </option>
+                                                    <option value="N">{{vc.i18n('不可预约','addCommunitySpacePerson')}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">

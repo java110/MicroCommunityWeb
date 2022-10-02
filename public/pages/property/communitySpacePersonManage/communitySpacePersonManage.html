@@ -92,8 +92,10 @@
                                 <td class="text-center">{{communitySpacePerson.spaceName}}</td>
                                 <td class="text-center">{{communitySpacePerson.personName}}</td>
                                 <td class="text-center">{{communitySpacePerson.personTel}}</td>
-                                <td class="text-center">{{communitySpacePerson.appointmentDate}}</td>
                                 <td class="text-center">{{communitySpacePerson.appointmentTime}}</td>
+                                <td class="text-center">
+                                    <span v-for="(time,index) in  communitySpacePerson.times">{{time.hours}},</span>
+                                </td>
                                 <td class="text-center">{{communitySpacePerson.receivableAmount}}</td>
                                 <td class="text-center">{{communitySpacePerson.receivedAmount}}</td>
                                 <td class="text-center">{{communitySpacePerson.payWay}}</td>
@@ -101,9 +103,11 @@
                                 <td class="text-center">{{communitySpacePerson.createTime}}</td>
                                 <td class="text-center">{{communitySpacePerson.remark}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group">
+                                    <!-- <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openEditCommunitySpacePersonModel(communitySpacePerson)"><span><vc:i18n name='修改'></vc:i18n></span></button>
-                                    </div>
+                                    </div> -->
+                                
+                                    
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteCommunitySpacePersonModel(communitySpacePerson)"><span><vc:i18n name='删除'></vc:i18n></span></button>
                                     </div>
@@ -126,7 +130,6 @@
     </div>
 
     <vc:create path="property/addCommunitySpacePerson" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="property/editCommunitySpacePerson"></vc:create>
     <vc:create path="property/deleteCommunitySpacePerson"></vc:create>
 
 </div>

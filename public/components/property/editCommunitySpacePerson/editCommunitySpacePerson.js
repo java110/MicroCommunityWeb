@@ -13,14 +13,12 @@
                 payWay: '',
                 state: '',
                 remark: '',
+                openTimes:[],
                 spaces: [],
             }
         },
         _initMethod: function() {
             vc.initDate('editAppointmentDate', function(_value) {
-                $that.editCommunitySpacePersonInfo.appointmentDate = _value;
-            });
-            vc.initHourMinute('editAppointmentTime', function(_value) {
                 $that.editCommunitySpacePersonInfo.appointmentTime = _value;
             });
         },
@@ -34,6 +32,13 @@
             });
         },
         methods: {
+            _chanageEditCommunitySpace:function(){
+                $that.editCommunitySpacePersonInfo.spaces.forEach(item=>{
+                    if(item.spaceId == $that.editCommunitySpacePersonInfo.spaceId){
+                        $that.editCommunitySpacePersonInfo.openTimes = item.openTimes;
+                    }
+                })
+            },
             editCommunitySpacePersonValidate: function() {
                 return vc.validate.validate({
                     editCommunitySpacePersonInfo: vc.component.editCommunitySpacePersonInfo
@@ -196,6 +201,7 @@
                     payWay: '',
                     state: '',
                     remark: '',
+                    openTimes:[],
                     spaces: [],
                 }
             },
@@ -213,6 +219,7 @@
                     function(json, res) {
                         let _communitySpaceManageInfo = JSON.parse(json);
                         vc.component.editCommunitySpacePersonInfo.spaces = _communitySpaceManageInfo.data;
+                        $that._chanageEditCommunitySpace();
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
