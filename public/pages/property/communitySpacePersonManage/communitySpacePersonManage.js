@@ -67,11 +67,7 @@
                     }
                 );
             },
-            _openAddCommunitySpacePersonModal: function() {
-                vc.emit('addCommunitySpacePerson', 'openAddCommunitySpacePersonModal', {
-                    spaceId: $that.communitySpacePersonManageInfo.conditions.spaceId
-                });
-            },
+            
             _openCommunitySpacePersonTimeModel: function(_communitySpacePerson) {
                 vc.emit('communitySpacePersonTime', 'openEditCommunitySpaceModal', _communitySpacePerson.times);
             },

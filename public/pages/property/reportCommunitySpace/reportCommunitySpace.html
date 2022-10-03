@@ -1,0 +1,68 @@
+<div>
+    <div class="row">
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius bg-white padding-top-sm">
+                <div class="margin-xs-r bg-white treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree "
+                            v-for="(item,index) in reportCommunitySpaceInfo.venues" @click="swatchVenue(item)"
+                            :class="{'vc-node-selected':reportCommunitySpaceInfo.conditions.venueId==item.venueId}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                           预约时间
+                                        </th>
+                                        <th class="text-center" v-if="!reportCommunitySpaceInfo.communitySpaces || reportCommunitySpaceInfo.communitySpaces.length < 1">
+                                            未设置场地
+                                        </th>
+                                        <th class="text-center" v-else v-for="(item,index) in reportCommunitySpaceInfo.communitySpaces">
+                                               {{item.name}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="index in 24" >
+                                        <td class="text-center" >{{index-1}}</td>
+                                        <th class="text-center" v-if="!reportCommunitySpaceInfo.communitySpaces || reportCommunitySpaceInfo.communitySpaces.length < 1">
+                                            未设置场地
+                                        </th>
+                                        <td class="text-center" 
+                                            v-else
+                                             v-for="(item,ind) in reportCommunitySpaceInfo.communitySpaces">
+                                             <a v-if="_getSpaceHoursTime(index-1,item) == '可预约'" @click="_openAddCommunitySpacePersonModal(item.spaceId,index-1)" href="javascript:void(0)">可预约</a>
+                                             <span v-else> {{_getSpaceHoursTime(index-1,item)}}</span>   
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addCommunitySpacePerson" callBackListener="" callBackFunction=""></vc:create>
+
+
+</div>

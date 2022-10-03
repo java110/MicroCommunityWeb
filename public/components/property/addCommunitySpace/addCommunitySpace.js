@@ -15,6 +15,7 @@
                 adminName: '',
                 tel: '',
                 state: '',
+                venueId:'',
             }
         },
         _initMethod: function() {
@@ -30,7 +31,8 @@
 
         },
         _initEvent: function() {
-            vc.on('addCommunitySpace', 'openAddCommunitySpaceModal', function() {
+            vc.on('addCommunitySpace', 'openAddCommunitySpaceModal', function(_param) {
+                $that.addCommunitySpaceInfo.venueId = _param.venueId;
                 $('#addCommunitySpaceModel').modal('show');
             });
         },
@@ -172,7 +174,7 @@
                     adminName: '',
                     tel: '',
                     state: '',
-
+                    venueId:'',
                 };
             }
         }

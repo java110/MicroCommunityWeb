@@ -17,20 +17,26 @@
                 payWay: '',
                 state: 'S',
                 remark: '',
+                openTime:'',
                 openTimes:[],
                 spaces: []
             }
         },
         _initMethod: function() {
 
-            vc.initDate('addAppointmentDate', function(_value) {
-                $that.addCommunitySpacePersonInfo.appointmentTime = _value;
-            });
+            
 
         },
         _initEvent: function() {
             vc.on('addCommunitySpacePerson', 'openAddCommunitySpacePersonModal', function(_param) {
-                $that._listAddCommunitySpacePersonCommunitySpaces();
+                $that.clearAddCommunitySpacePersonInfo();
+                vc.copyObject(_param,$that.addCommunitySpacePersonInfo);
+
+                $that.addCommunitySpacePersonInfo.openTimes.push({
+                    hours:_param.openTime,
+                    isOpen:'Y'
+                })
+
                 $('#addCommunitySpacePersonModel').modal('show');
             });
         },
@@ -140,14 +146,6 @@
                     ],
                 });
             },
-            _chanageAddCommunitySpace:function(){
-
-                $that.addCommunitySpacePersonInfo.spaces.forEach(item=>{
-                    if(item.spaceId == $that.addCommunitySpacePersonInfo.spaceId){
-                        $that.addCommunitySpacePersonInfo.openTimes = item.openTimes;
-                    }
-                })
-            },
             saveCommunitySpacePersonInfo: function() {
                 if (!vc.component.addCommunitySpacePersonValidate()) {
                     vc.toast(vc.validate.errInfo);
@@ -175,7 +173,8 @@
                             $('#addCommunitySpacePersonModel').modal('hide');
                             vc.component.clearAddCommunitySpacePersonInfo();
                             vc.emit('communitySpacePersonManage', 'listCommunitySpacePerson', {});
-
+                            vc.emit('communitySpaceManage', 'listCommunitySpacePerson', {});
+                            
                             return;
                         }
                         vc.toast(_json.msg);
@@ -200,61 +199,12 @@
                     payWay: '',
                     state: 'S',
                     remark: '',
+                    openTime:'',
                     openTimes:[],
                     spaces: []
                 };
             },
-            _listAddCommunitySpacePersonCommunitySpaces: function(_page, _rows) {
-                var param = {
-                    params: {
-                        page: 1,
-                        row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('/communitySpace.listCommunitySpace',
-                    param,
-                    function(json, res) {
-                        let _communitySpaceManageInfo = JSON.parse(json);
-
-                        vc.component.addCommunitySpacePersonInfo.spaces = _communitySpaceManageInfo.data;
-
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
-
-            _chanageAddCommunitySpaceAppointmentTime: function(_page, _rows) {
-
-                if(!$that.addCommunitySpacePersonInfo.spaceId){
-                    return ;
-                }
-                let param = {
-                    params: {
-                        spaceId: $that.addCommunitySpacePersonInfo.spaceId,
-                        appointmentTime: $that.addCommunitySpacePersonInfo.appointmentTime,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
-                };
-
-                //发送get请求
-                vc.http.apiGet('/communitySpace.listCommunitySpaceOpenTime',
-                    param,
-                    function(json, res) {
-                        let _communitySpaceManageInfo = JSON.parse(json);
-
-                        vc.component.addCommunitySpacePersonInfo.openTimes = _communitySpaceManageInfo.data;
-
-                    },
-                    function(errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
-            },
+        
         }
     });
 
