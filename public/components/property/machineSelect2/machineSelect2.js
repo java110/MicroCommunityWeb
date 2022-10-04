@@ -65,7 +65,7 @@
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
-                        url: "/callComponent/machineSelect2/list",
+                        url: "/app/machine.listMachines",
                         dataType: 'json',
                         delay: 250,
                         headers:{
