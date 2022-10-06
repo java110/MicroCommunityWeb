@@ -138,9 +138,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">
+                            <!-- <th class="text-center">
                                 <span><vc:i18n name="物品" namespace="resourceStoreManage"></vc:i18n></span>ID
-                            </th>
+                            </th> -->
                             <th class="text-center">
                                 <span><vc:i18n name="仓库名称" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
@@ -188,7 +188,7 @@
                         <tbody>
                         <tr v-for="resourceStore in resourceStoreManageInfo.resourceStores"
                             :class="{ 'table-danger' : parseInt(resourceStore.stock) < parseInt(resourceStore.warningStock)}">
-                            <td class="text-center">{{resourceStore.resId}}</td>
+                            <!-- <td class="text-center">{{resourceStore.resId}}</td> -->
                             <td class="text-center">{{resourceStore.shName}}</td>
                             <td class="text-center">
                                 {{resourceStore.parentRstName}}{{resourceStore.rstName ? ' > ' + resourceStore.rstName :
@@ -211,7 +211,10 @@
                             <td class="text-center">{{resourceStore.averagePrice ? '￥' + resourceStore.averagePrice :
                                 '￥0'}}
                             </td>
-                            <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td>
+                            <!-- <td class="text-center">{{'￥' + resourceStore.totalPrice}}</td> -->
+                            <td class="text-center">
+                                <a href="javascript:void" @click="_queryTotalPrice(resourceStore)">查询</a>
+                            </td>
                             <td class="text-center">
                                 <!-- <div class="btn-group" v-if="resourceStore.stock>0">
                                     <button class="btn-white btn btn-xs"
@@ -275,5 +278,8 @@
     <vc:create path="common/addResourceStore" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="common/editResourceStore"></vc:create>
     <vc:create path="common/deleteResourceStore"></vc:create>
+    <vc:create path="common/resourceStoreTimes"></vc:create>
+
+    
     <vc:create path="property/importResourceStore"></vc:create>
 </div>

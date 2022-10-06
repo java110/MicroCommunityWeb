@@ -85,6 +85,20 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <select class="form-control-sm form-control input-s-sm inline"
+                                            v-model="roomInfo.isAll" @change="_changeIsAll()">
+                                        <option value="N">
+                                           当前楼栋单元
+                                        </option>
+                                        <option value="Y">
+                                            全部楼栋单元
+                                         </option>
+                                    </select>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
