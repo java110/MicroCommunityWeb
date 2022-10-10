@@ -16,13 +16,13 @@
         },
         _initMethod: function() {
 
-            vc.initHourMinute('editSpaceStartTime', function(_value) {
-                $that.editCommunitySpaceInfo.startTime = _value;
-            });
+            // vc.initHourMinute('editSpaceStartTime', function(_value) {
+            //     $that.editCommunitySpaceInfo.startTime = _value;
+            // });
 
-            vc.initHourMinute('editSpaceEndTime', function(_value) {
-                $that.editCommunitySpaceInfo.endTime = _value;
-            });
+            // vc.initHourMinute('editSpaceEndTime', function(_value) {
+            //     $that.editCommunitySpaceInfo.endTime = _value;
+            // });
 
         },
         _initEvent: function() {

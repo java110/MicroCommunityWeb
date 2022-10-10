@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
 
     vc.extends({
         propTypes: {
@@ -10,14 +10,22 @@
                 venueId: '',
                 name: '',
                 remark: '',
-
+                startTime: '',
+                endTime: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
+            //addSpaceStartTime
+            vc.initHourMinute('addVenueStartTime', function(_value) {
+                $that.addCommunityVenueInfo.startTime = _value;
+            });
 
+            vc.initHourMinute('addVenueEndTime', function(_value) {
+                $that.addCommunityVenueInfo.endTime = _value;
+            });
         },
-        _initEvent: function () {
-            vc.on('addCommunityVenue', 'openAddCommunityVenueModal', function () {
+        _initEvent: function() {
+            vc.on('addCommunityVenue', 'openAddCommunityVenueModal', function() {
                 $('#addCommunityVenueModel').modal('show');
             });
         },
@@ -26,8 +34,7 @@
                 return vc.validate.validate({
                     addCommunityVenueInfo: vc.component.addCommunityVenueInfo
                 }, {
-                    'addCommunityVenueInfo.name': [
-                        {
+                    'addCommunityVenueInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "场馆名称不能为空"
@@ -38,8 +45,29 @@
                             errInfo: "场馆名称不能超过30"
                         },
                     ],
-                    'addCommunityVenueInfo.remark': [
+                    'addCommunityVenueInfo.startTime': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "预约开始时间不能为空"
+                        },
                         {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "预约开始时间不能超过64"
+                        },
+                    ],
+                    'addCommunityVenueInfo.endTime': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "预约结束时间不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "预约结束时间不能超过64"
+                        },
+                    ],
+                    'addCommunityVenueInfo.remark': [{
                             limit: "required",
                             param: "",
                             errInfo: "描述不能为空"
@@ -56,7 +84,7 @@
 
                 });
             },
-            saveCommunityVenueInfo: function () {
+            saveCommunityVenueInfo: function() {
                 if (!vc.component.addCommunityVenueValidate()) {
                     vc.toast(vc.validate.errInfo);
 
@@ -66,11 +94,10 @@
 
                 vc.http.apiPost(
                     '/communityVenue.saveCommunityVenue',
-                    JSON.stringify(vc.component.addCommunityVenueInfo),
-                    {
+                    JSON.stringify(vc.component.addCommunityVenueInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -83,18 +110,19 @@
                         vc.toast(_json.msg);
 
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
 
                     });
             },
-            clearAddCommunityVenueInfo: function () {
+            clearAddCommunityVenueInfo: function() {
                 vc.component.addCommunityVenueInfo = {
                     name: '',
                     remark: '',
-
+                    startTime: '',
+                    endTime: '',
                 };
             }
         }

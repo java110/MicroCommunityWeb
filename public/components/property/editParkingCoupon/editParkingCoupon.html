@@ -1,0 +1,72 @@
+<div id="editParkingCouponModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改停车卷" namespace="editParkingCoupon"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"><span><vc:i18n name='名称' namespace='editParkingCoupon'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingCouponInfo.name" type="text" :placeholder="vc.i18n('必填，请填写名称','editParkingCoupon')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"><span><vc:i18n name='类型' namespace='editParkingCoupon'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingCouponInfo.typeCd">
+                                      <option selected  value="">{{vc.i18n('请选择时长减免','editParkingCoupon')}} </option>
+                                      <option  value="1001">{{vc.i18n('时长减免','editParkingCoupon')}}</option>
+                                      <option  value="2002">{{vc.i18n('金额减免','editParkingCoupon')}}</option>
+                                      <option  value="3003">{{vc.i18n('折扣减免','editParkingCoupon')}}</option>
+                                      <option  value="4004">{{vc.i18n('全免','editParkingCoupon')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2"> <span><vc:i18n name='停车场' namespace='editParkingCoupon'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingCouponInfo.paId">
+                                      <option selected  value="">{{vc.i18n('请选择停车场','editParkingCoupon')}} </option>
+                                      <option v-for="(item,index) in editParkingCouponInfo.parkingAreas" :value="item.paId">{{item.num}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editParkingCouponInfo.typeCd == '1001'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='时长（分钟）' namespace='editParkingCoupon'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingCouponInfo.value" type="text" :placeholder="vc.i18n('必填，请填写时长（分钟）','editParkingCoupon')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editParkingCouponInfo.typeCd == '2002'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='金额（元）' namespace='editParkingCoupon'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingCouponInfo.value" type="text" :placeholder="vc.i18n('必填，请填写金额（元）','editParkingCoupon')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editParkingCouponInfo.typeCd == '3003'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='折扣' namespace='editParkingCoupon'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingCouponInfo.value" type="text" :placeholder="vc.i18n('必填，请填写折扣 应该小于 1 大于0 比如7折 0.7','editParkingCoupon')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2"> <span><vc:i18n name='售价' namespace='editParkingCoupon'></vc:i18n></span> </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingCouponInfo.valuePrice" type="text" :placeholder="vc.i18n('必填，请填写售价','editParkingCoupon')" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editParkingCoupon()"><i class="fa fa-check"></i>&nbsp;<span><vc:i18n name="保存"></vc:i18n></span></button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

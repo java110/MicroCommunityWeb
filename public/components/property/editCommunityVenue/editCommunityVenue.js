@@ -1,4 +1,4 @@
-(function (vc, vm) {
+(function(vc, vm) {
 
     vc.extends({
         data: {
@@ -6,14 +6,21 @@
                 venueId: '',
                 name: '',
                 remark: '',
-
+                startTime: '',
+                endTime: '',
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
+            vc.initHourMinute('editVenueStartTime', function(_value) {
+                $that.editCommunityVenueInfo.startTime = _value;
+            });
 
+            vc.initHourMinute('editVenueEndTime', function(_value) {
+                $that.editCommunityVenueInfo.endTime = _value;
+            });
         },
-        _initEvent: function () {
-            vc.on('editCommunityVenue', 'openEditCommunityVenueModal', function (_params) {
+        _initEvent: function() {
+            vc.on('editCommunityVenue', 'openEditCommunityVenueModal', function(_params) {
                 vc.component.refreshEditCommunityVenueInfo();
                 $('#editCommunityVenueModel').modal('show');
                 vc.copyObject(_params, vc.component.editCommunityVenueInfo);
@@ -22,12 +29,11 @@
             });
         },
         methods: {
-            editCommunityVenueValidate: function () {
+            editCommunityVenueValidate: function() {
                 return vc.validate.validate({
                     editCommunityVenueInfo: vc.component.editCommunityVenueInfo
                 }, {
-                    'editCommunityVenueInfo.name': [
-                        {
+                    'editCommunityVenueInfo.name': [{
                             limit: "required",
                             param: "",
                             errInfo: "场馆名称不能为空"
@@ -38,8 +44,29 @@
                             errInfo: "场馆名称不能超过30"
                         },
                     ],
-                    'editCommunityVenueInfo.remark': [
+                    'editCommunityVenueInfo.startTime': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "预约开始时间不能为空"
+                        },
                         {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "预约开始时间不能超过64"
+                        },
+                    ],
+                    'editCommunityVenueInfo.endTime': [{
+                            limit: "required",
+                            param: "",
+                            errInfo: "预约结束时间不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "预约结束时间不能超过64"
+                        },
+                    ],
+                    'editCommunityVenueInfo.remark': [{
                             limit: "required",
                             param: "",
                             errInfo: "描述不能为空"
@@ -50,22 +77,21 @@
                             errInfo: "描述不能超过512"
                         },
                     ],
-                    'editCommunityVenueInfo.venueId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "编号不能为空"
-                        }]
+                    'editCommunityVenueInfo.venueId': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "编号不能为空"
+                    }]
 
                 });
             },
             _listEditCommunityVenues: function() {
                 let param = {
                     params: {
-                        page:1,
-                        row:1,
-                        communityId:vc.getCurrentCommunity().communityId,
-                        venueId:$that.editCommunityVenueInfo.venueId
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        venueId: $that.editCommunityVenueInfo.venueId
                     }
                 };
 
@@ -73,15 +99,15 @@
                 vc.http.apiGet('/communityVenue.listCommunityVenue',
                     param,
                     function(json, res) {
-                        let _communityVenue= JSON.parse(json);
-                       vc.copyObject(_communityVenue.data[0],$that.editCommunityVenueInfo);
+                        let _communityVenue = JSON.parse(json);
+                        vc.copyObject(_communityVenue.data[0], $that.editCommunityVenueInfo);
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            editCommunityVenue: function () {
+            editCommunityVenue: function() {
                 if (!vc.component.editCommunityVenueValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -89,11 +115,10 @@
 
                 vc.http.apiPost(
                     '/communityVenue.updateCommunityVenue',
-                    JSON.stringify(vc.component.editCommunityVenueInfo),
-                    {
+                    JSON.stringify(vc.component.editCommunityVenueInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -104,18 +129,19 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
 
                         vc.message(errInfo);
                     });
             },
-            refreshEditCommunityVenueInfo: function () {
+            refreshEditCommunityVenueInfo: function() {
                 vc.component.editCommunityVenueInfo = {
                     venueId: '',
                     name: '',
                     remark: '',
-
+                    startTime: '',
+                    endTime: '',
                 }
             }
         }

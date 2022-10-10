@@ -9,25 +9,25 @@
             addCommunitySpaceInfo: {
                 spaceId: '',
                 name: '',
-                startTime: '',
-                endTime: '',
+                startTime: '00:00',
+                endTime: '23:59',
                 feeMoney: '',
                 adminName: '',
                 tel: '',
                 state: '',
-                venueId:'',
+                venueId: '',
             }
         },
         _initMethod: function() {
 
             //addSpaceStartTime
-            vc.initHourMinute('addSpaceStartTime', function(_value) {
-                $that.addCommunitySpaceInfo.startTime = _value;
-            });
+            // vc.initHourMinute('addSpaceStartTime', function(_value) {
+            //     $that.addCommunitySpaceInfo.startTime = _value;
+            // });
 
-            vc.initHourMinute('addSpaceEndTime', function(_value) {
-                $that.addCommunitySpaceInfo.endTime = _value;
-            });
+            // vc.initHourMinute('addSpaceEndTime', function(_value) {
+            //     $that.addCommunitySpaceInfo.endTime = _value;
+            // });
 
         },
         _initEvent: function() {
@@ -168,13 +168,13 @@
             clearAddCommunitySpaceInfo: function() {
                 vc.component.addCommunitySpaceInfo = {
                     name: '',
-                    startTime: '',
-                    endTime: '',
+                    startTime: '00:00',
+                    endTime: '23:59',
                     feeMoney: '',
                     adminName: '',
                     tel: '',
                     state: '',
-                    venueId:'',
+                    venueId: '',
                 };
             }
         }
