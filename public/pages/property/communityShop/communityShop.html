@@ -1,0 +1,100 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入商家名称','communityShop')" v-model="communityShopInfo.conditions.shopName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','communityShop')" v-model="communityShopInfo.conditions.tel" class=" form-control">
+                            </div>
+                        </div>
+                       
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryParkingCouponMethod()">
+                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="小区商家"  namespace="communityShop"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCommunityShopModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span><vc:i18n name="添加"  namespace="communityShop"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name='商家店铺' namespace='communityShop'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='商家编号' namespace='communityShop'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='联系电话' namespace='communityShop'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='停车劵' namespace='communityShop'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='登录账号' namespace='communityShop'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='操作'></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="shop in communityShopInfo.shops">
+                                <td class="text-center">{{shop.shopName}}</td>
+                                <td class="text-center">{{shop.shopId}}</td>
+                                <td class="text-center">{{shop.tel}}</td>
+                                <td class="text-center">{{shop.parkingCouponCount}}</td>
+                                <td class="text-center">{{shop.tel}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditParkingCouponModel(shop)"><span><vc:i18n name='购买停车劵'></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openEditParkingCouponModel(shop)"><span><vc:i18n name='重置密码'></vc:i18n></span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteParkingCouponModel(shop)"><span><vc:i18n name='删除'></vc:i18n></span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addCommunityShop" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editParkingCoupon"></vc:create>
+    <vc:create path="property/deleteParkingCoupon"></vc:create>
+</div>
