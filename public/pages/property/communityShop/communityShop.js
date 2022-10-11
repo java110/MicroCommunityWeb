@@ -40,7 +40,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/parkingCoupon.listCommunityShop',
+                vc.http.apiGet('/store.listCommunityStoreShop',
                     param,
                     function(json, res) {
                         var _communityShopInfo = JSON.parse(json);
@@ -60,15 +60,22 @@
             _openAddCommunityShopModal: function() {
                 vc.emit('addCommunityShop', 'openAddCommunityShopModal', {});
             },
-            _openEditCommunityShopModel: function(_parkingCoupon) {
-                vc.emit('editCommunityShop', 'openEditCommunityShopModal', _parkingCoupon);
+            _openBuyParkingCouponModel: function(_shop) {
+                vc.emit('buyParkingCoupon', 'openBuyParkingCouponModal', _shop);
             },
             _openDeleteCommunityShopModel: function(_parkingCoupon) {
                 vc.emit('deleteCommunityShop', 'openDeleteCommunityShopModal', _parkingCoupon);
             },
             _queryCommunityShopMethod: function() {
                 vc.component._listCommunityShops(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            _resetStaffPwd: function(_shop) {
+                vc.emit('resetStaffPwd', 'openResetStaffPwd', {
+                    staffId: _shop.userId
+                });
+            },
+            _viewShopCoupon: function(_shop) {
+                vc.emit('viewShopCoupons', 'openViewShopCouponsModel', _shop);
             },
             _moreCondition: function() {
                 if (vc.component.communityShopInfo.moreCondition) {

@@ -1,0 +1,89 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="查询条件"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择优惠券ID','parkingCouponOrder')" v-model="parkingCouponOrderInfo.conditions.couponId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择商家店铺名称','parkingCouponOrder')" v-model="parkingCouponOrderInfo.conditions.shopName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryParkingCouponOrderMethod()">
+                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="停车劵订单"  namespace="parkingCouponOrder"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name='订单' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='优惠券' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='商家店铺' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='停车场' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='单价' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='数量' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='支付方式' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='应收' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='实收' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='备注' namespace='parkingCouponOrder'></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="parkingCoupon in parkingCouponOrderInfo.parkingCoupons">
+                                <td class="text-center">{{parkingCoupon.orderId}}</td>
+                                <td class="text-center">{{parkingCoupon.couponName}}</td>
+                                <td class="text-center">{{parkingCoupon.shopName}}</td>
+                                <td class="text-center">{{parkingCoupon.paName}}</td>
+                                <td class="text-center">{{parkingCoupon.price}}</td>
+                                <td class="text-center">{{parkingCoupon.payTypeName}}</td>
+                                <td class="text-center">{{parkingCoupon.quantity}}</td>
+                                <td class="text-center">{{parkingCoupon.receivableAmount}}</td>
+                                <td class="text-center">{{parkingCoupon.receivedAmount}}</td>
+                                <td class="text-center">{{parkingCoupon.remark}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
