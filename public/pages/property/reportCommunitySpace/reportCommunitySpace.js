@@ -70,7 +70,8 @@
                         row: 50,
                         venueId: $that.reportCommunitySpaceInfo.conditions.venueId,
                         appointmentTime: $that.reportCommunitySpaceInfo.appointmentTime,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        state: 'S'
                     }
                 };
                 //发送get请求
