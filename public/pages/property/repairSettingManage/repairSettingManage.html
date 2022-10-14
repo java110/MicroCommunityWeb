@@ -56,6 +56,9 @@
                         <span><vc:i18n name="报修设置" namespace="repairSettingManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/repairSettingManage')">
+                            <span><vc:i18n name="文档" namespace="repairSettingManage"></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRepairSettingModal()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="repairSettingManage"></vc:i18n></span>

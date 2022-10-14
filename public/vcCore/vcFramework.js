@@ -2990,3 +2990,14 @@
         }
     }
 })(window.vcFramework);
+
+
+/**
+ * 文档
+ */
+ (function(vcFramework) {
+    vcFramework.showMarkdown = function(_url) {
+        let _docUrl = _url+ "/docs/readme.md";
+        window.open('/markdown.html?url='+_docUrl);
+    }
+})(window.vcFramework);
