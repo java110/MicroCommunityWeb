@@ -352,6 +352,11 @@
     padding-bottom: 25px;
 }
 
+.font-1 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .border {
     border: 1px solid #e7eaec;
 }

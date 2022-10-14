@@ -61,7 +61,7 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="预约订单"  namespace="communitySpacePersonManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                       
+
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -100,7 +100,7 @@
                                 <td class="text-center">{{communitySpacePerson.createTime}}</td>
                                 <td class="text-center">{{communitySpacePerson.remark}}</td>
                                 <td class="text-center">
-                                    <div class="btn-group">
+                                    <div class="btn-group" v-if="communitySpacePerson.state == 'S'">
                                         <button class="btn-white btn btn-xs" v-on:click="_openDeleteCommunitySpacePersonModel(communitySpacePerson)"><span><vc:i18n name='取消预约'></vc:i18n></span></button>
                                     </div>
                                 </td>
