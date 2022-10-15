@@ -73,7 +73,12 @@
                                 <td class="text-center">{{parkingCoupon.name}}</td>
                                 <td class="text-center">{{parkingCoupon.typeCdName}}</td>
                                 <td class="text-center">{{parkingCoupon.paName}}</td>
-                                <td class="text-center">{{parkingCoupon.value}}</td>
+                                <td class="text-center">
+                                    <span v-if="parkingCoupon.typeCd == '1001'">{{parkingCoupon.value}}分钟</span>
+                                    <span v-if="parkingCoupon.typeCd == '2002'">{{parkingCoupon.value}}元</span>
+                                    <span v-if="parkingCoupon.typeCd == '3003'">{{parkingCoupon.value}}折</span>
+                                    <span v-if="parkingCoupon.typeCd == '4004'">全免</span>
+                                </td>
                                 <td class="text-center">{{parkingCoupon.valuePrice}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
