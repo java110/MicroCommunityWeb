@@ -1824,7 +1824,7 @@
         }
 
 
-        return year + "-" + month + "-" + day ;
+        return year + "-" + month + "-" + day;
     };
 
     vcFramework.initDateTime = function(_dateStr, _callBack) {
@@ -2618,7 +2618,14 @@
     }
     vcFramework.hasPrivilege = (_privalege) => {
         //只要窗口高度发生变化，就会进入这里面，在这里就可以写，回到聊天最底部的逻辑
-        return _staffPrivilege.includes(_privalege);
+        let _privaleges = _privalege.split(',');
+        let _hasPri = false;
+        _privaleges.forEach(item => {
+            if (_staffPrivilege.includes(item)) {
+                _hasPri = true;
+            }
+        })
+        return _hasPri;
     }
 })(window.vcFramework);
 
@@ -2995,9 +3002,9 @@
 /**
  * 文档
  */
- (function(vcFramework) {
+(function(vcFramework) {
     vcFramework.showMarkdown = function(_url) {
-        let _docUrl = _url+ "/docs/readme.md";
-        window.open('/markdown.html?url='+_docUrl);
+        let _docUrl = _url + "/docs/readme.md";
+        window.open('/markdown.html?url=' + _docUrl);
     }
 })(window.vcFramework);

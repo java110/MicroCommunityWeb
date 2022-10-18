@@ -1,22 +1,18 @@
 <div class="bg-white margin-top-xs padding border-radius">
     <div class=" ">
-        <button type="button" class="btn btn-white btn-sm" v-on:click="openPrivilegeGroupModel()"
-                v-if="vc.hasPrivilege('502022082992870004')">
+        <button type="button" class="btn btn-white btn-sm" v-on:click="openPrivilegeGroupModel()" v-if="vc.hasPrivilege('502022082992870004,502022101896600200')">
             添加
         </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="openEditPrivilegeGroupModel()"
-                v-if="vc.hasPrivilege('502022082900130005')">
+        <button type="button" class="btn btn-white btn-sm" v-on:click="openEditPrivilegeGroupModel()" v-if="vc.hasPrivilege('502022082900130005,502022101845230203')">
             修改
         </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="openDeletePrivilegeGroupModel()"
-                v-if="vc.hasPrivilege('502022082926310006')">
+        <button type="button" class="btn btn-white btn-sm" v-on:click="openDeletePrivilegeGroupModel()" v-if="vc.hasPrivilege('502022082926310006,502022101872720201')">
             删除
         </button>
     </div>
     <div class="vc-org margin-top">
         <ul>
-            <li v-for="(role,index) in roleDivInfo.roles" @click="_switchRole(role)"
-                :class="{'active':role.pgId == roleDivInfo.curRole.pgId}">{{role.name}}
+            <li v-for="(role,index) in roleDivInfo.roles" @click="_switchRole(role)" :class="{'active':role.pgId == roleDivInfo.curRole.pgId}">{{role.name}}
             </li>
         </ul>
     </div>
