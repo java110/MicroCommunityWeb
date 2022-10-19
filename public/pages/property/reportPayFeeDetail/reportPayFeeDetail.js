@@ -329,7 +329,24 @@
                 }
             },
             _exportFee: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDetail&' + vc.objToGetParam($that.reportPayFeeDetailInfo.conditions));
+                //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDetail&' + vc.objToGetParam($that.reportPayFeeDetailInfo.conditions));
+                vc.component.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.reportPayFeeDetailInfo.conditions.pagePath = 'reportPayFeeDetail';
+                let param = {
+                    params: vc.component.reportPayFeeDetailInfo.conditions
+                };
+                //发送get请求
+                vc.http.apiGet('/export.exportData', param,
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if(_json.code == 0){
+                            vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
             }
         }
     });
