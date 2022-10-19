@@ -126,7 +126,7 @@
                     vc.toast("请选择需要采购的物品");
                     return;
                 }
-                var _resourceStores = [];
+                let _resourceStores = [];
                 for (var i = 0; i < selectResourceStores.length; i++) {
                     for (j = 0; j < resourceStores.length; j++) {
                         if (selectResourceStores[i] == resourceStores[j].resId) {
