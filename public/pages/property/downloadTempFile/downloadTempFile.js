@@ -59,22 +59,22 @@
                     }
                 );
             },
-            
+
             _downLoadFile: function(_file) {
-                if(!_file.tempUrl){
+                if (!_file.tempUrl) {
                     vc.toast('下载失败');
-                    return ;
+                    return;
                 }
-                vc.jumpToPage(_file.tempUrl)
+                vc.jumpToPage(_file.downloadUrl)
             },
             _openDeleteFileModel: function(_file) {
-                vc.emit('deteteDownloadTempFile','openDeteteDownloadTempFileModal', _file);
+                vc.emit('deteteDownloadTempFile', 'openDeteteDownloadTempFileModal', _file);
             },
             _queryDownloadTempFileMethod: function() {
                 vc.component._listFiles(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
-           
+
             _moreCondition: function() {
                 if (vc.component.downloadTempFileInfo.moreCondition) {
                     vc.component.downloadTempFileInfo.moreCondition = false;
@@ -82,7 +82,7 @@
                     vc.component.downloadTempFileInfo.moreCondition = true;
                 }
             },
-            
+
 
 
         }
