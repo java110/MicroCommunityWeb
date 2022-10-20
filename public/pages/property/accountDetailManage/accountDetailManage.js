@@ -71,6 +71,9 @@
                     vc.component.accountDetailManageInfo.moreCondition = true;
                 }
             },
+            _cancelAccountDetail: function(_detail) {
+                vc.emit('cancelAccountDetail', 'openAddModal', _detail);
+            },
             _goBack: function() {
                 vc.goBack();
             }

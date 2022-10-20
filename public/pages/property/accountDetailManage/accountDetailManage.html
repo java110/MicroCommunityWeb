@@ -28,10 +28,12 @@
                                 <td class="text-center">{{accountDetail.detailId}}</td>
                                 <td class="text-center">{{accountDetail.orderId}}</td>
                                 <td class="text-center">{{accountDetail.acctName}}</td>
-                                <td class="text-center">{{accountDetail.detailType =='1001'?'转入':'转出'}}</td>
+                                <td class="text-center" v-if="accountDetail.detailType =='1001'">转入(<a href="javascript:void(0)" @click="_cancelAccountDetail(accountDetail)">撤销</a>)</td>
+                                <td class="text-center" v-else-if="accountDetail.detailType =='3003'">转入已撤销</td>
+                                <td class="text-center" v-else>转出</td>
                                 <td class="text-center">{{accountDetail.amount}}</td>
                                 <td class="text-center">{{accountDetail.createTime}}</td>
-                                <td class="text-center">{{accountDetail.remark}}</td>
+                                <td class="text-center">{{accountDetail.remark || '无'}}</td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -48,5 +50,5 @@
             </div>
         </div>
     </div>
-
+    <vc:create path="property/cancelAccountDetail"></vc:create>
 </div>
