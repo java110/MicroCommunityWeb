@@ -87,6 +87,11 @@
                 });
             },
             saveParkingCouponInfo: function() {
+
+                if($that.addParkingCouponInfo.typeCd == '4004'){
+                    $that.addParkingCouponInfo.value = 24 *60;
+                }
+
                 if (!vc.component.addParkingCouponValidate()) {
                     vc.toast(vc.validate.errInfo);
 
