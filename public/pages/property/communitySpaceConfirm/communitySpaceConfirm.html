@@ -96,6 +96,9 @@
                                             核销订单
                                         </th>
                                         <th class="text-center">
+                                            场馆
+                                        </th>
+                                        <th class="text-center">
                                             场地
                                         </th>
                                         <th class="text-center">
@@ -121,6 +124,9 @@
                                 <tbody>
                                     <tr v-for="(item,index) in communitySpaceConfirmInfo.orders">
                                         <td class="text-center">{{item.orderId}}</td>
+                                        <th class="text-center">
+                                            {{item.venueName}}
+                                        </th>
                                         <th class="text-center">
                                             {{item.spaceName}}
                                         </th>
