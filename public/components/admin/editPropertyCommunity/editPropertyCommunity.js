@@ -8,7 +8,7 @@
                 groupIds: [],
                 communityId: '',
                 name: '',
-                isAll: true,
+                isAll: false,
             }
         },
         _initMethod: function() {
@@ -61,7 +61,7 @@
                     groupIds: [],
                     communityId: '',
                     name: '',
-                    isAll: true,
+                    isAll: false,
                 };
             },
             changeEditAllCommunity: function() {
@@ -116,13 +116,15 @@
                     }
                 };
 
+               
+
                 //发送get请求
                 vc.http.apiGet('/menuGroupCommunity.listMenuGroupCommunity',
                     param,
                     function(json, res) {
                         let _propertyCompanyManageInfo = JSON.parse(json);
                         //$that.editPropertyCommunityInfo.menuGroups = _propertyCompanyManageInfo.data;
-
+                        $that.editPropertyCommunityInfo.groupIds = [];
                         _propertyCompanyManageInfo.data.forEach(item => {
                             $that.editPropertyCommunityInfo.groupIds.push(item.gId);
                         })
