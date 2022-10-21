@@ -69,6 +69,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center"><span><vc:i18n name='订单编号' namespace='communitySpacePersonManage'></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name='场馆' namespace='communitySpacePersonManage'></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name='场地' namespace='communitySpacePersonManage'></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name='预约人' namespace='communitySpacePersonManage'></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name='预约电话' namespace='communitySpacePersonManage'></vc:i18n></span></th>
@@ -86,6 +87,7 @@
                         <tbody>
                             <tr v-for="communitySpacePerson in communitySpacePersonManageInfo.communitySpacePersons">
                                 <td class="text-center">{{communitySpacePerson.cspId}}</td>
+                                <td class="text-center">{{communitySpacePerson.venueName}}</td>
                                 <td class="text-center">{{communitySpacePerson.spaceName}}</td>
                                 <td class="text-center">{{communitySpacePerson.personName}}</td>
                                 <td class="text-center">{{communitySpacePerson.personTel}}</td>
