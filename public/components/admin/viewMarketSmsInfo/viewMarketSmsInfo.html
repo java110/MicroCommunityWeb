@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="营销配置信息"  namespace="viewMarketSmsInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewMarketSmsInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectMarketSmsInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择营销配置"  namespace="viewMarketSmsInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewMarketSmsInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddMarketSmsInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加营销配置"  namespace="viewMarketSmsInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='名称' namespace='viewmarketSmsInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewMarketSmsInfo.smsName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='设置类型' namespace='viewmarketSmsInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewMarketSmsInfo.smsType}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='备注' namespace='viewmarketSmsInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewMarketSmsInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addMarketSms"
+               callBackListener="viewMarketSmsInfo"
+               callBackFunction="chooseMarketSms"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseMarketSms"
+               emitChooseMarketSms="viewMarketSmsInfo"
+               emitLoadData="viewMarketSmsInfo"
+    ></vc:create>
+</div>
