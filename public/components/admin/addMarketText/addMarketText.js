@@ -11,7 +11,8 @@
                 name: '',
                 sendRate: '',
                 textContent: '',
-
+                smsId:'',
+                marketSmss:[]
             }
         },
         _initMethod: function () {
@@ -20,6 +21,7 @@
         _initEvent: function () {
             vc.on('addMarketText', 'openAddMarketTextModal', function () {
                 $('#addMarketTextModel').modal('show');
+                $that._listAddMarketSms();
             });
         },
         methods: {
@@ -103,9 +105,28 @@
                     name: '',
                     sendRate: '',
                     textContent: '',
-
+                    smsId:'',
+                    marketSmss:[]
                 };
-            }
+            },
+            _listAddMarketSms: function (_page, _rows) {
+                let param = {
+                    params: {
+                        page:1,
+                        row:100
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/marketSms.listMarketSms',
+                    param,
+                    function (json, res) {
+                        let _marketSms = JSON.parse(json);
+                        $that.addMarketTextInfo.marketSmss = _marketSms.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 

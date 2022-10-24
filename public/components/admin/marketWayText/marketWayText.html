@@ -1,7 +1,8 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
-            <input v-model="marketWayTextInfo.conditions.name" type="text" :placeholder="vc.i18n('请填写名称','addMarketText')" class="form-control">
+            <input v-model="marketWayTextInfo.conditions.name" type="text"
+                :placeholder="vc.i18n('请填写名称','addMarketText')" class="form-control">
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
@@ -20,7 +21,9 @@
             </button>
             <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMarketTextModal()">
                 <i class="glyphicon glyphicon-plus"></i>
-                <span><vc:i18n name="添加"  namespace="marketTextManage"></vc:i18n></span>
+                <span>
+                    <vc:i18n name="添加" namespace="marketTextManage"></vc:i18n>
+                </span>
             </button>
         </div>
     </div>
@@ -28,9 +31,9 @@
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center"><span>
+                    <!-- <th class="text-center"><span>
                             <vc:i18n name='编号' namespace='marketWayText'></vc:i18n>
-                        </span></th>
+                        </span></th> -->
                     <th class="text-center"><span>
                             <vc:i18n name='名称' namespace='marketWayText'></vc:i18n>
                         </span></th>
@@ -41,16 +44,25 @@
                             <vc:i18n name='内容' namespace='marketWayText'></vc:i18n>
                         </span></th>
                     <th class="text-center"><span>
+                            <vc:i18n name='营销配置' namespace='marketWayText'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='创建时间' namespace='marketWayText'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
                             <vc:i18n name='操作'></vc:i18n>
                         </span></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="marketText in marketWayTextInfo.marketTexts">
-                    <td class="text-center">{{marketText.textId}}</td>
+                    <!-- <td class="text-center">{{marketText.textId}}</td> -->
                     <td class="text-center">{{marketText.name}}</td>
-                    <td class="text-center">{{marketText.sendRate}}</td>
+                    <td class="text-center">{{marketText.sendRateName}}</td>
                     <td class="text-center">{{marketText.textContent}}</td>
+                    <td class="text-center">{{marketText.smsName}}</td>
+                    <td class="text-center">{{marketText.createTime}}</td>
+
                     <td class="text-center">
                         <div class="btn-group">
                             <button class="btn-white btn btn-xs"

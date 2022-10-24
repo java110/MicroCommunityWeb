@@ -7,6 +7,8 @@
                 name: '',
                 sendRate: '',
                 textContent: '',
+                marketSmss:[],
+                smsId:''
             }
         },
         _initMethod: function () {
@@ -17,6 +19,7 @@
                 vc.component.refreshEditMarketTextInfo();
                 $('#editMarketTextModel').modal('show');
                 vc.copyObject(_params, vc.component.editMarketTextInfo);
+                $that._listEditMarketSms();
             });
         },
         methods: {
@@ -104,9 +107,29 @@
                     name: '',
                     sendRate: '',
                     textContent: '',
+                    marketSmss:[],
+                    smsId:''
 
                 }
-            }
+            },
+            _listEditMarketSms: function (_page, _rows) {
+                let param = {
+                    params: {
+                        page:1,
+                        row:100
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/marketSms.listMarketSms',
+                    param,
+                    function (json, res) {
+                        let _marketSms = JSON.parse(json);
+                        $that.editMarketTextInfo.marketSmss = _marketSms.data;
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 
