@@ -1,0 +1,36 @@
+<div class="white-bg padding padding-top-sm">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <ul class="nav nav-tabs">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" v-bind:class="{active:marketWayInfo._currentTab == 'marketWayText'}" v-on:click="changeTab('marketWayText')">
+                            <span><vc:i18n name="文本" namespace="marketWay"></vc:i18n></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-bind:class="{active:marketWayInfo._currentTab == 'marketWayPic'}" v-on:click="changeTab('marketWayPic')">
+                            <span><vc:i18n name="图片" namespace="marketWay"></vc:i18n></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-bind:class="{active:marketWayInfo._currentTab == 'marketWayGoods'}" v-on:click="changeTab('marketWayGoods')">
+                            <span><vc:i18n name="商品推荐" namespace="marketWay"></vc:i18n></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div v-show="marketWayInfo._currentTab == 'marketWayText'">
+                <vc:create path="admin/marketWayText"></vc:create>
+            </div> 
+            <div v-show="marketWayInfo._currentTab == 'marketWayPic'">
+                <vc:create path="admin/marketWayPic"></vc:create>
+            </div>
+            <div v-show="marketWayInfo._currentTab == 'marketWayGoods'">
+                <vc:create path="admin/marketWayGoods"></vc:create>
+            </div>
+        </div>
+        <vc:create path="common/viewImage"></vc:create>
+    </div>
+</div>
