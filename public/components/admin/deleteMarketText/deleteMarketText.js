@@ -19,9 +19,8 @@
         },
         methods:{
             deleteMarketText:function(){
-                vc.component.deleteMarketTextInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'marketText.deleteMarketText',
+                    '/marketText.deleteMarketText',
                     JSON.stringify(vc.component.deleteMarketTextInfo),
                     {
                         emulateJSON:true

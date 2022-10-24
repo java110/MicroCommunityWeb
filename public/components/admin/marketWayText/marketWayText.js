@@ -28,6 +28,9 @@
                 $that._listMarketTexts(DEFAULT_PAGE, DEFAULT_ROWS);
 
             });
+            vc.on('marketTextManage', 'listMarketText', function(_data) {
+                $that._listMarketTexts(DEFAULT_PAGE, DEFAULT_ROWS);
+            });
             vc.on('marketWayText', 'paginationPlus', 'page_event',
                 function(_currentPage) {
                     vc.component._listMarketTexts(_currentPage, DEFAULT_ROWS);
@@ -43,7 +46,7 @@
                };
 
                //发送get请求
-               vc.http.apiGet('marketText.listMarketTexts',
+               vc.http.apiGet('/marketText.listMarketText',
                              param,
                              function(json,res){
                                 var _marketWayTextInfo=JSON.parse(json);

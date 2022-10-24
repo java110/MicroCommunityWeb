@@ -1,12 +1,12 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
-            <input v-model="marketWayTextInfo.conditions.name" type="text" :placeholder="vc.i18n('必填，请填写车牌号','addMarketText')" class="form-control">
+            <input v-model="marketWayTextInfo.conditions.name" type="text" :placeholder="vc.i18n('请填写名称','addMarketText')" class="form-control">
 
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select" v-model="marketWayTextInfo.conditions.sendRate">
-                <option selected disabled value="">{{vc.i18n('必填，请选择发送频率','addMarketText')}}
+                <option selected disabled value="">{{vc.i18n('请选择发送频率','addMarketText')}}
                 </option>
                 <option value="1001">{{vc.i18n('按天','addMarketText')}}</option>
                 <option value="2002">{{vc.i18n('按月','addMarketText')}}</option>
