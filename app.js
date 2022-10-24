@@ -13,11 +13,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 var app = express();
 //在传输内容或者上传文件时，系统默认大小为100kb，这时，我们需要修改系统限制
 //感谢 HC141221 兄弟 贡献 http://bbs.homecommunity.cn/pages/bbs/topic.html?topicId=102022101723500172
-var bodyParser = require('body-parser');
-app.use(bodyParser.json({
-    limit: '50mb'
-}));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// 这里会影响文件上传
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.json({
+//     limit: '50mb'
+// }));
+// app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
