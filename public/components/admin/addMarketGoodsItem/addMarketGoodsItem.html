@@ -1,0 +1,97 @@
+<div id="addMarketGoodsItemModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span>
+            <vc:i18n name="添加" namespace="addMarketGoodsItem"></vc:i18n>
+          </span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='商品名称' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addMarketGoodsItemInfo.prodName" type="text"
+                    :placeholder="vc.i18n('必填，请填写商品名称','addMarketGoodsItem')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='商品简介' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <textarea v-model="addMarketGoodsItemInfo.prodDesc"
+                    :placeholder="vc.i18n('必填，请填写商品简介','addMarketGoodsItem')" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='图片地址' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <vc:create path="frame/uploadImage" callBackListener="addMarketGoodsItem" imageCount="1"
+                  callBackFunction="notifyUploadImage" namespace="addMarketGoodsItem">
+                  </vc:create>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='访问地址' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addMarketGoodsItemInfo.picLink" type="text"
+                    :placeholder="vc.i18n('必填，请填写图片访问地址','addMarketGoodsItem')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='金额' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addMarketGoodsItemInfo.price" type="text"
+                    :placeholder="vc.i18n('必填，请填写金额','addMarketGoodsItem')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='商铺名称' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addMarketGoodsItemInfo.shopName" type="text"
+                    :placeholder="vc.i18n('必填，请填写商铺名称','addMarketGoodsItem')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='排序' namespace='addMarketGoodsItem'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addMarketGoodsItemInfo.sort" type="number"
+                    :placeholder="vc.i18n('必填，请填写排序','addMarketGoodsItem')" class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveMarketGoodsItemInfo()"><i
+                    class="fa fa-check"></i>&nbsp;
+                  <span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                  <span>
+                    <vc:i18n name="取消"></vc:i18n>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

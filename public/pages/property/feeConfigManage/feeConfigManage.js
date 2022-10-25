@@ -73,6 +73,7 @@
                 var param = {
                     params: vc.component.feeConfigManageInfo.conditions
                 };
+
                 //收费项目选框去空
                 param.params.feeName = param.params.feeName.trim();
                 //费用项ID选框去空

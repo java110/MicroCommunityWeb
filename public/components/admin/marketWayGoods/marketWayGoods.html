@@ -48,7 +48,9 @@
                 <tr v-for="marketGoods in marketWayGoodsInfo.marketGoodss">
                     <!-- <td class="text-center">{{marketGoods.goodsId}}</td> -->
                     <td class="text-center">{{marketGoods.name}}</td>
-                    <td class="text-center">{{marketGoods.goodsCount}}</td>
+                    <td class="text-center">{{marketGoods.goodsCount}}
+                        (<a href="javascript:void(0)" @click="_viewGoods(marketGoods)">商品</a>)
+                    </td>
                     <td class="text-center">{{marketGoods.createTime}}</td>
                     <td class="text-center">{{marketGoods.remark}}</td>
                     <td class="text-center">

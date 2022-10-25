@@ -85,6 +85,9 @@
                     url: _url
                 });
             },
+            _viewGoods:function(_goods){
+                vc.jumpToPage('/#/pages/admin/marketGoodsItemManage?goodsId='+_goods.goodsId);
+            }
         }
     });
 })(window.vc);
