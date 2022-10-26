@@ -360,12 +360,16 @@
                             return;
                         }
                         $that._closeDoPayFeeModal();
-                        $that.payFeeOrderInfo.receiptId = _data.data.receiptId;
+                        //$that.payFeeOrderInfo.receiptId = _data.data.receiptId;
+
+                        setTimeout(function () {
+                            $that._queryPayFeeReceiptId(_data);
+                        }, 1000);
                         //关闭model
-                        $("#payFeeResult").modal({
-                            backdrop: "static", //点击空白处不关闭对话框
-                            show: true
-                        });
+                        // $("#payFeeResult").modal({
+                        //     backdrop: "static", //点击空白处不关闭对话框
+                        //     show: true
+                        // });
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
