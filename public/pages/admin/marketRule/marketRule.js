@@ -24,8 +24,8 @@
                 if (_tabName == 'marketRuleCommunity') {
                     vc.emit('marketRuleCommunityInfo', 'openMarketRuleCommunity', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
                 }
-                if (_tabName == 'staff') {
-                    vc.emit('roleStaffInfo', 'openMarketRuleStaff', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
+                if (_tabName == 'marketRuleObj') {
+                    vc.emit('marketRuleObjInfo', 'openMarketRuleObj', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
                 }
             }
         },
