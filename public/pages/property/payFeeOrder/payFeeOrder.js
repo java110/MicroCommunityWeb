@@ -229,11 +229,11 @@
                         param: "",
                         errInfo: "实收金额不能为空"
                     },
-                        {
-                            limit: "money",
-                            param: "",
-                            errInfo: "实收金额不是有效的金额"
-                        }
+                    {
+                        limit: "money",
+                        param: "",
+                        errInfo: "实收金额不是有效的金额"
+                    }
                     ]
                 });
             },
@@ -347,8 +347,8 @@
                 vc.http.apiPost(
                     '/payment.qrCodePayment',
                     JSON.stringify(vc.component.payFeeOrderInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
@@ -391,8 +391,8 @@
                 vc.http.apiPost(
                     '/payment.checkPayFinish',
                     JSON.stringify(vc.component.payFeeOrderInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
@@ -404,12 +404,9 @@
                         }
                         $that._closeDoPayFeeModal();
                         _data = _data.data;
-                        $that.payFeeOrderInfo.receiptId = _data.receiptId;
-                        //关闭model
-                        $("#payFeeResult").modal({
-                            backdrop: "static", //点击空白处不关闭对话框
-                            show: true
-                        });
+                        setTimeout(function () {
+                            $that._queryPayFeeReceiptId(_data);
+                        }, 1000);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -433,8 +430,8 @@
                 vc.http.apiPost(
                     '/fee.payFee',
                     JSON.stringify(vc.component.payFeeOrderInfo), {
-                        emulateJSON: true
-                    },
+                    emulateJSON: true
+                },
                     function (json, res) {
                         let _json = JSON.parse(json)
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
