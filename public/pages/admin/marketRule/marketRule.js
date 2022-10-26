@@ -5,24 +5,24 @@
         data: {
             marketRuleInfo: {
                 curMarketRule: {},
-                tabName: 'privilege'
+                tabName: 'marketRuleWay'
             },
         },
         _initMethod: function() {},
         _initEvent: function() {
             vc.on('marketRule', 'switchMarketRule', function(_param) {
                 $that.marketRuleInfo.curMarketRule = _param;
-                $that._changeMarketRuleTab('privilege');
+                $that._changeMarketRuleTab('marketRuleWay');
             })
         },
         methods: {
             _changeMarketRuleTab: function(_tabName) {
                 $that.marketRuleInfo.tabName = _tabName;
-                if (_tabName == 'privilege') {
-                    vc.emit('privilegeTree', 'loadPrivilege', $that.marketRuleInfo.curMarketRule.ruleId);
+                if (_tabName == 'marketRuleWay') {
+                    vc.emit('marketRuleWayInfo', 'openMarketRuleWay', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
                 }
-                if (_tabName == 'community') {
-                    vc.emit('roleCommunityInfo', 'openMarketRuleCommunity', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
+                if (_tabName == 'marketRuleCommunity') {
+                    vc.emit('marketRuleCommunityInfo', 'openMarketRuleCommunity', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });
                 }
                 if (_tabName == 'staff') {
                     vc.emit('roleStaffInfo', 'openMarketRuleStaff', { ruleId: $that.marketRuleInfo.curMarketRule.ruleId });

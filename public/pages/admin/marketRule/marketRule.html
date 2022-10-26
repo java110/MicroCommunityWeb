@@ -9,18 +9,18 @@
                 <div class="role-context ">{{marketRuleInfo.curMarketRule.description}}</div>
                 <div class="line-x margin-top"></div>
                 <div class="role-menu flex justify-start">
-                    <div class="item margin-right" :class="{'active':marketRuleInfo.tabName == 'privilege'}"  @click="_changeMarketRuleTab('privilege')">营销方式
+                    <div class="item margin-right" :class="{'active':marketRuleInfo.tabName == 'marketRuleWay'}"  @click="_changeMarketRuleTab('marketRuleWay')">营销方式
                     </div>
-                    <div class="item margin-right" :class="{'active':marketRuleInfo.tabName == 'community'}"  @click="_changeMarketRuleTab('community')">小区授权
+                    <div class="item margin-right" :class="{'active':marketRuleInfo.tabName == 'marketRuleCommunity'}"  @click="_changeMarketRuleTab('marketRuleCommunity')">小区授权
                     </div>
                     <div class="item margin-right" :class="{'active':marketRuleInfo.tabName == 'staff'}"  @click="_changeMarketRuleTab('staff')">作用对象
                     </div>
                 </div>
-                <div v-if="marketRuleInfo.tabName == 'privilege' ">
-                    <vc:create path="frame/privilegeTree"></vc:create>
+                <div v-if="marketRuleInfo.tabName == 'marketRuleWay' ">
+                    <vc:create path="admin/marketRuleWay"></vc:create>
                 </div>
-                <div v-if="marketRuleInfo.tabName == 'community' ">
-                    <vc:create path="frame/roleCommunity"></vc:create>
+                <div v-if="marketRuleInfo.tabName == 'marketRuleCommunity' ">
+                    <vc:create path="admin/marketRuleCommunity"></vc:create>
                 </div>
                 <div v-if="marketRuleInfo.tabName == 'staff'">
                     <vc:create path="frame/roleStaff"></vc:create>
