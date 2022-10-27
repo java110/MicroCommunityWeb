@@ -17,10 +17,12 @@
         _initEvent: function () {
             vc.on('addFeePrintSpec', 'openAddFeePrintSpecModal', function () {
                 $('#addFeePrintSpecModel').modal('show');
+                let photos = [];
+                vc.emit('addFeePrintSpec', 'uploadImageUrl', 'notifyPhotos', photos);
             });
             vc.on('addFeePrintSpec', 'notifyUploadImage', function (_img) {
                 if (!vc.isEmpty(_img) && _img.length > 0) {
-                    $that.addFeePrintSpecInfo.qrImg = _img[0].fileId;
+                    $that.addFeePrintSpecInfo.qrImg = _img[0].url;
                 } else {
                     $that.addFeePrintSpecInfo.qrImg = '';
                 }

@@ -26,7 +26,7 @@
             vc.on("editFeePrintSpec", "notifyUploadImage", function (_param) {
                 console.log(_param);
                 if (!vc.isEmpty(_param) && _param.length > 0) {
-                    vc.component.editFeePrintSpecInfo.qrImg = _param[0].fileId;
+                    vc.component.editFeePrintSpecInfo.qrImg = _param[0].url;
                 } else {
                     vc.component.editFeePrintSpecInfo.qrImg = '';
                 }

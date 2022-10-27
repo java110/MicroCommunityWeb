@@ -45,11 +45,11 @@
                         vc.component.feePrintSpecManageInfo.total = _feePrintSpecManageInfo.total;
                         vc.component.feePrintSpecManageInfo.records = _feePrintSpecManageInfo.records;
                         vc.component.feePrintSpecManageInfo.feePrintSpecs = _feePrintSpecManageInfo.data;
-                        vc.component.feePrintSpecManageInfo.feePrintSpecs.forEach((item) => {
-                            if(item.qrImg){
-                                item.qrImg = photoUrl + "?fileId=" + item.qrImg + "&communityId=-1&time=" + new Date()
-                            }
-                        })
+                        // vc.component.feePrintSpecManageInfo.feePrintSpecs.forEach((item) => {
+                        //     if(item.qrImg){
+                        //         item.qrImg = photoUrl + "?fileId=" + item.qrImg + "&communityId=-1&time=" + new Date()
+                        //     }
+                        // })
                         vc.emit('pagination', 'init', {
                             total: vc.component.feePrintSpecManageInfo.records,
                             dataCount: vc.component.feePrintSpecManageInfo.total,
