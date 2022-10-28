@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-4 border ">
+        <div class="text-center margin-top">
+            <span class="">
+                <vc:i18n name="组织信息" namespace="selectStaff"></vc:i18n>
+            </span>
+        </div>
+        <div class="staff" style="height: 250px;">
+            <vc:create path="frame/orgTreeShow" callBackListener="selectStaffs"></vc:create>
+        </div>
+    </div>
+    <div class="col-md-4 border padding-r-0">
+        <div class="text-center margin-top">
+            <span>
+                <vc:i18n name="员工信息" namespace="selectStaff"></vc:i18n>
+            </span>
+        </div>
+        <div class="padding-left staff margin-top-sm" style="height: 250px;">
+            <div class=" padding-xs overflow-hidden" :class="{'select':selectStaffsInfo.curStaffId == item.staffId}"
+                v-for="(item,index) in selectStaffsInfo.staffs" @click="_changeStaff(item)" style="cursor:pointer">
+                <span>
+                    <div>
+                        <i class="fa fa-user margin-right-xs" aria-hidden="true"></i>
+                        {{item.name}}
+                    </div>
+                    <div>{{item.tel}}</div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 border ">
+        <div class="text-center margin-top">
+            <span>
+                <vc:i18n name="已选员工" namespace="selectStaff"></vc:i18n>
+            </span>
+        </div>
+        <div class="padding-left  margin-top-sm">
+            <div v-for="(item,index) in selectStaffsInfo.selectStaffs">
+                <div class=" margin-bottom-sm">
+                    <span class="border padding-left-xs padding-right-xs">
+                        {{item.name}}
+                        <span class="margin-left fa fa-remove" @click="_removeStaff(item)"></span>
+                    </span>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1969,6 +1969,31 @@
             $("." + _className).popover('hide');
         })
     }
+
+    vcFramework.getWorkDay = function(_day){
+        if(_day == 1){
+            return '星期一';
+        }
+        if(_day == 2){
+            return '星期二';
+        }
+        if(_day == 3){
+            return '星期三';
+        }
+        if(_day == 4){
+            return '星期四';
+        }
+        if(_day == 5){
+            return '星期五';
+        }
+        if(_day == 6){
+            return '星期六';
+        }
+        if(_day == 7){
+            return '星期日';
+        }
+
+    }
 })(window.vcFramework);
 
 (function(vcFramework) {

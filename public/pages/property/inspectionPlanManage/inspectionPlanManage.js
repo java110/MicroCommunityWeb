@@ -73,7 +73,9 @@
                 );
             },
             _openAddInspectionPlanModal: function () {
-                vc.emit('addInspectionPlan', 'openAddInspectionPlanModal', {});
+                //vc.emit('addInspectionPlan', 'openAddInspectionPlanModal', {});
+
+                vc.jumpToPage('/#/pages/property/addInspectionPlan')
             },
             _openEditInspectionPlanModel: function (_inspectionPlan) {
                 vc.emit('editInspectionPlan', 'openEditInspectionPlanModal', _inspectionPlan);

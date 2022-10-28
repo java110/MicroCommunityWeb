@@ -6,22 +6,21 @@
                 inspectionPlanName: '',
                 inspectionRouteId: '',
                 inspectionPlanPeriod: '',
-                startTime: '',
-                endTime: '',
+                inspectionPlanPeriods: [],
+                startDate: vc.dateFormat(new Date()),
+                endDate: '2050-01-01',
+                beforeTime: '30',
+                startTime:'',
+                endTime:'',
                 signType: '',
                 signTypes: [],
-                inspectionPlanPeriods: [],
-                states: [],
-                isDefault: '',
-                state: '',
+                state: '2020025',
                 remark: '',
-                companyId: '',
-                companyName: '',
-                departmentId: '',
-                departmentName: '',
-                createUserId: '',
-                createUserName: '',
-                inspectionRouteName: ''
+                months: [],
+                days: [],
+                workdays: [],
+                inspectionRoutes:[],
+                staffs:[]
             }
         },
         _initMethod: function () {
@@ -31,9 +30,6 @@
             vc.getDict('inspection_plan', "inspection_plan_period", function (_data) {
                 vc.component.editInspectionPlanInfo.inspectionPlanPeriods = _data;
             });
-            vc.getDict('inspection_plan', "state", function (_data) {
-                vc.component.editInspectionPlanInfo.states = _data;
-            });
         },
         _initEvent: function () {
             vc.component._initEditInspectionPlanDateInfo();
@@ -41,31 +37,12 @@
                 vc.component.refreshEditInspectionPlanInfo();
                 vc.copyObject(_params, vc.component.editInspectionPlanInfo);
                 vc.component.editInspectionPlanInfo.communityId = vc.getCurrentCommunity().communityId;
-                //公司select2
-                vc.emit('editInspectionPlan', 'orgSelect2', 'setOrg', {
-                    orgId: vc.component.editInspectionPlanInfo.companyId,
-                    orgName: vc.component.editInspectionPlanInfo.companyName,
-                    departmentId: vc.component.editInspectionPlanInfo.departmentId,
-                    departmentName: vc.component.editInspectionPlanInfo.departmentName,
-                    staffId: vc.component.editInspectionPlanInfo.staffId,
-                    staffName: vc.component.editInspectionPlanInfo.staffName,
-                });
-                //部门select2
-                // vc.emit('editInspectionPlan', 'departmentSelect2', 'setDepartment', {
-                //     departmentId: vc.component.editInspectionPlanInfo.departmentId,
-                //     departmentName: vc.component.editInspectionPlanInfo.departmentName,
-                // });
-                //员工select2
-                // vc.emit('editInspectionPlan', 'staffSelect2', 'setStaff', {
-                //     staffId: vc.component.editInspectionPlanInfo.staffId,
-                //     staffName: vc.component.editInspectionPlanInfo.staffName,
-                // });
-                // //传输数据到machineSelect2组件
-                vc.emit('editInspectionPlan', 'inspectionRouteSelect2', 'setInspectionRoute', {
-                    inspectionRouteId: vc.component.editInspectionPlanInfo.inspectionRouteId,
-                    routeName: vc.component.editInspectionPlanInfo.inspectionRouteName,
-                });
+                $that.editInspectionPlanInfo.months = _params.inspectionMonth.split(',');
+                $that.editInspectionPlanInfo.days = _params.inspectionDay.split(',');
+                $that.editInspectionPlanInfo.workdays = _params.inspectionWorkday.split(',');
                 $('#editInspectionPlanModel').modal('show');
+                $that._listEditInspectionRoutes();
+                $that._listEditInspectionPlanStaffs();
             });
 
             vc.on('editInspectionPlanInfo', 'notify', function(_param){
@@ -113,29 +90,27 @@
                             errInfo: "执行周期格式错误"
                         },
                     ],
-                    'editInspectionPlanInfo.startTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "计划开始时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "计划开始时间不是有效的时间格式"
-                        },
+                    'editInspectionPlanInfo.startDate': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "计划开始时间不能为空"
+                    },
+                    {
+                        limit: "date",
+                        param: "",
+                        errInfo: "计划开始时间不是有效的时间格式"
+                    },
                     ],
-                    'editInspectionPlanInfo.endTime': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "计划结束时间不能为空"
-                        },
-                        {
-                            limit: "dateTime",
-                            param: "",
-                            errInfo: "计划结束时间不是有效的时间格式"
-                        },
+                    'editInspectionPlanInfo.endDate': [{
+                        limit: "required",
+                        param: "",
+                        errInfo: "计划结束时间不能为空"
+                    },
+                    {
+                        limit: "date",
+                        param: "",
+                        errInfo: "计划结束时间不是有效的时间格式"
+                    },
                     ],
                     'editInspectionPlanInfo.signType': [
                         {
@@ -181,6 +156,9 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                $that.editInspectionPlanInfo.inspectionMonth = $that.editInspectionPlanInfo.months.join(',');
+                $that.editInspectionPlanInfo.inspectionDay = $that.editInspectionPlanInfo.days.join(',');
+                $that.editInspectionPlanInfo.inspectionWorkday = $that.editInspectionPlanInfo.workdays.join(',');
                 vc.http.apiPost(
                     '/inspectionPlan.updateInspectionPlan',
                     JSON.stringify(vc.component.editInspectionPlanInfo),
@@ -204,80 +182,89 @@
             },
             refreshEditInspectionPlanInfo: function () {
                 var signTypes = vc.component.editInspectionPlanInfo.signTypes;
-                var states = vc.component.editInspectionPlanInfo.states;
                 var inspectionPlanPeriods = vc.component.editInspectionPlanInfo.inspectionPlanPeriods;
                 vc.component.editInspectionPlanInfo = {
                     inspectionPlanId: '',
                     inspectionPlanName: '',
                     inspectionRouteId: '',
                     inspectionPlanPeriod: '',
-                    staffId: '',
-                    staffName: '',
-                    startTime: '',
-                    endTime: '',
+                    inspectionPlanPeriods: inspectionPlanPeriods,
+                    startDate: vc.dateFormat(new Date()),
+                    endDate: '2050-01-01',
+                    beforeTime: '30',
+                    startTime:'',
+                    endTime:'',
                     signType: '',
-                    state: '',
+                    signTypes: signTypes,
+                    state: '2020025',
                     remark: '',
-                    companyId: '',
-                    companyName: '',
-                    departmentId: '',
-                    departmentName: '',
-                    createUserId: '',
-                    createUserName: '',
-                    inspectionRouteName: ''
+                    months: [],
+                    days: [],
+                    workdays: [],
+                    inspectionRoutes:[],
+                    staffs:[]
                 };
-                vc.component.editInspectionPlanInfo.signTypes = signTypes;
-                vc.component.editInspectionPlanInfo.states = states;
-                vc.component.editInspectionPlanInfo.inspectionPlanPeriods = inspectionPlanPeriods;
             },
             _initEditInspectionPlanDateInfo: function () {
-                $('.editInspectionPlanStartTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
+                vc.initDate('editInspectionPlanStartDate', function (_value) {
+                    $that.editInspectionPlanInfo.startDate = _value;
                 });
-                $('.editInspectionPlanStartTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".editInspectionPlanStartTime").val();
-                        vc.component.editInspectionPlanInfo.startTime = value;
-                    });
-                $('.editInspectionPlanEndTime').datetimepicker({
-                    language: 'zh-CN',
-                    fontAwesome: 'fa',
-                    format: 'yyyy-mm-dd hh:ii:ss',
-                    initTime: true,
-                    initialDate: new Date(),
-                    autoClose: 1,
-                    todayBtn: true
+                vc.initDate('editInspectionPlanEndDate', function (_value) {
+                    $that.editInspectionPlanInfo.endDate = _value;
                 });
-                $('.editInspectionPlanEndTime').datetimepicker()
-                    .on('changeDate', function (ev) {
-                        var value = $(".editInspectionPlanEndTime").val();
-                        vc.component.editInspectionPlanInfo.endTime = value;
-                        let start = Date.parse(new Date(vc.component.editInspectionPlanInfo.startTime))
-                        let end = Date.parse(new Date(vc.component.editInspectionPlanInfo.endTime))
-                        if (start - end >= 0) {
-                            vc.toast("结束时间必须大于开始时间")
-                            vc.component.editInspectionPlanInfo.endTime = '';
-                        }
-                    });
-                //防止多次点击时间插件失去焦点
-                document.getElementsByClassName('form-control editInspectionPlanStartTime')[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-
-                document.getElementsByClassName("form-control editInspectionPlanEndTime")[0].addEventListener('click', myfunc)
-
-                function myfunc(e) {
-                    e.currentTarget.blur();
-                }
-            }
+                vc.initHourMinute('editInspectionPlanStartTime', function (_value) {
+                    $that.editInspectionPlanInfo.startTime = _value;
+                });
+                vc.initHourMinute('editInspectionPlanEndTime', function (_value) {
+                    $that.editInspectionPlanInfo.endTime = _value;
+                })
+            },
+            _listEditInspectionRoutes: function() {
+                let param = {
+                    params: {
+                        page:1,
+                        row:100,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/inspectionRoute.listInspectionRoutes',
+                    param,
+                    function(json, res) {
+                        let _inspectionRouteManageInfo = JSON.parse(json);
+                        $that.editInspectionPlanInfo.inspectionRoutes = _inspectionRouteManageInfo.inspectionRoutes;
+                        
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listEditInspectionPlanStaffs: function () {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        inspectionPlanId: $that.editInspectionPlanInfo.inspectionPlanId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/inspectionPlanStaff.listInspectionPlanStaffs',
+                    param,
+                    function (json, res) {
+                        let _inspectionRouteManageInfo = JSON.parse(json);
+                        _inspectionRouteManageInfo.inspectionPlanStaffs.forEach(item => {
+                            item.userId = item.staffId;
+                            item.name = item.staffName;
+                        });
+                        $that.editInspectionPlanInfo.staffs = _inspectionRouteManageInfo.inspectionPlanStaffs;
+                        vc.emit('selectStaffs', 'setStaffs',$that.editInspectionPlanInfo.staffs);
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
         }
     });
 })(window.vc, window.vc.component);
