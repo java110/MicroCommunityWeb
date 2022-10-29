@@ -134,6 +134,16 @@
                                     </select>
                                 </div>
                                
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="允许补检" namespace="editInspectionPlanInfo"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editInspectionPlanInfo.canReexamine">
+                                        <option value="1000">不允许补检</option>
+                                        <option value="2000">允许补检</option>
+                                    </select>
+                                </div>
+
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">
