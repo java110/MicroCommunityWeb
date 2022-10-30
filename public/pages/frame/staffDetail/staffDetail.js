@@ -198,26 +198,6 @@
                     }
                 );
             },
-//            _loadStaffCommunity: function () {
-//                let param = {
-//                    params: {
-//                        page: 1,
-//                        row: 9999,
-//                        staffId: $that.staffDetailInfo.staffId
-//                    }
-//                };
-//                //发送get请求
-//                vc.http.apiGet('/user.listStaffCommunitys',
-//                    param,
-//                    function (json) {
-//                        let _staffInfo = JSON.parse(json);
-//                        $that.staffDetailInfo.communitys = _staffInfo.data
-//                    },
-//                    function () {
-//                        console.log('请求失败处理');
-//                    }
-//                );
-//            },
             _loadStaffRole: function () {
                 let param = {
                     params: {
@@ -238,6 +218,7 @@
                     }
                 );
             },
+            
         }
     });
 })(window.vc);

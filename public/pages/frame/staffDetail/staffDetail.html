@@ -84,16 +84,6 @@
                     <div class="col-md-6">岗位：{{item.relCdName}}</div>
                 </div>
             </div>
-<!--            <div class="ibox-title margin-top">-->
-<!--                <h5>-->
-<!--                    <span><vc:i18n name="关联小区" namespace="staffDetailInfo"></vc:i18n></span>-->
-<!--                </h5>-->
-<!--            </div>-->
-<!--            <div class="ibox-content">-->
-<!--                <div class="row" v-for="(item,index) in staffDetailInfo.communitys">-->
-<!--                    <div class="col-md-4">{{item.name}}</div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="ibox-title margin-top">
                 <h5>
                     <span><vc:i18n name="关联角色及小区" namespace="staffDetailInfo"></vc:i18n></span>
@@ -113,6 +103,14 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="ibox-title margin-top">
+                <h5>
+                    <span><vc:i18n name="排班" namespace="staffDetailInfo"></vc:i18n></span>
+                </h5>
+            </div>
+            <div class="ibox-content">
+                <vc:create path="property/staffScheduleClasses"></vc:create>
             </div>
         </div>
     </div>
