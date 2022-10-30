@@ -21,6 +21,8 @@
         methods: {
             _changeScheduleType: function () {
 
+                $that.addScheduleClassesInfo.days = [];
+
                 if($that.addScheduleClassesInfo.scheduleType == '1001'){
                     vc.emit("scheduleClassesDayInfo", "notify",{
                         scheduleCycle:$that.addScheduleClassesInfo.scheduleCycle,
