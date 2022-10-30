@@ -106,6 +106,10 @@
             _openPlanStaff: function (_inspectionPlan) {
                 $that.scheduleClassesInfo.inspectionPlanStaffModel = true;
                 vc.emit('inspectionPlanStaffManage', 'listScheduleClassesStaff', _inspectionPlan);
+            },
+            _scheduleClassesStaff:function(_scheduleClasses){
+                vc.jumpToPage('/#/pages/property/scheduleClassesStaffManage?scheduleId='+_scheduleClasses.scheduleId)
+            
             }
         }
     });

@@ -1,0 +1,75 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="班次员工" namespace="scheduleClassesStaffManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm"
+                            v-on:click="vc.goBack()">
+                                <vc:i18n name="返回" ></vc:i18n>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddScheduleClassesStaffModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>
+                                <vc:i18n name="添加" namespace="scheduleClassesStaffManage"></vc:i18n>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='员工ID' namespace='scheduleClassesStaffManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='员工名称' namespace='scheduleClassesStaffManage'></vc:i18n>
+                                    </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='创建时间' namespace='scheduleClassesStaffManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="scheduleClassesStaff in scheduleClassesStaffManageInfo.scheduleClassesStaffs">
+                                <td class="text-center">{{scheduleClassesStaff.staffId}}</td>
+                                <td class="text-center">{{scheduleClassesStaff.staffName}}</td>
+                                <td class="text-center">{{scheduleClassesStaff.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteScheduleClassesStaffModel(scheduleClassesStaff)"><span>
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addScheduleClassesStaff" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/deleteScheduleClassesStaff"></vc:create>
+
+</div>
