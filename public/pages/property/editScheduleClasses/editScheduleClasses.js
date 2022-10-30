@@ -23,8 +23,11 @@
             
         },
         methods: {
-            _changeScheduleType: function () {
-                $that.editScheduleClassesInfo.days = [];
+            _changeScheduleType: function (_customChage) {
+                if(_customChage){
+                    $that.editScheduleClassesInfo.days = [];
+                }
+                
                 if($that.editScheduleClassesInfo.scheduleType == '1001'){
                     vc.emit("scheduleClassesDayInfo", "notify",{
                         scheduleCycle:$that.editScheduleClassesInfo.scheduleCycle,

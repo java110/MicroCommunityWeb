@@ -24,7 +24,7 @@
                                 <span><vc:i18n name="排班类型" namespace="editScheduleClasses"></vc:i18n></span>
                             </label>
                             <div class="col-sm-4">
-                                <select class="custom-select" v-model="editScheduleClassesInfo.scheduleType" @change="_changeScheduleType()">
+                                <select class="custom-select" v-model="editScheduleClassesInfo.scheduleType" @change="_changeScheduleType(1)">
                                     <option selected disabled value="">
                                         {{vc.i18n('必填，请选择排班类型','editScheduleClasses')}}
                                     </option>

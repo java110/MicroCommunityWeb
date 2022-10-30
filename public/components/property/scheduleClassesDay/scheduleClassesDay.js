@@ -41,6 +41,8 @@
                 }
 
                 vc.emit('addScheduleClasses','notifyScheduleCycle',$that.scheduleClassesDayInfo.scheduleCycle);
+                vc.emit('editScheduleClasses','notifyScheduleCycle',$that.scheduleClassesDayInfo.scheduleCycle);
+
             },
             _changeWorkdayInfo:function(item){
                 vc.emit('editScheduleClassesDay', 'notify',item);
