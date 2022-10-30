@@ -29,7 +29,7 @@
                                         {{vc.i18n('必填，请选择排班类型','editScheduleClasses')}}
                                     </option>
                                       <option value="1001"> {{vc.i18n('按日排班','editScheduleClasses')}}</option>
-                                      <!-- <option value="2002"> {{vc.i18n('按周排班','editScheduleClasses')}}</option> -->
+                                      <option value="2002"> {{vc.i18n('按周排班','editScheduleClasses')}}</option>
                                       <option value="3003"> {{vc.i18n('按月排班','editScheduleClasses')}}</option>
                                     </select>
                             </div>
@@ -38,9 +38,9 @@
                         <div v-if="editScheduleClassesInfo.scheduleType == '1001'">
                             <vc:create path="property/scheduleClassesDay">
                         </div>
-                        <!-- <div v-if="editScheduleClassesInfo.scheduleType == '2002'">
+                        <div v-if="editScheduleClassesInfo.scheduleType == '2002'">
                             <vc:create path="property/scheduleClassesWeek">
-                        </div> -->
+                        </div>
                         <div v-if="editScheduleClassesInfo.scheduleType == '3003'">
                             <vc:create path="property/scheduleClassesMonth">
                         </div>

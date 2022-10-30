@@ -29,7 +29,7 @@
                 }
 
                 if($that.addScheduleClassesInfo.scheduleType == '2002'){
-                    vc.emit("scheduleClassesDayInfo", "notify",{
+                    vc.emit("scheduleClassesWeekInfo", "notify",{
                         scheduleCycle:$that.addScheduleClassesInfo.scheduleCycle,
                         days:$that.addScheduleClassesInfo.days
                     })

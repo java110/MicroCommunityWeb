@@ -1970,6 +1970,22 @@
         })
     }
 
+    vcFramework.getWeek = function(_week){
+        if(_week == 1){
+            return '第一周';
+        }
+        if(_week == 2){
+            return '第二周';
+        }
+        if(_week == 3){
+            return '第三周';
+        }
+        if(_week == 4){
+            return '第四周';
+        }
+        
+    }
+
     vcFramework.getWorkDay = function(_day){
         if(_day == 1){
             return '星期一';
@@ -1992,7 +2008,6 @@
         if(_day == 7){
             return '星期日';
         }
-
     }
 })(window.vcFramework);
 
