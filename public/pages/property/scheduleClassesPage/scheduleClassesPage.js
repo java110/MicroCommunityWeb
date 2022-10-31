@@ -8,6 +8,7 @@
         data: {
             scheduleClassesPageInfo: {
                 staffs: [],
+                scheduleClassess:[],
                 maxDay:30,
                 curMonth:'',
                 curYear:'',
@@ -17,7 +18,7 @@
                 states: '',
                 conditions: {
                     staffNameLike: '',
-                    staffName: '',
+                    scheduleId: '',
                     curDate: ''
                 }
             }
@@ -25,7 +26,8 @@
         _initMethod: function () {
             $that.initStaffDate();
             vc.component._listStaffScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
-            
+            vc.component._listScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
+
         },
         _initEvent: function () {
             vc.on('scheduleClassesPage', 'listScheduleClasses', function (_param) {
@@ -90,6 +92,47 @@
                     vc.component.scheduleClassesPageInfo.moreCondition = true;
                 }
             },
+            _listScheduleClassess: function (_page, _rows) {
+              
+                let param = {
+                    params: {
+                        page:1,
+                        row:100
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/scheduleClasses.listScheduleClasses',
+                    param,
+                    function (json, res) {
+                        let _scheduleClassesInfo = JSON.parse(json);
+                        $that.scheduleClassesPageInfo.scheduleClassess = _scheduleClassesInfo.data;
+                        
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _exportScheduleClasses: function () {
+                //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDetail&' + vc.objToGetParam($that.reportPayFeeDetailInfo.conditions));
+                vc.component.scheduleClassesPageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.scheduleClassesPageInfo.conditions.pagePath = 'reportStaffMonthScheduleClasses';
+                let param = {
+                    params: vc.component.scheduleClassesPageInfo.conditions
+                };
+                //发送get请求
+                vc.http.apiGet('/export.exportData', param,
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if(_json.code == 0){
+                            vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    });
+            }
             
         }
     });

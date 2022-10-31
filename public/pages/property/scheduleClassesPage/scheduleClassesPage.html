@@ -20,10 +20,10 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="scheduleClassesPageInfo.conditions.state">
-                                <option selected value="">{{vc.i18n('请选择状态','scheduleClassesPage')}}</option>
-                                <option v-for="(item,index) in scheduleClassesPageInfo.states" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                            <select class="custom-select" v-model="scheduleClassesPageInfo.conditions.scheduleId">
+                                <option selected value="">{{vc.i18n('请选择班次','scheduleClassesPage')}}</option>
+                                <option v-for="(item,index) in scheduleClassesPageInfo.scheduleClassess" :key="index"
+                                    v-bind:value="item.scheduleId">{{item.name}}
                                 </option>
                             </select>
                         </div>
@@ -40,6 +40,12 @@
                                 <i class="fa fa-search"></i>
                                 <span>
                                     <vc:i18n name="查询" namespace="scheduleClassesPage"></vc:i18n>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-white btn-sm"
+                                v-on:click="_exportScheduleClasses()">
+                                <span>
+                                    <vc:i18n name="导出" namespace="scheduleClassesPage"></vc:i18n>
                                 </span>
                             </button>
                         </div>
