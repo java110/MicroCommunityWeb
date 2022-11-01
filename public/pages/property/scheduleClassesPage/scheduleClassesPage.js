@@ -93,7 +93,6 @@
                 }
             },
             _listScheduleClassess: function (_page, _rows) {
-              
                 let param = {
                     params: {
                         page:1,
