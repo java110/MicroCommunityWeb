@@ -109,9 +109,7 @@
                         let _scheduleClassesInfo = JSON.parse(json);
 
                         _scheduleClassesInfo.data.forEach(item => {
-                            if(item.workday == '1001'){
-                                item.workdayName = '正常上下班';
-                            }else{
+                            if(item.workday == '2002'){
                                 item.workdayName = '休息';
                             }
                         });

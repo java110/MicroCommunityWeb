@@ -30,13 +30,9 @@
                 for(let cycleIndex = 0; cycleIndex  < $that.scheduleClassesDayInfo.scheduleCycle; cycleIndex++){
                     _days.push({
                         day:cycleIndex+1,
-                        workday:'1001',
-                        workdayName:'正常上下班',
-                        times:[{
-                            id:vc.uuid(),
-                            startTime:'08:30',
-                            endTime:'18:00'
-                        }]
+                        workday:'2002',
+                        workdayName:'休息',
+                        times:[]
                     })
                 }
 

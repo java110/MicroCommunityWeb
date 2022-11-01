@@ -5,65 +5,63 @@
                 workday: '',
                 workdayName: '',
                 times: [],
+                classess: [],
             }
         },
         _initMethod: function () {
+            
         },
         _initEvent: function () {
             vc.on('editScheduleClassesDay', 'notify', function (_param) {
                 $that.editScheduleClassesDayInfo = _param;
-                if(!_param.times || _param.times.length == 0){
-                    $that.editScheduleClassesDayInfo.times.push(
-                        {
-                            id:vc.uuid(),
-                            startTime:'',
-                            endTime:''
-                        }
-                    )
-                }
+                $that._listClassess();
                 $('#editScheduleClassesDayModel').modal('show');
 
-                setTimeout(function(){
-                    $that._initEditScheduleClassesDayDate();
-                },1000);
+               
             });
         },
         methods: {
 
             _changeScheduleClassesDayState:function(){
-
+                $that.editScheduleClassesDayInfo.times.splice(0,$that.editScheduleClassesDayInfo.times.length);
                 if($that.editScheduleClassesDayInfo.workday == '2002'){
-                    $that.editScheduleClassesDayInfo.times.splice(0,$that.editScheduleClassesDayInfo.times.length);
                     $that.editScheduleClassesDayInfo.workdayName = '休息';
                     return ;
                 }
-                $that.editScheduleClassesDayInfo.workdayName = '正常上下班';
-
-                setTimeout(function(){
-                    $that._initEditScheduleClassesDayDate();
-                },1000);
-            },
-
-            _initEditScheduleClassesDayDate:function(){
-                console.log(123123)
-                $that.editScheduleClassesDayInfo.times.forEach(time => {
-                    vc.initHourMinute('startTime'+time.id,function(_value){
-                        if(!_value){
-                            return;
-                        }
-                        time.startTime = _value;
-                    });
-                    vc.initHourMinute('endTime'+time.id,function(_value){
-                        if(!_value){
-                            return;
-                        }
-                        time.endTime = _value;
-                    })
+                let _classes  = $that.editScheduleClassesDayInfo.classess;
+                _classes.forEach(item => {
+                    if($that.editScheduleClassesDayInfo.workday == item.classesId){
+                        $that.editScheduleClassesDayInfo.workdayName = item.name;
+                        item.times.forEach(time=>{
+                            $that.editScheduleClassesDayInfo.times.push(time);
+                        })
+                    }
                 });
             },
             _summitEditScheduleClassesDay:function(){
-                $that.$for
-            }
+           
+            },
+            _listClassess: function (_page, _rows) {
+                let param = {
+                    params: {
+                        page:1,
+                        row:100
+                    }
+                };
+
+                //发送get请求
+                vc.http.apiGet('/classes.listClasses',
+                    param,
+                    function (json, res) {
+                        let _classesManageInfo = JSON.parse(json);
+                        vc.component.editScheduleClassesDayInfo.classess = _classesManageInfo.data;
+                        $that.$forceUpdate();
+                        
+                    }, function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             
         }
     });
