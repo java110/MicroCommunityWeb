@@ -6,6 +6,7 @@
                 communityName: '',
                 receiptId: '',
                 receiptIds: '',
+                detailIds: '',
                 roomName: '',
                 amount: 0.00,
                 fees: [],
@@ -24,6 +25,7 @@
 
             $that.printPayFeeInfo.receiptId = vc.getParam('receiptId');
             $that.printPayFeeInfo.receiptIds = vc.getParam('receiptIds');
+            $that.printPayFeeInfo.detailIds = vc.getParam('detailIds');
             $that.printPayFeeInfo.apply = vc.getParam('apply');
             
             //$that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date());
@@ -50,6 +52,7 @@
                         row: 30,
                         receiptId: $that.printPayFeeInfo.receiptId,
                         receiptIds: $that.printPayFeeInfo.receiptIds,
+                        detailIds: $that.printPayFeeInfo.detailIds,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
@@ -87,6 +90,7 @@
                         row: 100,
                         receiptId: $that.printPayFeeInfo.receiptId,
                         receiptIds: $that.printPayFeeInfo.receiptIds,
+                        detailIds: $that.printPayFeeInfo.detailIds,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };

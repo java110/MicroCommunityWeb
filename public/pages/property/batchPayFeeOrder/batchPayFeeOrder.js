@@ -183,7 +183,8 @@ var saveAs = saveAs || (function(view) {
                 receivedAmountSwitch: '',
                 offlinePayFeeSwitch: '1',
                 payerObjNames: [],
-                payObjs: []
+                payObjs: [],
+                printUrl:'/print.html#/pages/property/printPayFee',
             }
         },
         watch: {
@@ -209,9 +210,34 @@ var saveAs = saveAs || (function(view) {
             vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
                 vc.component.batchPayFeeOrderInfo.primeRates = _data;
             });
+            $that._listFeePrintPages();
         },
         _initEvent: function() {},
         methods: {
+            _listFeePrintPages: function (_page, _rows) {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        state: 'T',
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feePrintPage.listFeePrintPage',
+                    param,
+                    function (json, res) {
+                        var _feePrintPageManageInfo = JSON.parse(json);
+                        let feePrintPages = _feePrintPageManageInfo.data;
+                        if (feePrintPages && feePrintPages.length > 0) {
+                            $that.batchPayFeeOrderInfo.printUrl = feePrintPages[0].url;
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _loadBatchFees: function() {
                 let param = {
                     params: {
@@ -406,7 +432,7 @@ var saveAs = saveAs || (function(view) {
             },
             _printAndBack: function() {
                 $('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?detailIds=" + $that.batchPayFeeOrderInfo.detailIds)
+                window.open($that.payFeeOrderInfo.printUrl+"?detailIds=" + $that.batchPayFeeOrderInfo.detailIds)
             },
             _goBack: function() {
                 vc.goBack();
