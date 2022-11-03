@@ -8,54 +8,38 @@
         data: {
             attendanceClassesManageInfo: {
                 attendanceClassess: [],
-                total: 0,
-                records: 1,
-                moreCondition: false,
-                classesId: '',
-                clockTypes: [],
-                conditions: {
-                    classesName: '',
-                    classesId: '',
-                    clockType: ''
-                }
+                classesObjId: '',
+                classesObjName: '',
             }
         },
         _initMethod: function() {
-            vc.getDict('attendance_classes', "clock_type", function(_data) {
-                vc.component.attendanceClassesManageInfo.clockTypes = _data;
-            });
-            vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
             vc.on('attendanceClassesManage', 'listAttendanceClasses', function(_param) {
                 vc.component._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
-                vc.component._listAttendanceClassess(_currentPage, DEFAULT_ROWS);
-            });
+
+            vc.on('selectStaff', 'switchOrg', function (_param) {
+                $that.attendanceClassesManageInfo.classesObjId = _param.orgId;
+                $that.attendanceClassesManageInfo.classesObjName = _param.orgName;
+                $that._listAttendanceClassess();
+            })
         },
         methods: {
             _listAttendanceClassess: function(_page, _rows) {
-                vc.component.attendanceClassesManageInfo.conditions.page = _page;
-                vc.component.attendanceClassesManageInfo.conditions.row = _rows;
-                var param = {
-                    params: vc.component.attendanceClassesManageInfo.conditions
+                let param = {
+                    params: {
+                        page:1,
+                        row:1,
+                        classesObjId:$that.attendanceClassesManageInfo.classesObjId,
+                    }
                 };
-                param.params.classesId = param.params.classesId.trim();
-                param.params.classesName = param.params.classesName.trim();
                 //发送get请求
                 vc.http.apiGet('/attendanceClasses.listAttendanceClassess',
                     param,
                     function(json, res) {
-                        var _attendanceClassesManageInfo = JSON.parse(json);
-                        vc.component.attendanceClassesManageInfo.total = _attendanceClassesManageInfo.total;
-                        vc.component.attendanceClassesManageInfo.records = _attendanceClassesManageInfo.records;
-                        vc.component.attendanceClassesManageInfo.attendanceClassess = _attendanceClassesManageInfo.data;
-                        vc.emit('pagination', 'init', {
-                            total: vc.component.attendanceClassesManageInfo.records,
-                            dataCount: vc.component.attendanceClassesManageInfo.total,
-                            currentPage: _page
-                        });
+                        let _attendanceClassesManageInfo = JSON.parse(json);
+                        $that.attendanceClassesManageInfo.attendanceClassess = _attendanceClassesManageInfo.data;
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
@@ -63,8 +47,11 @@
                 );
             },
             _openAddAttendanceClassesModal: function() {
-                //vc.emit('addAttendanceClasses', 'openAddAttendanceClassesModal', {});
-                vc.jumpToPage('/#/pages/property/addAttendanceClasses')
+                vc.emit('addAttendanceClasses', 'openAddAttendanceClassesModal', {
+                    classesObjId:$that.attendanceClassesManageInfo.classesObjId,
+                    classesObjName:$that.attendanceClassesManageInfo.classesObjName
+                });
+                //vc.jumpToPage('/#/pages/property/addAttendanceClasses?classesObjId=')
             },
             _openEditAttendanceClassesModel: function(_attendanceClasses) {
                 vc.emit('editAttendanceClasses', 'openEditAttendanceClassesModal', _attendanceClasses);

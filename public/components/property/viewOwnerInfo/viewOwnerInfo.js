@@ -23,7 +23,8 @@
                 link: "",
                 ownerPhoto: "/img/noPhoto.jpg",
                 showCallBackButton: $props.showCallBackButton,
-                attrs: []
+                attrs: [],
+                url:''
             }
         },
         _initMethod: function () {
@@ -79,8 +80,9 @@
                 vc.goBack();
             },
             _loadOwnerPhoto: function () {
-                vc.component.viewOwnerInfo.ownerPhoto = _fileUrl + "?objId=" +
-                    vc.component.viewOwnerInfo.ownerId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
+                // vc.component.viewOwnerInfo.ownerPhoto = _fileUrl + "?objId=" +
+                //     vc.component.viewOwnerInfo.ownerId + "&communityId=" + vc.getCurrentCommunity().communityId + "&fileTypeCd=10000&time=" + new Date();
+                $that.viewOwnerInfo.ownerPhoto  =  $that.viewOwnerInfo.url;
             },
             errorLoadImg: function () {
                 vc.component.viewOwnerInfo.ownerPhoto = "/img/noPhoto.jpg";

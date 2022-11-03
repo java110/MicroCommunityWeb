@@ -61,42 +61,6 @@
                             errInfo: "打卡范围格式错误"
                         },
                     ],
-                    'editAttendanceClassesInfo.clockCount': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "打卡次数不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "打卡次数错误"
-                        },
-                    ],
-                    'editAttendanceClassesInfo.clockType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "打卡类型不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "打卡类型错误"
-                        },
-                    ],
-                    'editAttendanceClassesInfo.clockTypeValue': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "打卡规则不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "12",
-                            errInfo: "打卡规则格式错误"
-                        },
-                    ],
                     'editAttendanceClassesInfo.leaveOffset': [
                         {
                             limit: "required",
@@ -121,18 +85,6 @@
                             errInfo: "早退范围错误"
                         },
                     ],
-                    'editAttendanceClassesInfo.classesObjType': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "班次对象类型不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "班次对象类型错误"
-                        },
-                    ],
                     'editAttendanceClassesInfo.classesObjId': [
                         {
                             limit: "required",
@@ -155,35 +107,6 @@
                 });
             },
             editAttendanceClasses: function () {
-                let _clockType = $that.editAttendanceClassesInfo.clockType;
-                if (_clockType == '1001') {
-                    $that.editAttendanceClassesInfo.clockTypeValue = '*';
-                } else if (_clockType == '1002') {
-                    $that.editAttendanceClassesInfo.clockTypeValue = '?';
-                } else {
-                    let _clockTypeValue = '';
-                    $that.editAttendanceClassesInfo.clockTypeValues.forEach(item => {
-                        _clockTypeValue += (item + ',');
-                    })
-                    if (_clockTypeValue.endsWith(',')) {
-                        _clockTypeValue = _clockTypeValue.substring(0, _clockTypeValue.length - 1)
-                    }
-                    $that.editAttendanceClassesInfo.clockTypeValue = _clockTypeValue;
-                }
-                if (!vc.component.editAttendanceClassesValidate()) {
-                    vc.toast(vc.validate.errInfo);
-                    return;
-                }
-                var flag = "0";
-                $that.editAttendanceClassesInfo.attrs.forEach(function (item) {
-                    if (item.value == null || item.value == '' || item.value == 'undefined') {
-                        vc.toast("上下班时间不能为空");
-                        flag = "1";
-                    }
-                });
-                if (flag == "1") {
-                    return;
-                }
                 vc.http.apiPost(
                     'attendanceClasses.updateAttendanceClasses',
                     JSON.stringify(vc.component.editAttendanceClassesInfo),
