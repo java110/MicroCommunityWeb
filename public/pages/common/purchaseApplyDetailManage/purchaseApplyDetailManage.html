@@ -188,7 +188,7 @@
                             <th class="text-center"><span><vc:i18n name="申请数量" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
                             <th class="text-center"><span><vc:i18n name="采购" namespace="purchaseApplyDetailManage"></vc:i18n></span>/出库数量</th>
                             <th class="text-center"><span><vc:i18n name="采购价格" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="采购总价" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="总价" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
                             <th class="text-center"><span><vc:i18n name="申请备注" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
                             <th class="text-center"><span><vc:i18n name="状态" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
                             <th class="text-center"><span><vc:i18n name="创建时间" namespace="purchaseApplyDetailManage"></vc:i18n></span></th>
@@ -223,8 +223,9 @@
                                 ￥{{purchaseApplyDetail.price ? purchaseApplyDetail.price : '0.00'}}
                             </td>
                             <td class="text-center">
-                                {{purchaseApplyDetail.resOrderType == '10000' ? '￥' +
-                                purchaseApplyDetail.totalApplyPrice : '-'}}
+                                <!-- {{purchaseApplyDetail.resOrderType == '10000' ? '￥' +
+                                purchaseApplyDetail.totalApplyPrice : '-'}} -->
+                                {{purchaseApplyDetail.totalApplyPrice}}
                             </td>
                             <td class="text-center">{{purchaseApplyDetail.remark}}</td>
                             <td class="text-center">{{purchaseApplyDetail.stateName}}</td>
