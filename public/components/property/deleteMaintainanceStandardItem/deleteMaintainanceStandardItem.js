@@ -33,7 +33,6 @@
                             //关闭model
                             $('#deleteMaintainanceStandardItemModel').modal('hide');
                             vc.emit('maintainanceStandardItem', 'loadItem',$that.deleteMaintainanceStandardItemInfo);
-                        
                             return ;
                         }
                         vc.toast(_json.msg);
