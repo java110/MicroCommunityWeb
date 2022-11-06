@@ -36,7 +36,7 @@
 
                 vc.component.maintainanceStandardManageInfo.conditions.page = _page;
                 vc.component.maintainanceStandardManageInfo.conditions.row = _rows;
-                var param = {
+                let param = {
                     params: vc.component.maintainanceStandardManageInfo.conditions
                 };
 
@@ -76,6 +76,9 @@
                 } else {
                     vc.component.maintainanceStandardManageInfo.moreCondition = true;
                 }
+            },
+            _maintainanceItem:function(_maintainanceStandard){
+                vc.jumpToPage('/#/pages/property/maintainanceStandardItem?standardId='+_maintainanceStandard.standardId)
             }
 
 
