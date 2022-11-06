@@ -11,7 +11,7 @@
                 $('#deleteMaintainanceItemModel').modal('show');
             });
         },
-        methods: {
+        methods: { 
             deleteMaintainanceItem: function () {
                 vc.component.deleteMaintainanceItemInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
