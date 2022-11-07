@@ -11,14 +11,14 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                maintainancePlanName: '',
+                planName: '',
                 states: '',
                 maintainancePlanStaffModel: false,
                 conditions: {
-                    maintainancePlanName: '',
+                    planName: '',
                     staffName: '',
                     state: '',
-                    maintainancePlanId: ''
+                    planId: ''
                 }
             }
         },
@@ -50,11 +50,11 @@
                 var param = {
                     params: vc.component.maintainancePlanManageInfo.conditions
                 };
-                param.params.maintainancePlanId = param.params.maintainancePlanId.trim();
-                param.params.maintainancePlanName = param.params.maintainancePlanName.trim();
+                param.params.planId = param.params.planId.trim();
+                param.params.planName = param.params.planName.trim();
                 param.params.state = param.params.state.trim();
                 //发送get请求
-                vc.http.apiGet('/maintainancePlan.listMaintainancePlans',
+                vc.http.apiGet('/maintainancePlan.listMaintainancePlan',
                     param,
                     function (json, res) {
                         var _maintainancePlanManageInfo = JSON.parse(json);
@@ -78,10 +78,13 @@
                 vc.jumpToPage('/#/pages/property/addMaintainancePlan')
             },
             _openEditMaintainancePlanModel: function (_maintainancePlan) {
-                vc.emit('editMaintainancePlan', 'openEditMaintainancePlanModal', _maintainancePlan);
+                vc.jumpToPage('/#/pages/property/editMaintainancePlan?planId='+_maintainancePlan.planId);
             },
             _openDeleteMaintainancePlanModel: function (_maintainancePlan) {
                 vc.emit('deleteMaintainancePlan', 'openDeleteMaintainancePlanModal', _maintainancePlan);
+            },
+            _viewMachine:function(_maintainancePlan){
+
             },
             //查询
             _queryMaintainancePlanMethod: function () {
@@ -89,15 +92,15 @@
             },
             //重置
             _resetMaintainancePlanMethod: function () {
-                vc.component.maintainancePlanManageInfo.conditions.maintainancePlanName = "";
-                vc.component.maintainancePlanManageInfo.conditions.maintainancePlanId = "";
+                vc.component.maintainancePlanManageInfo.conditions.planName = "";
+                vc.component.maintainancePlanManageInfo.conditions.planId = "";
                 vc.component.maintainancePlanManageInfo.conditions.state = "";
                 vc.component._listMaintainancePlans(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //启用计划
             _openEnabledMaintainancePlanModel: function (_maintainancePlan) {
                 vc.emit('maintainancePlanState', 'openMaintainancePlanStateModal', {
-                    maintainancePlanId: _maintainancePlan.maintainancePlanId,
+                    planId: _maintainancePlan.planId,
                     stateName: '启用',
                     state: '2020025'
                 });
@@ -105,7 +108,7 @@
             //停用计划
             _openDisabledMaintainancePlanModel: function (_maintainancePlan) {
                 vc.emit('maintainancePlanState', 'openMaintainancePlanStateModal', {
-                    maintainancePlanId: _maintainancePlan.maintainancePlanId,
+                    planId: _maintainancePlan.planId,
                     stateName: '停用',
                     state: '2020026'
                 });

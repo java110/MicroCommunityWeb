@@ -1,11 +1,11 @@
 (function (vc) {
     vc.extends({
         data: {
-            addMaintainancePlanInfo: {
+            editMaintainancePlanInfo: {
                 planId: '',
                 planName: '',
                 standardId: '',
-                standards:[],
+                standards: [],
                 planPeriod: '',
                 startDate: vc.dateFormat(new Date()),
                 endDate: '2050-01-01',
@@ -15,44 +15,33 @@
                 days: [],
                 everyDays: [],
                 staffs: [],
-                machines:[]
-            }
-        },
-        watch: {
-            'addMaintainancePlanInfo.machines': function() { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
-                this.$nextTick(function() {
-                    $('#machineIds').selectpicker({
-                        title: '选填，请选择保养设备',
-                        styleBase: 'form-control',
-                        width: 'auto'
-                    });
-
-                    $('#machineIds').selectpicker('refresh');
-                })
+                machines: []
             }
         },
         _initMethod: function () {
+            $that.editMaintainancePlanInfo.planId = vc.getParam('planId');
             vc.component._initAddMaintainancePlanDateInfo();
+
+            $that._listEditMaintainanceStandards();
+            $that._listMaintainancePlans();
+            $that._listMaintainancePlanStaffs();
             
-            $that._listEquipmentAccounts();
-            $that._listAddMaintainanceStandards();
-            vc.emit('selectStaffs', 'setStaffs', $that.addMaintainancePlanInfo.staffs);
         },
         _initEvent: function () {
 
-            vc.on("addMaintainancePlanInfo", "notify", function (_param) {
+            vc.on("editMaintainancePlanInfo", "notify", function (_param) {
                 if (_param.hasOwnProperty("staffId")) {
-                    vc.component.addMaintainancePlanInfo.staffId = _param.staffId;
-                    vc.component.addMaintainancePlanInfo.staffName = _param.staffName;
+                    vc.component.editMaintainancePlanInfo.staffId = _param.staffId;
+                    vc.component.editMaintainancePlanInfo.staffName = _param.staffName;
                 }
             });
         },
         methods: {
-            addMaintainancePlanValidate() {
+            editMaintainancePlanValidate() {
                 return vc.validate.validate({
-                    addMaintainancePlanInfo: vc.component.addMaintainancePlanInfo
+                    editMaintainancePlanInfo: vc.component.editMaintainancePlanInfo
                 }, {
-                    'addMaintainancePlanInfo.planName': [{
+                    'editMaintainancePlanInfo.planName': [{
                         limit: "required",
                         param: "",
                         errInfo: "计划名称不能为空"
@@ -63,12 +52,12 @@
                         errInfo: "巡检计划名称不能超过100位"
                     },
                     ],
-                    'addMaintainancePlanInfo.standardId': [{
+                    'editMaintainancePlanInfo.standardId': [{
                         limit: "required",
                         param: "",
                         errInfo: "保养标准不能为空"
                     }],
-                    'addMaintainancePlanInfo.planPeriod': [{
+                    'editMaintainancePlanInfo.planPeriod': [{
                         limit: "required",
                         param: "",
                         errInfo: "执行周期不能为空"
@@ -79,7 +68,7 @@
                         errInfo: "执行周期格式错误"
                     },
                     ],
-                    'addMaintainancePlanInfo.startDate': [{
+                    'editMaintainancePlanInfo.startDate': [{
                         limit: "required",
                         param: "",
                         errInfo: "计划开始时间不能为空"
@@ -90,7 +79,7 @@
                         errInfo: "计划开始时间不是有效的时间格式"
                     },
                     ],
-                    'addMaintainancePlanInfo.endDate': [{
+                    'editMaintainancePlanInfo.endDate': [{
                         limit: "required",
                         param: "",
                         errInfo: "计划结束时间不能为空"
@@ -101,7 +90,7 @@
                         errInfo: "计划结束时间不是有效的时间格式"
                     },
                     ],
-                    'addMaintainancePlanInfo.state': [{
+                    'editMaintainancePlanInfo.state': [{
                         limit: "required",
                         param: "",
                         errInfo: "状态不能为空"
@@ -112,7 +101,7 @@
                         errInfo: "签到方式格式错误"
                     },
                     ],
-                    'addMaintainancePlanInfo.remark': [{
+                    'editMaintainancePlanInfo.remark': [{
                         limit: "maxLength",
                         param: "200",
                         errInfo: "备注信息不能超过200位"
@@ -120,26 +109,26 @@
                 });
             },
             _initAddMaintainancePlanDateInfo: function () {
-                vc.initDate('addMaintainancePlanStartDate', function (_value) {
-                    $that.addMaintainancePlanInfo.startDate = _value;
+                vc.initDate('editMaintainancePlanStartDate', function (_value) {
+                    $that.editMaintainancePlanInfo.startDate = _value;
                 });
-                vc.initDate('addMaintainancePlanEndDate', function (_value) {
-                    $that.addMaintainancePlanInfo.endDate = _value;
+                vc.initDate('editMaintainancePlanEndDate', function (_value) {
+                    $that.editMaintainancePlanInfo.endDate = _value;
                 });
             },
             saveMaintainancePlanInfo: function () {
-                if (!vc.component.addMaintainancePlanValidate()) {
+                if (!vc.component.editMaintainancePlanValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.addMaintainancePlanInfo.communityId = vc.getCurrentCommunity().communityId;
-                $that.addMaintainancePlanInfo.maintainanceMonth = $that.addMaintainancePlanInfo.months.join(',');
-                $that.addMaintainancePlanInfo.maintainanceDay = $that.addMaintainancePlanInfo.days.join(',');
-                $that.addMaintainancePlanInfo.maintainanceEveryday = $that.addMaintainancePlanInfo.everyDays;
+                vc.component.editMaintainancePlanInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.editMaintainancePlanInfo.maintainanceMonth = $that.editMaintainancePlanInfo.months.join(',');
+                $that.editMaintainancePlanInfo.maintainanceDay = $that.editMaintainancePlanInfo.days.join(',');
+                $that.editMaintainancePlanInfo.maintainanceEveryday = $that.editMaintainancePlanInfo.everyDays;
                 //不提交数据将数据 回调给侦听处理
                 vc.http.apiPost(
-                    '/maintainancePlan.saveMaintainancePlan',
-                    JSON.stringify(vc.component.addMaintainancePlanInfo), {
+                    '/maintainancePlan.updateMaintainancePlan',
+                    JSON.stringify(vc.component.editMaintainancePlanInfo), {
                     emulateJSON: true
                 },
                     function (json, res) {
@@ -159,25 +148,25 @@
                         vc.toast(errInfo);
                     });
             },
-           
+
             _changeMaintainancePeriod: function () {
-                $that.addMaintainancePlanInfo.months = [];
-                $that.addMaintainancePlanInfo.days = [];
-                $that.addMaintainancePlanInfo.everyDays = [];
-                if ($that.addMaintainancePlanInfo.planPeriod == '2020022') {
+                $that.editMaintainancePlanInfo.months = [];
+                $that.editMaintainancePlanInfo.days = [];
+                $that.editMaintainancePlanInfo.everyDays = [];
+                if ($that.editMaintainancePlanInfo.planPeriod == '2020022') {
                     for (let _month = 1; _month < 13; _month++) {
-                        $that.addMaintainancePlanInfo.months.push(_month);
+                        $that.editMaintainancePlanInfo.months.push(_month);
                     }
                     for (let _day = 1; _day < 32; _day++) {
-                        $that.addMaintainancePlanInfo.days.push(_day);
+                        $that.editMaintainancePlanInfo.days.push(_day);
                     }
                 } else {
                     for (let _day = 1; _day < 8; _day++) {
-                        $that.addMaintainancePlanInfo.everyDays.push(_day);
+                        $that.editMaintainancePlanInfo.everyDays.push(_day);
                     }
                 }
             },
-            _listAddMaintainanceStandards: function () {
+            _listEditMaintainanceStandards: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -190,7 +179,7 @@
                     param,
                     function (json, res) {
                         let _maintainanceRouteManageInfo = JSON.parse(json);
-                        $that.addMaintainancePlanInfo.standards = _maintainanceRouteManageInfo.data;
+                        $that.editMaintainancePlanInfo.standards = _maintainanceRouteManageInfo.data;
 
                     },
                     function (errInfo, error) {
@@ -198,20 +187,51 @@
                     }
                 );
             },
-            _listEquipmentAccounts: function (_page, _row) {
+            _listMaintainancePlans: function (_page, _rows) {
                 let param = {
                     params: {
-                        page:1,
-                        row:100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 1,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        planId: $that.editMaintainancePlanInfo.planId
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/equipmentAccount.listEquipmentAccount',
+                vc.http.apiGet('/maintainancePlan.listMaintainancePlan',
                     param,
                     function (json, res) {
-                        var _equipmentAccountManageInfo = JSON.parse(json);
-                        vc.component.addMaintainancePlanInfo.machines = _equipmentAccountManageInfo.data;
+                        let _maintainancePlanManageInfo = JSON.parse(json);
+                        let _params = _maintainancePlanManageInfo.data[0];
+                        vc.copyObject(_params, $that.editMaintainancePlanInfo);
+                        $that.editMaintainancePlanInfo.months = _params.maintainanceMonth.split(',');
+                        $that.editMaintainancePlanInfo.days = _params.maintainanceDay.split(',');
+                        $that.editMaintainancePlanInfo.everyDays = _params.maintainanceEveryday;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _listMaintainancePlanStaffs: function (_page, _rows) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        planId: $that.editMaintainancePlanInfo.planId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/maintainancePlan.listMaintainancePlanStaff',
+                    param,
+                    function (json, res) {
+                        let _maintainancePlanManageInfo = JSON.parse(json);
+                        _maintainancePlanManageInfo.data.forEach(item => {
+                            item.userId = item.staffId;
+                            item.name = item.staffName;
+                        });
+                        $that.editMaintainancePlanInfo.staffs = _maintainancePlanManageInfo.data;
+                        vc.emit('selectStaffs', 'setStaffs', $that.editMaintainancePlanInfo.staffs);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -34,14 +34,9 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryInspectionPlanMethod()">
+                                    v-on:click="_queryMaintainancePlanMethod()">
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="maintainancePlanManage"></vc:i18n></span>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_resetInspectionPlanMethod()">
-                                <i class="fa fa-repeat"></i>
-                                <span><vc:i18n name="重置" namespace="maintainancePlanManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -88,6 +83,9 @@
                                 <span><vc:i18n name="设备数" namespace="maintainancePlanManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
+                                <span><vc:i18n name="保养人数" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="制定人" namespace="maintainancePlanManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
@@ -104,28 +102,29 @@
                         <tbody>
                         <tr v-for="maintainancePlan in maintainancePlanManageInfo.maintainancePlans">
                             <!-- <td class="text-center">{{maintainancePlan.planId}}</td> -->
-                            <td class="text-center">{{maintainancePlan.PlanName}}</td>
+                            <td class="text-center">{{maintainancePlan.planName}}</td>
                             <td class="text-center">{{maintainancePlan.standardName}}</td>
-                            <td class="text-center">{{inspectionPlan.planPeriodName}}</td>
+                            <td class="text-center">{{maintainancePlan.planPeriodName}}</td>
                             <td class="text-center">{{maintainancePlan.startDate}}~{{maintainancePlan.endDate}}</td>
                             <td class="text-center">{{maintainancePlan.machineCount}}
-                                (<a href="javascript:void(0)" @click="_viewMachine">设备</a>)
+                                (<a href="javascript:void(0)" @click="_viewMachine(maintainancePlan)">设备</a>)
                             </td>
+                            <td class="text-center">{{maintainancePlan.staffCount}}</td>
                             <td class="text-center">{{maintainancePlan.createUserName}}</td>
                             <td class="text-center">{{maintainancePlan.createTime}}</td>
                             <td class="text-center">{{maintainancePlan.stateName}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditInspectionPlanModel(maintainancePlan)">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditMaintainancePlanModel(maintainancePlan)">
                                         <vc:i18n name="修改" namespace="maintainancePlanManage"></vc:i18n>
                                     </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteInspectionPlanModel(maintainancePlan)">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteMaintainancePlanModel(maintainancePlan)">
                                         <vc:i18n name="删除" namespace="maintainancePlanManage"></vc:i18n>
                                     </button>
-                                    <button class="btn-white btn btn-xs" v-if="maintainancePlan.state == '2020025'" v-on:click="_openDisabledInspectionPlanModel(maintainancePlan)">
+                                    <button class="btn-white btn btn-xs" v-if="maintainancePlan.state == '2020025'" v-on:click="_openDisabledMaintainancePlanModel(maintainancePlan)">
                                         <vc:i18n name="停用" namespace="maintainancePlanManage"></vc:i18n>
                                     </button>
-                                    <button class="btn-white btn btn-xs" v-else v-on:click="_openEnabledInspectionPlanModel(maintainancePlan)">
+                                    <button class="btn-white btn btn-xs" v-else v-on:click="_openEnabledMaintainancePlanModel(maintainancePlan)">
                                         <vc:i18n name="启用" namespace="maintainancePlanManage"></vc:i18n>
                                     </button>
                                     
@@ -157,7 +156,6 @@
         </div>
     </div>
 
-    <!-- <vc:create path="property/editInspectionPlan"></vc:create>
-    <vc:create path="property/deleteInspectionPlan"></vc:create>
-    <vc:create path="property/maintainancePlanState"></vc:create> -->
+    <vc:create path="property/deleteMaintainancePlan"></vc:create>
+    <vc:create path="property/maintainancePlanState"></vc:create> 
 </div>
