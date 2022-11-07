@@ -18,6 +18,7 @@
         _initEvent: function() {
             vc.on('newOaWorkflowForm', 'witch', function(_value) {
                 $that.newOaWorkflowFormInfo.flowId = _value.flowId;
+                vc.emit('newOaWorkflowForm','uploadFile', 'clearVedio',{})
                 vc.component._listOaWorkflowForm(DEFAULT_PAGE, DEFAULT_ROWS);
             });
 
@@ -89,7 +90,9 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.toast('提交成功');
-                            vc.emit('newOaWorkflow', 'switch', 'newOaWorkflowPool')
+                            $that.newOaWorkflowFormInfo.formJson = {};
+                            vc.emit('newOaWorkflow', 'switch', 'newOaWorkflowPool');
+                            
                             return;
                         }
                         vc.toast(_json.msg);

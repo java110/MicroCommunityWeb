@@ -7,11 +7,12 @@
     vc.extends({
         data: {
             newOaWorkflowInfo: {
-                switchValue: ''
+                switchValue: '',
             }
         },
         _initMethod: function () {
             $that.newOaWorkflowInfo.switchValue = vc.getParam('switchValue');
+            
             if ($that.newOaWorkflowInfo.switchValue) {
                 $that.swatch($that.newOaWorkflowInfo.switchValue);
                 return;
@@ -28,6 +29,9 @@
         },
         methods: {
             swatch: function (_value) {
+                if($that.newOaWorkflowInfo.switchValue == _value){
+                    return ;
+                }
                 $that.newOaWorkflowInfo.switchValue = _value;
                 vc.emit(_value, 'witch', {
                     flowId: vc.getParam('flowId')
