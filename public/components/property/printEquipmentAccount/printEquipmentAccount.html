@@ -1,0 +1,188 @@
+<div id="printEquipmentAccountModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span>
+            <vc:i18n name="打印设备标签" namespace="printEquipmentAccount"></vc:i18n>
+          </span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                  <vc:i18n name='设备名称' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.machineName" type="text"
+                    :placeholder="vc.i18n('必填，请填写设备名称','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                  <vc:i18n name='设备编码' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.machineCode" type="text"
+                    :placeholder="vc.i18n('必填，请填写设备编码','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                  <vc:i18n name='设备品牌' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.brand" type="text"
+                    :placeholder="vc.i18n('选填，请填写设备品牌','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                  <vc:i18n name='设备型号' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.model" type="text"
+                    :placeholder="vc.i18n('选填，请填写设备型号','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='位置详情' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.locationDetail" type="text"
+                    :placeholder="vc.i18n('选填，请填写位置详情','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='首次启用时间' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.firstEnableTime" type="text"
+                    :placeholder="vc.i18n('选填，请填写首次启用时间','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='保修截止日期' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.warrantyDeadline" type="text"
+                    :placeholder="vc.i18n('选填，请填写保修截止日期','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='使用年限（月）' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.usefulLife" type="text"
+                    :placeholder="vc.i18n('选填，请填写使用年限（月）','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='重要等级' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="printEquipmentAccountInfo.importanceLevel">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择重要等级' ,'printEquipmentAccount')}}</option>
+                    <option value="1000">{{vc.i18n('A' ,'printEquipmentAccount')}} </option>
+                    <option value="2000">{{vc.i18n('B' ,'printEquipmentAccount')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='使用状态' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="printEquipmentAccountInfo.state">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择使用状态' ,'printEquipmentAccount')}}</option>
+                    <option value="1000">{{vc.i18n('使用中' ,'printEquipmentAccount')}} </option>
+                    <option value="2000">{{vc.i18n('停用中' ,'printEquipmentAccount')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='采购价格' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.purchasePrice" type="text"
+                    :placeholder="vc.i18n('选填，请填写采购价格','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='资产净值' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.netWorth" type="text"
+                    :placeholder="vc.i18n('选填，请填写资产净值','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">  <span>
+                  <vc:i18n name='使用部门' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.useOrgName" type="text"
+                    :placeholder="vc.i18n('选填，请填写使用部门','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">  <span>
+                  <vc:i18n name='使用人' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.useUserName" type="text"
+                    :placeholder="vc.i18n('选填，请填写使用人','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='责任部门' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.chargeOrgName" type="text"
+                    :placeholder="vc.i18n('选填，请填写责任部门','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> <span>
+                  <vc:i18n name='责任人' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.chargeUseName" type="text"
+                    :placeholder="vc.i18n('选填，请填写责任人','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">  <span>
+                  <vc:i18n name='备注' namespace='printEquipmentAccount'></vc:i18n>
+                </span> </label>
+                <div class="col-sm-10">
+                  <input v-model="printEquipmentAccountInfo.remark" type="text"
+                    :placeholder="vc.i18n('选填，请填写备注','printEquipmentAccount')" class="form-control">
+                </div>
+              </div>
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="printEquipmentAccount()"><i
+                    class="fa fa-check"></i>&nbsp;<span>
+                    <vc:i18n name="打印预览"></vc:i18n>
+                  </span></button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal"><span>
+                    <vc:i18n name="取消"></vc:i18n>
+                  </span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

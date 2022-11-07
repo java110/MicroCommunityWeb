@@ -1,0 +1,160 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="设备详情" namespace="ownerRepairDetail"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="ownerRepairDetail"></vc:i18n></span></button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_printEquipmentDetail()"><span><vc:i18n name="打印" namespace="ownerRepairDetail"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="设备名称" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.machineName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="设备编码" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.machineCode}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="重要等级" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.levelName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="使用状态" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.stateName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="设备品牌" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.brand}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="设备型号" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.model}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="位置详情" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.locationDetail}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="首次启用时间" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.firstEnableTime}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="保修截止日期" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.warrantyDeadline}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="使用年限（年）" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.usefulLife}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="采购价格" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.purchasePrice}}<span><vc:i18n name="元" namespace="ownerRepairDetail"></vc:i18n></span></label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="资产净值" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.netWorth}}<span><vc:i18n name="元" namespace="ownerRepairDetail"></vc:i18n></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="使用人" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.useUserName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="责任人" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.chargeUseName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="备注" namespace="ownerRepairDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{equipmentAccountDetail.remark}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="设备日志" namespace="ownerRepairDetail"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="操作编码" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="操作描述" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="操作时间" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                            <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="ownerRepairDetail"></vc:i18n></span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in equipmentAccountDetail.elogs">
+                            <td scope="row" class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{item.operatingCode}}</td>
+                            <td class="text-center">{{item.operatingDescriptor}}</td>
+                            <td class="text-center">{{item.createTime}}</td>
+                            <td class="text-center">{{item.remark}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

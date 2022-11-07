@@ -1,0 +1,169 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>
+          <span>
+            <vc:i18n name="添加设备" namespace="addStaff"></vc:i18n>
+          </span>
+        </h5>
+        <div class="ibox-tools" style="top:10px;">
+        </div>
+      </div>
+      <div class="ibox-content">
+        <div>
+          <div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='设备名称' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.machineName" type="text"
+                  :placeholder="vc.i18n('必填，请填写设备名称','addEquipmentAccount')" class="form-control">
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='设备编码' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.machineCode" type="text"
+                  :placeholder="vc.i18n('必填，请填写设备编码','addEquipmentAccount')" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='重要等级' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <select class="custom-select" v-model="addEquipmentAccountInfo.importanceLevel">
+                  <option selected disabled value="">{{vc.i18n('必填，请选择重要等级' ,'editEquipmentAccount')}}</option>
+                  <option v-for="(item,index) in addEquipmentAccountInfo.importanceLevels" :key="index"
+                    :value="item.statusCd">{{item.name}}</option>
+                </select>
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='使用状态' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <select class="custom-select" v-model="addEquipmentAccountInfo.state">
+                  <option selected disabled value="">{{vc.i18n('必填，请选择使用状态' ,'editEquipmentAccount')}}</option>
+                  <option v-for="(item,index) in addEquipmentAccountInfo.useStatus" :key="index" :value="item.statusCd">
+                    {{item.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='设备品牌' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.brand" type="text"
+                  :placeholder="vc.i18n('选填，请填写设备品牌','addEquipmentAccount')" class="form-control">
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='设备型号' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.model" type="text"
+                  :placeholder="vc.i18n('选填，请填写设备型号','addEquipmentAccount')" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='资产净值' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.netWorth" type="text"
+                  :placeholder="vc.i18n('选填，请填写资产净值','addEquipmentAccount')" class="form-control">
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='位置详情' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.locationDetail" type="text"
+                  :placeholder="vc.i18n('选填，请填写位置详情','addEquipmentAccount')" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='首次启用时间' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.firstEnableTime" type="text"
+                  :placeholder="vc.i18n('选填，请填写首次启用时间','addEquipmentAccount')" class="form-control addFirstEnableTime">
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='保修截止日期' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.warrantyDeadline" type="text"
+                  :placeholder="vc.i18n('选填，请填写保修截止日期','addEquipmentAccount')"
+                  class="form-control addWarrantyDeadlineE">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='使用年限（年）' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.usefulLife" type="text"
+                  :placeholder="vc.i18n('选填，请填写使用年限（年）','addEquipmentAccount')" class="form-control">
+              </div>
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='采购价格' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.purchasePrice" type="text"
+                  :placeholder="vc.i18n('选填，请填写采购价格','addEquipmentAccount')" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name="使用人" namespace="addEquipmentAccount"></vc:i18n>
+                </span></label>
+
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.useUserName" type="text"
+                  :placeholder="vc.i18n('必填，请选择责任人','useUserName')" class="form-control">
+              </div>
+              <label class="col-sm-2 col-form-label text-right">
+                <span>
+                  <vc:i18n name="责任人" namespace="addEquipmentAccount"></vc:i18n>
+                </span>
+              </label>
+              <div class="col-sm-4">
+                <input v-model="addEquipmentAccountInfo.chargeUseName" type="text"
+                  :placeholder="vc.i18n('必填，请选择使用人','chargeUseName')" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label text-right"><span>
+                  <vc:i18n name='备注' namespace='addEquipmentAccount'></vc:i18n>
+                </span></label>
+              <div class="col-sm-10">
+                <textarea v-model="addEquipmentAccountInfo.remark" type="text"
+                  :placeholder="vc.i18n('选填，请填写备注','addEquipmentAccount')" class="form-control"></textarea>
+              </div>
+            </div>
+
+            <div class="ibox-content">
+              <button class="btn btn-primary float-right" type="button" v-on:click="saveEquipmentAccountInfo()"><i
+                  class="fa fa-check"></i>&nbsp;
+                <span>
+                  <vc:i18n name="保存"></vc:i18n>
+                </span>
+              </button>
+              <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                <span>
+                  <vc:i18n name="取消"></vc:i18n>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 /**
- 入驻小区
- **/
+    入驻园区
+**/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -27,6 +27,7 @@
             });
         },
         _initEvent: function () {
+
             vc.on('machineTypeManage', 'listMachineType', function (_param) {
                 vc.component._listMachineTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -36,11 +37,13 @@
         },
         methods: {
             _listMachineTypes: function (_page, _rows) {
+
                 vc.component.machineTypeManageInfo.conditions.page = _page;
                 vc.component.machineTypeManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.machineTypeManageInfo.conditions
                 };
+
                 //发送get请求
                 vc.http.apiGet('machineType.listMachineType',
                     param,
@@ -51,7 +54,6 @@
                         vc.component.machineTypeManageInfo.machineTypes = _machineTypeManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.machineTypeManageInfo.records,
-                            dataCount: vc.component.machineTypeManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -70,11 +72,13 @@
             },
             _queryMachineTypeMethod: function () {
                 vc.component._listMachineTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+
             },
             //重置
             _resetMachineTypeMethod: function () {
                 vc.component.machineTypeManageInfo.conditions.machineTypeCd = "";
                 vc.component.machineTypeManageInfo.conditions.machineTypeName = "";
+
                 vc.component._listMachineTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _getspecEduName: function (_edu) {
@@ -93,6 +97,8 @@
                     vc.component.machineTypeManageInfo.moreCondition = true;
                 }
             }
+
+
         }
     });
 })(window.vc);

@@ -1,0 +1,182 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span>
+                        <vc:i18n name="设备台账信息" namespace="viewEquipmentAccountInfo"></vc:i18n>
+                    </span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewEquipmentAccountInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectEquipmentAccountInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span>
+                            <vc:i18n name="选择设备台账" namespace="viewEquipmentAccountInfo"></vc:i18n>
+                        </span></button>
+
+                    <button type="button" v-if="viewEquipmentAccountInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddEquipmentAccountInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span>
+                            <vc:i18n name="添加设备台账" namespace="viewEquipmentAccountInfo"></vc:i18n>
+                        </span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='设备名称' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.machineName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='设备编码' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.machineCode}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='设备品牌' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.brand}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='设备型号' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.model}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='位置详情' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.locationDetail}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='首次启用时间' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.firstEnableTime}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='保修截止日期' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.warrantyDeadline}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='使用年限（月）' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.usefulLife}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='重要等级' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.importanceLevel}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='使用状态' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.state}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='采购价格' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.purchasePrice}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='资产净值' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.purchasePrice}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='使用部门' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.useOrgOd}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='使用人' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.useUserId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='责任部门' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.chargeOrgId}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='责任人' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.chargeUseId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"> <span>
+                                    <vc:i18n name='备注' namespace='viewequipmentAccountInfo'></vc:i18n>
+                                </span>：</label>
+                            <label class="">{{viewEquipmentAccountInfo.remark}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addEquipmentAccount" callBackListener="viewEquipmentAccountInfo"
+        callBackFunction="chooseEquipmentAccount"></vc:create>
+
+
+    <vc:create path="property/chooseEquipmentAccount" emitChooseEquipmentAccount="viewEquipmentAccountInfo"
+        emitLoadData="viewEquipmentAccountInfo"></vc:create>
+</div>

@@ -1,4 +1,5 @@
 (function (vc) {
+
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -6,9 +7,18 @@
         },
         data: {
             addMachineTypeInfo: {
+                parentTypeId: '',
                 typeId: '',
                 machineTypeCd: '',
                 machineTypeName: '',
+                machineTypeCode:'',
+                isEnable:'',
+                importanceLevel:'',
+                unit:'',
+                warrantyDeadline:'',
+                seq:'',
+                remark:'',
+                importanceLevels:[],
                 machine: []
             }
         },
@@ -16,10 +26,30 @@
             vc.getDict('machine', "machine_type_cd", function (_data) {
                 vc.component.addMachineTypeInfo.machine = _data;
             });
+            vc.getDict('machine_type', "importance_level", function (_data) {
+                vc.component.addMachineTypeInfo.importanceLevels = _data;
+            });
+
+            $('.addWarrantyDeadline').datetimepicker({
+                minView: "month",
+                language: 'zh-CN',
+                fontAwesome: 'fa',
+                format: 'yyyy-mm-dd',
+                initTime: true,
+                initialDate: new Date(),
+                autoClose: 1,
+                todayBtn: true
+            });
+            $('.addWarrantyDeadline').datetimepicker()
+                .on('changeDate', function (ev) {
+                    var value = $(".addWarrantyDeadline").val();
+                    vc.component.addMachineTypeInfo.warrantyDeadline = value;
+                });
         },
         _initEvent: function () {
-            vc.on('addMachineType', 'openAddMachineTypeModal', function () {
+            vc.on('addMachineType', 'openAddMachineTypeModal', function (_params) {
                 $('#addMachineTypeModel').modal('show');
+                vc.component.addMachineTypeInfo.parentTypeId = _params.typeId;
             });
         },
         methods: {
@@ -27,18 +57,6 @@
                 return vc.validate.validate({
                     addMachineTypeInfo: vc.component.addMachineTypeInfo
                 }, {
-                    'addMachineTypeInfo.machineTypeCd': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备大类不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "30",
-                            errInfo: "设备大类不能超过30"
-                        },
-                    ],
                     'addMachineTypeInfo.machineTypeName': [
                         {
                             limit: "required",
@@ -50,7 +68,20 @@
                             param: "30",
                             errInfo: "设备类型名称不能超过30"
                         },
+                    ],
+                    'addMachineTypeInfo.machineTypeCode': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "分类编码不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "30",
+                            errInfo: "分类编码不能超过30"
+                        },
                     ]
+
                 });
             },
             saveMachineTypeInfo: function () {
@@ -58,6 +89,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+
                 vc.component.addMachineTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -65,6 +97,7 @@
                     $('#addMachineTypeModel').modal('hide');
                     return;
                 }
+
                 vc.http.apiPost(
                     'machineType.saveMachineType',
                     JSON.stringify(vc.component.addMachineTypeInfo),
@@ -78,28 +111,39 @@
                             //关闭model
                             $('#addMachineTypeModel').modal('hide');
                             vc.component.clearAddMachineTypeInfo();
-                            vc.emit('machineTypeManage', 'listMachineType', {});
-                            vc.toast("添加成功");
+                            vc.emit('machineTypesTree', 'refreshTree', {});
+                            vc.emit('equipmentAccountManage', 'listEquipmentAccount', {});
                             return;
-                        } else {
-                            vc.toast(_json.msg);
                         }
+                        vc.message(_json.msg);
+
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
+
                         vc.message(errInfo);
-                    }
-                );
+
+                    });
             },
             clearAddMachineTypeInfo: function () {
-                let _machine = vc.component.addMachineTypeInfo.machine;
+                let _importanceLevels = $that.addMachineTypeInfo.importanceLevels;
                 vc.component.addMachineTypeInfo = {
+                    parentTypeId: '',
                     typeId: '',
                     machineTypeCd: '',
                     machineTypeName: '',
-                    machine: _machine
+                    machineTypeCode:'',
+                    importanceLevel:'',
+                    importanceLevels:_importanceLevels,
+                    isEnable:'',
+                    unit:'',
+                    warrantyDeadline:'',
+                    seq:'',
+                    remark:'',
+                    machine: []
                 };
             }
         }
     });
+
 })(window.vc);
