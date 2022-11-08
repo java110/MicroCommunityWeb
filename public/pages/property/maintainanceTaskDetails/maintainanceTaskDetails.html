@@ -54,75 +54,23 @@
                             <select class="custom-select"
                                     v-model="maintainanceTaskDetailManageInfo.conditions.maintainancePlanId">
                                 <option selected value="">{{vc.i18n('请选择保养计划','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.maintainancePlanList"
-                                        :key="index" :value="item.maintainancePlanId">
-                                    {{item.maintainancePlanName}}
+                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.plans"
+                                        :key="index" :value="item.planId">
+                                    {{item.planName}}
                                 </option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <select class="custom-select"
-                                    v-model="maintainanceTaskDetailManageInfo.conditions.maintainanceRouteId">
-                                <option selected value="">{{vc.i18n('请选择保养路线','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.maintainanceRouteList"
-                                        :key="index" :value="item.maintainanceRouteId">
-                                    {{item.routeName}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="custom-select"
-                                    v-model="maintainanceTaskDetailManageInfo.conditions.maintainanceId">
-                                <option selected value="">{{vc.i18n('请选择保养点','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.maintainancePointList"
-                                        :key="index" :value="item.maintainanceId">
-                                    {{item.maintainanceName}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row margin-top" v-show="maintainanceTaskDetailManageInfo.moreCondition == true">
-                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入任务详情ID','maintainanceTaskDetails')"
                                        v-model="maintainanceTaskDetailManageInfo.conditions.taskDetailId"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <select class="custom-select"
-                                    v-model="maintainanceTaskDetailManageInfo.conditions.maintainanceState">
-                                <option selected value="">{{vc.i18n('请选择签到状态','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.maintainanceStateTypes"
-                                        :key="index" :value="item.statusCd">
-                                    {{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="custom-select" v-model="maintainanceTaskDetailManageInfo.conditions.state">
-                                <option selected value="">{{vc.i18n('请选择保养点状态','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.stateTypes" :key="index"
-                                        :value="item.statusCd">
-                                    {{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row" v-show="maintainanceTaskDetailManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="maintainanceTaskDetailManageInfo.conditions.taskState">
                                 <option selected value="">{{vc.i18n('请选择任务状态','maintainanceTaskDetails')}}</option>
                                 <option v-for="(item,index) in maintainanceTaskDetailManageInfo.taskStates" :key="index"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="custom-select"
-                                    v-model="maintainanceTaskDetailManageInfo.conditions.patrolType">
-                                <option selected value="">{{vc.i18n('请选择保养情况','maintainanceTaskDetails')}}</option>
-                                <option v-for="(item,index) in maintainanceTaskDetailManageInfo.patrolTypes" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
@@ -163,14 +111,14 @@
                                 <span><vc:i18n name="保养标准" namespace="maintainanceTaskDetails"></vc:i18n></span>
                             </th>
                             <th class="text-center">
+                                <span><vc:i18n name="计划保养人" namespace="maintainanceTaskDetails"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
                                 <span><vc:i18n name="保养人" namespace="maintainanceTaskDetails"></vc:i18n></span><br/>
                                 <span><vc:i18n name="开始/结束时间" namespace="maintainanceTaskDetails"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="实际保养时间" namespace="maintainanceTaskDetails"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="计划保养人" namespace="maintainanceTaskDetails"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="实际保养人" namespace="maintainanceTaskDetails"></vc:i18n></span>
@@ -187,6 +135,9 @@
                             <th class="text-center">
                                 <span><vc:i18n name="创建时间" namespace="maintainanceTaskDetails"></vc:i18n></span>
                             </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="maintainanceTaskDetails"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -195,28 +146,11 @@
                             <td class="text-center">{{maintainanceTask.machineName}}</td>
                             <td class="text-center">{{maintainanceTask.planName}}</td>
                             <td class="text-center">{{maintainanceTask.standardName}}</td>
-                            <td class="text-center">{{maintainanceTask.planInsTime}}<br/>{{maintainanceTask.planEndTime}}
-                            </td>
-                            <td class="text-center">{{maintainanceTask.maintainanceTime ? maintainanceTask.maintainanceTime :
-                                '-'}}
-                            </td>
-                            <td class="text-center text-primary" v-if="maintainanceTask.maintainanceState == '60000'">
-                                {{maintainanceTask.maintainanceStateName ? maintainanceTask.maintainanceStateName : '-'}}
-                            </td>
-                            <td class="text-center text-danger font-bold" v-else>{{maintainanceTask.maintainanceStateName ?
-                                maintainanceTask.maintainanceStateName : '-'}}
-                            </td>
                             <td class="text-center">{{maintainanceTask.planUserName}}</td>
-                            <td class="text-center">{{maintainanceTask.actUserName ? maintainanceTask.actUserName : '-'}}
-                            </td>
-                            <td class="text-center">{{maintainanceTask.signTypeName}}</td>
-                            <td class="text-center">{{maintainanceTask.taskStateName}}</td>
-                            <td class="text-center text-danger font-bold" v-if="maintainanceTask.state == '20200408'">
-                                {{maintainanceTask.stateName}}
-                            </td>
-                            <td class="text-center" v-else>{{maintainanceTask.stateName}}</td>
-                            <!-- <td class="text-center text-danger font-bold" v-if="maintainanceTask.patrolType == '20002'">{{maintainanceTask.patrolTypeName ? maintainanceTask.patrolTypeName : '-'}}</td>
-                            <td class="text-center text-primary" v-else>{{maintainanceTask.patrolTypeName ? maintainanceTask.patrolTypeName : '-'}}</td> -->
+                            <td class="text-center">{{maintainanceTask.planInsTime}}<br/>{{maintainanceTask.planEndTime}}</td>
+                            <td class="text-center">{{maintainanceTask.maintainanceTime ? maintainanceTask.maintainanceTime : '-'}}</td>
+                            <td class="text-center">{{maintainanceTask.actUserName ? maintainanceTask.actUserName : '-'}}</td>
+                            <td class="text-center">{{maintainanceTask.stateName}}</td>
                             <td class="text-center text-primary">
                                 {{maintainanceTask.description ? maintainanceTask.description : '-'}}
                             </td>
@@ -227,6 +161,9 @@
                                 </span>
                             </td>
                             <td class="text-center">{{maintainanceTask.createTime}}</td>
+                            <td class="text-center">
+                                <a :href="'/#/pages/property/maintainanceTaskDetailView?taskDetailId='+maintainanceTask.taskDetailId">详情</a>
+                            </td>
                         </tr>
                         </tbody>
                         <tfoot>

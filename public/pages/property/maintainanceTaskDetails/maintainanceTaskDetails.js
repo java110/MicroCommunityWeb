@@ -16,14 +16,12 @@
                 stateTypes: [],
                 maintainanceStateTypes: [],
                 taskStates: [],
-                maintainancePointList: [],
-                maintainancePlanList: [],
-                maintainanceRouteList: [],
+                plans: [],
                 patrolTypes: [],
                 conditions: {
                     planUserName: '',
                     taskDetailId: '',
-                    maintainancePlanName: '',
+                    planName: '',
                     actInsTime: '',
                     maintainanceStartTime: '',
                     maintainanceEndTime: '',
@@ -54,8 +52,6 @@
             vc.component._initMaintainanceTaskDetailDateInfo();
             vc.component._listMaintainanceTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._listMaintainancePlanInfo();
-            vc.component._listMaintainanceRouteInfo();
-            vc.component._listMaintainancePointInfo();
         },
         _initEvent: function () {
             vc.on('maintainanceTaskManage', 'listMaintainanceTask', function (_param) {
@@ -117,12 +113,12 @@
                 };
                 param.params.planUserName = param.params.planUserName.trim();
                 param.params.taskDetailId = param.params.taskDetailId.trim();
-                param.params.maintainancePlanName = param.params.maintainancePlanName.trim();
+                param.params.planName = param.params.planName.trim();
                 //发送get请求
-                vc.http.apiGet('maintainanceTaskDetail.listMaintainanceTaskDetails',
+                vc.http.apiGet('/maintainanceTask.listMaintainanceTaskDetail',
                     param,
                     function (json, res) {
-                        var _maintainanceTaskDetailManageInfo = JSON.parse(json);
+                        let _maintainanceTaskDetailManageInfo = JSON.parse(json);
                         vc.component.maintainanceTaskDetailManageInfo.total = _maintainanceTaskDetailManageInfo.total;
                         vc.component.maintainanceTaskDetailManageInfo.records = _maintainanceTaskDetailManageInfo.records;
                         vc.component.maintainanceTaskDetailManageInfo.maintainanceTasks = _maintainanceTaskDetailManageInfo.data;
@@ -152,7 +148,7 @@
             _resetMaintainanceTaskMethod: function () {
                 vc.component.maintainanceTaskDetailManageInfo.conditions.planUserName = "";
                 vc.component.maintainanceTaskDetailManageInfo.conditions.taskDetailId = "";
-                vc.component.maintainanceTaskDetailManageInfo.conditions.maintainancePlanName = "";
+                vc.component.maintainanceTaskDetailManageInfo.conditions.planName = "";
                 vc.component.maintainanceTaskDetailManageInfo.conditions.actInsTime = "";
                 vc.component.maintainanceTaskDetailManageInfo.conditions.maintainanceStartTime = "";
                 vc.component.maintainanceTaskDetailManageInfo.conditions.maintainanceEndTime = "";
@@ -181,11 +177,11 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/maintainancePlan.listMaintainancePlans',
+                vc.http.apiGet('/maintainancePlan.listMaintainancePlan',
                     param,
                     function (json, res) {
                         var _maintainancePointManageInfo = JSON.parse(json);
-                        vc.component.maintainanceTaskDetailManageInfo.maintainancePlanList = _maintainancePointManageInfo.data;
+                        vc.component.maintainanceTaskDetailManageInfo.plans = _maintainancePointManageInfo.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
