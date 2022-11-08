@@ -84,7 +84,7 @@
                 vc.emit('deleteMaintainancePlan', 'openDeleteMaintainancePlanModal', _maintainancePlan);
             },
             _viewMachine:function(_maintainancePlan){
-
+                vc.jumpToPage('/#/pages/property/maintainancePlanMachine?planId='+_maintainancePlan.planId);
             },
             //查询
             _queryMaintainancePlanMethod: function () {
