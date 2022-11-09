@@ -65,7 +65,7 @@
                         return markup;
                     }, // 自定义格式化防止xss注入
                     ajax: {
-                        url: "/app/machine.listMachines",
+                        url: "/app/equipmentAccount.listEquipmentAccount",
                         dataType: 'json',
                         delay: 250,
                         headers:{
@@ -88,9 +88,8 @@
                             };
                         },
                         processResults: function (data) {
-                            console.log(data, this._filterMachineData(data.machines));
                             return {
-                                results: this._filterMachineData(data.machines)
+                                results: this._filterMachineData(data.data)
                             };
                         },
                         cache: true
