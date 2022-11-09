@@ -38,13 +38,7 @@
                     function (json) {
                         var _taskDetailInfo = JSON.parse(json);
                         $that.maintainanceTaskDetailInfo.taskDetails = _taskDetailInfo.data;
-                        $that.maintainanceTaskDetailInfo.taskDetails.forEach((item) => {
-                            if(item.photos && item.photos.length>0){
-                                item.photos.forEach((photo) => {
-                                    photo.url = photoUrl + "?fileId=" + photo.url + "&communityId=-1&time=" + new Date()
-                                })
-                            }
-                        })
+                       
                         vc.emit('maintainanceTaskDetail', 'paginationPlus', 'init', {
                             total: _taskDetailInfo.records,
                             currentPage: _page

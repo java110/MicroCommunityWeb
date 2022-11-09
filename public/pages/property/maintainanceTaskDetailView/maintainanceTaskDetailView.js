@@ -10,7 +10,7 @@
                 planInsTime: '',
                 planEndTime: '',
                 actUserName: '',
-                maintainanceTime: '',
+                inspectionTime: '',
                 stateName: '',
                 description: '',
                 photos: [],

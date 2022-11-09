@@ -122,14 +122,6 @@
                         vc.component.maintainanceTaskDetailManageInfo.total = _maintainanceTaskDetailManageInfo.total;
                         vc.component.maintainanceTaskDetailManageInfo.records = _maintainanceTaskDetailManageInfo.records;
                         vc.component.maintainanceTaskDetailManageInfo.maintainanceTasks = _maintainanceTaskDetailManageInfo.data;
-                        vc.component.maintainanceTaskDetailManageInfo.maintainanceTasks.forEach((item) => {
-                            if(item.photos && item.photos.length>0){
-                                item.photos.forEach((photo) => {
-                                    photo.url = photoUrl + "?fileId=" + photo.url + "&communityId=-1&time=" + new Date()
-                                    console.log(photo.url);
-                                })
-                            }
-                        })
                         vc.emit('pagination', 'init', {
                             total: vc.component.maintainanceTaskDetailManageInfo.records,
                             dataCount: vc.component.maintainanceTaskDetailManageInfo.total,

@@ -78,6 +78,9 @@
                                                     <vc:i18n name="创建时间" namespace="maintainanceTaskDetail"></vc:i18n>
                                                 </span>
                                             </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="操作" namespace="maintainanceTaskDetails"></vc:i18n></span>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,8 +92,8 @@
                                             <td class="text-center">
                                                 {{maintainanceTask.planInsTime}}<br />{{maintainanceTask.planEndTime}}
                                             </td>
-                                            <td class="text-center">{{maintainanceTask.maintainanceTime ?
-                                                maintainanceTask.maintainanceTime : '-'}}</td>
+                                            <td class="text-center">{{maintainanceTask.inspectionTime ?
+                                                maintainanceTask.inspectionTime : '-'}}</td>
                                             <td class="text-center">{{maintainanceTask.actUserName ?
                                                 maintainanceTask.actUserName : '-'}}</td>
                                             <td class="text-center">{{maintainanceTask.stateName}}</td>
@@ -104,6 +107,9 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">{{maintainanceTask.createTime}}</td>
+                                            <td class="text-center">
+                                                <a :href="'/#/pages/property/maintainanceTaskDetailView?taskDetailId='+maintainanceTask.taskDetailId" target="_blank">详情</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
