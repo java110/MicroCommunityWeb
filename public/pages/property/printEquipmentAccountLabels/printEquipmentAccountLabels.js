@@ -32,7 +32,7 @@
                     }
                 };
                 //发送get请求
-                    vc.http.apiGet('equipmentAccount.listEquipmentAccount',
+                    vc.http.apiGet('/equipmentAccount.listEquipmentAccount',
                     param,
                     function (json, res) {
                         var _equipmentAccountManageInfo = JSON.parse(json);
@@ -49,7 +49,7 @@
             _generatorQrCode:function(){
                 $that.equipmentInfo.equipmentAccounts.forEach(item => {
                     let qrcode = new QRCode('a'+item.machineId, {
-                        text: item.machineId,  //你想要填写的文本
+                        text: item.url,  //你想要填写的文本
                         width: 200, //生成的二维码的宽度
                         height: 200, //生成的二维码的高度
                         colorDark: "#000000", // 生成的二维码的深色部分
