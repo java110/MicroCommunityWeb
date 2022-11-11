@@ -37,6 +37,9 @@
                             <vc:i18n name="班次信息" namespace="classesManage"></vc:i18n>
                         </span></h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/classesManage')">
+                            <span><vc:i18n name="文档" namespace="marketSmsManage"></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddClassesModal()">
                             <span>
                                 <vc:i18n name="添加" namespace="classesManage"></vc:i18n>
