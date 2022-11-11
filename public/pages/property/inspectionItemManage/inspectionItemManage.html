@@ -47,6 +47,9 @@
                         <span><vc:i18n name="巡检项目" namespace="inspectionItemManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/inspectionItemManage')">
+                            <span><vc:i18n name="文档" ></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionItemModal()">
                             <i class="fa fa-plus"></i>添加
                         </button>
