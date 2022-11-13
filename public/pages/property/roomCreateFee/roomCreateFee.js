@@ -244,7 +244,7 @@
             _payFee: function (_fee) {
                 _fee.roomName = $that.roomCreateFeeInfo.roomName;
                 _fee.builtUpArea = $that.roomCreateFeeInfo.builtUpArea;
-                vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
             _editFee: function (_fee) {
                 // 计费结束时间

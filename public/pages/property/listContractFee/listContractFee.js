@@ -77,10 +77,7 @@
                 })
             },
             _payFee: function(_fee) {
-                _fee.contractName = $that.listContractFeeInfo.contractName;
-                _fee.payerObjName = $that.listContractFeeInfo.contractName;
-                _fee.builtUpArea = $that.listContractFeeInfo.builtUpArea;
-                vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
             _editFee: function(_fee) {
                 vc.emit('editFee', 'openEditFeeModal', _fee);

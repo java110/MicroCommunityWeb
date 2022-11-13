@@ -25,7 +25,11 @@
                 paymentCycle: '',
                 paymentCd: '',
                 computingFormulaText: '',
-                deductFrom: 'Y'
+                deductFrom: 'Y',
+                payOnline:'Y',
+                scale:'1',
+                decimalPlace:'2',
+                units:'元'
             }
         },
         _initMethod: function() {
@@ -288,7 +292,11 @@
                     paymentCycle: '',
                     paymentCd: '',
                     computingFormulaText: '',
-                    deductFrom: 'Y'
+                    deductFrom: 'Y',
+                    payOnline:'Y',
+                    scale:'1',
+                    decimalPlace:'2',
+                    units:'元'
                 };
             }
         }
