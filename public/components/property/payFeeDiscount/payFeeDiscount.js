@@ -72,22 +72,23 @@
                         $that.payFeeDiscountInfo.feeDiscounts = _payFeeDiscountInfo.data;
                         $that.payFeeDiscountInfo.feeDiscounts.forEach(item => {
                             $that.payFeeDiscountInfo.selectDiscountIds.push(item.discountId);
-                            if (item.value === "1") {
-                                // 当映射开关值为1时向下取整
-                                item.discountPrice = $that._mathFloor(item.discountPrice);
-                            } else if (item.value === "2") {
-                                // 2正常显示
-                                return item.discountPrice;
-                            } else if (item.value === "3") {
-                                // 3向上取整
-                                item.discountPrice = $that._mathCeil(item.discountPrice);
-                            } else if (item.value === "5") {
-                                // 5保留一位
-                                item.discountPrice = $that._mathToFixed1(item.discountPrice);
-                            } else {
-                                // 其他保留两位
-                                item.discountPrice = $that._mathToFixed2(item.discountPrice);
-                            }
+                            //这里注释 后端根据费用项设置情况 算费
+                            // if (item.value === "1") {
+                            //     // 当映射开关值为1时向下取整
+                            //     item.discountPrice = $that._mathFloor(item.discountPrice);
+                            // } else if (item.value === "2") {
+                            //     // 2正常显示
+                            //     return item.discountPrice;
+                            // } else if (item.value === "3") {
+                            //     // 3向上取整
+                            //     item.discountPrice = $that._mathCeil(item.discountPrice);
+                            // } else if (item.value === "5") {
+                            //     // 5保留一位
+                            //     item.discountPrice = $that._mathToFixed1(item.discountPrice);
+                            // } else {
+                            //     // 其他保留两位
+                            //     item.discountPrice = $that._mathToFixed2(item.discountPrice);
+                            // }
                         })
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
