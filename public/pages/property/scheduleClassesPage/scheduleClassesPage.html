@@ -99,7 +99,7 @@
                                     <td class="text-center" v-for="(day,index) in staff.days">
                                         <div class=" text-center border padding-lg labeling-strip"
                                             style="border-radius: 5px;cursor:pointer">
-                                            <div>{{day.workdayName}}</div>
+                                            <div>{{day.workdayName?day.workdayName:'休息'}}</div>
                                             <div v-for="(time,index) in day.times">{{time.startTime}}-{{time.endTime}}
                                             </div>
                                         </div>

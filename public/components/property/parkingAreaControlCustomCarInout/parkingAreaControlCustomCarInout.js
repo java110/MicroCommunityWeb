@@ -142,7 +142,7 @@
             _loadOutMachinesByPaId: function () {
                 let param = {
                     params: {
-                        paId: $that.parkingAreaTotalControlVideoInfo.paId,
+                        paId: $that.parkingAreaControlCustomCarInoutInfo.paId,
                         page: 1,
                         row: 100,
                         direction: '3307',
@@ -165,11 +165,11 @@
             _loadOutCoupons: function () {
                 let param = {
                     params: {
-                        paId: $that.parkingAreaTotalControlVideoInfo.paId,
+                        paId: $that.parkingAreaControlCustomCarInoutInfo.paId,
                         page: 1,
                         row: 30,
                         state: '1001',
-                        carNum: $that.parkingAreaTotalControlVideoInfo.carNum
+                        carNum: $that.parkingAreaControlCustomCarInoutInfo.carNum
                     }
                 }
                 //发送get请求
@@ -186,16 +186,17 @@
                 );
             },
             _computeCouponMoney: function () {
-                let _pccIds = $that.parkingAreaTotalControlVideoInfo.pccIds;
+                let _pccIds = $that.parkingAreaControlCustomCarInoutInfo.pccIds;
 
                 if(!_pccIds || _pccIds.length<1){
+                    $that._queryCustomCarMoney();
                     return;
                 }
                 let param = {
                     params: {
-                        paId: $that.parkingAreaTotalControlVideoInfo.paId,
-                        pccIds: $that.parkingAreaTotalControlVideoInfo.pccIds.join(","),
-                        carNum: $that.parkingAreaTotalControlVideoInfo.carNum
+                        paId: $that.parkingAreaControlCustomCarInoutInfo.paId,
+                        pccIds: $that.parkingAreaControlCustomCarInoutInfo.pccIds.join(","),
+                        carNum: $that.parkingAreaControlCustomCarInoutInfo.carNum
                     }
                 }
                 //发送get请求

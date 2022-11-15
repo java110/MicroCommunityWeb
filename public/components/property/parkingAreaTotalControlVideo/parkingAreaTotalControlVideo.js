@@ -222,7 +222,8 @@
                 vc.emit('parkingAreaControlCustomCarInout', 'open', {
                     type: _type,
                     machineId: _machine.machineId,
-                    boxId: _machine.locationObjId
+                    boxId: _machine.locationObjId,
+                    paId:$that.parkingAreaTotalControlVideoInfo.paId
                 })
             },
         }

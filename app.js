@@ -48,13 +48,7 @@ app.use('/ws', createProxyMiddleware({
     ws: true
 }));
 
-// app.use('/callComponent', proxy('http://ynwyht.dk55.com:8008', opts));
-// app.use('/app', proxy('http://ynwyht.dk55.com:8008', opts));
-// app.use('/ws', createProxyMiddleware({
-//     target: 'http://ynwyht.dk55.com:8008',
-//     changeOrigin: true,
-//     ws: true
-// }));
+
 
 // app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
 // app.use('/app', proxy('http://127.0.0.1:8008', opts));
