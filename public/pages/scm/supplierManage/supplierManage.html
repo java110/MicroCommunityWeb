@@ -134,6 +134,13 @@
                                     </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
+                                            v-on:click="_openConfigSupplierModel(supplier)"><span>
+                                                <vc:i18n name='配置'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                   
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteSupplierModel(supplier)"><span>
                                                 <vc:i18n name='删除'></vc:i18n>
                                             </span></button>
@@ -159,5 +166,6 @@
     <vc:create path="scm/addSupplier" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="scm/editSupplier"></vc:create>
     <vc:create path="scm/deleteSupplier"></vc:create>
+    <vc:create path="scm/configSupplier" callBackListener="" callBackFunction=""></vc:create>
 
 </div>

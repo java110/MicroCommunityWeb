@@ -69,6 +69,9 @@
             _openEditSupplierModel: function (_supplier) {
                 vc.emit('editSupplier', 'openEditSupplierModal', _supplier);
             },
+            _openConfigSupplierModel: function (_supplier) {
+                vc.emit('configSupplier', 'openConfigModal', _supplier);
+            }, 
             _openDeleteSupplierModel: function (_supplier) {
                 vc.emit('deleteSupplier', 'openDeleteSupplierModal', _supplier);
             },
