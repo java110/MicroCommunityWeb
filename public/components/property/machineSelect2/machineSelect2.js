@@ -81,9 +81,9 @@
                                 _term = params.term;
                             }
                             return {
-                                machineName: _term,
+                                machineNameLike: _term,
                                 page: 1,
-                                row: 10,
+                                row: 100,
                                 communityId: vc.getCurrentCommunity().communityId
                             };
                         },
@@ -117,7 +117,7 @@
                 for (var i = 0; i < _machines.length; i++) {
                     var _tmpMachine = {
                         id: _machines[i].machineId,
-                        text: _machines[i].machineName
+                        text: _machines[i].machineName + "("+_machines[i].machineCode +")"
                     };
                     _tmpMachines.push(_tmpMachine);
                 }
