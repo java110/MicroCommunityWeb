@@ -195,6 +195,7 @@
                 let param = {
                     params: {
                         paId: $that.parkingAreaControlCustomCarInoutInfo.paId,
+                        boxId: $that.parkingAreaControlCustomCarInoutInfo.boxId,
                         pccIds: $that.parkingAreaControlCustomCarInoutInfo.pccIds.join(","),
                         carNum: $that.parkingAreaControlCustomCarInoutInfo.carNum
                     }

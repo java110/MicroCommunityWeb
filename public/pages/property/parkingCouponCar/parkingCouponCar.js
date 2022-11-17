@@ -42,7 +42,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/parkingCouponCar.listParkingCouponCar',
+                vc.http.apiGet('/parkingCoupon.listParkingCouponCar',
                     param,
                     function(json, res) {
                         let _parkingCouponCarInfo = JSON.parse(json);
