@@ -94,6 +94,9 @@
             _resetStorehouseMethod: function () {
                 vc.component._resetStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _toAuditPage:function(){
+                vc.jumpToPage('/#/pages/property/workflowManage?tab=流程管理');
+            },
             _moreCondition: function () {
                 if (vc.component.storehouseManageInfo.moreCondition) {
                     vc.component.storehouseManageInfo.moreCondition = false;

@@ -66,7 +66,11 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="仓库信息" namespace="storehouseManage"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
+                    <div class="ibox-tools" style="top:10px;"> 
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_toAuditPage()"
+                        v-if="vc.hasPrivilege('502020061767630003')">
+                            <span><vc:i18n name="设置审核人员" namespace="storehouseManage"></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()"
                                 v-if="vc.hasPrivilege('502021101638940007')">
                             <i class="fa fa-plus"></i>

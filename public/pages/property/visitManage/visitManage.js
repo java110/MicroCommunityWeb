@@ -150,6 +150,9 @@
             _openDeleteAppModel: function(_app) {
                 vc.emit('deleteVisit', 'openVisitModel', _app);
             },
+            _toAuditPage:function(){
+                vc.jumpToPage('/#/pages/property/workflowManage?tab=流程管理');
+            },
             showImg: function(e) {
                 if (!e) {
                     e = '/img/noPhoto.jpg';

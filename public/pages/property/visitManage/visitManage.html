@@ -7,6 +7,10 @@
                         <span><vc:i18n name="访客信息" namespace="visitManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_toAuditPage()"
+                        v-if="vc.hasPrivilege('502020061767630003')">
+                            <span><vc:i18n name="设置处理人员" namespace="visitManage"></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddVisitModal()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="登记" namespace="visitManage"></vc:i18n></span>
