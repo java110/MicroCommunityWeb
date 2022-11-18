@@ -71,7 +71,9 @@
                         $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                         $that.owePayFeeOrderInfo.toFixedSign = _fees[0].val;
                         $that.owePayFeeOrderInfo.oweFees.forEach(item => {
-                            item.feePrice = $that._getFixedNum(item.feePrice);
+                            //item.feePrice = $that._getFixedNum(item.feePrice);
+                            item.receivableAmount = item.feePrice;
+                            item.feePrice = item.feeTotalPrice;
                             $that.owePayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
 
                         });
@@ -151,6 +153,7 @@
                                 feeId: _item,
                                 startTime: _oweFeeItem.endTime,
                                 endTime: _oweFeeItem.deadlineTime,
+                                receivableAmount: _oweFeeItem.receivableAmount,
                                 receivedAmount: _oweFeeItem.feePrice,
                                 primeRate: $that.owePayFeeOrderInfo.primeRate
                             });
