@@ -46,7 +46,7 @@
                         $that.parkingAreaControlTempCar.total = _json.total;
                         $that.parkingAreaControlTempCar.records = _json.records;
                         $that.parkingAreaControlTempCar.cars = _json.data;
-                        vc.emit('parkingAreaControlTempCar', 'pagination', 'init', {
+                        vc.emit('parkingAreaControlTempCar', 'paginationPlus', 'init', {
                             total: $that.parkingAreaControlTempCar.records,
                             dataCount: $that.parkingAreaControlTempCar.total,
                             currentPage: _page

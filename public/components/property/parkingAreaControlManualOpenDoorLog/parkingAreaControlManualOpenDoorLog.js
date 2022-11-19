@@ -45,7 +45,7 @@
                         $that.parkingAreaControlManualOpenDoorLog.total = _json.total;
                         $that.parkingAreaControlManualOpenDoorLog.records = _json.records;
                         $that.parkingAreaControlManualOpenDoorLog.logs = _json.data;
-                        vc.emit('parkingAreaControlManualOpenDoorLog', 'pagination', 'init', {
+                        vc.emit('parkingAreaControlManualOpenDoorLog', 'paginationPlus', 'init', {
                             total: $that.parkingAreaControlManualOpenDoorLog.records,
                             dataCount: $that.parkingAreaControlManualOpenDoorLog.total,
                             currentPage: _page
