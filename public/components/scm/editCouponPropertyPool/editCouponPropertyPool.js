@@ -9,7 +9,7 @@
                 toType: '',
                 stock: '',
                 validityDay: '',
-
+                toTypes:[]
             }
         },
         _initMethod: function () {
@@ -20,6 +20,7 @@
                 vc.component.refreshEditCouponPropertyPoolInfo();
                 $('#editCouponPropertyPoolModel').modal('show');
                 vc.copyObject(_params, vc.component.editCouponPropertyPoolInfo);
+                $that.editCouponPropertyPoolInfo.toTypes = _params.configs;
                 vc.component.editCouponPropertyPoolInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
@@ -118,12 +119,12 @@
                             vc.emit('couponPropertyPoolManage', 'listCouponPropertyPool', {});
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
                     });
             },
             refreshEditCouponPropertyPoolInfo: function () {
@@ -134,8 +135,32 @@
                     toType: '',
                     stock: '',
                     validityDay: '',
-
+                    toTypes:[]
                 }
+            },
+            _editChangeToType:function(){
+                if(!$that.editCouponPropertyPoolInfo.toType){
+                    return;
+                }
+
+                let _param = {
+                    params:{
+                        beanName:$that.editCouponPropertyPoolInfo.toType,
+                        page:1,
+                        row:100
+                    }
+                    
+                }
+                 //发送get请求
+                 vc.http.apiGet('/couponKey.listCouponKey',
+                 _param,
+                 function (json, res) {
+                     let _marketSmsManageInfo = JSON.parse(json);
+                     $that.editCouponPropertyPoolInfo.toTypes = _marketSmsManageInfo.data;
+                 }, function (errInfo, error) {
+                     console.log('请求失败处理');
+                 }
+             );
             }
         }
     });

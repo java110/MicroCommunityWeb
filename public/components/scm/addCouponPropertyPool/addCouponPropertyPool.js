@@ -13,7 +13,7 @@
                 toType: '',
                 stock: '',
                 validityDay: '',
-
+                toTypes:[]
             }
         },
         _initMethod: function () {
@@ -138,8 +138,33 @@
                     toType: '',
                     stock: '',
                     validityDay: '',
+                    toTypes:[]
 
                 };
+            },
+            _addChangeToType:function(){
+                if(!$that.addCouponPropertyPoolInfo.toType){
+                    return;
+                }
+
+                let _param = {
+                    params:{
+                        beanName:$that.addCouponPropertyPoolInfo.toType,
+                        page:1,
+                        row:100
+                    }
+                    
+                }
+                 //发送get请求
+                 vc.http.apiGet('/couponKey.listCouponKey',
+                 _param,
+                 function (json, res) {
+                     let _marketSmsManageInfo = JSON.parse(json);
+                     $that.addCouponPropertyPoolInfo.toTypes = _marketSmsManageInfo.data;
+                 }, function (errInfo, error) {
+                     console.log('请求失败处理');
+                 }
+             );
             }
         }
     });

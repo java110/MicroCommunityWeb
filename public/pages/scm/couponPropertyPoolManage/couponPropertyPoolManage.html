@@ -105,6 +105,9 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='有效期' namespace=' couponPropertyPoolManage'></vc:i18n>
                                     </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='创建时间' namespace=' couponPropertyPoolManage'></vc:i18n>
+                                    </span></th>
                                 <th class="text-center"><span>
                                         <vc:i18n name='操作'></vc:i18n>
                                     </span></th>
@@ -116,10 +119,12 @@
                             <tr v-for="couponPropertyPool in couponPropertyPoolManageInfo.couponPropertyPools">
                                 <td class="text-center">{{couponPropertyPool.cppId}}</td>
                                 <td class="text-center">{{couponPropertyPool.couponName}}</td>
-                                <td class="text-center">{{couponPropertyPool.fromType}}</td>
-                                <td class="text-center">{{couponPropertyPool.toType}}</td>
+                                <td class="text-center">{{couponPropertyPool.fromTypeName}}</td>
+                                <td class="text-center">{{couponPropertyPool.toTypeName}}</td>
                                 <td class="text-center">{{couponPropertyPool.stock}}</td>
-                                <td class="text-center">{{couponPropertyPool.validityDay}}</td>
+                                <td class="text-center">{{couponPropertyPool.validityDay}}天</td>
+                                <td class="text-center">{{couponPropertyPool.createTime}}</td>
+
                                 <td class="text-center">
                                     <div class="btn-group"  v-if="couponPropertyPool.fromType == '2002'">
                                         <button class="btn-white btn btn-xs"
