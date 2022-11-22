@@ -5,14 +5,14 @@
         data: {
             couponRuleInfo: {
                 curCouponRule: {},
-                tabName: 'couponRuleWay'
+                tabName: 'couponRuleCpps'
             },
         },
         _initMethod: function() {},
         _initEvent: function() {
             vc.on('couponRule', 'switchCouponRule', function(_param) {
                 $that.couponRuleInfo.curCouponRule = _param;
-                $that._changeCouponRuleTab('couponRuleWay');
+                $that._changeCouponRuleTab('couponRuleCpps');
             })
         },
         methods: {
