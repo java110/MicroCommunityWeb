@@ -14,10 +14,10 @@
                     <div class="item margin-right" :class="{'active':couponRuleInfo.tabName == 'couponRuleFee'}"  @click="_changeCouponRuleTab('couponRuleFee')">缴费设置
                     </div>
                 </div>
-                <!-- <div v-if="couponRuleInfo.tabName == 'couponRuleCpps' ">
-                    <vc:create path="scm/couponRuleWay"></vc:create>
+                <div v-if="couponRuleInfo.tabName == 'couponRuleCpps' ">
+                    <vc:create path="scm/couponRuleCpps"></vc:create>
                 </div>
-                <div v-if="couponRuleInfo.tabName == 'couponRuleFee' ">
+                <!-- <div v-if="couponRuleInfo.tabName == 'couponRuleFee' ">
                     <vc:create path="scm/couponRuleCommunity"></vc:create>
                 </div> -->
             </div>

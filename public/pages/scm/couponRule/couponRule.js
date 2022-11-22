@@ -19,7 +19,7 @@
             _changeCouponRuleTab: function(_tabName) {
                 $that.couponRuleInfo.tabName = _tabName;
                 if (_tabName == 'couponRuleCpps') {
-                    vc.emit('couponRuleWayInfo', 'openCouponRuleWay', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
+                    vc.emit('couponRuleCpps', 'switch', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
                 }
                 if (_tabName == 'couponRuleFee') {
                     vc.emit('couponRuleCommunityInfo', 'openCouponRuleCommunity', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
