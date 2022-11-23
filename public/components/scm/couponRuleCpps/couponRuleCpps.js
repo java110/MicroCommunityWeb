@@ -16,7 +16,7 @@
                     crcId: '',
                     ruleId: '',
                     cppId: '',
-                    communityId: '',
+                    communityId: vc.getCurrentCommunity().communityId,
                     quantity: '',
 
                 }
@@ -65,7 +65,9 @@
                 );
             },
             _openAddCouponRuleCppsModal: function () {
-                vc.emit('addCouponRuleCpps', 'openAddCouponRuleCppsModal', {});
+                vc.emit('addCouponRuleCpps', 'openAddCouponRuleCppsModal', {
+                    ruleId:$that.couponRuleCppsInfo.conditions.ruleId,
+                });
             },
             _openEditCouponRuleCppsModel: function (_couponRuleCpps) {
                 vc.emit('editCouponRuleCpps', 'openEditCouponRuleCppsModal', _couponRuleCpps);

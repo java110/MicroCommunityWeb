@@ -21,7 +21,7 @@
             deleteCouponRuleCpps:function(){
                 vc.component.deleteCouponRuleCppsInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'couponRuleCpps.deleteCouponRuleCpps',
+                    '/couponRule.deleteCouponRuleCpps',
                     JSON.stringify(vc.component.deleteCouponRuleCppsInfo),
                     {
                         emulateJSON:true
