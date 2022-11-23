@@ -11,15 +11,15 @@
                 <div class="role-menu flex justify-start">
                     <div class="item margin-right" :class="{'active':couponRuleInfo.tabName == 'couponRuleCpps'}"  @click="_changeCouponRuleTab('couponRuleCpps')">优惠券
                     </div>
-                    <div class="item margin-right" :class="{'active':couponRuleInfo.tabName == 'couponRuleFee'}"  @click="_changeCouponRuleTab('couponRuleFee')">缴费设置
+                    <div class="item margin-right" :class="{'active':couponRuleInfo.tabName == 'couponRuleFee'}"  @click="_changeCouponRuleTab('couponRuleFee')">缴费赠送
                     </div>
                 </div>
                 <div v-if="couponRuleInfo.tabName == 'couponRuleCpps' ">
                     <vc:create path="scm/couponRuleCpps"></vc:create>
                 </div>
-                <!-- <div v-if="couponRuleInfo.tabName == 'couponRuleFee' ">
-                    <vc:create path="scm/couponRuleCommunity"></vc:create>
-                </div> -->
+                <div v-if="couponRuleInfo.tabName == 'couponRuleFee' ">
+                    <vc:create path="scm/couponRuleFees"></vc:create>
+                </div>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
                     vc.emit('couponRuleCpps', 'switch', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
                 }
                 if (_tabName == 'couponRuleFee') {
-                    vc.emit('couponRuleCommunityInfo', 'openCouponRuleCommunity', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
+                    vc.emit('couponRuleFees', 'switch', { ruleId: $that.couponRuleInfo.curCouponRule.ruleId });
                 }
             }
         },
