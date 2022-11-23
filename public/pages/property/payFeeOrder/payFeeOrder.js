@@ -395,6 +395,14 @@
                             payerObjType: $that.payFeeOrderInfo.payerObjType,
                             endTime: $that.payFeeOrderInfo.endTime
                         });
+
+                        vc.emit('payFeeCoupon', 'computeFeeCoupon', {
+                            feeId: $that.payFeeOrderInfo.feeId,
+                            cycles: _cycles,
+                            payerObjId: $that.payFeeOrderInfo.payerObjId,
+                            payerObjType: $that.payFeeOrderInfo.payerObjType,
+                            endTime: $that.payFeeOrderInfo.endTime
+                        });
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
