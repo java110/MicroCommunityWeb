@@ -239,12 +239,8 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', {
-                    fees: $that.owePayFeeOrderInfo.oweFees,
-                    roomName: $that.owePayFeeOrderInfo.roomName
-                });
                 //打印催交单
-                window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
+                window.open('/print.html#/pages/property/printOweFee?payObjId=' + $that.owePayFeeOrderInfo.payObjId+"&payObjType="+$that.owePayFeeOrderInfo.payObjType+"&payObjName="+$that.owePayFeeOrderInfo.roomName)
             },
             _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {

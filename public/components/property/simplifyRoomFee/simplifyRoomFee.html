@@ -49,11 +49,11 @@
                     v-on:click="_openProxyFeeModal()">
                 <span><vc:i18n name="按量缴费" namespace="simplifyRoomFee"></vc:i18n></span>
             </button>
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            <!-- <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                     v-if="vc.hasPrivilege('502022073042960005')"
                     v-on:click="_openAddMeterWaterSimplifyModal()">
                 <span><vc:i18n name="水电抄表" namespace="simplifyRoomFee"></vc:i18n></span>
-            </button>
+            </button> -->
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                     v-if="vc.hasPrivilege('502022073006890006')"
                     v-on:click="_openRoomCreateFeeComboModal()">
@@ -67,6 +67,10 @@
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                     v-if="vc.hasPrivilege('502020082314267912')" v-on:click="_toOwnerPayFee()">
                 <span><vc:i18n name="欠费缴费" namespace="simplifyRoomFee"></vc:i18n></span>
+            </button>
+            <button type="button" class="btn btn-white btn-sm" style="margin-left:10px"
+                    v-on:click="_printOwnOrder()">
+                <span><vc:i18n name="催缴单" namespace="simplifyRoomFee"></vc:i18n></span>
             </button>
         </div>
     </div>

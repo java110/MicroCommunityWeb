@@ -46,7 +46,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('/couponProperty.listCouponPropertyUser',
+                vc.http.apiGet('/couponProperty.listCouponPropertyUserDetail',
                     param,
                     function (json, res) {
                         var _couponPropertyUserManageInfo = JSON.parse(json);

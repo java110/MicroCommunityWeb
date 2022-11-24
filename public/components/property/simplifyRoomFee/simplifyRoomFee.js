@@ -119,6 +119,10 @@
             _toOwnerPayFee: function () {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.simplifyRoomFeeInfo.roomName);
             },
+            _printOwnOrder: function () {
+                //打印催交单
+                window.open('/print.html#/pages/property/printOweFee?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&payObjName=" + $that.simplifyRoomFeeInfo.roomName)
+            },
             _openRoomCreateFeeAddModal: function () {
                 $that.simplifyRoomFeeInfo.ownerName = $that.simplifyRoomFeeInfo.name;
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {

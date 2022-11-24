@@ -71,7 +71,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5><span>
-                            <vc:i18n name="优惠券" namespace="couponPropertyPoolDetail"></vc:i18n>
+                            <vc:i18n name="赠送记录" namespace="couponPropertyPoolDetail"></vc:i18n>
                         </span></h5>
                     <div class="ibox-tools" style="top:10px;">
                        
@@ -91,6 +91,9 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='面值' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='数量' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
                                 <th class="text-center"><span>
                                         <vc:i18n name='用户名称' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
@@ -98,10 +101,8 @@
                                         <vc:i18n name='手机号' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
                                     <th class="text-center"><span>
-                                        <vc:i18n name='创建时间' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                        <vc:i18n name='赠送时间' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -109,6 +110,7 @@
                                 <td class="text-center">{{couponPropertyPool.cppId}}</td>
                                 <td class="text-center">{{couponPropertyPool.couponName}}</td>
                                 <td class="text-center">{{couponPropertyPool.value}}</td>
+                                <td class="text-center">{{couponPropertyPool.sendCount}}张</td>
                                 <td class="text-center">{{couponPropertyPool.userName}}</td>
                                 <td class="text-center">{{couponPropertyPool.tel}}</td>
                                 <td class="text-center">{{couponPropertyPool.createTime}}</td>

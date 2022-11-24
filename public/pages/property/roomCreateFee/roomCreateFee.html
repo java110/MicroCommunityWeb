@@ -108,6 +108,10 @@
                                         v-if="roomCreateFeeInfo.hireOwnerFee == '0' && vc.hasPrivilege('502020082314267912')">
                                     欠费缴费
                                 </button>
+                                <button type="button" class="btn btn-white btn-sm" style="margin-left:10px"
+                                        v-on:click="_printOwnOrder(roomCreateFeeInfo)">
+                                    催缴单
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">

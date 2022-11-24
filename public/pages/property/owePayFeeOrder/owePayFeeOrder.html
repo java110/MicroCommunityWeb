@@ -5,9 +5,9 @@
                 <div class="ibox-title">
                     <h5>{{owePayFeeOrderInfo.roomName}}</h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_printOwnOrder()" v-if="owePayFeeOrderInfo.oweFees.length > 0">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_printOwnOrder()" v-if="owePayFeeOrderInfo.oweFees.length > 0">
                             催缴单
-                        </button> -->
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             <span><vc:i18n name="返回"></vc:i18n></span>
                         </button>
@@ -37,8 +37,8 @@
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span><vc:i18n name="费用" namespace="owePayFeeOrder"></vc:i18n></span>
-                                </span>ID
+                                    <span><vc:i18n name="费用ID" namespace="owePayFeeOrder"></vc:i18n></span>
+                                </span>
                             </th>
                             <th class="text-center">
                                 <span>
@@ -85,8 +85,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-2">缴费金额：
+        <div class="col-md-8"></div>
+        <div class="col-md-3">缴费金额：
             <span style="font-size: 30px; color: red; padding-left: 0px;">{{owePayFeeOrderInfo.feePrices}}
                 <span>
                      <span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span>

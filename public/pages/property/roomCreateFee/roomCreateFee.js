@@ -133,7 +133,8 @@
             },
             _printOwnOrder: function (_room) {
                 //打印催交单
-                vc.jumpToPage('print.html#/pages/property/printOweFee?roomId=' + _room.roomId)
+                let roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum 
+                window.open('/print.html#/pages/property/printOweFee?payObjId=' + _room.roomId+"&payObjType=3333&payObjName="+roomName)
             },
             _openTranslateFeeManualCollectionDetailModel: function (_room) {
                 let _data = {
@@ -185,6 +186,9 @@
             },
             _downloadRoomCollectionLetterOrder: function (_room) {
                 vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);
+            },
+            _toPrintReminderFee:function(_room){
+
             },
             _openFeeImportExcel: function () {
                 vc.emit('exportFeeImportExcel', 'openExportFeeImportExcelModal', {})

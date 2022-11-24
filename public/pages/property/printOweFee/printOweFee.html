@@ -7,7 +7,7 @@
             </div>
             <div class="row margin-top">
                 <div class="col-sm-4">
-                    <span>{{printPayFeeInfo.roomName}}</span>
+                    <span>{{printPayFeeInfo.payObjName}}</span>
                 </div>
                 <div class="col-sm-4">
                     <span></span>
@@ -43,7 +43,7 @@
                         </td>
                         <td colspan="4" class="text-center ">{{printPayFeeInfo.feePrices}}</td>
                     </tr>
-                    <tr height="60px">
+                    <tr height="60px" v-if="printPayFeeInfo.content">
                         <td colspan="3">
                             <p style="max-width: 600px;">
                                 <!-- {{printPayFeeInfo.content}} -->
