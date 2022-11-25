@@ -30,7 +30,15 @@
                 <tbody>
                     <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <td class="text-center">{{item.feeName}}</td>
-                        <td class="text-center">{{vc.dateFormat(item.endTime)}}<span><vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>{{vc.dateFormat(item.deadlineTime)}}
+                        <td class="text-center" v-if="item.preDegrees">
+                            {{vc.dateFormat(item.endTime)}}<span>
+                                <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
+                                {{vc.dateFormat(item.deadlineTime)}}</br>
+                            {{item.preDegrees}} 至 {{item.curDegrees}}
+                        </td>
+                        <td class="text-center" v-else>{{vc.dateFormat(item.endTime)}}<span>
+                            <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
+                            {{vc.dateFormat(item.deadlineTime)}}
                         </td>
                         <td class="text-center"><span><vc:i18n name="元" namespace="printOweFee"></vc:i18n></span></td>
                         <td class="text-center">{{printPayFeeInfo.builtUpArea}}</td>
