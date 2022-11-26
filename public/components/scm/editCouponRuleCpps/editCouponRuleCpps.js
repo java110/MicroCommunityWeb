@@ -7,6 +7,7 @@
                 cppId: '',
                 quantity: '',
                 ruleId:'',
+                giftFrequency:'100301',
                 couponPropertyPools:[]
 
             }
@@ -96,6 +97,7 @@
                     cppId: '',
                     quantity: '',
                     ruleId:'',
+                    giftFrequency:'100301',
                     couponPropertyPools:[]
     
                 }

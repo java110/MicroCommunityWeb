@@ -9,6 +9,7 @@
                 toType: '',
                 stock: '',
                 validityDay: '',
+                remark:'',
                 toTypes:[]
             }
         },
@@ -135,6 +136,7 @@
                     toType: '',
                     stock: '',
                     validityDay: '',
+                    remark:'',
                     toTypes:[]
                 }
             },

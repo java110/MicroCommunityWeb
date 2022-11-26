@@ -11,11 +11,12 @@
                 cppId: '',
                 quantity: '',
                 ruleId:'',
+                giftFrequency:'100301',
                 couponPropertyPools:[]
             }
         },
         _initMethod: function () {
-
+            //100301 赠送一次  100302 每月赠送一次
         },
         _initEvent: function () {
             vc.on('addCouponRuleCpps', 'openAddCouponRuleCppsModal', function (_rule) {
@@ -117,6 +118,7 @@
                     cppId: '',
                     quantity: '',
                     ruleId:'',
+                    giftFrequency:'100301',
                     couponPropertyPools:[]
 
                 };

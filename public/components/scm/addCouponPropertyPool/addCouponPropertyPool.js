@@ -13,6 +13,7 @@
                 toType: '',
                 stock: '',
                 validityDay: '',
+                remark:'',
                 toTypes:[]
             }
         },
@@ -89,10 +90,6 @@
                             errInfo: "有效期'不能超过12"
                         },
                     ],
-
-
-
-
                 });
             },
             saveCouponPropertyPoolInfo: function () {
@@ -138,6 +135,7 @@
                     toType: '',
                     stock: '',
                     validityDay: '',
+                    remark:'',
                     toTypes:[]
 
                 };
@@ -153,7 +151,6 @@
                         page:1,
                         row:100
                     }
-                    
                 }
                  //发送get请求
                  vc.http.apiGet('/couponKey.listCouponKey',
