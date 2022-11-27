@@ -8,6 +8,15 @@
         data: {
             couponPropertyUserManageInfo: {
                 couponPropertyUsers: [],
+                order: {
+                    remark: '',
+                    userName: '',
+                    createTime: '',
+                    tel: '',
+                    couponName: '',
+                    value: '',
+                    toTypeName: '',
+                },
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -81,7 +90,51 @@
                 } else {
                     vc.component.couponPropertyUserManageInfo.moreCondition = true;
                 }
-            }
+            },
+            _confirmCouponPropertyUser: function(_page, _rows) {
+
+                let _couponId = $that.couponPropertyUserManageInfo.couponId;
+                if (!_couponId) {
+                    vc.toast('请扫码');
+                    return;
+                }
+
+                let _data = {
+                    couponQrcode: _couponId,
+                    communityId: vc.getCurrentCommunity().communityId,
+                    giftCount:1
+                }
+
+                vc.http.apiPost(
+                    '/couponProperty.writeOffCouponPropertyUser',
+                    JSON.stringify(_data), {
+                        emulateJSON: true
+                    },
+                    function(json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        $that.couponPropertyUserManageInfo.couponId = '';
+                        let _json = JSON.parse(json);
+                        if (_json.code != 0) {
+                            vc.toast(_json.msg);
+                            return;
+                        }
+                        $that._listCouponPropertyUsers(1, 10);
+                        vc.toast("核销成功");
+                        if (!_json.data || _json.data.length < 1) {
+                            return;
+                        }
+                        vc.copyObject(_json.data[0], $that.couponPropertyUserManageInfo.order);
+
+                        if (!$that.couponPropertyUserManageInfo.order.remark) {
+                            $that.couponPropertyUserManageInfo.order.remark = "核销成功";
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                        $that.couponPropertyUserManageInfo.couponId = '';
+                        vc.toast(errInfo);
+                    });
+            },
 
 
         }

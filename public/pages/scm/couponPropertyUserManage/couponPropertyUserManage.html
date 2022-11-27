@@ -131,6 +131,9 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='状态' namespace='couponPropertyUserManage'></vc:i18n>
                                     </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='生效时间' namespace='couponPropertyUserManage'></vc:i18n>
+                                    </span></th>
                                 <th class="text-center"><span>
                                         <vc:i18n name='操作'></vc:i18n>
                                     </span></th>
@@ -147,6 +150,7 @@
                                 <td class="text-center">{{couponPropertyUser.toTypeName}}</td>
                                 <td class="text-center">{{couponPropertyUser.stock}}张</td>
                                 <td class="text-center">{{couponPropertyUser.state == '1001'?'未使用':'已使用'}}</td>
+                                <td class="text-center">{{couponPropertyUser.startTime}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
