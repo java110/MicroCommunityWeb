@@ -130,9 +130,7 @@
                                         <th class="text-center"><span>
                                                 <vc:i18n name='使用时间' namespace='couponPropertyUserManage'></vc:i18n>
                                             </span></th>
-                                        <th class="text-center"><span>
-                                                <vc:i18n name='操作'></vc:i18n>
-                                            </span></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,21 +142,6 @@
                                         <td class="text-center">{{couponPropertyUser.tel}}</td>
                                         <td class="text-center">{{couponPropertyUser.remark}}</td>
                                         <td class="text-center">{{couponPropertyUser.createTime}}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openEditCouponPropertyUserModel(couponPropertyUser)"><span>
-                                                        <vc:i18n name='修改'></vc:i18n>
-                                                    </span></button>
-                                            </div>
-                                            <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openDeleteCouponPropertyUserModel(couponPropertyUser)"><span>
-                                                        <vc:i18n name='删除'></vc:i18n>
-                                                    </span></button>
-                                            </div>
-                                        </td>
-
                                     </tr>
                                 </tbody>
                                 <tfoot>

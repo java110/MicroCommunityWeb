@@ -17,6 +17,8 @@
                     couponName: '',
                     fromType: '',
                     toType: '',
+                    userName:'',
+                    tel:'',
                     communityId:vc.getCurrentCommunity().communityId
                 }
             }
@@ -64,6 +66,10 @@
                 vc.component._listCouponPropertyPools(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _openDeleteCouponPropertyPoolModel: function (_detail) {
+                vc.emit('deleteCouponPropertyPoolDetail','openDeleteCouponPropertyPoolModal', _detail);
+            },
+            
             _moreCondition: function () {
                 if (vc.component.couponPropertyPoolDetailInfo.moreCondition) {
                     vc.component.couponPropertyPoolDetailInfo.moreCondition = false;

@@ -71,15 +71,7 @@
                     }
                 );
             },
-            _openAddCouponPropertyUserModal: function () {
-                vc.emit('addCouponPropertyUser', 'openAddCouponPropertyUserModal', {});
-            },
-            _openEditCouponPropertyUserModel: function (_couponPropertyUser) {
-                vc.emit('editCouponPropertyUser', 'openEditCouponPropertyUserModal', _couponPropertyUser);
-            },
-            _openDeleteCouponPropertyUserModel: function (_couponPropertyUser) {
-                vc.emit('deleteCouponPropertyUser', 'openDeleteCouponPropertyUserModal', _couponPropertyUser);
-            },
+           
             _queryCouponPropertyUserMethod: function () {
                 vc.component._listCouponPropertyUsers(DEFAULT_PAGE, DEFAULT_ROWS);
 

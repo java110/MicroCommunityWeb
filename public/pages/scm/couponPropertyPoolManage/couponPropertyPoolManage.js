@@ -65,6 +65,9 @@
             _openEditCouponPropertyPoolModel: function (_couponPropertyPool) {
                 vc.emit('editCouponPropertyPool', 'openEditCouponPropertyPoolModal', _couponPropertyPool);
             },
+            _openGiftCouponPropertyPoolModel: function (_couponPropertyPool) {
+                vc.emit('giftCouponPropertyPool', 'openGiftCouponPropertyPoolModal', _couponPropertyPool);
+            },
             _openDeleteCouponPropertyPoolModel: function (_couponPropertyPool) {
                 vc.emit('deleteCouponPropertyPool', 'openDeleteCouponPropertyPoolModal', _couponPropertyPool);
             },

@@ -7,9 +7,6 @@
                             <vc:i18n name="查询条件"></vc:i18n>
                         </span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{couponPropertyPoolDetailInfo.moreCondition ==
-                            true?'隐藏':'更多'}}</button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -47,13 +44,23 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4" >
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写用户名称','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写手机号','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.tel" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="couponPropertyPoolDetailInfo.conditions.toType">
                                 <option selected value="">{{vc.i18n('选择用途','couponPropertyPoolDetail')}}
                                 </option>
-                                <option value="1001">{{vc.i18n('购物','couponPropertyPoolDetail')}}
-                                </option>
-                                <option value="2002">{{vc.i18n('缴费','couponPropertyPoolDetail')}}
+                                <option value="1011">{{vc.i18n('购物','couponPropertyPoolDetail')}}
                                 </option>
                                 <option value="3003">{{vc.i18n('维修劵','couponPropertyPoolDetail')}}
                                 </option>
@@ -74,7 +81,7 @@
                             <vc:i18n name="赠送记录" namespace="couponPropertyPoolDetail"></vc:i18n>
                         </span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                       
+
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -91,7 +98,7 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='面值' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
-                                    <th class="text-center"><span>
+                                <th class="text-center"><span>
                                         <vc:i18n name='数量' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
                                 <th class="text-center"><span>
@@ -100,8 +107,11 @@
                                 <th class="text-center"><span>
                                         <vc:i18n name='手机号' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
-                                    <th class="text-center"><span>
+                                <th class="text-center"><span>
                                         <vc:i18n name='赠送时间' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作' namespace='couponPropertyPoolDetail'></vc:i18n>
                                     </span></th>
                             </tr>
                         </thead>
@@ -114,7 +124,14 @@
                                 <td class="text-center">{{couponPropertyPool.userName}}</td>
                                 <td class="text-center">{{couponPropertyPool.tel}}</td>
                                 <td class="text-center">{{couponPropertyPool.createTime}}</td>
-
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteCouponPropertyPoolModel(couponPropertyPool)"><span>
+                                                <vc:i18n name='退回'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -131,4 +148,6 @@
             </div>
         </div>
     </div>
+    <vc:create path="scm/deleteCouponPropertyPoolDetail"></vc:create>
+
 </div>
