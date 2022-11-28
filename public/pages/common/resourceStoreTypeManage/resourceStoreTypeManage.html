@@ -13,12 +13,6 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入物品ID','resourceStoreTypeManage')"
-                                       v-model="resourceStoreTypeManageInfo.conditions.rstId" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入类型名称','resourceStoreTypeManage')"
                                        v-model="resourceStoreTypeManageInfo.conditions.name" class=" form-control">
                             </div>
@@ -45,7 +39,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="物品类型信息" namespace="resourceStoreTypeManage"></vc:i18n></span>
+                        <span><vc:i18n name="物品类型" namespace="resourceStoreTypeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
@@ -60,13 +54,10 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><vc:i18n name="物品类型" namespace="resourceStoreTypeManage"></vc:i18n></span>ID
+                                <span><vc:i18n name="类型名称" namespace="resourceStoreTypeManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="物品类型名称" namespace="resourceStoreTypeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="物品描述" namespace="resourceStoreTypeManage"></vc:i18n></span>
+                                <span><vc:i18n name="描述" namespace="resourceStoreTypeManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="创建时间" namespace="resourceStoreTypeManage"></vc:i18n></span>
@@ -78,7 +69,6 @@
                         </thead>
                         <tbody>
                         <tr v-for="resourceStoreType in resourceStoreTypeManageInfo.resourceStoreTypes">
-                            <td class="text-center">{{resourceStoreType.rstId}}</td>
                             <td class="text-center">{{resourceStoreType.name}}</td>
                             <td class="text-center">{{resourceStoreType.description}}</td>
                             <td class="text-center">{{resourceStoreType.createTime}}</td>

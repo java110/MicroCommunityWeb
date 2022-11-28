@@ -7,8 +7,8 @@
         data: {
             addResourceStoreInfo: {
                 unitCode: '',
-                miniUnitCode: '',
-                miniUnitStock: '',
+                miniUnitCode: '1001',
+                miniUnitStock: '1',
                 unitCodes: [],
                 resId: '',
                 parentRstId: '',
@@ -18,20 +18,20 @@
                 resName: '',
                 resCode: '',
                 price: '',
-                outLowPrice: '',
-                outHighPrice: '',
+                outLowPrice: '0',
+                outHighPrice: '0',
                 showMobile: 'N',
                 description: '',
                 remark: '',
                 shId: '',
-                isFixed: '',
+                isFixed: 'N',
                 photos: [],
                 storehouses: [],
                 resourceStoreTypes: [],
                 resourceStoreSpecifications: [],
                 sonResourceStoreTypes: [],
                 isFixeds: [],
-                warningStock: ''
+                warningStock: '10'
             }
         },
         _initMethod: function () {
@@ -327,7 +327,7 @@
                   let _resourceStoreTypes = vc.component.addResourceStoreInfo.resourceStoreTypes;
                   let _sonResourceStoreTypes = vc.component.addResourceStoreInfo.sonResourceStoreTypes;
                   let _resourceStoreSpecifications = vc.component.addResourceStoreInfo.resourceStoreSpecifications;
-                  
+              
                 vc.component.addResourceStoreInfo = {
                     resName: '',
                     resCode: '',
@@ -336,15 +336,16 @@
                     rstId: '',
                     price: '',
                     description: '',
-                    outLowPrice: '',
-                    outHighPrice: '',
+                    outLowPrice: '0',
+                    outHighPrice: '0',
                     showMobile: 'N',
                     remark: '',
                     unitCode: '',
                     shId: '',
-                    isFixed: '',
+                    isFixed: 'N',
                     rssId:'',
-                    miniUnitCode:'',
+                    miniUnitCode: '1001',
+                    miniUnitStock: '1',
                     unitCodes: _unitCodes,
                     photos: [],
                     storehouses: [],
@@ -352,7 +353,7 @@
                     resourceStoreSpecifications: _resourceStoreSpecifications,
                     sonResourceStoreTypes:_sonResourceStoreTypes,
                     isFixeds: _isFixeds,
-                    warningStock: ''
+                    warningStock: '10'
                 };
             },
             _listAddStorehouses: function (_page, _rows) {
