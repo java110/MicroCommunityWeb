@@ -7,8 +7,8 @@
                         <span><vc:i18n name="查询条件" namespace="listOwnerCar"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{listOwnerCarInfo.moreCondition == true ? '隐藏' : '更多'}}
-                        </button>
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{listOwnerCarInfo.moreCondition == true ? '隐藏' : '更多'}}
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -43,7 +43,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-show="listOwnerCarInfo.moreCondition == true">
+                    <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="listOwnerCarInfo.conditions.leaseType">
