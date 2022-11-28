@@ -10,7 +10,7 @@
                 shName: '',
                 shType: '',
                 shDesc: '',
-                isShow: '',
+                isShow: 'true',
                 shTypes: []
             }
         },

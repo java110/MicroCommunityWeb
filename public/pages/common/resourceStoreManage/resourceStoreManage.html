@@ -146,19 +146,16 @@
                                 <span><vc:i18n name="物品类型" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="物品名称" namespace="resourceStoreManage"></vc:i18n></span>
+                                <span><vc:i18n name="物品名称(编号)" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="物品规格" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="物品编码" namespace="resourceStoreManage"></vc:i18n></span>
+                                <span><vc:i18n name="固定物品" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="是否固定物品" namespace="resourceStoreManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="采购参考价格" namespace="resourceStoreManage"></vc:i18n></span>
+                                <span><vc:i18n name="参考价格" namespace="resourceStoreManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="收费标准" namespace="resourceStoreManage"></vc:i18n></span>
@@ -192,9 +189,8 @@
                                 {{resourceStore.parentRstName}}{{resourceStore.rstName ? ' > ' + resourceStore.rstName :
                                 ''}}
                             </td>
-                            <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.resName}}({{resourceStore.resCode}})</td>
                             <td class="text-center">{{resourceStore.rssName ? resourceStore.rssName : '-'}}</td>
-                            <td class="text-center">{{resourceStore.resCode}}</td>
                             <td class="text-center">{{resourceStore.isFixedName}}</td>
                             <td class="text-center">{{'￥' + resourceStore.price}}</td>
                             <td class="text-center">{{resourceStore.outHighPrice == resourceStore.outLowPrice ? '￥' +
