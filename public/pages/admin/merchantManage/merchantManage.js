@@ -24,7 +24,6 @@
             vc.component._listMerchants(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function() {
-
             vc.on('merchantManage', 'listMerchant', function(_param) {
                 vc.component._listMerchants(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -34,13 +33,11 @@
         },
         methods: {
             _listMerchants: function(_page, _rows) {
-
                 vc.component.merchantManageInfo.conditions.page = _page;
                 vc.component.merchantManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.merchantManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/store.listStores',
                     param,
@@ -60,7 +57,7 @@
                 );
             },
             _openAddMerchantModal: function() {
-                vc.emit('addMerchant', 'openAddMerchantModal', {});
+                vc.emit('addMerchantShop', 'openAddMerchantShopModal', {});
             },
             _openEditMerchantModel: function(_propertyCompany) {
                 vc.emit('editMerchant', 'openEditMerchantModal', _propertyCompany);
@@ -70,7 +67,9 @@
             },
             _queryMerchantMethod: function() {
                 vc.component._listMerchants(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            _toStoreShopPage:function(_store){
+                vc.jumpToPage('/#/pages/admin/merchantShop?storeId='+_store.storeId)
             },
             _moreCondition: function() {
                 if (vc.component.merchantManageInfo.moreCondition) {

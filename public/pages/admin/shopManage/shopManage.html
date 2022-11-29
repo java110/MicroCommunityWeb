@@ -58,7 +58,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><span><vc:i18n name="店铺" namespace="shopManage"></vc:i18n></span>logo</th>
+                                <th class="text-center"><span><vc:i18n name="店铺logo" namespace="shopManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="店铺名称" namespace="shopManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="店铺类型" namespace="shopManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="商家名称" namespace="shopManage"></vc:i18n></span></th>
@@ -71,9 +71,12 @@
                         </thead>
                         <tbody>
                             <tr v-for="shop in shopManageInfo.shops">
-                                <td class="text-center">
+                                <td class="text-center" v-if="shop.shopLogo">
                                     <img style="width: 60px; height: 60px; border-radius: 5px;"
                                         v-bind:src="shop.shopLogo"></img>
+                                </td>
+                                <td class="text-center" v-else>
+                                    <img style="width: 60px; height: 60px; border-radius: 5px;" src="/img/noPhoto.jpg">
                                 </td>
                                 <td class="text-center">{{shop.shopName}}</td>
                                 <td class="text-center">{{shop.shopTypeName}}</td>
