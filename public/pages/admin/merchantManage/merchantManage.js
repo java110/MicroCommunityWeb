@@ -71,6 +71,7 @@
             _toStoreShopPage:function(_store){
                 vc.jumpToPage('/#/pages/admin/merchantShop?storeId='+_store.storeId)
             },
+           
             _moreCondition: function() {
                 if (vc.component.merchantManageInfo.moreCondition) {
                     vc.component.merchantManageInfo.moreCondition = false;

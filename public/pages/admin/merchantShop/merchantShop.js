@@ -61,13 +61,12 @@
                 );
             },
             _openAddMerchantShopModal: function() {
-                vc.emit('addMerchantShop', 'openAddMerchantShopModal', {
+                vc.emit('addMerchantShopInfo', 'openAddMerchantShopModal', {
                     storeId: vc.getParam('storeId')
                 });
             },
             _openEditMerchantShopModel: function(_community) {
-                _community.storeId = vc.getParam('storeId');
-                vc.emit('editMerchantShop', 'openEditMerchantShopModal', _community);
+                vc.emit('editMerchantShopInfo', 'openAddMerchantShopModal', _community);
             },
             _openDeleteMerchantShopModel: function(_community) {
                 vc.emit('deleteMerchantShop', 'openDeleteMerchantShopModal', _community);

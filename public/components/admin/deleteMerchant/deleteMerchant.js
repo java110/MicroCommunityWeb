@@ -2,7 +2,7 @@
 
     vc.extends({
         data: {
-            deleteMerchantShopInfo: {
+            deleteMerchantInfo: {
 
             }
         },
@@ -10,16 +10,18 @@
 
         },
         _initEvent: function() {
-            vc.on('deleteMerchantShop', 'openDeleteMerchantShopModal', function(_params) {
-                vc.component.deleteMerchantShopInfo = _params;
-                $('#deleteMerchantShopModel').modal('show');
+            vc.on('deleteMerchant', 'openDeleteMerchantModal', function(_params) {
+
+                vc.component.deleteMerchantInfo = _params;
+                $('#deleteMerchantModel').modal('show');
+
             });
         },
         methods: {
-            deleteMerchantShop: function() {
+            deleteMerchant: function() {
                 vc.http.apiPost(
-                    '/shop/deleteShop',
-                    JSON.stringify(vc.component.deleteMerchantShopInfo), {
+                    '/property.deleteProperty',
+                    JSON.stringify(vc.component.deleteMerchantInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -27,8 +29,8 @@
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
-                            $('#deleteMerchantShopModel').modal('hide');
-                            vc.emit('merchantShop', 'listShop', {});
+                            $('#deleteMerchantModel').modal('hide');
+                            vc.emit('merchantManage', 'listMerchant', {});
                             return;
                         }
                         vc.message(_json.msg);
@@ -39,8 +41,8 @@
 
                     });
             },
-            closeDeleteMerchantShopModel: function() {
-                $('#deleteMerchantShopModel').modal('hide');
+            closeDeleteMerchantModel: function() {
+                $('#deleteMerchantModel').modal('hide');
             }
         }
     });

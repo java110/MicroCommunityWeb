@@ -88,6 +88,10 @@
                                         <button class="btn-white btn btn-xs" v-on:click="_toStoreShopPage(propertyCompany)"><span><vc:i18n name="管理店铺" namespace="merchantManage"></vc:i18n></span>
                                         </button>
                                     </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMerchantModel(propertyCompany)"><span><vc:i18n name="删除" ></vc:i18n></span>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -117,5 +121,6 @@
     <vc:create path="admin/addMerchantShop"></vc:create>
     <vc:create path="admin/updateStoreState"></vc:create>
     <vc:create path="frame/resetStaffPwd"></vc:create>
+    <vc:create path="admin/deleteMerchant"></vc:create>
 
 </div>

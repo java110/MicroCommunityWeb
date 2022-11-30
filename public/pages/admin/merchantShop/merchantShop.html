@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryCommunityMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopMethod()">
                                 <i class="fa fa-search"></i> <span>
                                     <vc:i18n name="查询" namespace="merchantShop"></vc:i18n>
                                 </span>
@@ -98,18 +98,18 @@
                                 <td class="text-center">{{shop.shopName}}</td>
                                 <td class="text-center">{{shop.shopTypeName}}</td>
                                 <td class="text-center">{{shop.storeName}}</td>
-                                <td class="text-center">{{shop.storeAddress}}</td>
-                                <td class="text-center">{{shop.storeTel}}</td>
+                                <td class="text-center">{{shop.returnAddress}}</td>
+                                <td class="text-center">{{shop.returnLink}}</td>
                                 <td class="text-center">{{shop.stateName}}</td>
                                 <td class="text-center">{{shop.createTime}}</td>
                                 <td class="text-center">
-                                    <!-- <div class="btn-group">
+                                    <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditMerchantShopModel(shop)"><span>
                                                 <vc:i18n name="修改" namespace="merchantShop"></vc:i18n>
                                             </span>
                                         </button>
-                                    </div> -->
+                                    </div>
                                     <div class="btn-group">
                                         <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteMerchantShopModel(shop)"><span>
@@ -135,7 +135,7 @@
             </div>
         </div>
     </div>
-    <!-- <vc:create path="admin/addMerchantShop"></vc:create>
-    <vc:create path="admin/editMerchantShop"></vc:create> -->
+   <vc:create path="admin/addMerchantShopInfo"></vc:create>
+     <vc:create path="admin/editMerchantShopInfo"></vc:create>
     <vc:create path="admin/deleteMerchantShop"></vc:create> 
 </div>
