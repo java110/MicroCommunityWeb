@@ -9,7 +9,7 @@
             addMainCategoryInfo: {
                 mainCategoryId: '',
                 categoryName: '',
-                categoryType: '',
+                categoryType: '2',
                 startTime: '',
                 endTime: '',
                 categoryDesc: '',
@@ -150,7 +150,7 @@
             clearAddMainCategoryInfo: function() {
                 vc.component.addMainCategoryInfo = {
                     categoryName: '',
-                    categoryType: '',
+                    categoryType: '2',
                     startTime: '',
                     endTime: '',
                     categoryDesc: '',

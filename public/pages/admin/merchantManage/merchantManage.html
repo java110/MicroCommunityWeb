@@ -31,8 +31,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -43,6 +41,9 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="商家公司" namespace="merchantManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/admin/merchantManage')">
+                            <vc:i18n name="文档"></vc:i18n>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMerchantModal()">
                             <i class="glyphicon glyphicon-plus"></i>
                             添加

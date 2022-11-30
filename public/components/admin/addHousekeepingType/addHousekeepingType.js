@@ -30,7 +30,8 @@
             vc.component._listShops();
         },
         _initEvent: function() {
-            vc.on('addHousekeepingType', 'openAddHousekeepingTypeModal', function() {
+            vc.on('addHousekeepingType', 'openAddHousekeepingTypeModal', function(_param) {
+                vc.copyObject(_param,$that.addHousekeepingTypeInfo);
                 $('#addHousekeepingTypeModel').modal('show');
             });
             vc.on("addHousekeepingType", "notifyUploadCoverImage", function(_param) {
