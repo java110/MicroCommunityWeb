@@ -14,7 +14,8 @@
                 payObjId: '',
                 builtUpArea: '',
                 payObjType:'',
-                payObjName:''
+                payObjName:'',
+                ownerName:''
             },
             printFlag: '0'
         },
@@ -143,7 +144,7 @@
                         $that.printPayFeeInfo.fees.forEach(item => {
                             //item.feePrice = $that._getFixedNum(item.feePrice);
                             item.receivableAmount = item.feePrice;
-                            item.feePrice = item.feeTotalPrice;
+                            item.feePrice = item.feePrice;
                             _totalAmount += item.feePrice;
                         });
                         _totalAmount = Math.round(_totalAmount * 100) / 100;
