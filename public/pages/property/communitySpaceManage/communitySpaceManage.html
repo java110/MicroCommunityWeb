@@ -79,6 +79,9 @@
                                     <vc:i18n name="场地信息" namespace="communitySpaceManage"></vc:i18n>
                                 </span></h5>
                             <div class="ibox-tools" style="top:10px;">
+                                <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/communitySpaceManage')">
+                                    <span><vc:i18n name="文档"></vc:i18n></span>
+                                </button>
                                 <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_openAddCommunitySpaceModal()">
                                     <i class="glyphicon glyphicon-plus"></i>
