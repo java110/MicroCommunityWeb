@@ -17,18 +17,18 @@
                 let param = {
                     params: {
                         page: 1,
-                        row: 100,
+                        row: 10,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
 
                 //发送get请求
-                vc.http.apiGet('/notice.listNotices',
+                vc.http.apiGet('/notepad.listNotepad',
                     param,
                     function(json, res) {
                         let _res = JSON.parse(json);
 
-                        $that.indexNoticeInfo.notices = _res.notices;
+                        $that.indexNoticeInfo.notices = _res.data;
                         $that.$nextTick(function() {
                             setInterval($that.checkPoolScroll, 2000);
                         })

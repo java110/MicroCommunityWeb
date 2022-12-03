@@ -1,9 +1,9 @@
 <div class="index-1-right-1">
-    <div class="index-title"><span>小区公告</span></div>
+    <div class="index-title"><span>业主反馈</span></div>
     <ul id="pool" style="overflow-y: scroll;height: 100%;">
         <li class="flex justify-between padding-top-sm" v-if="!indexNoticeInfo.notices || indexNoticeInfo.notices.length < 1">
             <div class="vc-index-notice-title">
-                当前没有公告信息
+                当前没有业主反馈内容
             </div>
             <div class="vc-index-notice-time">
 
@@ -11,7 +11,7 @@
         </li>
         <li class="flex justify-between padding-top-sm" v-for="(item,index) in indexNoticeInfo.notices" v-else>
             <div class="vc-index-notice-title">
-                {{item.title}}
+                {{item.objName}}({{item.roomName}})反馈{{item.title}}({{item.state=='F'?'完成':'跟进中'}}<span v-if="item.thridId">-已转报修单</span>)
             </div>
             <div class="vc-index-notice-time">
                 {{item.createTime}}
