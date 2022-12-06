@@ -154,6 +154,12 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openReserveServicePersonModel(reserveService)"><span>
+                                                        <vc:i18n name='预约服务'></vc:i18n>
+                                                    </span></button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
                                                     v-on:click="_openEditReserveServiceModel(reserveService)"><span>
                                                         <vc:i18n name='修改'></vc:i18n>
                                                     </span></button>
@@ -186,8 +192,8 @@
 
 
 
-        <!-- <vc:create path="reserve/addReserveService" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="reserve/editReserveService"></vc:create> -->
+       
+        <vc:create path="reserve/addReserveServicePerson"></vc:create>
     <vc:create path="reserve/deleteReserveDining"></vc:create>
 
     </div>

@@ -78,6 +78,9 @@
                 vc.component._listReserveServices(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
+            _openReserveServicePersonModel:function(_reserveService){
+                vc.emit('addReserveServicePerson', 'openAddReserveServicePersonModal', _reserveService);
+            },
             _moreCondition: function () {
                 if (vc.component.reserveServiceManageInfo.moreCondition) {
                     vc.component.reserveServiceManageInfo.moreCondition = false;

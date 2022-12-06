@@ -101,7 +101,7 @@
                                         <th class="text-center"><span>
                                                 <vc:i18n name='预约方式' namespace='reserveDiningManage'></vc:i18n>
                                             </span></th>
-                                       
+
                                         <th class="text-center"><span>
                                                 <vc:i18n name='预约次数' namespace='reserveDiningManage'></vc:i18n>
                                             </span></th>
@@ -114,7 +114,7 @@
                                         <th class="text-center"><span>
                                                 <vc:i18n name='有效期' namespace='reserveDiningManage'></vc:i18n>
                                             </span></th>
-                                            <th class="text-center"><span>
+                                        <th class="text-center"><span>
                                                 <vc:i18n name='开始预约时间' namespace='reserveDiningManage'></vc:i18n>
                                             </span></th>
                                         <th class="text-center"><span>
@@ -142,7 +142,7 @@
                                         </td>
                                         <td class="text-center">{{reserveDining.paramsName}}</td>
                                         <td class="text-center">{{reserveDining.paramWay == '1'?'日':'周'}}</td>
-                                       
+
                                         <td class="text-center">{{reserveDining.maxQuantity}}</td>
                                         <td class="text-center">{{reserveDining.hoursMaxQuantity}}</td>
                                         <td class="text-center">{{reserveDining.price}}</td>
@@ -152,6 +152,12 @@
                                         <td class="text-center">{{reserveDining.sort}}</td>
                                         <td class="text-center">{{reserveDining.state=='1001'?'未上线':'上线'}}</td>
                                         <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openReserveDiningPersonModel(reserveDining)"><span>
+                                                        <vc:i18n name='预约就餐'></vc:i18n>
+                                                    </span></button>
+                                            </div>
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"
                                                     v-on:click="_openEditReserveDiningModel(reserveDining)"><span>
@@ -185,9 +191,8 @@
         </div>
 
 
-
-        <!-- <vc:create path="reserve/addReserveDining" callBackListener="" callBackFunction=""></vc:create>
-    <vc:create path="reserve/editReserveDining"></vc:create> -->
+        <vc:create path="reserve/addReserveDiningPerson"></vc:create>
         <vc:create path="reserve/deleteReserveDining"></vc:create>
+
 
     </div>

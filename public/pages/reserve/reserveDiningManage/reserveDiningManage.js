@@ -76,7 +76,9 @@
             },
             _queryReserveDiningMethod: function () {
                 vc.component._listReserveDinings(DEFAULT_PAGE, DEFAULT_ROWS);
-
+            },
+            _openReserveDiningPersonModel:function(_reserveDining){
+                vc.emit('addReserveDiningPerson', 'openAddReserveDiningPersonModal', _reserveDining);
             },
             _moreCondition: function () {
                 if (vc.component.reserveDiningManageInfo.moreCondition) {
