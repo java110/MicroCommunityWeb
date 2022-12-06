@@ -31,7 +31,7 @@
                         row:_row,
                         communityId:vc.getCurrentCommunity().communityId,
                         floorId:vc.component.chooseUnitInfo.floorId,
-                        name:_name
+                        unitNum:_name
                     }
                 };
 
