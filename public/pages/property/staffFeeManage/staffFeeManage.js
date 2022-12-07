@@ -97,7 +97,7 @@
                     function (json, res) {
                         var _staffFeeManageInfo = JSON.parse(json);
                         vc.component.staffFeeManageInfo.total = _staffFeeManageInfo.total;
-                        vc.component.staffFeeManageInfo.records = parseInt(_staffFeeManageInfo.total / _rows + 1);
+                        vc.component.staffFeeManageInfo.records = parseInt(_staffFeeManageInfo.total / _rows);
                         vc.component.staffFeeManageInfo.staffFees = _staffFeeManageInfo.staffFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.staffFeeManageInfo.records,

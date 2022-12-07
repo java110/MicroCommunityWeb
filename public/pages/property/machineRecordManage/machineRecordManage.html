@@ -3,17 +3,19 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="machineRecordManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="machineRecordManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{machineRecordManageInfo.moreCondition ==
-                            true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">
+                            {{machineRecordManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入用户名称','machineRecordManage')"
                                        v-model="machineRecordManageInfo.conditions.name" class=" form-control">
@@ -24,42 +26,48 @@
                                 <option selected value="">{{vc.i18n('请选择开门方式','machineRecordManage')}}</option>
                                 <option value="1000">{{vc.i18n('人脸开门','machineRecordManage')}}</option>
                                 <option value="2000">{{vc.i18n('钥匙开门','machineRecordManage')}}</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入用户手机','machineRecordManage')"
                                        v-model="machineRecordManageInfo.conditions.tel" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="_queryMachineRecordMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="machineRecordManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="machineRecordManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm"
+                                    v-on:click="_resetMachineRecordMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="machineRecordManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4" v-if="machineRecordManageInfo.moreCondition == true">
+                    <div class="row" v-if="machineRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="machineRecordManageInfo.conditions.ownerTypeCd">
                                 <option selected value="">{{vc.i18n('请选择用户类型','machineRecordManage')}}</option>
                                 <option value="1001">{{vc.i18n('业主','machineRecordManage')}}</option>
                                 <option value="1002">{{vc.i18n('业主成员','machineRecordManage')}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-4" v-if="machineRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入设备名称','machineRecordManage')"
                                        v-model="machineRecordManageInfo.conditions.machineName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3" v-if="machineRecordManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入设备编码','machineRecordManage')"
                                        v-model="machineRecordManageInfo.conditions.machineCode" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
                 </div>
             </div>
@@ -69,11 +77,12 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="开门记录" namespace="machineRecordManage"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="开门记录" namespace="machineRecordManage"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineRecordModal()">
-                            <i class="fa fa-plus"></i>
-                            添加开门记录
+                            <i class="fa fa-plus"></i>添加开门记录
                         </button>-->
                     </div>
                 </div>
@@ -82,13 +91,27 @@
                            data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center"><span><vc:i18n name="设备编码" namespace="machineRecordManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="用户名称" namespace="machineRecordManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="开门方式" namespace="machineRecordManage"></vc:i18n></span></th>
-                            <!-- <th class="text-center"><span><vc:i18n name="用户手机号" namespace="machineRecordManage"></vc:i18n></span></th> -->
-                            <th class="text-center"><span><vc:i18n name="身份证" namespace="machineRecordManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="开门时间" namespace="machineRecordManage"></vc:i18n></span></th>
-                            <th class="text-center"><span><vc:i18n name="操作" namespace="machineRecordManage"></vc:i18n></span></th>
+                            <th class="text-center">
+                                <span><vc:i18n name="设备编码" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="用户名称" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="开门方式" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
+                            <!-- <th class="text-center">
+                            <span><vc:i18n name="用户手机号" namespace="machineRecordManage"></vc:i18n></span>
+                            </th> -->
+                            <th class="text-center">
+                                <span><vc:i18n name="身份证" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="开门时间" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="machineRecordManage"></vc:i18n></span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -102,7 +125,8 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
-                                            v-on:click="_openMachineRecordDetailModel(machineRecord)"><span><vc:i18n name="详情" namespace="machineRecordManage"></vc:i18n></span>
+                                            v-on:click="_openMachineRecordDetailModel(machineRecord)">
+                                        <span><vc:i18n name="详情" namespace="machineRecordManage"></vc:i18n></span>
                                     </button>
                                 </div>
                             </td>

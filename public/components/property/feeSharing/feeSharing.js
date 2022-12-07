@@ -134,7 +134,6 @@
                             errInfo: "费用名称必填"
                         }
                     ]
-
                 });
             },
             saveFeeSharingInfo: function () {

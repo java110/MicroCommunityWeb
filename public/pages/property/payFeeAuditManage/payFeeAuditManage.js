@@ -19,7 +19,7 @@
                     startTime: '',
                     endTime: '',
                     userCode: '',
-                    state: '1010',
+                    state: '',
                     payerObjId: ''
                 },
                 curPayFee: {}
@@ -77,7 +77,7 @@
             _resetPayFeeMethod: function () {
                 vc.resetObject($that.payFeeAuditManageInfo.conditions);
                 $that.payFeeAuditManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                $that.payFeeAuditManageInfo.conditions.state = "1010";
+                $that.payFeeAuditManageInfo.conditions.state = "";
                 vc.component._listPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

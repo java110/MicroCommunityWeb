@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editCommunityAreaInfo: {
@@ -94,22 +93,25 @@
                             errInfo: "联系方式不能为空"
                         }
                     ],
-                    'editCommunityAreaInfo.communityArea': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "小区面积不能为空"
-                    },
+                    'editCommunityAreaInfo.communityArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "小区面积不能为空"
+                        },
                         {
                             limit: "money",
                             param: "",
                             errInfo: "小区面积必须是3.00 格式"
                         },
                     ],
-                    'editCommunityAreaInfo.communityId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "小区ID不能为空"
-                    }]
+                    'editCommunityAreaInfo.communityId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "小区ID不能为空"
+                        }
+                    ]
                 });
             },
             editCommunityArea: function () {
@@ -121,13 +123,16 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editCommunityAreaModel').modal('hide');
                             vc.emit('enterCommunity', 'listMyCommunity', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

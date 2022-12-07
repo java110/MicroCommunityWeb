@@ -38,7 +38,7 @@
                 vc.component._loadAllStaffInfo(1, 10, '');
             });
             vc.on('addRoleStaff', 'paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._loadAllStaffInfo(_currentPage, DEFAULT_ROWS);
+                vc.component._loadAllStaffInfo(_currentPage, DEFAULT_ROWS, vc.component.addRoleStaffInfo.staffName);
             });
         },
         methods: {

@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editFeePrintPageInfo: {
@@ -11,7 +10,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editFeePrintPage', 'openEditFeePrintPageModal', function (_params) {
@@ -37,7 +35,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "名称不能超过128"
-                        },
+                        }
                     ],
                     'editFeePrintPageInfo.communityId': [
                         {
@@ -49,7 +47,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "小区ID不能超过30"
-                        },
+                        }
                     ],
                     'editFeePrintPageInfo.pageUrl': [
                         {
@@ -61,15 +59,15 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "收据页面不能超过512"
-                        },
+                        }
                     ],
                     'editFeePrintPageInfo.pageId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "收据ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editFeePrintPage: function () {
@@ -77,7 +75,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'feePrintPage.updateFeePrintPage',
                     JSON.stringify(vc.component.editFeePrintPageInfo),
@@ -91,13 +88,14 @@
                             //关闭model
                             $('#editFeePrintPageModel').modal('hide');
                             vc.emit('feePrintPageManage', 'listFeePrintPage', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -117,14 +115,12 @@
                         row: 50
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('feePrintPageTemplate.listFeePrintPageTemplate',
                     param,
                     function (json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         $that.editFeePrintPageInfo.templates = _feePrintPageManageInfo.data;
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -132,5 +128,4 @@
             },
         }
     });
-
 })(window.vc, window.vc.component);

@@ -1,9 +1,9 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editTempCarFeeConfigInfo: {
                 configId: '',
+                feeConfigId: '',
                 feeName: '',
                 paId: '',
                 carType: '',
@@ -16,18 +16,7 @@
             }
         },
         _initMethod: function () {
-            vc.initDate('editTempCarFeeConfigStartTime', function (_startTime) {
-                $that.editTempCarFeeConfigInfo.startTime = _startTime;
-            });
-            vc.initDate('editTempCarFeeConfigEndTime', function (_endTime) {
-                $that.editTempCarFeeConfigInfo.endTime = _endTime;
-                let start = Date.parse(new Date($that.editTempCarFeeConfigInfo.startTime))
-                let end = Date.parse(new Date($that.editTempCarFeeConfigInfo.endTime))
-                if (start - end >= 0) {
-                    vc.toast("结束时间必须大于开始时间")
-                    $that.editTempCarFeeConfigInfo.endTime = '';
-                }
-            });
+            vc.component._initEditTempCarFeeConfigDateInfo();
         },
         _initEvent: function () {
             vc.on('editTempCarFeeConfig', 'openEditTempCarFeeConfigModal', function (_params) {
@@ -40,7 +29,6 @@
                 $('#editTempCarFeeConfigModel').modal('show');
                 vc.component.editTempCarFeeConfigInfo.communityId = vc.getCurrentCommunity().communityId;
             });
-
             $('#editTempCarFeeConfigModel').on('show.bs.modal', function (e) {
                 $(this).css('display', 'block');
                 let modalWidth = $(window).width() * 0.7;
@@ -50,6 +38,66 @@
             });
         },
         methods: {
+            _initEditTempCarFeeConfigDateInfo: function () {
+                $('.editTempCarFeeConfigStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editTempCarFeeConfigStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editTempCarFeeConfigStartTime").val();
+                        var start = Date.parse(new Date(value))
+                        var end = Date.parse(new Date(vc.component.editTempCarFeeConfigInfo.endTime))
+                        if (start - end >= 0) {
+                            vc.toast("开始时间必须小于结束时间");
+                            $(".editTempCarFeeConfigStartTime").val('');
+                            vc.component.editTempCarFeeConfigInfo.startTime = "";
+                        } else {
+                            vc.component.editTempCarFeeConfigInfo.startTime = value;
+                        }
+                    });
+                $('.editTempCarFeeConfigEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editTempCarFeeConfigEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editTempCarFeeConfigEndTime").val();
+                        var start = Date.parse(new Date(vc.component.editTempCarFeeConfigInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间");
+                            $(".editTempCarFeeConfigEndTime").val('');
+                            vc.component.editTempCarFeeConfigInfo.endTime = "";
+                        } else {
+                            vc.component.editTempCarFeeConfigInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editTempCarFeeConfigStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editTempCarFeeConfigEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             editTempCarFeeConfigValidate: function () {
                 return vc.validate.validate({
                     editTempCarFeeConfigInfo: vc.component.editTempCarFeeConfigInfo
@@ -64,7 +112,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "标准名称格式错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.paId': [
                         {
@@ -76,7 +124,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "停车场错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.carType': [
                         {
@@ -88,7 +136,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "车辆类型错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.ruleId': [
                         {
@@ -100,7 +148,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "收费规则错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.startTime': [
                         {
@@ -112,7 +160,7 @@
                             limit: "date",
                             param: "",
                             errInfo: "开始时间错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.endTime': [
                         {
@@ -124,15 +172,15 @@
                             limit: "date",
                             param: "",
                             errInfo: "结束时间错误"
-                        },
+                        }
                     ],
                     'editTempCarFeeConfigInfo.configId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "标准ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editTempCarFeeConfig: function () {
@@ -140,7 +188,32 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
+                var decide = true;
+                if (vc.component.editTempCarFeeConfigInfo.attrs && vc.component.editTempCarFeeConfigInfo.attrs.length > 0) {
+                    for (var index = 0; index < vc.component.editTempCarFeeConfigInfo.attrs.length; index++) {
+                        if (vc.component.editTempCarFeeConfigInfo.attrs[index].value == null || vc.component.editTempCarFeeConfigInfo.attrs[index].value == ""
+                            || vc.component.editTempCarFeeConfigInfo.attrs[index].value == undefined) {
+                            vc.toast(vc.component.editTempCarFeeConfigInfo.attrs[index].specName + "不能为空");
+                            decide = false;
+                            break;
+                        }
+                    }
+                }
+                if (!decide) {
+                    return;
+                }
+                console.log("666")
+                console.log(vc.component.editTempCarFeeConfigInfo.startTime)
+                if (vc.component.editTempCarFeeConfigInfo.startTime == null || vc.component.editTempCarFeeConfigInfo.startTime == ""
+                    || vc.component.editTempCarFeeConfigInfo.startTime == undefined) {
+                    vc.toast("开始时间不能为空");
+                    return;
+                }
+                if (vc.component.editTempCarFeeConfigInfo.endTime == null || vc.component.editTempCarFeeConfigInfo.endTime == ""
+                    || vc.component.editTempCarFeeConfigInfo.endTime == undefined) {
+                    vc.toast("结束时间不能为空");
+                    return;
+                }
                 vc.http.apiPost(
                     'fee.updateTempCarFeeConfig',
                     JSON.stringify(vc.component.editTempCarFeeConfigInfo),
@@ -154,19 +227,21 @@
                             //关闭model
                             $('#editTempCarFeeConfigModel').modal('hide');
                             vc.emit('tempCarFeeConfigManage', 'listTempCarFeeConfig', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
             refreshEditTempCarFeeConfigInfo: function () {
                 vc.component.editTempCarFeeConfigInfo = {
                     configId: '',
+                    feeConfigId: '',
                     feeName: '',
                     paId: '',
                     carType: '',
@@ -179,7 +254,6 @@
                 }
             },
             _loadEditTempCarFeeRules: function () {
-
                 var param = {
                     params: {
                         page: 1,
@@ -200,15 +274,16 @@
                 );
             },
             _freshCarFeeConfigRule: function (_attrs) {
-                $that.editTempCarFeeConfigInfo.attrs.forEach(item => {
-                    _attrs.forEach(attrItem =>{
-                        if (item.specCd == attrItem.specId) {
-                            item.specName = attrItem.specName;
-                        }
-                    })
-                });
+                if ($that.editTempCarFeeConfigInfo.attrs && $that.editTempCarFeeConfigInfo.attrs.length > 0) {
+                    $that.editTempCarFeeConfigInfo.attrs.forEach(item => {
+                        _attrs.forEach(attrItem => {
+                            if (item.specCd == attrItem.specId) {
+                                item.specName = attrItem.specName;
+                            }
+                        })
+                    });
+                }
             }
         }
     });
-
 })(window.vc, window.vc.component);

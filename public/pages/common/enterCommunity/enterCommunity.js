@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             communityInfo: {
@@ -9,41 +9,41 @@
                 showPage: 'myCommunity'
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component.listMyCommunity();
         },
-        _initEvent: function() {
-            vc.on('enterCommunity', 'listMyCommunity', function(_param) {
+        _initEvent: function () {
+            vc.on('enterCommunity', 'listMyCommunity', function (_param) {
                 vc.component.listMyCommunity();
             });
         },
         methods: {
-            listMyCommunity: function() {
+            listMyCommunity: function () {
                 var param = {
-                        params: {
-                            msg: this.message,
-                            _sb: '123',
-                            communityId: vc.getCurrentCommunity().communityId
-                        }
+                    params: {
+                        msg: this.message,
+                        _sb: '123',
+                        communityId: vc.getCurrentCommunity().communityId
                     }
-                    //发送get请求
+                }
+                //发送get请求
                 vc.http.apiGet('/communitys/queryStoreCommunitys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         vc.component.communityInfo.enterCommunityInfo = JSON.parse(json).data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openEnterCommunityModal: function() {
+            _openEnterCommunityModal: function () {
                 vc.emit('storeEnterCommunity', 'openStoreEnterCommunity', {});
             },
-            _openExitCommunityModel: function(_community) {
+            _openExitCommunityModel: function (_community) {
                 vc.emit('storeExitCommunity', 'openStoreExitCommunityModal', _community);
             },
-            _openUpdateCommunityModel: function(_community) {
+            _openUpdateCommunityModel: function (_community) {
                 vc.emit('editCommunityArea', 'openEditCommunityModal', _community);
             },
             _showCommunityStatus(_statusCd) {
@@ -56,10 +56,10 @@
                 }
                 return "未知";
             },
-            _showHcUse: function() {
+            _showHcUse: function () {
                 $that.communityInfo.showPage = "hcUse"
             },
-            _goBack: function() {
+            _goBack: function () {
                 $that.communityInfo.showPage = 'myCommunity';
             }
         }

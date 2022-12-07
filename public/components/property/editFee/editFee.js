@@ -46,7 +46,15 @@
                 $('.editFeeStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".editFeeStartTime").val();
-                        vc.component.editFeeInfo.startTime = value;
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.editFeeInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("建账时间必须小于计费起始时间");
+                            $(".editFeeStartTime").val('');
+                            vc.component.editFeeInfo.startTime = "";
+                        } else {
+                            vc.component.editFeeInfo.startTime = value;
+                        }
                     });
                 $('.editFeeEndTime').datetimepicker({
                     minView: "month",
@@ -64,8 +72,9 @@
                         var start = Date.parse(new Date(vc.component.editFeeInfo.startTime))
                         var end = Date.parse(new Date(value))
                         if (start - end >= 0) {
-                            vc.toast("计费起始时间必须大于建账时间")
-                            $(".editFeeEndTime").val('')
+                            vc.toast("计费起始时间必须大于建账时间");
+                            $(".editFeeEndTime").val('');
+                            vc.component.editFeeInfo.endTime = "";
                         } else {
                             vc.component.editFeeInfo.endTime = value;
                         }

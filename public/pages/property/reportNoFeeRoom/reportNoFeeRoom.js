@@ -22,9 +22,12 @@
         },
         _initMethod: function () {
             vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-
-            $(".popover-show").mouseover(() => { $('.popover-show').popover('show'); })
-            $(".popover-show").mouseleave(() => { $('.popover-show').popover('hide'); })
+            $(".popover-show").mouseover(() => {
+                $('.popover-show').popover('show');
+            })
+            $(".popover-show").mouseleave(() => {
+                $('.popover-show').popover('hide');
+            })
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {

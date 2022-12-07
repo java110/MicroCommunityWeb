@@ -1,4 +1,4 @@
-(function(vc, vm) {
+(function (vc, vm) {
     vc.extends({
         data: {
             editShopsInfo: {
@@ -20,12 +20,12 @@
                 roomSubType: '120'
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadRoomAttrSpec();
             vc.component._initDate();
         },
-        _initEvent: function() {
-            vc.on('editShops', 'openEditShopsModal', function(_room) {
+        _initEvent: function () {
+            vc.on('editShops', 'openEditShopsModal', function (_room) {
                 $that.refreshEditShopsInfo();
                 vc.copyObject(_room, vc.component.editShopsInfo);
                 if (_room.startTime != null && _room.startTime != '' && _room.startTime != 'undefined') {
@@ -51,7 +51,7 @@
             });
         },
         methods: {
-            _initDate: function() {
+            _initDate: function () {
                 $(".startTime").datetimepicker({
                     minView: "month",
                     language: 'zh-CN',
@@ -73,12 +73,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".startTime").val();
                         vc.component.editShopsInfo.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".endTime").val();
                         vc.component.editShopsInfo.endTime = value;
                         let start = Date.parse(new Date($that.editShopsInfo.startTime))
@@ -89,17 +89,14 @@
                     });
                 //防止多次点击时间插件失去焦点
                 // document.getElementsByClassName("form-control startTime")[0].addEventListener('click', myfunc)
-
                 // function myfunc(e) {
                 //     e.currentTarget.blur();
                 // }
-
                 // document.getElementsByClassName("form-control endTime")[0].addEventListener('click', myfunc)
-
             },
-            _loadRoomAttrSpec: function() {
+            _loadRoomAttrSpec: function () {
                 $that.editShopsInfo.attrs = [];
-                vc.getAttrSpec('building_room_attr', function(data) {
+                vc.getAttrSpec('building_room_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
@@ -108,24 +105,23 @@
                             $that.editShopsInfo.attrs.push(item);
                         }
                     });
-
                 });
             },
-            _loadAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
-
                 });
             },
-            editShopsValidate: function() {
+            editShopsValidate: function () {
                 return vc.validate.validate({
                     editShopsInfo: vc.component.editShopsInfo
                 }, {
-                    'editShopsInfo.roomNum': [{
+                    'editShopsInfo.roomNum': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "房屋编号不能为空"
@@ -134,9 +130,10 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "房屋编号长度不能超过12位"
-                        },
+                        }
                     ],
-                    'editShopsInfo.layer': [{
+                    'editShopsInfo.layer': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "房屋楼层高度不能为空"
@@ -147,7 +144,8 @@
                             errInfo: "房屋楼层高度必须为数字"
                         }
                     ],
-                    'editShopsInfo.builtUpArea': [{
+                    'editShopsInfo.builtUpArea': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "建筑面积不能为空"
@@ -163,7 +161,8 @@
                             errInfo: "建筑面积数字长度不能超过6位"
                         }
                     ],
-                    'editShopsInfo.roomArea': [{
+                    'editShopsInfo.roomArea': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "室内面积不能为空"
@@ -172,9 +171,10 @@
                             limit: "money",
                             param: "",
                             errInfo: "室内面积错误，如 300.00"
-                        },
+                        }
                     ],
-                    'editShopsInfo.roomRent': [{
+                    'editShopsInfo.roomRent': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "租金不能为空"
@@ -183,9 +183,10 @@
                             limit: "money",
                             param: "",
                             errInfo: "租金错误，如 300.00"
-                        },
+                        }
                     ],
-                    'editShopsInfo.feeCoefficient': [{
+                    'editShopsInfo.feeCoefficient': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "算费系数不能为空"
@@ -196,14 +197,16 @@
                             errInfo: "算费系数错误，如 300.00"
                         }
                     ],
-                    'editShopsInfo.remark': [{
-                        limit: "maxLength",
-                        param: "200",
-                        errInfo: "备注长度不能超过200位"
-                    }, ]
+                    'editShopsInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "备注长度不能超过200位"
+                        }
+                    ]
                 });
             },
-            editShops: function() {
+            editShops: function () {
                 if (!vc.component.editShopsValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -213,7 +216,7 @@
                     JSON.stringify(vc.component.editShopsInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -222,16 +225,18 @@
                             vc.emit('shops', 'loadData', {
                                 floorId: vc.component.editShopsInfo.floorId
                             });
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            refreshEditShopsInfo: function() {
+            refreshEditShopsInfo: function () {
                 let _attrs = $that.editShopsInfo.attrs;
                 _attrs.forEach(_item => {
                     _item.attrId = '';

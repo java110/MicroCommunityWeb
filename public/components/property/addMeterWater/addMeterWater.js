@@ -22,7 +22,6 @@
                 objType: '1001',
                 hasRoom: false,
                 ownerName: '',
-                objType: '3333',
                 meterTypes: [],
                 computingFormula: '',
                 price: 0
@@ -33,7 +32,6 @@
         },
         _initEvent: function () {
             vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
-                console.log('params :', _param);
                 vc.component.clearAddMeterWaterInfo();
                 if (_param.hasOwnProperty("objType")) {
                     $that.addMeterWaterInfo.objType = _param.objType;
@@ -85,7 +83,15 @@
                 $('.addPreReadingTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".addPreReadingTime").val();
-                        vc.component.addMeterWaterInfo.preReadingTime = value;
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.addMeterWaterInfo.curReadingTime));
+                        if (start - end >= 0) {
+                            vc.toast("上期读表时间必须小于本期读表时间");
+                            $(".addPreReadingTime").val('');
+                            vc.component.addMeterWaterInfo.preReadingTime = "";
+                        } else {
+                            vc.component.addMeterWaterInfo.preReadingTime = value;
+                        }
                     });
                 $('.addCurReadingTime').datetimepicker({
                     language: 'zh-CN',
@@ -102,8 +108,9 @@
                         var start = Date.parse(new Date(vc.component.addMeterWaterInfo.preReadingTime))
                         var end = Date.parse(new Date(value))
                         if (start - end >= 0) {
-                            vc.toast("计费终止时间必须大于计费起始时间")
-                            $(".addCurReadingTime").val('')
+                            vc.toast("本期读表时间必须大于上期读表时间");
+                            $(".addCurReadingTime").val('');
+                            vc.component.addMeterWaterInfo.curReadingTime = "";
                         } else {
                             vc.component.addMeterWaterInfo.curReadingTime = value;
                         }
@@ -135,7 +142,7 @@
                             limit: "money",
                             param: "",
                             errInfo: "上期度数格式错误"
-                        },
+                        }
                     ],
                     'addMeterWaterInfo.curDegrees': [
                         {
@@ -147,7 +154,7 @@
                             limit: "money",
                             param: "",
                             errInfo: "本期度数格式错误"
-                        },
+                        }
                     ],
                     'addMeterWaterInfo.preReadingTime': [
                         {
@@ -159,7 +166,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "上期读表时间格式错误"
-                        },
+                        }
                     ],
                     'addMeterWaterInfo.curReadingTime': [
                         {
@@ -171,28 +178,36 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "本期读表时间格式错误"
-                        },
+                        }
                     ],
-                    'addMeterWaterInfo.roomId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋必填"
-                    }],
-                    'addMeterWaterInfo.meterType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "抄表类型必填"
-                    }],
-                    'addMeterWaterInfo.configId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "费用必填"
-                    }],
-                    'addMeterWaterInfo.remark': [{
-                        limit: "maxLength",
-                        param: "500",
-                        errInfo: "备注格式错误"
-                    }],
+                    'addMeterWaterInfo.roomId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.meterType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "抄表类型必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.configId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "500",
+                            errInfo: "备注格式错误"
+                        }
+                    ],
                 });
             },
             saveMeterWaterInfo: function () {
@@ -343,7 +358,6 @@
                     objType: '1001',
                     hasRoom: false,
                     ownerName: '',
-                    objType: '3333',
                     meterTypes: [],
                     computingFormula: '',
                     price: 0

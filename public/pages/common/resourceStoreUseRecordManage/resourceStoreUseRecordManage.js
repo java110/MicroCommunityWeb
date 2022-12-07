@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -31,22 +31,22 @@
                 resourceStoreSpecifications: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initDate();
             vc.component._listResourceStoreUseRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
         },
-        _initEvent: function() {
-            vc.on('resourceStoreUseRecordManage', 'listResourceStoreUseRecord', function(_param) {
+        _initEvent: function () {
+            vc.on('resourceStoreUseRecordManage', 'listResourceStoreUseRecord', function (_param) {
                 vc.component._listResourceStoreUseRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listResourceStoreUseRecords(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function() {
+            _initDate: function () {
                 $(".startTime").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -66,12 +66,12 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".startTime").val();
                         vc.component.resourceStoreUseRecordManageInfo.conditions.startTime = value;
                     });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".endTime").val();
                         vc.component.resourceStoreUseRecordManageInfo.conditions.endTime = value;
                         let start = Date.parse(new Date($that.resourceStoreUseRecordManageInfo.conditions.startTime))
@@ -94,7 +94,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listResourceStoreUseRecords: function(_page, _rows) {
+            _listResourceStoreUseRecords: function (_page, _rows) {
                 vc.component.resourceStoreUseRecordManageInfo.conditions.page = _page;
                 vc.component.resourceStoreUseRecordManageInfo.conditions.row = _rows;
                 var param = {
@@ -109,7 +109,7 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreUseRecords',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreUseRecordManageInfo = JSON.parse(json);
                         vc.component.resourceStoreUseRecordManageInfo.total = _resourceStoreUseRecordManageInfo.total;
                         vc.component.resourceStoreUseRecordManageInfo.records = _resourceStoreUseRecordManageInfo.records;
@@ -125,20 +125,20 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddResourceStoreUseRecordModal: function() {
+            _openAddResourceStoreUseRecordModal: function () {
                 vc.emit('addResourceStoreUseRecord', 'openAddResourceStoreUseRecordModal', {});
             },
             //查询
-            _queryResourceStoreUseRecordMethod: function() {
+            _queryResourceStoreUseRecordMethod: function () {
                 vc.component._listResourceStoreUseRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetResourceStoreUseRecordMethod: function() {
+            _resetResourceStoreUseRecordMethod: function () {
                 vc.component.resourceStoreUseRecordManageInfo.conditions.rsurId = "";
                 vc.component.resourceStoreUseRecordManageInfo.conditions.repairId = "";
                 vc.component.resourceStoreUseRecordManageInfo.conditions.resId = "";
@@ -154,7 +154,7 @@
                 vc.component.resourceStoreUseRecordManageInfo.resourceStoreSpecifications = [];
                 vc.component._listResourceStoreUseRecords(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listResourceStoreTypes: function() {
+            _listResourceStoreTypes: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -165,16 +165,16 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.resourceStoreUseRecordManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSonTypes: function() {
+            _listResourceStoreSonTypes: function () {
                 vc.component.resourceStoreUseRecordManageInfo.conditions.rstId = '';
                 vc.component.resourceStoreUseRecordManageInfo.resourceStoreSonTypes = [];
                 if (vc.component.resourceStoreUseRecordManageInfo.conditions.parentRstId == '') {
@@ -191,16 +191,16 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         vc.component.resourceStoreUseRecordManageInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSpecifications: function() {
+            _listResourceStoreSpecifications: function () {
                 vc.component.resourceStoreUseRecordManageInfo.resourceStoreSpecifications = [];
                 vc.component.resourceStoreUseRecordManageInfo.conditions.rssId = '';
                 var param = {
@@ -214,23 +214,23 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreUseRecordManageInfo = JSON.parse(json);
                         vc.component.resourceStoreUseRecordManageInfo.resourceStoreSpecifications = _resourceStoreUseRecordManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.resourceStoreUseRecordManageInfo.moreCondition) {
                     vc.component.resourceStoreUseRecordManageInfo.moreCondition = false;
                 } else {
                     vc.component.resourceStoreUseRecordManageInfo.moreCondition = true;
                 }
             },
-            _exportExcel: function() {
+            _exportExcel: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=resourceStoreUseRecordManage&' + vc.objToGetParam($that.resourceStoreUseRecordManageInfo.conditions));
             }
         }

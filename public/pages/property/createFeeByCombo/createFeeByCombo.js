@@ -31,7 +31,6 @@
             _chooseFeeCombo: function () {
                 vc.emit('chooseFeeCombo', 'openChooseFeeComboModel', {});
             },
-
             _listFeeComboMembers: function (_feeCombo) {
                 let param = {
                     params: {
@@ -48,7 +47,7 @@
                         $that.createFeeByComboInfo.selectConfigIds = [];
                         _feeComboMemberManageInfo.data.forEach(config => {
                             config.startTime = '';
-                            config.endTime = '',
+                            config.endTime = '';
                             $that.createFeeByComboInfo.selectConfigIds.push(config.configId);
                         })
                         vc.component.createFeeByComboInfo.feeConfigs = _feeComboMemberManageInfo.data;
@@ -58,14 +57,11 @@
                                 vc.initDate('startTime' + config.configId, function (_value) {
                                     config.startTime = _value;
                                 })
-
                                 vc.initDate('endTime' + config.configId, function (_value) {
                                     config.endTime = _value;
                                 })
                             })
                         }, 1000)
-
-
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -95,8 +91,8 @@
                 vc.http.apiPost(
                     '/fee.createFeeByCombo',
                     JSON.stringify(_data), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
@@ -127,7 +123,7 @@
                     vc.component.createFeeByComboInfo.selectConfigIds = [];
                 }
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             }
         }

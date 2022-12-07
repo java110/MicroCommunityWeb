@@ -137,6 +137,7 @@
                 // vc.emit('finishRepair', 'openFinishRepairModal', _ownerRepair);
                 vc.jumpToPage('/#/pages/property/finishRepair?repairType=' + _ownerRepair.repairType + '&repairId=' + _ownerRepair.repairId + '&repairObjType=' + _ownerRepair.repairObjType + '&publicArea=' + _ownerRepair.publicArea + '&repairChannel=' + _ownerRepair.repairChannel);
             },
+            //详情
             _openDispatchRepairDetail: function (_ownerRepair) {
                 //vc.emit('ownerRepairDetail','openOwnerRepairDetailModal',_ownerRepair);
                 vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _ownerRepair.repairId);
@@ -169,10 +170,12 @@
                     vc.component.repairDispatchManageInfo.moreCondition = true;
                 }
             },
+            //转单
             _openDispatchRepairModel: function (_repair) {
                 _repair.action = "TRANSFER";
                 vc.emit('dispatchRepair', 'openDispatchRepairModal', _repair);
             },
+            //退单
             _openBackRepairModel: function (_repair) {
                 _repair.action = "BACK";
                 vc.emit('dispatchRepair', 'openDispatchRepairModal', _repair);

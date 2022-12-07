@@ -33,7 +33,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "公式太复杂"
-                        },
+                        }
                     ],
                     'editFeeFormulaInfo.price': [
                         {
@@ -57,14 +57,15 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "描述太长"
-                        },
+                        }
                     ],
                     'editFeeFormulaInfo.formulaId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "公式ID不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editFeeFormula: function () {

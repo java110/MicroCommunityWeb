@@ -84,7 +84,7 @@
                             <td class="text-center">{{resourceStoreType.createTime}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022120594690006')"
                                             v-on:click="_openEditResourceStoreTypeModel(resourceStoreType)">
                                         <span><vc:i18n name="修改" namespace="resourceStoreTypeManage"></vc:i18n></span>
                                     </button>
@@ -96,7 +96,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022120565060005')"
                                             v-on:click="_openDeleteResourceStoreTypeModel(resourceStoreType)">
                                         <span><vc:i18n name="删除" namespace="resourceStoreTypeManage"></vc:i18n></span>
                                     </button>

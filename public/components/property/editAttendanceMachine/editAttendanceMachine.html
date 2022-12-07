@@ -1,4 +1,5 @@
-<div id="editAttendanceMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editAttendanceMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
@@ -9,48 +10,68 @@
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="考勤机名称" namespace="addAttendanceMachine"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="考勤机名称" namespace="addAttendanceMachine"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceMachineInfo.machineName" type="text" :placeholder="vc.i18n('必填，请填写考勤机名称','addAttendanceMachine')" class="form-control">
+                                    <input v-model="editAttendanceMachineInfo.machineName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写考勤机名称','addAttendanceMachine')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="考勤机编码" namespace="addAttendanceMachine"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="考勤机编码" namespace="addAttendanceMachine"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceMachineInfo.machineCode" type="text" :placeholder="vc.i18n('必填，请填写考勤机编码','addAttendanceMachine')" class="form-control">
+                                    <input v-model="editAttendanceMachineInfo.machineCode" type="text"
+                                           :placeholder="vc.i18n('必填，请填写考勤机编码','addAttendanceMachine')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="版本号" namespace="addAttendanceMachine"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="版本号" namespace="addAttendanceMachine"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editAttendanceMachineInfo.machineVersion" type="text" :placeholder="vc.i18n('必填，请填写版本号','addAttendanceMachine')" class="form-control">
+                                    <input v-model="editAttendanceMachineInfo.machineVersion" type="text"
+                                           :placeholder="vc.i18n('必填，请填写版本号','addAttendanceMachine')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="考勤机位置" namespace="addAttendanceMachine"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="考勤机位置" namespace="addAttendanceMachine"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editAttendanceMachineInfo.locationTypeCd">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择考勤机位置','addAttendanceMachine')}}</option>
-                                        <option v-for="item in editAttendanceMachineInfo.locations" 
-                                            :value="item.locationId">{{item.locationName}}-->{{item.locationObjName}}
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择考勤机位置','addAttendanceMachine')}}
+                                        </option>
+                                        <option v-for="item in editAttendanceMachineInfo.locations"
+                                                :value="item.locationId">
+                                            {{item.locationName}}-->{{item.locationObjName}}
                                         </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="考勤机IP" namespace="addAttendanceMachine"></vc:i18n></span></label>
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="考勤机IP" namespace="addAttendanceMachine"></vc:i18n></span>
+                            </label>
                             <div class="col-sm-10">
-                                <input v-model="editAttendanceMachineInfo.machineIp" type="text" :placeholder="vc.i18n('选填，请填写考勤机IP,如 192.168.1.10:8090','addAttendanceMachine')" class="form-control">
+                                <input v-model="editAttendanceMachineInfo.machineIp" type="text"
+                                       :placeholder="vc.i18n('选填，请填写考勤机IP,如 192.168.1.10:8090','addAttendanceMachine')"
+                                       class="form-control">
                             </div>
                         </div>
-
                         <div v-for="(item,index) in editAttendanceMachineInfo.attrs">
-
                             <div class="form-group row" v-if="item.specType == '2233'">
                                 <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                 <div class="col-sm-10">
-                                    <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                                    <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="item.specType == '3344'">
@@ -59,20 +80,21 @@
                                     <select class="custom-select" v-model="item.value">
                                         <option selected disabled value="">{{item.specHoldplace}}</option>
                                         <option v-for="value in item.values" :label="value.valueName"
-                                            :value="value.value">
+                                                :value="value.value">
                                             {{item.valueName}}
                                         </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="ibox-content">
-                            <button class="btn btn-primary float-right" type="button" v-on:click="editAttendanceMachine()"><i
-                                    class="fa fa-check"></i>&nbsp;保存
+                            <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="editAttendanceMachine()">
+                                <i class="fa fa-check"></i>&nbsp;保存
                             </button>
-                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="editAttendanceMachine"></vc:i18n></span>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">
+                                <span><vc:i18n name="取消" namespace="editAttendanceMachine"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -80,5 +102,4 @@
             </div>
         </div>
     </div>
-
 </div>

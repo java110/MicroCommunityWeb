@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -15,38 +15,35 @@
                 conditions: {
                     blackWhite: '',
                     carNum: '',
-                    bwId: '',
-
+                    bwId: ''
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listCarBlackWhites(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('carBlackWhiteManage', 'listCarBlackWhite', function(_param) {
+        _initEvent: function () {
+            vc.on('carBlackWhiteManage', 'listCarBlackWhite', function (_param) {
                 vc.component._listCarBlackWhites(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listCarBlackWhites(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listCarBlackWhites: function(_page, _rows) {
-
+            _listCarBlackWhites: function (_page, _rows) {
                 vc.component.carBlackWhiteManageInfo.conditions.page = _page;
                 vc.component.carBlackWhiteManageInfo.conditions.row = _rows;
                 vc.component.carBlackWhiteManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-
                 var param = {
                     params: vc.component.carBlackWhiteManageInfo.conditions
                 };
-
+                param.params.bwId = param.params.bwId.trim();
+                param.params.carNum = param.params.carNum.trim();
                 //发送get请求
                 vc.http.apiGet('/carBlackWhite.listCarBlackWhites',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _carBlackWhiteManageInfo = JSON.parse(json);
                         vc.component.carBlackWhiteManageInfo.total = _carBlackWhiteManageInfo.total;
                         vc.component.carBlackWhiteManageInfo.records = _carBlackWhiteManageInfo.records;
@@ -57,33 +54,38 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddCarBlackWhiteModal: function() {
+            _openAddCarBlackWhiteModal: function () {
                 vc.emit('addCarBlackWhite', 'openAddCarBlackWhiteModal', {});
             },
-            _openEditCarBlackWhiteModel: function(_carBlackWhite) {
+            _openEditCarBlackWhiteModel: function (_carBlackWhite) {
                 vc.emit('editCarBlackWhite', 'openEditCarBlackWhiteModal', _carBlackWhite);
             },
-            _openDeleteCarBlackWhiteModel: function(_carBlackWhite) {
+            _openDeleteCarBlackWhiteModel: function (_carBlackWhite) {
                 vc.emit('deleteCarBlackWhite', 'openDeleteCarBlackWhiteModal', _carBlackWhite);
             },
-            _queryCarBlackWhiteMethod: function() {
+            //查询
+            _queryCarBlackWhiteMethod: function () {
                 vc.component._listCarBlackWhites(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetCarBlackWhiteMethod: function () {
+                vc.component.carBlackWhiteManageInfo.conditions.bwId = "";
+                vc.component.carBlackWhiteManageInfo.conditions.carNum = "";
+                vc.component.carBlackWhiteManageInfo.conditions.blackWhite = "";
+                vc.component._listCarBlackWhites(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.carBlackWhiteManageInfo.moreCondition) {
                     vc.component.carBlackWhiteManageInfo.moreCondition = false;
                 } else {
                     vc.component.carBlackWhiteManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

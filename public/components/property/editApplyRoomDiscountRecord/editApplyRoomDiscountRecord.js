@@ -44,7 +44,15 @@
                 $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".startTime").val();
-                        vc.component.editApplyRoomDiscountRecordInfo.startTime = value;
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.editApplyRoomDiscountRecordInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("计费起始时间必须小于计费终止时间");
+                            $(".startTime").val('');
+                            vc.component.editApplyRoomDiscountRecordInfo.startTime = "";
+                        } else {
+                            vc.component.editApplyRoomDiscountRecordInfo.startTime = value;
+                        }
                     });
                 $('.endTime').datetimepicker({
                     minView: "month",
@@ -59,10 +67,11 @@
                 $('.endTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".endTime").val();
-                        var start = Date.parse(new Date(vc.component.editApplyRoomDiscountRecordInfo.startTime))
-                        var end = Date.parse(new Date(value))
+                        var start = Date.parse(new Date(vc.component.editApplyRoomDiscountRecordInfo.startTime));
+                        var end = Date.parse(new Date(value));
                         if (start - end >= 0) {
-                            vc.toast("结束时间必须大于计费起始时间")
+                            vc.toast("结束时间必须大于计费起始时间");
+                            $(".endTime").val('');
                             vc.component.editApplyRoomDiscountRecordInfo.endTime = "";
                         } else {
                             vc.component.editApplyRoomDiscountRecordInfo.endTime = value;

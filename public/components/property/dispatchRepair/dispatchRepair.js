@@ -8,6 +8,7 @@
                 staffName: '',
                 context: '',
                 action: '',
+                repairWay: '',
                 repairTypeUsers: [],
                 currentUserId: vc.getData('/nav/getUserInfo').userId,
             }
@@ -111,6 +112,7 @@
                     staffName: '',
                     context: '',
                     action: '',
+                    repairWay: '',
                     repairTypeUsers: [],
                     currentUserId: vc.getData('/nav/getUserInfo').userId,
                 };

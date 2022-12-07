@@ -14,7 +14,6 @@
                 $('#deleteRoomModel').modal('hide');
             },
             deleteRoom: function () {
-
                 vc.component.deleteRoomInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/room.deleteRoom',
@@ -37,7 +36,6 @@
                         } else {
                             vc.toast(_json.msg);
                         }
-                        vc.toast(_tmpResJson.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

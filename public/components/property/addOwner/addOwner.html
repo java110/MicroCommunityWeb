@@ -16,7 +16,7 @@
                                     <span><vc:i18n name="姓名" namespace="addOwner"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addOwnerInfo.name" type="text"
+                                    <input v-model.trim="addOwnerInfo.name" type="text"
                                            :placeholder="vc.i18n('必填，请填写姓名','addOwner')" class="form-control"
                                            oninput="this.value=this.value.replace(/\s+/g, '')">
                                 </div>
@@ -26,7 +26,7 @@
                                     <span><vc:i18n name="手机" namespace="addOwner"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addOwnerInfo.link" type="number"
+                                    <input v-model.trim="addOwnerInfo.link" type="number"
                                            :placeholder="vc.i18n('必填，请填写联系方式','addOwner')" class="form-control">
                                 </div>
                             </div>
@@ -35,7 +35,8 @@
                                     <span><vc:i18n name="身份证" namespace="addOwner"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addOwnerInfo.idCard" type="text" @change="addOwnerIDCardChange()"
+                                    <input v-model.trim="addOwnerInfo.idCard" type="text"
+                                           @change="addOwnerIDCardChange()"
                                            :placeholder="vc.i18n('可选，请填写身份证','addOwner')" class="form-control">
                                 </div>
                             </div>
@@ -57,7 +58,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <input v-model="addOwnerInfo.age" type="text" readonly="readonly"
-                                           :placeholder="vc.i18n('年龄','addOwner')" class="form-control">
+                                           :placeholder="vc.i18n('请输入年龄','addOwner')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row" v-if="addOwnerInfo.componentTitle == '成员'">
@@ -121,7 +122,7 @@
                                     <span><vc:i18n name="家庭住址" namespace="addOwner"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addOwnerInfo.address" type="text"
+                                    <input v-model.trim="addOwnerInfo.address" type="text"
                                            :placeholder="vc.i18n('可填，请填写家庭住址','addOwner')" class="form-control">
                                 </div>
                             </div>
@@ -132,7 +133,7 @@
                                     <span><vc:i18n name="备注" namespace="addOwner"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addOwnerInfo.remark" type="tel"
+                                    <input v-model.trim="addOwnerInfo.remark" type="tel"
                                            :placeholder="vc.i18n('可填，请填写备注','addOwner')" class="form-control">
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                                 <div class="form-group row" v-if="item.specType == '3344'">
                                     <label class="col-sm-2 col-form-label">{{item.specName}}</label>
                                     <div class="col-sm-10">
-                                        <select class="custom-select" v-model="item.value">
+                                        <select class="custom-select" v-model.trim="item.value">
                                             <option selected disabled value="">{{item.specHoldplace}}</option>
                                             <option v-for="value in item.values" :label="value.valueName"
                                                     :value="value.value">{{item.valueName}}
@@ -164,7 +165,7 @@
                                 <div class="form-group row" v-if="addOwnerInfo.attrs[index+1].specType == '2233'">
                                     <label class="col-sm-2 col-form-label">{{addOwnerInfo.attrs[index+1].specName}}</label>
                                     <div class="col-sm-10">
-                                        <input v-model="addOwnerInfo.attrs[index+1].value" type="text"
+                                        <input v-model.trim="addOwnerInfo.attrs[index+1].value" type="text"
                                                :placeholder="addOwnerInfo.attrs[index+1].specHoldplace"
                                                class="form-control">
                                     </div>
@@ -172,7 +173,7 @@
                                 <div class="form-group row" v-if="addOwnerInfo.attrs[index+1].specType == '3344'">
                                     <label class="col-sm-2 col-form-label">{{addOwnerInfo.attrs[index+1].specName}}</label>
                                     <div class="col-sm-10">
-                                        <select class="custom-select" v-model="addOwnerInfo.attrs[index+1].value">
+                                        <select class="custom-select" v-model.trim="addOwnerInfo.attrs[index+1].value">
                                             <option selected disabled value="">
                                                 {{addOwnerInfo.attrs[index+1].specHoldplace}}
                                             </option>

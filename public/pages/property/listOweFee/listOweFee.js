@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -34,8 +34,8 @@
             }
         },
         watch: {
-            'listOweFeeInfo.feeConfigs': function() { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
-                this.$nextTick(function() {
+            'listOweFeeInfo.feeConfigs': function () { //'goodList'是我要渲染的对象，也就是我要等到它渲染完才能调用函数
+                this.$nextTick(function () {
                     $('#configIds').selectpicker({
                         title: '请选择费用项',
                         styleBase: 'form-control',
@@ -44,19 +44,19 @@
                 })
             }
         },
-        _initMethod: function() {
-            vc.getDict('report_owe_fee', "payer_obj_type", function(_data) {
+        _initMethod: function () {
+            vc.getDict('report_owe_fee', "payer_obj_type", function (_data) {
                 vc.component.listOweFeeInfo.payObjTypes = _data;
             });
             //与字典表关联
-            vc.getDict('building_room', "room_sub_type", function(_data) {
+            vc.getDict('building_room', "room_sub_type", function (_data) {
                 vc.component.listOweFeeInfo.roomSubTypes = _data;
             });
             vc.component._loadListOweFeeInfo(1, 10);
             $that._listFeeConfigs();
         },
-        _initEvent: function() {
-            $('#configIds').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+        _initEvent: function () {
+            $('#configIds').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
                 // do something...
                 console.log(e, clickedIndex, isSelected, previousValue)
                 if (isSelected) {
@@ -65,7 +65,6 @@
                         configName: $that.listOweFeeInfo.feeConfigs[clickedIndex].feeName
                     })
                 } else {
-
                     let _feeConfigNames = [];
                     $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                         if (item.configId != $that.listOweFeeInfo.feeConfigs[clickedIndex].configId) {
@@ -76,17 +75,17 @@
                 }
             });
             vc.on('pagination', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     vc.component._loadListOweFeeInfo(_currentPage, DEFAULT_ROWS);
                 });
-            vc.on('listOweFee', 'chooseFloor', function(_param) {
+            vc.on('listOweFee', 'chooseFloor', function (_param) {
                 vc.component.listOweFeeInfo.conditions.floorId = _param.floorId;
                 vc.component.listOweFeeInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
             });
         },
         methods: {
-            _loadListOweFeeInfo: function(_page, _row) {
+            _loadListOweFeeInfo: function (_page, _row) {
                 vc.component.listOweFeeInfo.conditions.page = _page;
                 vc.component.listOweFeeInfo.conditions.row = _row;
                 // vc.component.listOweFeeInfo.conditions.;
@@ -104,7 +103,7 @@
                 //发送get请求
                 vc.http.apiGet('/reportOweFee/queryReportOweFee',
                     param,
-                    function(json) {
+                    function (json) {
                         var _feeConfigInfo = JSON.parse(json);
                         vc.component.listOweFeeInfo.total = _feeConfigInfo.total;
                         vc.component.listOweFeeInfo.records = _feeConfigInfo.records;
@@ -115,15 +114,15 @@
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.listOweFeeInfo.moreCondition) {
                     vc.component.listOweFeeInfo.moreCondition = false;
                 } else {
@@ -131,17 +130,17 @@
                 }
             },
             //查询
-            _queryOweFeeMethod: function() {
+            _queryOweFeeMethod: function () {
                 vc.component._loadListOweFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetOweFeeMethod: function() {
+            _resetOweFeeMethod: function () {
                 vc.resetObject($that.listOweFeeInfo.conditions);
                 $that.listOweFeeInfo.feeConfigNames = [];
                 $('#configIds').selectpicker('deselectAll');
                 vc.component._loadListOweFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listFeeConfigs: function() {
+            _listFeeConfigs: function () {
                 var param = {
                     params: {
                         page: 1,
@@ -151,15 +150,15 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.listOweFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _getFeeOweAmount: function(item, fee) {
+            _getFeeOweAmount: function (item, fee) {
                 let _items = fee.items;
                 if (!_items) {
                     return 0;
@@ -173,7 +172,7 @@
                 })
                 return _value;
             },
-            _getFeeOweAllAmount: function(item) {
+            _getFeeOweAllAmount: function (item) {
                 let _fees = $that.listOweFeeInfo.fees;
                 let _amountOwed = 0.0;
                 _fees.forEach(_feeItem => {
@@ -189,7 +188,7 @@
                 });
                 return _amountOwed.toFixed(2);
             },
-            _getAllFeeOweAmount: function(_fee) {
+            _getAllFeeOweAmount: function (_fee) {
                 let _feeConfigNames = $that.listOweFeeInfo.feeConfigNames;
                 if (_feeConfigNames.length < 1) {
                     return _fee.amountOwed;
@@ -205,11 +204,10 @@
                 })
                 return _amountOwed.toFixed(2);
             },
-            _getFeeOweAllAmounts: function() {
+            _getFeeOweAllAmounts: function () {
                 if (!window.$that) {
                     return;
                 }
-
                 if (!$that.listOweFeeInfo) {
                     return;
                 }
@@ -221,7 +219,7 @@
                 });
                 return _amountOwed.toFixed(2);
             },
-            _exportFee: function() {
+            _exportFee: function () {
                 let _configIds = "";
                 $that.listOweFeeInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
@@ -229,16 +227,14 @@
                 if (_configIds.endsWith(',')) {
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
-
                 //&configIds= + _configIds
-
                 let _conditions = vc.objToGetParam($that.listOweFeeInfo.conditions)
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=listOweFee' + "&" + _conditions);
             },
-            _toFeeCollectionOrderManage: function() {
+            _toFeeCollectionOrderManage: function () {
                 vc.jumpToPage('/#/pages/property/feeCollectionOrderManage');
             },
-            loadUnits: function(_floorId) {
+            loadUnits: function (_floorId) {
                 var param = {
                     params: {
                         floorId: _floorId,
@@ -248,7 +244,7 @@
                 vc.http.apiGet(
                     '/unit.queryUnits',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             let tmpUnits = JSON.parse(json);
@@ -257,15 +253,15 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _openChooseFloorMethod: function() {
+            _openChooseFloorMethod: function () {
                 vc.emit('searchFloor', 'openSearchFloorModel', {});
             },
-            _getFeeOweAllTotalAmount: function(_item) {
+            _getFeeOweAllTotalAmount: function (_item) {
                 let _value = 0;
                 let _itemTotalOweAmounts = $that.listOweFeeInfo.fees[0].itemTotalOweAmounts;
                 if (!$that.listOweFeeInfo.fees[0] || !$that.listOweFeeInfo.fees[0].itemTotalOweAmounts) {
@@ -278,7 +274,7 @@
                 })
                 return _value;
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.listOweFeeInfo.moreCondition) {
                     vc.component.listOweFeeInfo.moreCondition = false;
                 } else {

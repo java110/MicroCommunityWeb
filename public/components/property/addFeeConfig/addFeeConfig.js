@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string,
@@ -11,8 +11,8 @@
                 feeTypeCd: '',
                 feeName: '',
                 feeFlag: '',
-                startTime: vc.dateFormat(new Date()),
-                endTime: '2050-01-01',
+                startTime: '',
+                endTime: '',
                 computingFormula: '',
                 squarePrice: '',
                 additionalAmount: '',
@@ -28,50 +28,83 @@
                 deductFrom: 'Y'
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._initAddFeeConfigDateInfo();
             //与字典表费用类型关联
-            vc.getDict('pay_fee_config', "fee_type_cd_show", function(_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd_show", function (_data) {
                 vc.component.addFeeConfigInfo.feeTypeCds = _data;
             });
             //与字典表计算公式关联
-            vc.getDict('pay_fee_config', "computing_formula", function(_data) {
+            vc.getDict('pay_fee_config', "computing_formula", function (_data) {
                 vc.component.addFeeConfigInfo.computingFormulas = _data;
             });
             //与字典表费用标识关联
-            vc.getDict('pay_fee_config', 'fee_flag', function(_data) {
+            vc.getDict('pay_fee_config', 'fee_flag', function (_data) {
                 vc.component.addFeeConfigInfo.feeFlags = _data;
             });
             //与字典表付费类型关联
-            vc.getDict('pay_fee_config', 'payment_cd', function(_data) {
+            vc.getDict('pay_fee_config', 'payment_cd', function (_data) {
                 vc.component.addFeeConfigInfo.paymentCds = _data;
             });
             //与字典表出账类型关联
-            vc.getDict('pay_fee_config', 'bill_type', function(_data) {
+            vc.getDict('pay_fee_config', 'bill_type', function (_data) {
                 vc.component.addFeeConfigInfo.billTypes = _data;
             });
         },
-        _initEvent: function() {
+        _initEvent: function () {
             vc.on('addFeeConfig', 'openAddFeeConfigModal',
-                function() {
+                function () {
                     $('#addFeeConfigModel').modal('show');
                 });
         },
         methods: {
-            _initAddFeeConfigDateInfo: function() {
-                vc.initDate('addFeeConfigStartTime', function(_value) {
-                    vc.component.addFeeConfigInfo.startTime = _value;
+            _initAddFeeConfigDateInfo: function () {
+                $('.addFeeConfigStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
                 });
-                vc.initDate('addFeeConfigEndTime', function(_value) {
-                    var start = Date.parse(new Date(vc.component.addFeeConfigInfo.startTime))
-                    var end = Date.parse(new Date(_value))
-                    if (start - end >= 0) {
-                        vc.toast("计费终止时间必须大于计费起始时间")
-                        $(".addFeeConfigEndTime").val('')
-                    } else {
-                        vc.component.addFeeConfigInfo.endTime = _value;
-                    }
+                $('.addFeeConfigStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addFeeConfigStartTime").val();
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.addFeeConfigInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("计费起始时间必须小于计费终止时间");
+                            $(".addFeeConfigStartTime").val('');
+                            vc.component.addFeeConfigInfo.startTime = "";
+                        } else {
+                            vc.component.addFeeConfigInfo.startTime = value;
+                        }
+                    });
+                $('.addFeeConfigEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
                 });
+                $('.addFeeConfigEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".addFeeConfigEndTime").val();
+                        var start = Date.parse(new Date(vc.component.addFeeConfigInfo.startTime));
+                        var end = Date.parse(new Date(value));
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间");
+                            $(".addFeeConfigEndTime").val('');
+                            vc.component.addFeeConfigInfo.endTime = "";
+                        } else {
+                            vc.component.addFeeConfigInfo.endTime = value;
+                        }
+                    });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByName('startTime')[0].addEventListener('click', myfunc)
 
@@ -89,7 +122,8 @@
                 return vc.validate.validate({
                     addFeeConfigInfo: vc.component.addFeeConfigInfo
                 }, {
-                    'addFeeConfigInfo.feeTypeCd': [{
+                    'addFeeConfigInfo.feeTypeCd': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "费用类型不能为空"
@@ -100,7 +134,8 @@
                             errInfo: "费用类型格式错误"
                         },
                     ],
-                    'addFeeConfigInfo.feeName': [{
+                    'addFeeConfigInfo.feeName': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "收费项目不能为空"
@@ -111,7 +146,8 @@
                             errInfo: "收费项目不能超过100位"
                         },
                     ],
-                    'addFeeConfigInfo.feeFlag': [{
+                    'addFeeConfigInfo.feeFlag': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "费用标识不能为空"
@@ -122,7 +158,8 @@
                             errInfo: "费用类型格式错误"
                         },
                     ],
-                    'addFeeConfigInfo.startTime': [{
+                    'addFeeConfigInfo.startTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "计费起始时间不能为空"
@@ -133,7 +170,8 @@
                             errInfo: "计费起始时间不是有效的时间格式"
                         },
                     ],
-                    'addFeeConfigInfo.endTime': [{
+                    'addFeeConfigInfo.endTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "计费终止时间不能为空"
@@ -144,7 +182,8 @@
                             errInfo: "计费终止时间不是有效的时间格式"
                         },
                     ],
-                    'addFeeConfigInfo.computingFormula': [{
+                    'addFeeConfigInfo.computingFormula': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "计算公式不能为空"
@@ -155,7 +194,8 @@
                             errInfo: "计算公式格式错误"
                         },
                     ],
-                    'addFeeConfigInfo.squarePrice': [{
+                    'addFeeConfigInfo.squarePrice': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "计费单价不能为空"
@@ -166,7 +206,8 @@
                             errInfo: "计费单价格式错误"
                         },
                     ],
-                    'addFeeConfigInfo.additionalAmount': [{
+                    'addFeeConfigInfo.additionalAmount': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "附加费用不能为空"
@@ -182,7 +223,8 @@
                         param: "",
                         errInfo: "出账类型不能为空"
                     }],
-                    'addFeeConfigInfo.paymentCycle': [{
+                    'addFeeConfigInfo.paymentCycle': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "缴费周期不能为空"
@@ -193,7 +235,8 @@
                             errInfo: "缴费周期必须为数字 单位月"
                         },
                     ],
-                    'addFeeConfigInfo.paymentCd': [{
+                    'addFeeConfigInfo.paymentCd': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "付费类型不能为空"
@@ -206,8 +249,7 @@
                     ]
                 });
             },
-            saveFeeConfigInfo: function() {
-
+            saveFeeConfigInfo: function () {
                 //固定费用
                 if (vc.component.addFeeConfigInfo.computingFormula == '2002') {
                     vc.component.addFeeConfigInfo.squarePrice = "0.00";
@@ -246,7 +288,7 @@
                 vc.http.apiPost('/feeConfig.saveFeeConfig', JSON.stringify(vc.component.addFeeConfigInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
                         if (_json.code == 0) {
@@ -256,15 +298,16 @@
                             vc.emit('feeConfigManage', 'listFeeConfig', {});
                             vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg)
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddFeeConfigInfo: function() {
+            clearAddFeeConfigInfo: function () {
                 var _feeTypeCds = vc.component.addFeeConfigInfo.feeTypeCds;
                 var _computingFormulas = vc.component.addFeeConfigInfo.computingFormulas;
                 var _feeFlags = vc.component.addFeeConfigInfo.feeFlags;

@@ -13,7 +13,7 @@
                         <div class="col-sm-3" v-for="(conditionItem,conditionIndex) in item.conditions">
                             <div class="form-group">
                                 <input :type="conditionItem.type" :placeholder="conditionItem.holdpace"
-                                       v-model="conditionItem.value" class="form-control" :class="">
+                                       v-model.trim="conditionItem.value" class="form-control" :class="">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -21,6 +21,11 @@
                                     v-on:click="_queryReportTableMethod(item)">
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="commonReportTable"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm"
+                                    v-on:click="_resetReportTableMethod(item)">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="commonReportTable"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -58,7 +63,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td :colspan="item.th.length">
+                            <td :colspan="20">
                                 <ul class="pagination float-right"></ul>
                             </td>
                         </tr>

@@ -67,7 +67,6 @@
                         $that.printPayFeeInfo.feeTime = _feeReceipt.createTime;
                         $that.printPayFeeInfo.userName = _feeReceipt.userName;
                         $that.printPayFeeInfo.amount = 0;
-
                         for (var i = 0; i < _feeReceiptManageInfo.data.length; i++) {
                             $that.printPayFeeInfo.amount += parseFloat(_feeReceiptManageInfo.data[i].amount) * 1000000000000;
                             if (vc.getParam('type') == 3) {
@@ -149,7 +148,6 @@
                         row: 1
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/store.listStores',
                     param,

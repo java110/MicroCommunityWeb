@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             addShopsInfo: {
@@ -16,7 +15,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addShops', 'addShopsModel', function (_params) {
@@ -24,7 +22,6 @@
                 $('#addShopsModel').modal('show');
                 vc.component.addShopsInfo.communityId = vc.getCurrentCommunity().communityId;
             });
-
             vc.on('addShops', 'addShops', 'notify', function (_param) {
                 if (_param.hasOwnProperty('floorId')) {
                     $that.addShopsInfo.floorId = _param.floorId;
@@ -32,7 +29,6 @@
             });
         },
         methods: {
-
             addShopsValidate: function () {
                 return vc.validate.validate({
                     addShopsInfo: vc.component.addShopsInfo
@@ -85,27 +81,29 @@
                             errInfo: "建筑面积数字长度不能超过12位"
                         }
                     ],
-                    'addShopsInfo.roomArea': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "室内面积不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "室内面积错误，如 300.00"
-                    },
+                    'addShopsInfo.roomArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "室内面积不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "室内面积错误，如 300.00"
+                        }
                     ],
-                    'addShopsInfo.roomRent': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "租金不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "租金错误，如 300.00"
-                    },
+                    'addShopsInfo.roomRent': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "租金不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "租金错误，如 300.00"
+                        }
                     ],
                     'addShopsInfo.feeCoefficient': [
                         {
@@ -124,9 +122,8 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "备注长度不能超过200位"
-                        },
+                        }
                     ]
-
                 });
             },
             addShops: function () {
@@ -134,7 +131,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     'room.saveShops',
                     JSON.stringify(vc.component.addShopsInfo),
@@ -142,19 +138,19 @@
                         emulateJSON: true
                     },
                     function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addShopsModel').modal('hide');
-                            vc.emit('shops', 'loadData', {
-                            });
+                            vc.emit('shops', 'loadData', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -174,5 +170,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

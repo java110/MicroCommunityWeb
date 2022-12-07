@@ -15,14 +15,14 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text"
                                        :placeholder="vc.i18n('请输入房屋编号楼栋-单元-房屋 如1-1-101','roomRenovationManage') "
                                        v-model="roomRenovationManageInfo.conditions.roomName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入联系人','roomRenovationManage')"
                                        v-model="roomRenovationManageInfo.conditions.personName" class=" form-control">
@@ -41,7 +41,7 @@
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="roomRenovationManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-white btn-sm" v-on:click="_resetRoomRenovationMethod()"
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRoomRenovationMethod()"
                                     style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="roomRenovationManage"></vc:i18n></span>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="row" v-show="roomRenovationManageInfo.moreCondition == true">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="roomRenovationManageInfo.conditions.state">
                                 <option selected value="">{{vc.i18n('请选择状态','roomRenovationManage')}}</option>
                                 <option v-for="(item,index) in roomRenovationManageInfo.states" :key="index"
@@ -57,7 +57,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="custom-select" v-model="roomRenovationManageInfo.conditions.isPostpone">
                                 <option selected value="">{{vc.i18n('请选择是否延期','roomRenovationManage')}}</option>
                                 <option value="Y">{{vc.i18n('是','roomRenovationManage')}}</option>
@@ -73,14 +73,14 @@
                         </div>
                     </div>
                     <div class="row" v-show="roomRenovationManageInfo.moreCondition == true">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input v-model="roomRenovationManageInfo.conditions.startTime" type="text"
                                        :placeholder="vc.i18n('请选择装修申请开始时间','roomRenovationManage')"
                                        class="form-control start_time">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input v-model="roomRenovationManageInfo.conditions.endTime" type="text"
                                        :placeholder="vc.i18n('请选择装修申请结束时间','roomRenovationManage')"

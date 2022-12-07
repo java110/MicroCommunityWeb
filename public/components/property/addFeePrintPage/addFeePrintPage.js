@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -15,7 +14,6 @@
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addFeePrintPage', 'openAddFeePrintPageModal', function () {
@@ -38,7 +36,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "名称不能超过128"
-                        },
+                        }
                     ],
                     'addFeePrintPageInfo.communityId': [
                         {
@@ -50,7 +48,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "小区ID不能超过30"
-                        },
+                        }
                     ],
                     'addFeePrintPageInfo.pageUrl': [
                         {
@@ -62,14 +60,13 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "收据页面不能超过512"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
             saveFeePrintPageInfo: function () {
                 if (!vc.component.addFeePrintPageValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 //不提交数据将数据 回调给侦听处理
@@ -78,7 +75,6 @@
                     $('#addFeePrintPageModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'feePrintPage.saveFeePrintPage',
                     JSON.stringify(vc.component.addFeePrintPageInfo),
@@ -93,17 +89,15 @@
                             $('#addFeePrintPageModel').modal('hide');
                             vc.component.clearAddFeePrintPageInfo();
                             vc.emit('feePrintPageManage', 'listFeePrintPage', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddFeePrintPageInfo: function () {
@@ -121,14 +115,12 @@
                         row: 50
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('feePrintPageTemplate.listFeePrintPageTemplate',
                     param,
                     function (json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         $that.addFeePrintPageInfo.templates = _feePrintPageManageInfo.data;
-                      
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -136,5 +128,4 @@
             },
         }
     });
-
 })(window.vc);

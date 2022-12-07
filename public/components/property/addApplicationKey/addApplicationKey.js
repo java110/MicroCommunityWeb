@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -25,7 +24,7 @@
                 locationTypeCd: '',
                 locationObjId: '',
                 roomName: '',
-                typeFlag:'',
+                typeFlag: '',
                 photo: '',
                 mediaStreamTrack: null
             }
@@ -45,11 +44,9 @@
                 if (_param.hasOwnProperty("floorId")) {
                     vc.component.addApplicationKeyInfo.floorId = _param.floorId;
                 }
-
                 if (_param.hasOwnProperty("unitId")) {
                     vc.component.addApplicationKeyInfo.unitId = _param.unitId;
                 }
-
                 if (_param.hasOwnProperty("roomId")) {
                     vc.component.addApplicationKeyInfo.roomId = _param.roomId;
                 }
@@ -66,7 +63,6 @@
                     initialDate: new Date(),
                     autoClose: 1,
                     todayBtn: true
-
                 });
                 $('.addApplicationStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
@@ -88,7 +84,6 @@
                         vc.component.addApplicationKeyInfo.endTime = value;
                     });
             },
-
             addApplicationKeyValidate: function () {
                 return vc.validate.validate({
                     addApplicationKeyInfo: vc.component.addApplicationKeyInfo
@@ -103,7 +98,7 @@
                             limit: "maxin",
                             param: "1,64",
                             errInfo: "姓名不能超过64位"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.tel': [
                         {
@@ -115,7 +110,7 @@
                             limit: "phone",
                             param: "",
                             errInfo: "手机号格式错误"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.typeCd': [
                         {
@@ -127,7 +122,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "用户类型格式错误"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.sex': [
                         {
@@ -135,7 +130,6 @@
                             param: "",
                             errInfo: "性别不能为空"
                         }
-
                     ],
                     'addApplicationKeyInfo.age': [
                         {
@@ -147,7 +141,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "年龄不是有效数字"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.idCard': [
                         {
@@ -159,7 +153,7 @@
                             limit: "idCard",
                             param: "",
                             errInfo: "不是有效的身份证号"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.startTime': [
                         {
@@ -171,7 +165,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "不是有效的时间格式"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.endTime': [
                         {
@@ -183,7 +177,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "不是有效的时间格式"
-                        },
+                        }
                     ],
                     'addApplicationKeyInfo.locationTypeCd': [
                         {
@@ -199,8 +193,6 @@
                             errInfo: "具体位置不能为空"
                         }
                     ]
-
-
                 });
             },
             saveApplicationKeyInfo: function () {
@@ -217,17 +209,14 @@
                 }
                 if (!vc.component.addApplicationKeyValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addApplicationKeyInfo);
                     $('#addApplicationKeyModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/applicationKey.saveApplicationKey',
                     JSON.stringify(vc.component.addApplicationKeyInfo),
@@ -241,18 +230,16 @@
                             //关闭model
                             //$('#addApplicationKeyModel').modal('hide');
                             vc.component.clearAddApplicationKeyInfo();
+                            vc.toast("添加成功");
                             vc.emit('applicationKeyManage', 'listApplicationKey', {});
-
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddApplicationKeyInfo: function () {
@@ -277,7 +264,7 @@
                     photo: '',
                     videoPlaying: false,
                     mediaStreamTrack: null,
-                    typeFlag:'',
+                    typeFlag: ''
                 };
             },
             _closeAddApplicationKeyView: function () {
@@ -327,7 +314,7 @@
                     canvas.width = takeAddVideo.videoWidth;
                     canvas.height = takeAddVideo.videoHeight;
                     canvas.getContext('2d').drawImage(takeAddVideo, 0, 0);
-                    var data = canvas.toDataURL('image/jpeg',1.0);
+                    var data = canvas.toDataURL('image/jpeg', 1.0);
                     vc.component.addApplicationKeyInfo.photo = data;
                     //document.getElementById('photo').setAttribute('src', data);
                 }
@@ -350,8 +337,7 @@
                         vc.component.addApplicationKeyInfo.photo = reader.result;
                     }
                 }
-            },
+            }
         }
     });
-
 })(window.vc);

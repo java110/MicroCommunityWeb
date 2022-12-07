@@ -1,45 +1,73 @@
-<div id="addMachineAuthModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="addMachineAuthModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="门禁授权" namespace="addMachineAuth"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="门禁授权" namespace="addMachineAuth"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备" namespace="addMachineAuth"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="设备" namespace="addMachineAuth"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addMachineAuthInfo.machineId">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择设备','addMachineAuth')}}</option>
-                                        <option value="6666">{{vc.i18n('最美员工','addMachineAuth')}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择门禁设备','addMachineAuth')}}
+                                        </option>
+                                        <option v-for="(item,index) in machineAuthManageInfo.accessControlMachines"
+                                                :value="item.machineId">{{item.machineName}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="员工" namespace="addMachineAuth"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="员工" namespace="addMachineAuth"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addMachineAuthInfo.personId">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择员工','addMachineAuth')}}</option>
-                                        <option value="6666">{{vc.i18n('最美员工','addMachineAuth')}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择员工','addMachineAuth')}}
+                                        </option>
+                                        <option v-for="(item,index) in addMachineAuthInfo.staffs"
+                                                :value="item.userId">{{item.userName}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="addMachineAuth"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="addMachineAuth"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addMachineAuthInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','addMachineAuth')" class="form-control">
+                                    <input v-model="addMachineAuthInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','addMachineAuth')"
+                                           class="form-control startTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="addMachineAuth"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="addMachineAuth"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addMachineAuthInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','addMachineAuth')" class="form-control">
+                                    <input v-model="addMachineAuthInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','addMachineAuth')"
+                                           class="form-control endTime">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMachineAuthInfo()"><i class="fa fa-check"></i>&nbsp;保存</button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="addMachineAuth"></vc:i18n></span></button>
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveMachineAuthInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="addMachineAuth"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

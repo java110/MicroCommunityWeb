@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -16,24 +16,24 @@
                     classesName: '',
                     departmentName: '',
                     date: vc.dateFormat(new Date()),
-                    staffName: '',
+                    staffName: ''
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listAttendanceLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._initDate();
         },
-        _initEvent: function() {
-            vc.on('attendanceLogManage', 'listAttendanceLog', function(_param) {
+        _initEvent: function () {
+            vc.on('attendanceLogManage', 'listAttendanceLog', function (_param) {
                 vc.component._listAttendanceLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAttendanceLogs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initDate: function() {
+            _initDate: function () {
                 $(".queryDate").datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -44,7 +44,7 @@
                     todayBtn: true
                 });
                 $('.queryDate').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".queryDate").val();
                         vc.component.attendanceLogManageInfo.conditions.date = value;
                     });
@@ -55,7 +55,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listAttendanceLogs: function(_page, _rows) {
+            _listAttendanceLogs: function (_page, _rows) {
                 vc.component.attendanceLogManageInfo.conditions.page = _page;
                 vc.component.attendanceLogManageInfo.conditions.row = _rows;
                 var param = {
@@ -66,7 +66,7 @@
                 //发送get请求
                 vc.http.apiGet('/attendanceClass/queryAttendanceLog',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _attendanceLogManageInfo = JSON.parse(json);
                         vc.component.attendanceLogManageInfo.total = _attendanceLogManageInfo.total;
                         vc.component.attendanceLogManageInfo.records = _attendanceLogManageInfo.records;
@@ -77,23 +77,23 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryAttendanceLogMethod: function() {
+            _queryAttendanceLogMethod: function () {
                 vc.component._listAttendanceLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAttendanceLogMethod: function() {
+            _resetAttendanceLogMethod: function () {
                 vc.component.attendanceLogManageInfo.conditions.classesName = "";
                 vc.component.attendanceLogManageInfo.conditions.departmentName = "";
                 vc.component.attendanceLogManageInfo.conditions.date = vc.dateFormat(new Date());
                 vc.component._listAttendanceLogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.attendanceLogManageInfo.moreCondition) {
                     vc.component.attendanceLogManageInfo.moreCondition = false;
                 } else {

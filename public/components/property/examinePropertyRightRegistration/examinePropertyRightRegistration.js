@@ -31,7 +31,7 @@
                 $that.examinePropertyRightRegistrationInfo.prrId = _param.prrId;
                 $that.examinePropertyRightRegistrationInfo.remark = _param.remark;
                 $that.examinePropertyRightRegistrationInfo.state = _param.state;
-                if($that.examinePropertyRightRegistrationInfo.state == '0'){
+                if ($that.examinePropertyRightRegistrationInfo.state == '0') {
                     $that.examinePropertyRightRegistrationInfo.state = "";
                 }
                 $that.examinePropertyRightRegistrationInfo.roomNum = _param.roomNum;
@@ -84,9 +84,11 @@
                             $('#examinePropertyRightRegistrationModel').modal('hide');
                             vc.component.clearExaminePropertyRightRegistrationInfo();
                             vc.emit('propertyRightRegistrationManage', 'listPropertyRightRegistration', {});
+                            vc.toast("审核成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

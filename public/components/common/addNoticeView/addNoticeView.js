@@ -93,8 +93,7 @@
                 if ($that.addNoticeViewInfo.noticeTypeCd != '1003') {
                     $that.addNoticeViewInfo.objType = '001';
                 }
-                if ($that.addNoticeViewInfo.objType == '001' ||
-                    $that.addNoticeViewInfo.objType == '005') {
+                if ($that.addNoticeViewInfo.objType == '001' || $that.addNoticeViewInfo.objType == '005') {
                     $that.addNoticeViewInfo.objId = vc.getCurrentCommunity().communityId;
                 } else if ($that.addNoticeViewInfo.objType == '002') {
                     $that.addNoticeViewInfo.objId = $that.addNoticeViewInfo.floorId;

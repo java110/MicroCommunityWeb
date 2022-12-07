@@ -49,16 +49,17 @@
                                     <div>X 代表房屋收费系数（房屋管理中配置）</div>
                                     <div>L 代表房屋对应楼栋房屋数</div>
                                     <div>D 代表房屋对应单元房屋数</div>
-                                    <div><span><vc:i18n name="举例" namespace="editFeeFormula"></vc:i18n></span>：公共区域公摊电费
+                                    <div>
+                                        <span><vc:i18n name="举例" namespace="editFeeFormula"></vc:i18n></span>：公共区域公摊电费
                                         电量/楼栋面积*房屋面积
                                     </div>
-                                    <div><span><vc:i18n name="公式" namespace="editFeeFormula"></vc:i18n></span>：T/F * R
+                                    <div>
+                                        <span><vc:i18n name="公式" namespace="editFeeFormula"></vc:i18n></span>：T/F * R
                                     </div>
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editFeeFormula()">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editFeeFormula()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"

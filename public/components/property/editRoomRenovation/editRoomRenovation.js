@@ -179,24 +179,24 @@
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "装修时间不能为空"
+                            errInfo: "装修开始时间不能为空"
                         },
                         {
                             limit: "date",
                             param: "",
-                            errInfo: "装修时间错误"
+                            errInfo: "装修开始时间错误"
                         }
                     ],
                     'editRoomRenovationInfo.endTime': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "结束时间不能为空"
+                            errInfo: "装修结束时间不能为空"
                         },
                         {
                             limit: "date",
                             param: "",
-                            errInfo: "结束时间错误"
+                            errInfo: "装修结束时间错误"
                         }
                     ],
                     'editRoomRenovationInfo.isPostpone': [

@@ -17,7 +17,9 @@
                     num: '',
                     valid: '',
                     carTypeCd: '',
-                    leaseType: 'H'
+                    leaseType: 'H',
+                    ownerName: '',
+                    link: ''
                 },
                 listColumns: [],
             }
@@ -33,11 +35,11 @@
                 $that._listOwnerCar(_currentPage, DEFAULT_ROWS);
             });
             //与字典表关联
-            vc.getDict('owner_car', "car_type_cd", function(_data) {
+            vc.getDict('owner_car', "car_type_cd", function (_data) {
                 vc.component.listOwnerCarInfo.carTypeCds = _data;
             });
             //与字典表关联
-            vc.getDict('owner_car', "lease_type", function(_data) {
+            vc.getDict('owner_car', "lease_type", function (_data) {
                 vc.component.listOwnerCarInfo.leaseTypes = _data;
             });
         },
@@ -52,6 +54,8 @@
                 }
                 param.params.carNumLike = param.params.carNumLike.trim();
                 param.params.num = param.params.num.trim();
+                param.params.ownerName = param.params.ownerName.trim();
+                param.params.link = param.params.link.trim();
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwnerCars',
                     param,
@@ -88,6 +92,8 @@
                 vc.component.listOwnerCarInfo.conditions.num = "";
                 vc.component.listOwnerCarInfo.conditions.valid = "";
                 vc.component.listOwnerCarInfo.conditions.leaseType = "H";
+                vc.component.listOwnerCarInfo.conditions.ownerName = "";
+                vc.component.listOwnerCarInfo.conditions.link = "";
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

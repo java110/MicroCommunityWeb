@@ -121,6 +121,7 @@
                     vc.component.repairPoolManageInfo.moreCondition = true;
                 }
             },
+            //派单
             _openDispatchRepairModel: function (_repair) {
                 _repair.action = "DISPATCH";
                 vc.emit('dispatchRepair', 'openDispatchRepairModal', _repair);
@@ -149,6 +150,7 @@
                     }
                 );
             },
+            //抢单
             _openGrabbingRepairModel: function (_repair) {
                 let _data = {
                     communityId: vc.getCurrentCommunity().communityId,

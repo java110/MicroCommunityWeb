@@ -1,5 +1,4 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
             editAttendanceMachineInfo: {
@@ -17,15 +16,14 @@
                 locations: [],
                 attrs: [],
                 typeId: '',
-                isShow: 'true',
-
+                isShow: 'true'
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._loadEditMachineAttrSpec();
         },
-        _initEvent: function() {
-            vc.on('editAttendanceMachine', 'openEditMachineModal', function(_params) {
+        _initEvent: function () {
+            vc.on('editAttendanceMachine', 'openEditMachineModal', function (_params) {
                 vc.component.refreshEditMachineInfo();
                 $that._loadEditLocation()
                 $('#editAttendanceMachineModel').modal('show');
@@ -44,28 +42,24 @@
                 }
                 vc.component.editAttendanceMachineInfo.communityId = vc.getCurrentCommunity().communityId;
             });
-
-
         },
         methods: {
-            _initMachineUrl: function() {
+            _initMachineUrl: function () {
                 var sysInfo = vc.getData("_sysInfo");
                 if (sysInfo == null) {
                     return;
                 }
-
                 var apiUrl = sysInfo.apiUrl + "/api/machineTranslate.machineHeartbeart?communityId=" +
                     vc.getCurrentCommunity().communityId + "&transaction_id=-1&req_time=20181113225612&user_id=-1" +
                     "&app_id=" + vc.component.editAttendanceMachineInfo.machineTypeCd;
                 vc.component.editAttendanceMachineInfo.machineUrl = apiUrl;
-
-
             },
-            editAttendanceMachineValidate: function() {
+            editAttendanceMachineValidate: function () {
                 return vc.validate.validate({
                     editAttendanceMachineInfo: vc.component.editAttendanceMachineInfo
                 }, {
-                    'editAttendanceMachineInfo.machineCode': [{
+                    'editAttendanceMachineInfo.machineCode': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "设备编码不能为空"
@@ -74,65 +68,74 @@
                             limit: "maxin",
                             param: "1,30",
                             errInfo: "设备编码不能超过30位"
-                        },
+                        }
                     ],
-                    'editAttendanceMachineInfo.machineVersion': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "版本号不能为空"
-                    }],
-                    'editAttendanceMachineInfo.machineName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "设备名称不能为空"
-                    }],
-                    'editAttendanceMachineInfo.machineIp': [{
-                        limit: "maxLength",
-                        param: "64",
-                        errInfo: "设备IP格式错误"
-                    }, ],
-                    'editAttendanceMachineInfo.machineId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "设备ID不能为空"
-                    }],
-                    'editAttendanceMachineInfo.locationTypeCd': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "请选择设备位置"
-                    }],
-
+                    'editAttendanceMachineInfo.machineVersion': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "版本号不能为空"
+                        }
+                    ],
+                    'editAttendanceMachineInfo.machineName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "设备名称不能为空"
+                        }
+                    ],
+                    'editAttendanceMachineInfo.machineIp': [
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "设备IP格式错误"
+                        }
+                    ],
+                    'editAttendanceMachineInfo.machineId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "设备ID不能为空"
+                        }
+                    ],
+                    'editAttendanceMachineInfo.locationTypeCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "请选择设备位置"
+                        }
+                    ]
                 });
             },
-            editAttendanceMachine: function() {
+            editAttendanceMachine: function () {
                 vc.component.editAttendanceMachineInfo.communityId = vc.getCurrentCommunity().communityId;
                 if (!vc.component.editAttendanceMachineValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/machine.updateMachine',
                     JSON.stringify(vc.component.editAttendanceMachineInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#editAttendanceMachineModel').modal('hide');
                             vc.emit('attendanceMachineManage', 'listMachine', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-            refreshEditMachineInfo: function() {
+            refreshEditMachineInfo: function () {
                 let _locations = $that.editAttendanceMachineInfo.locations;
                 let _attrs = $that.editAttendanceMachineInfo.attrs;
                 vc.component.editAttendanceMachineInfo = {
@@ -149,10 +152,10 @@
                     locationType: '',
                     locations: _locations,
                     attrs: _attrs,
-                    typeId: '',
+                    typeId: ''
                 }
             },
-            _loadEditLocation: function() {
+            _loadEditLocation: function () {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -164,27 +167,26 @@
                 //发送get请求
                 vc.http.apiGet('communityLocation.listCommunityLocations',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _locationManageInfo = JSON.parse(json);
                         vc.component.editAttendanceMachineInfo.locations = _locationManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            onChangeLocation: function(e) {
+            onChangeLocation: function (e) {
                 let _locationTypeCd = $that.editAttendanceMachineInfo.locationTypeCd;
-
                 $that.editAttendanceMachineInfo.locations.forEach(item => {
                     if (item.locationId == _locationTypeCd) {
                         $that.editAttendanceMachineInfo.locationType = item.locationType;
                     }
                 });
             },
-            _loadEditMachineAttrSpec: function() {
+            _loadEditMachineAttrSpec: function () {
                 $that.editAttendanceMachineInfo.attrs = [];
-                vc.getAttrSpec('machine_attr', function(data) {
+                vc.getAttrSpec('machine_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         item.values = [];
@@ -193,36 +195,30 @@
                             $that.editAttendanceMachineInfo.attrs.push(item);
                         }
                     });
-
                 }, 'ATTENDANCE');
             },
-            _loadEditAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadEditAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
-
                 }, 'ATTENDANCE');
             },
-            setEditMachineTypeCd: function(_typeId) {
-
+            setEditMachineTypeCd: function (_typeId) {
                 vc.component.editAttendanceMachineInfo.machineTypes.forEach(item => {
                     if (item.typeId == _typeId) {
                         vc.component.editAttendanceMachineInfo.machineTypeCd = item.machineTypeCd;
                         if (item.machineTypeCd == '9998' || item.machineTypeCd == '9994') {
                             $that.editAttendanceMachineInfo.direction = '3306';
                             $that.editAttendanceMachineInfo.isShow = 'false';
-
                         } else {
                             $that.editAttendanceMachineInfo.isShow = 'true';
                         }
                     }
-
                 });
             }
         }
     });
-
 })(window.vc, window.vc.component);

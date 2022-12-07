@@ -3,47 +3,64 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="修改名单" namespace="editCarBlackWhite"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改名单" namespace="editCarBlackWhite"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="名单类型" namespace="editCarBlackWhite"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="名单类型" namespace="editCarBlackWhite"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editCarBlackWhiteInfo.blackWhite">
-                                        <option selected disabled value="">{{vc.i18n('必填','editCarBlackWhite')}}，请选择名单类型</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editCarBlackWhite')}}，请选择名单类型
+                                        </option>
                                         <option value="1111">{{vc.i18n('黑名单','editCarBlackWhite')}}</option>
                                         <option value="2222">{{vc.i18n('白名单','editCarBlackWhite')}}</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌号" namespace="editCarBlackWhite"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="车牌号" namespace="editCarBlackWhite"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarBlackWhiteInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','editCarBlackWhite')"
+                                    <input v-model="editCarBlackWhiteInfo.carNum" type="text"
+                                           :placeholder="vc.i18n('必填，请填写车牌号','editCarBlackWhite')"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="开始时间" namespace="editCarBlackWhite"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="editCarBlackWhite"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <input v-model="editCarBlackWhiteInfo.startTime" type="text"
-                                           :placeholder="vc.i18n('必填，请填写开始时间','editCarBlackWhite')" class="form-control editCarBlackWhiteStartTime">
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editCarBlackWhite')"
+                                           class="form-control editCarBlackWhiteStartTime">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="结束时间" namespace="editCarBlackWhite"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="editCarBlackWhite"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editCarBlackWhiteInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','editCarBlackWhite')"
+                                    <input v-model="editCarBlackWhiteInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editCarBlackWhite')"
                                            class="form-control editCarBlackWhiteEndTime">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button"
-                                        v-on:click="editCarBlackWhite()"><i class="fa fa-check"></i>&nbsp;保存
+                                        v-on:click="editCarBlackWhite()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
                                 <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
-                                        data-dismiss="modal"><span><vc:i18n name="取消" namespace="editCarBlackWhite"></vc:i18n></span>
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editCarBlackWhite"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>

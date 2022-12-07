@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -19,26 +18,24 @@
                 direction: '3306',
                 attrs: [],
                 typeId: '',
-                isShow: 'true',
+                isShow: 'true'
             }
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('addMonitorMachine', 'openAddMachineModal', function() {
+        _initEvent: function () {
+            vc.on('addMonitorMachine', 'openAddMachineModal', function () {
                 $that._loadMachineAttrSpec();
                 $('#addMonitorMachineModel').modal('show');
             });
-
-
         },
         methods: {
-            addMonitorMachineValidate: function() {
+            addMonitorMachineValidate: function () {
                 return vc.validate.validate({
                     addMonitorMachineInfo: vc.component.addMonitorMachineInfo
                 }, {
-                    'addMonitorMachineInfo.machineCode': [{
+                    'addMonitorMachineInfo.machineCode': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "设备编码不能为空"
@@ -47,19 +44,24 @@
                             limit: "maxin",
                             param: "1,30",
                             errInfo: "设备编码不能超过30位"
-                        },
+                        }
                     ],
-                    'addMonitorMachineInfo.machineVersion': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "版本号不能为空"
-                    }],
-                    'addMonitorMachineInfo.machineName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "设备名称不能为空"
-                    }],
-                    'addMonitorMachineInfo.machineTypeCd': [{
+                    'addMonitorMachineInfo.machineVersion': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "版本号不能为空"
+                        }
+                    ],
+                    'addMonitorMachineInfo.machineName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "设备名称不能为空"
+                        }
+                    ],
+                    'addMonitorMachineInfo.machineTypeCd': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "设备类型不能为空"
@@ -68,9 +70,10 @@
                             limit: "num",
                             param: "",
                             errInfo: "设备类型格式错误"
-                        },
+                        }
                     ],
-                    'addMonitorMachineInfo.direction': [{
+                    'addMonitorMachineInfo.direction': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "设备方向不能为空"
@@ -79,9 +82,10 @@
                             limit: "num",
                             param: "",
                             errInfo: "设备方向格式错误"
-                        },
+                        }
                     ],
-                    'addMonitorMachineInfo.authCode': [{
+                    'addMonitorMachineInfo.authCode': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "厂家不能为空"
@@ -90,45 +94,49 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "厂家不能大于64位"
-                        },
+                        }
                     ],
-                    'addMonitorMachineInfo.machineIp': [{
-                        limit: "maxLength",
-                        param: "64",
-                        errInfo: "设备IP格式错误"
-                    }, ],
-                    'addMonitorMachineInfo.machineMac': [{
-                        limit: "maxLength",
-                        param: "64",
-                        errInfo: "设备MAC 格式错误"
-                    }],
-                    'addMonitorMachineInfo.locationTypeCd': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "请选择设备位置"
-                    }]
+                    'addMonitorMachineInfo.machineIp': [
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "设备IP格式错误"
+                        }
+                    ],
+                    'addMonitorMachineInfo.machineMac': [
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "设备MAC 格式错误"
+                        }
+                    ],
+                    'addMonitorMachineInfo.locationTypeCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "请选择设备位置"
+                        }
+                    ]
                 });
             },
-            saveMachineInfo: function() {
+            saveMachineInfo: function () {
                 vc.component.addMonitorMachineInfo.communityId = vc.getCurrentCommunity().communityId;
                 if (!vc.component.addMonitorMachineValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
                     vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addMonitorMachineInfo);
                     $('#addMonitorMachineModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/machine.saveMachine',
                     JSON.stringify(vc.component.addMonitorMachineInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json)
                         if (_json.code == 0) {
@@ -136,18 +144,18 @@
                             $('#addMonitorMachineModel').modal('hide');
                             vc.component.clearAddMachineInfo();
                             vc.emit('monitorMachineManage', 'listMachine', {});
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
-            clearAddMachineInfo: function() {
+            clearAddMachineInfo: function () {
                 let _locations = $that.addMonitorMachineInfo.locations;
                 vc.component.addMonitorMachineInfo = {
                     machineId: '',
@@ -162,10 +170,10 @@
                     direction: '3306',
                     attrs: [],
                     typeId: '',
-                    isShow: 'true',
+                    isShow: 'true'
                 };
             },
-            _loadLocation: function() {
+            _loadLocation: function () {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -176,16 +184,16 @@
                 //发送get请求
                 vc.http.apiGet('communityLocation.listCommunityLocations',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _locationManageInfo = JSON.parse(json);
                         vc.component.addMonitorMachineInfo.locations = _locationManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            onAddChangeLocation: function(e) {
+            onAddChangeLocation: function (e) {
                 let _locationTypeCd = $that.addMonitorMachineInfo.locationTypeCd;
                 $that.addMonitorMachineInfo.locations.forEach(item => {
                     if (item.locationId == _locationTypeCd) {
@@ -193,9 +201,9 @@
                     }
                 });
             },
-            _loadMachineAttrSpec: function() {
+            _loadMachineAttrSpec: function () {
                 $that.addMonitorMachineInfo.attrs = [];
-                vc.getAttrSpec('machine_attr', function(data) {
+                vc.getAttrSpec('machine_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         if (item.specShow == 'Y') {
@@ -204,20 +212,17 @@
                             $that.addMonitorMachineInfo.attrs.push(item);
                         }
                     });
-
                 }, 'MONITOR');
             },
-            _loadAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
                         }
                     });
-
                 }, 'MONITOR');
             }
         }
     });
-
 })(window.vc);

@@ -1,13 +1,11 @@
 (function (vc) {
-
     vc.extends({
-     
         data: {
             addParkingSpaceApplyInfo: {
                 paName: '',
                 paId: '',
                 psId: '',
-                psName:'',
+                psName: '',
                 applyId: '',
                 carNum: '',
                 carBrand: '',
@@ -19,8 +17,7 @@
                 applyPersonLink: '',
                 applyPersonId: '',
                 state: '1001',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
@@ -32,13 +29,13 @@
             });
         },
         _initEvent: function () {
-            vc.on('viewOwnerInfo','onIndex',function(_index){
+            vc.on('viewOwnerInfo', 'onIndex', function (_index) {
                 /*if(_index == 2){
                    vc.emit($props.callBackListener,$props.callBackFunction,vc.component.viewOwnerInfo);
                 }*/
             });
-            vc.on('viewOwnerInfo','chooseOwner',function(_owner){
-                console.log("_owner",_owner);
+            vc.on('viewOwnerInfo', 'chooseOwner', function (_owner) {
+                console.log("_owner", _owner);
                 $that.addParkingSpaceApplyInfo.applyPersonName = _owner.name
                 $that.addParkingSpaceApplyInfo.applyPersonLink = _owner.link
                 $that.addParkingSpaceApplyInfo.applyPersonId = _owner.ownerId
@@ -59,7 +56,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "车牌号不能超过12位"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.carBrand': [
                         {
@@ -71,7 +68,7 @@
                             limit: "maxLength",
                             param: "50",
                             errInfo: "汽车品牌不能超过50位"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.carType': [
                         {
@@ -83,7 +80,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "车辆类型格式错误"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.carColor': [
                         {
@@ -95,7 +92,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "颜色太长"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.startTime': [
                         {
@@ -107,7 +104,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "起租时间格式错误"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.endTime': [
                         {
@@ -119,7 +116,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "结租时间格式错误"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.applyPersonName': [
                         {
@@ -131,7 +128,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "申请人名称太长"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.applyPersonLink': [
                         {
@@ -143,7 +140,7 @@
                             limit: "maxLength",
                             param: "11",
                             errInfo: "申请人电话长度超过11位"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.applyPersonId': [
                         {
@@ -155,7 +152,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "请填写申请人ID错误"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.state': [
                         {
@@ -167,25 +164,20 @@
                             limit: "num",
                             param: "",
                             errInfo: "车辆类型格式错误"
-                        },
+                        }
                     ],
                     'addParkingSpaceApplyInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "300",
                             errInfo: "请填写备注"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
             saveParkingSpaceApplyInfo: function () {
                 if (!vc.component.addParkingSpaceApplyValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
                 vc.component.addParkingSpaceApplyInfo.communityId = vc.getCurrentCommunity().communityId;
@@ -204,8 +196,9 @@
                             vc.component.clearAddParkingSpaceApplyInfo();
                             $that._goBack();
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -226,17 +219,15 @@
                     applyPersonLink: '',
                     applyPersonId: '',
                     state: '1001',
-                    remark: '',
-
+                    remark: ''
                 };
             },
             _goBack: function () {
                 vc.goBack();
             },
-            _openChooseOwner:function(){
-                vc.emit('searchOwner','openSearchOwnerModel',{});
+            _openChooseOwner: function () {
+                vc.emit('searchOwner', 'openSearchOwnerModel', {});
             }
         }
     });
-
 })(window.vc);

@@ -2,8 +2,26 @@
     vc.extends({
         data: {
             examineVisitInfo: {
+                vId: '',
+                vName: '',
+                visitGender: '',
+                phoneNumber: '',
+                visitTime: '',
+                departureTime: '',
+                visitCase: '',
+                state: '',
                 flag: '1',
-                stateRemark: ''
+                stateRemark: '',
+                carNum: '',
+                freeTime: '',
+                ownerId: '',
+                ownerName: '',
+                psId: '',
+                reasonType: '',
+                recordState: '',
+                stateName: '',
+                userId: '',
+                communityId: ''
             }
         },
         _initMethod: function () {
@@ -12,7 +30,8 @@
             vc.on('examineVisit', 'openExamineVisitModel', function (_params) {
                 vc.component.refreshExamineVisitInfo();
                 $('#examineVisitModel').modal('show');
-                vc.component.examineVisitInfo = _params;
+                vc.copyObject(_params, vc.component.examineVisitInfo);
+                vc.component.examineVisitInfo.state = "";
                 vc.component.examineVisitInfo.flag = "1";
             });
         },
@@ -91,7 +110,17 @@
                     visitCase: '',
                     state: '',
                     flag: '1',
-                    stateRemark: ''
+                    stateRemark: '',
+                    carNum: '',
+                    freeTime: '',
+                    ownerId: '',
+                    ownerName: '',
+                    psId: '',
+                    reasonType: '',
+                    recordState: '',
+                    stateName: '',
+                    userId: '',
+                    communityId: ''
                 }
             }
         }

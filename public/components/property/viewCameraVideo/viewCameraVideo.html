@@ -1,5 +1,6 @@
 <div>
-    <div id="viewCameraVideoModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div id="viewCameraVideoModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
@@ -8,10 +9,14 @@
                     </h3>
                     <div class="ibox-content">
                         <div class="form-group">
-                            <video id="viewCameraVideo" controls autoplay="autoplay" muted width="100%" height="400px" style="background-color: #000;"></video>
+                            <video id="viewCameraVideo" controls autoplay="autoplay" muted width="100%" height="400px"
+                                   style="background-color: #000;">
+                            </video>
                         </div>
                         <div class="ibox-content">
-                            <button type="button" class="btn btn-warning float-right" @click="_closeViewCameraVideo()"><vc:i18n name="关闭" namespace="addMonitorMachine"></vc:i18n></button>
+                            <button type="button" class="btn btn-warning float-right" @click="_closeViewCameraVideo()">
+                                <vc:i18n name="关闭" namespace="addMonitorMachine"></vc:i18n>
+                            </button>
                         </div>
                     </div>
                 </div>

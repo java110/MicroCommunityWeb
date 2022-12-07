@@ -1,6 +1,6 @@
 /**
-    入驻小区
-**/
+ 入驻小区
+ **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
@@ -23,7 +23,6 @@
             vc.component._listMeterTypes(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
             vc.on('meterTypeManage', 'listMeterType', function (_param) {
                 vc.component._listMeterTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -33,13 +32,11 @@
         },
         methods: {
             _listMeterTypes: function (_page, _rows) {
-
                 vc.component.meterTypeManageInfo.conditions.page = _page;
                 vc.component.meterTypeManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.meterTypeManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('meterType.listMeterType',
                     param,
@@ -69,7 +66,6 @@
             },
             _queryMeterTypeMethod: function () {
                 vc.component._listMeterTypes(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.meterTypeManageInfo.moreCondition) {
@@ -78,8 +74,6 @@
                     vc.component.meterTypeManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

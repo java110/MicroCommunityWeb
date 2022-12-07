@@ -17,37 +17,48 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写来访人姓名','visitManage')" class="form-control" v-model="appManageInfo.conditions.vName">
+                                <input type="text" :placeholder="vc.i18n('请填写来访人姓名','visitManage')" class="form-control"
+                                       v-model="visitManageInfo.conditions.vName">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择来访开始时间','visitManage')" v-model="appManageInfo.conditions.visitStartTime" class=" form-control visitStartTime">
+                                <input type="text" :placeholder="vc.i18n('请选择来访开始时间','visitManage')"
+                                       v-model="visitManageInfo.conditions.visitStartTime"
+                                       class=" form-control visitStartTime">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择来访结束时间','visitManage')" v-model="appManageInfo.conditions.visitEndTime" class=" form-control visitEndTime">
+                                <input type="text" :placeholder="vc.i18n('请选择来访结束时间','visitManage')"
+                                       v-model="visitManageInfo.conditions.visitEndTime"
+                                       class=" form-control visitEndTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAppManageInfoMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="visitManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryVisitManageInfoMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="visitManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAppManageInfoMethod()">
-                                <i class="fa fa-repeat"></i> <span><vc:i18n name="重置" namespace="visitManage"></vc:i18n></span>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetVisitManageInfoMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="visitManage"></vc:i18n></span>
                             </button>
                             <div class="ibox-tools" style="top:0px;">
-                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
-                                    {{appManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                        v-on:click="_moreCondition()">
+                                    {{visitManageInfo.moreCondition == true?'隐藏':'更多'}}
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-show="appManageInfo.moreCondition == true">
+                    <div class="row" v-show="visitManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写访客联系方式','visitManage')" class="form-control" v-model="appManageInfo.conditions.phoneNumber">
+                                <input type="text" :placeholder="vc.i18n('请填写访客联系方式','visitManage')"
+                                       class="form-control" v-model="visitManageInfo.conditions.phoneNumber">
                             </div>
                         </div>
                     </div>
@@ -55,88 +66,92 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="访客ID" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="照片" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="访客姓名/性别" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="访客联系方式" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="业主姓名" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="来访事由/类型" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="车牌号" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="随行人数" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="创建时间" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="来访/离开时间" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="车辆状态" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="状态" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="visitManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="访客ID" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="照片" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="访客姓名/性别" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="访客联系方式" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="业主姓名" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="来访事由/类型" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="车牌号" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="随行人数" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="来访/离开时间" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="车辆状态" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="visitManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="visit in appManageInfo.visits">
-                                <td class="text-center">{{visit.vId}}</td>
-                                <td class="text-center">
-                                    <div style="position: relative; display: inline-block;" v-on:click="showImg(visit.url)">
-                                        <img width="50" height="50" v-bind:src="visit.url?visit.url:'/img/noPhoto.jpg'" onerror="this.src='/img/noPhoto.jpg';">
-                                        <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;" width="50" height="50" alt="">
-                                    </div>
-                                </td>
-                                <td class="text-center">{{visit.vName}}/{{visit.visitGender=='0'?'男':'女'}}</td>
-                                <td class="text-center">{{visit.phoneNumber}}</td>
-                                <td class="text-center">{{visit.ownerName}}</td>
-                                <td class="text-center">{{visit.visitCase}}({{visit.reasonType == 0 ? '喜事' : (visit.reasonType == 1 ? '白事' : '-')}})
-                                </td>
-                                <td class="text-center">{{visit.carNum}}</td>
-                                <td class="text-center">{{visit.entourage}}</td>
-                                <td class="text-center">{{visit.createTime}}</td>
-                                <td class="text-center">{{visit.visitTime}}<br/>{{visit.departureTime}}</td>
-                                <td class="text-center">{{visit.stateName}}</td>
-                                <td class="text-center">
-                                    {{visit.recordState == 1 ? '已失效' : (visit.recordState == 0 ? '已生效' : '-')}}
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group" v-if="visit.state == '0' && visit.recordState == '0'">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)">
+                        <tr v-for="visit in visitManageInfo.visits">
+                            <td class="text-center">{{visit.vId}}</td>
+                            <td class="text-center">
+                                <div style="position: relative; display: inline-block;"
+                                     v-on:click="showImg(visit.url?visit.url:'/img/noPhoto.jpg')">
+                                    <img width="50" height="50" v-bind:src="visit.url?visit.url:'/img/noPhoto.jpg'"
+                                         onerror="this.src='/img/noPhoto.jpg';">
+                                    <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;"
+                                         width="50" height="50" alt="">
+                                </div>
+                            </td>
+                            <td class="text-center">{{visit.vName}}/{{visit.visitGender=='0'?'男':'女'}}</td>
+                            <td class="text-center">{{visit.phoneNumber}}</td>
+                            <td class="text-center">{{visit.ownerName}}</td>
+                            <td class="text-center">{{visit.visitCase}}({{visit.reasonType == 0 ? '喜事' :
+                                visit.reasonType == 1 ? '白事' : visit.reasonType == 2 ? '其他' : '-'}})
+                            </td>
+                            <td class="text-center">{{visit.carNum}}</td>
+                            <td class="text-center">{{visit.entourage}}</td>
+                            <td class="text-center">{{visit.createTime}}</td>
+                            <td class="text-center">{{visit.visitTime}}<br/>{{visit.departureTime}}</td>
+                            <td class="text-center">{{visit.stateName}}</td>
+                            <td class="text-center">
+                                {{visit.recordState == 1 ? '已失效' : (visit.recordState == 0 ? '已生效' : '-')}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="visit.state == '0' && visit.recordState == '0'">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitModel(visit)">
                                         <span><vc:i18n name="车辆审核" namespace="visitManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">
                                         <span><vc:i18n name="修改" namespace="visitManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteAppModel(visit)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteVisitModel(visit)">
                                         <span><vc:i18n name="删除" namespace="visitManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
                         <tr>

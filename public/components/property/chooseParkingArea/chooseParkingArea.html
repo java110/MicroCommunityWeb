@@ -3,7 +3,9 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="chooseParkingAreaModelLabel"><span><vc:i18n name="选择停车场" namespace="chooseParkingArea"></vc:i18n></span></h3>
+                <h3 class="modal-title" id="chooseParkingAreaModelLabel">
+                    <span><vc:i18n name="选择停车场" namespace="chooseParkingArea"></vc:i18n></span>
+                </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,9 +15,7 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-
-                                <div class="col-sm-7 m-b-xs">
-                                </div>
+                                <div class="col-sm-7 m-b-xs"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
                                         <input :placeholder="vc.i18n('输入停车场编号','chooseParkingArea')" type="text"
@@ -23,8 +23,12 @@
                                                class="form-control form-control-sm">
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="queryParkingAreas()"><span><vc:i18n name="查询" namespace="chooseParkingArea"></vc:i18n></span></button>
-                                            </span>
+                                                        v-on:click="queryParkingAreas()">
+                                                    <span>
+                                                        <vc:i18n name="查询" namespace="chooseParkingArea"></vc:i18n>
+                                                    </span>
+                                                </button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -32,11 +36,18 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"><span><vc:i18n name="停车场" namespace="chooseParkingArea"></vc:i18n></span>ID</th>
-                                        <th class="text-center"><span><vc:i18n name="停车场编号" namespace="chooseParkingArea"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="停车场类型" namespace="chooseParkingArea"></vc:i18n></span></th>
-                                        <th class="text-center"><span><vc:i18n name="操作" namespace="chooseParkingArea"></vc:i18n></span></th>
-
+                                        <th class="text-center">
+                                            <span><vc:i18n name="停车场" namespace="chooseParkingArea"></vc:i18n></span>ID
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="停车场编号" namespace="chooseParkingArea"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="停车场类型" namespace="chooseParkingArea"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="chooseParkingArea"></vc:i18n></span>
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -44,10 +55,10 @@
                                         <td class="text-center">{{parkingArea.paId}}</td>
                                         <td class="text-center">{{parkingArea.num}}</td>
                                         <td class="text-center">{{parkingArea.typeCd}}</td>
-
                                         <td>
                                             <button class="btn btn-primary btn-xs"
-                                                    v-on:click="chooseParkingArea(parkingArea)"><span><vc:i18n name="选择" namespace="chooseParkingArea"></vc:i18n></span>
+                                                    v-on:click="chooseParkingArea(parkingArea)">
+                                                <span><vc:i18n name="选择" namespace="chooseParkingArea"></vc:i18n></span>
                                             </button>
                                         </td>
                                     </tr>
@@ -55,7 +66,6 @@
                                 </table>
                                 <vc:create namespace="chooseParkingArea" path="frame/paginationPlus"></vc:create>
                             </div>
-
                         </div>
                     </div>
                 </div>

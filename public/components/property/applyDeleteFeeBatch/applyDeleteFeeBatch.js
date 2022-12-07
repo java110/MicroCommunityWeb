@@ -49,7 +49,6 @@
                     return;
                 }
                 vc.component.applyDeleteFeeBatchInfo.communityId = vc.getCurrentCommunity().communityId;
-                
                 vc.http.apiPost(
                     '/payFeeBatch.applyDeletePayFeeBatchCmd',
                     JSON.stringify(vc.component.applyDeleteFeeBatchInfo),
@@ -64,9 +63,11 @@
                             $('#applyDeleteFeeBatchModel').modal('hide');
                             vc.component.clearApplyDeleteFeeBatchInfo();
                             vc.emit('pagination', 'page_event', 1);
+                            vc.toast("取消成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

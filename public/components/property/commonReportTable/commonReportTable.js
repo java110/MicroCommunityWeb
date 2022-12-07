@@ -25,9 +25,20 @@
             });
         },
         methods: {
+            //查询
             _queryReportTableMethod: function (item) {
                 let _condition = {};
                 item.conditions.forEach(_item => {
+                    _condition[_item.param] = _item.value;
+                })
+                $that._listReportCustomTableDatas(DEFAULT_PAGE, DEFAULT_ROWS, item, _condition);
+                $that._listReportCustomTableFooter(DEFAULT_PAGE, DEFAULT_ROWS, item, _condition);
+            },
+            //重置
+            _resetReportTableMethod: function (item) {
+                let _condition = {};
+                item.conditions.forEach(_item => {
+                    _item.value = "";
                     _condition[_item.param] = _item.value;
                 })
                 $that._listReportCustomTableDatas(DEFAULT_PAGE, DEFAULT_ROWS, item, _condition);

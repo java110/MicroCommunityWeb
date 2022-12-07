@@ -34,7 +34,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "公式太复杂"
-                        },
+                        }
                     ],
                     'addFeeFormulaInfo.price': [
                         {
@@ -58,7 +58,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "描述太长"
-                        },
+                        }
                     ],
                 });
             },

@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             machineStateInfo: {
@@ -7,18 +6,15 @@
                 stateName: '',
                 state: '',
                 url: '',
-                userRole:'staff'
-
+                userRole: 'staff'
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('machineState', 'openMachineStateModal', function (_params) {
                 vc.copyObject(_params, vc.component.machineStateInfo);
                 $('#machineStateModel').modal('show');
-
             });
         },
         methods: {
@@ -39,17 +35,15 @@
                             return;
                         }
                         let _data = JSON.parse(json);
-                        if(_data.code != 0){
+                        if (_data.code != 0) {
                             vc.toast(_data.msg);
-                        }else{
+                        } else {
                             vc.toast('已请求设备');
                         }
-                        
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
                     });
             },
             _closeMachineStateModel: function () {
@@ -57,5 +51,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

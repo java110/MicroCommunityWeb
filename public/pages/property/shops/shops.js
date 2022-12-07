@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROW = 10;
     vc.extends({
@@ -30,36 +30,37 @@
                 listColumns: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component.shopsInfo.conditions.floorId = vc.getParam("floorId");
             vc.component.shopsInfo.conditions.floorName = vc.getParam("floorName");
             vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
         },
-        _initEvent: function() {
-            vc.on('shops', 'chooseFloor', function(_param) {
+        _initEvent: function () {
+            vc.on('shops', 'chooseFloor', function (_param) {
                 vc.component.shopsInfo.conditions.floorId = _param.floorId;
                 vc.component.shopsInfo.conditions.floorName = _param.floorName;
                 vc.component.loadUnits(_param.floorId);
-
             });
-            vc.on('shops', 'listShops', function(_param) {
+            vc.on('shops', 'listShops', function (_param) {
                 vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('shops', 'loadData', function(_param) {
+            vc.on('shops', 'loadData', function (_param) {
                 vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component.listShops(_currentPage, DEFAULT_ROW);
             });
         },
         methods: {
-            listShops: function(_page, _row) {
+            listShops: function (_page, _row) {
                 vc.component.shopsInfo.conditions.page = _page;
                 vc.component.shopsInfo.conditions.row = _row;
                 vc.component.shopsInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: JSON.parse(JSON.stringify(vc.component.shopsInfo.conditions))
                 };
+                param.params.roomId = param.params.roomId.trim();
+                param.params.roomNum = param.params.roomNum.trim();
                 let _allNum = $that.shopsInfo.conditions.roomName;
                 if (_allNum.split('-').length == 2) {
                     let _allNums = _allNum.split('-')
@@ -71,52 +72,57 @@
                 //发送get请求
                 vc.http.apiGet('/room.queryRooms',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var listShopsData = JSON.parse(json);
-
                         vc.component.shopsInfo.total = listShopsData.total;
                         vc.component.shopsInfo.records = listShopsData.records;
                         vc.component.shopsInfo.shopss = listShopsData.rooms;
-
                         $that.dealShopsAttr(listShopsData.shopss);
-
                         vc.emit('pagination', 'init', {
                             total: vc.component.shopsInfo.records,
                             dataCount: vc.component.shopsInfo.total,
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddShops: function() {
+            _openAddShops: function () {
                 vc.emit('addShops', 'addShopsModel', {});
             },
-            _openHireShopsModel: function(_shops) {
+            _openHireShopsModel: function (_shops) {
                 _shops.shopsState = '2006';
                 vc.emit('bindOwnerShops', 'bindOwnerShopsModel', _shops);
             },
-            _openSellShopsModel: function(_shops) {
+            _openSellShopsModel: function (_shops) {
                 _shops.shopsState = '2007';
                 vc.emit('bindOwnerShops', 'bindOwnerShopsModel', _shops);
             },
-            _openEditShopsModel: function(_shops) {
+            _openEditShopsModel: function (_shops) {
                 //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
                 vc.emit('editShops', 'openEditShopsModal', _shops);
             },
-            _openDelShopsModel: function(_shops) {
+            _openDelShopsModel: function (_shops) {
                 //_shops.floorId = vc.component.shopsInfo.conditions.floorId;
                 vc.emit('deleteRoom', 'openRoomModel', _shops);
             },
-            _openDeleteShopsOwnerModel: function(_shops) {
+            _openDeleteShopsOwnerModel: function (_shops) {
                 vc.jumpToPage('/#/pages/property/deleteOwnerRoom?ownerId=' + _shops.ownerId + "&roomType=" + _shops.roomType);
             },
-            _queryShopsMethod: function() {
+            //查询
+            _queryShopsMethod: function () {
                 vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
             },
-            showState: function(_state) {
+            //重置
+            _resetShopsMethod: function () {
+                vc.component.shopsInfo.conditions.roomNum = "";
+                vc.component.shopsInfo.conditions.state = "";
+                vc.component.shopsInfo.conditions.roomId = "";
+                vc.component.listShops(DEFAULT_PAGE, DEFAULT_ROW);
+            },
+            showState: function (_state) {
                 if (_state == '2001') {
                     return "已入住";
                 } else if (_state == '2002') {
@@ -129,22 +135,23 @@
                     return "未知";
                 }
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.shopsInfo.moreCondition) {
                     vc.component.shopsInfo.moreCondition = false;
                 } else {
                     vc.component.shopsInfo.moreCondition = true;
                 }
             },
-
-            dealShopsAttr: function(shopss) {
-                $that._getColumns(shopss, function() {
-                    shopss.forEach(item => {
-                        $that._getColumnsValue(item);
+            dealShopsAttr: function (shopss) {
+                if (shopss && shopss.length > 0) {
+                    $that._getColumns(shopss, function () {
+                        shopss.forEach(item => {
+                            $that._getColumnsValue(item);
+                        });
                     });
-                });
+                }
             },
-            _getColumnsValue: function(_shops) {
+            _getColumnsValue: function (_shops) {
                 _shops.listValues = [];
                 if (!_shops.hasOwnProperty('shopsAttrDto') || _shops.shopsAttrDto.length < 1) {
                     $that.shopsInfo.listColumns.forEach(_value => {
@@ -152,23 +159,22 @@
                     })
                     return;
                 }
-
                 let _shopsAttrDtos = _shops.shopsAttrDto;
-
                 $that.shopsInfo.listColumns.forEach(_value => {
                     let _tmpValue = '';
-                    _shopsAttrDtos.forEach(_attrItem => {
-                        if (_value == _attrItem.specName) {
-                            _tmpValue = _attrItem.valueName;
-                        }
-                    })
+                    if (_shopsAttrDtos && _shopsAttrDtos.length > 0) {
+                        _shopsAttrDtos.forEach(_attrItem => {
+                            if (_value == _attrItem.specName) {
+                                _tmpValue = _attrItem.valueName;
+                            }
+                        })
+                    }
                     _shops.listValues.push(_tmpValue);
                 })
-
             },
-            _getColumns: function(_shopss, _call) {
+            _getColumns: function (_shopss, _call) {
                 $that.shopsInfo.listColumns = [];
-                vc.getAttrSpec('building_shops_attr', function(data) {
+                vc.getAttrSpec('building_shops_attr', function (data) {
                     $that.shopsInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
@@ -177,7 +183,6 @@
                     });
                     _call();
                 });
-
             }
         }
     });

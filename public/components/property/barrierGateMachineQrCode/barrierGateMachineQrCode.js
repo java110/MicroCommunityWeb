@@ -1,21 +1,21 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             barrierGateMachineQrCodeInfo: {
                 url: '',
-                inspectionName: '',
+                inspectionName: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('barrierGateMachineQrCode', 'openQrCodeModal', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('barrierGateMachineQrCode', 'openQrCodeModal', function (_param) {
                 $('#barrierGateMachineQrCodeModel').modal('show');
                 $that._loadOutMachineQrCodeUrl(_param);
             });
         },
         methods: {
-            _loadOutMachineQrCodeUrl: function(_machine) {
+            _loadOutMachineQrCodeUrl: function (_machine) {
                 //判断是否支付
                 var param = {
                     params: {
@@ -27,17 +27,17 @@
                 //发送get请求
                 vc.http.apiGet('/machine.getCarMachineQrCodeUrl',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _info = JSON.parse(json);
                         $that._viewOutMachineQr(_info.data.url)
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 两分钟后显示遮罩层
-            _viewOutMachineQr: function(_url) {
+            _viewOutMachineQr: function (_url) {
                 document.getElementById("outMachineQrcode").innerHTML = "";
                 let qrcode = new QRCode(document.getElementById("outMachineQrcode"), {
                     text: "213", //你想要填写的文本
@@ -51,5 +51,4 @@
             }
         }
     });
-
 })(window.vc);

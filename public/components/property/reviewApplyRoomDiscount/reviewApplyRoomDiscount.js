@@ -105,66 +105,72 @@
                 return vc.validate.validate({
                     reviewApplyRoomDiscountInfo: vc.component.reviewApplyRoomDiscountInfo
                 }, {
-                    'reviewApplyRoomDiscountInfo.discountId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "折扣名称不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.discountId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "折扣名称不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "30",
                             errInfo: "折扣错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.discountType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "折扣类型不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.discountType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "折扣类型不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "30",
                             errInfo: "折扣错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.returnWay': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "返还方式不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.returnWay': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "返还方式不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "30",
                             errInfo: "折扣错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.startTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "开始时间不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.startTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "开始时间不能为空"
+                        },
                         {
                             limit: "datetime",
                             param: "",
                             errInfo: "开始时间错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.endTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "结束时间不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.endTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "结束时间不能为空"
+                        },
                         {
                             limit: "datetime",
                             param: "",
                             errInfo: "结束时间错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.reviewRemark': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "审批说明不能为空"
-                    },
+                    'reviewApplyRoomDiscountInfo.reviewRemark': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "审批说明不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "512",
@@ -201,7 +207,6 @@
                 });
             },
             reviewApplyRoomDiscount: function () {
-                console.log(vc.component.reviewApplyRoomDiscountInfo.selectedFees);
                 if (!vc.component.reviewApplyRoomDiscountValidate() && vc.component.reviewApplyRoomDiscountInfo.state != '5') {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -287,10 +292,8 @@
                     }
                 );
             },
-
             // 查询缴费历史v2
             _listFees: function () {
-                console.log(vc.component.reviewApplyRoomDiscountInfo);
                 var param = {
                     params: {
                         page: 1,

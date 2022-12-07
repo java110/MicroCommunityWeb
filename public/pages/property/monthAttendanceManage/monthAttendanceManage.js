@@ -22,8 +22,8 @@
         _initMethod: function () {
             vc.component._listMonthAttendances(DEFAULT_PAGE, DEFAULT_ROWS);
             let _date = new Date(new Date());
-            $that.monthAttendanceManageInfo.conditions.date = _date.getFullYear()+"-"+(_date.getMonth() + 1);
-            vc.initDateMonth('queryDate',function(_value){
+            $that.monthAttendanceManageInfo.conditions.date = _date.getFullYear() + "-" + (_date.getMonth() + 1);
+            vc.initDateMonth('queryDate', function (_value) {
                 $that.monthAttendanceManageInfo.conditions.date = _value;
             })
         },
@@ -36,7 +36,6 @@
             });
         },
         methods: {
-            
             _listMonthAttendances: function (_page, _rows) {
                 vc.component.monthAttendanceManageInfo.conditions.page = _page;
                 vc.component.monthAttendanceManageInfo.conditions.row = _rows;
@@ -44,7 +43,7 @@
                     params: vc.component.monthAttendanceManageInfo.conditions
                 };
                 param.params.classesName = param.params.classesName.trim();
-                param.params.date = param.params.date+"-01";
+                param.params.date = param.params.date + "-01";
                 param.params.departmentName = param.params.departmentName.trim();
                 //发送get请求
                 vc.http.apiGet('/attendanceClass/getMonthAttendance',

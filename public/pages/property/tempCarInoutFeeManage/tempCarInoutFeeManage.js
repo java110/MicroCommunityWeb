@@ -3,7 +3,7 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 30;
+    var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             tempCarInoutFeeManageInfo: {
@@ -85,8 +85,8 @@
                     function (json, res) {
                         var _tempCarInoutFeeManageInfo = JSON.parse(json);
                         vc.component.tempCarInoutFeeManageInfo.total = _tempCarInoutFeeManageInfo.total;
-                        // vc.component.tempCarInoutFeeManageInfo.records = parseInt(_tempCarInoutFeeManageInfo.total/_rows +1);
-                        vc.component.tempCarInoutFeeManageInfo.records = _tempCarInoutFeeManageInfo.records;
+                        vc.component.tempCarInoutFeeManageInfo.records = parseInt(_tempCarInoutFeeManageInfo.total / _rows);
+                        // vc.component.tempCarInoutFeeManageInfo.records = _tempCarInoutFeeManageInfo.records;
                         vc.component.tempCarInoutFeeManageInfo.payFees = _tempCarInoutFeeManageInfo.tempCarInoutFees;
                         vc.emit('pagination', 'init', {
                             total: vc.component.tempCarInoutFeeManageInfo.records,

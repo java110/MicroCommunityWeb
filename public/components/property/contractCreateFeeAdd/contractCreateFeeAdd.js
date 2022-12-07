@@ -40,20 +40,60 @@
         },
         methods: {
             _initContractCreateFeeAddInfo: function () {
-                vc.initDate('contractCreateFeeStartTime', function (_startTime) {
-                    $that.contractCreateFeeAddInfo.startTime = _startTime;
+                $('.contractCreateFeeStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
                 });
-                vc.initDate('contractCreateFeeEndTime', function (_endTime) {
-                    $that.contractCreateFeeAddInfo.endTime = _endTime;
-                    let start = Date.parse(new Date($that.contractCreateFeeAddInfo.startTime))
-                    let end = Date.parse(new Date($that.contractCreateFeeAddInfo.endTime))
-                    if (start - end >= 0) {
-                        vc.toast("结束时间必须大于开始时间")
-                        $that.contractCreateFeeAddInfo.endTime = '';
-                    }
+                $('.contractCreateFeeStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".contractCreateFeeStartTime").val();
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.contractCreateFeeAddInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("计费起始时间必须小于计费终止时间");
+                            $(".contractCreateFeeStartTime").val('');
+                            vc.component.contractCreateFeeAddInfo.startTime = "";
+                        } else {
+                            vc.component.contractCreateFeeAddInfo.startTime = value;
+                        }
+                    });
+                $('.contractCreateFeeEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd',
+                    minView: "month",
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
                 });
+                $('.contractCreateFeeEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".contractCreateFeeEndTime").val();
+                        var start = Date.parse(new Date(vc.component.contractCreateFeeAddInfo.startTime));
+                        var end = Date.parse(new Date(value));
+                        if (start - end >= 0) {
+                            vc.toast("计费终止时间必须大于计费起始时间");
+                            $(".contractCreateFeeEndTime").val('');
+                            vc.component.contractCreateFeeAddInfo.endTime = "";
+                        } else {
+                            vc.component.contractCreateFeeAddInfo.endTime = value;
+                        }
+                    });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName('form-control contractCreateFeeStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control contractCreateFeeEndTime")[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();
@@ -63,21 +103,27 @@
                 return vc.validate.validate({
                     contractCreateFeeAddInfo: $that.contractCreateFeeAddInfo
                 }, {
-                    'contractCreateFeeAddInfo.feeTypeCd': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "费用类型不能为空"
-                    }],
-                    'contractCreateFeeAddInfo.configId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "费用项目不能为空"
-                    }],
-                    'contractCreateFeeAddInfo.contractState': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "合同状态不能为空"
-                    }],
+                    'contractCreateFeeAddInfo.feeTypeCd': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用类型不能为空"
+                        }
+                    ],
+                    'contractCreateFeeAddInfo.configId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用项目不能为空"
+                        }
+                    ],
+                    'contractCreateFeeAddInfo.contractState': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "合同状态不能为空"
+                        }
+                    ],
                     'contractCreateFeeAddInfo.startTime': [
                         {
                             limit: "required",
@@ -97,6 +143,12 @@
                 if (!$that.contractCreateFeeAddValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
+                }
+                if ($that.contractCreateFeeAddInfo.feeFlag == "2006012") {
+                    if ($that.contractCreateFeeAddInfo.endTime == null || $that.contractCreateFeeAddInfo.endTime == "" || $that.contractCreateFeeAddInfo.endTime == undefined) {
+                        vc.toast("计费结束时间不能为空");
+                        return;
+                    }
                 }
                 $that.contractCreateFeeAddInfo.communityId = vc.getCurrentCommunity().communityId;
                 let _contractCreateFeeAddInfo = JSON.parse(JSON.stringify($that.contractCreateFeeAddInfo));

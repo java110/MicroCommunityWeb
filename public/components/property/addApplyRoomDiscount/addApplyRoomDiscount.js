@@ -35,7 +35,7 @@
                     _param.forEach((item) => {
                         vc.component.addApplyRoomDiscountInfo.photos.push(item.fileId);
                     })
-                }else{
+                } else {
                     vc.component.addApplyRoomDiscountInfo.photos = [];
                 }
             });
@@ -55,7 +55,15 @@
                 $('.addStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".addStartTime").val();
-                        vc.component.addApplyRoomDiscountInfo.startTime = value;
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.addApplyRoomDiscountInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("计费起始时间必须小于计费终止时间");
+                            $(".addStartTime").val('');
+                            vc.component.addApplyRoomDiscountInfo.startTime = "";
+                        } else {
+                            vc.component.addApplyRoomDiscountInfo.startTime = value;
+                        }
                     });
                 $('.addEndTime').datetimepicker({
                     language: 'zh-CN',
@@ -70,11 +78,12 @@
                 $('.addEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".addEndTime").val();
-                        var start = Date.parse(new Date(vc.component.addApplyRoomDiscountInfo.startTime))
-                        var end = Date.parse(new Date(value))
+                        var start = Date.parse(new Date(vc.component.addApplyRoomDiscountInfo.startTime));
+                        var end = Date.parse(new Date(value));
                         if (start - end >= 0) {
-                            vc.toast("计费终止时间必须大于计费起始时间")
-                            $(".addEndTime").val('')
+                            vc.toast("计费终止时间必须大于计费起始时间");
+                            $(".addEndTime").val('');
+                            vc.component.addApplyRoomDiscountInfo.endTime = "";
                         } else {
                             vc.component.addApplyRoomDiscountInfo.endTime = value;
                         }
@@ -96,22 +105,24 @@
                 return vc.validate.validate({
                     addApplyRoomDiscountInfo: vc.component.addApplyRoomDiscountInfo
                 }, {
-                    'addApplyRoomDiscountInfo.roomName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.roomName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "64",
                             errInfo: "房屋格式错误"
                         },
                     ],
-                    'addApplyRoomDiscountInfo.applyType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "申请类型不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.applyType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "申请类型不能为空"
+                        },
                         {
                             limit: "num",
                             param: "",
@@ -123,55 +134,60 @@
                         param: "",
                         errInfo: "费用项不能为空"
                     }],
-                    'addApplyRoomDiscountInfo.createUserName': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "申请人不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.createUserName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "申请人不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "64",
                             errInfo: "申请人错误"
                         },
                     ],
-                    'addApplyRoomDiscountInfo.createUserTel': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "申请电话不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.createUserTel': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "申请电话不能为空"
+                        },
                         {
                             limit: "phone",
                             param: "",
                             errInfo: "申请电话错误"
                         },
                     ],
-                    'addApplyRoomDiscountInfo.startTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "开始时间不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.startTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "开始时间不能为空"
+                        },
                         {
                             limit: "datetime",
                             param: "",
                             errInfo: "开始时间错误"
                         },
                     ],
-                    'addApplyRoomDiscountInfo.endTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "结束时间不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.endTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "结束时间不能为空"
+                        },
                         {
                             limit: "datetime",
                             param: "",
                             errInfo: "结束时间错误"
                         },
                     ],
-                    'addApplyRoomDiscountInfo.createRemark': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "申请说明不能为空"
-                    },
+                    'addApplyRoomDiscountInfo.createRemark': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "申请说明不能为空"
+                        },
                         {
                             limit: "maxLength",
                             param: "512",

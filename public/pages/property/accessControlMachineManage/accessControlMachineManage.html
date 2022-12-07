@@ -6,30 +6,39 @@
                     <h5>
                         <span><vc:i18n name="查询条件" namespace="accessControlMachineManage"></vc:i18n></span>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入门禁编码','accessControlMachineManage')"
+                                       v-model="accessControlMachineManageInfo.conditions.machineCode"
+                                       class=" form-control">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入门禁编码','accessControlMachineManage')" v-model="accessControlMachineManageInfo.conditions.machineCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入设备IP','accessControlMachineManage')"
+                                       v-model="accessControlMachineManageInfo.conditions.machineIp"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入设备IP','accessControlMachineManage')" v-model="accessControlMachineManageInfo.conditions.machineIp" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入门禁名称','accessControlMachineManage')"
+                                       v-model="accessControlMachineManageInfo.conditions.machineName"
+                                       class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入门禁名称','accessControlMachineManage')" v-model="accessControlMachineManageInfo.conditions.machineName" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMachineMethod()">
-                                <i class="fa fa-search"></i> <span><vc:i18n name="查询" namespace="accessControlMachineManage"></vc:i18n></span>
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMachineMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="accessControlMachineManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -46,72 +55,82 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMachineModal()">
-                            <i class="fa fa-plus"></i><span><vc:i18n name="添加" namespace="accessControlMachineManage"></vc:i18n></span>
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="accessControlMachineManage"></vc:i18n></span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="门禁编码" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="门禁名称" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="门禁位置" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="方向" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="状态" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="心跳时间" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th v-for="(item,index) in accessControlMachineManageInfo.listColumns" class="text-center">{{item}}
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="时间" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="accessControlMachineManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="门禁编码" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="设备IP" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="门禁名称" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="门禁位置" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="方向" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="心跳时间" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th v-for="(item,index) in accessControlMachineManageInfo.listColumns" class="text-center">
+                                {{item}}
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="时间" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="accessControlMachineManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="machine in accessControlMachineManageInfo.machines">
-                                <td class="text-center">{{machine.machineCode}}</td>
-                                <td class="text-center">{{machine.machineName}}</td>
-                                <td class="text-center">{{machine.locationObjName}}</td>
-                                <td class="text-center">{{machine.directionName}}</td>
-                                <td class="text-center">{{machine.stateName}}</td>
-                                <td class="text-center">{{machine.heartbeatTime}}</td>
-                                <td v-for="item in machine.listValues" class="text-center">
-                                    {{item}}
-                                </td>
-                                <td class="text-center">{{machine.createTime}}</td>
-                                <td class="text-center">
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)"><span><vc:i18n name="开门" namespace="accessControlMachineManage"></vc:i18n></span>
-                                    </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_openEditMachineModel(machine)"><span><vc:i18n name="修改" namespace="accessControlMachineManage"></vc:i18n></span>
-                                    </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteMachineModel(machine)"><span><vc:i18n name="删除" namespace="accessControlMachineManage"></vc:i18n></span>
-                                    </button>
-                                    <button class="btn-white btn btn-xs" v-on:click="_openRestartMachineModel(machine)"><span><vc:i18n name="重启" namespace="accessControlMachineManage"></vc:i18n></span>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr v-for="machine in accessControlMachineManageInfo.machines">
+                            <td class="text-center">{{machine.machineCode}}</td>
+                            <td class="text-center">{{machine.machineIp}}</td>
+                            <td class="text-center">{{machine.machineName}}</td>
+                            <td class="text-center">{{machine.locationObjName}}</td>
+                            <td class="text-center">{{machine.directionName}}</td>
+                            <td class="text-center">{{machine.stateName}}</td>
+                            <td class="text-center">{{machine.heartbeatTime}}</td>
+                            <td v-for="item in machine.listValues" class="text-center">
+                                {{item}}
+                            </td>
+                            <td class="text-center">{{machine.createTime}}</td>
+                            <td class="text-center">
+                                <button class="btn-white btn btn-xs" v-on:click="_openDoorMachineModel(machine)">
+                                    <span><vc:i18n name="开门" namespace="accessControlMachineManage"></vc:i18n></span>
+                                </button>
+                                <button class="btn-white btn btn-xs" v-on:click="_openEditMachineModel(machine)">
+                                    <span><vc:i18n name="修改" namespace="accessControlMachineManage"></vc:i18n></span>
+                                </button>
+                                <button class="btn-white btn btn-xs" v-on:click="_openDeleteMachineModel(machine)">
+                                    <span><vc:i18n name="删除" namespace="accessControlMachineManage"></vc:i18n></span>
+                                </button>
+                                <button class="btn-white btn btn-xs" v-on:click="_openRestartMachineModel(machine)">
+                                    <span><vc:i18n name="重启" namespace="accessControlMachineManage"></vc:i18n></span>
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="9">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="9">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

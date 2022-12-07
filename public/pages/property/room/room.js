@@ -15,7 +15,7 @@
                 unitId: '',
                 states: [],
                 roomNum: '',
-                isAll:'N',
+                isAll: 'N',
                 moreCondition: false,
                 conditions: {
                     floorId: '',
@@ -54,7 +54,7 @@
                 vc.component.roomInfo.conditions.floorId = _param.floorId;
                 vc.component.roomInfo.conditions.unitId = '';
                 vc.component.roomInfo.conditions.flag = 1;
-                $that.roomInfo.isAll ='N';
+                $that.roomInfo.isAll = 'N';
                 vc.component.listRoom(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('room', 'switchUnit', function (_param) {
@@ -311,13 +311,12 @@
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
                     _room.roomId + "&payerObjName=" + _roomName + "&payerObjType=3333")
             },
-            _changeIsAll:function(){
-                if($that.roomInfo.isAll == 'Y'){
-                    $that.roomInfo.conditions.floorId='';
-                    $that.roomInfo.conditions.unitId='';
+            _changeIsAll: function () {
+                if ($that.roomInfo.isAll == 'Y') {
+                    $that.roomInfo.conditions.floorId = '';
+                    $that.roomInfo.conditions.unitId = '';
                 }
-
-                vc.emit('room', 'listRoom',{});
+                vc.emit('room', 'listRoom', {});
             }
         }
     });

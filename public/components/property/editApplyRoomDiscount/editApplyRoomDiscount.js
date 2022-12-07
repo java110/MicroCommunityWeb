@@ -17,7 +17,7 @@
             }
         },
         _initMethod: function () {
-            vc.component._initEeditApplyRoomDiscountDateInfo();
+            vc.component._initEditApplyRoomDiscountDateInfo();
         },
         _initEvent: function () {
             vc.on('editApplyRoomDiscount', 'openEditApplyRoomDiscountModal', function (_params) {
@@ -41,13 +41,13 @@
                     _param.forEach((item) => {
                         vc.component.editApplyRoomDiscountInfo.photos.push(item.fileId);
                     })
-                }else{
+                } else {
                     vc.component.editApplyRoomDiscountInfo.photos = [];
                 }
             });
         },
         methods: {
-            _initEeditApplyRoomDiscountDateInfo: function () {
+            _initEditApplyRoomDiscountDateInfo: function () {
                 $('.editStartTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -60,7 +60,15 @@
                 $('.editStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".editStartTime").val();
-                        vc.component.editApplyRoomDiscountInfo.startTime = value;
+                        var start = Date.parse(new Date(value));
+                        var end = Date.parse(new Date(vc.component.editApplyRoomDiscountInfo.endTime));
+                        if (start - end >= 0) {
+                            vc.toast("计费起始时间必须小于计费终止时间");
+                            $(".editStartTime").val('');
+                            vc.component.editApplyRoomDiscountInfo.startTime = "";
+                        } else {
+                            vc.component.editApplyRoomDiscountInfo.startTime = value;
+                        }
                     });
                 $('.editEndTime').datetimepicker({
                     language: 'zh-CN',
@@ -74,11 +82,12 @@
                 $('.editEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".editEndTime").val();
-                        var start = Date.parse(new Date(vc.component.editApplyRoomDiscountInfo.startTime))
-                        var end = Date.parse(new Date(value))
+                        var start = Date.parse(new Date(vc.component.editApplyRoomDiscountInfo.startTime));
+                        var end = Date.parse(new Date(value));
                         if (start - end >= 0) {
-                            vc.toast("计费终止时间必须大于计费起始时间")
-                            $(".editEndTime").val('')
+                            vc.toast("计费终止时间必须大于计费起始时间");
+                            $(".editEndTime").val('');
+                            vc.component.editApplyRoomDiscountInfo.endTime = "";
                         } else {
                             vc.component.editApplyRoomDiscountInfo.endTime = value;
                         }
@@ -141,13 +150,15 @@
                             limit: "required",
                             param: "",
                             errInfo: "申请ID不能为空"
-                        }],
+                        }
+                    ],
                     'editApplyRoomDiscountInfo.state': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "验房状态不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editApplyRoomDiscount: function () {

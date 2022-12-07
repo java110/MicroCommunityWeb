@@ -1,20 +1,14 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
-            deleteActivitiesRuleInfo: {
-
-            }
+            deleteActivitiesRuleInfo: {}
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('deleteActivitiesRule', 'openDeleteActivitiesRuleModal', function (_params) {
-
                 vc.component.deleteActivitiesRuleInfo = _params;
                 $('#deleteActivitiesRuleModel').modal('show');
-
             });
         },
         methods: {
@@ -33,14 +27,15 @@
                             //关闭model
                             $('#deleteActivitiesRuleModel').modal('hide');
                             vc.emit('activitiesRuleManage', 'listActivitiesRule', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(json);
-
                     });
             },
             closeDeleteActivitiesRuleModel: function () {
@@ -48,5 +43,4 @@
             }
         }
     });
-
 })(window.vc, window.vc.component);

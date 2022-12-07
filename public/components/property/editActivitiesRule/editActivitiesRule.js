@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editActivitiesRuleInfo: {
@@ -9,23 +8,11 @@
                 startTime: '',
                 endTime: '',
                 activitiesObj: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-            vc.initDateTime('editStartTime', function (_startTime) {
-                $that.editActivitiesRuleInfo.startTime = _startTime;
-            });
-            vc.initDateTime('editEndTime', function (_endTime) {
-                $that.editActivitiesRuleInfo.endTime = _endTime;
-                let start = Date.parse(new Date($that.editActivitiesRuleInfo.startTime))
-                let end = Date.parse(new Date($that.editActivitiesRuleInfo.endTime))
-                if (start - end >= 0) {
-                    vc.toast("结束时间必须大于开始时间")
-                    $that.editActivitiesRuleInfo.endTime = '';
-                }
-            });
+            vc.component._initEditActivitiesRuleDate();
         },
         _initEvent: function () {
             vc.on('editActivitiesRule', 'openEditActivitiesRuleModal', function (_params) {
@@ -36,6 +23,55 @@
             });
         },
         methods: {
+            _initEditActivitiesRuleDate: function () {
+                $('.editStartTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editStartTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editStartTime").val();
+                        vc.component.editActivitiesRuleInfo.startTime = value;
+                    });
+                $('.editEndTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.editEndTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".editEndTime").val();
+                        var start = Date.parse(new Date(vc.component.editActivitiesRuleInfo.startTime))
+                        var end = Date.parse(new Date(value))
+                        if (start - end >= 0) {
+                            vc.toast("结束时间必须大于开始时间")
+                            $(".editEndTime").val('')
+                        } else {
+                            vc.component.editActivitiesRuleInfo.endTime = value;
+                        }
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control editStartTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+
+                document.getElementsByClassName("form-control editEndTime")[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             editActivitiesRuleValidate: function () {
                 return vc.validate.validate({
                     editActivitiesRuleInfo: vc.component.editActivitiesRuleInfo
@@ -50,7 +86,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "活动类型格式错误"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.ruleName': [
                         {
@@ -62,7 +98,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "规则名称太长"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.startTime': [
                         {
@@ -74,7 +110,7 @@
                             limit: "datetime",
                             param: "128",
                             errInfo: "开始时间格式错误"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.endTime': [
                         {
@@ -86,7 +122,7 @@
                             limit: "datetime",
                             param: "",
                             errInfo: "结束时间格式错误"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.activitiesObj': [
                         {
@@ -98,7 +134,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "活动对象格式错误"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.remark': [
                         {
@@ -110,15 +146,15 @@
                             limit: "maxLength",
                             param: "1024",
                             errInfo: "规则说明太长"
-                        },
+                        }
                     ],
                     'editActivitiesRuleInfo.ruleId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "规则ID不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editActivitiesRule: function () {
@@ -126,7 +162,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/activitiesRule/updateActivitiesRule',
                     JSON.stringify(vc.component.editActivitiesRuleInfo),
@@ -140,13 +175,14 @@
                             //关闭model
                             $('#editActivitiesRuleModel').modal('hide');
                             vc.emit('activitiesRuleManage', 'listActivitiesRule', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -158,11 +194,9 @@
                     startTime: '',
                     endTime: '',
                     activitiesObj: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

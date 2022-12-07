@@ -108,13 +108,13 @@
                             <td class="text-center">{{resourceSupplier.remark}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022120551740004')"
                                             v-on:click="_openEditResourceSupplierModel(resourceSupplier)">
                                         <span><vc:i18n name="修改" namespace="resourceSupplierManage"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502022120529900003')"
                                             v-on:click="_openDeleteResourceSupplierModel(resourceSupplier)">
                                         <span><vc:i18n name="删除" namespace="resourceSupplierManage"></vc:i18n></span>
                                     </button>

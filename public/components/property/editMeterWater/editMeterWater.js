@@ -86,7 +86,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "表类型错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.preDegrees': [
                         {
@@ -98,7 +98,7 @@
                             limit: "money",
                             param: "",
                             errInfo: "上期度数格式错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.curDegrees': [
                         {
@@ -110,7 +110,7 @@
                             limit: "money",
                             param: "",
                             errInfo: "本期度数格式错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.preReadingTime': [
                         {
@@ -122,7 +122,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "上期读表时间格式错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.curReadingTime': [
                         {
@@ -134,21 +134,22 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "本期读表时间格式错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "500",
                             errInfo: "备注格式错误"
-                        },
+                        }
                     ],
                     'editMeterWaterInfo.waterId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "表ID不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editMeterWater: function () {
@@ -169,9 +170,11 @@
                             //关闭model
                             $('#editMeterWaterModel').modal('hide');
                             vc.emit('meterWaterManage', 'listMeterWater', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

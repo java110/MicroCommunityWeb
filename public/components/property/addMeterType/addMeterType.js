@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -9,12 +8,10 @@
             addMeterTypeInfo: {
                 typeId: '',
                 typeName: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addMeterType', 'openAddMeterTypeModal', function () {
@@ -36,7 +33,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "名称不能超过12"
-                        },
+                        }
                     ],
                     'addMeterTypeInfo.remark': [
                         {
@@ -48,21 +45,15 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "说明不能超过200"
-                        },
-                    ],
-
-
-
-
+                        }
+                    ]
                 });
             },
             saveMeterTypeInfo: function () {
                 if (!vc.component.addMeterTypeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addMeterTypeInfo.communityId = vc.getCurrentCommunity().communityId;
                 //不提交数据将数据 回调给侦听处理
                 if (vc.notNull($props.callBackListener)) {
@@ -70,7 +61,6 @@
                     $('#addMeterTypeModel').modal('hide');
                     return;
                 }
-
                 vc.http.apiPost(
                     'meterType.saveMeterType',
                     JSON.stringify(vc.component.addMeterTypeInfo),
@@ -85,27 +75,23 @@
                             $('#addMeterTypeModel').modal('hide');
                             vc.component.clearAddMeterTypeInfo();
                             vc.emit('meterTypeManage', 'listMeterType', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddMeterTypeInfo: function () {
                 vc.component.addMeterTypeInfo = {
                     typeName: '',
-                    remark: '',
-
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

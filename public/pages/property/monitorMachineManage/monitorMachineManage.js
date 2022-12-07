@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,42 +20,41 @@
                     machineIp: '',
                     machineMac: '',
                     communityId: vc.getCurrentCommunity().communityId,
-                    domain: 'MONITOR',
+                    domain: 'MONITOR'
                 },
                 listColumns: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('machine', "machine_type_cd", function(_data) {
+            vc.getDict('machine', "machine_type_cd", function (_data) {
                 vc.component.monitorMachineManageInfo.machineTypes = _data;
             });
-            $that._getColumns(function() {
+            $that._getColumns(function () {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
-        _initEvent: function() {
-
-            vc.on('monitorMachineManage', 'listMachine', function(_param) {
+        _initEvent: function () {
+            vc.on('monitorMachineManage', 'listMachine', function (_param) {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listMachines(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listMachines: function(_page, _rows) {
-
+            _listMachines: function (_page, _rows) {
                 vc.component.monitorMachineManageInfo.conditions.page = _page;
                 vc.component.monitorMachineManageInfo.conditions.row = _rows;
                 let param = {
                     params: vc.component.monitorMachineManageInfo.conditions
                 };
-
+                param.params.machineName = param.params.machineName.trim();
+                param.params.machineCode = param.params.machineCode.trim();
                 //发送get请求
                 vc.http.apiGet('/machine.listMachines',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _monitorMachineManageInfo = JSON.parse(json);
                         vc.component.monitorMachineManageInfo.total = _monitorMachineManageInfo.total;
                         vc.component.monitorMachineManageInfo.records = _monitorMachineManageInfo.records;
@@ -67,41 +66,45 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-
-            _openAddMachineModal: function() {
+            _openAddMachineModal: function () {
                 vc.emit('addMonitorMachine', 'openAddMachineModal', {});
             },
-            _openEditMachineModel: function(_machine) {
+            _openEditMachineModel: function (_machine) {
                 vc.emit('editMonitorMachine', 'openEditMachineModal', _machine);
             },
-            _openDeleteMachineModel: function(_machine) {
+            _openDeleteMachineModel: function (_machine) {
                 vc.emit('deleteMachine', 'openDeleteMachineModal', _machine);
             },
-            _queryMachineMethod: function() {
+            //查询
+            _queryMachineMethod: function () {
                 vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetMachineMethod: function () {
+                vc.component.monitorMachineManageInfo.conditions.machineName = "";
+                vc.component.monitorMachineManageInfo.conditions.machineCode = "";
+                vc.component._listMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.monitorMachineManageInfo.moreCondition) {
                     vc.component.monitorMachineManageInfo.moreCondition = false;
                 } else {
                     vc.component.monitorMachineManageInfo.moreCondition = true;
                 }
             },
-            _openMachineDetailModel: function(_machine) {
-
+            _openMachineDetailModel: function (_machine) {
             },
-            dealMachineAttr: function(machines) {
+            dealMachineAttr: function (machines) {
                 machines.forEach(item => {
                     $that._getColumnsValue(item);
                 });
             },
-            _getColumnsValue: function(_machine) {
+            _getColumnsValue: function (_machine) {
                 _machine.listValues = [];
                 if (!_machine.hasOwnProperty('machineAttrs') || _machine.machineAttrs.length < 1) {
                     $that.monitorMachineManageInfo.listColumns.forEach(_value => {
@@ -119,12 +122,11 @@
                     })
                     _machine.listValues.push(_tmpValue);
                 })
-
             },
-            _getColumns: function(_call) {
+            _getColumns: function (_call) {
                 console.log('_getColumns');
                 $that.monitorMachineManageInfo.listColumns = [];
-                vc.getAttrSpec('machine_attr', function(data) {
+                vc.getAttrSpec('machine_attr', function (data) {
                     $that.monitorMachineManageInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
@@ -134,7 +136,7 @@
                     _call();
                 }, 'MONITOR');
             },
-            _openViewVideoModel: function(_machine) {
+            _openViewVideoModel: function (_machine) {
                 vc.emit('viewCameraVideo', 'openCameraVideoModal', _machine);
             }
         }

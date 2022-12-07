@@ -323,29 +323,66 @@
                 $('#editOwnerModel').modal('hide');
             },
             obtainEditAge: function () {
-                $that.checkIdCard($that.editOwnerInfo.idCard);
-                let param = {
-                    idCard: vc.component.editOwnerInfo.idCard,
-                    communityId: vc.getCurrentCommunity().communityId
-                };
-                //发送get请求
-                vc.http.apiPost('/owner.obtainAge',
-                    JSON.stringify(param), {
-                        emulateJSON: true
-                    },
-                    function (json, res) {
-                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        let _json = JSON.parse(json);
-                        if (res.status == 200) {
-                            vc.component.editOwnerInfo.age = _json.age;
-                        } else {
-                            vc.toast(_json.msg);
-                        }
-                    },
-                    function (errInfo, error) {
-                        console.log('请求失败处理');
-                    }
-                );
+                // $that.checkIdCard($that.editOwnerInfo.idCard);
+                // let param = {
+                //     idCard: vc.component.editOwnerInfo.idCard,
+                //     communityId: vc.getCurrentCommunity().communityId
+                // };
+                // //发送get请求
+                // vc.http.apiPost('/owner.obtainAge',
+                //     JSON.stringify(param), {
+                //         emulateJSON: true
+                //     },
+                //     function (json, res) {
+                //         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                //         let _json = JSON.parse(json);
+                //         if (res.status == 200) {
+                //             vc.component.editOwnerInfo.age = _json.age;
+                //         } else {
+                //             vc.toast(_json.msg);
+                //         }
+                //     },
+                //     function (errInfo, error) {
+                //         console.log('请求失败处理');
+                //     }
+                // );
+                let idCard = $that.editOwnerInfo.idCard;
+                // 1 "验证通过!", 0 //校验不通过
+                var format = /^(([1][1-5])|([2][1-3])|([3][1-7])|([4][1-6])|([5][0-4])|([6][1-5])|([7][1])|([8][1-2]))\d{4}(([1][9]\d{2})|([2]\d{3}))(([0][1-9])|([1][0-2]))(([0][1-9])|([1-2][0-9])|([3][0-1]))\d{3}[0-9xX]$/;
+                //号码规则校验
+                if (!format.test(idCard)) {
+                    vc.toast('身份证号码不合规');
+                    $that.editOwnerInfo.idCard = "";
+                    return;
+                }
+                //区位码校验
+                //出生年月日校验   前正则限制起始年份为1900;
+                var year = idCard.substr(6, 4),//身份证年
+                    month = idCard.substr(10, 2),//身份证月
+                    date = idCard.substr(12, 2),//身份证日
+                    time = Date.parse(month + '-' + date + '-' + year),//身份证日期时间戳date
+                    now_time = Date.parse(new Date()),//当前时间戳
+                    dates = (new Date(year, month, 0)).getDate();//身份证当月天数
+                if (time > now_time || date > dates) {
+                    vc.toast("身份证号码不合规");
+                    $that.editOwnerInfo.idCard = "";
+                    return;
+                }
+                //校验码判断
+                var c = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);   //系数
+                var b = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');  //校验码对照表
+                var id_array = idCard.split("");
+                var sum = 0;
+                for (var k = 0; k < 17; k++) {
+                    sum += parseInt(id_array[k]) * parseInt(c[k]);
+                }
+                if (id_array[17].toUpperCase() != b[sum % 11].toUpperCase()) {
+                    vc.toast('身份证校验码不合规');
+                    $that.editOwnerInfo.idCard = "";
+                    return;
+                }
+                $that.editOwnerInfo.sex = vc.idCardInfoExt(idCard, 2) + "";
+                $that.editOwnerInfo.age = vc.idCardInfoExt(idCard, 3) + "";
             },
             checkIdCard: function (idCard) {
                 // 1 "验证通过!", 0 //校验不通过

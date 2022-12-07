@@ -40,9 +40,9 @@
                                 <span><vc:i18n name="查询条件" namespace="room"></vc:i18n></span>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{roomInfo.moreCondition == true?'隐藏':'更多'}}
-                                </button> -->
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                        v-on:click="_moreCondition()">{{roomInfo.moreCondition == true?'隐藏':'更多'}}
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">
@@ -79,25 +79,20 @@
                                         <i class="fa fa-search"></i>
                                         <span><vc:i18n name="查询" namespace="room"></vc:i18n></span>
                                     </button>
-                                    <button type="button" class="btn btn-white btn-sm" v-on:click="_resetRoomInfo()">
+                                    <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRoomInfo()">
                                         <i class="fa fa-repeat"></i>
                                         <span><vc:i18n name="重置" namespace="room"></vc:i18n></span>
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" v-show="roomInfo.moreCondition == true">
                                 <div class="col-sm-4">
                                     <select class="form-control-sm form-control input-s-sm inline"
                                             v-model="roomInfo.isAll" @change="_changeIsAll()">
-                                        <option value="N">
-                                           当前楼栋单元
-                                        </option>
-                                        <option value="Y">
-                                            全部楼栋单元
-                                         </option>
+                                        <option value="N">当前楼栋单元</option>
+                                        <option value="Y">全部楼栋单元</option>
                                     </select>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -191,7 +186,8 @@
                                     </td>
                                     <td class="text-center">
                                         <!-- <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeComboModal(room)"><span>
+                                            <button class="btn-white btn btn-xs" v-on:click="_openRoomCreateFeeComboModal(room)">
+                                                <span>
                                                     <vc:i18n name="费用套餐" namespace="room"></vc:i18n>
                                                 </span>
                                             </button>
