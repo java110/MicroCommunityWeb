@@ -1,0 +1,175 @@
+<div>
+    <div class="row">
+        <div class="col-md-3 padding-r-0">
+            <div class=" border-radius bg-white padding-top-sm">
+                <div class="row">
+                    <div class="col-md-8 margin-xs margin-bottom">
+                        <input type="text" :placeholder="vc.i18n('请扫码枪扫码核销','reserveConfirm')" v-model="reserveConfirmInfo.timeId" class="form-control " @keyup.enter="_confirmReserve()">
+                    </div>
+                    <div class="col-md-3 margin-xs margin-bottom">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_confirmReserve()">
+                                <vc:i18n name="核销"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-xs-r bg-white treeview attendance-staff">
+                    <div class="padding flex justify-between">
+                        <span class="font-1">核销结果</span>
+                        <span>{{reserveConfirmInfo.order.remark}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">核销时间</span>
+                        <span>{{reserveConfirmInfo.order.createTime}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">商品/服务</span>
+                        <span>{{reserveConfirmInfo.order.goodsName}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">核销数量</span>
+                        <span>{{reserveConfirmInfo.order.quantity}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">预约日期</span>
+                        <span>{{reserveConfirmInfo.order.appointmentTime}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">预约小时</span>
+                        <span>{{reserveConfirmInfo.order.hours}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">预约人</span>
+                        <span>{{reserveConfirmInfo.order.personName}}</span>
+                    </div>
+                    <div class="padding flex justify-between">
+                        <span class="font-1">预约电话</span>
+                        <span>{{reserveConfirmInfo.order.personTel}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5><span>
+                                    <vc:i18n name="查询条件"></vc:i18n>
+                                </span></h5>
+                            <div class="ibox-tools" style="top:10px;">
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择预约人','communitySpaceManage')" v-model="reserveConfirmInfo.conditions.personName" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择预约电话','communitySpaceManage')" v-model="reserveConfirmInfo.conditions.personTel" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择预约时间','communitySpaceManage')" v-model="reserveConfirmInfo.conditions.appointmentTime" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReserveConfirmMethod()">
+                                        <i class="glyphicon glyphicon-search"></i> <span>
+                                            <vc:i18n name="查询"></vc:i18n>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            核销订单
+                                        </th>
+                                        <th class="text-center">
+                                            商品/服务
+                                        </th>
+                                        <th class="text-center">
+                                            核销数量
+                                        </th>
+                                        <th class="text-center">
+                                            预约日期
+                                        </th>
+                                        <th class="text-center">
+                                            预约时间
+                                        </th>
+                                        <th class="text-center">
+                                            预约人
+                                        </th>
+                                        <th class="text-center">
+                                            预约电话
+                                        </th>
+                                        <th class="text-center">
+                                            核销时间
+                                        </th>
+                                        <th class="text-center">
+                                            备注
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in reserveConfirmInfo.orders">
+                                        <td class="text-center">{{item.orderId}}</td>
+                                        <th class="text-center">
+                                            {{item.goodsName}}
+                                        </th>
+                                        <th class="text-center">
+                                            {{item.quantity}}
+                                        </th>
+                                        <td class="text-center">
+                                            {{item.appointmentTime}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.hours}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.personName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.personTel}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.createTime}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.remark}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
