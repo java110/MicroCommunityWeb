@@ -33,12 +33,12 @@
                         <td class="text-center" v-if="item.preDegrees">
                             {{vc.dateFormat(item.endTime)}}<span>
                                 <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
-                                {{vc.dateFormat(item.deadlineTime)}}</br>
+                                {{_getDeadlineTime(item)}}</br>
                             {{item.preDegrees}} 至 {{item.curDegrees}}
                         </td>
-                        <td class="text-center" v-else>{{vc.dateFormat(item.endTime)}}<span>
+                        <td class="text-center" v-else> {{vc.dateFormat(item.endTime)}}<span>
                             <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
-                            {{vc.dateFormat(item.deadlineTime)}}
+                            {{_getDeadlineTime(item)}}
                         </td>
                         <td class="text-center"><span><vc:i18n name="元" namespace="printOweFee"></vc:i18n></span></td>
                         <td class="text-center" v-if="item.preDegrees">{{(item.curDegrees-item.preDegrees).toFixed(2)}}</td>
