@@ -26,6 +26,9 @@
         <button type="button" class="btn btn-white btn-sm margin-left-sm" v-on:click="_openImportRoomInfo()">
             <vc:i18n name="房产导入" namespace="room"></vc:i18n>
         </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/room')">
+            <span><vc:i18n name="文档"></vc:i18n></span>
+        </button>
     </div>
     <div class="row">
         <div class="col-md-2" style="padding-right:0px">

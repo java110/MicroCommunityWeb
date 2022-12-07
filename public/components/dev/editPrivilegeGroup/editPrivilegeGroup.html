@@ -1,4 +1,4 @@
-<div id="editPrivilegeGroupModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div id="editPrivilegeGroupModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -25,9 +25,9 @@
                                     <span><vc:i18n name="角色描述" namespace="editPrivilegeGroup"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editPrivilegeGroupInfo.description" type="text"
+                                    <textarea v-model="editPrivilegeGroupInfo.description" 
                                            :placeholder="vc.i18n('选填，请填写角色描述','editPrivilegeGroup')"
-                                           class="form-control">
+                                           class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="ibox-content">

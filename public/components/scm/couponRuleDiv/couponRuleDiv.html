@@ -1,0 +1,23 @@
+<div class="bg-white margin-top-xs padding border-radius">
+    <div class=" ">
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddCouponRuleModal()">
+            添加
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openEditCouponRuleModel()">
+            修改
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeleteCouponRuleModel()" >
+            删除
+        </button>
+    </div>
+    <div class="vc-org margin-top">
+        <ul>
+            <li v-for="(rule,index) in couponRuleDivInfo.couponRules" @click="_switchCouponRule(rule)"
+                :class="{'active':rule.ruleId == couponRuleDivInfo.curCouponRule.ruleId}">{{rule.ruleName}}
+            </li>
+        </ul>
+    </div>
+    <vc:create path="scm/addCouponRule" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="scm/editCouponRule"></vc:create>
+    <vc:create path="scm/deleteCouponRule"></vc:create>
+</div>

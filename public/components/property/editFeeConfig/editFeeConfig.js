@@ -21,7 +21,11 @@
                 paymentCycle: '',
                 paymentCd: '',
                 computingFormulaText: '',
-                deductFrom: ''
+                deductFrom: '',
+                payOnline:'Y',
+                scale:'1',
+                decimalPlace:'2',
+                units:'元'
             }
         },
         _initMethod: function () {
@@ -269,9 +273,9 @@
                 //收费项目去空
                 vc.component.editFeeConfigInfo.feeName = vc.component.editFeeConfigInfo.feeName.trim();
                 //计费单价去空
-                vc.component.editFeeConfigInfo.squarePrice = vc.component.editFeeConfigInfo.squarePrice.trim();
+                //vc.component.editFeeConfigInfo.squarePrice = vc.component.editFeeConfigInfo.squarePrice.trim();
                 //附加费用去空
-                vc.component.editFeeConfigInfo.additionalAmount = vc.component.editFeeConfigInfo.additionalAmount.trim();
+                //vc.component.editFeeConfigInfo.additionalAmount = vc.component.editFeeConfigInfo.additionalAmount.trim();
                 //缴费周期去空
                 vc.component.editFeeConfigInfo.paymentCycle = vc.component.editFeeConfigInfo.paymentCycle.trim();
                 if (!vc.component.editFeeConfigValidate()) {
@@ -320,7 +324,11 @@
                     paymentCd: '',
                     billType: '',
                     computingFormulaText: '',
-                    deductFrom: ''
+                    deductFrom: '',
+                    payOnline:'Y',
+                    scale:'1',
+                    decimalPlace:'2',
+                    units:'元'
                 };
                 vc.component.editFeeConfigInfo.feeTypeCds = _feeTypeCds;
                 vc.component.editFeeConfigInfo.computingFormulas = _computingFormulas;

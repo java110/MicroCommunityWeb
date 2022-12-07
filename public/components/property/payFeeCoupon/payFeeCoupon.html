@@ -1,0 +1,48 @@
+<div>
+    <div class="row" v-if="payFeeCouponInfo.feeCoupons.length>0">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="赠送优惠券" namespace="payFeeCoupon"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="赠送规则" namespace="payFeeCoupon"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="优惠券名称" namespace="payFeeCoupon"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="数量" namespace="payFeeCoupon"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="用途" namespace="payFeeCoupon"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="feeCoupon in payFeeCouponInfo.feeCoupons">
+                            <td class="text-center">{{feeCoupon.ruleName}}</td>
+                            <td class="text-center">{{feeCoupon.couponName}}</td>
+                            <td class="text-center">{{feeCoupon.quantity}}张</td>
+                            <td class="text-center">{{feeCoupon.toTypeName}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

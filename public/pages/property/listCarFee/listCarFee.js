@@ -68,7 +68,7 @@
             },
             _payFee: function (_fee) {
                 _fee.roomName = vc.component.listCarFeeInfo.carNum;
-                vc.jumpToPage('/#/pages/property/payFeeOrder?' + vc.objToGetParam(_fee));
+                vc.jumpToPage('/#/pages/property/payFeeOrder?feeId=' + _fee.feeId);
             },
             _payFeeHis: function (_fee) {
                 vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));

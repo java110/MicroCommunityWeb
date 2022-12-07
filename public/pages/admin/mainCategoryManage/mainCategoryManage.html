@@ -10,13 +10,13 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                             <select class="custom-select" v-model="mainCategoryManageInfo.conditions.categoryType">
                                 <option selected value="">{{vc.i18n('请选择目录类别','mainCategoryManage')}}</option>
                                 <option value="1">{{vc.i18n('服务','mainCategoryManage')}}</option>
                                 <option value="2">{{vc.i18n('商圈','mainCategoryManage')}}</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入目录名称','mainCategoryManage')"
@@ -61,21 +61,19 @@
                             <tr>
                                 <th class="text-center"><span><vc:i18n name="目录编号" namespace="mainCategoryManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="目录名称" namespace="mainCategoryManage"></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name="目录类别" namespace="mainCategoryManage"></vc:i18n></span></th>
+                                <!-- <th class="text-center"><span><vc:i18n name="目录类别" namespace="mainCategoryManage"></vc:i18n></span></th> -->
                                 <th class="text-center"><span><vc:i18n name="开始时间" namespace="mainCategoryManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="结束时间" namespace="mainCategoryManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="排序" namespace="mainCategoryManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="描述" namespace="mainCategoryManage"></vc:i18n></span></th>
                                 <th class="text-center"><span><vc:i18n name="操作" namespace="mainCategoryManage"></vc:i18n></span></th>
-
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="mainCategory in mainCategoryManageInfo.mainCategorys">
                                 <td class="text-center">{{mainCategory.mainCategoryId}}</td>
                                 <td class="text-center">{{mainCategory.categoryName}}</td>
-                                <td class="text-center">{{mainCategory.categoryType == '1'?'服务':'商圈'}}</td>
+                                <!-- <td class="text-center">{{mainCategory.categoryType == '1'?'服务':'商圈'}}</td> -->
                                 <td class="text-center">{{mainCategory.startTime}}</td>
                                 <td class="text-center">{{mainCategory.endTime}}</td>
                                 <td class="text-center">{{mainCategory.seq}}</td>

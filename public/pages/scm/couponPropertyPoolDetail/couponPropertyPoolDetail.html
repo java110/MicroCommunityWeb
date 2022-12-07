@@ -1,0 +1,153 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="查询条件"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择优惠券编号','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.cppId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择优惠券名称','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.couponName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="couponPropertyPoolDetailInfo.conditions.fromType">
+                                <option selected value="">
+                                    {{vc.i18n('请选择来自方式','couponPropertyPoolDetail')}}
+                                </option>
+                                <option value="1001"> {{vc.i18n('优惠券市场购买','couponPropertyPoolDetail')}}
+                                </option>
+                                <option value="2002">{{vc.i18n('自己制作','couponPropertyPoolDetail')}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryCouponPropertyPoolMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span>
+                                    <vc:i18n name="查询"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写用户名称','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写手机号','couponPropertyPoolDetail')"
+                                    v-model="couponPropertyPoolDetailInfo.conditions.tel" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="couponPropertyPoolDetailInfo.conditions.toType">
+                                <option selected value="">{{vc.i18n('选择用途','couponPropertyPoolDetail')}}
+                                </option>
+                                <option value="1011">{{vc.i18n('购物','couponPropertyPoolDetail')}}
+                                </option>
+                                <option value="3003">{{vc.i18n('维修劵','couponPropertyPoolDetail')}}
+                                </option>
+                                <option value="4004">{{vc.i18n('停车劵','couponPropertyPoolDetail')}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="赠送记录" namespace="couponPropertyPoolDetail"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='编号' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='优惠券名称' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='面值' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='数量' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='用户名称' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='手机号' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='赠送时间' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作' namespace='couponPropertyPoolDetail'></vc:i18n>
+                                    </span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="couponPropertyPool in couponPropertyPoolDetailInfo.couponPropertyPools">
+                                <td class="text-center">{{couponPropertyPool.cppId}}</td>
+                                <td class="text-center">{{couponPropertyPool.couponName}}</td>
+                                <td class="text-center">{{couponPropertyPool.value}}</td>
+                                <td class="text-center">{{couponPropertyPool.sendCount}}张</td>
+                                <td class="text-center">{{couponPropertyPool.userName}}</td>
+                                <td class="text-center">{{couponPropertyPool.tel}}</td>
+                                <td class="text-center">{{couponPropertyPool.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteCouponPropertyPoolModel(couponPropertyPool)"><span>
+                                                <vc:i18n name='退回'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="scm/deleteCouponPropertyPoolDetail"></vc:create>
+
+</div>

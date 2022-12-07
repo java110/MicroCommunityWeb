@@ -2,58 +2,37 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b ">
-                    <span><vc:i18n name="修改费用项" namespace="editFeeConfig"></vc:i18n></span>
-                </h3>
+                <h3 class="m-t-none m-b "><span><vc:i18n name="修改" namespace="editFeeConfig"></vc:i18n></span></h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="费用类型" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
-                                            v-model="editFeeConfigInfo.feeTypeCd">
-                                        <option selected disabled value="">{{vc.i18n('必填','editFeeConfig')}}，请选择费用类型
-                                        </option>
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="费用类型" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'" v-model="editFeeConfigInfo.feeTypeCd">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择费用类型','editFeeConfig')}}</option>
                                         <option v-for="(item,index) in editFeeConfigInfo.feeTypeCds" :key="index"
                                                 v-bind:value="item.statusCd">{{item.name}}
                                         </option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="收费项目" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.feeName"
-                                           v-bind:disabled="editFeeConfigInfo.isDefault=='T'" type="text"
-                                           :placeholder="vc.i18n('必填，请填写收费项目','editFeeConfig')" class="form-control">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="收费项目" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <input v-model="editFeeConfigInfo.feeName" v-bind:disabled="editFeeConfigInfo.isDefault=='T'" type="text" :placeholder="vc.i18n('必填，请填写收费项目','editFeeConfig')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="费用标识" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
-                                            v-model="editFeeConfigInfo.feeFlag">
-                                        <option selected disabled value="">
-                                            {{vc.i18n('必填','editFeeConfig')}}，请选择费用标识
-                                        </option>
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="费用标识" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'" v-model="editFeeConfigInfo.feeFlag">
+                                        <option selected disabled value="">{{vc.i18n('必填','editFeeConfig')}}，请选择费用标识</option>
                                         <option v-for="(item,index) in editFeeConfigInfo.feeFlags" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="付费类型" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="付费类型" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
                                     <select class="custom-select" v-model="editFeeConfigInfo.paymentCd">
                                         <option selected disabled value="">
                                             {{vc.i18n('必填，请选择付费类型','editFeeConfig')}}
@@ -65,20 +44,24 @@
                                 </div>
                             </div>
                             <div class="form-group row" v-if="editFeeConfigInfo.feeFlag !='2006012'">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="缴费周期" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.paymentCycle" type="text"
-                                           :placeholder="vc.i18n('必填，请填写缴费周期 单位为月','editFeeConfig')"
-                                           class="form-control">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="缴费周期" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <input v-model="editFeeConfigInfo.paymentCycle" type="text" :placeholder="vc.i18n('必填，请填写缴费周期 单位为月','editFeeConfig')" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="催缴类型" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="计费起始时间" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <input v-model="editFeeConfigInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写计费起始时间','editFeeConfig')" class="form-control editFeeConfigStartTime">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="计费终止时间" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <input v-model="editFeeConfigInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写计费终止时间','editFeeConfig')" class="form-control editFeeConfigEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="催缴类型" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
                                     <select class="custom-select" v-model="editFeeConfigInfo.billType">
                                         <option selected disabled value="">
                                             {{vc.i18n('必填，请选择催缴类型','editFeeConfig')}}
@@ -88,31 +71,60 @@
                                         </option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="计费起始时间" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.startTime" type="text"
-                                           :placeholder="vc.i18n('必填，请填写计费起始时间','editFeeConfig')"
-                                           class="form-control editFeeConfigStartTime">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="是否抵扣" namespace="editFeeConfig"></vc:i18n></span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editFeeConfigInfo.deductFrom">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择是否账户自动抵扣','editFeeConfig')}}</option>
+                                        <option value="Y">{{vc.i18n('是','editFeeConfig')}}</option>
+                                        <option value="N">{{vc.i18n('否','editFeeConfig')}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="计费终止时间" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <input v-model="editFeeConfigInfo.endTime" type="text"
-                                           :placeholder="vc.i18n('必填，请填写计费终止时间','editFeeConfig')"
-                                           class="form-control editFeeConfigEndTime">
+                                <label class="col-sm-2 col-form-label text-right"><span>
+                                        <vc:i18n name="手机缴费" namespace="editFeeConfig"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editFeeConfigInfo.payOnline">
+                                        <option value="Y">{{vc.i18n('是')}}</option>
+                                        <option value="N">{{vc.i18n('否')}}</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right"><span>
+                                        <vc:i18n name="进位方式" namespace="editFeeConfig"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editFeeConfigInfo.scale">
+                                        <option value="1">{{vc.i18n('四舍五入','editFeeConfig')}}</option>
+                                        <option value="3">{{vc.i18n('向上进位','editFeeConfig')}}</option>
+                                        <option value="4">{{vc.i18n('向下进位','editFeeConfig')}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="计算公式" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
+                                <label class="col-sm-2 col-form-label text-right"><span>
+                                        <vc:i18n name="保留小数位" namespace="editFeeConfig"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editFeeConfigInfo.decimalPlace">
+                                        <option value="0">{{vc.i18n('取整')}}</option>
+                                        <option value="1">{{vc.i18n('1位')}}</option>
+                                        <option value="2">{{vc.i18n('2位')}}</option>
+                                        <option value="3">{{vc.i18n('3位')}}</option>
+                                        <option value="4">{{vc.i18n('4位')}}</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right"><span>
+                                        <vc:i18n name="单位" namespace="editFeeConfig"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-4">
+                                    <input v-model="editFeeConfigInfo.units" type="text"
+                                    :placeholder="vc.i18n('必填，请填写单位（如：元）','editFeeConfig')" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="计算公式" namespace="editFeeConfig"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-bind:disabled="editFeeConfigInfo.isDefault=='T'"
                                             v-model="editFeeConfigInfo.computingFormula">
@@ -133,9 +145,7 @@
                                  && editFeeConfigInfo.computingFormula != '1102'
                                  && editFeeConfigInfo.computingFormula != '4004'
                                  && editFeeConfigInfo.computingFormula != '9009'">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="计费单价" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
+                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="计费单价" namespace="editFeeConfig"></vc:i18n></span></label>
                                 <div class="col-sm-10">
                                     <input v-model="editFeeConfigInfo.squarePrice" type="text"
                                            :placeholder="vc.i18n('必填，请填写计费单价','editFeeConfig')" class="form-control">
@@ -147,9 +157,9 @@
                                  && editFeeConfigInfo.computingFormula != '1102'
                                  && editFeeConfigInfo.computingFormula != '4004'
                                  && editFeeConfigInfo.computingFormula != '9009'">
-                                <label class="col-sm-2 col-form-label">
-                                    {{editFeeConfigInfo.computingFormula == '1001' ?'附加费用':'固定费用'}}
-                                </label>
+                                <label class="col-sm-2 col-form-label text-right">{{editFeeConfigInfo.computingFormula
+                                    == '1001'
+                                    ?'附加费用':'固定费用'}}</label>
                                 <div class="col-sm-10">
                                     <input v-model="editFeeConfigInfo.additionalAmount" type="text"
                                            :placeholder="vc.i18n('必填，请填写附加费用','editFeeConfig')" class="form-control">
@@ -157,9 +167,7 @@
                             </div>
                             <div v-show="editFeeConfigInfo.computingFormula == '7007'">
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">
-                                        <span><vc:i18n name="公式" namespace="editFeeConfig"></vc:i18n></span>
-                                    </label>
+                                    <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="公式" namespace="editFeeConfig"></vc:i18n></span></label>
                                     <div class="col-sm-10">
                                         <textarea v-model="editFeeConfigInfo.computingFormulaText"
                                                   :placeholder="vc.i18n('必填，请填写公式','editFeeConfig')"
@@ -168,9 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">
-                                        <span><vc:i18n name="说明" namespace="editFeeConfig"></vc:i18n></span>
-                                    </label>
+                                    <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="说明" namespace="editFeeConfig"></vc:i18n></span></label>
                                     <div class="col-sm-10">
                                         <div>C 代表房屋对应小区面积</div>
                                         <div>F 代表房屋对应楼栋面积</div>
@@ -187,20 +193,6 @@
                                             + 10
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="是否抵扣" namespace="editFeeConfig"></vc:i18n></span>
-                                </label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-model="editFeeConfigInfo.deductFrom">
-                                        <option selected disabled value="">
-                                            {{vc.i18n('必填，请选择是否账户自动抵扣','editFeeConfig')}}
-                                        </option>
-                                        <option value="Y">{{vc.i18n('是','editFeeConfig')}}</option>
-                                        <option value="N">{{vc.i18n('否','editFeeConfig')}}</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="ibox-content">

@@ -126,14 +126,14 @@
                         vc.component.inspectionTaskDetailManageInfo.total = _inspectionTaskDetailManageInfo.total;
                         vc.component.inspectionTaskDetailManageInfo.records = _inspectionTaskDetailManageInfo.records;
                         vc.component.inspectionTaskDetailManageInfo.inspectionTasks = _inspectionTaskDetailManageInfo.inspectionTaskDetails;
-                        vc.component.inspectionTaskDetailManageInfo.inspectionTasks.forEach((item) => {
-                            if(item.photos && item.photos.length>0){
-                                item.photos.forEach((photo) => {
-                                    photo.url = photoUrl + "?fileId=" + photo.url + "&communityId=-1&time=" + new Date()
-                                    console.log(photo.url);
-                                })
-                            }
-                        })
+                        // vc.component.inspectionTaskDetailManageInfo.inspectionTasks.forEach((item) => {
+                        //     if(item.photos && item.photos.length>0){
+                        //         item.photos.forEach((photo) => {
+                        //             photo.url = photoUrl + "?fileId=" + photo.url + "&communityId=-1&time=" + new Date()
+                        //             console.log(photo.url);
+                        //         })
+                        //     }
+                        // })
                         vc.emit('pagination', 'init', {
                             total: vc.component.inspectionTaskDetailManageInfo.records,
                             dataCount: vc.component.inspectionTaskDetailManageInfo.total,

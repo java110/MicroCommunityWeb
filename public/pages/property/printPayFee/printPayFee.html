@@ -20,11 +20,11 @@
                     <tr>
                         <th scope="col" class="text-center" width="80px"><span><vc:i18n name="编号" namespace="printPayFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="收费项目" namespace="printPayFee"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="房屋" namespace="printPayFee"></vc:i18n></span>/车辆</th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="房屋/车辆" namespace="printPayFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="收费范围" namespace="printPayFee"></vc:i18n></span></th>
                         <!-- <th scope="col" class="text-center"><span><vc:i18n name="周期" namespace="printPayFee"></vc:i18n></span></th> -->
                         <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printPayFee"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="面积" namespace="printPayFee"></vc:i18n></span>/用量</th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="面积/用量" namespace="printPayFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="金额" namespace="printPayFee"></vc:i18n></span></th>
                         <!-- <th scope="col" class="text-center"><span><vc:i18n name="单位" namespace="printPayFee"></vc:i18n></span></th> -->
                         <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPayFee"></vc:i18n></span></th>
@@ -36,7 +36,9 @@
                         <td class="text-center">{{item.feeName}}</td>
                         <td class="text-center">{{item.objName}}</td>
                         <td class="text-center" v-if="item.preDegrees">
-                            {{vc.dateFormat(item.startTime)}}<span><vc:i18n name="至" namespace="printPayFee"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
+                            {{vc.dateFormat(item.startTime)}}
+                            <span><vc:i18n name="至" namespace="printPayFee"></vc:i18n></span>
+                            {{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}</br>
                             {{item.preDegrees}} 至 {{item.curDegrees}}
                         </td>
                         <!-- 根据山东 需求 如果为押金时 显示为无-->
@@ -48,7 +50,7 @@
                         </td>
                         <!--<td class="text-center">{{item.startTime}}<span><vc:i18n name="至" namespace="printPayFee"></vc:i18n></span>{{item.endTime}}</td>-->
                         <!-- <td class="text-center">{{item.cycle}}</td> -->
-                        <td class="text-center">{{item.squarePrice}}</td>
+                        <td class="text-center">{{item.squarePrice}}</br>{{item.units}}</td>
                         <td class="text-center">{{item.area}}</td>
                         <td class="text-center" v-if="item.amount < 0">{{item.amount}}<vc:i18n name="元(退费)" namespace="printPayFee"></vc:i18n></td>
                         <td class="text-center" v-else>{{item.amount}}<vc:i18n name="元" namespace="printPayFee"></vc:i18n></td>

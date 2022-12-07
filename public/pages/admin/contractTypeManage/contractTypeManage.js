@@ -91,6 +91,9 @@
             _openContractTypeSpecModel: function (_contractType) {
                 vc.jumpToPage('/#/pages/admin/contractTypeSpecManage?contractTypeId=' + _contractType.contractTypeId);
             },
+            _toAuditPage:function(){
+                vc.jumpToPage('/#/pages/property/workflowManage?tab=流程管理');
+            },
             _loadContractAttrs: function (_contractTypeId) {
                 var param = {
                     params: {

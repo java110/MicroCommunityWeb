@@ -1,0 +1,101 @@
+<div id="addReserveParamsModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span>
+            <vc:i18n name="添加" namespace="addReserveParams"></vc:i18n>
+          </span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='参数名称' namespace='addReserveParams'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReserveParamsInfo.name" type="text"
+                    :placeholder="vc.i18n('必填，请填写参数名称','addReserveParams')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='预约方式' namespace='addReserveParams'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addReserveParamsInfo.paramWay" @change="_changeAddParamWay()">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择预约方式','addReserveParams')}}</option>
+                    <option value="1">{{vc.i18n('日','addReserveParams')}}</option>
+                    <option value="2">{{vc.i18n('周','addReserveParams')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row  " v-if="addReserveParamsInfo.paramWay == '1'">
+                <label class="col-sm-2 ">
+                    <span><vc:i18n name="日" namespace="addReserveParams"></vc:i18n></span>
+                </label>
+                <div class="col-sm-10">
+                    <label class="margin-left" v-for="index in 31">
+                        <input type="checkbox" v-model="addReserveParamsInfo.days"  :value="index"> {{index}}日
+                     </label>
+                </div>
+            </div>
+            <div class="form-group row  " v-if="addReserveParamsInfo.paramWay == '2'">
+                <label class="col-sm-2  ">
+                    <span><vc:i18n name="周" namespace="addReserveParams"></vc:i18n></span>
+                </label>
+                <div class="col-sm-10">
+                    <label class="margin-left" v-for="index in 7">
+                        <input type="checkbox" v-model="addReserveParamsInfo.workdays"  :value="index"> {{vc.getWorkDay(index)}}
+                     </label>
+                </div>
+            </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='开始预约时间' namespace='addReserveParams'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReserveParamsInfo.startTime" type="text"
+                    :placeholder="vc.i18n('必填，请填写开始预约时间','addReserveParams')" class="form-control addReserveParamsStartTime">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='预约次数' namespace='addReserveParams'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReserveParamsInfo.maxQuantity" type="number"
+                    :placeholder="vc.i18n('必填，请填写当天预约次数','addReserveParams')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='预约数量' namespace='addReserveParams'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addReserveParamsInfo.hoursMaxQuantity" type="number"
+                    :placeholder="vc.i18n('必填，请填写每次预约数量','addReserveParams')" class="form-control">
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveReserveParamsInfo()"><i
+                    class="fa fa-check"></i>&nbsp;
+                  <span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                  <span>
+                    <vc:i18n name="取消"></vc:i18n>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

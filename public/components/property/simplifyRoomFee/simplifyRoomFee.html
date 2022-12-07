@@ -68,6 +68,10 @@
                     v-if="vc.hasPrivilege('502020082314267912')" v-on:click="_toOwnerPayFee()">
                 <span><vc:i18n name="欠费缴费" namespace="simplifyRoomFee"></vc:i18n></span>
             </button>
+            <button type="button" class="btn btn-white btn-sm" style="margin-left:10px"
+                    v-on:click="_printOwnOrder()">
+                <span><vc:i18n name="催缴单" namespace="simplifyRoomFee"></vc:i18n></span>
+            </button>
         </div>
     </div>
     <div class="margin-top">

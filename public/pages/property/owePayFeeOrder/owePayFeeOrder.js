@@ -71,7 +71,9 @@
                         $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                         $that.owePayFeeOrderInfo.toFixedSign = _fees[0].val;
                         $that.owePayFeeOrderInfo.oweFees.forEach(item => {
-                            item.feePrice = $that._getFixedNum(item.feePrice);
+                            //item.feePrice = $that._getFixedNum(item.feePrice);
+                            item.receivableAmount = item.feePrice;
+                            item.feePrice = item.feeTotalPrice;
                             $that.owePayFeeOrderInfo.selectPayFeeIds.push(item.feeId);
 
                         });
@@ -151,6 +153,7 @@
                                 feeId: _item,
                                 startTime: _oweFeeItem.endTime,
                                 endTime: _oweFeeItem.deadlineTime,
+                                receivableAmount: _oweFeeItem.receivableAmount,
                                 receivedAmount: _oweFeeItem.feePrice,
                                 primeRate: $that.owePayFeeOrderInfo.primeRate
                             });
@@ -236,12 +239,8 @@
                 vc.goBack();
             },
             _printOwnOrder: function () {
-                vc.saveData('java110_printFee', {
-                    fees: $that.owePayFeeOrderInfo.oweFees,
-                    roomName: $that.owePayFeeOrderInfo.roomName
-                });
                 //打印催交单
-                window.open('/print.html#/pages/property/printOweFee?roomId=' + $that.owePayFeeOrderInfo.payObjId)
+                window.open('/print.html#/pages/property/printOweFee?payObjId=' + $that.owePayFeeOrderInfo.payObjId+"&payObjType="+$that.owePayFeeOrderInfo.payObjType+"&payObjName="+$that.owePayFeeOrderInfo.roomName)
             },
             _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {

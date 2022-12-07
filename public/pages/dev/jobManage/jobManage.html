@@ -60,9 +60,9 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">
+                            <!-- <th class="text-center">
                                 <span><vc:i18n name="任务ID" namespace="jobManage"></vc:i18n></span>
-                            </th>
+                            </th> -->
                             <th class="text-center">
                                 <span><vc:i18n name="任务名称" namespace="jobManage"></vc:i18n></span>
                             </th>
@@ -85,7 +85,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="job in jobManageInfo.jobs">
-                            <td class="text-center">{{job.taskId}}</td>
+                            <!-- <td class="text-center">{{job.taskId}}</td> -->
                             <td class="text-center">{{job.taskName}}</td>
                             <td class="text-center">{{job.taskCron}}</td>
                             <td class="text-center">{{job.templateName}}</td>

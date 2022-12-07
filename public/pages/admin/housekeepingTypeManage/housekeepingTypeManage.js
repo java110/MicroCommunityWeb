@@ -16,7 +16,7 @@
                     hktName: '',
                     isShow: '',
                     shopId: '9999',
-                    typeCd: ''
+                    typeCd: '1001'
                 }
             }
         },
@@ -58,7 +58,9 @@
                 );
             },
             _openAddHousekeepingTypeModal: function () {
-                vc.emit('addHousekeepingType', 'openAddHousekeepingTypeModal', {});
+                vc.emit('addHousekeepingType', 'openAddHousekeepingTypeModal', {
+                    typeCd:'1001'
+                });
             },
             _openEditHousekeepingTypeModel: function (_housekeepingType) {
                 vc.emit('editHousekeepingType', 'openEditHousekeepingTypeModal', _housekeepingType);

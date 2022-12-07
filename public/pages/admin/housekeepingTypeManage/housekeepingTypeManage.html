@@ -19,13 +19,6 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <select class="custom-select" v-model="housekeepingTypeManageInfo.conditions.typeCd">
-                                <option selected value="">{{vc.i18n('请选择类型','housekeepingTypeManage')}}</option>
-                                <option value="1001">{{vc.i18n('服务','housekeepingTypeManage')}}</option>
-                                <option value="2002">{{vc.i18n('商城','housekeepingTypeManage')}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
                             <select class="custom-select" v-model="housekeepingTypeManageInfo.conditions.isShow">
                                 <option selected value="">{{vc.i18n('请选择是否展示','housekeepingTypeManage')}}</option>
                                 <option value="Y">{{vc.i18n('是','housekeepingTypeManage')}}</option>
@@ -49,7 +42,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="商城菜单" namespace="housekeepingTypeManage"></vc:i18n></span>
+                        <span><vc:i18n name="家政服务菜单" namespace="housekeepingTypeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm"
@@ -63,19 +56,14 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><vc:i18n name="菜单id" namespace="housekeepingTypeManage"></vc:i18n></span>
+                                <span><vc:i18n name="小图标" namespace="housekeepingTypeManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="菜单名称" namespace="housekeepingTypeManage"></vc:i18n></span>
                             </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="小图标" namespace="housekeepingTypeManage"></vc:i18n></span>
-                            </th>
+                            
                             <th class="text-center">
                                 <span><vc:i18n name="菜单描述" namespace="housekeepingTypeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="菜单类别" namespace="housekeepingTypeManage"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="标签" namespace="housekeepingTypeManage"></vc:i18n></span>
@@ -93,14 +81,12 @@
                         </thead>
                         <tbody>
                         <tr v-for="housekeepingType in housekeepingTypeManageInfo.housekeepingTypes">
-                            <td class="text-center">{{housekeepingType.hktId}}</td>
-                            <td class="text-center">{{housekeepingType.hktName}}</td>
                             <td class="text-center">
                                 <img style="width: 60px; height: 60px; border-radius: 5px;"
                                      v-bind:src="housekeepingType.hktIcon"></img>
                             </td>
+                            <td class="text-center">{{housekeepingType.hktName}}</td>
                             <td class="text-center">{{housekeepingType.hktDesc}}</td>
-                            <td class="text-center">{{housekeepingType.typeCdName}}</td>
                             <td class="text-center">{{housekeepingType.label}}</td>
                             <td class="text-center">{{housekeepingType.seq}}</td>
                             <td class="text-center">{{housekeepingType.isShow == 'Y'?'是':'否'}}</td>

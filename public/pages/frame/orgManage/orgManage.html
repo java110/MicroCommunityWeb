@@ -24,7 +24,7 @@
                                         <input type="text" :placeholder="vc.i18n('请填写员工名称','org')" v-model.trim="orgManageInfo.conditions.staffName" class="form-control form-control-sm">
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOrgMethod()">
                                         <i class="fa fa-search"></i>
                                         <span><vc:i18n name="查询" namespace="room"></vc:i18n></span>
@@ -50,6 +50,9 @@
                                 <span v-else><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
+                                <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/frame/orgManage')">
+                                    <span><vc:i18n name="文档"></vc:i18n></span>
+                                </button>
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_openOrgRelStaff()" v-if="vc.hasPrivilege('502022082917040004') || vc.hasPrivilege('502022092211010004')">
                                     <i class="fa fa-plus"></i>
                                     <span><vc:i18n name="关联员工" namespace="staff"></vc:i18n></span>

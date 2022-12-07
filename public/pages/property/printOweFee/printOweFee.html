@@ -7,22 +7,22 @@
             </div>
             <div class="row margin-top">
                 <div class="col-sm-4">
-                    <span>{{printPayFeeInfo.roomName}}</span>
+                    <span>{{printPayFeeInfo.payObjName}}</span>
                 </div>
                 <div class="col-sm-4">
-                    <span></span>
+                    <span><span><vc:i18n name="业主" namespace="printOweFee"></vc:i18n></span>：{{printPayFeeInfo.ownerName}}</span>
                 </div>
                 <div class="col-sm-4">
                     <span><span><vc:i18n name="打印时间" namespace="printOweFee"></vc:i18n></span>：{{printPayFeeInfo.feeTime}}</span>
                 </div>
             </div>
-            <table class="table vc-table-border margin-top">
+            <table class="table vc-table-border margin-top" style="color:#000;font-size:14px">
                 <thead>
-                    <tr>
+                    <tr >
                         <th scope="col" class="text-center"><span><vc:i18n name="项目名称" namespace="printOweFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="费用期间" namespace="printOweFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="单位" namespace="printOweFee"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="面积" namespace="printOweFee"></vc:i18n></span></th>
+                        <th scope="col" class="text-center"><span><vc:i18n name="面积/用量" namespace="printOweFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printOweFee"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="金额" namespace="printOweFee"></vc:i18n></span></th>
                     </tr>
@@ -30,11 +30,21 @@
                 <tbody>
                     <tr v-for="(item,index) in printPayFeeInfo.fees" class="vc-table-border">
                         <td class="text-center">{{item.feeName}}</td>
-                        <td class="text-center">{{vc.dateFormat(item.endTime)}}<span><vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>{{vc.dateFormat(item.deadlineTime)}}
+                        <td class="text-center" v-if="item.preDegrees">
+                            {{vc.dateFormat(item.endTime)}}<span>
+                                <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
+                                {{_getDeadlineTime(item)}}</br>
+                            {{item.preDegrees}} 至 {{item.curDegrees}}
+                        </td>
+                        <td class="text-center" v-else> {{vc.dateFormat(item.endTime)}}<span>
+                            <vc:i18n name="至" namespace="printOweFee"></vc:i18n></span>
+                            {{_getDeadlineTime(item)}}
                         </td>
                         <td class="text-center"><span><vc:i18n name="元" namespace="printOweFee"></vc:i18n></span></td>
-                        <td class="text-center">{{printPayFeeInfo.builtUpArea}}</td>
-                        <td class="text-center">{{item.squarePrice}}/{{item.additionalAmount}}</td>
+                        <td class="text-center" v-if="item.preDegrees">{{(item.curDegrees-item.preDegrees).toFixed(2)}}</td>
+                        <td class="text-center" v-else>{{printPayFeeInfo.builtUpArea}}</td>
+                        <td class="text-center" v-if="item.preDegrees">{{item.mwPrice}}</td>
+                        <td class="text-center" v-else>{{item.squarePrice}}/{{item.additionalAmount}}</td>
                         <td class="text-center">{{item.feePrice}}</td>
                     </tr>
                     <tr>
@@ -43,12 +53,12 @@
                         </td>
                         <td colspan="4" class="text-center ">{{printPayFeeInfo.feePrices}}</td>
                     </tr>
-                    <tr height="60px">
+                    <tr height="60px" v-if="printPayFeeInfo.content">
                         <td colspan="3">
-                            <p style="max-width: 600px;">
+                            
                                 <!-- {{printPayFeeInfo.content}} -->
-                                <div v-html="printPayFeeInfo.content"></div>
-                            </p>
+                                <div style="max-width: 600px;" v-html="printPayFeeInfo.content"></div>
+                           
                         </td>
                         <td colspan="4">
                             <img :src="printPayFeeInfo.qrImg" width="100px" height="100px">

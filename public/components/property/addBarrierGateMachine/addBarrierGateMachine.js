@@ -8,9 +8,8 @@
             addBarrierGateMachineInfo: {
                 machineId: '',
                 machineCode: '',
-                machineVersion: 'v1.0',
+                machineVersion: 'v300',
                 machineName: '',
-                machineTypeCd: '',
                 authCode: '未知',
                 machineIp: '',
                 machineMac: '',
@@ -19,6 +18,7 @@
                 locationType: '',
                 locations: [],
                 machineTypes: [],
+                machineTypeCd: '9996',
                 attrs: [],
                 typeId: '',
                 isShow: 'true'
@@ -168,7 +168,7 @@
                 vc.component.addBarrierGateMachineInfo = {
                     machineId: '',
                     machineCode: '',
-                    machineVersion: 'v1.0',
+                    machineVersion: 'v300',
                     machineName: '',
                     machineTypeCd: '',
                     authCode: '未知',
@@ -254,13 +254,6 @@
                     }
                 );
             },
-            setAddMachineTypeCd: function (_typeId) {
-                vc.component.addBarrierGateMachineInfo.machineTypes.forEach(item => {
-                    if (item.typeId == _typeId) {
-                        vc.component.addBarrierGateMachineInfo.machineTypeCd = item.machineTypeCd;
-                    }
-                });
-            }
         }
     });
 })(window.vc)

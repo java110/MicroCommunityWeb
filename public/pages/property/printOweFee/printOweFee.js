@@ -11,30 +11,31 @@
                 wechatName: '',
                 content: '',
                 qrImg: '',
-                roomId: '',
-                builtUpArea: ''
+                payObjId: '',
+                builtUpArea: '',
+                payObjType:'',
+                payObjName:'',
+                ownerName:''
             },
             printFlag: '0'
         },
         _initMethod: function () {
             //vc.component._initPrintPurchaseApplyDateInfo();
 
-            let _fees = vc.getData('java110_printFee');
-            $that.printPayFeeInfo.fees = _fees.fees
+            //$that.printPayFeeInfo.fees = _fees.fees
 
-            $that.printPayFeeInfo.roomId = vc.getParam('roomId')
+            $that.printPayFeeInfo.payObjId = vc.getParam('payObjId');
+            $that.printPayFeeInfo.payObjType = vc.getParam('payObjType')
+            $that.printPayFeeInfo.payObjName = vc.getParam('payObjName')
+
+            $that._loadOweFees();
             $that._printOweRoom();
 
             $that.printPayFeeInfo.feeTime = vc.dateTimeFormat(new Date().getTime());
 
             $that.printPayFeeInfo.communityName = vc.getCurrentCommunity().name;
 
-            let _totalAmount = 0.0;
-            $that.printPayFeeInfo.fees.forEach(item => {
-                _totalAmount += item.feePrice;
-            });
-            _totalAmount = Math.round(_totalAmount * 100) / 100;
-            $that.printPayFeeInfo.feePrices = _totalAmount;
+           
 
             $that._loadPrintSpec();
         },
@@ -89,11 +90,14 @@
                 window.close();
             },
             _printOweRoom: function () {
+                if($that.printPayFeeInfo.payObjType != '3333'){
+                    return ;
+                }
                 let param = {
                     params: {
                         page: 1,
                         row: 1,
-                        roomId: $that.printPayFeeInfo.roomId,
+                        roomId: $that.printPayFeeInfo.payObjId,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
@@ -113,7 +117,53 @@
                     }
                 );
 
-            }
+            },
+            _loadOweFees: function () {
+                var param = {
+                    params: {
+                        page: 1,
+                        row: 50,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        payObjId: $that.printPayFeeInfo.payObjId,
+                        payObjType: $that.printPayFeeInfo.payObjType,
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feeApi/listOweFees',
+                    param,
+                    function (json) {
+                        var _json = JSON.parse(json);
+                        let _fees = _json.data;
+                        if (_fees.length < 1) {
+                            $that.printPayFeeInfo.oweFees = [];
+                            vc.toast('当前没有缴费通知数据');
+                            return;
+                        }
+                        $that.printPayFeeInfo.fees = _fees;
+                        let _totalAmount = 0.0;
+                        $that.printPayFeeInfo.fees.forEach(item => {
+                            //item.feePrice = $that._getFixedNum(item.feePrice);
+                            item.receivableAmount = item.feePrice;
+                            item.feePrice = item.feePrice;
+                            _totalAmount += item.feePrice;
+                        });
+                        _totalAmount = Math.round(_totalAmount * 100) / 100;
+                        $that.printPayFeeInfo.feePrices = _totalAmount;
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _getDeadlineTime: function (_fee) {
+                if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
+                    return "-";
+                }
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
+            },
         }
     });
 

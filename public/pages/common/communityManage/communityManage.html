@@ -43,6 +43,9 @@
                         <span><vc:i18n name="小区信息" namespace="communityManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/common/communityManage')">
+                            <span><vc:i18n name="文档"></vc:i18n></span>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCommunityModal()">
                             <i class="fa fa-plus"></i><span><vc:i18n name="添加小区" namespace="communityManage"></vc:i18n></span>
                         </button>
