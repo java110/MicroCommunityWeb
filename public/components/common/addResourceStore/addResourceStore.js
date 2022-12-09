@@ -357,11 +357,11 @@
                 };
             },
             _listAddStorehouses: function (_page, _rows) {
+                //shType: '2806',
                 let param = {
                     params: {
                         page: 1,
                         row: 100,
-                        shType: '2806',
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
