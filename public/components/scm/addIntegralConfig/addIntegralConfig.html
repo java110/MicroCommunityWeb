@@ -1,0 +1,87 @@
+<div id="addIntegralConfigModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span>
+            <vc:i18n name="添加" namespace="addIntegralConfig"></vc:i18n>
+          </span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='标准名称' namespace='addIntegralConfig'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addIntegralConfigInfo.configName" type="text"
+                    :placeholder="vc.i18n('必填，请填写标准名称','addIntegralConfig')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='计算公式' namespace='addIntegralConfig'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addIntegralConfigInfo.computingFormula">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择计算公式','addIntegralConfig')}}</option>
+                    <option value="1001">{{vc.i18n('面积*单价','addIntegralConfig')}}</option>
+                    <option value="2002">{{vc.i18n('缴费金额*单价','addIntegralConfig')}}</option>
+                    <option value="3003">{{vc.i18n('固定积分','addIntegralConfig')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row" v-if="addIntegralConfigInfo.computingFormula == '1001' || addIntegralConfigInfo.computingFormula == '2002'">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='单价' namespace='addIntegralConfig'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addIntegralConfigInfo.squarePrice" type="text"
+                    :placeholder="vc.i18n('必填，请填写单价','addIntegralConfig')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row" v-if="addIntegralConfigInfo.computingFormula == '3003'">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='固定积分' namespace='addIntegralConfig'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addIntegralConfigInfo.additionalAmount" type="text"
+                    :placeholder="vc.i18n('必填，请填写固定积分','addIntegralConfig')" class="form-control">
+                </div>
+              </div>
+              
+              
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='进位' namespace='addIntegralConfig'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addIntegralConfigInfo.scale">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择进位','addIntegralConfig')}}</option>
+                    <option value="3">{{vc.i18n('向上取整','addIntegralConfig')}}</option>
+                    <option value="4">{{vc.i18n('向下取整','addIntegralConfig')}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveIntegralConfigInfo()"><i
+                    class="fa fa-check"></i>&nbsp;
+                  <span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                  <span>
+                    <vc:i18n name="取消"></vc:i18n>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
