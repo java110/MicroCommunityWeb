@@ -171,13 +171,13 @@
                 });
                 wsUrl = wsUrl.replace(':8131', ':9080')
                 let _protocol = window.location.protocol;
-                if (_protocol.startsWith('https')) {
-                    wsUrl =
-                        "wss://" + wsUrl;
-                } else {
-                    wsUrl =
-                        "ws://" + wsUrl;
-                }
+                // if (_protocol.startsWith('https')) {
+                //     wsUrl =
+                //         "wss://" + wsUrl;
+                // } else {
+                wsUrl =
+                    "ws://" + wsUrl;
+                // }
 
                 let image = document.getElementById("receiver2");
                 if (wsUrl.endsWith(".flv")) {

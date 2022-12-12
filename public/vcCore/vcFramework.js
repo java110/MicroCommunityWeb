@@ -1728,6 +1728,20 @@
         return y + '-' + add0(m) + '-' + add0(d);
     }
 
+    vcFramework.timeFormat = function(_time) {
+        let _date = new Date(_time);
+        let h = _date.getHours();
+        let mm = _date.getMinutes();
+        let s = _date.getSeconds();
+        return add0(h) + ':' + add0(mm) + ':' + add0(s);
+    }
+    vcFramework.timeMinFormat = function(_time) {
+        let _date = new Date(_time);
+        let h = _date.getHours();
+        let mm = _date.getMinutes();
+        return add0(h) + ':' + add0(mm);
+    }
+
     vcFramework.dateSubOneDay = function(_startTime, _endTime, feeFlag) {
         if (!_endTime || _endTime == '-') {
             return _endTime
@@ -1970,42 +1984,42 @@
         })
     }
 
-    vcFramework.getWeek = function(_week){
-        if(_week == 1){
+    vcFramework.getWeek = function(_week) {
+        if (_week == 1) {
             return '第一周';
         }
-        if(_week == 2){
+        if (_week == 2) {
             return '第二周';
         }
-        if(_week == 3){
+        if (_week == 3) {
             return '第三周';
         }
-        if(_week == 4){
+        if (_week == 4) {
             return '第四周';
         }
-        
+
     }
 
-    vcFramework.getWorkDay = function(_day){
-        if(_day == 1){
+    vcFramework.getWorkDay = function(_day) {
+        if (_day == 1) {
             return '星期一';
         }
-        if(_day == 2){
+        if (_day == 2) {
             return '星期二';
         }
-        if(_day == 3){
+        if (_day == 3) {
             return '星期三';
         }
-        if(_day == 4){
+        if (_day == 4) {
             return '星期四';
         }
-        if(_day == 5){
+        if (_day == 5) {
             return '星期五';
         }
-        if(_day == 6){
+        if (_day == 6) {
             return '星期六';
         }
-        if(_day == 7){
+        if (_day == 7) {
             return '星期日';
         }
     }

@@ -16,18 +16,23 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center"><span><vc:i18n name="名称" namespace="todayAttendanceDetail"></vc:i18n></span></th>
+
+                                            <th class="text-center"><span><vc:i18n name="打卡范围" namespace="todayAttendanceDetail"></vc:i18n></span></th>
+                                            <th class="text-center"><span><vc:i18n name="迟到/早退" namespace="todayAttendanceDetail"></vc:i18n></span></th>
                                             <th class="text-center"><span><vc:i18n name="状态" namespace="todayAttendanceDetail"></vc:i18n></span></th>
-                                            <th class="text-center"><span><vc:i18n name="考勤时间" namespace="todayAttendanceDetail"></vc:i18n></span></th>
                                             <th class="text-center"><span><vc:i18n name="打卡时间" namespace="todayAttendanceDetail"></vc:i18n></span></th>
                                             <th class="text-center"><span><vc:i18n name="抓拍" namespace="todayAttendanceDetail"></vc:i18n></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="detail in todayAttendanceDetailInfo.attendanceClassesTaskDetails">
-                                            <td class="text-center">{{detail.specName}}</td>
+                                            <td class="text-center">{{detail.specCd == '1001'?'上班':'下班'}}</td>
+                                            <td class="text-center" v-if="detail.specCd == '1001'">{{vc.timeMinFormat(detail.leaveValue)}}~{{vc.timeMinFormat(detail.value)}}</td>
+                                            <td class="text-center" v-else>{{vc.timeMinFormat(detail.value)}}~{{vc.timeMinFormat(detail.lateValue)}}</td>
+                                            <td class="text-center" v-if="detail.specCd == '1001'">{{vc.timeMinFormat(detail.value)}}~{{vc.timeMinFormat(detail.lateValue)}}</td>
+                                            <td class="text-center" v-else>{{vc.timeMinFormat(detail.leaveValue)}}~{{vc.timeMinFormat(detail.value)}}</td>
                                             <td class="text-center">{{detail.stateName}}</td>
-                                            <td class="text-center">{{detail.value}}</td>
-                                            <td class="text-center">{{detail.checkTime}}</td>
+                                            <td class="text-center">{{detail.checkTime || '未打卡' }} </td>
                                             <td class="text-right ">
                                                 <span v-for="_photo in detail.photos">
                                                 <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
