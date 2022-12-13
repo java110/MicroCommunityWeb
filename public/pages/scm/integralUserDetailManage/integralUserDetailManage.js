@@ -1,7 +1,7 @@
 /**
     入驻小区
 **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -17,25 +17,25 @@
                     acctName: '',
                     userName: '',
                     tel: '',
-                    communityId:vc.getCurrentCommunity().communityId
+                    communityId: vc.getCurrentCommunity().communityId
 
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             vc.component._listIntegralUserDetails(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
+        _initEvent: function() {
 
-            vc.on('integralUserDetailManage', 'listIntegralUserDetail', function (_param) {
+            vc.on('integralUserDetailManage', 'listIntegralUserDetail', function(_param) {
                 vc.component._listIntegralUserDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listIntegralUserDetails(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listIntegralUserDetails: function (_page, _rows) {
+            _listIntegralUserDetails: function(_page, _rows) {
 
                 vc.component.integralUserDetailManageInfo.conditions.page = _page;
                 vc.component.integralUserDetailManageInfo.conditions.row = _rows;
@@ -46,7 +46,7 @@
                 //发送get请求
                 vc.http.apiGet('/integral.listIntegralUserDetail',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _integralUserDetailManageInfo = JSON.parse(json);
                         vc.component.integralUserDetailManageInfo.total = _integralUserDetailManageInfo.total;
                         vc.component.integralUserDetailManageInfo.records = _integralUserDetailManageInfo.records;
@@ -55,25 +55,22 @@
                             total: vc.component.integralUserDetailManageInfo.records,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddIntegralUserDetailModal: function () {
-                vc.emit('addIntegralUserDetail', 'openAddIntegralUserDetailModal', {});
+            _openAddIntegralUserDetailModal: function() {
+                vc.emit('integralUse', 'openIntegralUseModal', {});
             },
-            _openEditIntegralUserDetailModel: function (_integralUserDetail) {
-                vc.emit('editIntegralUserDetail', 'openEditIntegralUserDetailModal', _integralUserDetail);
-            },
-            _openDeleteIntegralUserDetailModel: function (_integralUserDetail) {
+            _openDeleteIntegralUserDetailModel: function(_integralUserDetail) {
                 vc.emit('deleteIntegralUserDetail', 'openDeleteIntegralUserDetailModal', _integralUserDetail);
             },
-            _queryIntegralUserDetailMethod: function () {
+            _queryIntegralUserDetailMethod: function() {
                 vc.component._listIntegralUserDetails(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.integralUserDetailManageInfo.moreCondition) {
                     vc.component.integralUserDetailManageInfo.moreCondition = false;
                 } else {
