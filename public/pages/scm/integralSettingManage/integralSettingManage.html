@@ -6,6 +6,9 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="积分设置"  namespace="integralSettingManage"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/scm/integralSettingManage')">
+                            <vc:i18n name="文档"></vc:i18n>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-if="integralSettingManageInfo.integralSettings.length<1" v-on:click="_openAddIntegralSettingModal()">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span><vc:i18n name="设置"  namespace="integralSettingManage"></vc:i18n></span>
