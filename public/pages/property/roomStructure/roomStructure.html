@@ -6,7 +6,6 @@
         </div>
         <div class="col-md-10 margin-bottom " v-if="roomStructureInfo.layerRoomCount < 5">
             <div class="row margin-top-xs bg-white border-radius">
-
                 <div class="col-md-1 text-center margin-sm padding-xs" :title="vc.i18n('双击查看详情','roomStructure')" @dblclick="_toSimplifyAcceptance(room)" v-for="(room,index) in roomStructureInfo.rooms" :style="{'background-color': _getBgColor(room)}" style="color: #fff;border-radius: 5px;cursor:pointer">
                     <div>{{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}</div>
                     <div>{{room.stateName}}</div>
