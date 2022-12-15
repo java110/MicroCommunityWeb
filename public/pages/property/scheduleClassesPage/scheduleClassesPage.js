@@ -1,17 +1,17 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             scheduleClassesPageInfo: {
                 staffs: [],
-                scheduleClassess:[],
-                maxDay:30,
-                curMonth:'',
-                curYear:'',
+                scheduleClassess: [],
+                maxDay: 30,
+                curMonth: '',
+                curYear: '',
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -19,22 +19,28 @@
                 conditions: {
                     staffNameLike: '',
                     scheduleId: '',
-                    curDate: ''
+                    curDate: '',
+                    orgId: '',
+                    orgName: ''
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             $that.initStaffDate();
             vc.component._listStaffScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             vc.component._listScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
 
         },
-        _initEvent: function () {
-            vc.on('scheduleClassesPage', 'listScheduleClasses', function (_param) {
+        _initEvent: function() {
+            vc.on('scheduleClassesPage', 'listScheduleClasses', function(_param) {
                 vc.component._listStaffScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listStaffScheduleClassess(_currentPage, DEFAULT_ROWS);
+            });
+            vc.on('scheduleClassesPage', 'switchOrg', function(_org) {
+                $that.scheduleClassesPageInfo.conditions.orgId = _org.orgId;
+                $that.scheduleClassesPageInfo.conditions.orgName = _org.allOrgName;
             });
         },
         methods: {
@@ -54,7 +60,7 @@
                     vc.component._listStaffScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
                 })
             },
-            _listStaffScheduleClassess: function (_page, _rows) {
+            _listStaffScheduleClassess: function(_page, _rows) {
                 vc.component.scheduleClassesPageInfo.conditions.page = _page;
                 vc.component.scheduleClassesPageInfo.conditions.row = _rows;
                 let param = {
@@ -63,7 +69,7 @@
                 //发送get请求
                 vc.http.apiGet('/scheduleClasses.staffMonthScheduleClasses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _scheduleClassesPageInfo = JSON.parse(json);
                         vc.component.scheduleClassesPageInfo.total = _scheduleClassesPageInfo.total;
                         vc.component.scheduleClassesPageInfo.records = _scheduleClassesPageInfo.records;
@@ -74,45 +80,57 @@
                             currentPage: _page
                         });
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            
+
             //查询
-            _queryScheduleClassesMethod: function () {
+            _queryScheduleClassesMethod: function() {
                 vc.component._listStaffScheduleClassess(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-           
-            _moreCondition: function () {
+            _resetScheduleClassesMethod: function() {
+                $that.scheduleClassesPageInfo.conditions = {
+                    staffNameLike: '',
+                    scheduleId: '',
+                    curDate: '',
+                    orgId: '',
+                    orgName: ''
+                }
+
+                let _date = new Date(new Date());
+                $that.scheduleClassesPageInfo.conditions.curDate = _date.getFullYear() + "-" + (_date.getMonth() + 1);
+            },
+
+            _moreCondition: function() {
                 if (vc.component.scheduleClassesPageInfo.moreCondition) {
                     vc.component.scheduleClassesPageInfo.moreCondition = false;
                 } else {
                     vc.component.scheduleClassesPageInfo.moreCondition = true;
                 }
             },
-            _listScheduleClassess: function (_page, _rows) {
+            _listScheduleClassess: function(_page, _rows) {
                 let param = {
                     params: {
-                        page:1,
-                        row:100
+                        page: 1,
+                        row: 100
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/scheduleClasses.listScheduleClasses',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         let _scheduleClassesInfo = JSON.parse(json);
                         $that.scheduleClassesPageInfo.scheduleClassess = _scheduleClassesInfo.data;
-                        
+
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _exportScheduleClasses: function () {
+            _exportScheduleClasses: function() {
                 //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDetail&' + vc.objToGetParam($that.reportPayFeeDetailInfo.conditions));
                 vc.component.scheduleClassesPageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 vc.component.scheduleClassesPageInfo.conditions.pagePath = 'reportStaffMonthScheduleClasses';
@@ -121,18 +139,21 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,
-                    function (json, res) {
+                    function(json, res) {
                         let _json = JSON.parse(json);
                         vc.toast(_json.msg);
-                        if(_json.code == 0){
+                        if (_json.code == 0) {
                             vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _staffChangeOrg: function() {
+                vc.emit('chooseOrgTree', 'openOrgModal', {});
             }
-            
+
         }
     });
 })(window.vc);

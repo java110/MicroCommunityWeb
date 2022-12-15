@@ -12,11 +12,9 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入员工名称','scheduleClassesPage')"
-                                    v-model="scheduleClassesPageInfo.conditions.nameLike" class=" form-control ">
+                                <input type="text" :placeholder="vc.i18n('请输入员工名称','scheduleClassesPage')" v-model="scheduleClassesPageInfo.conditions.nameLike" class=" form-control ">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -29,26 +27,37 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入日期 YYYY-MM','scheduleClassesPage')"
-                                    v-model="scheduleClassesPageInfo.conditions.curDate"
-                                    class=" form-control queryDate">
+                                <input type="text" :placeholder="vc.i18n('请输入日期 YYYY-MM','scheduleClassesPage')" v-model="scheduleClassesPageInfo.conditions.curDate" class=" form-control queryDate">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryScheduleClassesMethod()">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryScheduleClassesMethod()">
                                 <i class="fa fa-search"></i>
                                 <span>
                                     <vc:i18n name="查询" namespace="scheduleClassesPage"></vc:i18n>
                                 </span>
                             </button>
-                            <button type="button" class="btn btn-white btn-sm"
-                                v-on:click="_exportScheduleClasses()">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_resetScheduleClassesMethod()">
+                                <i class="fa fa-search"></i>
+                                <span>
+                                    <vc:i18n name="重置" namespace="scheduleClassesPage"></vc:i18n>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_exportScheduleClasses()">
                                 <span>
                                     <vc:i18n name="导出" namespace="scheduleClassesPage"></vc:i18n>
                                 </span>
                             </button>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input v-model="scheduleClassesPageInfo.conditions.orgName" readonly @focus="_staffChangeOrg()" type="text" :placeholder="vc.i18n('必填，请选择关联组织','addStaff')" class="form-control">
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -97,8 +106,7 @@
                                         </div>
                                     </td>
                                     <td class="text-center" v-for="(day,index) in staff.days">
-                                        <div class=" text-center border padding-lg labeling-strip"
-                                            style="border-radius: 5px;cursor:pointer">
+                                        <div class=" text-center border padding-lg labeling-strip" style="border-radius: 5px;cursor:pointer">
                                             <div>{{day.workdayName?day.workdayName:'休息'}}</div>
                                             <div v-for="(time,index) in day.times">{{time.startTime}}-{{time.endTime}}
                                             </div>
@@ -130,4 +138,6 @@
             </div>
         </div>
     </div>
+    <vc:create path="frame/chooseOrgTree" callBackListener="scheduleClassesPage"></vc:create>
+
 </div>
