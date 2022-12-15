@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function (vc) {
+(function(vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var photoUrl = '/callComponent/download/getFile/file';
@@ -37,18 +37,18 @@
                 }
             }
         },
-        _initMethod: function () {
+        _initMethod: function() {
             //与字典表关联
-            vc.getDict('inspection_task', "state", function (_data) {
+            vc.getDict('inspection_task', "state", function(_data) {
                 vc.component.inspectionTaskDetailManageInfo.stateTypes = _data;
             });
-            vc.getDict('inspection_task_detail', "inspection_state", function (_data) {
+            vc.getDict('inspection_task_detail', "inspection_state", function(_data) {
                 vc.component.inspectionTaskDetailManageInfo.inspectionStateTypes = _data;
             });
-            vc.getDict('inspection_task_detail', "state", function (_data) {
+            vc.getDict('inspection_task_detail', "state", function(_data) {
                 vc.component.inspectionTaskDetailManageInfo.taskStates = _data;
             });
-            vc.getDict('inspection_task_detail', "patrol_type", function (_data) {
+            vc.getDict('inspection_task_detail', "patrol_type", function(_data) {
                 vc.component.inspectionTaskDetailManageInfo.patrolTypes = _data;
             });
             vc.component._initInspectionTaskDetailDateInfo();
@@ -57,16 +57,16 @@
             vc.component._listInspectionRouteInfo();
             vc.component._listInspectionPointInfo();
         },
-        _initEvent: function () {
-            vc.on('inspectionTaskManage', 'listInspectionTask', function (_param) {
+        _initEvent: function() {
+            vc.on('inspectionTaskManage', 'listInspectionTask', function(_param) {
                 vc.component._listInspectionTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
                 vc.component._listInspectionTasksDetailList(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _initInspectionTaskDetailDateInfo: function () {
+            _initInspectionTaskDetailDateInfo: function() {
                 $('.startTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -77,7 +77,7 @@
                     todayBtn: true
                 });
                 $('.startTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".startTime").val();
                         vc.component.inspectionTaskDetailManageInfo.conditions.inspectionStartTime = value;
                     });
@@ -91,7 +91,7 @@
                     todayBtn: true
                 });
                 $('.endTime').datetimepicker()
-                    .on('changeDate', function (ev) {
+                    .on('changeDate', function(ev) {
                         var value = $(".endTime").val();
                         vc.component.inspectionTaskDetailManageInfo.conditions.inspectionEndTime = value;
                     });
@@ -108,7 +108,7 @@
                     e.currentTarget.blur();
                 }
             },
-            _listInspectionTasksDetailList: function (_page, _rows) {
+            _listInspectionTasksDetailList: function(_page, _rows) {
                 vc.component.inspectionTaskDetailManageInfo.conditions.page = _page;
                 vc.component.inspectionTaskDetailManageInfo.conditions.row = _rows;
                 $that.inspectionTaskDetailManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -121,7 +121,7 @@
                 //发送get请求
                 vc.http.apiGet('inspectionTaskDetail.listInspectionTaskDetails',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _inspectionTaskDetailManageInfo = JSON.parse(json);
                         vc.component.inspectionTaskDetailManageInfo.total = _inspectionTaskDetailManageInfo.total;
                         vc.component.inspectionTaskDetailManageInfo.records = _inspectionTaskDetailManageInfo.records;
@@ -139,17 +139,18 @@
                             dataCount: vc.component.inspectionTaskDetailManageInfo.total,
                             currentPage: _page
                         });
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryInspectionTaskMethod: function () {
+            _queryInspectionTaskMethod: function() {
                 vc.component._listInspectionTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetInspectionTaskMethod: function () {
+            _resetInspectionTaskMethod: function() {
                 vc.component.inspectionTaskDetailManageInfo.conditions.planUserName = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.taskDetailId = "";
                 vc.component.inspectionTaskDetailManageInfo.conditions.inspectionPlanName = "";
@@ -165,14 +166,14 @@
                 vc.component.inspectionTaskDetailManageInfo.conditions.patrolType = "";
                 vc.component._listInspectionTasksDetailList(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function () {
+            _moreCondition: function() {
                 if (vc.component.inspectionTaskDetailManageInfo.moreCondition) {
                     vc.component.inspectionTaskDetailManageInfo.moreCondition = false;
                 } else {
                     vc.component.inspectionTaskDetailManageInfo.moreCondition = true;
                 }
             },
-            _listInspectionPlanInfo: function () {
+            _listInspectionPlanInfo: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -183,15 +184,16 @@
                 //发送get请求
                 vc.http.apiGet('/inspectionPlan.listInspectionPlans',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);
                         vc.component.inspectionTaskDetailManageInfo.inspectionPlanList = _inspectionPointManageInfo.inspectionPlans;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listInspectionRouteInfo: function () {
+            _listInspectionRouteInfo: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -202,15 +204,16 @@
                 //发送get请求
                 vc.http.apiGet('/inspectionRoute.listInspectionRoutes',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);
                         vc.component.inspectionTaskDetailManageInfo.inspectionRouteList = _inspectionPointManageInfo.inspectionRoutes;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listInspectionPointInfo: function () {
+            _listInspectionPointInfo: function() {
                 var param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -221,20 +224,21 @@
                 //发送get请求
                 vc.http.apiGet('/inspectionPoint.listInspectionPoints',
                     param,
-                    function (json, res) {
+                    function(json, res) {
                         var _inspectionPointManageInfo = JSON.parse(json);
                         vc.component.inspectionTaskDetailManageInfo.inspectionPointList = _inspectionPointManageInfo.inspectionPoints;
-                    }, function (errInfo, error) {
+                    },
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            openFile: function (_photo) {
+            openFile: function(_photo) {
                 vc.emit('viewImage', 'showImage', {
                     url: _photo.url
                 });
             },
-            openMap: function (lat, lng) {
+            openMap: function(lat, lng) {
                 if (!lat || !lng) {
                     vc.toast('暂无位置信息');
                     return;
@@ -245,8 +249,24 @@
                 });
             },
             //导出
-            _exportExcel: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=inspectionTaskDetails&' + vc.objToGetParam($that.inspectionTaskDetailManageInfo.conditions));
+            _exportExcel: function() {
+                vc.component.inspectionTaskDetailManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                vc.component.inspectionTaskDetailManageInfo.conditions.pagePath = 'inspectionTaskDetails';
+                let param = {
+                    params: vc.component.inspectionTaskDetailManageInfo.conditions
+                };
+                //发送get请求
+                vc.http.apiGet('/export.exportData', param,
+                    function(json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if (_json.code == 0) {
+                            vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    });
             }
         }
     });

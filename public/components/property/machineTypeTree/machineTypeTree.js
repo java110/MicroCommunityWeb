@@ -1,10 +1,11 @@
 /**
  入驻园区
  **/
-(function (vc) {
+(function(vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
+            state: vc.propTypes.string = ""
         },
         data: {
             machineTypesTreeInfo: {
@@ -12,14 +13,13 @@
                 typeId: ''
             }
         },
-        _initMethod: function () {
-            setTimeout(function(){
+        _initMethod: function() {
+            setTimeout(function() {
                 $that._loadMachineTypesTree();
-            },1000)
+            }, 1000)
         },
-        _initEvent: function () {
-            vc.on('machineTypesTree', 'refreshTree', function (_param) {
-                console.log('machineTypesTree')
+        _initEvent: function() {
+            vc.on('machineTypesTree', 'refreshTree', function(_param) {
                 if (_param) {
                     $that.machineTypesTreeInfo.typeId = _param.typeId;
                 }
@@ -27,27 +27,28 @@
             });
         },
         methods: {
-            _loadMachineTypesTree: function () {
+            _loadMachineTypesTree: function() {
                 let param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: vc.getCurrentCommunity().communityId,
+                        state: $props.state
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('machineType.listMachineType',
                     param,
-                    function (json) {
+                    function(json) {
                         var _machineTypeInfo = JSON.parse(json);
                         vc.component.machineTypesTreeInfo.machineTypes = _machineTypeInfo.data;
                         $that._initJsTreeMachineType();
                     },
-                    function () {
+                    function() {
                         console.log('请求失败处理');
                     });
             },
-            _initJsTreeMachineType: function () {
+            _initJsTreeMachineType: function() {
                 let _data = $that._doMachineTypeTreeData();
                 $.jstree.destroy()
                 $("#jstree_machineType").jstree({
@@ -62,8 +63,8 @@
                         'data': _data
                     },
                 });
-                $("#jstree_machineType").on("ready.jstree", function (e, data) {
-                    data.instance.open_all();//打开所有节点
+                $("#jstree_machineType").on("ready.jstree", function(e, data) {
+                    data.instance.open_all(); //打开所有节点
                     // if (_unitId) {
                     //     $('#jstree_machineType').jstree('select_node', 'u_' + _unitId /* , true */ );
                     //     return;
@@ -72,7 +73,7 @@
 
                 });
 
-                $('#jstree_machineType').on("changed.jstree", function (e, data) {
+                $('#jstree_machineType').on("changed.jstree", function(e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
                         //$("#jstree_machineType").jstree("close_all");
@@ -84,13 +85,13 @@
                     })
                 });
                 $('#jstree_machineType')
-                    .on('click', '.jstree-anchor', function (e) {
+                    .on('click', '.jstree-anchor', function(e) {
                         $(this).jstree(true).toggle_node(e.target);
                     })
 
 
             },
-            _doMachineTypeTreeData: function () {
+            _doMachineTypeTreeData: function() {
                 let _mFloorTree = [];
                 let _types = $that.machineTypesTreeInfo.machineTypes;
                 _types.forEach(pItem => {
@@ -109,7 +110,7 @@
                 });
                 return $that.toMachineTypeTree(_mFloorTree);
             },
-            toMachineTypeTree: function (data) {
+            toMachineTypeTree: function(data) {
                 let result = []
                 if (!Array.isArray(data)) {
                     return result

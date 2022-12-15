@@ -15,13 +15,8 @@
     </div>
     <div class="row">
         <div class="col-md-2" style="padding-right:0px">
-            <div style="height: 30px;">
-                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                    v-on:click="_showFlag()">设施分类</button>
-            </div>
-            
-            <div >
-                <vc:create path="property/machineTypeTree" callBackListener="equipmentAccount"></vc:create>
+            <div>
+                <vc:create path="property/machineTypeTree" callBackListener="equipmentAccount" state="1000"></vc:create>
             </div>
         </div>
         <div class="col-md-10 margin-top-xs">
@@ -33,8 +28,7 @@
                                     <vc:i18n name="查询条件"></vc:i18n>
                                 </span></h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                    v-on:click="_moreCondition()">{{equipmentAccountManageInfo.moreCondition ==
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{equipmentAccountManageInfo.moreCondition ==
                                     true?'隐藏':'更多'}}</button>
                             </div>
                         </div>
@@ -42,16 +36,12 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择设备名称','equipmentAccountManage')"
-                                            v-model="equipmentAccountManageInfo.conditions.machineName"
-                                            class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请选择设备名称','equipmentAccountManage')" v-model="equipmentAccountManageInfo.conditions.machineName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择设备编码','equipmentAccountManage')"
-                                            v-model="equipmentAccountManageInfo.conditions.machineCode"
-                                            class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请选择设备编码','equipmentAccountManage')" v-model="equipmentAccountManageInfo.conditions.machineCode" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -63,8 +53,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_queryEquipmentAccountMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryEquipmentAccountMethod()">
                                         <i class="glyphicon glyphicon-search"></i> <span>
                                             <vc:i18n name="查询"></vc:i18n>
                                         </span>
@@ -74,11 +63,10 @@
                             <div class="row">
 
                                 <div class="col-sm-4" v-if="equipmentAccountManageInfo.moreCondition == true">
-                                    <select class="custom-select"
-                                        v-model="equipmentAccountManageInfo.conditions.importanceLevel">
+                                    <select class="custom-select" v-model="equipmentAccountManageInfo.conditions.importanceLevel">
                                         <option selected disabled value="">
                                             {{vc.i18n('请选择重要等级','equipmentAccountManage')}}</option>
-                                        <option v-for="(item,index) in equipmentAccountManageInfo.importanceLevel"
+                                        <option v-for="(item,index) in equipmentAccountManageInfo.importanceLevels"
                                             :key="index" :value="item.statusCd">{{item.name}}</option>
                                     </select>
                                 </div>
@@ -141,9 +129,7 @@
                                 <tbody>
                                     <tr v-for="equipmentAccount in equipmentAccountManageInfo.equipmentAccounts">
                                         <td class="text-center">
-                                            <input type="checkbox" class="i-checks checkItem"
-                                                v-bind:value="equipmentAccount.machineId"
-                                                v-model="equipmentAccountManageInfo.machineIds">
+                                            <input type="checkbox" class="i-checks checkItem" v-bind:value="equipmentAccount.machineId" v-model="equipmentAccountManageInfo.machineIds">
                                         </td>
                                         <td class="text-center">{{equipmentAccount.machineName}}</td>
                                         <td class="text-center">{{equipmentAccount.machineCode}}</td>
@@ -159,16 +145,13 @@
                                         <td class="text-center">{{equipmentAccount.netWorth}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    @click="_printEquipmentAccount(equipmentAccount)"><span>
+                                                <button class="btn-white btn btn-xs" @click="_printEquipmentAccount(equipmentAccount)"><span>
                                                         <vc:i18n name='打印'></vc:i18n>
                                                     </span></button>
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openEquipmentAccountDetail(equipmentAccount)"><span>
+                                                <button class="btn-white btn btn-xs" v-on:click="_openEquipmentAccountDetail(equipmentAccount)"><span>
                                                         <vc:i18n name='详情'></vc:i18n>
                                                     </span></button>
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openEditEquipmentAccountModel(equipmentAccount)"><span>
+                                                <button class="btn-white btn btn-xs" v-on:click="_openEditEquipmentAccountModel(equipmentAccount)"><span>
                                                         <vc:i18n name='修改'></vc:i18n>
                                                     </span></button>
                                                 <!-- <button class="btn-white btn btn-xs"
@@ -181,8 +164,7 @@
                                                     </span></button> -->
                                             </div>
                                             <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openDeleteEquipmentAccountModel(equipmentAccount)"><span>
+                                                <button class="btn-white btn btn-xs" v-on:click="_openDeleteEquipmentAccountModel(equipmentAccount)"><span>
                                                         <vc:i18n name='删除'></vc:i18n>
                                                     </span></button>
                                             </div>
