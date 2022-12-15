@@ -54,7 +54,7 @@
                 param.params.acceptUserId = param.params.acceptUserId.trim();
                 param.params.acceptUserName = param.params.acceptUserName.trim();
                 //发送get请求
-                vc.http.apiGet('resourceStore.listAllocationUserStorehouses',
+                vc.http.apiGet('/resourceStore.listAllocationUserStorehouses',
                     param,
                     function(json, res) {
                         var _allocationUserStorehouseManageInfo = JSON.parse(json);
