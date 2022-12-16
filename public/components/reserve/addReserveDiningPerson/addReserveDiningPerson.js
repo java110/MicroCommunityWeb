@@ -30,6 +30,7 @@
             vc.on('addReserveDiningPerson', 'openAddReserveDiningPersonModal', function (_param) {
                 $that.clearAddReserveDiningPersonInfo();
                 vc.copyObject(_param, $that.addReserveDiningPersonInfo);
+                $that.addReserveDiningPersonInfo.hoursMaxQuantity = parseInt(_param.hoursMaxQuantity);
                 $that._computeMoney();
                 $that._listReserveParamss();
                 $('#addReserveDiningPersonModel').modal('show');
