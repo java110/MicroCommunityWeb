@@ -155,7 +155,7 @@
                 };
 
                 //发送get请求
-                vc.http.apiGet('resourceStore.listResourceStoreSpecifications',
+                vc.http.apiGet('/resourceStore.listResourceStoreSpecifications',
                     param,
                     function(json, res) {
                         var _allocationUserStorehouseManageInfo = JSON.parse(json);

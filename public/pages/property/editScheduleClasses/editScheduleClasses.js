@@ -26,9 +26,9 @@
             _changeScheduleType: function(_customChage) {
                 if (_customChage) {
                     $that.editScheduleClassesInfo.days = [];
+                    $that.editScheduleClassesInfo.scheduleCycle = 1;
                 }
 
-                $that.editScheduleClassesInfo.scheduleCycle = 1;
 
                 if ($that.editScheduleClassesInfo.scheduleType == '1001') {
                     vc.emit("scheduleClassesDayInfo", "notify", {
