@@ -24,9 +24,13 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('请输入停车场','searchParkingSpace')" type="text"
-                                               v-model="searchParkingSpaceInfo.areaNum"
-                                               class="form-control form-control-sm">
+                                        <select class="custom-select custom-select-sm" v-model="searchParkingSpaceInfo.areaNum">
+                                            <option selected value="">{{vc.i18n('请选择停车场','searchParkingSpace')}}</option>
+                                            <option v-for="(item,index) in searchParkingSpaceInfo.parkingAreas"
+                                                    :key="index" v-bind:value="item.num">
+                                                {{item.num}}
+                                            </option>
+                                        </select>       
                                         <input :placeholder="vc.i18n('请输入停车位编号','searchParkingSpace')" type="text"
                                                v-model="searchParkingSpaceInfo.num"
                                                class="form-control form-control-sm">

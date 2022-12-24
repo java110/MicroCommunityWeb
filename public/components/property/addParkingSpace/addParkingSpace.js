@@ -9,10 +9,10 @@
             addParkingSpaceInfo: {
                 num: '',
                 paId: '',
-                area: '',
+                area: '1',
                 remark: '',
                 psId: '',
-                parkingType: '',
+                parkingType: '1',
                 parkingTypes: [],
                 parkingAreas: []
             }
@@ -112,9 +112,9 @@
             clearAddParkingSpaceInfo: function () {
                 vc.component.addParkingSpaceInfo.num = '';
                 vc.component.addParkingSpaceInfo.paId = '';
-                vc.component.addParkingSpaceInfo.area = '';
+                vc.component.addParkingSpaceInfo.area = '1';
                 vc.component.addParkingSpaceInfo.remark = '';
-                vc.component.addParkingSpaceInfo.parkingType = '';
+                vc.component.addParkingSpaceInfo.parkingType = '1';
                 vc.emit('addParkingSpace', 'parkingAreaSelect2', 'setParkingArea', {
                     paId: '',
                     num: ''

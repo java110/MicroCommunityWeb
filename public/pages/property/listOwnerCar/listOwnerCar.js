@@ -40,10 +40,21 @@
             });
             //与字典表关联
             vc.getDict('owner_car', "lease_type", function (_data) {
-                vc.component.listOwnerCarInfo.leaseTypes = _data;
+                vc.component.listOwnerCarInfo.leaseTypes = [{
+                    statusCd:'',
+                    name:'全部车辆'
+                }]
+                _data.forEach(item=>{
+                    vc.component.listOwnerCarInfo.leaseTypes.push(item);
+                })
+               
             });
         },
         methods: {
+            swatchLeaseType:function(_item){
+                $that.listOwnerCarInfo.conditions.leaseType = _item.statusCd;
+                vc.component._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _listOwnerCar: function (_page, _row) {
                 let _params = $that.listOwnerCarInfo.conditions;
                 _params.page = _page;

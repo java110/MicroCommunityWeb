@@ -1,5 +1,21 @@
 <div>
     <div class="row">
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree "
+                        v-for="(item,index) in listOwnerCarInfo.leaseTypes" :key="index" @click="swatchLeaseType(item)"
+                            :class="{'vc-node-selected':listOwnerCarInfo.conditions.leaseType == item.statusCd}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+    <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
@@ -25,14 +41,15 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.leaseType">
-                                    <option selected value="">{{vc.i18n('请选择车牌类型','listOwnerCar')}}</option>
-                                    <option v-for="(item,index) in listOwnerCarInfo.leaseTypes" :key="index"
-                                            :value="item.statusCd">{{item.name}}
-                                    </option>
+                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
+                                    <option selected value="">{{vc.i18n('必填，请选择车位状态','listOwnerCar')}}</option>
+                                    <option value="1">{{vc.i18n('正常','listOwnerCar')}}</option>
+                                    <option value="3">{{vc.i18n('到期','listOwnerCar')}}</option>
+                                    <option value="2">{{vc.i18n('无车位','listOwnerCar')}}</option>
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i>
@@ -44,23 +61,14 @@
                         </div>
                     </div>
                     <div class="row">
+                       
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
-                                    <option selected value="">{{vc.i18n('必填，请选择车位状态','listOwnerCar')}}</option>
-                                    <option value="1">{{vc.i18n('正常','listOwnerCar')}}</option>
-                                    <option value="3">{{vc.i18n('到期','listOwnerCar')}}</option>
-                                    <option value="2">{{vc.i18n('无车位','listOwnerCar')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写业主名称','listOwnerCar')"
                                        class=" form-control" v-model="listOwnerCarInfo.conditions.ownerName">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请输入联系方式','listOwnerCar')"
                                        v-model="listOwnerCarInfo.conditions.link" class="form-control">
@@ -103,9 +111,9 @@
                                 <th class="text-center">
                                     <span><vc:i18n name="房屋号" namespace="listOwnerCar"></vc:i18n></span>
                                 </th>
-                                <th data-hide="phone" class="text-center">
+                                <!-- <th data-hide="phone" class="text-center">
                                     <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
-                                </th>
+                                </th> -->
                                 <th data-hide="phone" class="text-center">
                                     <span><vc:i18n name="车牌类型" namespace="listOwnerCar"></vc:i18n></span>
                                 </th>
@@ -122,10 +130,7 @@
                                     <span><vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="起租时间" namespace="listOwnerCar"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="截止时间" namespace="listOwnerCar"></vc:i18n></span>
+                                    <span><vc:i18n name="有效期" namespace="listOwnerCar"></vc:i18n></span>
                                 </th>
                                 <th data-hide="phone" class="text-center">
                                     <span><vc:i18n name="状态" namespace="listOwnerCar"></vc:i18n></span>
@@ -143,9 +148,9 @@
                                 <td class="text-center">
                                     {{car.roomName}}
                                 </td>
-                                <td class="text-center">
+                                <!-- <td class="text-center">
                                     {{car.carBrand}}
-                                </td>
+                                </td> -->
                                 <td class="text-center" v-if="car.leaseType == 'T'">
                                     临时车
                                 </td>
@@ -170,13 +175,7 @@
                                     车位已释放
                                 </td>
                                 <td class="text-center" v-if="car.leaseType == 'H'">
-                                    {{car.startTime}}
-                                </td>
-                                <td class="text-center" v-else>
-                                    -
-                                </td>
-                                <td class="text-center" v-if="car.leaseType == 'H'">
-                                    {{car.endTime}}
+                                    {{car.startTime}}</br>~{{car.endTime}}
                                 </td>
                                 <td class="text-center" v-else>
                                     -
@@ -187,12 +186,12 @@
                                 <td class="text-center">
                                     <div class="btn-group" v-if="car.state != '3003'">
                                         <button class="btn-white btn btn-xs" v-on:click="_deleteCarParkingSpace(car)">
-                                        <span><vc:i18n name="释放车位" namespace="listOwnerCar"></vc:i18n></span>
+                                        <span><vc:i18n name="释放" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group" v-else>
                                         <button class="btn-white btn btn-xs" v-on:click="_addCarParkingSpace(car)">
-                                        <span><vc:i18n name="续租车位" namespace="listOwnerCar"></vc:i18n></span>
+                                        <span><vc:i18n name="续租" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
                                     </div>
                                     <div class="btn-group">
@@ -231,6 +230,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <vc:create path="property/importOwnerCar"></vc:create>
     <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>

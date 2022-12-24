@@ -14,11 +14,13 @@
                 num: '',
                 areaNum: '',
                 carNum: '',
+                parkingAreas:[],
                 psFlag: $props.parkingSpaceFlag,
                 showSearchCondition: $props.showSearchCondition
             }
         },
         _initMethod: function () {
+            $that._listSearchParkingAreas();
         },
         _initEvent: function () {
             vc.on('searchParkingSpace', 'openSearchParkingSpaceModel', function (_param) {
@@ -87,7 +89,26 @@
                 } else {
                     return "未知";
                 }
-            }
+            },
+            _listSearchParkingAreas: function() {
+                let param = {
+                    params: {
+                        page:1,
+                        row:50,
+                        communityId:vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/parkingArea.listParkingAreas', param,
+                    function(json, res) {
+                        let _parkingAreaManageInfo = JSON.parse(json);
+                        $that.searchParkingSpaceInfo.parkingAreas = _parkingAreaManageInfo.parkingAreas;
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    });
+            },
+
         }
     });
 })(window.vc);
