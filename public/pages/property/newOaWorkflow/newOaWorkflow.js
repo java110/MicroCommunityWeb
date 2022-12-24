@@ -11,10 +11,11 @@
             }
         },
         _initMethod: function () {
-            $that.newOaWorkflowInfo.switchValue = vc.getParam('switchValue');
+            //$that.newOaWorkflowInfo.switchValue = vc.getParam('switchValue');
+            let _switchValue = vc.getParam('switchValue');
             
-            if ($that.newOaWorkflowInfo.switchValue) {
-                $that.swatch($that.newOaWorkflowInfo.switchValue);
+            if (_switchValue) {
+                $that.swatch(_switchValue);
                 return;
             }
             $that.swatch('newOaWorkflowPool');

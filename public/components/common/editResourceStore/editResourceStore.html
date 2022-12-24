@@ -111,7 +111,7 @@
                                 <div class="col-sm-4">
                                     <select class="custom-select" v-model="editResourceStoreInfo.miniUnitCode" :disabled="editResourceStoreInfo.shType == '2807'">
                                         <option selected disabled value="">
-                                            {{vc.i18n('必填','editResourceStore')}}，请选择物品最小计量单位
+                                            {{vc.i18n('必填，请选择物品最小计量单位','editResourceStore')}}
                                         </option>
                                         <option v-for="(item,index) in editResourceStoreInfo.unitCodes" :key="index"
                                                 v-bind:value="item.statusCd">
@@ -135,33 +135,31 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="最高收费标准" namespace="editResourceStore"></vc:i18n></span>(最小计量单位)
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="最高收费标准(最小计量单位)" namespace="editResourceStore"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
                                     <input v-model="editResourceStoreInfo.outHighPrice" type="text" id="highPrice" :placeholder="vc.i18n('必填，请填写物品最小计量单位，最高收费标准','editResourceStore')" class="form-control" @change="decide()">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
+                                <label class="col-sm-2 col-form-label text-right">
                                     <span><vc:i18n name="备注" namespace="editResourceStore"></vc:i18n></span>
                                 </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <textarea :placeholder="vc.i18n('选填，请填写备注','editResourceStore')" class="form-control" v-model="editResourceStoreInfo.remark">
                                     </textarea>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
+                                <label class="col-sm-2 col-form-label text-right">
                                     <span><vc:i18n name="描述" namespace="editResourceStore"></vc:i18n></span>
                                 </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <textarea :placeholder="vc.i18n('选填，请填写描述','editResourceStore')" class="form-control" v-model="editResourceStoreInfo.description">
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
+                                <label class="col-sm-2 col-form-label text-right">
                                     <span><vc:i18n name="图片" namespace="editResourceStore"></vc:i18n></span>
                                 </label>
                                 <div class="content-img col-sm-10">

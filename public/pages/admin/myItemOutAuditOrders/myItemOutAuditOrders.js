@@ -145,10 +145,10 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('workflow.listWorkflowStepStaffs',
+                vc.http.apiGet('/workflow.listWorkflowStepStaffs',
                     param,
                     function(json, res) {
-                        var _json = JSON.parse(json);
+                        let _json = JSON.parse(json);
                         if (_json.data.length > 0) {
                             $that.auditOrdersInfo.procure = true;
                         }
