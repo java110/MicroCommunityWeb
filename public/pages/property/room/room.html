@@ -145,9 +145,12 @@
                                             {{room.layer}}
                                             <span><vc:i18n name="层" namespace="room"></vc:i18n></span>
                                         </td>
-                                        <td class="text-center hand" @click="_viewOwner(room)">
+                                        <td class="text-center hand" v-if="room.ownerName" @click="_viewOwner(room)">
                                             {{room.ownerName}}({{room.link}})
                                             <span class="fa fa-info-circle"></span>
+                                        </td>
+                                        <td class="text-center hand" v-else @click="_viewOwner(room)">
+                                            {{room.ownerName}}
                                         </td>
                                         <td class="text-center">
                                             {{room.roomSubTypeName}}
