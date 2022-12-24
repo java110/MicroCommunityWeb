@@ -51,9 +51,12 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="黑白名单信息" namespace="carBlackWhiteManage"></vc:i18n></span>
+                        <span><vc:i18n name="黑白名单车辆" namespace="carBlackWhiteManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/property/carBlackWhiteManage')">
+                            <vc:i18n name="文档"></vc:i18n>
+                        </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddCarBlackWhiteModal()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="carBlackWhiteManage"></vc:i18n></span>
