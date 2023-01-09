@@ -40,8 +40,8 @@ let opts = {
 }
 
 
-app.use('/callComponent', proxy('http://127.0.0.1:8088', opts));
-app.use('/app', proxy('http://127.0.0.1:8088', opts));
+app.use('/callComponent', proxy('http://127.0.0.1:8008', opts));
+app.use('/app', proxy('http://127.0.0.1:8008', opts));
 app.use('/ws', createProxyMiddleware({
     target: 'http://127.0.0.1:8008',
     changeOrigin: true,
