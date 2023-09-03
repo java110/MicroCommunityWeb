@@ -28,6 +28,9 @@
                                 <th class="text-center">{{allocationStorehouseEnterInfo.applyType == '10000' || allocationStorehouseEnterInfo.applyType == '30000' ? '被调仓库' : '退还人'}}
                                 </th>
                                 <th class="text-center">
+                                    <vc:i18n name="原仓库" namespace="allocationStorehouseEnter"></vc:i18n>
+                                </th>
+                                <th class="text-center">
                                     <vc:i18n name="目标仓库" namespace="allocationStorehouseEnter"></vc:i18n>
                                 </th>
                                 <th class="text-center">
@@ -53,6 +56,7 @@
                                 <td class="text-center">{{resourceStore.isFixedName}}</td>
                                 <td class="text-center">{{allocationStorehouseEnterInfo.applyType == '10000' || allocationStorehouseEnterInfo.applyType == '30000' ? resourceStore.shaName : allocationStorehouseEnterInfo.startUserName}}
                                 </td>
+                                <td class="text-center">{{resourceStore.shaName}}</td>
                                 <td class="text-center">{{resourceStore.shzName}}</td>
                                 <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
                                 <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}
