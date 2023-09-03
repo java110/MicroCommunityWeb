@@ -1,0 +1,43 @@
+<div id="viewItemReleaseResModel" class="modal fade" role="dialog" aria-labelledby="viewItemReleaseResModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="viewItemReleaseResModelLabel">
+                    <span><vc:i18n name="放心物品" namespace="viewItemReleaseRes"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="放行物品" namespace="viewItemReleaseRes"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="数量" namespace="viewItemReleaseRes"></vc:i18n></span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="res in viewItemReleaseResInfo.resNames">
+                                        <td class="text-center">{{res.resName}}</td>
+                                        <td class="text-center">{{res.amount}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

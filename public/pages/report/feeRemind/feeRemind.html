@@ -1,0 +1,77 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="feeRemind"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.objName">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请填写业主名称','feeRemind')" v-model="feeRemindInfo.conditions.ownerName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.link">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <vc:i18n name="查询" namespace="feeRemind"></vc:i18n>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="feeRemindInfo.conditions.configId">
+                                <option selected value="">{{vc.i18n('请选择费用项','feeRemind')}}</option>
+                                <option v-for="(item,index) in feeRemindInfo.feeConfigs" :key="index"
+                                        v-bind:value="item.configId">
+                                    {{item.feeName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="white-bg padding-lg">
+        <div class="">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportPrePaymentFee'}" v-on:click="changeTab('reportPrePaymentFee')">
+                        <vc:i18n name="预缴费提醒" namespace="feeRemind"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportDeadlineFee'}" v-on:click="changeTab('reportDeadlineFee')">
+                        <vc:i18n name="到期提醒" namespace="feeRemind"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="margin-top">
+            <div v-if="feeRemindInfo._currentTab == 'reportPrePaymentFee'">
+                <vc:create path="report/reportPrePaymentFee"></vc:create>
+            </div>
+            <div v-if="feeRemindInfo._currentTab == 'reportDeadlineFee'">
+                <vc:create path="report/reportDeadlineFee"></vc:create>
+            </div>
+
+        </div>
+    </div>
+</div>

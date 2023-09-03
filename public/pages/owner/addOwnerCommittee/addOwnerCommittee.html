@@ -1,0 +1,200 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="添加业委会" namespace="addOwnerSettledApply"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary" v-on:click="vc.goBack()">
+                            <vc:i18n name="返回"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='姓名' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.name" type="text"
+                                   :placeholder="vc.i18n('必填，请填写姓名','addOwnerCommittee')" class="form-control">
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='性别' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="addOwnerCommitteeInfo.sex">
+                                <option selected disabled value="">{{vc.i18n('必填，请选择性别','addOwnerCommittee')}}</option>
+                                <option value="B">{{vc.i18n('男','addOwnerCommittee')}}</option>
+                                <option value="G">{{vc.i18n('女','addOwnerCommittee')}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='电话' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.link" type="text"
+                                   :placeholder="vc.i18n('必填，请填写电话','addOwnerCommittee')" class="form-control">
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='身份证号码' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.idCard" type="text"
+                                   :placeholder="vc.i18n('必填，请填写身份证号码','addOwnerCommittee')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='住址' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.address" type="text"
+                                   :placeholder="vc.i18n('必填，请填写住址','addOwnerCommittee')" class="form-control">
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='职位' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.position" type="text"
+                                   :placeholder="vc.i18n('必填，请填写职位','addOwnerCommittee')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='岗位' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.post" type="text"
+                                   :placeholder="vc.i18n('必填，请填写岗位','addOwnerCommittee')" class="form-control">
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='岗位描述' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.postDesc" type="text"
+                                   :placeholder="vc.i18n('选填，请填写岗位描述','addOwnerCommittee')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='届期' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.appointTime" type="text"
+                                   :placeholder="vc.i18n('必填，请填写届期','addOwnerCommittee')" class="form-control">
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='任期' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addOwnerCommitteeInfo.curTime" type="text"
+                                   :placeholder="vc.i18n('必填，请填写任期','addOwnerCommittee')" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='状态' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="addOwnerCommitteeInfo.state">
+                                <option selected disabled value="">{{vc.i18n('必填，请选择状态','addOwnerCommittee')}}</option>
+                                <option value="1000">{{vc.i18n('在职','addOwnerCommittee')}}</option>
+                                <option value="2000">{{vc.i18n('离职','addOwnerCommittee')}}</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='备注' namespace='addOwnerCommittee'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <textarea v-model="addOwnerCommitteeInfo.remark"
+                                      :placeholder="vc.i18n('选填，请填写备注','addOwnerCommittee')"
+                                      class="form-control">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="紧急联系人" namespace="addOwnerCommittee"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_addContract()">
+                            <i class="fa fa-plus"></i>新增
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                           data-page-size="10">
+                        <thead>
+                        <tr>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="成员关系" namespace="addOwnerCommittee"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="姓名" namespace="addOwnerCommittee"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="联系电话" namespace="addOwnerCommittee"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="住址" namespace="addOwnerCommittee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="addOwnerCommittee"></vc:i18n>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="contract in addOwnerCommitteeInfo.contracts">
+                            <td class="text-center">
+                                <input v-model="contract.relName" type="text"
+                                       :placeholder="vc.i18n('必填，请填写关系','addOwnerCommittee')" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <input v-model="contract.name" type="text"
+                                       :placeholder="vc.i18n('必填，请填写名称','addOwnerCommittee')" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <input v-model="contract.link" type="tel"
+                                       :placeholder="vc.i18n('必填，请填写电话','addOwnerCommittee')" class="form-control">
+                            </td>
+                            <td class="text-center" style="width: 250px;">
+                                <input v-model="contract.address" type="tel"
+                                       :placeholder="vc.i18n('必填，请填写地址','addOwnerCommittee')" class="form-control">
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_deleteContract(contract)">
+                                        <vc:i18n name="删除" namespace="addOwnerCommittee"></vc:i18n>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="margin-top">
+        <button class="btn btn-primary float-right" type="button" v-on:click="saveOwnerCommitteeInfo()">
+            <i class="fa fa-check"></i>&nbsp;
+            <vc:i18n name="保存"></vc:i18n>
+        </button>
+        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="vc.goBack()">
+            <vc:i18n name="返回"></vc:i18n>
+        </button>
+    </div>
+</div>

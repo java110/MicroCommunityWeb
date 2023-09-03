@@ -1,0 +1,20 @@
+<div class="bg-white margin-top-xs padding border-radius">
+    <div class=" ">
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOrgModal()"
+                v-if="vc.hasPrivilege('502022082984960001') || vc.hasPrivilege('502022092255500007')">
+            <i class="fa fa-plus"></i> 添加
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditOrgModel()"
+                v-if="vc.hasPrivilege('502022082949810002')||vc.hasPrivilege('502022092258810006')">
+            <i class="fa fa-edit"></i> 修改
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openDeleteOrgModel()"
+                v-if="vc.hasPrivilege('502022082943170003')||vc.hasPrivilege('502022092283880005')">
+            <i class="fa fa-close"></i> 删除
+        </button>
+    </div>
+    <div id="jstree_org" class="margin-top"></div>
+    <vc:create path="frame/addOrg" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="frame/editOrg"></vc:create>
+    <vc:create path="frame/deleteOrg"></vc:create>
+</div>

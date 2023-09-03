@@ -1,0 +1,257 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                车辆信息
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-if="vc.hasPrivilege('502023032804261679')" v-on:click="_openEditDetailOwnerCar()">
+                    修改
+                </button>
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="车牌号：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.carNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="车品牌：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.carBrand || '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="车类型：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.leaseTypeName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="颜色：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.carColor || '-'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="车牌类型：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.carTypeName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="起租时间：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="结租时间：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.endTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="备注：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.remark}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="停车场：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.areaNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="车位：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.num}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="状态：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="关联房屋：" namespace="carDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{carDetailInfo.roomName}}</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailFee'}"
+                        v-on:click="changeTab('carDetailFee')">
+                        <vc:i18n name="车辆费用" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'ownerDetailHisFee'}"
+                        v-on:click="changeTab('ownerDetailHisFee')">
+                        <vc:i18n name="缴费记录" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailHis'}"
+                        v-on:click="changeTab('carDetailHis')">
+                        <vc:i18n name="修改记录" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailMember'}"
+                        v-on:click="changeTab('carDetailMember')">
+                        <vc:i18n name="成员车辆" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailOwner'}"
+                        v-on:click="changeTab('carDetailOwner')">
+                        <vc:i18n name="业主信息" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'ownerDetailRoom'}"
+                        v-on:click="changeTab('ownerDetailRoom')">
+                        <vc:i18n name="业主房屋" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'ownerDetailCar'}"
+                        v-on:click="changeTab('ownerDetailCar')">
+                        <vc:i18n name="业主车辆" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'ownerDetailOweFee'}"
+                        v-on:click="changeTab('ownerDetailOweFee')">
+                        <vc:i18n name="业主欠费" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailTransactionCar'}"
+                        v-on:click="changeTab('carDetailTransactionCar')">
+                        <vc:i18n name="车牌同步" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailApplyParkingSpace'}"
+                        v-on:click="changeTab('carDetailApplyParkingSpace')">
+                        <vc:i18n name="车位申请" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailCarInout'}"
+                        v-on:click="changeTab('carDetailCarInout')">
+                        <vc:i18n name="出入场记录" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailCoupon'}"
+                        v-on:click="changeTab('carDetailCoupon')">
+                        <vc:i18n name="优惠券" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:carDetailInfo._currentTab == 'carDetailCouponOrder'}"
+                        v-on:click="changeTab('carDetailCouponOrder')">
+                        <vc:i18n name="优惠券核销" namespace="carDetail"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-if="carDetailInfo._currentTab == 'carDetailFee'">
+            <vc:create path="car/carDetailFee"></vc:create>
+        </div>
+
+        <div v-if="carDetailInfo._currentTab == 'ownerDetailRoom'">
+            <vc:create path="owner/ownerDetailRoom"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'ownerDetailCar'">
+            <vc:create path="owner/ownerDetailCar"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'ownerDetailOweFee'">
+            <vc:create path="owner/ownerDetailOweFee"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'ownerDetailHisFee'">
+            <vc:create path="owner/ownerDetailHisFee"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailHis'">
+            <vc:create path="car/carDetailHis"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailMember'">
+            <vc:create path="car/carDetailMember"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailOwner'">
+            <vc:create path="car/carDetailOwner"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailTransactionCar'">
+            <vc:create path="car/carDetailTransactionCar"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailApplyParkingSpace'">
+            <vc:create path="car/carDetailApplyParkingSpace"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailCarInout'">
+            <vc:create path="car/carDetailCarInout"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailCoupon'">
+            <vc:create path="car/carDetailCoupon"></vc:create>
+        </div>
+        <div v-if="carDetailInfo._currentTab == 'carDetailCouponOrder'">
+            <vc:create path="car/carDetailCouponOrder"></vc:create>
+        </div>
+        
+        
+    </div>
+
+
+    <vc:create path="property/editCar" notifyLoadDataComponentName="carDetail"></vc:create>
+</div>

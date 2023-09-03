@@ -1,0 +1,82 @@
+<div class="">
+    <div class="row margin-top">
+        <div class="col-lg-2 ">
+            <select class="custom-select custom-select-sm" v-model="feeDetailFeeObjInfo.payerObjType">
+                <option selected value="">{{vc.i18n('请选择费用对象','feeDetailFeeObj')}}</option>
+                <option value="3333">{{vc.i18n('房屋','feeDetailFeeObj')}}</option>
+                <option value="6666">{{vc.i18n('车辆','feeDetailFeeObj')}}</option>
+                <option value="7777">{{vc.i18n('合同','feeDetailFeeObj')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-lr-xs">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyFeeDetailFeeObj()">
+                查询
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="费用编号" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="对象类型" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="对象名称" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="业主名称" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="手机号" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="创建时间" namespace="feeDetailFeeObj"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="feeObj in feeDetailFeeObjInfo.feeObjs">
+                    <td class="text-center">
+                        {{feeObj.feeId}}
+                    </td>
+                    <td class="text-center" v-if="feeObj.payerObjType == '3333'">
+                        房屋
+                    </td>
+                    <td class="text-center" v-else-if="feeObj.payerObjType == '6666'">
+                        车辆
+                    </td>
+                    <td class="text-center" v-else>
+                        合同
+                    </td>
+                    <td class="text-center">
+                        {{feeObj.payerObjName}}
+                    </td>
+                    <td class="text-center">
+                        {{feeObj.ownerName}}
+                    </td>
+                    <td class="text-center">
+                        {{feeObj.ownerTel}}
+                    </td>
+                    <td class="text-center">
+                        {{feeObj.createTime}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailFeeObj" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

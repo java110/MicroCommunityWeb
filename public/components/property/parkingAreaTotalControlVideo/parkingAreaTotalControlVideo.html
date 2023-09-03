@@ -1,0 +1,46 @@
+<div class="margin-top">
+    <div class="row">
+        <div class="col-md-6 margin-bottom" v-for="(item,index) in parkingAreaTotalControlVideoInfo.machines">
+            <div class="flex justify-between">
+                <div class="" style="font-size: 16px; font-weight: 600;">
+                    <span>{{item.machineName}}</span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <button v-if="item.direction == '3306'" type="button" class="btn btn-white btn-sm"
+                            v-on:click="customCarIn(item,'1101')">
+                            手动进场
+                        </button>
+                        <button v-else type="button" class="btn btn-white btn-sm" v-on:click="customCarIn(item,'1102')">
+                            手动出场
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor(item)">
+                            开闸
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor(item)">
+                            关闸
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="margin-top-sm">
+                <div :id="'receiverDiv'+item.machineId" style="border: 1px solid #dee2e6;">
+                    <img width="100%" src="../../../img/init.jpg" height="300px" :id="'receiver'+item.machineId"
+                        style="border: 1;" />
+                    <img :src="item.inOutImg" style="position: absolute;left: 0px;bottom: 0px;height: 70px;z-index:1;"/>
+                </div>
+                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="item.carNum">
+                    <span class="fa fa-bell" style="color: #007bff;"></span>
+                    <span>{{item.inOutTime}}</span>
+                    <span>{{item.open}};</span>
+                    <span>{{item.openMsg}}</span>
+                </div>
+                <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
+                    <span class="fa fa-bell" style="color: #007bff;"></span>
+                    <span>没有进场车辆</span>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

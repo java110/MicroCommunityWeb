@@ -1,0 +1,25 @@
+<div class="bg-white margin-top-xs padding border-radius">
+    <div class=" ">
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddDataPrivilegeModal()">
+            <i class="fa fa-plus"></i>添加
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditDataPrivilegeModel()">
+            <i class="fa fa-edit"></i>修改
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openDeleteDataPrivilegeModel()">
+            <i class="fa fa-close"></i>删除
+        </button>
+    </div>
+    <div class="vc-org margin-top">
+        <ul>
+            <li v-for="(dataPrivilege,index) in dataPrivilegeDivInfo.dataPrivileges"
+                @click="_switchDataPrivilege(dataPrivilege)"
+                :class="{'active':dataPrivilege.dpId == dataPrivilegeDivInfo.curDataPrivilege.dpId}">
+                {{dataPrivilege.name}}
+            </li>
+        </ul>
+    </div>
+    <vc:create path="property/addDataPrivilege" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editDataPrivilege"></vc:create>
+    <vc:create path="property/deleteDataPrivilege"></vc:create>
+</div>

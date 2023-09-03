@@ -1,0 +1,455 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{reportPrePaymentDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.feeTypeCd"
+                                        @change="_selectConfig()">
+                                    <option selected value="">
+                                        {{vc.i18n('请选择费用类型','reportPrePaymentDetail')}}
+                                    </option>
+                                    <option v-for="(item,index) in reportPrePaymentDetailInfo.feeTypeCds" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.configId">
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportPrePaymentDetail')}}</option>
+                                    <option v-for="(item,index) in reportPrePaymentDetailInfo.feeConfigDtos"
+                                            :key="index" :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.prepaymentState">
+                                    <option selected value="">{{vc.i18n('请选择费用状态','reportPrePaymentDetail')}}</option>
+                                    <option v-for="(item,index) in reportPrePaymentDetailInfo.prepaymentStates"
+                                            :key="index" :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.billState">
+                                    <option selected value="">{{vc.i18n('请选择账单状态','reportPrePaymentDetail')}}</option>
+                                    <option v-for="(item,index) in reportPrePaymentDetailInfo.billStates"
+                                            :key="index" :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.primeRate">
+                                    <option selected value="">{{vc.i18n('请选择支付方式','reportPrePaymentDetail')}}</option>
+                                    <option v-for="(item,index) in reportPrePaymentDetailInfo.primeRates" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="reportPrePaymentDetailInfo.moreCondition == true">
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportPrePaymentDetail')"
+                                       name="startTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportPrePaymentDetail')"
+                                       name="endTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.endTime"
+                                       class=" form-control endTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用开始时间(开始)','reportPrePaymentDetail')"
+                                       name="startBeginTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.startBeginTime"
+                                       class=" form-control startBeginTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用开始时间(结束)','reportPrePaymentDetail')"
+                                       name="startFinishTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.startFinishTime"
+                                       class=" form-control startFinishTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用结束时间(开始)','reportPrePaymentDetail')"
+                                       name="endBeginTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.endBeginTime"
+                                       class=" form-control endBeginTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用结束时间(结束)','reportPrePaymentDetail')"
+                                       name="endFinishTime"
+                                       v-model="reportPrePaymentDetailInfo.conditions.endFinishTime"
+                                       class=" form-control endFinishTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="reportPrePaymentDetailInfo.moreCondition == true">
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择楼栋','reportPrePaymentDetail')"
+                                       v-model="reportPrePaymentDetailInfo.conditions.floorName" class=" form-control">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i>
+                                        <span><vc:i18n name="选择" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPrePaymentDetailInfo.conditions.unitId">
+                                    <option selected value="">{{vc.i18n('请选择单元','reportPrePaymentDetail')}}</option>
+                                    <option v-for="(unit,index) in reportPrePaymentDetailInfo.roomUnits" :key="index"
+                                            v-bind:value="unit.unitId">
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportPrePaymentDetail')}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋号','reportPrePaymentDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportPrePaymentDetailInfo.conditions.roomNum">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportPrePaymentDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportPrePaymentDetailInfo.conditions.roomName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="账单明细表" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                    </h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="账单明细"></span>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="报表ID" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="付费对象" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="业主" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用项" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用类型" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用状态" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账单状态" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="支付方式" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用开始时间" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用结束时间" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="缴费时间" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应缴金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应收金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="实收金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="欠费金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="优惠金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="减免金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="赠送金额" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="滞纳金" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房打折" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房减免" namespace="reportPrePaymentDetail"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="面积" namespace="reportPrePaymentDetail"></vc:i18n></span>(平方米)
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(fee,index) in reportPrePaymentDetailInfo.fees">
+                            <td class="text-center">{{fee.prepaymentId}}</td>
+                            <td class="text-center">{{fee.objName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.prepaymentStateName}}</td>
+                            <td class="text-center">{{fee.billStateName}}</td>
+                            <td class="text-center" v-if="fee.primeRate != null &&
+                                    fee.primeRate != '' && fee.primeRate != undefined">
+                                {{fee.primeRate}}
+                            </td>
+                            <td class="text-center" v-else>--</td>
+                            <td class="text-center">{{vc.dateFormat(fee.feeBeginTime)}}</td>
+                            <td class="text-center">{{vc.dateFormat(fee.feeFinishTime)}}</td>
+                            <td class="text-center"
+                                v-if="fee.payTime != null && fee.payTime != '' && fee.payTime != undefined">
+                                {{fee.payTime}}
+                            </td>
+                            <td class="text-center" v-else>--</td>
+                            <td class="text-center">{{fee.payableAmount}}</td>
+                            <td class="text-center">{{fee.prepaymentReceivableAmount}}</td>
+                            <td class="text-center">{{fee.prepaymentReceivedAmount}}</td>
+                            <td class="text-center">{{fee.oweAmount}}</td>
+                            <td class="text-center">{{fee.preferentialAmount}}</td>
+                            <td class="text-center">{{fee.deductionAmount}}</td>
+                            <td class="text-center">{{fee.giftAmount}}</td>
+                            <td class="text-center">{{fee.lateFee}}</td>
+                            <td class="text-center">{{fee.vacantHousingDiscount}}</td>
+                            <td class="text-center">{{fee.vacantHousingReduction}}</td>
+                            <td class="text-center">{{fee.builtUpArea}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="22">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <span class="col-md-1 margin-left">
+                            <div class="row">
+                                <b><span><vc:i18n name="小计" namespace="reportPrePaymentDetail"></vc:i18n></span></b>
+                            </div>
+                            <div class="row">
+                                <b><span><vc:i18n name="大计" namespace="reportPrePaymentDetail"></vc:i18n></span></b>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="应缴" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalPayableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="应缴" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allPayableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="欠费" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalOweAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="欠费" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allOweAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalLateFee}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allLateFee}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.totalVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportPrePaymentDetail"></vc:i18n></span>: {{reportPrePaymentDetailInfo.allVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportPrePaymentDetail"></vc:i18n></span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                <span><vc:i18n name="优惠金额" namespace="reportFeeDetail"></vc:i18n></span>：打折规则和打折无欠费规则下产生的优惠金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="减免金额" namespace="reportFeeDetail"></vc:i18n></span>：减免规则下产生的减免金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="赠送金额" namespace="reportFeeDetail"></vc:i18n></span>：赠送规则下赠送月份应缴的金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="滞纳金" namespace="reportFeeDetail"></vc:i18n></span>：违约滞纳金规则下产生的违约金额，需额外缴纳的滞纳金
+                            </div>
+                            <div>
+                                <span><vc:i18n name="空置房打折" namespace="reportFeeDetail"></vc:i18n></span>：空置房打折规则下产生的优惠金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="空置房减免" namespace="reportFeeDetail"></vc:i18n></span>：空置房减免规则下产生的减免金额
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/searchFloor" emitChooseFloor="reportPrePaymentDetail" emitLoadData="xx"></vc:create>
+</div>

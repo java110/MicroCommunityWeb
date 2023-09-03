@@ -1,0 +1,196 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-4 padding-right-xs padding-left-xl">
+            <span class="margin-right" v-for="(item,index) in ownerDetailRoomFeeInfo.payObjs">
+                <input type="checkbox" class="i-checks checkRoomItem" v-bind:value="item.roomId" 
+                v-model="ownerDetailRoomFeeInfo.payerObjIds" 
+                @change="_chanagePayerObjId()"> {{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}
+            </span>
+        </div>
+        <div class="col-lg-1 padding-lr-xs" >
+            <select class="custom-select custom-select-sm" v-model="ownerDetailRoomFeeInfo.state"
+                @change="_changeContractConfigId()">
+                <option selected value="">{{vc.i18n('请选择状态','ownerDetailRoomFee')}}</option>
+                <option value="2008001">{{vc.i18n('有效','ownerDetailRoomFee')}}</option>
+                <option value="2009001">{{vc.i18n('收费结束','ownerDetailRoomFee')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-7 text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-if="vc.hasPrivilege('502020082314267912')" v-on:click="_openBatchPayRoomFeeModal()">
+                    <vc:i18n name="批量缴费" namespace="ownerDetailRoomFee"></vc:i18n>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            v-if="vc.hasPrivilege('502022073007100003')"
+                v-on:click="_openTempImportRoomFeeModal()">
+                临时收费
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-if="vc.hasPrivilege('502022073049300004')" v-on:click="_openProxyFeeModal()">
+                <vc:i18n name="按量缴费" namespace="ownerDetailRoomFee"></vc:i18n>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            v-if="vc.hasPrivilege('502022073096990007')"
+                v-on:click="_openRoomsCreateFeeModal()" >
+                创建费用
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+            v-if="vc.hasPrivilege('502020082314267912')" 
+             v-on:click="_toRoomOwePayFee()">
+                欠费缴费
+            </button>
+            <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_printOwnOrder()">
+                <vc:i18n name="催缴单" namespace="simplifyRoomFee"></vc:i18n>
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="房屋" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用标识" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收金额" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="建账时间" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收时间段" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="ownerDetailRoomFee"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(fee,index) in ownerDetailRoomFeeInfo.fees" :key="index">
+                    <td class="text-center">{{fee.payerObjName}}</td>
+                    <td class="text-center">{{fee.feeName}}</td>
+                    <td class="text-center">{{fee.feeFlagName}}</td>
+                    <td class="text-center">{{fee.feeTypeCdName}}</td>
+                    <td class="text-center">{{fee.amountOwed}}</td>
+                    <td class="text-center">{{fee.startTime}}</td>
+                    <td class="text-center">{{_getRoomEndTime(fee)}}~</br>{{_getRoomDeadlineTime(fee)}}</td>
+                    <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'">
+                        <div><span>
+                                <vc:i18n name="上期度数：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.preDegrees}}</div>
+                        <div><span>
+                                <vc:i18n name="本期度数：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.curDegrees}}</div>
+                        <div><span>
+                                <vc:i18n name="单价：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.mwPrice?fee.mwPrice:fee.squarePrice}}</div>
+                        <div><span>
+                                <vc:i18n name="附加费：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                        <div><span>
+                                <vc:i18n name="用量：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{_getRoomAttrValue(fee.feeAttrs,'390006')}}</div>
+                        <div><span>
+                                <vc:i18n name="单价：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.squarePrice}}</div>
+                        <div><span>
+                                <vc:i18n name="附加费：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                        <div><span>
+                                <vc:i18n name="算法：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{_getRoomAttrValue(fee.feeAttrs,'390005')}}</div>
+                        <div><span>
+                                <vc:i18n name="用量：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{_getRoomAttrValue(fee.feeAttrs,'390003')}}</div>
+                    </td>
+                    <td class="text-center" width="150" v-else-if="fee.computingFormula == '4004'">
+                        <div><vc:i18n name="费用根据实际情况而定" namespace="ownerDetailRoomFee"></vc:i18n></div>
+                    </td>
+                    <td class="text-center" v-else>
+                        <div><span>
+                                <vc:i18n name="单价：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.squarePrice}}</div>
+                        <div v-if="fee.feeFlag == '1003006'"><span>
+                                <vc:i18n name="附加费：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}</div>
+                        <div v-else><span>
+                                <vc:i18n name="固定费：" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}</div>
+                    </td>
+                    <td class="text-center">{{fee.stateName}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-link btn-xs"
+                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
+                            v-on:click="_payRoomFee(fee)"><span>
+                                <vc:i18n name="缴费" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-on:click="_payRoomFeeHis(fee)"><span>
+                                <vc:i18n name="缴费历史" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span></button>
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
+                            v-on:click="_deleteRoomFee(fee)"><span>
+                                <vc:i18n name="取消" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>
+                        </button>
+                        <button class="btn btn-link btn-xs"
+                            v-if="fee.state != '2009001' && vc.hasPrivilege('502021070488970005')"
+                            v-on:click="_finishRoomFee(fee)"><span>
+                                <vc:i18n name="结束" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>
+                        </button>
+                        <button class="btn btn-link btn-xs"
+                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
+                            v-on:click="_editRoomFee(fee)"><span>
+                                <vc:i18n name="变更" namespace="ownerDetailRoomFee"></vc:i18n>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                <div> 注意： 应收结束时间 “-” 表示未到应收时间 或 收费已结束</div>
+                <div>应收金额为-1 一般为费用项公式设置出错请检查</div>
+            </div>
+            <div class="col-sm-2">
+                <span>
+                    <span>
+                        <span>
+                            <vc:i18n name="欠费小计" namespace="ownerDetailRoomFee"></vc:i18n>
+                        </span>
+                    </span>：{{ownerDetailRoomFeeInfo.totalAmount}}
+                </span>
+            </div>
+            <div class="col-sm-6">
+                <vc:create namespace="ownerDetailRoomFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="fee/roomsImportTempFee"></vc:create>
+    <vc:create path="fee/roomsCreateFee"></vc:create>
+    <vc:create path="fee/roomsProxyFee"></vc:create>
+   
+</div>

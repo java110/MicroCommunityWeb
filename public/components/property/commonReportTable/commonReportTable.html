@@ -1,0 +1,89 @@
+<div v-for="(item,index) in commonReportTableInfo.components">
+    <div class="row" v-if="item.conditions && item.conditions.length > 0">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="commonReportTable"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3" v-for="(conditionItem,conditionIndex) in item.conditions">
+                            <div class="form-group">
+                                <input :type="conditionItem.type" :placeholder="conditionItem.holdpace" v-model.trim="conditionItem.value" class="form-control" :class="">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryReportTableMethod(item)">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="commonReportTable"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetReportTableMethod(item)">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="commonReportTable"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{item.componentName}}</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_exportReportTableMethod(item)">
+                            <i class="fa fa-plus"></i>导出
+                        </button>
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_printReportTableMethod(item)">
+                            打印
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center" v-for="(itemTh,indexTh) in item.th">
+                                    <div style="max-width: 200px;"> {{itemTh}}</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(itemData,indexData) in item.data">
+                                <td class="text-center" v-for="(tmpItemTh,key) in item.th">
+                                    <!--:title="itemData[tmpItemTh]"-->
+                                    <div class="textAuto" style="max-width: 200px;">
+                                        {{itemData[tmpItemTh]}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td :colspan="20">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="row padding-left" v-if="item.footer">
+                        <span class="col-md-2" v-for="(tmpItemTh,key) of item.footer">
+                            <div class="row">{{key}}: {{tmpItemTh}}</div>
+                        </span>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/paginationPlus" namespace="commonReportTable"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

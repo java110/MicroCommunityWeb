@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="供应商信息"  namespace="viewChainSupplierInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewChainSupplierInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectChainSupplierInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择供应商"  namespace="viewChainSupplierInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewChainSupplierInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddChainSupplierInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加供应商"  namespace="viewChainSupplierInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='供应商名称' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.name}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='接口应用ID' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.appId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='接口秘钥' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.appSecure}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='商户ID' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.mchId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='秘钥' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.mchKey}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='接口地址' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.url}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" > <span><vc:i18n name='备注' namespace='viewchainSupplierInfo'></vc:i18n></span>：</label>
+                            <label class="">{{viewChainSupplierInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addChainSupplier"
+               callBackListener="viewChainSupplierInfo"
+               callBackFunction="chooseChainSupplier"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseChainSupplier"
+               emitChooseChainSupplier="viewChainSupplierInfo"
+               emitLoadData="viewChainSupplierInfo"
+    ></vc:create>
+</div>

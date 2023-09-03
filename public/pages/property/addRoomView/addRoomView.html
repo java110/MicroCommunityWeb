@@ -1,0 +1,201 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <span>
+                        <vc:i18n name="添加房屋" namespace="addRoomView"></vc:i18n>
+                    </span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+                        <i class="fa fa-close"></i>返回
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="楼栋" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addRoomViewInfo.floorId" @change="_loadUnit()">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择楼栋','addRoomView')}}</option>
+                            <option v-for="(floor,index) in addRoomViewInfo.floors" :key="index"
+                                v-bind:value="floor.floorId">{{floor.floorName}}
+                            </option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="单元" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addRoomViewInfo.unitId">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择单元','addRoomView')}}</option>
+                            <option v-for="(unit,index) in addRoomViewInfo.units" :key="index"
+                                v-if="unit.unitNum != '0'" v-bind:value="unit.unitId">{{unit.unitNum}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="房屋编号" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addRoomViewInfo.roomNum" type="text"
+                            :placeholder="vc.i18n('必填，请填写房屋编号','addRoomView')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="房屋楼层" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addRoomViewInfo.layer" type="text"
+                            :placeholder="vc.i18n('必填，请填写房屋楼层','addRoomView')" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="房屋类型" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addRoomViewInfo.roomSubType">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择房屋类型','addRoomView')}}</option>
+                            <option :value="item.statusCd" v-for="(item,index) in addRoomViewInfo.roomSubTypes">
+                                {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right" v-if="addRoomViewInfo.roomSubType != '110'">
+                        <span>
+                            <vc:i18n name="租金" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4" v-if="addRoomViewInfo.roomSubType != '110'">
+                        <input v-model="addRoomViewInfo.roomRent" type="text"
+                            :placeholder="vc.i18n('必填，请填写租金','addRoomView')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="建筑面积(平方)" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addRoomViewInfo.builtUpArea" type="text"
+                            :placeholder="vc.i18n('必填，请填写建筑面积','addRoomView')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="室内面积(平方)" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addRoomViewInfo.roomArea" type="text"
+                            :placeholder="vc.i18n('必填，请填写室内面积','addRoomView')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="算费系数" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addRoomViewInfo.feeCoefficient" type="text"
+                            :placeholder="vc.i18n('请填写算费系数','addRoomView')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span>
+                            <vc:i18n name="房屋状态" namespace="editRoom"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addRoomViewInfo.state">
+                            <option selected value="">{{vc.i18n('必填，请选择房屋状态','editRoom')}}</option>
+                            <option value="2002">{{vc.i18n('未销售','addRoomView')}}</option>
+                            <option value="2001">{{vc.i18n('已入住','addRoomView')}}</option>
+                            <option value="2003">{{vc.i18n('已交房','addRoomView')}}</option>
+                            <option value="2005">{{vc.i18n('已装修','addRoomView')}}</option>
+                            <option value="2004">{{vc.i18n('未入住','addRoomView')}}</option>
+                            <option value="2009">{{vc.i18n('装修中','addRoomView')}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row" v-if="addRoomViewInfo.state != '2002'">
+                    <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="业主" namespace="addRoomView"></vc:i18n>
+                    </label>
+                    <div class="col-sm-3">
+                        <input v-model="addRoomViewInfo.ownerName" disabled type="text"
+                            :placeholder="vc.i18n('必填，请选择业主','addRoomView')" class="form-control">
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseOwner()">选择业主
+                        </button>
+                    </div>
+                </div>
+                <div v-for="(item,index) in addRoomViewInfo.attrs">
+                    <div class="form-group row" v-if="item.specType == '2233'">
+                        <label class="col-sm-2 col-form-label  text-right">{{item.specName}}</label>
+                        <div class="col-sm-4">
+                            <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row" v-if="item.specType == '3344'">
+                        <label class="col-sm-2 col-form-label  text-right">{{item.specName}}</label>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="item.value">
+                                <option selected disabled value="">{{item.specHoldplace}}</option>
+                                <option v-for="value in item.values" :label="value.valueName" :value="value.value">
+                                    {{item.valueName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label  text-right">
+                        <span>
+                            <vc:i18n name="备注" namespace="addRoomView"></vc:i18n>
+                        </span>
+                    </label>
+                    <div class="col-sm-4">
+                        <textarea :placeholder="vc.i18n('选填，请填写备注','addRoomView')" class="form-control"
+                            v-model="addRoomViewInfo.remark">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
+                    <span>
+                        <vc:i18n name="返回" namespace="addRoomView"></vc:i18n>
+                    </span>
+                </button>
+                <button class="btn btn-primary" type="button" v-on:click="saveAddRoomInfo()"><i
+                        class="fa fa-check"></i>&nbsp;提交
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/searchOwner" emitChooseOwner="addRoomView" emitLoadData="addRoomView">
+    </vc:create>
+
+</div>

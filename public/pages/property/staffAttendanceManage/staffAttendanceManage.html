@@ -1,0 +1,46 @@
+<div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class=" border-radius bg-white padding">
+                <div class="margin-xs margin-bottom">
+                    <input type="text" :placeholder="vc.i18n('请选择月份','monthAttendanceManage')" v-model="staffAttendanceManageInfo.curDate" class=" form-control queryDate">
+                </div>
+                <div class="margin-xs margin-bottom">
+                    <input v-model="staffAttendanceManageInfo.orgName" readonly @focus="_staffAttendanceChangeOrg()" type="text" :placeholder="vc.i18n('填写组织','staffAttendanceManage')" class="form-control">
+                </div>
+                <div class="margin-xs-r bg-white treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in staffAttendanceManageInfo.staffs" @click="swatchStaff(item)" :class="{'vc-node-selected':staffAttendanceManageInfo.curStaffId==item.userId}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 ">
+            <div class="row  bg-white border-radius padding ">
+                <div class="col-md-2 text-center border padding-lg labeling-strip" v-for="index in staffAttendanceManageInfo.maxDay" :key="index" :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
+                    <div class="strip" v-if="_getDayAttendance(index) && _getDayAttendance(index).state != '30000'">
+                        <span @click="_replenishCheckIn(index)">补考勤</span>
+                    </div>
+                    <div>{{staffAttendanceManageInfo.curYear}}-{{staffAttendanceManageInfo.curMonth}}-{{index}}</div>
+                    <div  v-for="(item,detailIndex) in _getAttendanceDetail(index)">
+                        <div v-if="item.rest">{{item.rest}}</div>
+                        <div v-else>
+                            {{item.specCd=='1001'?'上班':'下班'}}：
+                            <span v-if="item.state != '10000'">{{vc.timeFormat(item.checkTime)}}</span>
+                            <span v-else> - </span>
+                            <span>({{item.stateName}})</span>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" @click="_checkInLog(index)">考勤记录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="frame/chooseOrgTree" callBackListener="staffAttendanceManage"></vc:create>
+    <vc:create path="property/staffAttendanceDetail" callBackListener="staffAttendanceManage"></vc:create>
+    <vc:create path="property/staffAttendanceReplenishCheckIn" callBackListener="staffAttendanceManage"></vc:create>
+</div>

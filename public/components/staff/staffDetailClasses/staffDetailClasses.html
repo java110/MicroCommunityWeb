@@ -1,0 +1,23 @@
+<div>
+    <div class="row">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input type="text" :placeholder="vc.i18n('请输入日期 YYYY-MM','scheduleClassesPage')"
+                v-model="staffDetailClassesInfo.curDate" class=" form-control queryClassDate">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_listStaffScheduleClassess()">
+                <i class="fa fa-search"></i>查询
+            </button>
+        </div>
+    </div>
+    <div class="row  bg-white border-radius padding ">
+        <div class="col-md-2 text-center border padding-lg labeling-strip"
+            v-for="(item,index) in staffDetailClassesInfo.days" :key="index" style="border-radius: 5px;cursor:pointer"
+            @click="_changeWorkdayInfo(item)">
+            <div>{{item.day}}</div>
+            <div>{{item.workdayName || '休息'}}</div>
+            <div v-for="(time,index) in item.times">{{time.startTime}}-{{time.endTime}}</div>
+        </div>
+    </div>
+</div>

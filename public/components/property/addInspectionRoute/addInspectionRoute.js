@@ -1,0 +1,104 @@
+(function (vc) {
+    vc.extends({
+        propTypes: {
+            callBackListener: vc.propTypes.string,
+            //父组件名称
+            callBackFunction: vc.propTypes.string //父组件监听方法
+        },
+        data: {
+            addInspectionRouteInfo: {
+                routeName: '',
+                seq: '1',
+                remark: ''
+            }
+        },
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('addInspectionRoute', 'openAddInspectionRouteModal',
+                function () {
+                    $('#addInspectionRouteModel').modal('show');
+                });
+        },
+        methods: {
+            addInspectionRouteValidate() {
+                return vc.validate.validate({
+                    addInspectionRouteInfo: vc.component.addInspectionRouteInfo
+                }, {
+                    'addInspectionRouteInfo.routeName': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "路线名称不能为空"
+                        },
+                        {
+                            limit: "maxin",
+                            param: "1,100",
+                            errInfo: "路线名称字数不能超过100个"
+                        }
+                    ],
+                    'addInspectionRouteInfo.seq': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "顺序不能为空"
+                        },
+                        {
+                            limit: "num",
+                            param: "",
+                            errInfo: "顺序必须是数字"
+                        }
+                    ],
+                    'addInspectionRouteInfo.remark': [
+                        {
+                            limit: "maxin",
+                            param: "0,200",
+                            errInfo: "备注不能超过200位"
+                        }
+                    ]
+                });
+            },
+            saveInspectionRouteInfo: function () {
+                if (!vc.component.addInspectionRouteValidate()) {
+                    vc.toast(vc.validate.errInfo);
+                    return;
+                }
+                vc.component.addInspectionRouteInfo.communityId = vc.getCurrentCommunity().communityId;
+                //不提交数据将数据 回调给侦听处理
+                if (vc.notNull($props.callBackListener)) {
+                    vc.emit($props.callBackListener, $props.callBackFunction, vc.component.addInspectionRouteInfo);
+                    $('#addInspectionRouteModel').modal('hide');
+                    return;
+                }
+                vc.http.apiPost('/inspectionRoute.saveInspectionRoute', JSON.stringify(vc.component.addInspectionRouteInfo), {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json)
+                        if (_json.code == 0) {
+                            //关闭model
+                            $('#addInspectionRouteModel').modal('hide');
+                            vc.component.clearAddInspectionRouteInfo();
+                            vc.emit('inspectionRouteManage', 'listInspectionRoute', {});
+                            vc.toast('添加成功，请记得设置巡检点')
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+            },
+            clearAddInspectionRouteInfo: function () {
+                vc.component.addInspectionRouteInfo = {
+                    routeName: '',
+                    seq: '1',
+                    remark: ''
+                };
+            }
+        }
+    });
+})(window.vc);

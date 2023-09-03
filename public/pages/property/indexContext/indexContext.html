@@ -1,0 +1,57 @@
+<div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{indexContextInfo.ownerCount}}</span>
+                    <h5>
+                        <span><vc:i18n name="业主" namespace="indexContext"></vc:i18n></span>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="ownerCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{indexContextInfo.roomCount}}</span>
+                    <h5>
+                        <span><vc:i18n name="房屋" namespace="indexContext"></vc:i18n></span>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="roomCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{indexContextInfo.parkingSpaceCount}}</span>
+                    <h5>
+                        <span><vc:i18n name="停车位" namespace="indexContext"></vc:i18n></span>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="parkingSpaceCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">{{indexContextInfo.shopCount}}</span>
+                    <h5>
+                        <span><vc:i18n name="商铺" namespace="indexContext"></vc:i18n></span>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="shopCount" style="height:250px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/indexArrears"></vc:create>
+</div>

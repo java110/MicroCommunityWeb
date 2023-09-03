@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="租赁预约信息" namespace="viewRentingAppointmentInfo"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewRentingAppointmentInfo.index != 2" class="btn btn-primary btn-sm"
+                            style="margin-right:10px;" v-on:click="_openSelectRentingAppointmentInfoModel()">
+                        <i class="fa fa-search"></i>
+                        <span><vc:i18n name="选择租赁预约" namespace="viewRentingAppointmentInfo"></vc:i18n></span>
+                    </button>
+                    <button type="button" v-if="viewRentingAppointmentInfo.index != 2" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddRentingAppointmentInfoModel()">
+                        <i class="fa fa-plus"></i>
+                        <span><vc:i18n name="添加租赁预约" namespace="viewRentingAppointmentInfo"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="租客名称" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.tenantName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="租客性别" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.tenantSex}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="租客电话" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.tenantTel}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="预约时间" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.appointmentTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="预约房屋" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.appointmentRoomId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span><vc:i18n name="备注" namespace="viewRentingAppointmentInfo"></vc:i18n></span>：
+                            </label>
+                            <label class="">{{viewRentingAppointmentInfo.remark}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="admin/addRentingAppointment" callBackListener="viewRentingAppointmentInfo"
+               callBackFunction="chooseRentingAppointment">
+    </vc:create>
+    <vc:create path="admin/chooseRentingAppointment" emitChooseRentingAppointment="viewRentingAppointmentInfo"
+               emitLoadData="viewRentingAppointmentInfo">
+    </vc:create>
+</div>

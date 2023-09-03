@@ -1,0 +1,16 @@
+<div>
+    <div class="row white-bg padding margin-xs" style="min-height: 400px; " v-if="newOaWorkflowManageInfo.newOaWorkflows && newOaWorkflowManageInfo.newOaWorkflows.length>0">
+        <div class="col-md-2 text-center margin-top" style="cursor:pointer" v-for="(item,index) in newOaWorkflowManageInfo.newOaWorkflows" @click="newFlow(item)">
+            <div>
+                <img src="/img/flow.png" width="80px" />
+            </div>
+            <div class="margin-top">
+                <span style="color: #333333;">{{item.flowName}}</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row white-bg padding margin-xs" style="min-height: 400px; " v-else>
+        <span>您还没有发布流程，请先到流程实例中发布流程</span>
+    </div>
+</div>

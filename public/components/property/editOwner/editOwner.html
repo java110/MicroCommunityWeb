@@ -1,0 +1,184 @@
+<div id="editOwnerModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改信息" namespace="editOwner"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="名称" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editOwnerInfo.name" type="text" :placeholder="vc.i18n('必填，请填写名称','editOwner')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="性别" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editOwnerInfo.sex">
+                                        <option selected disabled value="">{{vc.i18n('必填','editOwner')}}，请选择性别</option>
+                                        <option value="0">{{vc.i18n('男','editOwner')}}</option>
+                                        <option value="1">{{vc.i18n('女','editOwner')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="年龄" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editOwnerInfo.age" type="number" readonly="readonly" :placeholder="vc.i18n('不可选，业主年龄','editOwner')" class="form-control">
+                                </div>
+                            </div> -->
+                            <div class="form-group row" v-if="editOwnerInfo.componentTitle == '成员'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="类型" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editOwnerInfo.ownerTypeCd">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择类型','editOwner')}}</option>
+                                        <option value="1002">{{vc.i18n('家庭成员','editOwner')}}</option>
+                                        <option value="1003">{{vc.i18n('租客','editOwner')}}</option>
+                                        <option value="1005">{{vc.i18n('其他','editOwner')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="身份证" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <!--@change="obtainEditAge" --->
+                                    <input v-model.trim="editOwnerInfo.idCard" type="text" :placeholder="vc.i18n('可选，请填写身份证','editOwner')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="家庭住址" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editOwnerInfo.address" type="text" :placeholder="vc.i18n('可填，请填写家庭住址','editOwner')" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="text-align:center">
+                            <div class="form-group row">
+                                <div style="width: 100%;height: 10rem;" v-show="editOwnerInfo.ownerPhotoUrl != ''">
+                                    <img width="80%" height="150rem" v-bind:src="editOwnerInfo.ownerPhotoUrl" onerror="this.src='/img/noPhoto.jpg';" :alt="vc.i18n('业主照片','editOwner')">
+                                </div>
+                                <div style="width: 100%;" v-show="editOwnerInfo.ownerPhotoUrl == ''">
+                                    <div v-show="editOwnerInfo.videoPlaying == true">
+                                        <video id="ownerPhotoForEdit" style="width: 100%;height: 10rem;"></video>
+                                        <canvas id="canvasForEdit" style="display:none;"></canvas>
+                                    </div>
+                                    <div v-show="editOwnerInfo.videoPlaying == false">
+                                        <img width="80%" height="150rem" src="/img/noPhoto.jpg" :alt="vc.i18n('业主照片','editOwner')">
+                                    </div>
+                                </div>
+                                <div style="margin: 10px auto 0px auto;" class="text-center">
+                                    <button class="btn btn-primary" type="button" v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhotoUrl != ''" v-on:click="_reOpenVedioForEdit()">
+                                        <span class="fa fa-camera"></span>
+                                        <span><vc:i18n name="摄像头" namespace="editOwner"></vc:i18n></span>
+                                    </button>
+                                    <button class="btn btn-primary" type="button" v-if="editOwnerInfo.videoPlaying == true && editOwnerInfo.ownerPhotoUrl == ''" v-on:click="_takePhotoForEdit()">
+                                        <span class="fa fa-camera"></span>
+                                        <span><vc:i18n name="拍照" namespace="editOwner"></vc:i18n></span>
+                                    </button>
+                                    <span class="btn btn-default btn-file" v-on:click="_uploadEditPhoto($event)">
+                                        <span class="fileinput-new">
+                                            <span><vc:i18n name="上传照片" namespace="editOwner"></vc:i18n></span>
+                                    </span>
+                                    </span>
+                                    <input type="file" class="file" accept=".jpg" id="uploadEditOwnerPhoto" hidden v-on:change="_chooseEditPhoto($event)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="手机" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editOwnerInfo.link" :placeholder="vc.i18n('必填，请填写联系方式','editOwner')" class="form-control" maxLength="11">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="备注" namespace="editOwner"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editOwnerInfo.remark" type="tel" :placeholder="vc.i18n('可填，请填写备注','editOwner')" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-for="(item,index) in editOwnerInfo.attrs">
+                        <div class="row" v-if="index % 2 == 0">
+                            <div class="col-sm-6">
+                                <div class="form-group row" v-if="item.specType == '2233'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <input v-model.trim="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="item.specType == '3344'">
+                                    <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model.trim="item.value">
+                                            <option selected disabled value="">{{item.specHoldplace}}</option>
+                                            <option v-for="value in item.values" :label="value.valueName"
+                                                    :value="value.value">{{item.valueName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" v-if="index < editOwnerInfo.attrs.length-1">
+                                <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '2233'">
+                                    <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
+                                    <div class="col-sm-10">
+                                        <input v-model.trim="editOwnerInfo.attrs[index+1].value" type="text" :placeholder="editOwnerInfo.attrs[index+1].specHoldplace" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="editOwnerInfo.attrs[index+1].specType == '3344'">
+                                    <label class="col-sm-2 col-form-label">{{editOwnerInfo.attrs[index+1].specName}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model.trim="editOwnerInfo.attrs[index+1].value">
+                                            <option selected disabled value="">
+                                                {{editOwnerInfo.attrs[index+1].specHoldplace}}
+                                            </option>
+                                            <option v-for="value in editOwnerInfo.attrs[index+1].values"
+                                                    :label="value.valueName" :value="value.value">
+                                                {{editOwnerInfo.attrs[index+1].valueName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button class="btn btn-primary float-right" type="button" v-on:click="editOwnerMethod()">
+                            <i class="fa fa-check"></i>&nbsp;
+                            <span><vc:i18n name="保存"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="_closeEditOwnerModal()">
+                            <i class="fa fa-close"></i>&nbsp;
+                            <span><vc:i18n name="取消"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

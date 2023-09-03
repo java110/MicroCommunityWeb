@@ -1,0 +1,47 @@
+<div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span>
+                        <span><vc:i18n name="缴费提示" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </h5>
+                <button type="button" class="close" @click="_back()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <span>
+                        <span><vc:i18n name="缴费成功" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </p>
+                <p v-if="!payFeeOrderResultInfo.receiptId">
+                    <span>
+                        <span><vc:i18n name="请到业务受理页面补打收据" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @click="_back()">
+                    <span>
+                        <span><vc:i18n name="返回" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-primary" v-if="payFeeOrderResultInfo.receiptId"
+                        @click="_printSmallAndBack()">
+                    <span>
+                        <span><vc:i18n name="打印小票" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-primary" v-if="payFeeOrderResultInfo.receiptId"
+                        @click="_printAndBack()">
+                    <span>
+                        <span><vc:i18n name="打印收据" namespace="payFeeOrderResult"></vc:i18n></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

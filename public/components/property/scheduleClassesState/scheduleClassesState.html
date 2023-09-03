@@ -1,0 +1,32 @@
+<div class="modal fade" id="scheduleClassesStateModel" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <span><vc:i18n name="请确认您的操作" namespace="scheduleClassesState"></vc:i18n></span>!
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <tr align="center">
+                    <th>
+                        <span><vc:i18n name="确定" namespace="scheduleClassesState"></vc:i18n></span>{{scheduleClassesStateInfo.stateName}}
+                        <span><vc:i18n name="排班" namespace="scheduleClassesState"></vc:i18n></span>
+                    </th>
+                </tr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        v-on:click="_closeScheduleClassesStateModel()">
+                    <span><vc:i18n name="点错了" namespace="scheduleClassesState"></vc:i18n></span>
+                </button>
+                <button type="button" class="btn btn-primary" v-on:click="_changeScheduleClassesState()">
+                    <span><vc:i18n name="确认" namespace="scheduleClassesState"></vc:i18n></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

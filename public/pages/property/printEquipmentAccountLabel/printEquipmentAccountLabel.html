@@ -1,0 +1,63 @@
+<div>
+    <div>
+        <div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <span><span><vc:i18n name="设备ID" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.machineId}}</span>
+                </div>
+                <div class="col-sm-6">
+                    <span></span>
+                </div>
+                <div class="col-sm-2">
+                    <span><span><vc:i18n name="打印时间" namespace="printEquipmentAccount"></vc:i18n></span>：{{nowTime}}</span>
+                </div>
+            </div>
+            <table class="table table-bordered margin-top" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="6" class="text-center"><span style="font-size: 40px;"><vc:i18n name="设备标签" namespace="printEquipmentAccount"></vc:i18n></span></th>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 28px;">
+                    <tr>
+                        <td><span><vc:i18n name="项目" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.yqName}}</td>
+                        <td><span><vc:i18n name="位置名称" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.locationDetail}}</td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="设备名称" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.machineName}}</td>
+                        <td><span><vc:i18n name="重要等级" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.levelName}}</td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="系统名称" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.sysName}}</td>
+                        <td><span><vc:i18n name="启用日期" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.firstEnableTime}}</td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="设备品牌" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.brand}}</td>
+                        <td rowspan="4">
+                            <div id="qrcode" style="width:200px; height:200px; "></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="规格型号" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.model}}</td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="编码" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.machineCode}}</td>
+                    </tr>
+                    <tr>
+                        <td><span><vc:i18n name="责任人" namespace="printEquipmentAccount"></vc:i18n></span>：{{printEquipmentAccountInfo.chargeUseName}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center"><span></span>设备标志 严禁损坏</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printEquipmentAccount"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+</div>

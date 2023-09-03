@@ -1,0 +1,32 @@
+<div>
+    <div class="row ">
+        <div class="col-md-2" style="padding-right:0px">
+            <vc:create path="print/printerRuleDiv" callBackListener="printerRule"></vc:create>
+        </div>
+        <div class="col-md-10 margin-top-xs vc-org-page">
+            <div class="bg-white border-radius padding">
+                <h5 class="role-title">{{printerRuleInfo.curPrinterRule.ruleName}}</h5>
+                <div class="role-context ">{{printerRuleInfo.curPrinterRule.remark}}</div>
+                <div class="line-x margin-top"></div>
+                <div class="role-menu flex justify-start">
+                    <div class="item margin-right" :class="{'active':printerRuleInfo.tabName == 'printerRuleMachine'}" @click="_changePrinterRuleTab('printerRuleMachine')">云打印机
+                    </div>
+                    <div class="item margin-right" :class="{'active':printerRuleInfo.tabName == 'printerRuleFees'}" @click="_changePrinterRuleTab('printerRuleFees')">缴费自动打印
+                    </div>
+                    <div class="item margin-right" :class="{'active':printerRuleInfo.tabName == 'printerRuleRepair'}" @click="_changePrinterRuleTab('printerRuleRepair')">报修自动打印
+                    </div>
+                </div>
+                <div v-if="printerRuleInfo.tabName == 'printerRuleMachine' ">
+                    <vc:create path="print/printerRuleMachine"></vc:create>
+                </div>
+
+                <div v-if="printerRuleInfo.tabName == 'printerRuleFees' ">
+                    <vc:create path="print/printerRuleFees"></vc:create>
+                </div>
+                <div v-if="printerRuleInfo.tabName == 'printerRuleRepair' ">
+                    <vc:create path="print/printerRuleRepair"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

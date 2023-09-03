@@ -1,0 +1,97 @@
+<div id="editActivitiesRuleModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改" namespace="editActivitiesRule"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="活动类型" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editActivitiesRuleInfo.ruleType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editActivitiesRule')}}，请选择活动类型
+                                        </option>
+                                        <option value="6666">{{vc.i18n('最美员工','editActivitiesRule')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规则名称" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="editActivitiesRuleInfo.ruleName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规则名称','editActivitiesRule')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editActivitiesRuleInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editActivitiesRule')"
+                                           class="form-control editStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editActivitiesRuleInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editActivitiesRule')"
+                                           class="form-control editEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="活动对象" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editActivitiesRuleInfo.activitiesObj">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editActivitiesRule')}}，请选择活动对象
+                                        </option>
+                                        <option value="2222">{{vc.i18n('大众','editActivitiesRule')}}</option>
+                                        <option value="3333">{{vc.i18n('业主','editActivitiesRule')}}</option>
+                                        <option value="4444">{{vc.i18n('员工','editActivitiesRule')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规则说明" namespace="editActivitiesRule"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model.trim="editActivitiesRuleInfo.remark"
+                                              :placeholder="vc.i18n('必填，请填写规则说明','editActivitiesRule')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editActivitiesRule()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editActivitiesRule"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div>
+    <div class="row">
+        <div class="ibox-tools">
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                <span>
+                    <span><vc:i18n name="返回" namespace="addComplaintStep"></vc:i18n></span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="java110_step">
+        <div id="step"></div>
+    </div>
+    <!-- 选择 应用信息 -->
+    <div v-if="addComplaintStepInfo.index == 0">
+        <vc:create path="property/viewFloorInfo" callBackListener="addComplaintStep" callBackFunction="notify"
+                   showAddFloorButton="false">
+        </vc:create>
+    </div>
+    <div v-if="addComplaintStepInfo.index == 1">
+        <vc:create path="property/sellRoomSelectRoom" callBackListener="addComplaintStep" callBackFunction="notify">
+        </vc:create>
+        <vc:create path="property/searchRoom" emitChooseRoom="sellRoomSelectRoom" emitLoadData="sellRoomOther"
+                   roomFlag="1">
+        </vc:create>
+    </div>
+    <div v-if="addComplaintStepInfo.index == 2">
+        <vc:create path="common/addComplainView" callBackListener="addComplaintStep" callBackFunction="notify">
+        </vc:create>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn btn-secondary" v-on:click="_prevStep()"><span><vc:i18n name="上一步" namespace="addComplaintStep"></vc:i18n></span></button>
+            <button v-if="addComplaintStepInfo.index != 2" type="button" class="btn btn-primary"
+                    style="margin-left:10px;" v-on:click="_nextStep()"><span><vc:i18n name="下一步" namespace="addComplaintStep"></vc:i18n></span>
+            </button>
+            <button v-if="addComplaintStepInfo.index == 2" type="button" class="btn btn-primary"
+                    style="margin-left:10px;" v-on:click="_finishStep()"><span><vc:i18n name="完成" namespace="addComplaintStep"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+</div>

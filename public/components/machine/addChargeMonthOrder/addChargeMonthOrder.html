@@ -1,0 +1,79 @@
+<div id="addChargeMonthOrderModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="购买月卡" namespace="addChargeMonthOrder"></vc:i18n>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name='用户电话' namespace='addChargeMonthOrder'></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addChargeMonthOrderInfo.personTel" type="text" :placeholder="vc.i18n('必填，请填写充电电话','addChargeMonthOrder')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name='月卡' namespace='addChargeMonthOrder'></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addChargeMonthOrderInfo.cardId" @change="_changeCard()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择月卡','addChargeMonthOrder')}}
+                                        </option>
+                                        <option v-for="(item,index) in addChargeMonthOrderInfo.cards" :key="index"
+                                                v-bind:value="item.cardId">{{item.cardName}}({{item.cardMonth}}月)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name='支付方式' namespace='addChargeMonthOrder'></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addChargeMonthOrderInfo.primeRate">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','prestoreAccount')}}
+                                        </option>
+                                        <option v-for="(item,index) in addChargeMonthOrderInfo.primeRates" :key="index"
+                                            v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name='实收金额' namespace='addChargeMonthOrder'></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addChargeMonthOrderInfo.receivedAmount" type="text" :placeholder="vc.i18n('必填，请填写实收金额','addChargeMonthOrder')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name='备注' namespace='addChargeMonthOrder'></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addChargeMonthOrderInfo.remark" :placeholder="vc.i18n('请填写备注','addChargeMonthOrder')" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveChargeMonthOrderInfo()">
+                                    <vc:i18n name="保存"></vc:i18n>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <vc:i18n name="取消"></vc:i18n>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

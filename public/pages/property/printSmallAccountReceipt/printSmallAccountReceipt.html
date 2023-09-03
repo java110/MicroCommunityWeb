@@ -1,0 +1,107 @@
+<div>
+    <startprint></startprint>
+    <div class="print_container">
+        <div style="color:#000;font-size:32px" class="text-center">
+            <span><vc:i18n name="预存收据单" namespace="printSmallAccountReceipt"></vc:i18n></span>
+        </div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;">
+            <div>
+                <span><vc:i18n name="单号" namespace="printSmallAccountReceipt"></vc:i18n></span>：{{printSmallAccountReceiptInfo.receiptNum}}
+            </div>
+            <div>
+                <span><vc:i18n name="时间" namespace="printSmallAccountReceipt"></vc:i18n></span>：{{printSmallAccountReceiptInfo.feeTime}}
+            </div>
+        </div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;"
+             v-for="(item,index) in printSmallAccountReceiptInfo.feeReceipts">
+            <div>
+                <span><vc:i18n name="账户名称：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.acctName}}
+            </div>
+            <div>
+                <span><vc:i18n name="账户类型：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.acctTypeName}}
+            </div>
+            <div>
+                <span><vc:i18n name="业主：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.ownerName}}
+            </div>
+            <div>
+                <span><vc:i18n name="预存金额：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.receivedAmount}}
+            </div>
+            <div>
+                <span><vc:i18n name="预存方式：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.primeRateName}}
+            </div>
+            <div>
+                <span><vc:i18n name="当前余额：" namespace="printSmallAccountReceipt"></vc:i18n></span>
+                {{item.amount}}
+            </div>
+            <div>
+                <span><vc:i18n name="备注：" namespace="printSmallAccountReceipt"></vc:i18n></span>{{item.remark}}
+            </div>
+            <span>**************************</span>
+        </div>
+        <div class="section5" style="font-size: 12px; margin-left: 5px;">
+            <div>
+                <span><vc:i18n name="总计" namespace="printSmallAccountReceipt"></vc:i18n></span>：{{printSmallAccountReceiptInfo.amount}}
+            </div>
+            <div>
+                <span><vc:i18n name="开票人" namespace="printSmallAccountReceipt"></vc:i18n></span>：{{vc.getData('/nav/getUserInfo').name}}
+            </div>
+            <div v-html="printSmallAccountReceiptInfo.content"></div>
+            <div><img :src="printSmallAccountReceiptInfo.qrImg" width="100px" height="100px"></div>
+        </div>
+        <span>**************************</span>
+    </div>
+    <endprint></endprint>
+    <div id="print-btn">
+        <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+        <button class="btn btn-white float-right margin-right" type="button" v-on:click="_openCloudPrint()">
+            <i class="fa fa-check"></i>&nbsp;云打印
+        </button>
+        <button type="button" class="btn btn-white  float-right margin-right"  v-on:click="_closePage()">
+            <span><vc:i18n name="取消" namespace="printSmallAccountReceipt"></vc:i18n></span>
+        </button>
+    </div>
+
+    <div id="cloudPrintModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3 class="m-t-none m-b ">
+                        <span><vc:i18n name="云打印" namespace="printSmallAccountReceipt"></vc:i18n></span>
+                    </h3>
+                    <div class="ibox-content">
+                        <div>
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="打印机" namespace="printSmallAccountReceipt"></vc:i18n></span></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select" v-model="printSmallAccountReceiptInfo.machineId">
+                                            <option selected disabled value="">{{vc.i18n('必填，请选择打印机','printSmallAccountReceipt')}}</option>
+                                            <option :value="item.machineId" v-for="(item,index) in printSmallAccountReceiptInfo.machines">{{item.machineName}}({{item.machineCode}})</option>
+                                        </select>    
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="数量" namespace="printSmallAccountReceipt"></vc:i18n></span></label>
+                                    <div class="col-sm-10"><input v-model="printSmallAccountReceiptInfo.quantity" type="number" :placeholder="vc.i18n('必填，请填写数量','printSmallAccountReceipt')" class="form-control"></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <button class="btn btn-primary float-right" type="button" v-on:click="_cloudPrintPayFeeDetail()">
+                                        <i class="fa fa-check"></i>&nbsp;提交
+                                    </button>
+                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                            data-dismiss="modal">
+                                        <span><vc:i18n name="取消" namespace="addFloor"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

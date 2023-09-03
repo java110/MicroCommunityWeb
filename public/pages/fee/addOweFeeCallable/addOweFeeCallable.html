@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="催缴欠费" namespace="addOweFeeCallable"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="催缴方式" namespace="addOweFeeCallable"></vc:i18n>
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="custom-select" v-model="addOweFeeCallableInfo.callableWay">
+                                    <option selected disabled value="">{{vc.i18n('请选择催缴方式','oweFeeCallable')}}</option>
+                                    <option value="WECHAT">微信模板消息</option>
+                                    <option value="SMS">短信</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="催缴费用" namespace="addOweFeeCallable"></vc:i18n>
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="margin-right" v-for="(item,index) in addOweFeeCallableInfo.feeConfigs">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="item.configId" v-model="addOweFeeCallableInfo.configIds"> {{item.feeName}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label  text-right">
+                                <vc:i18n name="催缴说明" namespace="addOweFeeCallable"></vc:i18n>
+                            </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="5" v-model="addOweFeeCallableInfo.remark" placeholder="请输入备注"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="催缴房屋" namespace="addOweFeeCallable"></vc:i18n>
+                            </label>
+                            <div class="col-sm-8">
+                                <vc:create path="property/selectRooms" emitSelectRooms="addOweFeeCallable"></vc:create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_saveOweFeeCallable()">
+                        <i class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="vc.goBack()">
+                        <vc:i18n name="取消" namespace="addOweFeeCallable"></vc:i18n>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

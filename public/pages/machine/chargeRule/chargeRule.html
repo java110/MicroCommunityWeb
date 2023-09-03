@@ -1,0 +1,21 @@
+<div>
+    <div class="row ">
+        <div class="col-md-2" style="padding-right:0px">
+            <vc:create path="machine/chargeRuleDiv" callBackListener="chargeRule"></vc:create>
+        </div>
+        <div class="col-md-10 margin-top-xs vc-org-page">
+            <div class="bg-white border-radius padding">
+                <h5 class="role-title">{{chargeRuleInfo.curChargeRule.ruleName}}</h5>
+                <div class="role-context ">{{chargeRuleInfo.curChargeRule.remark}}</div>
+                <div class="line-x margin-top"></div>
+                <div class="role-menu flex justify-start">
+                    <div class="item margin-right active">充值收费
+                    </div>
+                </div>
+               <div>
+                    <vc:create path="machine/chargeRuleFee"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

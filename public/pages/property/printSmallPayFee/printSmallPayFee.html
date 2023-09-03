@@ -1,0 +1,119 @@
+<div>
+    <startprint></startprint>
+    <div class="print_container">
+        <div style="color:#000;font-size:32px" class="text-center">
+            <span><vc:i18n name="缴费收据单" namespace="printSmallPayFee"></vc:i18n></span>
+        </div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;">
+            <div>
+                <span><vc:i18n name="收据号：" namespace="printSmallPayFee"></vc:i18n></span>{{printSmallPayFeeInfo.receiptNum}}
+            </div>
+            <div>
+                <span><vc:i18n name="订单号：" namespace="printSmallPayFee"></vc:i18n></span>{{printSmallPayFeeInfo.payOrderId}}
+            </div>
+            <div>
+                <span><vc:i18n name="房号" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.roomName}}
+            </div>
+            <div>
+                <span><vc:i18n name="业主" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.payObjName}}
+            </div>
+            <div>
+                <span><vc:i18n name="时间" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.feeTime}}
+            </div>
+        </div>
+        <span>**************************</span>
+        <div class="section2" style="font-size: 12px; margin-left: 5px;" v-for="(item,index) in printSmallPayFeeInfo.fees">
+            <div>
+                <span><vc:i18n name="收费项目" namespace="printSmallPayFee"></vc:i18n></span>：{{item.feeName}}
+            </div>
+            <div>
+                <span><vc:i18n name="收费范围" namespace="printSmallPayFee"></vc:i18n></span>：{{vc.dateFormat(item.startTime)}}
+                <span><vc:i18n name="至" namespace="printSmallPayFee"></vc:i18n></span>{{vc.dateSubOneDay(vc.dateFormat(item.startTime),vc.dateFormat(item.endTime),item.feeFlag)}}
+            </div>
+            <div>
+                <span><vc:i18n name="单价/固定费：" namespace="printSmallPayFee"></vc:i18n></span>{{item.squarePrice}}
+            </div>
+            <div>
+                <span><vc:i18n name="面积/用量：" namespace="printSmallPayFee"></vc:i18n></span>{{item.area}}
+            </div>
+            <div>
+                <span><vc:i18n name="支付方式：" namespace="printSmallPayFee"></vc:i18n></span>{{item.primeRate}}
+            </div>
+            <div v-if="item.preDegrees">
+                <span><vc:i18n name="表读数：" namespace="printSmallPayFee"></vc:i18n></span>{{item.preDegrees}} 至 {{item.curDegrees}}
+            </div>
+            <div>
+                <span><vc:i18n name="金额：" namespace="printSmallPayFee"></vc:i18n></span> {{item.amount
+                < 0 ? item.amount + "(退费)" : item.amount}} </div>
+                <div>
+                    <span><vc:i18n name="优惠金额：" namespace="printSmallPayFee"></vc:i18n></span> {{item.discountPrice || 0}} </div>
+                    <div>
+                        <span><vc:i18n name="备注" namespace="printSmallPayFee"></vc:i18n></span>：{{item.remark}}
+                    </div>
+                    <span>**************************</span>
+            </div>
+            <div class="section5" style="font-size: 12px; margin-left: 5px;">
+                <div>
+                    <span><vc:i18n name="总计" namespace="printSmallPayFee"></vc:i18n></span>：{{printSmallPayFeeInfo.amount}}
+                </div>
+                <div>
+                    <span><vc:i18n name="开票人" namespace="printSmallPayFee"></vc:i18n></span>：{{vc.getData('/nav/getUserInfo').name}}
+                </div>
+                <div v-html="printSmallPayFeeInfo.content"></div>
+                <div><img :src="printSmallPayFeeInfo.qrImg" width="100px" height="100px"></div>
+            </div>
+            <span>**************************</span>
+        </div>
+        <endprint></endprint>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+            <button class="btn btn-white float-right margin-right" type="button" v-on:click="_openCloudPrint()">
+            <i class="fa fa-check"></i>&nbsp;云打印
+        </button>
+            <button type="button" class="btn btn-white  float-right margin-right" v-on:click="_closePage()">
+            <span><vc:i18n name="取消" namespace="printSmallPayFee"></vc:i18n></span>
+        </button>
+        </div>
+
+        <div id="cloudPrintModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 class="m-t-none m-b ">
+                            <span><vc:i18n name="云打印" namespace="printSmallPayFee"></vc:i18n></span>
+                        </h3>
+                        <div class="ibox-content">
+                            <div>
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="打印机" namespace="printSmallPayFee"></vc:i18n></span></label>
+                                        <div class="col-sm-10">
+                                            <select class="custom-select" v-model="printSmallPayFeeInfo.machineId">
+                                            <option selected disabled value="">{{vc.i18n('必填，请选择打印机','printSmallPayFee')}}</option>
+                                            <option :value="item.machineId" v-for="(item,index) in printSmallPayFeeInfo.machines">{{item.machineName}}({{item.machineCode}})</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label"><span><vc:i18n name="数量" namespace="printSmallPayFee"></vc:i18n></span></label>
+                                        <div class="col-sm-10"><input v-model="printSmallPayFeeInfo.quantity" type="number" :placeholder="vc.i18n('必填，请填写数量','printSmallPayFee')" class="form-control"></div>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <button class="btn btn-primary float-right" type="button" v-on:click="_cloudPrintPayFeeDetail()">
+                                        <i class="fa fa-check"></i>&nbsp;提交
+                                    </button>
+                                        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                        <span><vc:i18n name="取消" namespace="addFloor"></vc:i18n></span>
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

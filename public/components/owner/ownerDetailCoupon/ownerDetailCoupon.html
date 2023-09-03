@@ -1,0 +1,68 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name='编号' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='优惠券名称' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='面值' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='有效期' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='用户名称' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='手机号' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='用途' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='数量' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='状态' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='生效时间' namespace='ownerDetailCoupon'></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="coupon in ownerDetailCouponInfo.coupons">
+                    <td class="text-center">{{coupon.couponId}}</td>
+                    <td class="text-center">{{coupon.couponName}}</td>
+                    <td class="text-center">{{coupon.value}}</td>
+                    <td class="text-center">{{coupon.validityDay}}</td>
+                    <td class="text-center">{{coupon.userName}}</td>
+                    <td class="text-center">{{coupon.tel}}</td>
+                    <td class="text-center">{{coupon.toTypeName}}</td>
+                    <td class="text-center">{{coupon.stock}}张</td>
+                    <td class="text-center">{{coupon.state == '1001'?'未使用':'已使用'}}</td>
+                    <td class="text-center">{{coupon.startTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailCoupon" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+
+</div>

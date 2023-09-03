@@ -1,0 +1,55 @@
+<div class=" margin-top">
+    <div class="text-left">
+        <button type="button" class="btn btn-primary btn-sm" 
+        v-on:click="_openAddMarketRuleCommunityModal()">
+            <span>
+                <vc:i18n name="关联小区"></vc:i18n>
+            </span>
+        </button>
+    </div>
+    <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+        <thead>
+            <tr>
+                <th class="text-center"><span>
+                        <vc:i18n name='小区名称' namespace='marketRuleCommunity'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='小区编号' namespace='marketRuleCommunity'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='备注' namespace='marketRuleCommunity'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='操作'></vc:i18n>
+                    </span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="marketRuleCommunity in marketRuleCommunityInfo.marketRuleCommunitys">
+                <td class="text-center">{{marketRuleCommunity.communityName}}</td>
+                <td class="text-center">{{marketRuleCommunity.communityId}}</td>
+                <td class="text-center">{{marketRuleCommunity.remark}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMarketRuleCommunityModel(marketRuleCommunity)"><span><vc:i18n name='删除'></vc:i18n></span></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <!-- <vc:create path="frame/pagination"></vc:create> -->
+    <vc:create path="frame/paginationPlus" namespace="roleCommunityInfo"></vc:create>
+    <vc:create path="admin/addMarketRuleCommunity"
+               callBackListener=""
+               callBackFunction=""
+    ></vc:create>
+    <vc:create path="admin/deleteMarketRuleCommunity"></vc:create>
+</div>

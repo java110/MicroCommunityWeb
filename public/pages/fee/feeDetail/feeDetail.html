@@ -1,0 +1,235 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                费用信息
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用ID：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.configId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用标识：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeFlagName || '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用类型：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeTypeCdName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="付费对象：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.payerObjName || '-'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用项：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用状态：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="建账时间：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="批次：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.batchId}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="应收开始时间：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{_getEndTime(feeDetailInfo)}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="应收结束时间：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{_getDeadlineTime(feeDetailInfo)}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" v-for="(item,index) in feeDetailInfo.attrs">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    {{item.specCdName}}:
+                                </label>
+                                <label class="">{{item.value}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailHisFee'}" v-on:click="changeTab('feeDetailHisFee')">
+                        <vc:i18n name="缴费记录" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailMonthFee'}" v-on:click="changeTab('feeDetailMonthFee')">
+                        <vc:i18n name="按月展示" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" v-if="feeDetailInfo.payerObjType == '3333'">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailRoom'}" v-on:click="changeTab('feeDetailRoom')">
+                        <vc:i18n name="关联房屋" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" v-if="feeDetailInfo.payerObjType == '6666'">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailCar'}" v-on:click="changeTab('feeDetailCar')">
+                        <vc:i18n name="关联车辆" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" v-if="feeDetailInfo.payerObjType == '7777'">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailContract'}" v-on:click="changeTab('feeDetailContract')">
+                        <vc:i18n name="关联合同" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailHis'}" v-on:click="changeTab('feeDetailHis')">
+                        <vc:i18n name="修改记录" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailConfig'}" v-on:click="changeTab('feeDetailConfig')">
+                        <vc:i18n name="费用项" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailOwner'}" v-on:click="changeTab('feeDetailOwner')">
+                        <vc:i18n name="业主信息" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailFeeObj'}" v-on:click="changeTab('feeDetailFeeObj')">
+                        <vc:i18n name="同费用对象" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailMeter'}" v-on:click="changeTab('feeDetailMeter')">
+                        <vc:i18n name="关联抄表" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailImport'}" v-on:click="changeTab('feeDetailImport')">
+                        <vc:i18n name="关联导入" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailDiscount'}" v-on:click="changeTab('feeDetailDiscount')">
+                        <vc:i18n name="优惠申请" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailReceipt'}" v-on:click="changeTab('feeDetailReceipt')">
+                        <vc:i18n name="补打收据" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailHisFee'">
+            <vc:create path="fee/feeDetailHisFee"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailMonthFee'">
+            <vc:create path="fee/feeDetailMonthFee"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailRoom'">
+            <vc:create path="fee/feeDetailRoom"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailCar'">
+            <vc:create path="fee/feeDetailCar"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailContract'">
+            <vc:create path="fee/feeDetailContract"></vc:create>
+        </div>
+
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailConfig'">
+            <vc:create path="fee/feeDetailConfig"></vc:create>
+        </div>
+
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailHis'">
+            <vc:create path="fee/feeDetailHis"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailOwner'">
+            <vc:create path="fee/feeDetailOwner"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailFeeObj'">
+            <vc:create path="fee/feeDetailFeeObj"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailMeter'">
+            <vc:create path="fee/feeDetailMeter"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailImport'">
+            <vc:create path="fee/feeDetailImport"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailDiscount'">
+            <vc:create path="fee/feeDetailDiscount"></vc:create>
+        </div>
+
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailReceipt'">
+            <vc:create path="fee/feeDetailReceipt"></vc:create>
+        </div>
+
+    </div>
+
+
+    <vc:create path="property/editCar" notifyLoadDataComponentName="feeDetail"></vc:create>
+</div>

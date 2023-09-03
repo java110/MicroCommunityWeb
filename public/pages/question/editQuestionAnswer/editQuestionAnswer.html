@@ -1,0 +1,147 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="修改问卷" namespace="editQuestionAnswer"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="问卷名称" namespace="editQuestionAnswer"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="editQuestionAnswerInfo.qaName" type="text" :placeholder="vc.i18n('必填，请填写问卷名称','editQuestionAnswer')" class="form-control">
+                            </div>
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="开始时间" namespace="editQuestionAnswer"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="editQuestionAnswerInfo.startTime" type="text" :placeholder="vc.i18n('必填，请选择开始时间','editQuestionAnswer')" class="form-control startTime">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="结束时间" namespace="editQuestionAnswer"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="editQuestionAnswerInfo.endTime" type="text" :placeholder="vc.i18n('必填，请选择结束时间','editQuestionAnswer')" class="form-control endTime">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label  text-right">
+                                <vc:i18n name="问卷说明" namespace="editQuestionAnswer"></vc:i18n>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="no-padding">
+                                    <div class="summernote"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>
+                            <vc:i18n name="问卷题目" namespace="editQuestionAnswer"></vc:i18n>
+                        </h5>
+                        <div class="ibox-tools" style="top:10px;">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="_chooseTitle()">
+                                选择题目
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name="名称" namespace="questionTitle"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="类型" namespace="questionTitle"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="选项" namespace="questionTitle"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="操作" namespace="questionTitle"></vc:i18n>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="questionTitle in editQuestionAnswerInfo.questionTitles">
+                                    <td class="text-center">{{questionTitle.qaTitle}}</td>
+                                    <td class="text-center">{{_getTitleTypeName(questionTitle.titleType)}}</td>
+                                    <td class="text-center">
+                                        <div v-for="(item,index) in questionTitle.titleValues">
+                                            {{item.seq}}、{{item.qaValue}}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs" v-on:click="_openDeleteQuestionTitle(questionTitle)">
+                                                <vc:i18n name="删除" namespace="questionTitle"></vc:i18n>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="问卷房屋" namespace="editQuestionAnswer"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="问卷房屋" namespace="editQuestionAnswer"></vc:i18n>
+                            </label>
+                            <div class="col-sm-10" v-show="editQuestionAnswerInfo.updateRoomIds">
+                                <vc:create path="property/selectRooms" emitSelectRooms="editQuestionAnswer"></vc:create>
+                            </div>
+                            <div class="col-sm-10" v-if="!editQuestionAnswerInfo.updateRoomIds">
+                                <span>{{editQuestionAnswerInfo.voteCount}}户</span>
+                                <button type="button" class="btn btn-link margin-left" @click="_updateRoomIdsMethod()">
+                                    <vc:i18n name="重新选择" namespace="editQuestionAnswer"></vc:i18n>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_updateQuestionAnswer()">
+                        <i class="fa fa-check"></i>&nbsp;保存
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="vc.goBack()">
+                        <span><vc:i18n name="取消" namespace="editQuestionAnswer"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="question/chooseQuestionTitle" emitChooseQuestionTitle="editQuestionAnswer"></vc:create>
+</div>

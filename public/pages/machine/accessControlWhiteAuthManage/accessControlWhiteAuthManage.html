@@ -1,0 +1,77 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="门禁授权" namespace="accessControlWhiteAuthManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+                            <i class="fa fa-close"></i>返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddAccessControlWhiteAuthModal()">
+                            <vc:i18n name="授权" namespace="accessControlWhiteAuthManage"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='编号' namespace='accessControlWhiteAuthManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='设备' namespace='accessControlWhiteAuthManage'></vc:i18n>
+                                    </span></th>
+                                 <th class="text-center"><span>
+                                        <vc:i18n name='设备编号' namespace='accessControlWhiteAuthManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='授权时间' namespace='accessControlWhiteAuthManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="accessControlWhiteAuth in accessControlWhiteAuthManageInfo.accessControlWhiteAuths">
+                                <td class="text-center">{{accessControlWhiteAuth.acwaId}}</td>
+                                <td class="text-center">{{accessControlWhiteAuth.machineName}}</td>
+                                <td class="text-center">{{accessControlWhiteAuth.machineCode}}</td>
+                                <td class="text-center">{{accessControlWhiteAuth.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteAccessControlWhiteAuthModel(accessControlWhiteAuth)"><span>
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="machine/addAccessControlWhiteAuth" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="machine/deleteAccessControlWhiteAuth"></vc:create>
+
+</div>

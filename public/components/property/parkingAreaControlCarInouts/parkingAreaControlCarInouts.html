@@ -1,0 +1,136 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlCarInoutsInfo.carNum" type="text"
+                   :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlCarInouts')" class="form-control">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlCarInoutsInfo.state">
+                <option value="">{{vc.i18n('请选择车辆状态','parkingAreaControlCarInouts')}}</option>
+                <option value="100300">{{vc.i18n('进场状态','parkingAreaControlCarInouts')}}</option>
+                <option value="100400">{{vc.i18n('支付完成','parkingAreaControlCarInouts')}}</option>
+                <option value="100500">{{vc.i18n('离场状态','parkingAreaControlCarInouts')}}</option>
+                <option value="100600">{{vc.i18n('支付超时重新支付','parkingAreaControlCarInouts')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlCarInoutsInfo.carType">
+                <option value="">{{vc.i18n('请选择车牌类型','parkingAreaControlCarInouts')}}</option>
+                <option value="T">{{vc.i18n('临时车','parkingAreaControlCarInouts')}}</option>
+                <option value="S">{{vc.i18n('出售车辆','parkingAreaControlCarInouts')}}</option>
+                <option value="H">{{vc.i18n('月租车','parkingAreaControlCarInouts')}}</option>
+                <option value="W">{{vc.i18n('白名单','parkingAreaControlCarInouts')}}</option>
+                <option value="B">{{vc.i18n('黑名单','parkingAreaControlCarInouts')}}</option>
+                <option value="I">{{vc.i18n('内部车','parkingAreaControlCarInouts')}}</option>
+                <option value="NM">{{vc.i18n('免费车','parkingAreaControlCarInouts')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlCarInoutsInfo.startTime" type="text"
+                   :placeholder="vc.i18n('请填写开始时间','parkingAreaControlCarInouts')"
+                   class="form-control carInoutsStartTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlCarInoutsInfo.endTime" type="text"
+                   :placeholder="vc.i18n('请填写结束时间','parkingAreaControlCarInouts')"
+                   class="form-control carInoutsEndTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_qureyParkingAreaControlCarInouts()">
+                <i class="fa fa-search"></i>查询
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_resetParkingAreaControlCarInouts()">
+                <i class="fa fa-repeat"></i>重置
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <span><vc:i18n name="进场图" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="进出场编号" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="车辆状态" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="车牌号" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="停车场" namespace="parkingAreaControlInCar"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="计费规则" namespace="parkingAreaControlInCar"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="车牌类型" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="进场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="出场时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="停车时间" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="收费金额" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="说明" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="carIn in parkingAreaControlCarInoutsInfo.carIns">
+                <td class="text-center" style="white-space: nowrap;">
+                    <img style="width: 60px; height: 60px;" class="border-radius" v-if="carIn.photoJpg"
+                         v-bind:src="carIn.photoJpg" v-on:click="_carInoutOpenFile(carIn.photoJpg)"/>
+                    <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg"/>
+                </td>
+                <td class="text-center">{{carIn.inoutId}}</td>
+                <td class="text-center">{{carIn.carInout == '3306'?'进场':'出场'}}({{carIn.stateName}})</td>
+                <td class="text-center">{{carIn.carNum}}
+                </td>
+                <td class="text-center">{{carIn.areaNum}}</td>
+                <td class="text-center" @click="_viewTempFeeConfigInOutCar(carIn.configId)">{{carIn.feeName}}
+                    <span class="fa fa-info-circle"></span>
+                </td>
+                <td class="text-center">{{carIn.carTypeName}}</td>
+                <td class="text-center">{{carIn.inTime}}</td>
+                <td class="text-center" v-if="carIn.carInout != '3307'">-</td>
+                <td class="text-center" v-else>{{carIn.outTime}}</td>
+                <td class="text-center">{{carIn.hours}}
+                    <span><vc:i18n name="小时" namespace="parkingAreaControlCarInouts"></vc:i18n></span>{{carIn.min}}
+                    <span><vc:i18n name="分" namespace="parkingAreaControlCarInouts"></vc:i18n></span>
+                </td>
+                <td class="text-center" v-if="carIn.carType != 'T'">-</td>
+                <!-- <td class="text-center" v-else-if="carIn.carInout != '3307">{{carIn.payCharge}}</td> -->
+                <!-- <td class="text-center" v-else>{{carIn.realCharge}}</td> -->
+                <td class="text-center" v-else>{{carIn.payCharge}}
+                    <span v-if="carIn.inState == '100300' || carIn.inState == '100400' ||  carIn.inState == '100600'">
+                            (<a href="javascript:void(0)" @click="_carInoutTempCarPayFee(carIn)">出场</a>)
+                        </span>
+                </td>
+                <td class="text-center">{{carIn.remark}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlCarInouts"></vc:create>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row" v-if="maintainancePlanManageInfo.maintainancePlanStaffModel == false">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="maintainancePlanManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入计划ID','maintainancePlanManage')"
+                                       v-model="maintainancePlanManageInfo.conditions.planId"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入计划名称','maintainancePlanManage')"
+                                       v-model="maintainancePlanManageInfo.conditions.maintainancePlanName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="maintainancePlanManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','maintainancePlanManage')}}</option>
+                                <option v-for="(item,index) in maintainancePlanManageInfo.states" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryMaintainancePlanMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="保养计划(保养日生成任务)" namespace="maintainancePlanManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMaintainancePlanModal()">
+                            <i class="fa fa-plus"></i><span>
+                            <vc:i18n name="添加" namespace="maintainancePlanManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <!-- <th class="text-center">
+                                <span><vc:i18n name="计划ID" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th> -->
+                            <th class="text-center">
+                                <span><vc:i18n name="计划名称" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="保养标准" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计划周期" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            
+                            <th class="text-center">
+                                <span><vc:i18n name="日期范围" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                           
+                            <th class="text-center">
+                                <span><vc:i18n name="设备数" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="保养人数" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="制定人" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="制定时间" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="maintainancePlanManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="maintainancePlan in maintainancePlanManageInfo.maintainancePlans">
+                            <!-- <td class="text-center">{{maintainancePlan.planId}}</td> -->
+                            <td class="text-center">{{maintainancePlan.planName}}</td>
+                            <td class="text-center">{{maintainancePlan.standardName}}</td>
+                            <td class="text-center">{{maintainancePlan.planPeriodName}}</td>
+                            <td class="text-center">{{maintainancePlan.startDate}}~{{maintainancePlan.endDate}}</td>
+                            <td class="text-center">{{maintainancePlan.machineCount}}
+                                (<a href="javascript:void(0)" @click="_viewMachine(maintainancePlan)">设备</a>)
+                            </td>
+                            <td class="text-center">{{maintainancePlan.staffCount}}</td>
+                            <td class="text-center">{{maintainancePlan.createUserName}}</td>
+                            <td class="text-center">{{maintainancePlan.createTime}}</td>
+                            <td class="text-center">{{maintainancePlan.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditMaintainancePlanModel(maintainancePlan)">
+                                        <vc:i18n name="修改" namespace="maintainancePlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteMaintainancePlanModel(maintainancePlan)">
+                                        <vc:i18n name="删除" namespace="maintainancePlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-if="maintainancePlan.state == '2020025'" v-on:click="_openDisabledMaintainancePlanModel(maintainancePlan)">
+                                        <vc:i18n name="停用" namespace="maintainancePlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-else v-on:click="_openEnabledMaintainancePlanModel(maintainancePlan)">
+                                        <vc:i18n name="启用" namespace="maintainancePlanManage"></vc:i18n>
+                                    </button>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                请确保计划开始时间和计划结束时间是有效时间范围，并且设置了保养人，不然无法生成保养任务
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/deleteMaintainancePlan"></vc:create>
+    <vc:create path="property/maintainancePlanState"></vc:create> 
+</div>

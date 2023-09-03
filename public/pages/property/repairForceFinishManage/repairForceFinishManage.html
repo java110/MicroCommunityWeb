@@ -1,0 +1,147 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="repairForceFinishManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                            v-on:click="_moreCondition()">{{repairForceFinishManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button> -->
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select"
+                                        v-model="repairForceFinishManageInfo.conditions.repairType">
+                                    <option selected value="">{{vc.i18n('请选择报修类型','repairForceFinishManage')}}</option>
+                                    <option v-for="(item,index) in repairForceFinishManageInfo.repairSettings"
+                                            :value="item.repairType">
+                                        {{item.repairTypeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入报修人','repairForceFinishManage')"
+                                       v-model="repairForceFinishManageInfo.conditions.repairName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入报修电话','repairForceFinishManage')"
+                                       v-model="repairForceFinishManageInfo.conditions.tel" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span v-text="repairForceFinishManageInfo.conditions.roomName"></span>
+                        <span><vc:i18n name="强制回单" namespace="repairForceFinishManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="工单编码" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="位置" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="报修类型" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="报修人" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="联系方式" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="预约时间" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="repairForceFinishManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="repairPool in repairForceFinishManageInfo.repairPools">
+                            <td class="text-center">{{repairPool.repairId}}</td>
+                            <td class="text-center">{{repairPool.repairObjName}}</td>
+                            <td class="text-center">{{repairPool.repairTypeName}}</td>
+                            <td class="text-center">{{repairPool.repairName}}</td>
+                            <td class="text-center">{{repairPool.tel}}</td>
+                            <td class="text-center">{{repairPool.appointmentTime}}</td>
+                            <td class="text-center">{{repairPool.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openForceFinishRepairModel(repairPool)">
+                                        <span><vc:i18n name="强制回单" namespace="repairForceFinishManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repairPool)">
+                                        <span><vc:i18n name="详情" namespace="repairForceFinishManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                <span><vc:i18n name="说明" namespace="repairForceFinishManage"></vc:i18n></span>：此功能主要为了解决维修师傅年龄大不会使用手机操作，需要客服人员确认维修完后强制回单场景
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/forceFinishRepair"></vc:create>
+</div>

@@ -1,0 +1,132 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="查询条件"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择名称','marketSmsManage')"
+                                    v-model="marketSmsManageInfo.conditions.smsName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="marketSmsManageInfo.conditions.smsType">
+                                <option selected value="">
+                                    {{vc.i18n('请选择设置类型','marketSmsManage')}}
+                                </option>
+                                <option v-for="(item,index) in marketSmsManageInfo.smsTypes" :value="item.statusCd">
+                                    {{item.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMarketSmsMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span>
+                                    <vc:i18n name="查询"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="营销配置" namespace="marketSmsManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.showMarkdown('/pages/admin/marketSmsManage')">
+                            <span><vc:i18n name="文档" namespace="marketSmsManage"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMarketSmsModal()">
+                            <span>
+                                <vc:i18n name="添加" namespace="marketSmsManage"></vc:i18n>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='编号' namespace='marketSmsManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='名称' namespace='marketSmsManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='设置类型' namespace='marketSmsManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='创建时间' namespace='marketSmsManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='备注' namespace='marketSmsManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="marketSms in marketSmsManageInfo.marketSmss">
+                                <td class="text-center">{{marketSms.smsId}}</td>
+                                <td class="text-center">{{marketSms.smsName}}</td>
+                                <td class="text-center">{{marketSms.smsType}}</td>
+                                <td class="text-center">{{marketSms.createTime}}</td>
+                                <td class="text-center">{{marketSms.remark}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditMarketSmsModel(marketSms)"><span>
+                                                <vc:i18n name='修改'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteMarketSmsModel(marketSms)"><span>
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="admin/addMarketSms" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="admin/editMarketSms"></vc:create>
+    <vc:create path="admin/deleteMarketSms"></vc:create>
+
+</div>

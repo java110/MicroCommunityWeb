@@ -1,0 +1,55 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="表ID" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="表类型" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="对象名称" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="上期度数" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="本期度数" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="上期读表时间" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="本期读表时间" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="创建时间" namespace="meterWaterManage"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="meterWater in feeDetailMeterInfo.meterWaters">
+                    <td class="text-center">{{meterWater.waterId}}</td>
+                    <td class="text-center">{{meterWater.meterTypeName}}</td>
+                    <td class="text-center">{{meterWater.objName}}</td>
+                    <td class="text-center">{{meterWater.preDegrees}}</td>
+                    <td class="text-center">{{meterWater.curDegrees}}</td>
+                    <td class="text-center">{{meterWater.preReadingTime}}</td>
+                    <td class="text-center">{{meterWater.curReadingTime}}</td>
+                    <td class="text-center">{{meterWater.createTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailMeter" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

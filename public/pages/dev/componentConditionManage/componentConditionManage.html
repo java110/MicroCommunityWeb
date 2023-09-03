@@ -1,0 +1,92 @@
+<div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{componentConditionManageInfo.componentName}}
+                        <span><vc:i18n name="条件" namespace="componentConditionManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+                            返回
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddComponentConditionModal()">
+                            <i class="fa fa-plus"></i>添加
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="条件" namespace="componentConditionManage"></vc:i18n></span>ID
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="名称" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="提示" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="参数" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="类型" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="序号" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="描述" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="componentConditionManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="componentCondition in componentConditionManageInfo.componentConditions">
+                            <td class="text-center">{{componentCondition.conditionId}}</td>
+                            <td class="text-center">{{componentCondition.name}}</td>
+                            <td class="text-center">{{componentCondition.holdpace}}</td>
+                            <td class="text-center">{{componentCondition.param}}</td>
+                            <td class="text-center">{{componentCondition.type == 'text'?'文本框':'日期'}}</td>
+                            <td class="text-center">{{componentCondition.seq}}</td>
+                            <td class="text-center">{{componentCondition.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditComponentConditionModel(componentCondition)">
+                                        <span><vc:i18n name="修改" namespace="componentConditionManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteComponentConditionModel(componentCondition)">
+                                        <span><vc:i18n name="删除" namespace="componentConditionManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="9">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="dev/addComponentCondition" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="dev/editComponentCondition"></vc:create>
+    <vc:create path="dev/deleteComponentCondition"></vc:create>
+</div>

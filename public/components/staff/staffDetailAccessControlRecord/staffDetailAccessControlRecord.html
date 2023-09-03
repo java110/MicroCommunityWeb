@@ -1,0 +1,63 @@
+
+
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="人脸" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="设备" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="设备位置" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="用户名称" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="开门方式" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="身份证" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="开门时间" namespace="staffDetailAccessControlRecord"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="machineRecord in staffDetailAccessControlRecordInfo.machineRecords">
+                    <td class="text-center" style="white-space: nowrap;">
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-if="machineRecord.faceUrl" v-bind:src="machineRecord.faceUrl" v-on:click="_viewOwnerFace(machineRecord.faceUrl)" />
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
+                    </td>
+                    <td class="text-center">{{machineRecord.machineName}}({{machineRecord.machineCode}})</td>
+                    <td class="text-center">{{machineRecord.locationObjName}}</td>
+                    <td class="text-center">{{machineRecord.name}}({{machineRecord.tel == '-1'?'无':machineRecord.tel}})</td>
+                    <td class="text-center">{{machineRecord.openTypeName}}</td>
+                    <!-- <td class="text-center">{{machineRecord.tel}}</td> -->
+                    <td class="text-center">{{machineRecord.idCard == '-1'?'无':machineRecord.idCard }}</td>
+                    <td class="text-center">{{machineRecord.createTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailAccessControl" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+
+
+</div>

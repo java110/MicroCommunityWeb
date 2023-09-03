@@ -1,0 +1,80 @@
+<div id="parkingAreaControlCustomCarInoutModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="车辆" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span>{{parkingAreaControlCustomCarInoutInfo.type == '1101'?'进场':'出场'}}</h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="车牌号" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="parkingAreaControlCustomCarInoutInfo.carNum" type="text" @blur="_queryCustomCarMoney()" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlCustomCarInout')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101' && parkingAreaControlCustomCarInoutInfo.machines && parkingAreaControlCustomCarInoutInfo.machines.length>0">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="出场道闸" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="parkingAreaControlCustomCarInoutInfo.machineId">
+                                        <option selected  value="">{{vc.i18n('请选择出场道闸','parkingAreaControlCustomCarInout')}}</option>
+                                        <option :value="item.machineId" v-if="item.direction == '3307'"
+                                            v-for="(item,index) in parkingAreaControlCustomCarInoutInfo.machines">{{item.machineName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="应收金额" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="parkingAreaControlCustomCarInoutInfo.payCharge" disabled type="text" :placeholder="vc.i18n('必填，请填写收费金额','parkingAreaControlCustomCarInout')" class="form-control"></div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="实收金额" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="parkingAreaControlCustomCarInoutInfo.amount" type="text" :placeholder="vc.i18n('必填，请填写收费金额','parkingAreaControlCustomCarInout')" class="form-control"></div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="停车时间" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10"><input v-model="parkingAreaControlCustomCarInoutInfo.costMin" type="text" disabled :placeholder="vc.i18n('必填，请填写停车时间','parkingAreaControlCustomCarInout')" class="form-control"></div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101'">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="支付方式" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="parkingAreaControlCustomCarInoutInfo.payType">
+                                        <option selected  value="">{{vc.i18n('请选择支付方式','parkingAreaControlCustomCarInout')}}</option>
+                                        <option :value="item.statusCd"
+                                            v-for="(item,index) in parkingAreaControlCustomCarInoutInfo.payTypes">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="parkingAreaControlCustomCarInoutInfo.type != '1101' && parkingAreaControlCustomCarInoutInfo.coupons.length>0">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="优惠券" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox custom-control-inline" v-for="(coupon,index) in parkingAreaControlCustomCarInoutInfo.coupons">
+                                        <label>
+                                            <input type="checkbox" v-model="parkingAreaControlCustomCarInoutInfo.pccIds" @change="_computeCouponMoney"
+                                                   :value="coupon.pccId">
+                                                   <span>{{coupon.couponName}}-</span>
+                                                   <span v-if="coupon.typeCd == '1001'">{{coupon.value}}分钟</span>
+                                                   <span v-if="coupon.typeCd == '2002'">{{coupon.value}}元</span>
+                                                   <span v-if="coupon.typeCd == '3003'">{{coupon.value}}折</span>
+                                                   <span v-if="coupon.typeCd == '4004'">全免</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></label>
+                                <div class="col-sm-10"><textarea cols="5" v-model="parkingAreaControlCustomCarInoutInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','parkingAreaControlCustomCarInout')" class="form-control"></textarea></div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="parkingAreaControlCustomCarInout()"><span><vc:i18n name="提交" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="parkingAreaControlCustomCarInout"></vc:i18n></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,279 @@
+<div class="white-bg padding-lg padding-top border-radius">
+    <div class="flex justify-between">
+        <div class="text-title">
+            合同信息
+        </div>
+        <div>
+            <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
+                返回
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_printContract()">
+                <vc:i18n name="打印"></vc:i18n>
+            </button>
+        </div>
+    </div>
+    <!-- 合同信息 -->
+    <div class="margin-top">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="合同名称" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.contractName}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="合同编号" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.contractCode}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="合同类型" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.contractTypeName}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="甲方" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.partyA}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="甲方联系人" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.aContacts}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="甲方联系电话" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.aLink}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="乙方" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.partyB}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="乙方联系人" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.bContacts}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                       <vc:i18n name="乙方联系电话：" namespace="contractDetail"></vc:i18n>
+                    </label>
+                    <label class="">{{contractDetailInfo.bLink}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="经办人" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.operator}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="联系电话" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.operatorLink}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="合同金额" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.amount}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="开始时间" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.startTime}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="结束时间" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.endTime}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <vc:i18n name="签订时间：" namespace="contractDetail"></vc:i18n>
+                    </label>
+                    <label class="">{{contractDetailInfo.signingTime}}</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <vc:i18n name="状态：" namespace="contractDetail"></vc:i18n>
+                    </label>
+                    <label class="">{{contractDetailInfo.stateName}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" v-if="contractDetailInfo.contractParentId">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <span><vc:i18n name="父合同" namespace="contractDetail"></vc:i18n></span>：
+                    </label>
+                    <label class="">{{contractDetailInfo.contractParentName}}({{contractDetailInfo.contractParentCode}})</label>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="vc-line-primary margin-top"></div>
+    <div class="margin-top-sm">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailRoom'}" v-on:click="changeTab('contractDetailRoom')">
+                    <vc:i18n name="房屋" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailFile'}" v-on:click="changeTab('contractDetailFile')">
+                    <vc:i18n name="附件" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailFee'}" v-on:click="changeTab('contractDetailFee')">
+                    <vc:i18n name="合同费用" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailHisFee'}" v-on:click="changeTab('contractDetailHisFee')">
+                    <vc:i18n name="合同缴费记录" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'ownerDetailRoomFee'}" v-on:click="changeTab('ownerDetailRoomFee')">
+                    <vc:i18n name="房屋费用" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailHisRoomFee'}" v-on:click="changeTab('contractDetailHisRoomFee')">
+                    <vc:i18n name="房屋缴费记录" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailOwner'}"
+                    v-on:click="changeTab('contractDetailOwner')">
+                    <vc:i18n name="业主信息" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailChange'}" v-on:click="changeTab('contractDetailChange')">
+                    <vc:i18n name="变更记录" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailFlow'}" v-on:click="changeTab('contractDetailFlow')">
+                    <vc:i18n name="起草审批" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailSub'}" v-on:click="changeTab('contractDetailSub')">
+                    <vc:i18n name="子合同" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:contractDetailInfo._currentTab == 'contractDetailReceipt'}" v-on:click="changeTab('contractDetailReceipt')">
+                    <vc:i18n name="补打收据" namespace="contractDetail"></vc:i18n>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailRoom'">
+        <vc:create path="contract/contractDetailRoom"></vc:create>
+    </div>
+
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailFile'">
+        <vc:create path="contract/contractDetailFile"></vc:create>
+    </div>
+    
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailFee'">
+        <vc:create path="contract/contractDetailFee"></vc:create>
+    </div>
+    
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailHisFee'">
+        <vc:create path="contract/contractDetailHisFee"></vc:create>
+    </div>
+
+    <div v-if="contractDetailInfo._currentTab == 'ownerDetailRoomFee'">
+        <vc:create path="owner/ownerDetailRoomFee"></vc:create>
+    </div>
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailHisRoomFee'">
+        <vc:create path="contract/contractDetailHisRoomFee"></vc:create>
+    </div>
+    
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailChange'">
+        <vc:create path="contract/contractDetailChange"></vc:create>
+    </div>
+
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailFlow'">
+        <vc:create path="contract/contractDetailFlow"></vc:create>
+    </div>
+    
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailSub'">
+        <vc:create path="contract/contractDetailSub"></vc:create>
+    </div>
+
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailOwner'">
+        <vc:create path="contract/contractDetailOwner"></vc:create>
+    </div>
+    
+
+    <div v-if="contractDetailInfo._currentTab == 'contractDetailReceipt'">
+        <vc:create path="contract/contractDetailReceipt"></vc:create>
+    </div>
+    
+    <vc:create path="property/deleteFee"></vc:create>
+
+    <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/contractCreateFeeAdd"></vc:create>
+    <vc:create path="property/finishFee"></vc:create>
+
+    
+</div>

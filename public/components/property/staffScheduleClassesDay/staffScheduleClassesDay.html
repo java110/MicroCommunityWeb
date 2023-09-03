@@ -1,0 +1,23 @@
+<div>
+    <div class="form-group row">
+        <label class="col-sm-1 col-form-label">
+            <span>
+                <vc:i18n name="按天排班" namespace="scheduleClassesDay"></vc:i18n>
+            </span>
+        </label>
+        <div class="col-sm-11">
+            <div class="row  bg-white border-radius padding ">
+                <div class="col-md-2 text-center border padding-lg labeling-strip"
+                    v-for="(item,index) in scheduleClassesDayInfo.days" :key="index"
+                    style="border-radius: 5px;cursor:pointer" @click="_changeWorkdayInfo(item)">
+                    <div>{{item.day}}</div>
+                    <div>{{item.workdayName}}</div>
+                    <div v-for="(time,index) in item.times">{{time.startTime}}-{{time.endTime}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

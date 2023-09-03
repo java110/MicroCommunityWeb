@@ -1,0 +1,88 @@
+<div>
+    <div class="row">
+        <div class="col-md-2 padding" id="print-room">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in printQuestionAnswerDetailInfo.userQuestions" :key="index" @click="swatchRoom(item)" :class="{'vc-node-selected':printQuestionAnswerDetailInfo.roomId == item.roomId}">
+                            {{item.roomName}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="text-center">
+                <h1>{{printQuestionAnswerDetailInfo.qaName}}</h1>
+            </div>
+            <div>
+                <div v-html="printQuestionAnswerDetailInfo.content"></div>
+            </div>
+
+            <div>
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="300px">
+                                <div style="max-width: 300px;">
+                                    <vc:i18n name="名称" namespace="questionTitle"></vc:i18n>
+                                </div>
+                            </th>
+                            <th class="text-center" width="300px">
+                                <vc:i18n name="类型" namespace="questionTitle"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="选项" namespace="questionTitle"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="选择" namespace="questionTitle"></vc:i18n>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="questionTitle in printQuestionAnswerDetailInfo.questionTitles">
+                            <td class="text-center" width="300px">
+                                <div style="max-width: 300px;">
+                                    {{questionTitle.qaTitle}}
+                                </div>
+                            </td>
+                            <td class="text-center" width="300px">{{_getTitleTypeName(questionTitle.titleType)}}</td>
+                            <td class="text-center">
+                                <div v-for="(item,index) in questionTitle.titleValues">
+                                    {{item.seq}}、{{item.qaValue}}
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div v-for="(item,index) in questionTitle.titleValues">
+                                    {{_getChooseValue(item)}}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <span>总数：{{printQuestionAnswerDetailInfo.voteCount}}</span>；
+                <span>已提交：{{printQuestionAnswerDetailInfo.votedCount}}</span>；
+                <span v-for="(item,tIndex) in printQuestionAnswerDetailInfo.titleValues">{{item.qaValue}}: {{item.personCount}}人；</span>
+            </div>
+            <div class="text-right margin-top margin-right">
+                {{vc.getCurrentCommunity().name}}
+            </div>
+            <div class="text-right margin-top-sm margin-right">
+                {{vc.dateFormat(new Date())}}
+            </div>
+        </div>
+    </div>
+
+    <div id="print-btn">
+        <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()">
+            <vc:i18n name="取消" namespace="printOweFee"></vc:i18n>
+        </button>
+    </div>
+
+</div>

@@ -1,0 +1,97 @@
+<div id="prestoreAccountModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span>
+                        <vc:i18n name="预存" namespace="prestoreAccount"></vc:i18n>
+                    </span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name="业主手机" namespace="prestoreAccount"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="prestoreAccountInfo.tel" type="text"
+                                        :placeholder="vc.i18n('必填，请填写业主手机号','prestoreAccount')" class="form-control"
+                                        @blur="_changeTel()">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name="业主名称" namespace="prestoreAccount"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="prestoreAccountInfo.ownerId">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择业主','prestoreAccount')}}
+                                        </option>
+                                        <option v-for="(owner,index) in prestoreAccountInfo.owners" :key="index"
+                                            v-bind:value="owner.ownerId">{{owner.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name="预存金额" namespace="prestoreAccount"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="prestoreAccountInfo.amount" type="text"
+                                        :placeholder="vc.i18n('必填，请填写预存金额','prestoreAccount')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="支付方式" namespace="prestoreAccount"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="prestoreAccountInfo.primeRate">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','prestoreAccount')}}
+                                        </option>
+                                        <option v-for="(item,index) in prestoreAccountInfo.primeRates" :key="index"
+                                            v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">账户类型</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="prestoreAccountInfo.acctType">
+                                        <option selected disabled value="">必填，请选择账户类型</option>
+                                        <option v-for="(type,index) in prestoreAccountInfo.acctTypes" :key="index"
+                                            v-bind:value="type.statusCd">{{type.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name="备注" namespace="prestoreAccount"></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <textarea cols="5" v-model="prestoreAccountInfo.remark" type="tel"
+                                        :placeholder="vc.i18n('可填，请填写备注','prestoreAccount')" class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="savePrestoreAccountInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal"><span>
+                                        <vc:i18n name="取消" namespace="prestoreAccount"></vc:i18n>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

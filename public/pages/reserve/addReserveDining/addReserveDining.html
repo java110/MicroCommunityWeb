@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>
+          <span>
+            <vc:i18n name="添加就餐商品" namespace="addReserveDining"></vc:i18n>
+          </span>
+        </h5>
+        <div class="ibox-tools" style="top:10px;">
+        </div>
+      </div>
+      <div class="ibox-content">
+        <div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='名称' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="addReserveDiningInfo.goodsName" type="text"
+                :placeholder="vc.i18n('必填，请填写名称','addReserveDining')" class="form-control">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='参数' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <select class="custom-select" v-model="addReserveDiningInfo.paramsId">
+                <option selected disabled value="">{{vc.i18n('必填，请选择参数','addReserveDining')}}</option>
+                <option :value="item.paramsId" v-for="(item,index) in addReserveDiningInfo.reserveParamss" :key="index">
+                  {{item.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='单价' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="addReserveDiningInfo.price" type="text"
+                :placeholder="vc.i18n('必填，请填写单价','addReserveDining')" class="form-control">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='排序' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="addReserveDiningInfo.sort" type="text"
+                :placeholder="vc.i18n('必填，请填写排序','addReserveDining')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='开始时间' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="addReserveDiningInfo.startDate" type="text"
+                :placeholder="vc.i18n('必填，请填写开始时间','addReserveDining')" class="form-control reserveStartTime">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='结束时间' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="addReserveDiningInfo.endDate" type="text"
+                :placeholder="vc.i18n('必填，请填写结束时间','addReserveDining')" class="form-control reserveEndTime">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='产品封面' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <vc:create path="frame/uploadImageUrl" callBackListener="addReserveDining"
+                callBackFunction="notifyUploadCoverImage" namespace="addReserveDining" imageCount="1">
+              </vc:create>
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='状态' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <select class="custom-select" v-model="addReserveDiningInfo.state">
+                <option selected disabled value="">{{vc.i18n('必填，请选择状态','addReserveDining')}}</option>
+                <option value="1001">{{vc.i18n('未上架','addReserveDining')}}</option>
+                <option value="2002">{{vc.i18n('上架','addReserveDining')}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='商品简介' namespace='addReserveDining'></vc:i18n>
+              </span></label>
+            <div class="col-sm-10">
+              <textarea v-model="addReserveDiningInfo.goodsDesc" :placeholder="vc.i18n('必填，请填写商品简介','addReserveDining')"
+                class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right">商品详情</label>
+            <div class="col-sm-10 ">
+              <div class=" no-padding">
+                <div class="summernote"></div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="ibox-content">
+            <button class="btn btn-primary float-right" type="button" v-on:click="saveReserveDiningInfo()"><i
+                class="fa fa-check"></i>&nbsp;
+              <span>
+                <vc:i18n name="保存"></vc:i18n>
+              </span>
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="vc.goBack()">
+              <span>
+                <vc:i18n name="取消"></vc:i18n>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

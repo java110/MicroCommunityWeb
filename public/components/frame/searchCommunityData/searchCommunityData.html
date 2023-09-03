@@ -1,0 +1,110 @@
+<div id="searchCommunityDataModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row margin-bottom">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6 padding-lr-0">
+                        <input class="form-control" placeholder="请输入房屋编号，业主名称，车辆编号或者家庭成员名称等"
+                            v-model="searchCommunityDataInfo.searchValue" @keyup.enter="_doSearchCommunityData()" />
+                    </div>
+                    <div class="col-sm-1 padding-lr-0 margin-left-xs">
+                        <button type="button" class="form-control btn btn-primary" @click="_doSearchCommunityData()">
+                            <vc:i18n name="查询" namespace="simplifyAcceptance"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+                <div class="vc-line-primary"></div>
+                <div class="margin-top margin-bottom" style="min-height: 200px;">
+                    <div v-if="!searchCommunityDataInfo.noData">
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.rooms && searchCommunityDataInfo.rooms.length > 0">
+                            <div class="item-title">房屋信息</div>
+                            <div class="item-content">
+                                <a href="javascrit:void(0)" @click="_toSimplifyAcceptance(item)"
+                                    v-for="(item,index) in searchCommunityDataInfo.rooms">{{item.roomName}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.owners && searchCommunityDataInfo.owners.length > 0">
+                            <div class="item-title">业主信息</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/owner/ownerDetail?ownerId='+item.ownerId"
+                                    v-for="(item,index) in searchCommunityDataInfo.owners">{{item.name}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.ownerMembers && searchCommunityDataInfo.ownerMembers.length > 0">
+                            <div class="item-title">业主成员</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/owner/ownerDetail?ownerId='+item.ownerId"
+                                    v-for="(item,index) in searchCommunityDataInfo.ownerMembers">{{item.name}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.cars && searchCommunityDataInfo.cars.length > 0">
+                            <div class="item-title">小区车辆</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/car/carDetail?memberId='+item.carId"
+                                    v-for="(item,index) in searchCommunityDataInfo.cars">{{item.carNum}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.carMembers && searchCommunityDataInfo.carMembers.length > 0">
+                            <div class="item-title">成员车辆</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/car/carDetail?memberId='+item.carId"
+                                    v-for="(item,index) in searchCommunityDataInfo.carMembers">{{item.carNum}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.contracts && searchCommunityDataInfo.contracts.length > 0">
+                            <div class="item-title">合同</div>
+                            <div class="item-content">
+                                <a target="_blank"
+                                    :href="'/#/pages/common/contractApplyDetail?contractId='+item.contractId"
+                                    v-for="(item,index) in searchCommunityDataInfo.contracts">{{item.contractName}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.repairs && searchCommunityDataInfo.repairs.length > 0">
+                            <div class="item-title">报修工单</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/property/ownerRepairDetail?repairId='+item.repairId"
+                                    v-for="(item,index) in searchCommunityDataInfo.repairs">{{item.repairName}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.visits && searchCommunityDataInfo.visits.length > 0">
+                            <div class="item-title">访客</div>
+                            <div class="item-content">
+                                <a target="_blank"
+                                    :href="'/#/pages/property/visitDetail?vId='+item.vId+'&flowId='+item.flowId"
+                                    v-for="(item,index) in searchCommunityDataInfo.visits">{{item.vName}}</a>
+                            </div>
+                        </div>
+                        <div class="vc-search-community-item"
+                            v-if="searchCommunityDataInfo.staffs && searchCommunityDataInfo.staffs.length > 0">
+                            <div class="item-title">员工</div>
+                            <div class="item-content">
+                                <a target="_blank" :href="'/#/pages/staff/staffDetail?staffId='+item.userId"
+                                    v-for="(item,index) in searchCommunityDataInfo.staffs">{{item.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="text-center" style="font-size: 38px;color: #aaa;margin-top: 100px;">抱歉，没有数据</div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button type="button" class="btn btn-white float-right" data-dismiss="modal"><span>
+                            <vc:i18n name="关闭"></vc:i18n>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

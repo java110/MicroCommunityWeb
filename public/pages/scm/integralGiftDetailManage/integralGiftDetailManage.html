@@ -1,0 +1,135 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="查询条件"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择记录编号','integralGiftDetailManage')"
+                                    v-model="integralGiftDetailManageInfo.conditions.detailId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择用户名称','integralGiftDetailManage')"
+                                    v-model="integralGiftDetailManageInfo.conditions.userName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择手机号','integralGiftDetailManage')"
+                                    v-model="integralGiftDetailManageInfo.conditions.tel" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryIntegralGiftDetailMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span>
+                                    <vc:i18n name="查询"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="积分赠送记录" namespace="integralGiftDetailManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <!-- <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddIntegralGiftDetailModal()">
+                            <span>
+                                <vc:i18n name="手工赠送" namespace="integralGiftDetailManage"></vc:i18n>
+                            </span>
+                        </button> -->
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                
+                                <th class="text-center"><span>
+                                        <vc:i18n name='记录编号' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                    <th class="text-center"><span>
+                                        <vc:i18n name='账户名称' namespace='integralUserDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='标准名称' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='规则名称' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='积分数量' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='用户名称' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='手机号' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='赠送时间' namespace='integralGiftDetailManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="integralGiftDetail in integralGiftDetailManageInfo.integralGiftDetails">
+               
+                                <td class="text-center">{{integralGiftDetail.detailId}}</td>
+                                <td class="text-center">{{integralGiftDetail.acctName}}</td>
+                                <td class="text-center">{{integralGiftDetail.configName}}</td>
+                                <td class="text-center">{{integralGiftDetail.ruleName}}</td>
+                                <td class="text-center">{{integralGiftDetail.quantity}}</td>
+                                <td class="text-center">{{integralGiftDetail.userName}}</td>
+                                <td class="text-center">{{integralGiftDetail.tel}}</td>
+                                <td class="text-center">{{integralGiftDetail.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <!-- <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteIntegralGiftDetailModel(integralGiftDetail)"><span>
+                                                <vc:i18n name='积分退回'></vc:i18n>
+                                            </span></button> -->
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

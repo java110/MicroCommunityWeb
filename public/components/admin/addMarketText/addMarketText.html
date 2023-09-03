@@ -1,0 +1,77 @@
+<div id="addMarketTextModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span>
+                        <vc:i18n name="添加" namespace="addMarketText"></vc:i18n>
+                    </span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name='名称' namespace='addMarketText'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addMarketTextInfo.name" type="text"
+                                        :placeholder="vc.i18n('必填，请填写名称','addMarketText')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name='发送频率' namespace='addMarketText'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMarketTextInfo.sendRate">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择发送频率','addMarketText')}}
+                                        </option>
+                                        <option value="1001">{{vc.i18n('按天','addMarketText')}}</option>
+                                        <option value="2002">{{vc.i18n('按月','addMarketText')}}</option>
+                                        <option value="3003">{{vc.i18n('不限制','addMarketText')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name='文本内容' namespace='addMarketText'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="addMarketTextInfo.textContent" 
+                                        :placeholder="vc.i18n('必填，请填写文本内容','addMarketText')" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name='营销配置' namespace='addMarketText'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addMarketTextInfo.smsId">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择营销配置','addMarketText')}}
+                                        </option>
+                                        <option :value="item.smsId" v-for="(item,index) in addMarketTextInfo.marketSmss">{{item.smsName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="saveMarketTextInfo()"><i class="fa fa-check"></i>&nbsp;
+                                    <span>
+                                        <vc:i18n name="保存"></vc:i18n>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">
+                                    <span>
+                                        <vc:i18n name="取消"></vc:i18n>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="查询条件"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择开始时间','ownerDining')" v-model="ownerDiningInfo.conditions.startDate" class=" form-control startDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择结束时间','ownerDining')" v-model="ownerDiningInfo.conditions.endDate" class=" form-control endDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入业主名称','ownerDining')" v-model="ownerDiningInfo.conditions.nameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryData()">
+                                <i class="glyphicon glyphicon-search"></i> <span>
+                                    <vc:i18n name="查询"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择业主手机号','ownerDining')" v-model="ownerDiningInfo.conditions.link" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="业主就餐" namespace="ownerDining"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.goBack()">
+                            <vc:i18n name="返回" namespace="ownerDining"></vc:i18n>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                                    <vc:i18n name="导出" namespace="ownerDining"></vc:i18n>
+                                </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name='开始时间' namespace='ownerDining'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='结束时间' namespace='ownerDining'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='业主名称' namespace='ownerDining'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='手机号' namespace='ownerDining'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='商品' namespace='ownerDining'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='就餐次数' namespace='ownerDining'></vc:i18n>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="reserveDining in ownerDiningInfo.orders">
+                                <td class="text-center">{{reserveDining.startDate}}</td>
+                                <td class="text-center">{{reserveDining.endDate}}</td>
+                                <td class="text-center">{{reserveDining.name}}</td>
+                                <td class="text-center">{{reserveDining.link}}</td>
+                                <td class="text-center">{{reserveDining.goodsName}}</td>
+                                <td class="text-center">{{reserveDining.frequency}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,234 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="放行详情" namespace="itemReleaseDetail"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()"><vc:i18n name="返回" namespace="itemReleaseDetail"></vc:i18n></button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="row" v-if="itemReleaseDetailInfo.pools">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><vc:i18n name="申请单位：" namespace="itemReleaseDetail"></vc:i18n></label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.applyCompany}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><vc:i18n name="通行类型：" namespace="itemReleaseDetail"></vc:i18n></label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.typeName}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><vc:i18n name="申请人：" namespace="itemReleaseDetail"></vc:i18n></label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.applyPerson}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="身份证" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.idCard}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="手机号" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.applyTel}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="申请时间" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.createTime}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="状态" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.stateName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="车牌号" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.carNum}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="通行时间" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.passTime}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-form-label"><span><vc:i18n name="物品总数量" namespace="itemReleaseDetail"></vc:i18n></span>：</label>
+                                        <label class="">{{itemReleaseDetailInfo.pools.amount}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="放行物品" namespace="itemReleaseDetail"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center"><span><vc:i18n name="物品名称" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="数量" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="res in itemReleaseDetailInfo.resNames">
+                                <td class="text-center">{{res.resName}}</td>
+                                <td class="text-center">{{res.amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="工单流转" namespace="itemReleaseDetail"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center"><span><vc:i18n name="序号" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="部门" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="处理人" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="状态" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="耗时" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                                <th scope="col" class="text-center"><span><vc:i18n name="意见" namespace="itemReleaseDetail"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in itemReleaseDetailInfo.comments">
+                                <td scope="row" class="text-center">{{index+1}}</td>
+                                <td scope="row" class="text-center" v-if="item.orgName">{{item.orgName}}</td>
+                                <td scope="row" class="text-center" v-else><span><vc:i18n name="管理员" namespace="itemReleaseDetail"></vc:i18n></span></td>
+                                <td class="text-center">{{item.staffName}}</td>
+                                <td class="text-center" v-if="item.endTime"><span><vc:i18n name="处理完成" namespace="itemReleaseDetail"></vc:i18n></span></td>
+                                <td class="text-center" v-else><span><vc:i18n name="正在处理" namespace="itemReleaseDetail"></vc:i18n></span></td>
+                                <td class="text-center">{{item.duration}}</td>
+                                <td class="text-center">{{item.context}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" v-if="itemReleaseDetailInfo.action">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="工单办理" namespace="itemReleaseDetail"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right"><vc:i18n name="动作" namespace="itemReleaseDetail"></vc:i18n></label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="itemReleaseDetailInfo.audit.auditCode">
+                                    <option selected disabled value="">{{vc.i18n('请选择','itemReleaseDetail')}}</option>
+                                    <option value="1100" v-if="itemReleaseDetailInfo.nextAudit.next || itemReleaseDetailInfo.nextAudit.exit">{{vc.i18n('同意','itemReleaseDetail')}}</option>
+                                    <option value="1200" v-if="itemReleaseDetailInfo.nextAudit.back">{{vc.i18n('退回','itemReleaseDetail')}}</option>
+                                    <option value="1400" v-if="itemReleaseDetailInfo.nextAudit.backIndex">{{vc.i18n('退回至提交者','itemReleaseDetail')}}
+                                    </option>
+                                    <option value="1300">{{vc.i18n('转单','itemReleaseDetail')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right"><vc:i18n name="工单说明" namespace="itemReleaseDetail"></vc:i18n></label>
+                            <div class="col-sm-10">
+                                <textarea :placeholder="vc.i18n('必填，请填写工单说明','itemReleaseDetail')" class="form-control" v-model="itemReleaseDetailInfo.audit.auditMessage">
+                                </textarea>
+                            </div>
+                        </div>
+                        <!-- 办理时 判断是否指定 委托人 如果指定了 则不显示 -->
+                        <div class="form-group row" v-if="itemReleaseDetailInfo.audit.auditCode == '1100' && itemReleaseDetailInfo.nextAudit.assignee == '-2'">
+                            <label class="col-sm-2 col-form-label text-right"><vc:i18n name="下一处理人" namespace="itemReleaseDetail"></vc:i18n></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','itemReleaseDetail')" disabled v-model="itemReleaseDetailInfo.audit.staffName">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                                    选择
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 转单时 必须指定 委托人 -->
+                        <div class="form-group row" v-if="itemReleaseDetailInfo.audit.auditCode == '1300'">
+                            <label class="col-sm-2 col-form-label text-right"><vc:i18n name="下一处理人" namespace="itemReleaseDetail"></vc:i18n></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择下一处理人','itemReleaseDetail')" disabled v-model="itemReleaseDetailInfo.audit.staffName">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                                    选择
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button" v-on:click="_auditSubmit()">
+                                提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span><vc:i18n name="流程图" namespace="itemReleaseDetail"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content text-center">
+                    <img :src="itemReleaseDetailInfo.imgData" alt="" height="300px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+</div>

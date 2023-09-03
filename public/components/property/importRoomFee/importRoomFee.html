@@ -1,0 +1,69 @@
+<div id="importRoomFeeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="费用导入" namespace="importRoomFee"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用类型" namespace="importRoomFee"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="importRoomFeeInfo.feeTypeCd"
+                                            @change="_changeFeeTypeCd(importRoomFeeInfo.feeTypeCd)">
+                                        <option selected disabled value="">{{vc.i18n('必填','importRoomFee')}}，请选择费用类型</option>
+
+                                        <option v-for="(item,index) in importRoomFeeInfo.feeTypeCds" :key="index"
+                                                v-bind:value="item.statusCd">
+                                            {{item.name}}
+                                        </option>
+                                    </select></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用对象" namespace="importRoomFee"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="importRoomFeeInfo.objType"
+                                    >
+                                        <option selected disabled value="">{{vc.i18n('必填','importRoomFee')}}，请选择费用对象</option>
+                                        <option value="3333">{{vc.i18n('房屋','importRoomFee')}}</option>
+                                        <option value="6666">{{vc.i18n('车位车辆','importRoomFee')}}</option>
+                                    </select></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="选择文件" namespace="importRoomFee"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <div class="custom-file">
+                                        <input id="excelTemplate" ref="excelTemplate" type="file"
+                                               class="custom-file-input form-control" name="excelTemplate"
+                                               v-on:change="getExcelTemplate($event)" accept=".xls,.xlsx">
+                                        <label for="excelTemplate"
+                                               class="custom-file-label">{{importRoomFeeInfo.excelTemplate==''?'必填，请选择数据文件':importRoomFeeInfo.excelTemplate.name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="下载模板" namespace="importRoomFee"></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    请先下载
+                                    <a :href="'/callComponent/importRoomFee/exportData?communityId='+importRoomFeeInfo.communityId+'&objType='+importRoomFeeInfo.objType"
+                                       target="_blank"><span><vc:i18n name="导入模板" namespace="importRoomFee"></vc:i18n></span>
+                                    </a>
+                                    准备数据后，上传导入
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="_importData()">
+                                    <i class="fa fa-check"></i>&nbsp;导入
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="添加排班" namespace="addStaff"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;"></div>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <span><vc:i18n name="排班名称" namespace="addScheduleClasses"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="addScheduleClassesInfo.name" type="text"
+                                       :placeholder="vc.i18n('必填，请填写计划名称','addScheduleClasses')"
+                                       class="form-control">
+                            </div>
+                            <label class="col-sm-2 col-form-label text-right">
+                                <span><vc:i18n name="排班类型" namespace="addScheduleClasses"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="custom-select" v-model="addScheduleClassesInfo.scheduleType"
+                                        @change="_changeScheduleType()">
+                                    <option selected disabled value="">
+                                        {{vc.i18n('必填，请选择排班类型','addScheduleClasses')}}
+                                    </option>
+                                    <option value="1001"> {{vc.i18n('按日排班','addScheduleClasses')}}</option>
+                                    <option value="2002"> {{vc.i18n('按周排班','addScheduleClasses')}}</option>
+                                    <option value="3003"> {{vc.i18n('按月排班','addScheduleClasses')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div v-if="addScheduleClassesInfo.scheduleType == '1001'">
+                            <vc:create path="property/scheduleClassesDay"/>
+                        </div>
+                        <div v-if="addScheduleClassesInfo.scheduleType == '2002'">
+                            <vc:create path="property/scheduleClassesWeek"/>
+                        </div>
+                        <div v-if="addScheduleClassesInfo.scheduleType == '3003'">
+                            <vc:create path="property/scheduleClassesMonth"/>
+                        </div>
+                        <div class="ibox-content">
+                            <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="saveScheduleClassesInfo()">
+                                <i class="fa fa-check"></i>&nbsp;保存
+                            </button>
+                            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    v-on:click="vc.goBack()" data-dismiss="modal">
+                                <i class="fa fa-close"></i>&nbsp;返回
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editScheduleClassesDay"></vc:create>
+</div>

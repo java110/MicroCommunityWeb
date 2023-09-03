@@ -1,0 +1,15 @@
+<div>
+    <div>
+        <div v-if="staffScheduleClassesInfo.scheduleType == '1001'">
+            <vc:create path="property/staffScheduleClassesDay">
+        </div>
+        <div v-if="staffScheduleClassesInfo.scheduleType == '2002'">
+            <vc:create path="property/staffScheduleClassesWeek">
+        </div>
+        <div v-if="staffScheduleClassesInfo.scheduleType == '3003'">
+            <vc:create path="property/staffScheduleClassesMonth">
+        </div>
+
+
+    </div>
+</div>

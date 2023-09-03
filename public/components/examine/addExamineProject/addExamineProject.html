@@ -1,0 +1,56 @@
+<div id="addExamineProjectModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span><vc:i18n name="添加" namespace="addExamineProject"></vc:i18n></span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='项目名称' namespace='addExamineProject'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <input v-model="addExamineProjectInfo.name" type="text" :placeholder="vc.i18n('必填，请填写项目名称','addExamineProject')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='岗位' namespace='addExamineProject'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addExamineProjectInfo.postCd">
+                                            <option selected  disabled value="">{{vc.i18n('必填，请选择岗位','addExamineProject')}}</option>
+                                            <option  value="9999">{{vc.i18n('通用岗位','addExamineProject')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='比重' namespace='addExamineProject'></vc:i18n></span></label>
+                                <div class="col-sm-8">
+                                    <input v-model="addExamineProjectInfo.weight" type="text" :placeholder="vc.i18n('必填，请填写比重','addExamineProject')" class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label">%</label>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='状态' namespace='addExamineProject'></vc:i18n></span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addExamineProjectInfo.state">
+                                        <option selected  disabled value="">{{vc.i18n('必填，请选择状态','addExamineProject')}}</option>
+                                        <option  value="Y">{{vc.i18n('启用','addExamineProject')}}</option>
+                                        <option  value="N">{{vc.i18n('停用','addExamineProject')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="saveExamineProjectInfo()"><i class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存"></vc:i18n></span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <span><vc:i18n name="取消"></vc:i18n></span>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

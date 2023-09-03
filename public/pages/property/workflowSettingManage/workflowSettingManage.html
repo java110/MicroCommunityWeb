@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="流程设置" namespace="workflowSettingManage"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="流程名称" namespace="workflowSettingManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <input v-model="workflowSettingInfo.flowName" type="text" disabled="disabled" :placeholder="vc.i18n('必填，请填写标题','workflowSettingManage')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="流程说明" namespace="workflowSettingManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <textarea v-model="workflowSettingInfo.describle" class="form-control" :placeholder="vc.i18n('选填，请填写流程说明','workflowSettingManage')"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="提交者结束" namespace="workflowSettingManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" v-model="workflowSettingInfo.startNodeFinish">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择最后环节是否提交者确认','workflowSettingManage')}}</option>
+                            <option value="Y">{{vc.i18n('是','workflowSettingManage')}}</option>
+                            <option value="N">{{vc.i18n('否','workflowSettingManage')}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><span><vc:i18n name="流程步骤" namespace="workflowSettingManage"></vc:i18n></span></label>
+                    <div class="col-sm-10">
+                        <div class="row " style="margin-left: 0px;">
+                            <button type="button" class="btn btn-primary" @click="addWorkflowStep()"><span><vc:i18n name="添加步骤" namespace="workflowSettingManage"></vc:i18n></span></button>
+                        </div>
+                        <div v-for="(item,index) in workflowSettingInfo.steps">
+                            <div class="row margin-0 margin-top">
+                                <div class="col-sm-1 text-center">
+                                    <label class="col-form-label"><span><vc:i18n name="第" namespace="workflowSettingManage"></vc:i18n></span>{{index+1}}<span><vc:i18n name="步" namespace="workflowSettingManage"></vc:i18n></span></label>
+                                </div>
+                                <div>
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff(item)">
+                                        <span id="select-title">{{item.staffId == '' ? '选择员工':item.staffName}}</span> <span class="caret"></span>
+                                    </a>
+                                </div>
+                                <div class="margin-left" @click="chooseType(item)">
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio'" v-bind:id="index+'-radio1'" value="2" v-model="item.type" checked>
+                                        <label class="form-check-label" v-bind:for="index+'-radio1'">
+                                            普通流程
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label" v-show="index!=0">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio'" v-bind:id="index+'-radio2'" value="1" v-model="item.type">
+                                        <label class="form-check-label" v-bind:for="index+'-radio2'">
+                                            会签
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="margin-left" @click="chooseStaffRole(item)" v-if="workflowSettingInfo.flowType == '30003'">
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio1'" v-bind:id="index+'-radio3'" value="2002" v-model="item.staffRole" checked>
+                                        <label class="form-check-label" v-bind:for="index+'-radio3'">
+                                            仓库管理员
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio1'" v-bind:id="index+'-radio4'" value="1001" v-model="item.staffRole">
+                                        <label class="form-check-label" v-bind:for="index+'-radio4'">
+                                            普通人员
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="margin-left" @click="chooseStaffRole(item)" v-if="workflowSettingInfo.flowType == '40004' || workflowSettingInfo.flowType == '70007' || workflowSettingInfo.flowType == '80008'">
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio2'" v-bind:id="index+'-radio5'" value="3003" v-model="item.staffRole" checked>
+                                        <label class="form-check-label" v-bind:for="index+'-radio5'">
+                                            仓库管理员
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-form-label">
+                                        <input class="form-check-input" type="radio" v-bind:name="index+'-radio2'" v-bind:id="index+'-radio6'" value="1001" v-model="item.staffRole">
+                                        <label class="form-check-label" v-bind:for="index+'-radio6'">
+                                            普通人员
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteStep(item)"><span><vc:i18n name="删除步骤" namespace="workflowSettingManage"></vc:i18n></span></button>
+                                </div>
+                                <div v-if="item.type == '1'">
+                                    <button type="button" class="btn btn-link" @click="addStaff(item)"><span><vc:i18n name="添加员工" namespace="workflowSettingManage"></vc:i18n></span></button>
+                                </div>
+                            </div>
+                            <div class="row margin-0 margin-top" v-for="(subItem,index) in item.subStaff">
+                                <div class="col-sm-1">
+                                    <label class="col-form-label"></label>
+                                </div>
+                                <div>
+                                    <a id="dLabel" role="button" class="btn btn-white" data-target="#" href="javascript:;" @click="chooseStaff(subItem)">
+                                        <span id="select-title">{{subItem.staffId == '' ? '选择员工':subItem.staffName}}</span> <span class="caret"></span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-link" @click="deleteStaff(item,subItem)"><span><vc:i18n name="删除员工" namespace="workflowSettingManage"></vc:i18n></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveWorkflowSettingInfo()"><i
+                            class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_goBack()"><span><vc:i18n name="返回" namespace="workflowSettingManage"></vc:i18n></span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="说明" namespace="workflowSettingManage"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <div v-if="workflowSettingInfo.flowType == '70007'">
+                    <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
+                    <div> 2、仓库管理不能参与审核调拨，只能参与最后的出库确认</div>
+                    <div> 3、仓库管理员不能为动态指定人员</div>
+                    <div> 4、必须配置流程信息中的物品被调拨流程</div>
+                </div>
+                <div v-if="workflowSettingInfo.flowType == '80008'">
+                    <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
+                    <div> 2、仓库管理不能参与审核被调拨，只能参与最后的出库确认</div>
+                    <div> 3、仓库管理员不能为动态指定人员</div>
+                    <div> 4、必须配置流程信息中的物品调拨流程</div>
+                </div>
+                <div v-else-if="workflowSettingInfo.flowType == '30003'">
+                    <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
+                    <div> 2、仓库管理不能参与审核采购，只能参与最后的入库</div>
+                    <div> 3、仓库管理员不能为动态指定人员</div>
+                </div>
+                <div v-else-if="workflowSettingInfo.flowType == '40004'">
+                    <div> 1、添加步骤必须要两步以上，最后一步为固定仓库管理员，之前的为普通人员审核</div>
+                    <div> 2、仓库管理不能参与审核物品领用，只能参与最后的出库</div>
+                    <div> 3、仓库管理员不能为动态指定人员</div>
+                </div>
+                <div v-else-if="workflowSettingInfo.flowType == '50005'">
+                    <div> 1、添加步骤选择审核人员</div>
+                </div>
+                <div v-else-if="workflowSettingInfo.flowType == '60006'">
+                    <div> 1、添加步骤选择审核人员</div>
+                </div>
+                <div v-else-if="workflowSettingInfo.flowType == '10001'">
+                    <div> 1、添加步骤选择投诉处理人员</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

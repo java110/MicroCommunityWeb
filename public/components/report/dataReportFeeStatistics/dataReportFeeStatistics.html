@@ -1,0 +1,141 @@
+<div class="margin-top">
+    <div class="row">
+        <div class="col-md-1 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff" style="height: 650px;">
+                    <ul class="list-group text-center border-radius">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in dataReportFeeStatisticsInfo.feeTypeCds" :key="index" @click="swatchFeeStatisticsFeeTypeCd(item.statusCd)" :class="{'vc-node-selected':dataReportFeeStatisticsInfo.feeTypeCd == item.statusCd}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="row ">
+                <div class="col-lg-12 text-right">
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportReportFeeExcel()">
+                        <vc:i18n name="导出" namespace="dataReportOweDetailStatistics"></vc:i18n>
+                    </button>
+                </div>
+            </div>
+            <div class="margin-top">
+                <table class="table table-bordered" data-page-size="15">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                <vc:i18n name="楼栋" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="户数" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="收费户" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="历史欠费" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="总欠费" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="本日已交户数" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="本日已交金额" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="历史欠费清缴户" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="历史欠费清缴金额" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="本月已收户数" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="剩余户数" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="已收户占比" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="当月已收金额" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="当月剩余未收" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="收费率" namespace="dataReportFeeStatistics"></vc:i18n>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="fee in dataReportFeeStatisticsInfo.fees">
+                            <td class="text-center">
+                                {{fee.floorNum}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.roomCount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.feeRoomCount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.hisMonthOweFee}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.oweFee}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.todayReceivedRoomCount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.todayReceivedRoomAmount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.hisOweReceivedRoomCount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.hisOweReceivedRoomAmount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.monthReceivedRoomCount}}
+                            </td>
+                            <td class="text-center">
+                                {{(fee.feeRoomCount-fee.monthReceivedRoomCount).toFixed(0)}}
+                            </td>
+                            <td class="text-center" v-if="(fee.feeRoomCount)>0">
+                                {{((fee.monthReceivedRoomCount)/(fee.feeRoomCount)*100).toFixed(2)}}%
+                            </td>
+                            <td class="text-center" v-else>
+                                0%
+                            </td>
+                            <td class="text-center">
+                                {{fee.monthReceivedRoomAmount}}
+                            </td>
+                            <td class="text-center">
+                                {{fee.curMonthOweFee}}
+                            </td>
+                            <td class="text-center" v-if="(fee.curReceivableFee)>0">
+                                {{((fee.monthReceivedRoomAmount)/(fee.curReceivableFee)*100).toFixed(2)}}%
+                            </td>
+                            <td class="text-center" v-else>
+                                0%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 分页 -->
+                <!-- <div class="row">
+            <div class="col-sm-4">
+                <span><vc:i18n name="总欠费：" namespace="dataReportFeeStatistics"></vc:i18n> </span><span>{{dataReportFeeStatisticsInfo.feeAmount}}</span>
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="dataReportFeeStatistics" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div> -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="费用项" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收费对象" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="周期(单位:月)" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="应收/实收(单位:元)" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="缴费方式" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="缴费起始段" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="缴费时间" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="收银员" namespace="staffDetailHisFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="状态" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="备注" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="操作" namespace="contractDetailHisRoomFee"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="feeDetail in contractDetailHisRoomFeeInfo.feeDetails">
+                    <td class="text-center">
+                        {{feeDetail.feeName}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.payerObjName}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.cycles}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.receivableAmount}}/{{feeDetail.receivedAmount}}<br>
+                        <div v-for="(item,index) in feeDetail.feeAccountDetailDtoList" :key="index"
+                            v-bind:value="item.state" v-if="item.state != '1001'">
+                            {{item.stateName}}: {{item.amount}}<br>
+                        </div>
+                        <div v-for="(item,index) in feeDetail.payFeeDetailDiscountDtoList" :key="index"
+                            v-bind:value="item.state">
+                            {{item.discountName}}: {{Math.abs(item.discountPrice)}}<br>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.primeRateName}}
+                    </td>
+
+                    <td class="text-center">
+                        {{vc.dateFormat(feeDetail.startTime)}}~</br>
+                        <span v-if="feeDetail.startTime >= feeDetail.endTime">
+                            {{vc.dateFormat(feeDetail.endTime)}}
+                        </span>
+                        <span v-else>
+                            {{vc.dateSubOneDay(vc.dateFormat(feeDetail.endTime),vc.dateFormat(feeDetail.endTime),feeDetail.feeFlag)}}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.createTime}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.cashierName || '-'}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.stateName}}
+                    </td>
+                    <td class="text-center">
+                        {{feeDetail.remark}}
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group"
+                            v-if="feeDetail.state=='1400' || feeDetail.state== 1200 || feeDetail.state== ''">
+                            <button class="btn-white btn btn-xs" v-on:click="_toRefundFee(feeDetail)">
+                                <vc:i18n name="详情" namespace="contractDetailHisRoomFee"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="12">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </table>
+        <vc:create namespace="contractDetailHisRoomFee" path="frame/paginationPlus"></vc:create>
+
+    </div>
+</div>

@@ -1,0 +1,424 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="reportCollectFees"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{reportCollectFeesInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportCollectFeesInfo.conditions.feeTypeCd"
+                                        @change="_selectConfig()">
+                                    <option selected value="">{{vc.i18n('请选择费用类型','reportCollectFees')}}</option>
+                                    <option v-for="(item,index) in reportCollectFeesInfo.feeTypeCds" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportCollectFeesInfo.conditions.configId">
+                                    <option selected value="">{{vc.i18n('请选择收费项','reportCollectFees')}}</option>
+                                    <option v-for="(item,index) in reportCollectFeesInfo.feeConfigDtos"
+                                            :key="index" :value="item.configId">
+                                        {{item.feeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportCollectFeesInfo.conditions.prepaymentState">
+                                    <option selected value="">{{vc.i18n('请选择费用状态','reportCollectFees')}}</option>
+                                    <option v-for="(item,index) in reportCollectFeesInfo.prepaymentStates"
+                                            :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportCollectFeesInfo.conditions.primeRate">
+                                    <option selected value="">{{vc.i18n('请选择支付方式','reportCollectFees')}}</option>
+                                    <option v-for="(item,index) in reportCollectFeesInfo.primeRates" :key="index"
+                                            :value="item.statusCd">{{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="reportCollectFees"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="reportCollectFees"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="reportCollectFeesInfo.moreCondition == true">
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择楼栋','reportCollectFees')"
+                                       v-model="reportCollectFeesInfo.conditions.floorName" class=" form-control">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_openChooseFloorMethod()">
+                                        <i class="fa fa-search"></i>
+                                        <span><vc:i18n name="选择" namespace="reportCollectFees"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportCollectFeesInfo.conditions.unitId">
+                                    <option selected value="">{{vc.i18n('请选择单元','reportCollectFees')}}</option>
+                                    <option v-for="(unit,index) in reportCollectFeesInfo.roomUnits" :key="index"
+                                            v-bind:value="unit.unitId">
+                                        {{unit.unitNum}}{{vc.i18n('单元','reportCollectFees')}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋号','reportCollectFees')"
+                                       class="form-control form-control-md"
+                                       v-model="reportCollectFeesInfo.conditions.roomNum">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportCollectFees')"
+                                       class="form-control form-control-md"
+                                       v-model="reportCollectFeesInfo.conditions.roomName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="reportCollectFeesInfo.moreCondition == true">
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用开始时间(开始)','reportCollectFees')"
+                                       name="startBeginTime"
+                                       v-model="reportCollectFeesInfo.conditions.startBeginTime"
+                                       class=" form-control startBeginTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用开始时间(结束)','reportCollectFees')"
+                                       name="startFinishTime"
+                                       v-model="reportCollectFeesInfo.conditions.startFinishTime"
+                                       class=" form-control startFinishTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用结束时间(开始)','reportCollectFees')"
+                                       name="endBeginTime"
+                                       v-model="reportCollectFeesInfo.conditions.endBeginTime"
+                                       class=" form-control endBeginTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择费用结束时间(结束)','reportCollectFees')"
+                                       name="endFinishTime"
+                                       v-model="reportCollectFeesInfo.conditions.endFinishTime"
+                                       class=" form-control endFinishTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="reportCollectFeesInfo.moreCondition == true">
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportCollectFees')"
+                                       name="startTime"
+                                       v-model="reportCollectFeesInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportCollectFees')"
+                                       name="endTime"
+                                       v-model="reportCollectFeesInfo.conditions.endTime"
+                                       class=" form-control endTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="收费状况表" namespace="reportCollectFees"></vc:i18n></span>
+                    </h5>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="收费状况"></span>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="导出" namespace="reportCollectFees"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用项" namespace="reportCollectFees"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="费用类型" namespace="reportCollectFees"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应缴金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="应收金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="未收金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="实收金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="欠费金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="优惠金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="减免金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="赠送金额" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="滞纳金" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房打折" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="空置房减免" namespace="reportCollectFees"></vc:i18n></span>(元)
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="收费率" namespace="reportCollectFees"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(fee,index) in reportCollectFeesInfo.fees">
+                            <td class="text-center">{{fee.feeName}}</td>
+                            <td class="text-center">{{fee.feeTypeCdName}}</td>
+                            <td class="text-center">{{fee.allPayableAmount}}</td>
+                            <td class="text-center">{{fee.allReceivableAmount}}</td>
+                            <td class="text-center">
+                                {{(fee.allReceivableAmount - fee.allReceivedAmount
+                                - fee.allPreferentialAmount - fee.allDeductionAmount
+                                - (-fee.allLateFee)
+                                - fee.allVacantHousingDiscount - fee.allVacantHousingReduction).toFixed(2)}}
+                            </td>
+                            <td class="text-center">{{fee.allReceivedAmount}}</td>
+                            <td class="text-center">{{fee.allOweAmount}}</td>
+                            <td class="text-center">{{fee.allPreferentialAmount}}</td>
+                            <td class="text-center">{{fee.allDeductionAmount}}</td>
+                            <td class="text-center">{{fee.allGiftAmount}}</td>
+                            <td class="text-center">{{fee.allLateFee}}</td>
+                            <td class="text-center">{{fee.allVacantHousingDiscount}}</td>
+                            <td class="text-center">{{fee.allVacantHousingReduction}}</td>
+                            <td class="text-center">
+                                {{(((fee.allReceivableAmount -(fee.allReceivableAmount - fee.allReceivedAmount
+                                - fee.allPreferentialAmount - fee.allDeductionAmount
+                                - (-fee.allLateFee)
+                                - fee.allVacantHousingDiscount -
+                                fee.allVacantHousingReduction))/fee.allReceivableAmount)*100).toFixed(2)}}%
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="21">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <span class="col-md-1 margin-left">
+                            <div class="row">
+                                <b><span><vc:i18n name="小计" namespace="reportCollectFees"></vc:i18n></span></b>
+                            </div>
+                            <div class="row">
+                                <b><span><vc:i18n name="大计" namespace="reportCollectFees"></vc:i18n></span></b>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="应缴" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalPayableAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="应缴" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allPayableAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="应收" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allReceivableAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="实收" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allReceivedAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="欠费" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalOweAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="欠费" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allOweAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="优惠" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allPreferentialAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="减免" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allDeductionAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="赠送" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allGiftAmount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalLateFee}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="滞纳金" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allLateFee}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房打折" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allVacantHousingDiscount}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                        <span class="col-md-1">
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.totalVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                            <div class="row">
+                                <span><vc:i18n name="空置房减免" namespace="reportCollectFees"></vc:i18n></span>: {{reportCollectFeesInfo.allVacantHousingReduction}}
+                                <span><vc:i18n name="元" namespace="reportCollectFees"></vc:i18n></span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                <span><vc:i18n name="未收金额" namespace="reportFeeDetail"></vc:i18n></span>：
+                                未收金额 = 应收金额 - 实收金额 - 优惠金额 - 减免金额 + 滞纳金 - 空置房打折金额 - 空置房减免金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="优惠金额" namespace="reportFeeDetail"></vc:i18n></span>：打折规则和打折无欠费规则下产生的优惠金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="减免金额" namespace="reportFeeDetail"></vc:i18n></span>：减免规则下产生的减免金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="赠送金额" namespace="reportFeeDetail"></vc:i18n></span>：赠送规则下赠送月份应缴的金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="滞纳金" namespace="reportFeeDetail"></vc:i18n></span>：违约滞纳金规则下产生的违约金额，需额外缴纳的滞纳金
+                            </div>
+                            <div>
+                                <span><vc:i18n name="空置房打折" namespace="reportFeeDetail"></vc:i18n></span>：空置房打折规则下产生的优惠金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="空置房减免" namespace="reportFeeDetail"></vc:i18n></span>：空置房减免规则下产生的减免金额
+                            </div>
+                            <div>
+                                <span><vc:i18n name="收费率" namespace="reportFeeDetail"></vc:i18n></span>：(应收金额 -
+                                未收金额)/应收金额
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/searchFloor" emitChooseFloor="reportCollectFees" emitLoadData="xx"></vc:create>
+</div>

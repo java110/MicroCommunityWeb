@@ -1,0 +1,137 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入标准名称','tempCarFeeConfigManage')"
+                                       v-model="tempCarFeeConfigManageInfo.conditions.feeName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入停车场','tempCarFeeConfigManage')"
+                                       v-model="tempCarFeeConfigManageInfo.conditions.areaNum" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="tempCarFeeConfigManageInfo.conditions.carType">
+                                <option selected value="">{{vc.i18n('请选择车辆类型','tempCarFeeConfigManage')}}</option>
+                                <option v-for="(item,index) in tempCarFeeConfigManageInfo.carTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryTempCarFeeConfigMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetTempCarFeeConfigMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="收费信息" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddTempCarFeeConfigModal()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="标准" namespace="tempCarFeeConfigManage"></vc:i18n></span>ID
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="标准名称" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="停车场" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="车辆类型" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="收费规则" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="开始时间" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="结束时间" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="tempCarFeeConfig in tempCarFeeConfigManageInfo.tempCarFeeConfigs">
+                            <td class="text-center">{{tempCarFeeConfig.configId}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.feeName}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.areaNum}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.carTypeName}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.ruleName}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.startTime}}</td>
+                            <td class="text-center">{{tempCarFeeConfig.endTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditTempCarFeeConfigModel(tempCarFeeConfig)">
+                                        <span><vc:i18n name="修改" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteTempCarFeeConfigModel(tempCarFeeConfig)">
+                                        <span><vc:i18n name="删除" namespace="tempCarFeeConfigManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addTempCarFeeConfig" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editTempCarFeeConfig"></vc:create>
+    <vc:create path="property/deleteTempCarFeeConfig"></vc:create>
+</div>

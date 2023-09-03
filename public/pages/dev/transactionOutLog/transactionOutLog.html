@@ -1,0 +1,147 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in transactionOutLogInfo.logTypes" :key="index" @click="swatchLogType(item)" :class="{'vc-node-selected':transactionOutLogInfo.conditions.logType == item.value}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件" namespace="transactionOutLog"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请输入开始时间','transactionOutLog')" v-model="transactionOutLogInfo.conditions.startTime" class=" form-control startTime">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请输入结束时间','transactionOutLog')" v-model="transactionOutLogInfo.conditions.endTime" class=" form-control endTime">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryLogMethod()"><vc:i18n name="查询" namespace="transactionOutLog"></vc:i18n>
+                            </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="调用三方日志" namespace="transactionOutLog"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;"></div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="流水" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="地址" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="请求头" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="请求报文" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="返回头" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="返回报文" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="耗时" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="状态" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="调用时间" namespace="transactionOutLog"></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="log in transactionOutLogInfo.logs">
+                                        <td class="text-center">
+                                            <div class="textAuto" style="width: 200px;">
+                                                {{log.logId}}
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;"><span>{{log.requestUrl}}</span></div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.requestHeader}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.requestMessage}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.responseHeader}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.responseMessage}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.costTime}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.state=='F'?'失败':'成功'}}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{log.createTime}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- 分页 -->
+                            <div class="row margin-top-xs">
+                                <div class="col-sm-7">
+                                    <div>温馨提示：</div>
+                                    <div>如果没有日志记录，请确认配置》配置中心下系统开关中，将名称为《调用外部系统记录日志》的值是否改为ON，并在缓存管理中刷新缓存</div>
+                                </div>
+                                <div class="col-sm-5 float-right">
+                                    <vc:create path="frame/pagination"></vc:create>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+    <div>
+        <input v-model="chooseEquipmentAccountInfo.curEqu.machineName" readonly @focus="_changeEqu()" type="text" :placeholder="vc.i18n('必填，请选择设备','chooseSpaceTree')" class="form-control">
+    </div>
+    <div v-show="chooseEquipmentAccountInfo.selectFlag" style="width: 100%;">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-7 m-b-xs">
+            <vc:create path="frame/chooseMachineTypeTree" callBackListener="chooseEquipmentAccount"></vc:create>
+        </div>
+        <div class="col-sm-5">
+            <div class="input-group">
+                <input :placeholder="vc.i18n('输入设备名称','chooseEquipmentAccount')" type="text"
+                    v-model="chooseEquipmentAccountInfo._currentEquipmentAccountName"
+                    class="form-control form-control-sm">
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-sm btn-primary"
+                        v-on:click="queryEquipmentAccounts()">
+                        <span>
+                            <vc:i18n name="查询"></vc:i18n>
+                        </span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="" style="margin-top:15px">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center"><span>
+                            <vc:i18n name='设备名称' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='设备编码' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='设备品牌' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='设备型号' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='位置详情' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='首次启用时间' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='保修截止日期' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='使用年限（月）' namespace='chooseequipmentAccount'>
+                            </vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='重要等级' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='使用状态' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='采购价格' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='资产净值' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='使用部门' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='使用人' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='责任部门' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='责任人' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <!-- <th class="text-center"><span>
+                            <vc:i18n name='备注' namespace='chooseequipmentAccount'></vc:i18n>
+                        </span> </th> -->
+                    <th class="text-center"><span>
+                            <vc:i18n name='操作'></vc:i18n>
+                        </span></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="equipmentAccount in chooseEquipmentAccountInfo.equipmentAccounts">
+                    <td class="text-center">{{equipmentAccount.machineName}}</td>
+                    <td class="text-center">{{equipmentAccount.machineCode}}</td>
+                    <td class="text-center">{{equipmentAccount.brand}}</td>
+                    <td class="text-center">{{equipmentAccount.model}}</td>
+                    <!-- <td class="text-center">{{equipmentAccount.locationDetail}}</td> -->
+                    <!-- <td class="text-center">{{equipmentAccount.firstEnableTime}}</td>
+                    <td class="text-center">{{equipmentAccount.warrantyDeadline}}</td>
+                    <td class="text-center">{{equipmentAccount.usefulLife}}</td>
+                    <td class="text-center">{{equipmentAccount.importanceLevel}}</td>
+                    <td class="text-center">{{equipmentAccount.state}}</td>
+                    <td class="text-center">{{equipmentAccount.purchasePrice}}</td>
+                    <td class="text-center">{{equipmentAccount.netWorth}}</td>
+                    <td class="text-center">{{equipmentAccount.useOrgOd}}</td>
+                    <td class="text-center">{{equipmentAccount.useUserId}}</td>
+                    <td class="text-center">{{equipmentAccount.chargeOrgId}}</td>
+                    <td class="text-center">{{equipmentAccount.chargeUseId}}</td>
+                    <td class="text-center">{{equipmentAccount.remark}}</td> -->
+                    <td>
+                        <button class="btn btn-primary btn-xs"
+                            v-on:click="chooseEquipmentAccount(equipmentAccount)">
+                            <span>
+                                <vc:i18n name="选择"></vc:i18n>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+            <!-- 分页 -->
+            <div class="row margin-top-xs">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-9 float-right">
+                    <vc:create  namespace="chooseEquipmentAccount" path="frame/paginationPlus"></vc:create>
+                </div>
+            </div>
+    </div>
+</div>

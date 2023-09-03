@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="钥匙申请信息" namespace="viewApplicationKeyInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewApplicationKeyInfo.index != 2" class="btn btn-primary btn-sm"
+                        style="margin-right:10px;" v-on:click="_openSelectApplicationKeyInfoModel()">
+                        <i class="fa fa-search"></i> <span><vc:i18n name="选择钥匙申请" namespace="viewApplicationKeyInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewApplicationKeyInfo.index != 2" class="btn btn-primary btn-sm"
+                        v-on:click="_openAddApplicationKeyInfoModel()">
+                        <i class="fa fa-plus"></i> <span><vc:i18n name="添加钥匙申请" namespace="viewApplicationKeyInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="姓名" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="手机号" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.tel}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="用户类型" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.typeCd}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="性别" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.sex}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="年龄" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.age}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="身份证号" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.idCard}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="开始时间" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.startTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label"><span><vc:i18n name="结束时间" namespace="viewApplicationKeyInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewApplicationKeyInfo.endTime}}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addApplicationKey" callBackListener="viewApplicationKeyInfo"
+        callBackFunction="chooseApplicationKey"></vc:create>
+
+
+    <vc:create path="property/chooseApplicationKey" emitChooseApplicationKey="viewApplicationKeyInfo"
+        emitLoadData="viewApplicationKeyInfo"></vc:create>
+</div>

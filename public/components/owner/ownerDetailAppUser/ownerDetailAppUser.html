@@ -1,0 +1,88 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <!-- <th class="text-center">
+                        <vc:i18n name="绑定ID" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="业主ID" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="小区ID" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th> -->
+                    <th class="text-center">
+                        <vc:i18n name="小区名称" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="关联业主" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="身份证" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="手机号" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="申请时间" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="手机端类型" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="ownerDetailAppUser"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="appUser in ownerDetailAppUserInfo.appUsers">
+                    <!-- <td class="text-center">{{appUser.appUserId}}</td>
+                    <td class="text-center">{{appUser.memberId}}</td>
+                    <td class="text-center">{{appUser.communityId}}</td> -->
+                    <td class="text-center">{{appUser.communityName}}</td>
+                    <td class="text-center">{{appUser.appUserName}}</td>
+                    <td class="text-center">{{appUser.idCard}}</td>
+                    <td class="text-center">{{appUser.link}}</td>
+                    <td class="text-center">{{appUser.stateName}}</td>
+                    <td class="text-center">{{appUser.createTime}}</td>
+                    <td class="text-center">{{appUser.appTypeName}}</td>
+                    <td class="text-center">
+                        <div class="btn-group" v-if="appUser.state == '10000'">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openAuditAppUserBindingOwnerModel(appUser)">
+                                <vc:i18n name="审核"></vc:i18n>
+                            </button>
+                        </div>
+                        <button class="btn-white btn btn-xs" v-on:click="_deleteAppUserBindingOwnerModel(appUser)">
+                            <vc:i18n name="解绑" namespace="ownerDetailAppUser"></vc:i18n>
+                        </button>
+                        <button class="btn-white btn btn-xs" v-on:click="_resetUserPwdModel(appUser)">
+                            <vc:i18n name="重置密码" namespace="ownerDetailAppUser"></vc:i18n>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailAppUser" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="common/audit" callBackListener="ownerDetailAppUser" callBackFunction="auditMessage">
+    </vc:create>
+    <vc:create path="property/deleteAppUserBindingOwner"></vc:create>
+    <vc:create path="frame/resetStaffPwd"></vc:create>
+</div>

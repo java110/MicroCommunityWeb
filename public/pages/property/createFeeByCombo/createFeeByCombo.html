@@ -1,0 +1,83 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{createFeeByComboInfo.payerObjName}}
+                        <span><vc:i18n name="创建费用（根据费用套餐创建）" namespace="createFeeByCombo"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_chooseFeeCombo()">
+                            <i class="fa fa-search"></i>选择费用套餐
+                        </button>
+                        <button type="button" class="btn btn-info btn-sm" v-on:click="_goBack()">
+                            <i class="fa fa-close"></i>返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <input type="checkbox" class="i-checks" @click="checkAll($event)">
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用类型" namespace="createFeeByCombo"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用项目" namespace="createFeeByCombo"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用标识" namespace="createFeeByCombo"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计费起始时间" namespace="createFeeByCombo"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="计费结束时间" namespace="createFeeByCombo"></vc:i18n>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="feeConfig in createFeeByComboInfo.feeConfigs">
+                                <td class="text-center">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="feeConfig.configId" v-model="createFeeByComboInfo.selectConfigIds">
+                                </td>
+                                <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
+                                <td class="text-center">{{feeConfig.feeName}}</td>
+                                <td class="text-center">{{feeConfig.feeFlagName}}</td>
+                                <td class="text-center">
+                                    <input v-model="feeConfig.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','createFeeByCombo')" class="form-control" :class="'startTime'+feeConfig.configId">
+                                </td>
+                                <td class="text-center" v-if="feeConfig.feeFlag != '1003006'">
+                                    <input v-model="feeConfig.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','createFeeByCombo')" class="form-control" :class="'endTime'+feeConfig.configId">
+                                </td>
+                                <td class="text-center" v-else>
+                                    费用项结束时间
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
+            <button type="button" class="btn  btn-primary  btn-lg btn-block" style="margin-left:10px;" v-on:click="_createFee()">
+                <vc:i18n name="创建" namespace="createFeeByCombo"></vc:i18n>
+            </button>
+        </div>
+    </div>
+    <vc:create path="property/chooseFeeCombo" emitChooseFeeCombo="createFeeByCombo" emitLoadData="createFeeByCombo">
+    </vc:create>
+</div>

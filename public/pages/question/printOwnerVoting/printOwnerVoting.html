@@ -1,0 +1,90 @@
+<div>
+    <div class="text-center">
+        <h1>{{printOwnerVotingInfo.qaName}}</h1>
+    </div>
+    <div>
+        <div v-html="printOwnerVotingInfo.content"></div>
+    </div>
+
+    <div>
+        <table class="table vc-table-border margin-top" style="color:#000;font-size:14px">
+            <thead>
+                <tr>
+                    <th class="text-center" width="200px">
+                        <div style="max-width: 200px;">
+                            <vc:i18n name="房间" namespace="printOwnerVoting"></vc:i18n>
+                        </div>
+                    </th>
+                    <template v-for="(item,index) in printOwnerVotingInfo.titleValues">
+                        <th scope="col" class="text-center">
+                           {{item.qaValue}}
+                        </th>
+                    </template>
+                    <th width="200px" class="text-center">
+                        <div style="max-width: 200px;">
+                            <vc:i18n name="房间" namespace="printOwnerVoting"></vc:i18n>
+                        </div>
+                    </th>
+                    <template v-for="(item,index) in printOwnerVotingInfo.titleValues">
+                        <th scope="col" class="text-center">
+                           {{item.qaValue}}
+                        </th>
+                    </template>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(vote,index) in printOwnerVotingInfo.userVotes" class="vc-table-border" v-if="index % 2 == 0">
+
+                    <td class="text-center">
+                        <!-- <div style="max-width: 200px;">{{vote.roomName}}({{vote.ownerName}})</div> -->
+                        <div style="max-width: 200px;">{{vote.roomName}}</div>
+                    </td>
+                    <template v-for="(item,tIndex) in printOwnerVotingInfo.titleValues">
+                            <td class="text-center">
+                                {{vote[item.qaValue]}}
+                            </td>
+                        </template>
+                    <td class="text-center">
+                        <!-- <div style="max-width: 200px;" v-if="printOwnerVotingInfo.userVotes.length > index">
+                            {{printOwnerVotingInfo.userVotes[index+1].roomName}}({{printOwnerVotingInfo.userVotes[index+1].ownerName}})
+                        </div> -->
+                        <div style="max-width: 200px;" v-if="printOwnerVotingInfo.userVotes.length > index">
+                            {{printOwnerVotingInfo.userVotes[index+1].roomName}}
+                        </div>
+                    </td>
+                    <template v-for="(item,tIndex) in printOwnerVotingInfo.titleValues">
+                            <td class="text-center">
+                                <div v-if="printOwnerVotingInfo.userVotes.length > index">
+                                    {{printOwnerVotingInfo.userVotes[index+1][item.qaValue]}}
+                                </div>
+                            </td>
+                        </template>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <span>投票总数：{{printOwnerVotingInfo.voteCount}}</span>；
+        <span>已投票：{{printOwnerVotingInfo.votedCount}}</span>；
+        <span v-for="(item,tIndex) in printOwnerVotingInfo.titleValues">{{item.qaValue}}: {{item.personCount}}人；</span>
+    </div>
+    <div class="text-right margin-top margin-right">
+        {{vc.getCurrentCommunity().name}}
+    </div>
+    <div class="text-right margin-top-sm margin-right">
+        {{vc.dateFormat(new Date())}}
+    </div>
+
+    <div id="print-btn">
+        <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+            <i class="fa fa-check"></i>&nbsp;打印
+        </button>
+        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printOweFee"></vc:i18n></span>
+        </button>
+    </div>
+
+</div>

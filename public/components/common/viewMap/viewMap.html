@@ -1,0 +1,7 @@
+<div id="viewMap" :style="{ visibility: viewMapInfo.showMap }">
+    <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background-color: #fff;">
+        <div id="qqmapcontainer" style="width: 1200px;height: 400px; background-color: antiquewhite;"></div>
+        <span v-on:click="_closeMap()" class="fa fa-remove "
+              style="position: absolute;right: 20px;top: 20px;font-size: 20px;color:red;z-index: 9999;"></span>
+    </div>
+</div>

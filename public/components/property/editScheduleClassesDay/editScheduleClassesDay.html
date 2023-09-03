@@ -1,0 +1,47 @@
+<div id="editScheduleClassesDayModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="状态" namespace="editScheduleClassesDay"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editScheduleClassesDayInfo.workday" @change="_changeScheduleClassesDayState()">
+                                        <option value="2002">休息</option>
+                                        <option :value="item.classesId" v-for="(item,index) in editScheduleClassesDayInfo.classess">{{item.name}}{{_getClassTime(item)}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editScheduleClassesDayInfo.workday != '2002'" v-for="(item,index) in editScheduleClassesDayInfo.times">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name='上班时间' namespace='editScheduleClassesDay'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="item.startTime" type="text" :placeholder="vc.i18n('必填，请填写上班时间','editScheduleClassesDay')" class="form-control" />
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name='下班时间' namespace='editScheduleClassesDay'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="item.endTime" type="text" :placeholder="vc.i18n('必填，请填写下班时间','editScheduleClassesDay')" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button type="button" class="btn btn-primary float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <span><vc:i18n name="提交"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{listContractFeeInfo.contractName}}<span><vc:i18n name="费用" namespace="listContractFee"></vc:i18n></span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openTempImportContractFeeModal()">
+                            临时收费
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_openRoomCreateFeeAddModal()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
+                            创建费用
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_toOwnerPayFee()" v-if="listContractFeeInfo.hireOwnerFee == '0'">
+                            欠费缴费
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_goBack()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span><vc:i18n name="费用项目" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用标识" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="费用类型" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="应收金额" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="建账时间" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="应收时间段" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="说明" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="状态" namespace="listContractFee"></vc:i18n></span></th>
+                                <th class="text-center"><span><vc:i18n name="操作" namespace="listContractFee"></vc:i18n></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="fee in listContractFeeInfo.fees">
+                                <td class="text-center">{{fee.feeName}}</td>
+                                <td class="text-center">{{fee.feeFlagName}}</td>
+                                <td class="text-center">{{fee.feeTypeCdName}}</td>
+                                <td class="text-center">{{fee.amountOwed}}</td>
+                                <td class="text-center">{{fee.startTime}}</td>
+                                <td class="text-center">{{_getEndTime(fee)}}~</br>{{_getDeadlineTime(fee)}}</td>
+                                <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'">
+                                    <div><span><vc:i18n name="上期度数" namespace="listContractFee"></vc:i18n></span>：{{fee.preDegrees}}</div>
+                                    <div><span><vc:i18n name="本期度数" namespace="listContractFee"></vc:i18n></span>：{{fee.curDegrees}}</div>
+                                    <div><span><vc:i18n name="单价" namespace="listContractFee"></vc:i18n></span>：{{fee.mwPrice?fee.mwPrice:fee.squarePrice}}</div>
+                                    <div><span><vc:i18n name="附加费" namespace="listContractFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                                    <div><span><vc:i18n name="用量" namespace="listContractFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390006')}}</div>
+                                    <div><span><vc:i18n name="单价" namespace="listContractFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
+                                    <div><span><vc:i18n name="附加费" namespace="listContractFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                                    <div><span><vc:i18n name="算法" namespace="listContractFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390005')}}</div>
+                                    <div><span><vc:i18n name="用量" namespace="listContractFee"></vc:i18n></span>：{{_getAttrValue(fee.feeAttrs,'390003')}}</div>
+                                </td>
+                                <td class="text-center" width="150" v-else-if="fee.computingFormula == '4004'">
+                                    <div><span><vc:i18n name="费用根据实际情况而定" namespace="listContractFee"></vc:i18n></span></div>
+                                </td>
+                                <td class="text-center" v-else>
+                                    <!-- <div><span><vc:i18n name="面积" namespace="listContractFee"></vc:i18n></span>：{{listContractFeeInfo.builtUpArea}}</div> -->
+                                    <div><span><vc:i18n name="单价" namespace="listContractFee"></vc:i18n></span>：{{fee.squarePrice}}</div>
+                                    <div v-if="fee.feeFlag == '1003006'"><span><vc:i18n name="附加费" namespace="listContractFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                                    <div v-else><span><vc:i18n name="固定费" namespace="listContractFee"></vc:i18n></span>：{{fee.additionalAmount}}</div>
+                                </td>
+                                <td class="text-center">{{fee.stateName}}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)"><span><vc:i18n name="缴费" namespace="listContractFee"></vc:i18n></span>
+                                    </button>
+                                    <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)"><span><vc:i18n name="缴费历史" namespace="listContractFee"></vc:i18n></span></button>
+                                    <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')" v-on:click="_deleteFee(fee)"><span><vc:i18n name="取消费用" namespace="listContractFee"></vc:i18n></span>
+                                    </button>
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502021070488970005')" v-on:click="_finishFee(fee)"><span><vc:i18n name="手工结束" namespace="listContractFee"></vc:i18n></span>
+                                    </button>
+                                    <button class="btn btn-link btn-xs" v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')" v-on:click="_editFee(fee)"><span><vc:i18n name="费用变更" namespace="listContractFee"></vc:i18n></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div> 注意： 应收结束时间 “-” 表示未到应收时间 或 收费已结束</div>
+                            <div>应收金额为-1 一般为费用项公式设置出错请检查</div>
+                        </div>
+                        <div class="col-sm-7 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/contractCreateFeeAdd"></vc:create>
+    <vc:create path="property/tempImportRoomFee"></vc:create>
+    <vc:create path="property/finishFee"></vc:create>
+</div>

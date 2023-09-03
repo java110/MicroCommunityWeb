@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="修改水电表" namespace="addAccessControlWhite"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+            <i class="fa fa-close"></i>返回
+          </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='名称' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <input v-model="editMeterMachineInfo.machineName" type="text" :placeholder="vc.i18n('必填，请填写名称','editMeterMachine')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='表号' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <input v-model="editMeterMachineInfo.address" type="text" :placeholder="vc.i18n('必填，请填写表号','editMeterMachine')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='表类型' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.meterType">
+              <option selected disabled value="">{{vc.i18n('必填，请选择表类型','editMeterMachine')}}</option>
+              <option :value="item.typeId" v-for="(item,index) in editMeterMachineInfo.meterTypes">{{item.typeName}}</option>
+            </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='模式' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.machineModel">
+              <option selected disabled value="">{{vc.i18n('必填，请选择模式','editMeterMachine')}}</option>
+              <option value="1001">{{vc.i18n('充值模式','editMeterMachine')}}</option>
+              <option value="2002">{{vc.i18n('抄表模式','editMeterMachine')}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="form-group row" v-if="editMeterMachineInfo.machineModel == '2002'">
+                    <label class="col-sm-2 col-form-label text-right">
+            <vc:i18n name='抄表日' namespace='editMeterMachine'></vc:i18n>
+          </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.readDay">
+                <option selected disabled value="">{{vc.i18n('必填，请选择抄表日','addMeterMachine')}}</option>
+                <option :value="day" v-for="day in 31" >{{day}}日</option>
+              </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+            <vc:i18n name='抄表时' namespace='editMeterMachine'></vc:i18n>
+          </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.readHours">
+                <option selected disabled value="">{{vc.i18n('必填，请选择抄表时','addMeterMachine')}}</option>
+                <option :value="hours-1" v-for="hours in 24" >{{hours-1}}时</option>
+              </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='房屋' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-3">
+                        <input v-model="editMeterMachineInfo.roomName" type="text" disabled :placeholder="vc.i18n('必填，请选择房屋','editMeterMachine')" class="form-control">
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_selectRoom()">选择</button>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='费用项' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.feeConfigId">
+              <option selected disabled value="">{{vc.i18n('必填，请选择费用项','editMeterMachine')}}</option>
+              <option :value="item.configId" v-for="(item,index) in editMeterMachineInfo.feeConfigs" v-if="editMeterMachineInfo.machineModel == '1001' && item.computingFormula =='6006'">{{item.feeName}}</option>
+              <option :value="item.configId" v-for="(item,index) in editMeterMachineInfo.feeConfigs" v-if="editMeterMachineInfo.machineModel == '2002' && item.computingFormula =='5005'">{{item.feeName}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='表厂家' namespace='editMeterMachine'></vc:i18n>
+            </span></label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="editMeterMachineInfo.implBean" @change="_changeFactory()">
+              <option selected disabled value="">{{vc.i18n('必填，请选择门禁厂家','editMeterMachine')}}</option>
+              <option :value="item.factoryId" v-for="(item,index) in editMeterMachineInfo.factorys">{{item.factoryName}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="form-group row" v-for="(item,index) in editMeterMachineInfo.specs">
+                    <label class="col-sm-2 col-form-label  text-right">{{item.specName}}</label>
+                    <div class="col-sm-4">
+                        <input v-model.trim="item.specValue" type="text" :placeholder="item.remark" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
+            <span>
+              <vc:i18n name="返回"></vc:i18n>
+            </span>
+          </button>
+                    <button class="btn btn-primary" type="button" v-on:click="saveMeterMachineInfo()"><i
+              class="fa fa-check"></i>&nbsp;提交
+          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

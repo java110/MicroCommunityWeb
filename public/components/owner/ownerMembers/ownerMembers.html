@@ -1,0 +1,93 @@
+<div id="ownerMembersModel" class="modal fade" role="dialog" aria-labelledby="ownerMembersModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ownerMembersModelLabel">
+                    <span><vc:i18n name="业主成员" namespace="ownerMembers"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="名称" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="性别" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="年龄" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="类型" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="身份证" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="联系方式" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="家庭住址" namespace="ownerMembers"></vc:i18n></span>
+                                        </th>
+                                        <!-- <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="ownerMembers"></vc:i18n></span>
+                                        </th> -->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="member in ownerMembersInfo.members">
+                                        <td class="text-center">
+                                            {{member.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.sex == 0 ? '男' : '女'}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.age}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.ownerTypeName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.idCard}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.link}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{member.address}}
+                                        </td>
+                                        <!-- <td class="text-center">
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)">
+                                                <span><vc:i18n name="选择" namespace="ownerMembers"></vc:i18n></span>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="6">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                                <vc:create namespace="ownerMembers" path="frame/paginationPlus"></vc:create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>
+                    <span>系统配置</span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditSystemInfoInfoModel()">
+                        <span class="fa fa-edit"></span>修改
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>标题名称</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.systemTitle}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>副标题</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.subSystemTitle}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>简写名称</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.systemSimpleTitle}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>公司名称</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.companyName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>logo地址</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.logoUrl}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>静态url</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.imgUrl}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>默认小区编号</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.defaultCommunityId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>业主标题</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.ownerTitle}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>物业手机标题</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.propertyTitle}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>qq地图key</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.qqMapKey}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <span>商城地址</span>：
+                            </label>
+                            <label class="">{{systemInfoManageInfo.mallUrl}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="frame/editSystemInfo"></vc:create>
+</div>

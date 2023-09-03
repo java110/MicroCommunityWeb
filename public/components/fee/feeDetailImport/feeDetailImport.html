@@ -1,0 +1,66 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="楼栋编号" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="单元编号" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="房屋编号" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用名称" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="开始时间" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="结束时间" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="总金额" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="备注" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="feeDetailImport"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="detail in feeDetailImportInfo.importFeeDetails">
+                    <td class="text-center">{{detail.floorNum}}</td>
+                    <td class="text-center">{{detail.unitNum}}</td>
+                    <td class="text-center">{{detail.roomNum}}</td>
+                    <td class="text-center">{{detail.feeName}}</td>
+                    <td class="text-center">{{detail.startTime}}</td>
+                    <td class="text-center">{{detail.endTime}}</td>
+                    <td class="text-center">{{detail.amount}}</td>
+                    <td class="text-center">{{detail.remark}}</td>
+                    <td class="text-center">
+                        <span class="badge badge-success" v-if="detail.state == '1000'"><span>
+                                <vc:i18n name="导入成功" namespace="feeDetailImport"></vc:i18n>
+                            </span></span>
+                        <span class="badge badge-danger" v-else><span>
+                                <vc:i18n name="导入失败" namespace="feeDetailImport"></vc:i18n>
+                            </span></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailImport" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

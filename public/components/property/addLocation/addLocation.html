@@ -1,0 +1,131 @@
+<div id="addLocationModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addLocation"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="位置名称" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addLocationInfo.locationName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写位置名称','addLocation')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="位置类型" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addLocationInfo.locationType"
+                                            @change="_changeLocationType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择位置类型','addLocation')}}
+                                        </option>
+                                        <option value="1000">{{vc.i18n('小区','addLocation')}}</option>
+                                        <option value="6000">{{vc.i18n('楼栋','addLocation')}}</option>
+                                        <option value="2000">{{vc.i18n('单元','addLocation')}}</option>
+                                        <option value="4000">{{vc.i18n('岗亭','addLocation')}}</option>
+                                        <option value="5000">{{vc.i18n('部门','addLocation')}}</option>
+                                        <option value="7000">{{vc.i18n('停车场','addLocation')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addLocationInfo.locationType == '2000' 
+                            || addLocationInfo.locationType == '3000' 
+                            || addLocationInfo.locationType == '6000' ">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属楼栋" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/floorSelect2" parentModal="addLocationModel"
+                                               namespace="addLocation">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row"
+                                 v-show="addLocationInfo.locationType == '2000' || addLocationInfo.locationType == '3000'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属单元" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/unitSelect2" parentModal="addLocationModel"
+                                               callBackListener="addLocation" callBackFunction="notify"
+                                               namespace="addLocation">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row" v-show="addLocationInfo.locationType == '3000'  ">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属房屋" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/roomSelect2" parentModal="addLocationModel"
+                                    callBackListener="addLocation" callBackFunction="notify" namespace="addLocation">
+                                    </vc:create>
+                                </div>
+                            </div> -->
+                            <div class="form-group row" v-show="addLocationInfo.locationType == '4000'  ">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属岗亭" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/parkingBoxSelect2" parentModal="addLocationModel"
+                                               callBackListener="addLocation" callBackFunction="notify"
+                                               namespace="addLocation">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addLocationInfo.locationType == '7000'  ">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属停车场" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/parkingAreaSelect2" parentModal="addLocationModel"
+                                               callBackListener="addLocation" callBackFunction="notify"
+                                               namespace="addLocation">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-show="addLocationInfo.locationType == '5000'  ">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="归属部门" namespace="addLocation"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <!-- <div class="col-sm-6">
+                                            <vc:create path="frame/orgSelect2" parentModal="addLocationModel"
+                                            callBackListener="addLocation" callBackFunction="notify"
+                                            namespace="addLocation">
+                                            </vc:create>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <vc:create path="frame/departmentSelect2" parentModal="addLocationModel"
+                                            callBackListener="addLocation" callBackFunction="notify"
+                                            namespace="addLocation">
+                                            </vc:create>
+                                        </div> -->
+                                    <vc:create path="frame/chooseOrgTree2" callBackListener="addLocation"></vc:create>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveLocationInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal"><span>
+                                    <vc:i18n name="取消" namespace="addLocation"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

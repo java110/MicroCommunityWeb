@@ -1,0 +1,82 @@
+<div id="addDataPrivilegeStaffModel" class="modal fade" role="dialog" aria-labelledby="addDataPrivilegeStaffModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="addDataPrivilegeStaffModelLabel">
+                    <span><vc:i18n name="员工" namespace="addDataPrivilegeStaff"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+                                <div class="col-sm-7 m-b-xs"></div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('输入员工名称','addDataPrivilegeStaff')" type="text"
+                                               v-model="addDataPrivilegeStaffInfo.staffName"
+                                               class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="queryStaffs()">
+                                                    <span><vc:i18n name="查询" namespace="addDataPrivilegeStaff"></vc:i18n></span>
+                                                </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <input type="checkbox" class="i-checks " @click="checkStaffAll($event)"
+                                                   id="staffQuan">
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工编号" namespace="addDataPrivilegeStaff"></vc:i18n></span></th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工名称" namespace="addDataPrivilegeStaff"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="员工地址" namespace="addDataPrivilegeStaff"></vc:i18n></span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="staff in addDataPrivilegeStaffInfo.staffs">
+                                        <td class="text-center">
+                                            <input type="checkbox" class="i-checks checkItem"
+                                                   v-bind:value="staff.userId" v-model="addDataPrivilegeStaffInfo.selectStaffs">
+                                        </td>
+                                        <td class="text-center">{{staff.userId}}</td>
+                                        <td class="text-center">{{staff.name}}</td>
+                                        <td class="text-center">{{staff.address}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- 分页 -->
+                                <vc:create namespace="addDataPrivilegeStaff" path="frame/paginationPlus"></vc:create>
+                                <div class="ibox-content" v-if="addDataPrivilegeStaffInfo.staffs.length > 0">
+                                    <button class="btn btn-primary float-right" type="button"
+                                            v-on:click="addDataPrivilegeStaff()">
+                                        <i class="fa fa-check"></i>&nbsp;提交
+                                    </button>
+                                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                            data-dismiss="modal">
+                                        <span><vc:i18n name="取消" namespace="addDataPrivilegeStaff"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

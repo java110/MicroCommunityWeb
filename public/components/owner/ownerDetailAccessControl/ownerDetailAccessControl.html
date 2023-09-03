@@ -1,0 +1,74 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="设备编码" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="设备名称" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="对象类型" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="对象名称" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="指令" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="同步时间" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="ownerDetailAccessControl"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="machineTranslate in ownerDetailAccessControlInfo.machineTranslates">
+                    <td class="text-center">{{machineTranslate.machineCode}}</td>
+                    <td class="text-center">{{machineTranslate.machineName}}</td>
+                    <td class="text-center">{{machineTranslate.typeCdName}}</td>
+                    <td class="text-center">{{machineTranslate.objName}}</td>
+                    <td class="text-center">{{machineTranslate.machineCmdName}}</td>
+                    <td class="text-center">{{machineTranslate.stateName}}</td>
+                    <td class="text-center">{{machineTranslate.remark}}</td>
+                    <td class="text-center">{{machineTranslate.updateTime}}</td>
+                    <td class="text-center">
+                        <div class="btn-group" v-if="machineTranslate.state != '20000'">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openEditMachineTranslateModel(machineTranslate)">
+                                <span>
+                                    <vc:i18n name="重新同步" namespace="ownerDetailAccessControl"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailAccessControl" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editMachineTranslate"></vc:create>
+
+
+</div>

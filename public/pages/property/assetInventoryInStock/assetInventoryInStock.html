@@ -1,0 +1,162 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>盘点信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                            <i class="fa fa-times"></i> 返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">盘点名称</label>
+                        <div class="col-sm-5 ">
+                           
+                            <label class="col-form-label">{{assetInventoryInStockInfo.name}}</label>
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right">盘点人</label>
+                        <div class="col-sm-5 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.staffName}}</label>       
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">选择仓库</label>
+                        <div class="col-sm-5 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.shName}}</label>
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right">盘点日期</label>
+                        <div class="col-sm-5 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.invTime}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">盘点说明</label>
+                        <div class="col-sm-11 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.remark}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">审核状态</label>
+                        <div class="col-sm-11 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.stateName}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>盘点商品</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center"><span><vc:i18n name="仓库名称" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="物品类型" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="物品名称" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="物品规格" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="物品编码" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="是否是固定物品" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="批次价格" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="原有库存" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="盘点后数量" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                            <!-- <th class="text-center" v-if="assetInventoryInInfo.resOrderType == '10000'"><span><vc:i18n name="供应商" namespace="assetInventoryInInfo"></vc:i18n></span></th> -->
+                            <th class="text-center"><span><vc:i18n name="备注" namespace="assetInventoryInInfo"></vc:i18n></span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="resourceStore in assetInventoryInStockInfo.storehouses">
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.shName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
+                                {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resName}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.specName ?
+                                resourceStore.specName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resCode}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.isFixedName}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.timesPrice}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.originalStock}}{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.quantity}}{{resourceStore.unitCodeName}}
+                            </td>
+                            <!-- <td class="text-center" v-if="assetInventoryInInfo.resOrderType == '10000'">
+                                <select class="form-control" name="" id="" v-model="resourceStore.rsId">
+                                    <option value="" selected>{{vc.i18n('请选择','assetInventoryInInfo')}}</option>
+                                    <option v-for="supplier in assetInventoryInInfo.resourceSuppliers" :value="supplier.rsId">{{supplier.supplierName}}
+                                    </option>
+                                </select>
+                            </td> -->
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.remark}}
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"  v-if="assetInventoryInStockInfo.state == '3000'|| assetInventoryInStockInfo.state == '4000' ">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>审核信息</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">审核人</label>
+                        <div class="col-sm-5 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.auditName}}</label>
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right">联系电话</label>
+                        <div class="col-sm-5 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.auditTel}}</label>
+                        </div>
+                        <label class="col-sm-1 col-form-label text-right">审核时间</label>
+                        <div class="col-sm-11 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.auditTime}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label text-right">审核意见</label>
+                        <div class="col-sm-11 ">
+                            <label class="col-form-label">{{assetInventoryInStockInfo.opinion}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_goBack()">
+                <i class="fa fa-close"></i>&nbsp;返回
+            </button>
+        </div>
+    </div> -->
+</div>

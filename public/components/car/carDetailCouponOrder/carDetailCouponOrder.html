@@ -1,0 +1,63 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                <tr>
+                    <th class="text-center"><span>
+                            <vc:i18n name='核销订单' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='核销车辆' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='优惠券' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='商家店铺' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='停车场' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='道闸' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='核销时间' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                    <th class="text-center"><span>
+                            <vc:i18n name='说明' namespace='parkingCouponCarOrder'></vc:i18n>
+                        </span></th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="order in carDetailCouponOrderInfo.orders">
+                    <td class="text-center">{{order.orderId}}</td>
+                    <td class="text-center">{{order.carNum}}</td>
+                    <td class="text-center">{{order.couponName}}</td>
+                    <td class="text-center">{{order.shopName}}</td>
+                    <td class="text-center">{{order.paName}}</td>
+                    <td class="text-center">{{order.machineName}}</td>
+                    <td class="text-center">{{order.createTime}}</td>
+                    <td class="text-center">{{order.remark}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="carDetailCouponOrder" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

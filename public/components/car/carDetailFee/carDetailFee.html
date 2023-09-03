@@ -1,0 +1,128 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_openCarCreateFeeAddModal()">
+                    <vc:i18n name="创建费用" namespace="carDetailFee"></vc:i18n>
+            </button>
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用标识" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收金额" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="建账时间" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收时间段" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="carDetailFee"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="fee in carDetailFeeInfo.fees">
+                    <td class="text-center hand" @click="_viewCarFeeConfig(fee)">{{fee.feeName}}
+                        <span class="fa fa-info-circle"></span>
+                    </td>
+                    <td class="text-center">{{fee.feeFlagName}}</td>
+                    <td class="text-center">{{fee.feeTypeCdName}}</td>
+                    <td class="text-center">{{fee.amountOwed}}</td>
+                    <td class="text-center">{{fee.startTime}}</td>
+                    <td class="text-center">{{_getEndTime(fee)}}~<br />{{_getDeadlineTime(fee)}}</td>
+                    <td class="text-center" v-if="fee.feeTypeCd == '888800010015' || fee.feeTypeCd == '888800010016' ">
+                        <div>
+                            <span>
+                                <vc:i18n name="上期度数" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.preDegrees}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="本期度数" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.curDegrees}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="单价" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.mwPrice?fee.mwPrice:fee.squarePrice}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="附加费" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.additionalAmount}}
+                        </div>
+                    </td>
+                    <td class="text-center" v-else>
+                        <div>
+                            <span>
+                                <vc:i18n name="单价" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.squarePrice}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="固定费" namespace="carDetailFee"></vc:i18n>
+                            </span>：{{fee.additionalAmount}}
+                        </div>
+                    </td>
+                    <td class="text-center">{{fee.stateName}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-link btn-xs" v-if="fee.state != '2009001'
+                             && vc.hasPrivilege('502020082314267912')" v-on:click="_payFee(fee)">
+                            <vc:i18n name="缴费" namespace="carDetailFee"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">
+                            <vc:i18n name="历史" namespace="carDetailFee"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090604200029')"
+                            v-on:click="_deleteFee(fee)">
+                            <vc:i18n name="取消" namespace="carDetailFee"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs"
+                            v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
+                            v-on:click="_editFee(fee)">
+                            <vc:i18n name="变更" namespace="carDetailFee"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-on:click="_viewCarFee(fee)">
+                            <vc:i18n name="详情" namespace="carDetailFee"></vc:i18n>
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                <span>缴费请到业务受理页面缴费</span>
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="carDetailFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/deleteFee"></vc:create>
+    <vc:create path="property/editFee"></vc:create>
+    <vc:create path="property/carCreateFeeAdd"></vc:create>
+    <vc:create path="property/addMeterWater" callBackListener="" callBackFunction=""></vc:create>
+</div>

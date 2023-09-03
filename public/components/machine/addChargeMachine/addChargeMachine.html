@@ -1,0 +1,98 @@
+<div id="addChargeMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b "><span>
+            <vc:i18n name="添加" namespace="addChargeMachine"></vc:i18n>
+          </span></h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='名称' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addChargeMachineInfo.machineName" type="text"
+                    :placeholder="vc.i18n('必填，请填写名称','addChargeMachine')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='设备编号' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addChargeMachineInfo.machineCode" type="text"
+                    :placeholder="vc.i18n('必填，请填写设备编号','addChargeMachine')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='厂家' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addChargeMachineInfo.implBean" @change="_changeFactory()">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择门禁厂家','addChargeMachine')}}</option>
+                    <option :value="item.factoryId" v-for="(item,index) in addChargeMachineInfo.factorys">
+                      {{item.factoryName}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row" v-for="(item,index) in addChargeMachineInfo.specs">
+                <label class="col-sm-2 col-form-label  text-right">{{item.specName}}</label>
+                <div class="col-sm-10">
+                  <input v-model.trim="item.specValue" type="text" :placeholder="item.remark" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='插座个数' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addChargeMachineInfo.portCount" type="text"
+                    :placeholder="vc.i18n('必填，请填写插座个数','addChargeMachine')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='充电规则' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addChargeMachineInfo.ruleId" >
+                    <option selected disabled value="">{{vc.i18n('必填，请选择充电规则','addChargeMachine')}}</option>
+                    <option :value="item.ruleId" v-for="(item,index) in addChargeMachineInfo.rules">
+                      {{item.ruleName}}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label"><span>
+                    <vc:i18n name='用量电价' namespace='addChargeMachine'></vc:i18n>
+                  </span></label>
+                <div class="col-sm-10">
+                  <input v-model="addChargeMachineInfo.energyPrice" type="text"
+                    :placeholder="vc.i18n('必填，请填写用量电价','addChargeMachine')" class="form-control">
+                </div>
+              </div> -->
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="saveChargeMachineInfo()"><i
+                    class="fa fa-check"></i>&nbsp;
+                  <span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                  <span>
+                    <vc:i18n name="取消"></vc:i18n>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="车牌号" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <!-- <th data-hide="phone" class="text-center">
+                <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
+            </th> -->
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车牌类型" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车辆类型" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="颜色" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="业主" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="有效期" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="动作" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="操作人" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="操作时间" namespace="listOwnerCar"></vc:i18n>
+                    </th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="car in carDetailHisInfo.cars">
+                    <td class="text-center">{{car.carNum}}</td>
+                    <!-- <td class="text-center">
+                {{car.carBrand}}
+            </td> -->
+                    <td class="text-center" v-if="car.leaseType == 'T'">
+                        临时车
+                    </td>
+                    <td class="text-center" v-else>
+                        {{car.leaseTypeName}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carTypeName || '-'}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carColor || '-'}}
+                    </td>
+                    <td class="text-center hand">
+                        <div class="">
+                           {{car.ownerName}}({{car.link}})
+                        </div>
+                    </td>
+                    <td v-if="car.areaNum && car.state == '1001'" class="text-center">
+                        {{car.areaNum}}-{{car.num}}
+                    </td>
+                    <td v-else class="text-center">
+                        车位已释放
+                    </td>
+                    <td class="text-center" v-if="car.leaseType == 'H'">
+                        {{car.startTime}}</br>~{{car.endTime}}
+                    </td>
+                    <td class="text-center" v-else>
+                        -
+                    </td>
+                    <td class="text-center">
+                        {{_getHisOperate(car)}}
+                    </td>
+                    <td class="text-center">
+                        {{car.userName || '-'}}
+                    </td>
+                    <td class="text-center">
+                        {{car.createTime}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="carDetailHis" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

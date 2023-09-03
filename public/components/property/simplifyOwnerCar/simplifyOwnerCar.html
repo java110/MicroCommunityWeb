@@ -1,0 +1,114 @@
+<div>
+    <div class="row margin-top">
+        <div class="col-lg-10 text-right"></div>
+        <div class="col-lg-2 text-right" v-if="simplifyOwnerCarInfo.ownerId">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_addOwnerCar()">
+                <i class="fa fa-plus"></i>
+                <span><vc:i18n name="添加车辆" namespace="simplifyOwnerCar"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="车牌号" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车辆品牌" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车辆类型" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="颜色" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="业主" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="车位" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="起租时间" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="截止时间" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="状态" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="simplifyOwnerCar"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="car in simplifyOwnerCarInfo.ownerCars">
+                    <td class="text-center">
+                        <a :href="'/#/pages/car/carDetail?memberId='+car.memberId" target="_blank">{{car.carNum}}</a>
+                    </td>
+                    <td class="text-center">
+                        {{car.carBrand}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carTypeName}}
+                    </td>
+                    <td class="text-center">
+                        {{car.carColor}}
+                    </td>
+                    <td class="text-center">
+                        {{car.ownerName}}({{car.link}})
+                    </td>
+                    <td v-if="car.areaNum" class="text-center">
+                        {{car.areaNum}}
+                        <span><vc:i18n name="车场" namespace="simplifyOwnerCar"></vc:i18n></span>{{car.num}}
+                        <span><vc:i18n name="车位" namespace="simplifyOwnerCar"></vc:i18n></span>
+                    </td>
+                    <td v-else class="text-center">
+                        无
+                    </td>
+                    <td class="text-center">
+                        {{car.startTime}}
+                    </td>
+                    <td class="text-center">
+                        {{car.endTime}}
+                    </td>
+                    <td class="text-center">
+                        {{car.stateName}}
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group" v-if="car.psId != '-1'">
+                            <button class="btn-white btn btn-xs" v-on:click="_deleteCarParkingSpace(car)">
+                            <span><vc:i18n name="释放车位" namespace="simplifyOwnerCar"></vc:i18n></span>
+                        </button>
+                        </div>
+                        <div class="btn-group" v-else>
+                            <button class="btn-white btn btn-xs" v-on:click="_addCarParkingSpace(car)">
+                            <span><vc:i18n name="续租车位" namespace="simplifyOwnerCar"></vc:i18n></span>
+                        </button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerCar(car)">
+                            <span><vc:i18n name="修改" namespace="simplifyOwnerCar"></vc:i18n></span>
+                        </button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openDelOwnerCarModel(car)">
+                            <span><vc:i18n name="删除" namespace="simplifyOwnerCar"></vc:i18n></span>
+                        </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="10">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <vc:create path="property/editCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
+    <vc:create path="property/deleteOwnerCar" notifyLoadDataComponentName="listOwnerCar"></vc:create>
+</div>

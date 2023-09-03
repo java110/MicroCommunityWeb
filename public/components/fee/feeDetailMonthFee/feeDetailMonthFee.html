@@ -1,0 +1,123 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用标识" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收费年月" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="应收金额" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="feeDetailMonthFee"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="fee in feeDetailMonthFeeInfo.monthFees">
+                    <td class="text-center hand">
+                        {{fee.feeName}}
+                    </td>
+                    <td class="text-center">{{fee.feeFlagName}}</td>
+                    <td class="text-center">{{fee.feeTypeCdName}}</td>
+                    <td class="text-center">{{fee.detailYear}}-{{fee.detailMonth}}</td>
+                    <td class="text-center">{{fee.receivableAmount}}</td>
+                    <td class="text-center" v-if="fee.computingFormula == '5005' || fee.computingFormula == '9009'">
+                        <div>
+                            <span>
+                                <vc:i18n name="上期度数：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.preDegrees}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="本期度数：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.curDegrees}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="单价：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{getOnePrice1(fee)}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="附加费：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}
+                        </div>
+                    </td>
+                    <td class="text-center" v-else-if="fee.computingFormula == '6006'">
+                        <div>
+                            <span>
+                                <vc:i18n name="用量：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{_getAttrValue(fee.feeAttrs,'390006')}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="单价：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.squarePrice}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="附加费：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}
+                        </div>
+                    </td>
+                    <td class="text-center" width="150" v-else-if="fee.feeTypeCd == '888800010017'">
+                        <div>
+                            <span>
+                                <vc:i18n name="算法：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{_getAttrValue(fee.feeAttrs,'390005')}}
+                        </div>
+                        <div>
+                            <span>
+                                <vc:i18n name="用量：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{_getAttrValue(fee.feeAttrs,'390003')}}
+                        </div>
+                    </td>
+                    <td class="text-center" v-else>
+                        <div>
+                            <span>
+                                <vc:i18n name="单价：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.squarePrice}}
+                        </div>
+                        <div v-if="fee.feeFlag == '1003006'">
+                            <span>
+                                <vc:i18n name="附加费：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}
+                        </div>
+                        <div v-else>
+                            <span>
+                                <vc:i18n name="固定费：" namespace="feeDetailMonthFee"></vc:i18n>
+                            </span>{{fee.additionalAmount}}
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailMonthFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

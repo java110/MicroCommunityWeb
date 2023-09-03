@@ -1,0 +1,97 @@
+<div>
+    <div class="row margin-top">
+        <div class="col-lg-10 text-right"></div>
+        <div class="col-lg-2 text-right" v-if="simplifyOwnerComplaintInfo.roomId != ''">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_openAddComplaintModal()">
+                <i class="fa fa-plus"></i> 投诉
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <span><vc:i18n name="投诉类型" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="房屋" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="投诉人" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="投诉人电话" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="投诉状态" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="处理人" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="处理电话" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="操作" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="complaint in simplifyOwnerComplaintInfo.complaints">
+                <!-- <td class="text-center">{{complaint.complaintId}}</td> -->
+                <td class="text-center">{{complaint.typeCdName}}</td>
+                <td class="text-center">{{complaint.floorNum}}
+                    <span>
+                        <vc:i18n name="号楼" namespace="simplifyOwnerComplaint"></vc:i18n>
+                    </span>{{complaint.unitNum}}
+                    <span>
+                        <vc:i18n name="单元" namespace="simplifyOwnerComplaint"></vc:i18n>
+                    </span>{{complaint.roomNum}}
+                    <span><vc:i18n name="室" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                </td>
+                <td class="text-center">{{complaint.complaintName}}</td>
+                <td class="text-center">{{complaint.tel}}</td>
+                <td class="text-center">{{complaint.stateName}}</td>
+                <td class="text-center">{{complaint.currentUserName == '' ? '无':complaint.currentUserName}}</td>
+                <td class="text-center">{{complaint.currentUserTel == ''?'无':complaint.currentUserTel}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs" v-on:click="_openComplaintDetailModel(complaint)">
+                            <span><vc:i18n name="详情" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs" v-on:click="_openRunWorkflowImage(complaint)">
+                            <span><vc:i18n name="流程图" namespace="simplifyOwnerComplaint"></vc:i18n></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <!--<div class="row">
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="simplifyOwnerComplaint" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-sm-5">
+                <span></span>
+            </div>
+            <div class="col-sm-7 float-right">
+                <vc:create namespace="simplifyOwnerComplaint" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+    <vc:create path="common/complaintDetail"></vc:create>
+</div>

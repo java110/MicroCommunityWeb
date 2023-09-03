@@ -1,0 +1,99 @@
+<div>
+    <div class="bg-white padding-sm">
+      <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddParentMachineTypeModal()">
+        添加一级分类
+    </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddMachineTypeModal()">
+            添加子级分类
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openEditMachineTypeModel()">
+            修改
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeleteMachineTypeModel()">
+            删除
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-md-2" style="padding-right:0px">
+            <vc:create path="property/machineTypeTree" callBackListener="equipmentAccount"></vc:create>
+        </div>
+        <div class="col-md-10 margin-top-xs">
+          
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content border-radius">
+                                    <h3 class="m-t-none m-b "><span><vc:i18n name="详情" namespace="machineTypeInfo"></vc:i18n></span></h3>
+                                    <div class="ibox-content">
+                                      <div>
+                                        <div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="设备类型名称" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                                    {{machineTypeInfo.machineTypeName}}
+                                            </div>
+                                          </div>
+                            
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="分类编码" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                                {{machineTypeInfo.machineTypeCode}}
+                                            </div>
+                                          </div>
+                            
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="启用状态" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10" style="line-height: 30px;">
+                                              <label class="radio-inline">
+                                                  <input type="radio" disabled v-model="machineTypeInfo.isEnable" value="1000" /> 启用
+                                              </label>
+                                              <label class="radio-inline">
+                                                  <input type="radio" disabled v-model="machineTypeInfo.isEnable" value="2000" /> 停用
+                                              </label>
+                                          </div>
+                                          </div>
+                                         
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="重要等级" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10" v-for="(item,index) in importanceLevels" v-if="machineTypeInfo.importanceLevel == item.statusCd" :key="index">
+                                                <span>{{item.name}}</span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="排序值" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                              {{machineTypeInfo.seq}}
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="单位" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                              {{machineTypeInfo.unit}}
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="保修截止日期" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                              {{machineTypeInfo.warrantyDeadline}}
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"><span><vc:i18n name="备注" namespace="machineTypeInfo"></vc:i18n></span></label>
+                                            <div class="col-sm-10">
+                                              {{machineTypeInfo.remark}}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 设备分类 -->
+    <vc:create path="property/addMachineType" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editMachineType"></vc:create>
+    <vc:create path="property/deleteMachineType"></vc:create>
+</div>

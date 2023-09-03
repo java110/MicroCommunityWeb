@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="添加考核员工" namespace="addAccessControlWhite"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">返回</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name='员工名称' namespace='addExamineStaff'></vc:i18n></span></label>
+                    <div class="col-sm-6">
+                        <input v-model="addExamineStaffInfo.staffName" type="text" disabled :placeholder="vc.i18n('必填，请填写员工名称','addExamineStaff')" class="form-control">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                            选择
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><vc:i18n name='考核项目' namespace='addExamineStaff'></vc:i18n></label>
+                    <div class="col-sm-8">
+                        <div class="checkbox custom-control-inline" v-for="(item,index) in addExamineStaffInfo.projects">
+                            <label style="line-height: 36px;">
+                              <input type="checkbox" v-model="addExamineStaffInfo.projectIds" :value="item.projectId"> {{item.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                       <vc:i18n name="员工头像" namespace="addExamineStaff"></vc:i18n>
+                    </label>
+                    <div class="col-sm-10">
+                        <vc:create path="frame/uploadImageUrl" callBackListener="addExamineStaff" callBackFunction="notifyUploadImage" imageCount="1" namespace="addExamineStaff">
+                        </vc:create>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name='员工岗位' namespace='addExamineStaff'></vc:i18n></span></label>
+                    <div class="col-sm-6">
+                        <input v-model="addExamineStaffInfo.post" type="text" :placeholder="vc.i18n('必填，请填写员工岗位','addExamineStaff')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name='员工简介' namespace='addExamineStaff'></vc:i18n></span></label>
+                    <div class="col-sm-6">
+                        <div class="no-padding">
+                            <div class="summernote"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
+                        <vc:i18n name="返回"></vc:i18n>
+                    </button>
+                    <button class="btn btn-primary" type="button" v-on:click="saveExamineStaffInfo()">提交</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+</div>

@@ -1,0 +1,19 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        
+    </div>
+    <div class="margin-top">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label class="col-form-label">
+                        <vc:i18n name="相关附件：" namespace="contractDetailFile"></vc:i18n>
+                    </label>
+                    <label v-for="(file,index) in contractDetailFileInfo.files" style="margin-left: 50px;">
+                        <a href="javascript:void(0)" @click="_viewFile(file)">{{file.fileRealName}}</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

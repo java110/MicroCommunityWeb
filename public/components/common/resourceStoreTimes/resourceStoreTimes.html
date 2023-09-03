@@ -1,0 +1,56 @@
+<div id="resourceStoreTimesModel" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="resourceStoreTimesModelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="resourceStoreTimesModelLabel">
+                    <span><vc:i18n name="物品总价" namespace="resourceStoreTimes"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="物品编号" namespace="resourceStoreTimes"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="入库时间" namespace="resourceStoreTimes"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="单价" namespace="resourceStoreTimes"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="库存" namespace="resourceStoreTimes"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="总价" namespace="resourceStoreTimes"></vc:i18n></span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="times in resourceStoreTimesInfo.timeses">
+                                        <td class="text-center">{{times.resCode}}</td>
+                                        <td class="text-center">{{times.createTime}}</td>
+                                        <td class="text-center">{{times.price}}</td>
+                                        <td class="text-center">{{times.stock}}</td>
+                                        <td class="text-center">{{times.totalPrice}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>总价：{{resourceStoreTimesInfo.totalPrice}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

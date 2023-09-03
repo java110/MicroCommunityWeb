@@ -1,0 +1,49 @@
+<div class=" margin-top">
+    <div class="text-left">
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRoleCommunityModal()">
+            <i class="fa fa-plus"></i>
+            <span><vc:i18n name="关联小区"></vc:i18n></span>
+        </button>
+    </div>
+    <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+        <thead>
+        <tr>
+            <th class="text-center">
+                <span><vc:i18n name="小区编号" namespace="roleCommunity"></vc:i18n></span>
+            </th>
+            <th class="text-center">
+                <span><vc:i18n name="小区名称" namespace="roleCommunity"></vc:i18n></span>
+            </th>
+            <th class="text-center">
+                <span><vc:i18n name="操作" namespace="roleCommunity"></vc:i18n></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="roleCommunity in roleCommunityInfo.roleCommunitys">
+            <td class="text-center">{{roleCommunity.communityId}}</td>
+            <td class="text-center">{{roleCommunity.communityName}}</td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteRoleCommunityModel(roleCommunity)">
+                        <span><vc:i18n name="删除"></vc:i18n></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7">
+                <ul class="pagination float-right"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <!-- <vc:create path="frame/pagination"></vc:create> -->
+    <vc:create path="frame/paginationPlus" namespace="roleCommunityInfo"></vc:create>
+    <vc:create path="frame/addRoleCommunity" emitListener="roleCommunityInfo" emitFunction="listRoleCommunity">
+    </vc:create>
+    <vc:create path="frame/deleteRoleCommunity"></vc:create>
+</div>

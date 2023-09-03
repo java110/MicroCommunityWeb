@@ -1,0 +1,55 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+           
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <tr>
+                        <th class="text-center"><span><vc:i18n name='车辆' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='优惠券' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='商家店铺' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='停车场' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='赠送方式' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='优惠方式' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='面值' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='开始时间' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='结束时间' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='赠送时间' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='状态' namespace='carDetailCoupon'></vc:i18n></span></th>
+                        <th class="text-center"><span><vc:i18n name='说明' namespace='carDetailCoupon'></vc:i18n></span></th>
+                    </tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="carDetailCoupon in carDetailCouponInfo.carDetailCoupons">
+                    <td class="text-center">{{carDetailCoupon.carNum}}</td>
+                    <td class="text-center">{{carDetailCoupon.couponName}}</td>
+                    <td class="text-center">{{carDetailCoupon.shopName}}</td>
+                    <td class="text-center">{{carDetailCoupon.paName}}</td>
+                    <td class="text-center">{{carDetailCoupon.giveWayName}}</td>
+                    <td class="text-center">{{carDetailCoupon.typeCdName}}</td>
+                    <td class="text-center">{{carDetailCoupon.value}}</td>
+                    <td class="text-center">{{carDetailCoupon.startTime}}</td>
+                    <td class="text-center">{{carDetailCoupon.endTime}}</td>
+                    <td class="text-center">{{carDetailCoupon.createTime}}</td>
+                    <td class="text-center">{{carDetailCoupon.stateName}}</td>
+                    <td class="text-center">{{carDetailCoupon.remark}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="carDetailCoupon" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

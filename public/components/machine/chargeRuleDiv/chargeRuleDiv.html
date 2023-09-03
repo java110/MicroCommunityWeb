@@ -1,0 +1,26 @@
+<div class="bg-white margin-top-xs padding border-radius">
+    <div class=" ">
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddChargeRuleModal()">
+            添加
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openEditChargeRuleModel()">
+            修改
+        </button>
+        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeleteChargeRuleModel()" >
+            删除
+        </button>
+    </div>
+    <div class="vc-org margin-top">
+        <ul v-if="chargeRuleDivInfo.chargeRules && chargeRuleDivInfo.chargeRules.length>0">
+            <li v-for="(rule,index) in chargeRuleDivInfo.chargeRules" @click="_switchChargeRule(rule)"
+                :class="{'active':rule.ruleId == chargeRuleDivInfo.curChargeRule.ruleId}">{{rule.ruleName}}
+            </li>
+        </ul>
+        <ul v-else>
+            <li>请先添加规则</li>
+        </ul>
+    </div>
+    <vc:create path="machine/addChargeRule" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="machine/editChargeRule"></vc:create>
+    <vc:create path="machine/deleteChargeRule"></vc:create>
+</div>

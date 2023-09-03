@@ -1,0 +1,126 @@
+<div id="editParkingBoxModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="修改岗亭" namespace="editParkingBox"></vc:i18n>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="岗亭名称" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingBoxInfo.boxName" type="text" :placeholder="vc.i18n('必填，请填写岗亭名称','editParkingBox')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="停车场" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.paId">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择停车场','editParkingBox')}}
+                                        </option>
+                                        <option :value="item.paId"
+                                                v-for="(item,index) in editParkingBoxInfo.parkingAreas">{{item.num}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="临时车是否进场" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.tempCarIn">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择临时车是否进场','editParkingBox')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editParkingBox')}}</option>
+                                        <option value="N">{{vc.i18n('否','editParkingBox')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="临时车审核" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.tempAuth">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择临时车进场审核','editParkingBox')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editParkingBox')}}</option>
+                                        <option value="N">{{vc.i18n('否','editParkingBox')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="是否收费" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.fee">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择是否收费','editParkingBox')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editParkingBox')}}</option>
+                                        <option value="N">{{vc.i18n('否','editParkingBox')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="已在场" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.blueCarIn">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择已在场是否可以进场','editParkingBox')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('可进场','editParkingBox')}}</option>
+                                        <option value="N">{{vc.i18n('不可进场','editParkingBox')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="未进场" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editParkingBoxInfo.yelowCarIn">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择未进场是否可以出场','editParkingBox')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('可出场','editParkingBox')}}</option>
+                                        <option value="N">{{vc.i18n('不可出场','editParkingBox')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="备注" namespace="editParkingBox"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editParkingBoxInfo.remark" type="text" :placeholder="vc.i18n('选填，请填写备注','editParkingBox')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editParkingBox()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <vc:i18n name="取消" namespace="editParkingBox"></vc:i18n>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

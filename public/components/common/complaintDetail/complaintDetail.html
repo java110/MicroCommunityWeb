@@ -1,0 +1,166 @@
+<div id="complaintDetailModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{complaintDetailInfo.typeCdName}}
+                    <span><vc:i18n name="详情" namespace="complaintDetail"></vc:i18n></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="房屋" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.roomName" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写房屋','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="ID" namespace="complaintDetail"></vc:i18n></span></label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.complaintId" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写ID','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="类型" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.typeCdName" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写类型','complaintDetail')" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="联系人" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.complaintName" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写联系人','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="联系电话" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.tel" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写联系电话','complaintDetail')"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="状态" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.stateName" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写状态','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="处理人" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.currentUserName" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写处理人','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="处理人电话" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.currentUserTel" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写处理人电话','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="complaintDetailInfo.showCurrentUser">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="处理人编号" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input v-model="complaintDetailInfo.currentUserId" type="text" readonly
+                                       :placeholder="vc.i18n('必填，请填写处理人编号','complaintDetail')" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span>
+                                    <vc:i18n name="{{complaintDetailInfo.typeCdName}}内容" namespace="complaintDetail">
+                                    </vc:i18n>
+                                </span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea :placeholder="vc.i18n('必填，请填写内容','complaintDetail')" readonly
+                                          class="form-control" v-model="complaintDetailInfo.context">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="complaintDetailInfo.photosShow.length > 0">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="图片" namespace="complaintDetail"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <span v-for="_photo in complaintDetailInfo.photosShow">
+                                    <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
+                                         v-on:click="openFile(_photo)">
+                                </span>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="序号" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="处理人" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="状态" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="处理时间" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="耗时" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span><vc:i18n name="意见" namespace="complaintDetail"></vc:i18n></span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(item,index) in complaintDetailInfo.comments">
+                                <th scope="row" class="text-center">{{index+1}}</th>
+                                <td class="text-center">{{item.auditName}}</td>
+                                <td class="text-center">{{item.stateName}}</td>
+                                <td class="text-center">{{item.auditTime}}</td>
+                                <td class="text-center">{{item.duration}}</td>
+                                <td class="text-center">{{item.message}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="ibox-content">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal"><span><vc:i18n name="关闭" namespace="complaintDetail"></vc:i18n></span>
+                                </button>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

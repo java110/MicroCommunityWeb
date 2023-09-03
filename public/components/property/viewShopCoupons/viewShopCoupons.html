@@ -1,0 +1,59 @@
+<div id="viewShopCouponsModel" class="modal fade" role="dialog" aria-labelledby="viewShopCouponsModelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <span><vc:i18n name="商店停车劵" namespace="viewShopCoupons"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="停车劵" namespace="viewShopCoupons"></vc:i18n></span></th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="停车场" namespace="viewShopCoupons"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="停车劵类型" namespace="viewShopCoupons"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="面值" namespace="viewShopCoupons"></vc:i18n></span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span><vc:i18n name="数量" namespace="viewShopCoupons"></vc:i18n></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="coupon in viewShopCouponsInfo.coupons">
+                                            <td class="text-center">{{coupon.couponName}}</td>
+                                            <td class="text-center">{{coupon.paName}}</td>
+                                            <td class="text-center">{{coupon.typeCdName}}</td>
+                                            <td class="text-center">
+                                                <span v-if="coupon.typeCd == '1001'">{{coupon.value}}分钟</span>
+                                                <span v-if="coupon.typeCd == '2002'">{{coupon.value}}元</span>
+                                                <span v-if="coupon.typeCd == '3003'">{{coupon.value}}折</span>
+                                                <span v-if="coupon.typeCd == '4004'">全免</span>
+                                            </td>
+                                            <td class="text-center">{{coupon.quantity}}张</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

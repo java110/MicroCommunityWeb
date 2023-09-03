@@ -1,0 +1,85 @@
+<div id="ownerRepairsModel" class="modal fade" role="dialog" aria-labelledby="ownerRepairsModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ownerRepairsModelLabel">
+                    <span><vc:i18n name="业主报修" namespace="ownerRepairs"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="工单编码" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="位置" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="报修类型" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="报修人" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="联系方式" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="预约时间" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="状态" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th>
+                                        <!-- <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="ownerRepairs"></vc:i18n></span>
+                                        </th> -->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="repairPool in ownerRepairsInfo.repairs">
+                                        <td class="text-center">{{repairPool.repairId}}</td>
+                                        <td class="text-center">{{repairPool.repairObjName}}</td>
+                                        <td class="text-center">{{repairPool.repairTypeName}}</td>
+                                        <td class="text-center">{{repairPool.repairName}}</td>
+                                        <td class="text-center">{{repairPool.tel}}</td>
+                                        <td class="text-center">{{repairPool.appointmentTime}}</td>
+                                        <td class="text-center"
+                                            v-if="repairPool.state == '1800' && (repairPool.returnVisitFlag == '001' || repairPool.returnVisitFlag == '002')">
+                                            {{repairPool.stateName}}(定时任务处理)
+                                        </td>
+                                        <td class="text-center" v-else>
+                                            {{repairPool.stateName}}
+                                        </td>
+                                        <!-- <td class="text-center">
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)">
+                                                <span><vc:i18n name="选择" namespace="ownerRepairs"></vc:i18n></span>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="6">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                                <vc:create namespace="ownerRepairs" path="frame/paginationPlus"></vc:create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

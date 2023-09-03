@@ -1,0 +1,208 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="repairPoolManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{repairPoolManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" :placeholder="vc.i18n('请输入报修ID','repairPoolManage')"
+                                   v-model="repairPoolManageInfo.conditions.repairId" class=" form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入报修人','repairPoolManage')"
+                                       v-model="repairPoolManageInfo.conditions.repairName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="repairPoolManageInfo.conditions.state">
+                                    <option selected value="">{{vc.i18n('请选择报修状态','repairPoolManage')}}</option>
+                                    <option v-for="(item,index) in repairPoolManageInfo.states" :value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryRepairPoolMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="repairPoolManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRepairPoolMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="repairPoolManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="repairPoolManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairType">
+                                    <option selected value="">{{vc.i18n('请选择报修类型','repairPoolManage')}}</option>
+                                    <option v-for="(item,index) in repairPoolManageInfo.repairSettings"
+                                            :value="item.repairType">{{item.repairTypeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="repairPoolManageInfo.conditions.repairSettingType">
+                                <option selected value="">{{vc.i18n('请选择报修设置类型','repairPoolManage')}}</option>
+                                <option v-for="(item,index) in repairPoolManageInfo.repairSettingTypes"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" :placeholder="vc.i18n('请输入报修电话','repairPoolManage')"
+                                   v-model="repairPoolManageInfo.conditions.tel" class=" form-control">
+                        </div>
+                    </div>
+                    <div class="row" v-show="repairPoolManageInfo.moreCondition == true">
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="repairPoolManageInfo.conditions.maintenanceType">
+                                <option selected value="">{{vc.i18n('请选择维修类型','repairPoolManage')}}</option>
+                                <option v-for="(item,index) in repairPoolManageInfo.maintenanceTypes"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span v-text="repairPoolManageInfo.conditions.roomName"></span>
+                        <span><vc:i18n name="报修工单池" namespace="repairPoolManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="工单编码" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="位置" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="报修类型" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="维修类型" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="报修人" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="联系方式" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="预约时间" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="提交时间" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="repairPoolManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="repairPool in repairPoolManageInfo.repairPools">
+                            <td class="text-center">{{repairPool.repairId}}</td>
+                            <td class="text-center">{{repairPool.repairObjName}}</td>
+                            <td class="text-center">{{repairPool.repairTypeName}}</td>
+                            <td class="text-center">{{repairPool.maintenanceType == '1001' ? '有偿服务' :
+                                repairPool.maintenanceType == '1002' ? '无偿服务'
+                                : repairPool.maintenanceType == '1003' ? '需要用料' : repairPool.maintenanceType == '1004' ?
+                                '无需用料' : '--'}}
+                            </td>
+                            <td class="text-center">{{repairPool.repairName}}</td>
+                            <td class="text-center">{{repairPool.tel}}</td>
+                            <td class="text-center">{{repairPool.appointmentTime}}</td>
+                            <td class="text-center">{{repairPool.createTime}}</td>
+                            <td class="text-center"
+                                v-if="repairPool.state == '1800' && (repairPool.returnVisitFlag == '001' || repairPool.returnVisitFlag == '002')">
+                                {{repairPool.stateName}}(定时任务处理)
+                            </td>
+                            <td class="text-center" v-else>
+                                {{repairPool.stateName}}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502021012067300023') && (repairPool.state == '1000' || repairPool.state == '1200')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditOwnerRepairModel(repairPool)">
+                                        <span><vc:i18n name="修改" namespace="repairPoolManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502019101946430010') && repairPool.state == '1000'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDispatchRepairModel(repairPool)">
+                                        <span><vc:i18n name="派单" namespace="repairPoolManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="vc.hasPrivilege('502021012099350016') && repairPool.state == '1000' && repairPool.repairWay == '100'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openGrabbingRepairModel(repairPool)">
+                                        <span><vc:i18n name="抢单" namespace="repairPoolManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repairPool)">
+                                        <span><vc:i18n name="详情" namespace="repairPoolManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-if="vc.hasPrivilege('502021012051410024') && (repairPool.state == '1000' || repairPool.state == '1200')"
+                                            v-on:click="_openDeleteRepairDetailModel(repairPool)">
+                                        <span><vc:i18n name="删除" namespace="repairPoolManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/dispatchRepair"></vc:create>
+    <vc:create path="property/editOwnerRepair"></vc:create>
+    <vc:create path="property/deleteOwnerRepair"></vc:create>
+</div>

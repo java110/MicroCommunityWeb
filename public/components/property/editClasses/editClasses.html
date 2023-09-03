@@ -1,0 +1,80 @@
+<div id="editClassesModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span>
+                        <vc:i18n name="修改" namespace="editClasses"></vc:i18n>
+                    </span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span>
+                                        <vc:i18n name='班次名称' namespace='editClasses'></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input v-model="editClassesInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写班次名称','editClasses')" class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <button class="btn btn-white" type="button" v-on:click="_addEditTimes()">
+                                        <vc:i18n name="增加"></vc:i18n>
+                                    </button>
+                                </label>
+                            </div>
+                            <div class="form-group row" v-for="(item,index) in editClassesInfo.times">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name='上班时间' namespace='editClasses'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-3">
+                                    <input v-model="item.startTime" type="time"
+                                           :placeholder="vc.i18n('必填，请填写上班时间','editClasses')" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name='下班时间' namespace='editClasses'></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-3">
+                                    <input v-model="item.endTime" type="time"
+                                           :placeholder="vc.i18n('必填，请填写下班时间','editClasses')" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <button class="btn btn-white" type="button"
+                                            v-on:click="_deleteEditTimes(item)">
+                                        <span><vc:i18n name="删除"></vc:i18n></span>
+                                    </button>
+                                </label>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span>
+                                        <vc:i18n name='备注说明' namespace='editClasses'></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editClassesInfo.remark"
+                                              :placeholder="vc.i18n('必填，请填写备注说明','editClasses')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="editClasses()"><i
+                                        class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存"></vc:i18n></span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

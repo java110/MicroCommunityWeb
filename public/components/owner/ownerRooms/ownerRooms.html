@@ -1,0 +1,95 @@
+<div id="ownerRoomsModel" class="modal fade" role="dialog" aria-labelledby="ownerRoomsModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ownerRoomsModelLabel">
+                    <span><vc:i18n name="业主房屋" namespace="ownerRooms"></vc:i18n></span>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="房屋" namespace="ownerRooms"></vc:i18n></span>ID
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="楼层" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="类型" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="建筑/室内面积" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="租金" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="房屋状态" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <span><vc:i18n name="房屋欠费" namespace="ownerRooms"></vc:i18n></span>
+                                        </th>
+                                        <!-- <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="ownerRooms"></vc:i18n></span>
+                                        </th> -->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="room in ownerRoomsInfo.rooms">
+                                        <td class="text-center">
+                                            {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.layer}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.roomSubTypeName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.builtUpArea}}/{{room.roomArea}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.roomRent}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.stateName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{room.roomOweFee || '0.00'}}(按天更新)
+                                        </td>
+                                        <!-- <td class="text-center">
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)">
+                                                <span><vc:i18n name="选择" namespace="ownerRooms"></vc:i18n></span>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <span>
+                                        <span><vc:i18n name="欠费小计" namespace="ownerRooms"></vc:i18n> </span>：{{ownerRoomsInfo.allOweFeeAmount}}
+                                    </span>
+                                </div>
+                                <div class="col-sm-8">
+                                    <vc:create namespace="ownerRooms" path="frame/paginationPlus"></vc:create>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

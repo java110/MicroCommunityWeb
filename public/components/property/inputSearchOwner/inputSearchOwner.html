@@ -1,0 +1,10 @@
+<div class="vc-input-search text-left" @mouseleave="_doInputSearchOwnerClose()" v-if="inputSearchOwnerInfo.owners && inputSearchOwnerInfo.owners.length>0">
+    <div class="close">
+        <i class="fa fa-remove" @click="_doInputSearchOwnerClose()"></i>
+    </div>
+    <div class="padding-left-sm padding-top-sm" style="cursor:pointer;" v-for="(item,index) in inputSearchOwnerInfo.owners" @click="_inputSearchOwnerChooseOwner(item)">
+        <span>{{item.name}}</span>
+        <span>---</span>
+        <span>{{item.link}}</span>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div>
+    <div class="row margin-top-lg">
+        <div class="col-lg-6 padding-right-xs padding-left-xl" >
+        </div>
+        <div class="col-lg-6 text-right padding-right-lg">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_printFeeReceipt()">打印
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_printFeeSmallReceipt()">打印小票
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_printApplyFeeReceipt()">申请单
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <input type="checkbox" class="i-checks" v-bind:checked="contractDetailReceiptInfo.quan == true" @click="checkAllReceipt($event)">
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="业主" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收费时间段" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="总金额" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费时间" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收据ID" namespace="contractDetailReceipt"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="feeReceipt in contractDetailReceiptInfo.feeReceipts">
+                    <td class="text-center">
+                        <input type="checkbox" class="i-checks checReceiptItem" v-bind:value="feeReceipt.receiptId" v-model="contractDetailReceiptInfo.selectReceipts">
+                    </td>
+                    <!-- <td class="text-center">{{_getFeeObjName(feeReceipt.objType)}}
+                        <span><vc:i18n name="费" namespace="contractDetailReceipt"></vc:i18n></span>
+                    </td> -->
+                    <td class="text-center">{{feeReceipt.objName}}</td>
+                    <td class="text-center">{{feeReceipt.payObjName}}</td>
+                    <td class="text-center">{{feeReceipt.feeName}}</td>
+                    <td class="text-center">{{vc.dateFormat(feeReceipt.startTime)}}~<br/>
+                        <span class="text-center" v-if="feeReceipt.startTime >= feeReceipt.endTime">
+                            {{vc.dateFormat(feeReceipt.endTime)}}
+                        </span>
+                        <span class="text-center" v-else>
+                            {{vc.dateSubOneDay(vc.dateFormat(feeReceipt.endTime),vc.dateFormat(feeReceipt.endTime),feeReceipt.feeFlag)}}
+                        </span>
+                    </td>
+                    <td class="text-center">{{feeReceipt.amount}}元</td>
+                    <td class="text-center">{{feeReceipt.createTime}}</td>
+                    <td class="text-center">{{feeReceipt.receiptId}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="8">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 float-right">
+                <vc:create namespace="contractDetailReceipt" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

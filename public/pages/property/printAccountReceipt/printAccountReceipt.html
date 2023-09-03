@@ -1,0 +1,112 @@
+<div>
+    <div>
+        <div>
+            <div class="text-center">
+                <div style="color:#000;font-size:26px">{{printAccountReceiptInfo.communityName}} 预存单</div>
+                <!-- <span style="color:#000;font-size:14px"><span><vc:i18n name="单号" namespace="printAccountReceipt"></vc:i18n></span>：{{printAccountReceiptInfo.receiptNum}}</span> -->
+            </div>
+            <div style="color:#000;font-size:14px;margin-left:20px">
+                <div class="float-left">
+                    <span style="color:#000;font-size:14px"><span>
+                            <vc:i18n name="单号" namespace="printAccountReceipt"></vc:i18n>
+                        </span>：{{printAccountReceiptInfo.receiptNum}}</span>
+                </div>
+                <div class="float-right text-right">
+                    <span><span>
+                            <vc:i18n name="预存时间" namespace="printAccountReceipt"></vc:i18n>
+                        </span>：{{printAccountReceiptInfo.feeTime}}</span>
+                </div>
+            </div>
+            <table class="table vc-table-border" style="color:#000;font-size:14px">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center" width="80px"><span>
+                                <vc:i18n name="编号" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="账户名称" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="账户类型" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="业主" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="预存金额" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="预存方式" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="当前余额" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                        <th scope="col" class="text-center"><span>
+                                <vc:i18n name="备注" namespace="printAccountReceipt"></vc:i18n>
+                            </span></th>
+                    </tr>
+                </thead>
+                <tbody class="vc-table-border" style="color:#000;font-size:14px">
+                    <tr v-for="(item,index) in printAccountReceiptInfo.feeReceipts" class="vc-table-border">
+                        <th scope="row" class="text-center">{{index +1}}</th>
+                        <td class="text-center">{{item.acctName}}</td>
+                        <td class="text-center">{{item.acctTypeName}}</td>
+                        <td class="text-center">{{item.ownerName}}</td>
+                        <td class="text-center">{{item.receivedAmount}}</td>
+                        <td class="text-center">{{item.primeRateName}}</td>
+                        <td class="text-center">{{item.amount}}</td>
+                        <td class="text-center" width="200px">{{item.remark}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-center "><span>
+                                <vc:i18n name="大写人民币" namespace="printAccountReceipt"></vc:i18n>
+                            </span>（元）</td>
+                        <td colspan="4" class="text-center ">
+                            {{vc.changeNumMoneyToChinese(printAccountReceiptInfo.amount)}}
+                        </td>
+                        <td colspan="3" class="text-center ">{{printAccountReceiptInfo.amount}}</td>
+                    </tr>
+                    <tr v-if="printAccountReceiptInfo.content || printAccountReceiptInfo.qrImg">
+                        <td colspan="6">
+                            <!-- <p style="max-width: 600px;"> -->
+                            <!-- {{printAccountReceiptInfo.content}} -->
+                            <div style="max-width: 600px;" v-html="printAccountReceiptInfo.content"></div>
+                            <!-- </p> -->
+                        </td>
+                        <td colspan="4">
+                            <img v-if="printAccountReceiptInfo.qrImg" :src="printAccountReceiptInfo.qrImg" width="100px"
+                                height="100px">
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row" style="color:#000;font-size:14px;margin-left: 10px;">
+            <div class="float-left" style="width: 25%;"><span>
+                    <vc:i18n name="部门负责人" namespace="printAccountReceipt"></vc:i18n>
+                </span>：</div>
+            <div class="float-left" style="width: 25%;"><span>
+                    <vc:i18n name="经办人" namespace="printAccountReceipt"></vc:i18n>
+                </span>：{{vc.getData('/nav/getUserInfo').name}}</div>
+            <div class="float-left" style="width: 25%;"><span>
+                    <vc:i18n name="财务收款" namespace="printAccountReceipt"></vc:i18n>
+                </span>：</div>
+            <div class="float-left" style="width: 25%;"><span>
+                    <vc:i18n name="客户确认" namespace="printAccountReceipt"></vc:i18n>
+                </span>：</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="print-btn">
+                <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
+                    <i class="fa fa-check"></i>&nbsp;打印
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_closePage()"><span>
+                        <vc:i18n name="取消" namespace="printAccountReceipt"></vc:i18n>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="合同名称" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同编号" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="父合同编号" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同类型" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="经办人" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同金额" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="开始时间" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="结束时间" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="起草时间" namespace="feeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="状态" namespace="feeDetailContract"></vc:i18n>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="contract in feeDetailContractInfo.contracts">
+                <td class="text-center">{{contract.contractName}}</td>
+                <td class="text-center">{{contract.contractCode}}</td>
+                <td class="text-center">
+                    {{contract.parentContractCode?contract.parentContractCode:'-'}}
+                </td>
+                <td class="text-center">{{contract.contractTypeName}}</td>
+                <td class="text-center">{{contract.operator}}</td>
+                <td class="text-center">{{contract.amount}}</td>
+                <td class="text-center">{{contract.startTime}}</td>
+                <td class="text-center">{{contract.endTime}}</td>
+                <td class="text-center">{{contract.createTime}}</td>
+                <td class="text-center">{{contract.stateName}}</td>
+                
+            </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailContract" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

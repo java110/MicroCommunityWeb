@@ -1,0 +1,137 @@
+<div id="doPayFeeModal" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span>
+                        <span><vc:i18n name="收费确认" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                    </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <vc:i18n name="付费对象：" namespace="payFeeOrderConfirm"></vc:i18n>
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.payerObjName}}</label>
+                </div>
+                <div class="row"
+                     v-if="payFeeOrderConfirmInfo.feeFlag != '2006012' && payFeeOrderConfirmInfo.showEndTime != ''">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="缴费时间段" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderConfirmInfo.endTime)}} 至
+                        {{vc.dateSubOneDay(payFeeOrderConfirmInfo.endTime,vc.dateFormat(payFeeOrderConfirmInfo.showEndTime),payFeeOrderConfirmInfo.feeFlag)}}</label>
+                </div>
+                <div class="row"
+                     v-else-if="payFeeOrderConfirmInfo.feeFlag != '2006012' && payFeeOrderConfirmInfo.custEndTime != ''">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="缴费时间段" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{vc.dateFormat(payFeeOrderConfirmInfo.endTime)}} 至
+                        {{payFeeOrderConfirmInfo.custEndTime}}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="应收金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.totalFeePrice}}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="优惠金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                            <span class="fa fa-info-circle popover-show1" @mouseover="popOverShowMsg1()"
+                                  @mouseleave="popOverHideMsg1()" style="cursor: pointer;" data-html="true"
+                                  data-content="正数：打折减免的金额；<br>负数：需额外缴纳的滞纳金"></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.totalDiscountMoney.toFixed(2)}}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="实收金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label"
+                           v-if="payFeeOrderConfirmInfo.flag != null && payFeeOrderConfirmInfo.flag != '' && payFeeOrderConfirmInfo.flag == 'true'">
+                        {{payFeeOrderConfirmInfo.receivedAmountNumber}}
+                    </label>
+                    <label class="col-sm-8 col-form-label" v-else>{{payFeeOrderConfirmInfo.receivedAmount}}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="抵扣金额" namespace="payFeeOrderConfirm"></vc:i18n></span></span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.accountAmount >=
+                        payFeeOrderConfirmInfo.receivedAmount ? payFeeOrderConfirmInfo.receivedAmount :
+                        payFeeOrderConfirmInfo.accountAmount.toFixed(2)}}
+                    </label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="应缴金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.accountAmount >=
+                        payFeeOrderConfirmInfo.receivedAmount ? '0.00' : (payFeeOrderConfirmInfo.receivedAmount -
+                        payFeeOrderConfirmInfo.accountAmount).toFixed(2)}}</label>
+                </div>
+                <div class="row"
+                     v-if="payFeeOrderConfirmInfo.integralAmount != null && payFeeOrderConfirmInfo.integralAmount != ''">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="积分账户抵扣金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.integralAmount}}</label>
+                </div>
+                <div class="row"
+                     v-if="payFeeOrderConfirmInfo.cashAmount != null && payFeeOrderConfirmInfo.cashAmount != ''">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="现金账户抵扣金额" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.cashAmount}}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">
+                        <span>
+                            <span><vc:i18n name="备注" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                        </span>：
+                    </label>
+                    <label class="col-sm-8 col-form-label">{{payFeeOrderConfirmInfo.remark}}</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input v-model="payFeeOrderConfirmInfo.authCode" id="authCode" class="form-control" style="width: 60%;"
+                       v-if="payFeeOrderConfirmInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee"
+                       :placeholder="vc.i18n('请用扫码枪扫码','payFeeOrderConfirm')">
+                <button type="button" class="btn btn-secondary" @click="_closeDoPayFeeModal()">
+                    <span>
+                        <span><vc:i18n name="关闭" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-primary" v-if="payFeeOrderConfirmInfo.payType == 'common'"
+                        @click="_payFee()">
+                    <span>
+                        <span><vc:i18n name="确定收费" namespace="payFeeOrderConfirm"></vc:i18n></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

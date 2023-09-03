@@ -1,0 +1,60 @@
+<div id="editPrivilegeGroupModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="编辑角色" namespace="editPrivilegeGroup"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <p style="color:red;">{{editPrivilegeGroupInfo.errorInfo}}</p>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="角色名称" namespace="editPrivilegeGroup"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editPrivilegeGroupInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写角色名称','editPrivilegeGroup')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="顺序" namespace="editPrivilegeGroup"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editPrivilegeGroupInfo.seq" type="text"
+                                           :placeholder="vc.i18n('选填，请填写顺序','editPrivilegeGroup')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="角色描述" namespace="editPrivilegeGroup"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editPrivilegeGroupInfo.description"
+                                              :placeholder="vc.i18n('选填，请填写角色描述','editPrivilegeGroup')"
+                                              class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveEditPrivilegeGroup()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editPrivilegeGroup"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+
+        </div>
+        <div class="col-lg-8 text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-if="vc.hasPrivilege('502023021978930012')" v-on:click="_openAddContractRoom()">
+                <vc:i18n name="房产变更" namespace="simplifyRoomFee"></vc:i18n>
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="房屋" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="楼层" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="类型" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="建筑/室内面积" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="租金" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="房屋状态" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="操作" namespace="contractDetailRoom"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="room in contractDetailRoomInfo.rooms">
+                    <td class="text-center">
+                        {{room.roomName}}
+                    </td>
+                    <td class="text-center">
+                        {{room.layer}}
+                    </td>
+                    <td class="text-center">
+                        {{room.roomSubTypeName}}
+                    </td>
+                    <td class="text-center">
+                        {{room.builtUpArea}}/{{room.roomArea}}
+                    </td>
+                    <td class="text-center">
+                        {{room.roomRent}}
+                    </td>
+                    <td class="text-center">
+                        {{room.stateName}}
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group" v-if="room.state != '2002'">
+                            <button class="btn-white btn btn-xs" v-on:click="_toSimplifyAcceptance(room)">
+                                <vc:i18n name="业务受理" namespace="contractDetailRoom"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                <span>
+                    <vc:i18n name="合同面积：" namespace="ownerDetailRoom"></vc:i18n>
+                </span>{{contractDetailRoomInfo.totalArea}}
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="contractDetailRoom" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,237 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                员工信息
+            </div>
+            <div>
+                <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
+                    返回
+                </button>
+
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-if="vc.hasPrivilege('502022082992300002,502022101832220184')"
+                    v-on:click="_openEditStaffModel()">
+                    修改
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_resetStaffPwd()">
+                    重置密码
+                </button>
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="text-center vc-float-left" style="width: 150px;" v-if="staffDetailInfo.photo">
+                <image width="120px" height="140px" class="border-radius" v-bind:src="staffDetailInfo.photo"
+                    @error="errorLoadImg" />
+            </div>
+            <div class="text-center vc-float-left" style="width: 150px;" v-else>
+                <image width="120px" height="140px" class="border-radius" src="/img/noPhoto.jpg" />
+            </div>
+            <div class="row" style="min-height: 160px;">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="编号：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.staffId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="名称：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.userName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="邮箱：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.email}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="手机：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.tel}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="性别：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.sex == '0'?'男':'女'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="住址：" namespace="staffDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{staffDetailInfo.address}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailOrgPrivilege'}"
+                        v-on:click="changeTab('staffDetailOrgPrivilege')">
+                        <vc:i18n name="组织权限" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailClasses'}"
+                        v-on:click="changeTab('staffDetailClasses')">
+                        <vc:i18n name="排班" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAttendance'}"
+                        v-on:click="changeTab('staffDetailAttendance')">
+                        <vc:i18n name="考勤" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailRepair'}"
+                        v-on:click="changeTab('staffDetailRepair')">
+                        <vc:i18n name="维修" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailInspection'}"
+                        v-on:click="changeTab('staffDetailInspection')">
+                        <vc:i18n name="巡检" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailMaintainance'}"
+                        v-on:click="changeTab('staffDetailMaintainance')">
+                        <vc:i18n name="保养" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailPurchaseApply'}"
+                        v-on:click="changeTab('staffDetailPurchaseApply')">
+                        <vc:i18n name="采购" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailItemOutApply'}"
+                        v-on:click="changeTab('staffDetailItemOutApply')">
+                        <vc:i18n name="领用" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <!-- 这个主要是oa 流程 后期根据客户需求 完善是否需要显示 -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'ownerDetailRoom'}"
+                        v-on:click="changeTab('ownerDetailRoom')">
+                        <vc:i18n name="流程" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailHisFee'}"
+                        v-on:click="changeTab('staffDetailHisFee')">
+                        <vc:i18n name="收费单" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailApplyReturnFee'}"
+                        v-on:click="changeTab('staffDetailApplyReturnFee')">
+                        <vc:i18n name="退费单" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailContract'}"
+                        v-on:click="changeTab('staffDetailContract')">
+                        <vc:i18n name="起草合同" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAppAuth'}"
+                        v-on:click="changeTab('staffDetailAppAuth')">
+                        <vc:i18n name="员工认证" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControl'}"
+                        v-on:click="changeTab('staffDetailAccessControl')">
+                        <vc:i18n name="人脸同步" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControlRecord'}"
+                        v-on:click="changeTab('staffDetailAccessControlRecord')">
+                        <vc:i18n name="开门记录" namespace="ownerDetail"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div v-if="staffDetailInfo._currentTab == 'staffDetailOrgPrivilege'">
+        <vc:create path="staff/staffDetailOrgPrivilege"></vc:create>
+    </div>
+    <div v-else class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailClasses'">
+            <vc:create path="staff/staffDetailClasses"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailAttendance'">
+            <vc:create path="staff/staffDetailAttendance"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailRepair'">
+            <vc:create path="staff/staffDetailRepair"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailInspection'">
+            <vc:create path="staff/staffDetailInspection"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailMaintainance'">
+            <vc:create path="staff/staffDetailMaintainance"></vc:create>
+        </div>
+        
+        
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailApplyReturnFee'">
+            <vc:create path="staff/staffDetailApplyReturnFee"></vc:create>
+        </div>
+        
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailAppAuth'">
+            <vc:create path="staff/staffDetailAppAuth"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailAccessControl'">
+            <vc:create path="staff/staffDetailAccessControl"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailAccessControlRecord'">
+            <vc:create path="staff/staffDetailAccessControlRecord"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailContract'">
+            <vc:create path="staff/staffDetailContract"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailPurchaseApply'">
+            <vc:create path="staff/staffDetailPurchaseApply"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailItemOutApply'">
+            <vc:create path="staff/staffDetailItemOutApply"></vc:create>
+        </div>
+        <div v-show="staffDetailInfo._currentTab == 'staffDetailHisFee'">
+            <vc:create path="staff/staffDetailHisFee"></vc:create>
+        </div>
+        
+    </div>
+
+    <vc:create path="frame/resetStaffPwd"></vc:create>
+    <vc:create path="frame/editStaff"></vc:create>
+</div>

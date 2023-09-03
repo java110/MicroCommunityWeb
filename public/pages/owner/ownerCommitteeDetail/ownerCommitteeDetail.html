@@ -1,0 +1,154 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="详情" namespace="ownerCommitteeDetail"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary " v-on:click="vc.goBack()">
+                            <i class="fa fa-close"></i>
+                            <vc:i18n name="返回"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='姓名' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.name}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='性别' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.sex == 'B' ? '男':'女'}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='电话' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.link}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='身份证号码' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.idCard}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='住址' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.address}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='职位' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.position}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='岗位' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.post}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='岗位描述' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.postDesc}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='届期' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.appointTime}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='任期' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.curTime}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='状态' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.state == '1000'?'在职':'离职'}}
+                        </div>
+                        <label class="col-sm-2 col-form-label text-right">
+                            <span><vc:i18n name='备注' namespace='ownerCommitteeDetail'></vc:i18n></span>
+                        </label>
+                        <div class="col-sm-4">
+                            {{ownerCommitteeDetailInfo.remark}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="紧急联系人" namespace="ownerCommitteeDetail"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                           data-page-size="10">
+                        <thead>
+                        <tr>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="成员关系" namespace="ownerCommitteeDetail"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="姓名" namespace="ownerCommitteeDetail"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="联系电话" namespace="ownerCommitteeDetail"></vc:i18n>
+                            </th>
+                            <th data-hide="phone" class="text-center">
+                                <vc:i18n name="住址" namespace="ownerCommitteeDetail"></vc:i18n>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="contract in ownerCommitteeDetailInfo.contracts">
+                            <td class="text-center">
+                                {{contract.relName}}
+                            </td>
+                            <td class="text-center">
+                                {{contract.name}}
+                            </td>
+                            <td class="text-center">
+                                {{contract.link}}
+                            </td>
+                            <td class="text-center" style="width: 250px;">
+                                {{contract.address}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

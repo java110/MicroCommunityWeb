@@ -1,0 +1,255 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="roomRenovationManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{roomRenovationManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text"
+                                       :placeholder="vc.i18n('请输入房屋编号楼栋-单元-房屋 如1-1-101','roomRenovationManage') "
+                                       v-model="roomRenovationManageInfo.conditions.roomName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入联系人','roomRenovationManage')"
+                                       v-model="roomRenovationManageInfo.conditions.personName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入联系电话','roomRenovationManage')"
+                                       maxlength="11" v-model="roomRenovationManageInfo.conditions.personTel"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryRoomRenovationMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="roomRenovationManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-info btn-sm" v-on:click="_resetRoomRenovationMethod()"
+                                    style="margin-left: 20px;">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="roomRenovationManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-show="roomRenovationManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="roomRenovationManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','roomRenovationManage')}}</option>
+                                <option v-for="(item,index) in roomRenovationManageInfo.states" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="roomRenovationManageInfo.conditions.isPostpone">
+                                <option selected value="">{{vc.i18n('请选择是否延期','roomRenovationManage')}}</option>
+                                <option value="Y">{{vc.i18n('是','roomRenovationManage')}}</option>
+                                <option value="N">{{vc.i18n('否','roomRenovationManage')}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input v-model="roomRenovationManageInfo.conditions.renovationTime" type="text"
+                                       :placeholder="vc.i18n('请选择装修时间','roomRenovationManage')"
+                                       class="form-control renovationTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="roomRenovationManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input v-model="roomRenovationManageInfo.conditions.startTime" type="text"
+                                       :placeholder="vc.i18n('请选择装修申请开始时间','roomRenovationManage')"
+                                       class="form-control start_time">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input v-model="roomRenovationManageInfo.conditions.endTime" type="text"
+                                       :placeholder="vc.i18n('请选择装修申请结束时间','roomRenovationManage')"
+                                       class="form-control end_time">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="装修信息" namespace="roomRenovationManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddRoomRenovationModal()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="roomRenovationManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <!--<th class="text-center">
+                            <span><vc:i18n name="装修" namespace="roomRenovationManage"></vc:i18n></span>ID
+                            </th>-->
+                            <th class="text-center">
+                                <span><vc:i18n name="房屋" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="联系人" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="联系电话" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="装修时间" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="申请时间" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="装修单位" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="装修负责人" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="负责人电话" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="是否延期" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="延期时间" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="是否违规" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="违规说明" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="备注" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="roomRenovationManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="roomRenovation in roomRenovationManageInfo.roomRenovations">
+                            <!--<td class="text-center">{{roomRenovation.rId}}</td>-->
+                            <td class="text-center">{{roomRenovation.roomName}}</td>
+                            <td class="text-center">{{roomRenovation.personName}}</td>
+                            <td class="text-center">{{roomRenovation.personTel}}</td>
+                            <td class="text-center">{{roomRenovation.startTime}}<br/>{{roomRenovation.endTime}}</td>
+                            <td class="text-center">{{roomRenovation.createTime}}</td>
+                            <td class="text-center">{{roomRenovation.renovationCompany}}</td>
+                            <td class="text-center">{{roomRenovation.personMain}}</td>
+                            <td class="text-center">{{roomRenovation.personMainTel}}</td>
+                            <td class="text-center">{{roomRenovation.stateName}}</td>
+                            <td class="text-center">{{roomRenovation.isPostpone == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">{{roomRenovation.postponeTime}}</td>
+                            <td class="text-center">{{roomRenovation.isViolation == 'Y'?'是':'否'}}</td>
+                            <td class="text-center">{{roomRenovation.violationDesc}}</td>
+                            <td class="text-center">{{roomRenovation.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="roomRenovation.state == '1000'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRoomRenovationFee(roomRenovation)">
+                                        <span><vc:i18n name="费用" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="roomRenovation.state == '1000' && roomRenovation.isViolation == 'N' && vc.hasPrivilege('502021031698730003')">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openToExamine(roomRenovation)">
+                                        <span><vc:i18n name="审核" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="roomRenovation.state == '3000' && roomRenovation.isViolation == 'N'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDecorationCompleted(roomRenovation)">
+                                        <span><vc:i18n name="装修完成" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="roomRenovation.state == '4000' && roomRenovation.isViolation == 'N' && vc.hasPrivilege('502021012701630060')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDecorationAcceptanceModel(roomRenovation)">
+                                        <span><vc:i18n name="装修验收" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group"
+                                     v-if="roomRenovation.state == '5000' || roomRenovation.state == '6000'">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRoomRenovationDetail(roomRenovation)">
+                                        <span><vc:i18n name="验收明细" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditRoomRenovationModel(roomRenovation)">
+                                        <span><vc:i18n name="修改" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteRoomRenovationModel(roomRenovation)">
+                                        <span><vc:i18n name="删除" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openRoomDecorationRecord(roomRenovation)">
+                                        <span><vc:i18n name="跟踪记录" namespace="roomRenovationManage"></vc:i18n></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="15">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addRoomRenovation" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/roomDecorationAcceptance" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/roomToExamine" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editRoomRenovation"></vc:create>
+    <vc:create path="property/deleteRoomRenovation"></vc:create>
+    <vc:create path="property/roomRenovationCompleted"></vc:create>
+</div>

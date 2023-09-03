@@ -1,0 +1,150 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="scheduleClasses"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入排班名称','scheduleClasses')"
+                                       v-model="scheduleClassesInfo.conditions.nameLike"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="custom-select" v-model="scheduleClassesInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','scheduleClasses')}}</option>
+                                <option v-for="(item,index) in scheduleClassesInfo.states" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryScheduleClassesMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="scheduleClasses"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetScheduleClassesMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="scheduleClasses"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="排班设置" namespace="scheduleClasses"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddScheduleClassesModal()">
+                            <i class="fa fa-plus"></i><span>
+                            <vc:i18n name="添加" namespace="scheduleClasses"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="班次名称" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="排班类型" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="排班周期" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="生效时间" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="人员" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="scheduleClasses"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="scheduleClasses in scheduleClassesInfo.scheduleClassess">
+                            <td class="text-center">{{scheduleClasses.name}}</td>
+                            <td class="text-center">{{scheduleClasses.scheduleTypeName}}</td>
+                            <td class="text-center">{{scheduleClasses.scheduleCycle}}</td>
+                            <td class="text-center">{{scheduleClasses.computeTime}}</td>
+                            <td class="text-center">{{scheduleClasses.staffCount}}
+                                (
+                                <a href="javascript:void(0)" @click="_scheduleClassesStaff(scheduleClasses)">人员</a>
+                                )
+                            </td>
+                            <td class="text-center">{{scheduleClasses.stateName}}</td>
+                            <td class="text-center">{{scheduleClasses.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditScheduleClassesModel(scheduleClasses)">
+                                        <vc:i18n name="修改" namespace="scheduleClasses"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteScheduleClassesModel(scheduleClasses)">
+                                        <vc:i18n name="删除" namespace="scheduleClasses"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-if="scheduleClasses.state == '1001'"
+                                            v-on:click="_openDisabledScheduleClassesModel(scheduleClasses)">
+                                        <vc:i18n name="停用" namespace="scheduleClasses"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_openEnabledScheduleClassesModel(scheduleClasses)">
+                                        <vc:i18n name="启用" namespace="scheduleClasses"></vc:i18n>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/deleteScheduleClasses"></vc:create>
+    <vc:create path="property/scheduleClassesState"></vc:create>
+</div>

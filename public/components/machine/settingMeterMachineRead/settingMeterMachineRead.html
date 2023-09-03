@@ -1,0 +1,54 @@
+<div id="settingMeterMachineReadModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span>
+                        <vc:i18n name="设置抄表时间（抄表模式有效）" namespace="settingMeterMachineRead"></vc:i18n>
+                    </span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                    <vc:i18n name='抄表日' namespace='editMeterMachine'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="settingMeterMachineReadInfo.readDay">
+                                            <option selected disabled value="">{{vc.i18n('必填，请选择抄表日','addMeterMachine')}}</option>
+                                            <option :value="day" v-for="day in 31" >{{day}}日</option>
+                                          </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                    <vc:i18n name='抄表时' namespace='editMeterMachine'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="settingMeterMachineReadInfo.readHours">
+                                            <option selected disabled value="">{{vc.i18n('必填，请选择抄表时','addMeterMachine')}}</option>
+                                            <option :value="hours-1" v-for="hours in 24" >{{hours-1}}时</option>
+                                          </select>
+
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="_settingRead()"><i class="fa fa-check"></i>&nbsp;
+                                    <span>
+                                        <vc:i18n name="提交"></vc:i18n>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <span>
+                                        <vc:i18n name="取消"></vc:i18n>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

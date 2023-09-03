@@ -1,0 +1,116 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddParkingSpaceApplyModal()">
+                申请车位
+            </button>
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="申请ID" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="车牌号" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="停车位" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="汽车品牌" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="车辆类型" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="颜色" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="起租时间" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="结租时间" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="申请人" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="手机号" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="审核结果" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="parkingSpaceApply in carDetailApplyParkingSpaceInfo.parkingSpaceApplys">
+                    <td class="text-center">{{parkingSpaceApply.applyId}}</td>
+                    <td class="text-center">{{parkingSpaceApply.carNum}}</td>
+                    <td class="text-center" v-if="parkingSpaceApply.psId != null && parkingSpaceApply.psId != ''">
+                        {{parkingSpaceApply.areaNum}}停车场 - {{parkingSpaceApply.num}}停车位
+                    </td>
+                    <td class="text-center" v-else>无</td>
+                    <td class="text-center">{{parkingSpaceApply.carBrand}}</td>
+                    <td class="text-center">{{_getParkingSpaceApplyCatType(parkingSpaceApply.carType)}}</td>
+                    <td class="text-center">{{parkingSpaceApply.carColor}}</td>
+                    <td class="text-center">{{parkingSpaceApply.startTime}}</td>
+                    <td class="text-center">{{parkingSpaceApply.endTime}}</td>
+                    <td class="text-center">{{parkingSpaceApply.applyPersonName}}</td>
+                    <td class="text-center">{{parkingSpaceApply.applyPersonLink}}</td>
+                    <td class="text-center">
+                        <span class="badge badge-success" v-if="parkingSpaceApply.state == '1001'">
+                            {{_getParkingSpaceApplyState(parkingSpaceApply.state)}}
+                        </span>
+                        <span class="badge badge-danger" v-else-if="parkingSpaceApply.state == '4004'">
+                            {{_getParkingSpaceApplyState(parkingSpaceApply.state)}}
+                        </span>
+                        <span class="badge badge-info" v-else-if="parkingSpaceApply.state == '2002'">
+                            {{_getParkingSpaceApplyState(parkingSpaceApply.state)}}
+                        </span>
+                        <span class="badge badge-info"
+                            v-else>{{_getParkingSpaceApplyState(parkingSpaceApply.state)}}</span>
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group" v-if="parkingSpaceApply.state == 1001">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openAuditParkingSpaceApplyModal(parkingSpaceApply)">
+                                <vc:i18n name="审核" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                            </button>
+                        </div>
+                        <div class="btn-group" v-if="parkingSpaceApply.state == 1001">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openEditParkingSpaceApplyModel(parkingSpaceApply)">
+                                <vc:i18n name="修改" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openDeleteParkingSpaceApplyModel(parkingSpaceApply)">
+                                <vc:i18n name="删除" namespace="carDetailApplyParkingSpace"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="carDetailApplyParkingSpace" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editParkingSpaceApply"></vc:create>
+    <vc:create path="property/deleteParkingSpaceApply"></vc:create>
+</div>

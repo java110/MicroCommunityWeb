@@ -1,0 +1,92 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name='编号' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='名称' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='手机号' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='充电桩' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='插槽' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='充电小时' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='充电量' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='开始时间' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='结束时间' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='扣款账户' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='小时电价' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='扣款金额' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='插座状态' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name='说明' namespace='chargeMachineOrder'></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="chargeMachineOrder in ownerDetailChargeMachineOrderInfo.chargeMachineOrders">
+                    <td class="text-center">{{chargeMachineOrder.orderId}}</td>
+                    <td class="text-center">{{chargeMachineOrder.personName}}</td>
+                    <td class="text-center">{{chargeMachineOrder.personTel}}</td>
+                    <td class="text-center">{{chargeMachineOrder.machineName}}</td>
+                    <td class="text-center">{{chargeMachineOrder.portName}}</td>
+                    <td class="text-center" v-if="chargeMachineOrder.chargeHours == 999">按量充电</td>
+                    <td class="text-center" v-else>{{chargeMachineOrder.chargeHours}}小时</td>
+                    <td class="text-center">{{chargeMachineOrder.energy}}</td>
+                    <td class="text-center">{{chargeMachineOrder.startTime}}</td>
+                    <td class="text-center">{{chargeMachineOrder.endTime}}</td>
+                    <td class="text-center hand">{{chargeMachineOrder.acctDetailId}}</td>
+                    <td class="text-center">{{chargeMachineOrder.durationPrice}}</td>
+                    <td class="text-center">{{chargeMachineOrder.amount}}(<a href="javascript:void(0)"
+                            @click="_viewOrderAccts(chargeMachineOrder)">明细</a>)</td>
+                    <td class="text-center">{{chargeMachineOrder.stateName}}
+                        <span v-if="chargeMachineOrder.state == '1001'">
+                            (<a href="javascript:void(0)" @click="_showStopCharge(chargeMachineOrder)">停止充电</a>)
+                        </span>
+
+                    </td>
+                    <td class="text-center">{{chargeMachineOrder.remark || '-'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailChargeMachineOrder" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="machine/stopChargeMachine"></vc:create>
+
+
+</div>

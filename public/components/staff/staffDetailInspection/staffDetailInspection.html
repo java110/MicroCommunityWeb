@@ -1,0 +1,142 @@
+<div class="">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-lg-8 text-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn  btn-sm"
+                    v-bind:class="{'btn-primary': staffDetailInspectionInfo.undoOrder == '20200405','btn-light':staffDetailInspectionInfo.undoOrder != '20200405'}"
+                    v-on:click="_switchUndoInspectionOrder('20200405')">
+                        <vc:i18n name="未开始" namespace="staffDetailInspection"></vc:i18n>
+                </button>
+                <button type="button" class="btn btn-sm"
+                    v-bind:class="{'btn-primary': staffDetailInspectionInfo.undoOrder == '20200406','btn-light':staffDetailInspectionInfo.undoOrder != '20200406'}"
+                    v-on:click="_switchUndoInspectionOrder('20200406')">
+                        <vc:i18n name="巡检中" namespace="staffDetailInspection"></vc:i18n>
+                </button>
+                <button type="button" class="btn btn-sm"
+                    v-bind:class="{'btn-primary': staffDetailInspectionInfo.undoOrder == '20200407','btn-light':staffDetailInspectionInfo.undoOrder != '20200407'}"
+                    v-on:click="_switchUndoInspectionOrder('20200407')">
+                        <vc:i18n name="巡检完成" namespace="staffDetailInspection"></vc:i18n>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="任务详情ID" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="巡检点名称" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                       <vc:i18n name="巡检计划名称" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                       <vc:i18n name="巡检路线名称" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <span><vc:i18n name="巡检人" namespace="staffDetailInspection"></vc:i18n></span><br/>
+                        <span><vc:i18n name="开始/结束时间" namespace="staffDetailInspection"></vc:i18n></span>
+                    </th>
+                    <th class="text-center">
+                        <span><vc:i18n name="巡检点" namespace="staffDetailInspection"></vc:i18n></span><br/>
+                        <span><vc:i18n name="开始/结束时间" namespace="staffDetailInspection"></vc:i18n></span>
+                    </th>
+                    <th class="text-center">
+                       <vc:i18n name="实际巡检时间" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="实际签到状态" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="计划巡检人" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="实际巡检人" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="巡检方式" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="任务状态" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="巡检点状态" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="巡检情况" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="巡检照片" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="创建时间" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                    <th class="text-center" style="width: 70px;">
+                        <vc:i18n name="位置信息" namespace="staffDetailInspection"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="inspectionTask in staffDetailInspectionInfo.inspectionTasks">
+                    <td class="text-center">{{inspectionTask.taskDetailId}}</td>
+                            <td class="text-center">{{inspectionTask.inspectionName}}</td>
+                            <td class="text-center">{{inspectionTask.inspectionPlanName}}</td>
+                            <td class="text-center">{{inspectionTask.routeName}}</td>
+                            <td class="text-center">{{inspectionTask.planInsTime}}<br/>{{inspectionTask.planEndTime}}
+                            </td>
+                            <td class="text-center">{{inspectionTask.pointStartTime}}<br/>{{inspectionTask.pointEndTime}}
+                            </td>
+                            <td class="text-center">{{inspectionTask.inspectionTime ? inspectionTask.inspectionTime :
+                                '-'}}
+                            </td>
+                            <td class="text-center text-primary" v-if="inspectionTask.inspectionState == '60000'">
+                                {{inspectionTask.inspectionStateName ? inspectionTask.inspectionStateName : '-'}}
+                            </td>
+                            <td class="text-center text-danger font-bold" v-else>{{inspectionTask.inspectionStateName ?
+                                inspectionTask.inspectionStateName : '-'}}
+                            </td>
+                            <td class="text-center">{{inspectionTask.planUserName}}</td>
+                            <td class="text-center">{{inspectionTask.actUserName ? inspectionTask.actUserName : '-'}}
+                            </td>
+                            <td class="text-center">{{inspectionTask.signTypeName}}</td>
+                            <td class="text-center">{{inspectionTask.taskStateName}}</td>
+                            <td class="text-center text-danger font-bold" v-if="inspectionTask.state == '20200408'">
+                                {{inspectionTask.stateName}}
+                            </td>
+                            <td class="text-center" v-else>{{inspectionTask.stateName}}</td>
+                            <td class="text-center text-primary">
+                                {{inspectionTask.description ? inspectionTask.description : '-'}}
+                            </td>
+                            <td class="text-center" style="white-space: nowrap;">
+                                    <span v-for="_photo in inspectionTask.photos">
+                                    <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
+                                         v-on:click="openFile(_photo)"/>
+                                </span>
+                            </td>
+                            <td class="text-center">{{inspectionTask.createTime}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-info"
+                                        v-on:click="openMap(inspectionTask.latitude, inspectionTask.longitude)">
+                                    <span><vc:i18n name="查看" namespace="staffDetailInspection"></vc:i18n></span>
+                                </button>
+                            </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+               
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="staffDetailInspection" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/viewMap"></vc:create>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

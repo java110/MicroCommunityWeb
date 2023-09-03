@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="添加投票" namespace="addOwnerVoting"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="投票名称" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="addOwnerVotingInfo.qaName" type="text" :placeholder="vc.i18n('必填，请填写投票名称','addOwnerVoting')" class="form-control">
+                            </div>
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="类型" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <select class="custom-select" v-model="addOwnerVotingInfo.titleType" @change="_changeAddTitleType()">
+                                    <option selected disabled value="">
+                                        {{vc.i18n('必填，请选择类型','addOwnerVoting')}}
+                                    </option>
+                                    <option value="1001">{{vc.i18n('单选','addOwnerVoting')}}</option>
+                                    <option value="2002">{{vc.i18n('多选','addOwnerVoting')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="开始时间" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="addOwnerVotingInfo.startTime" type="text" :placeholder="vc.i18n('必填，请选择开始时间','addOwnerVoting')" class="form-control startTime">
+                            </div>
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="结束时间" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="addOwnerVotingInfo.endTime" type="text" :placeholder="vc.i18n('必填，请选择结束时间','addOwnerVoting')" class="form-control endTime">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" v-for="(item,index) in addOwnerVotingInfo.titleValues">
+                            <label class="col-sm-2 col-form-label  text-right">
+                                <span><vc:i18n name="选项" namespace="addOwnerVoting"></vc:i18n></span>{{item.seq}}
+                            </label>
+                            <div class="col-sm-4">
+                                <input v-model="item.itemValue" type="text" :placeholder="vc.i18n('必填，请填写选项内容','addOwnerVoting')" class="form-control">
+                            </div>
+                            <div class="col-sm-2" v-if="index == addOwnerVotingInfo.titleValues.length-1">
+                                <button class="btn btn-link float-left" type="button" v-on:click="_addTitleValue()">
+                                    <vc:i18n name="增加选项" namespace="addOwnerVoting"></vc:i18n>
+                                </button>
+                            </div>
+                            <div class="col-sm-2" v-else>
+                                <button class="btn btn-link float-left" type="button" v-on:click="_deleteTitleValue(item.seq)">
+                                    <vc:i18n name="删除选项" namespace="addOwnerVoting"></vc:i18n>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label  text-right">
+                                <vc:i18n name="投票说明" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="no-padding">
+                                    <div class="summernote"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="投票房屋" namespace="addOwnerVoting"></vc:i18n>
+                            </label>
+                            <div class="col-sm-10">
+                                <vc:create path="property/selectRooms" emitSelectRooms="addOwnerVoting"></vc:create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_saveOwnerVoting()">
+                        <i class="fa fa-check"></i>&nbsp;保存
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="vc.goBack()">
+                        <span><vc:i18n name="取消" namespace="addOwnerVoting"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

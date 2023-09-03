@@ -1,0 +1,85 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+
+        </div>
+        <div class="col-lg-8 text-right">
+
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="合同名称" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同编号" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="父合同编号" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同类型" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="经办人" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同金额" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="合同乙方" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="有效期" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="起草时间" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="状态" namespace="contractDetailSub"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="操作" namespace="contractDetailSub"></vc:i18n>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="contract in contractDetailSubInfo.contracts">
+                <td class="text-center">{{contract.contractName}}</td>
+                <td class="text-center">{{contract.contractCode}}</td>
+                <td class="text-center">
+                    {{contract.parentContractCode?contract.parentContractCode:'-'}}
+                </td>
+                <td class="text-center">{{contract.contractTypeName}}</td>
+                <td class="text-center">{{contract.operator}}({{contract.operatorLink}})</td>
+                <td class="text-center">{{contract.amount}}</td>
+                <td class="text-center">{{contract.partyB}}({{contract.bLink}})</td>
+                <td class="text-center">
+                    {{contract.startTime}}<br/>
+                    ~{{contract.endTime}}
+                </td>
+                <td class="text-center">{{contract.createTime}}</td>
+                <td class="text-center">{{contract.stateName}}</td>
+                <td class="text-center">
+                    <button class="btn-white btn btn-xs" v-on:click="_viewContract(contract)">
+                        <vc:i18n name="查看" namespace="contractDetailSub"></vc:i18n>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="12">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

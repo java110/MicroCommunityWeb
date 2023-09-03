@@ -1,0 +1,117 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="访客ID" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="照片" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="访客" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="业主姓名" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="来访事由/类型" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="车牌号" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="随行人数" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="创建时间" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="来访/离开时间" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="访客状态" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="车辆状态" namespace="visitManage"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="visitManage"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="visit in ownerDetailVisitInfo.visits">
+                    <td class="text-center">{{visit.vId}}</td>
+                    <td class="text-center">
+                        <div style="position: relative; display: inline-block;"
+                            v-on:click="showVisitImg(visit.url?visit.url:'/img/noPhoto.jpg')">
+                            <img width="50" height="50" v-bind:src="visit.url?visit.url:'/img/noPhoto.jpg'"
+                                onerror="this.src='/img/noPhoto.jpg';">
+                            <img src="/img/icon-bigimg.png" style="position: absolute;right: 0;bottom: 0;" width="50"
+                                height="50" alt="">
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        {{visit.vName}}({{visit.phoneNumber}})/{{visit.visitGender=='0'?'男':'女'}}
+                    </td>
+                    <td class="text-center">{{visit.ownerName}}</td>
+                    <td class="text-center">{{visit.visitCase}}({{visit.reasonTypeName}})
+                    </td>
+                    <td class="text-center"
+                        v-if="visit.carState == '1' && visit.psId != null && visit.psId != '' && visit.psId != undefined">
+                        {{visit.carNum}}<br />({{visit.parkAreaNum}}停车场-{{visit.parkingSpaceNum}}停车位)
+                    </td>
+                    <td class="text-center" v-else>{{visit.carNum}}</td>
+                    <td class="text-center">{{visit.entourage}}</td>
+                    <td class="text-center">{{visit.createTime}}</td>
+                    <td class="text-center">{{visit.visitTime}}<br />{{visit.departureTime}}</td>
+                    <td class="text-center">{{visit.stateName}}</td>
+                    <td class="text-center">{{visit.carStateName}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openVisitDetail(visit)">
+                                <vc:i18n name='详情'></vc:i18n>
+                            </button>
+                        </div>
+                        <div class="btn-group" v-if="visit.state != '1' && visit.state != '2'">
+                            <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">
+                                <vc:i18n name="修改" namespace="visitManage"></vc:i18n>
+                            </button>
+                        </div>
+                        <div class="btn-group" v-if="visit.carNum != '' && visit.carState == '0'">
+                            <button class="btn-white btn btn-xs" v-on:click="_openExamineVisitCarModel(visit)">
+                                <vc:i18n name="审核" namespace="visitManage"></vc:i18n>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openDeleteVisitModel(visit)">
+                                <vc:i18n name="删除" namespace="visitManage"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailVisit" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editVisit"></vc:create>
+    <vc:create path="property/examineVisit"></vc:create>
+    <vc:create path="property/examineVisitCar"></vc:create>
+    <vc:create path="property/deleteVisit"></vc:create>
+    <vc:create path="common/viewImage"></vc:create>
+
+
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3 border ">
+        <div class="text-center margin-top">
+            <span class="">
+                <vc:i18n name="楼栋单元" namespace="selectRoom"></vc:i18n>
+            </span>
+        </div>
+        <div class="staff" style="height: 250px;">
+            <div id="jstree_selectRooms_floorUnit">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 border padding-r-0">
+        <div class="text-center margin-top">
+            <vc:i18n name="房屋信息" namespace="selectRoom"></vc:i18n>
+        </div>
+        <div class="padding-left staff margin-top-sm" style="height: 250px;">
+            <div class="row">
+                <div class="col-md-2 margin-top-sm" v-for="(item,index) in selectRoomsInfo.rooms">
+                    <input type="checkbox" v-model="selectRoomsInfo.roomIds" @click="computeSelectedRoomCount(item)" :value="item"> {{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}({{item.stateName}})
+                </div>
+            </div>
+            <!-- <div class="text-right margin-top">
+                <vc:create path="frame/paginationPlus" namespace="selectRooms"></vc:create>
+            </div> -->
+        </div>
+    </div>
+</div>

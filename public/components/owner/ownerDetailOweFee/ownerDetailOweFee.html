@@ -1,0 +1,65 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+       
+        <div class="col-lg-12 text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-if="vc.hasPrivilege('502020082314267912')" v-on:click="_openBatchPayRoomFeeModal()">
+                <span><vc:i18n name="批量缴费" namespace="ownerDetailOweFee"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="收费对象" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="业主名称" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="手机号" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="开始时间" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="结束时间" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="合计(单位:元)" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="更新时间" namespace="ownerDetailOweFee"></vc:i18n>
+                    </th>
+                    <!-- <th class="text-center">
+                    <span><vc:i18n name="操作" namespace="ownerDetailOweFee"></vc:i18n></span>
+                </th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="fee in ownerDetailOweFeeInfo.fees">
+                    <td class="text-center">{{fee.payerObjName}}</td>
+                    <td class="text-center">{{fee.ownerName}}</td>
+                    <td class="text-center">{{fee.ownerTel}}</td>
+                    <td class="text-center">{{fee.endTime}}</td>
+                    <td class="text-center">{{fee.deadlineTime}}</td>
+                    <td class="text-center">{{fee.amountOwed}}</td>
+                    <td class="text-center">{{fee.updateTime}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                <span>缴费请到业务受理页面缴费</span>
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailOweFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+</div>

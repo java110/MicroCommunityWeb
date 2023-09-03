@@ -1,0 +1,68 @@
+<div class="margin-top">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="工单编码" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="位置" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="报修类型" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="报修人" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="联系方式" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="预约时间" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="ownerDetailRepair"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <span><vc:i18n name="操作" namespace="ownerDetailRepair"></vc:i18n></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="repair in ownerDetailRepairInfo.repairs">
+                    <td class="text-center">{{repair.repairId}}</td>
+                    <td class="text-center">{{repair.repairObjName}}</td>
+                    <td class="text-center">{{repair.repairTypeName}}</td>
+                    <td class="text-center">{{repair.repairName}}</td>
+                    <td class="text-center">{{repair.tel}}</td>
+                    <td class="text-center">{{repair.appointmentTime}}</td>
+                    <td class="text-center"
+                        v-if="repair.state == '1800' && (repair.returnVisitFlag == '001' || repair.returnVisitFlag == '002')">
+                        {{repair.stateName}}(定时任务处理)
+                    </td>
+                    <td class="text-center" v-else>
+                        {{repair.stateName}}
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openRepairDetail(repair)">
+                                <span><vc:i18n name="详情" namespace="ownerDetailRepair"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailRepair" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+</div>

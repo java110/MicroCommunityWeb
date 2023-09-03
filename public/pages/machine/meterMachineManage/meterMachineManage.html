@@ -1,0 +1,209 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="查询条件"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择名称','meterMachineManage')"
+                                    v-model="meterMachineManageInfo.conditions.machineNameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择表号','meterMachineManage')"
+                                    v-model="meterMachineManageInfo.conditions.address" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="meterMachineManageInfo.conditions.meterType">
+                                    <option selected value="">{{vc.i18n('请选择表类型','meterMachineManage')}}
+                                    </option>
+                                    <option :value="item.typeId"
+                                        v-for="(item,index) in meterMachineManageInfo.meterTypes">{{item.typeName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_queryMeterMachineMethod()">
+                                <i class="glyphicon glyphicon-search"></i> <span>
+                                    <vc:i18n name="查询"></vc:i18n>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="meterMachineManageInfo.conditions.machineModel">
+                                    <option selected value="">{{vc.i18n('请选择模式','meterMachineManage')}}
+                                    </option>
+                                    <option value="1001">{{vc.i18n('充值模式','meterMachineManage')}}</option>
+                                    <option value="2002">{{vc.i18n('抄表模式','meterMachineManage')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号 楼栋-单元-房屋','meterMachineManage')"
+                                    v-model="meterMachineManageInfo.conditions.roomNameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select class="custom-select" v-model="meterMachineManageInfo.conditions.implBean">
+                                    <option selected value="">{{vc.i18n('请选择厂家','meterMachineManage')}}
+                                    </option>
+                                    <option :value="item.factoryId"
+                                        v-for="(item,index) in meterMachineManageInfo.factorys">{{item.factoryName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><span>
+                            <vc:i18n name="智能水电表" namespace="meterMachineManage"></vc:i18n>
+                        </span></h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openCustomRead()">
+                            <vc:i18n name="手工抄表" namespace="meterMachineManage"></vc:i18n>
+                        </button>
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openSettingMeterMachineRead()">
+                            <vc:i18n name="设置抄表时间" namespace="meterMachineManage"></vc:i18n>
+                        </button>
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openImportMeterMachine()">
+                            <vc:i18n name="导入" namespace="meterMachineManage"></vc:i18n>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMeterMachineModal()">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <vc:i18n name="添加" namespace="meterMachineManage"></vc:i18n>
+                        </button>
+                      
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='编号' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='名称' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='表号' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='表类型' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='模式' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='房屋' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='费用项' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='厂家' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='剩余读数' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='当前读数' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='读表时间' namespace='meterMachineManage'></vc:i18n>
+                                    </span></th>
+                                <th class="text-center"><span>
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="meterMachine in meterMachineManageInfo.meterMachines">
+                                <td class="text-center">{{meterMachine.machineId}}</td>
+                                <td class="text-center">{{meterMachine.machineName}}</td>
+                                <td class="text-center">{{meterMachine.address}}</td>
+                                <td class="text-center">{{_getMeterTypeName(meterMachine.meterType)}}</td>
+                                <td class="text-center">{{meterMachine.machineModel == '1001'?'充值模式':'抄表模式'}}</td>
+                                <td class="text-center">{{meterMachine.roomName}}</td>
+                                <td class="text-center">{{meterMachine.feeConfigName}}</td>
+                                <td class="text-center">{{meterMachine.implBeanName}}</td>
+                                <td class="text-center" v-if="meterMachine.machineModel == '1001'">
+                                    {{meterMachine.degree?meterMachine.degree:meterMachine.prestoreDegrees}}</td>
+                                <td class="text-center" v-else>-</td>
+                                <td class="text-center" v-if="meterMachine.machineModel == '1001'">-</td>
+                                <td class="text-center" v-else>
+                                    {{meterMachine.curDegrees}}(每月{{meterMachine.readDay}}日{{meterMachine.readHours}}时抄表)
+                                </td>
+                                <td class="text-center">{{meterMachine.curReadingTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditMeterMachineModel(meterMachine)">
+                                            <vc:i18n name='修改'></vc:i18n>
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteMeterMachineModel(meterMachine)"><span>
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs" v-on:click="_toDetail(meterMachine)"><span>
+                                                <vc:i18n name='记录'></vc:i18n>
+                                            </span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="machine/deleteMeterMachine"></vc:create>
+    <vc:create path="machine/settingMeterMachineRead"></vc:create>
+    <vc:create path="machine/customReadMeterMachine"></vc:create>
+    <vc:create path="machine/importMeterMachine"></vc:create>
+
+
+
+</div>

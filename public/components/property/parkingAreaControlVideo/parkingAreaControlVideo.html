@@ -1,0 +1,100 @@
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <select class="custom-select custom-select-sm" v-model="parkingAreaControlVideoInfo.inMachineId" @change="_swatchVedio()">
+                        <option selected  value="">{{vc.i18n('选择入场摄像头','parkingAreaControlVideo')}}</option>
+                        <option :value="item.machineId"
+                            v-for="(item,index) in parkingAreaControlVideoInfo.inMachines">{{item.machineName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="unlicensedCarIn()">
+                                无牌车进场
+                            </button>
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1101')">
+                                手动进场
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor('in')">
+                                开闸
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor('in')">
+                                关闸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <select class="custom-select custom-select-sm" v-model="parkingAreaControlVideoInfo.outMachineId" @change="_swatchOutVedio()">
+                        <option selected  value="">{{vc.i18n('选择出场摄像头','parkingAreaControlVideo')}}</option>
+                        <option :value="item.machineId"
+                            v-for="(item,index) in parkingAreaControlVideoInfo.outMachines">{{item.machineName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="_outPayFeeQrCode()">
+                                出口二维码
+                            </button>
+                            <button type="button" class="btn btn-white btn-sm" v-on:click="customCarIn('1102')">
+                                手动出场
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_openDoor('out')">
+                                开闸
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm " v-on:click="_closeDoor('out')">
+                                关闸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="receiver1Div" style="border: 1px solid #dee2e6;">
+                <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver1" style="border: 1;" />
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.inMachineCarNum">
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>{{parkingAreaControlVideoInfo.inMachineInOutTime}}</span>
+                <!-- <span>{{parkingAreaControlVideoInfo.inMachineCarNum}}</span> -->
+                <span>{{parkingAreaControlVideoInfo.inMachineOpen}};</span>
+                <span>{{parkingAreaControlVideoInfo.inMachineOpenMsg}}</span>
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>没有进场车辆</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="receiver2Div" style="border: 1px solid #dee2e6;">
+                <img width="100%" src="../../../img/init.jpg" height="300px" id="receiver2" />
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-if="parkingAreaControlVideoInfo.outMachineCarNum">
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>{{parkingAreaControlVideoInfo.outMachineInOutTime}}</span>
+                <!-- <span>{{parkingAreaControlVideoInfo.outMachineCarNum}}</span> -->
+                <span>{{parkingAreaControlVideoInfo.outMachineOpen}};</span>
+                <span>{{parkingAreaControlVideoInfo.outMachineOpenMsg}}</span>
+            </div>
+            <div class="margin-top-sm margin-left-sm" style="font-size: 14px;" v-else>
+                <span class="fa fa-bell" style="color: #007bff;"></span>
+                <span>没有出场车辆</span>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/barrierGateMachineQrCode"></vc:create>
+</div>

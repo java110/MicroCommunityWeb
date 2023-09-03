@@ -1,0 +1,97 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlCarInoutsInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','parkingAreaControlTempCarAuths')" class="form-control">
+        </div>
+        <div class="col-lg-3 padding-right-xs padding-left-xl">
+            <select class="custom-select" v-model="parkingAreaControlTempCarAuthsInfo.state">
+                <option value="">{{vc.i18n('请选择审核状态','parkingAreaControlTempCarAuths')}}</option>
+                <option value="W">{{vc.i18n('待审核','parkingAreaControlTempCarAuths')}}</option>
+                <option value="C">{{vc.i18n('允许通行','parkingAreaControlTempCarAuths')}}</option>
+                <option value="F">{{vc.i18n('拒绝通行','parkingAreaControlTempCarAuths')}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlTempCarAuthsInfo.startTime" type="text" :placeholder="vc.i18n('请填写开始时间','parkingAreaControlTempCarAuths')" class="form-control tempAuthStartTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="parkingAreaControlTempCarAuthsInfo.endTime" type="text" :placeholder="vc.i18n('请填写结束时间','parkingAreaControlTempCarAuths')" class="form-control tempAuthEndTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_qureyParkingAreaControlTempCarAuths()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="进场图" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="车牌号" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="停车场" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="入口" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="进场时间" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="状态" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="审核说明" namespace="parkingAreaControlTempCarAuths"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="car in parkingAreaControlTempCarAuthsInfo.cars">
+                    <td class="text-center" style="white-space: nowrap;">
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-if="car.phoneJpg" v-bind:src="car.phoneJpg" v-on:click="_tempCarAuthOpenFile(car.phoneJpg)" />
+                        <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
+                    </td>
+                    <td class="text-center">
+                        {{car.carNum}}
+                    </td>
+                    <td class="text-center">
+                        {{car.areaNum}}
+                    </td>
+                    <td class="text-center">
+                        {{car.machineName}}({{car.machineCode}})
+                    </td>
+                    <td class="text-center">
+                        {{car.createTime}}
+                    </td>
+                    <td class="text-center" v-if="car.state == 'W'">
+                        待审核 (
+                        <a href="javascript:void(0)" @click="_doOpenTempCarAuth(car)">审核</a>)
+                    </td>
+                    <td class="text-center" v-if="car.state == 'C'">
+                        允许通行
+                    </td>
+                    <td class="text-center" v-if="car.state == 'F'">
+                        拒绝通行
+                    </td>
+                    <td class="text-center">
+                        {{car.msg || '无'}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <vc:create path="frame/paginationPlus" namespace="parkingAreaControlTempCarAuths"></vc:create>
+    </div>
+</div>

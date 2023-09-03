@@ -1,0 +1,69 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="动作" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="操作人" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="操作时间" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="姓名" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="性别" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="身份证" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="家庭住址" namespace="ownerDetailHis"></vc:i18n>
+                </th>
+                <th v-for="(item,index) in ownerDetailHisInfo.listColumns" class="text-center">{{item}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="owner in ownerDetailHisInfo.owners">
+                <td class="text-center">
+                    {{_getHisOwnerOperate(owner)}}
+                </td>
+                <td class="text-center">
+                    {{owner.userName || '-'}}
+                </td>
+                <td class="text-center">
+                    {{owner.createTime}}
+                </td>
+                <td class="text-center">
+                    {{owner.name}}({{owner.link}})
+                </td>
+                <td class="text-center">
+                    {{owner.sex == 0 ? '男' : '女'}}
+                </td>
+                <td class="text-center">
+                    {{owner.idCard || '-'}}
+                </td>
+                <td class="text-center">
+                    {{owner.address || '-'}}
+                </td>
+                <td v-for="item in owner.listValues" class="text-center">
+                    {{item || '-'}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+              
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailHis" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

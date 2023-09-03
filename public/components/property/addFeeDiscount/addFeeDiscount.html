@@ -1,0 +1,85 @@
+<div id="addFeeDiscountModel" class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addFeeDiscount"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="折扣名称" namespace="addFeeDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="addFeeDiscountInfo.discountName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写折扣名称','addFeeDiscount')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="折扣类型" namespace="addFeeDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addFeeDiscountInfo.discountType"
+                                            @change="_changeAddFeeDiscountType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addFeeDiscount')}}，请选择折扣类型
+                                        </option>
+                                        <option v-for="(item,index) in addFeeDiscountInfo.discountTypes" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规则" namespace="addFeeDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select v-model="addFeeDiscountInfo.ruleId" class="form-control"
+                                            @change="_changeAddFeeDiscountRule()">
+                                        <option value="">{{vc.i18n('必填','addFeeDiscount')}}，请选择规则</option>
+                                        <option v-for="(item,index) in addFeeDiscountInfo.rules" :value="item.ruleId">
+                                            {{item.ruleName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-for="(item,index) in addFeeDiscountInfo.feeDiscountRuleSpecs">
+                                <label class="col-sm-2 col-form-label">{{item.specName}}</label>
+                                <div class="col-sm-10">
+                                    <input v-model.trim="item.specValue" type="number" :placeholder="item.remark"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="描述" namespace="addFeeDiscount"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                <textarea v-model.trim="addFeeDiscountInfo.discountDesc"
+                                          :placeholder="vc.i18n('可选，请填写描述','addFeeDiscount')"
+                                          class="form-control">
+                                </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveFeeDiscountInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

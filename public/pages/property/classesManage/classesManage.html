@@ -1,0 +1,130 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择班次名称','classesManage')"
+                                       v-model="classesManageInfo.conditions.name" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryClassesMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetClassesMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="班次信息" namespace="classesManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="vc.showMarkdown('/pages/property/classesManage')">
+                            <i class="fa fa-file"></i>
+                            <span><vc:i18n name="文档" namespace="marketSmsManage"></vc:i18n></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddClassesModal()">
+                            <i class="fa fa-plus"></i>
+                            <span><vc:i18n name="添加" namespace="classesManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name='编号' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='班次名称' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='时段' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='状态' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='创建时间' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='备注说明' namespace='classesManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='操作'></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="classes in classesManageInfo.classess">
+                            <td class="text-center">{{classes.classesId}}</td>
+                            <td class="text-center">{{classes.name}}</td>
+                            <td class="text-center">
+                                <div v-for="(time,index) in classes.times">{{time.startTime}}~{{time.endTime}}</div>
+                            </td>
+                            <td class="text-center">{{classes.state == '1001'?'启用':'停止'}}</td>
+                            <td class="text-center">{{classes.createTime}}</td>
+                            <td class="text-center">{{classes.remark}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditClassesModel(classes)">
+                                        <span><vc:i18n name='修改'></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteClassesModel(classes)">
+                                        <span><vc:i18n name='删除'></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <button class="btn-white btn btn-xs" v-if="classes.state == '1001'"
+                                        v-on:click="_openDisabledClassesModel(classes)">
+                                    <vc:i18n name="停用"></vc:i18n>
+                                </button>
+                                <button class="btn-white btn btn-xs" v-else
+                                        v-on:click="_openEnabledClassesModel(classes)">
+                                    <vc:i18n name="启用"></vc:i18n>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/addClasses" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editClasses"></vc:create>
+    <vc:create path="property/deleteClasses"></vc:create>
+    <vc:create path="property/classesState"></vc:create>
+</div>

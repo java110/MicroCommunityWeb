@@ -1,0 +1,151 @@
+<div id="editHousekeepingTypeModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改" namespace="editHousekeepingType"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="菜单名称" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editHousekeepingTypeInfo.hktName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写菜单名称','editHousekeepingType')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="小图标logo" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImage" callBackListener="editHousekeepingType"
+                                               callBackFunction="notifyUploadCoverImage"
+                                               namespace="editHousekeepingType" imageCount="1">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="菜单描述" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editHousekeepingTypeInfo.hktDesc" type="text"
+                                           :placeholder="vc.i18n('选填，请填写服务描述','editHousekeepingType')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="标签" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editHousekeepingTypeInfo.label" type="text"
+                                           :placeholder="vc.i18n('选填，请填写标签','editHousekeepingType')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editHousekeepingTypeInfo.typeCd == '2002'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="跳转类型" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editHousekeepingTypeInfo.skipType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择跳转类型','editHousekeepingType')}}
+                                        </option>
+                                        <option value="3">{{vc.i18n('普通商品','editHousekeepingType')}}</option>
+                                        <option value="1">{{vc.i18n('站内','editHousekeepingType')}}</option>
+                                        <option value="2">{{vc.i18n('站外','editHousekeepingType')}}</option>
+                                        <option value="S">{{vc.i18n('店铺','editHousekeepingType')}}</option>
+                                        <option value="P">{{vc.i18n('单个商品','editHousekeepingType')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row"
+                                 v-if="editHousekeepingTypeInfo.typeCd == '2002' && (editHousekeepingTypeInfo.skipType == '1' || editHousekeepingTypeInfo.skipType == '2')">
+                                <label class="col-sm-2 col-form-label">URL</label>
+                                <div class="col-sm-10">
+                                    <input v-model="editHousekeepingTypeInfo.url" type="text"
+                                           :placeholder="vc.i18n('选填，请填写URL','editHousekeepingType')"
+                                           class="form-control">
+                                    <label v-if="editHousekeepingTypeInfo.skipType == '1'">请使用浏览器打开手机商城，复制#号已后的全部地址。如：/pages/market/market...直至结束</label>
+                                    <label v-if="editHousekeepingTypeInfo.skipType == '2'">输入外部完整地址，需加上http或者https。</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row"
+                                 v-if="editHousekeepingTypeInfo.skipType == 'S' || editHousekeepingTypeInfo.skipType == 'P'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="选择店铺" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editHousekeepingTypeInfo.shopId"
+                                            @change="selEditProducts">
+                                        <option selected value="">{{vc.i18n('请选择店铺','editHousekeepingType')}}</option>
+                                        <option v-for="(item,index) in editHousekeepingType.shops" :value="item.shopId">
+                                            {{item.shopName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="editHousekeepingTypeInfo.skipType == 'P'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="选择商品" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editHousekeepingTypeInfo.productId">
+                                        <option selected value="">{{vc.i18n('请选择商品','editHousekeepingType')}}</option>
+                                        <option v-for="(item,index) in editHousekeepingType.products"
+                                                :value="item.productId">
+                                            {{item.prodName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="排序" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editHousekeepingTypeInfo.seq" type="text"
+                                           :placeholder="vc.i18n('必填，请填写排序','editHousekeepingType')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="是否显示" namespace="editHousekeepingType"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editHousekeepingTypeInfo.isShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editHousekeepingType')}}，请选择是否显示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editHousekeepingType')}}</option>
+                                        <option value="N">{{vc.i18n('否','editHousekeepingType')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveEditHousekeepingType()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editHousekeepingType"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

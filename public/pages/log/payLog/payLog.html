@@ -1,0 +1,135 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="operateDataLog"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择开始时间','operateDataLog')" v-model="operateDataLogInfo.conditions.logStartTime" class=" form-control startDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择结束时间','operateDataLog')" v-model="operateDataLogInfo.conditions.logEndTime" class=" form-control endDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入操作人','operateDataLog')" v-model="operateDataLogInfo.conditions.staffNameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryDataMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="operateDataLog"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--费用类型-->
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'feeConfigDetailHis' || operateDataLogInfo._currentTab == 'feeDetailHis'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入费用项名称','operateDataLog')" v-model="operateDataLogInfo.conditions.feeNameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'feeDetailHis'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋名称，车牌号或者合同编号','operateDataLog')" v-model="operateDataLogInfo.conditions.payerObjName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'ownerDetailHis'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入业主名称','operateDataLog')" v-model="operateDataLogInfo.conditions.ownerNameLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'roomDetailHis'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋名称 楼栋-单元-房屋','operateDataLog')" v-model="operateDataLogInfo.conditions.roomName" class=" form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'carDetailHis'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入 车辆','operateDataLog')" v-model="operateDataLogInfo.conditions.carNumLike" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" v-if="operateDataLogInfo._currentTab == 'contractDetailChange'">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请输入 合同编号','operateDataLog')" v-model="operateDataLogInfo.conditions.contractCode" class=" form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-bg padding-lg">
+        <div class="">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'feeConfigDetailHis'}" v-on:click="changeTab('feeConfigDetailHis')">
+                        <vc:i18n name="费用项" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'feeDetailHis'}" v-on:click="changeTab('feeDetailHis')">
+                        <vc:i18n name="费用" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'ownerDetailHis'}" v-on:click="changeTab('ownerDetailHis')">
+                        <vc:i18n name="业主" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'roomDetailHis'}" v-on:click="changeTab('roomDetailHis')">
+                        <vc:i18n name="房屋" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'carDetailHis'}" v-on:click="changeTab('carDetailHis')">
+                        <vc:i18n name="车辆" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:operateDataLogInfo._currentTab == 'contractDetailChange'}" v-on:click="changeTab('contractDetailChange')">
+                        <vc:i18n name="合同" namespace="operateDataLog"></vc:i18n>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div v-if="operateDataLogInfo._currentTab == 'feeConfigDetailHis'">
+            <vc:create path="fee/feeConfigDetailHis"></vc:create>
+        </div>
+        <div v-if="operateDataLogInfo._currentTab == 'feeDetailHis'">
+            <vc:create path="fee/feeDetailHis"></vc:create>
+        </div>
+        <div v-if="operateDataLogInfo._currentTab == 'ownerDetailHis'">
+            <vc:create path="owner/ownerDetailHis"></vc:create>
+        </div>
+
+        <div v-if="operateDataLogInfo._currentTab == 'roomDetailHis'">
+            <vc:create path="room/roomDetailHis"></vc:create>
+        </div>
+        <div v-if="operateDataLogInfo._currentTab == 'carDetailHis'">
+            <vc:create path="car/carDetailHis"></vc:create>
+        </div>
+        <div v-if="operateDataLogInfo._currentTab == 'contractDetailChange'">
+            <vc:create path="contract/contractDetailChange"></vc:create>
+        </div>
+
+    </div>
+</div>

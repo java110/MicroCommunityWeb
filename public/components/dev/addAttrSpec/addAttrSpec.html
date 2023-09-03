@@ -1,0 +1,153 @@
+<div id="addAttrSpecModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加属性配置" namespace="addAttrSpec"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="属性表" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.tableName">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择属性表','addAttrSpec')}}
+                                        </option>
+                                        <option value="building_room_attr">{{vc.i18n('房屋属性','addAttrSpec')}}</option>
+                                        <option value="building_owner_attr">{{vc.i18n('业主属性','addAttrSpec')}}</option>
+                                        <option value="building_community_attr">
+                                            {{vc.i18n('小区属性','addAttrSpec')}}
+                                        </option>
+                                        <option value="machine_attr">{{vc.i18n('设备属性','addAttrSpec')}}</option>
+                                        <option value="parking_area_attr">{{vc.i18n('停车场属性','addAttrSpec')}}</option>
+                                        <option value="owner_car_attr">{{vc.i18n('车辆属性','addAttrSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="域" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addAttrSpecInfo.domain" type="text"
+                                           :placeholder="vc.i18n('必填，请填写域','addAttrSpec')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格名称" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addAttrSpecInfo.specName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规格名称','addAttrSpec')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格编码" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addAttrSpecInfo.specCd" type="text"
+                                           :placeholder="vc.i18n('必填，请填写规格编码','addAttrSpec')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="说明" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addAttrSpecInfo.specHoldplace" type="text"
+                                           :placeholder="vc.i18n('必填，请填写说明','addAttrSpec')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('是否必填','addAttrSpec')}}</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.required">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addAttrSpec')}}，请选择{{vc.i18n('是否必填','addAttrSpec')}}
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','addAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','addAttrSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="展示" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.specShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addAttrSpec')}}，请选择展示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','addAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','addAttrSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="值类型" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.specValueType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addAttrSpec')}}，请选择值类型
+                                        </option>
+                                        <option value="1001">{{vc.i18n('字符串','addAttrSpec')}}</option>
+                                        <option value="2002">{{vc.i18n('整数','addAttrSpec')}}</option>
+                                        <option value="3003">{{vc.i18n('金额','addAttrSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="规格类型" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.specType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addAttrSpec')}}，请选择规格类型
+                                        </option>
+                                        <option value="2233">input</option>
+                                        <option value="3344">select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="查询显示" namespace="addAttrSpec"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAttrSpecInfo.listShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addAttrSpec')}}，请选择查询显示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','addAttrSpec')}}</option>
+                                        <option value="N">{{vc.i18n('否','addAttrSpec')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveAttrSpecInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

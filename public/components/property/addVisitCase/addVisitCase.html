@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="拜访事由" namespace="addVisitCase"></vc:i18n></span>
+                </h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="拜访事由" namespace="addVisitCase"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea v-model="addVisitCase.visitCase" type="text"
+                                          :placeholder="vc.i18n('请填写访客拜访事由','addVisitCase')" rows="3"
+                                          class="form-control">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="事由类型" namespace="addVisitCase"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10">
+                                <select class="custom-select" v-model="addVisitCase.reasonType">
+                                    <option selected disabled value="">{{vc.i18n('必填，请选择事由类型','addVisitCase')}}</option>
+                                    <option v-for="(item,index) in addVisitCase.reasonTypes" :key="index"
+                                            :value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span><vc:i18n name="照片信息" namespace="addVisitCase"></vc:i18n></span>
+                            </label>
+                            <div class="col-sm-10 flex justify-start">
+                                <div>
+                                    <img width="300px" height="300px" class="border-radius"
+                                         v-bind:src="addVisitCase.visitPhotoUrl ? addVisitCase.visitPhotoUrl : '/img/noPhoto.jpg'"
+                                         alt="vc.i18n('访客照片','addVisitCase')">
+                                </div>
+                                <div class="text-center margin-left">
+                                    <video id="visitPhoto" style="width: 300px;height: 300px;background-color: #1D1F2D;"
+                                           class="border-radius"></video>
+                                    <canvas id="canvas" style="display:none;"></canvas>
+                                    <div class="margin-top-xs">
+                                        <button class="btn btn-primary" type="button" v-on:click="_takePhoto()">
+                                            <span class="fa fa-camera"></span>
+                                            <span><vc:i18n name="拍照" namespace="addVisitCase"></vc:i18n></span>
+                                        </button>
+                                        <span class="btn btn-default btn-file" v-on:click="_uploadPhoto($event)">
+                                        <span class="fileinput-new">
+                                            <span><vc:i18n name="上传照片" namespace="addVisitCase"></vc:i18n></span>
+                                        </span>
+                                        </span>
+                                        <input type="file" class="file" accept="images/*" id="uploadVisitPhoto" hidden
+                                               v-on:change="_choosePhoto($event)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

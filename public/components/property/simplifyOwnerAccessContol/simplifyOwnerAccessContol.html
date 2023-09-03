@@ -1,0 +1,68 @@
+<div>
+    <div>
+        <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <span><vc:i18n name="设备编码" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="设备名称" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="对象类型" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="对象名称" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="指令" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="状态" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="说明" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="同步时间" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+                <th class="text-center">
+                    <span><vc:i18n name="操作" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="machineTranslate in simplifyOwnerAccessContolInfo.machineTranslates">
+                <td class="text-center">{{machineTranslate.machineCode}}</td>
+                <td class="text-center">{{machineTranslate.machineName}}</td>
+                <td class="text-center">{{machineTranslate.typeCdName}}</td>
+                <td class="text-center">{{machineTranslate.objName}}</td>
+                <td class="text-center">{{machineTranslate.machineCmdName}}</td>
+                <td class="text-center">{{machineTranslate.stateName}}</td>
+                <td class="text-center">{{machineTranslate.remark}}</td>
+                <td class="text-center">{{machineTranslate.updateTime}}</td>
+                <td class="text-center">
+                    <div class="btn-group" v-if="machineTranslate.state != '20000'">
+                        <button class="btn-white btn btn-xs"
+                                v-on:click="_openEditMachineTranslateModel(machineTranslate)">
+                            <span><vc:i18n name="重新同步" namespace="simplifyOwnerAccessContol"></vc:i18n></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tr>
+                <td colspan="9">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 float-right">
+                <vc:create namespace="simplifyOwnerAccessContol" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <!-- <vc:create path="property/editMachineTranslate"></vc:create> -->
+</div>

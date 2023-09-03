@@ -1,0 +1,117 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="申请单号" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="申请人" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="使用人" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="物品类型" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="物品名称" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="物品规格" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="固定物品" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="供应商" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="物品仓库" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="申请数量" namespace="resourceDetailItemOut"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="数量" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="采购价格" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="总价" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="申请备注" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="创建时间" namespace="resourceDetailItemOut"></vc:i18n>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="purchaseApplyDetail in resourceDetailItemOutInfo.purchaseApplyDetails">
+                    <td class="text-center">{{purchaseApplyDetail.applyOrderId}}</td>
+                    <td class="text-center">{{purchaseApplyDetail.userName}}</td>
+                    <td class="text-center">{{purchaseApplyDetail.endUserName}}</td>
+                    <td class="text-center">
+                        {{purchaseApplyDetail.parentRstName}} > {{purchaseApplyDetail.rstName}}
+                    </td>
+                    <td class="text-center">{{purchaseApplyDetail.resName}}</td>
+                    <td class="text-center">
+                        {{purchaseApplyDetail.specName ? purchaseApplyDetail.specName : '-'}}
+                    </td>
+                    <td class="text-center">{{purchaseApplyDetail.isFixedName}}</td>
+                    <td class="text-center">
+                        {{purchaseApplyDetail.supplierName? purchaseApplyDetail.supplierName : '-'}}
+                    </td>
+                    <td class="text-center">{{purchaseApplyDetail.shName}}</td>
+
+                    <td class="text-center">
+                        {{purchaseApplyDetail.quantity}}{{purchaseApplyDetail.unitCodeName || ''}}
+                    </td>
+                    <td class="text-center">
+                        {{purchaseApplyDetail.purchaseQuantity ? purchaseApplyDetail.purchaseQuantity+purchaseApplyDetail.unitCodeName : '-'}}
+                    </td>
+                    <td class="text-center">
+                        ￥{{purchaseApplyDetail.price ? purchaseApplyDetail.price : '0.00'}}
+                    </td>
+                    <td class="text-center">
+                        {{purchaseApplyDetail.totalApplyPrice}}
+                    </td>
+                    <td class="text-center">{{purchaseApplyDetail.remark}}
+                        <span class="fa fa-info-circle" v-if="purchaseApplyDetail.purchaseRemark != null && purchaseApplyDetail.purchaseRemark != undefined &&
+                                      purchaseApplyDetail.purchaseRemark != ''" @click="_viewPurchaseApplyDetail(purchaseApplyDetail)"></span>
+                    </td>
+                    <td class="text-center">{{purchaseApplyDetail.stateName}}</td>
+                    <td class="text-center">{{purchaseApplyDetail.createTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="resourceDetailItemOut" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

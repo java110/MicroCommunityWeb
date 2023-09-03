@@ -1,0 +1,145 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <span><vc:i18n name="修改申请" namespace="updateVisitSpace"></vc:i18n></span>
+                </h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" class="btn btn-white " @click="vc.goBack()">
+                        <i class="fa fa-close"></i>&nbsp;返回
+                    </button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="访客姓名" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.vName" type="text"
+                               :placeholder="vc.i18n('必填，请填写访客姓名','updateVisitSpace')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="性别" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="updateVisitSpaceInfo.visitGender">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择性别','updateVisitSpace')}}</option>
+                            <option value="0">{{vc.i18n('男','updateVisitSpace')}}</option>
+                            <option value="1">{{vc.i18n('女','updateVisitSpace')}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="访客电话" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.phoneNumber" type="text"
+                               :placeholder="vc.i18n('必填，请填写访客电话','updateVisitSpace')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="车牌号" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.carNum" type="text"
+                               :placeholder="vc.i18n('选填，请填写访客车牌号','updateVisitSpace')" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="开始时间" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.visitTime" readonly type="text"
+                               :placeholder="vc.i18n('必填，请填写开始时间','updateVisitSpace')"
+                               class="form-control updateVisitTime">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="结束时间" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.departureTime" readonly type="text"
+                               :placeholder="vc.i18n('必填，请填写结束时间','updateVisitSpace')"
+                               class="form-control updateDepartureTime">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="随行人数" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="updateVisitSpaceInfo.entourage" type="number"
+                               :placeholder="vc.i18n('选填，请填写随行人数','updateVisitSpace')" class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="访问业主" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-3">
+                        <input v-model="updateVisitSpaceInfo.ownerName" type="text" disabled
+                               :placeholder="vc.i18n('必填，请选择业主','updateVisitSpace')" class="form-control">
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary" type="button" v-on:click="_openSearchOwnerModel()">
+                            <i class="fa fa-search"></i>&nbsp;选择
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="事由类型" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="updateVisitSpaceInfo.reasonType">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择事由类型','updateVisitSpace')}}</option>
+                            <option v-for="(item,index) in updateVisitSpaceInfo.reasonTypes" :key="index"
+                                    :value="item.statusCd">{{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="访问房屋" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="updateVisitSpaceInfo.roomId">
+                            <option selected disabled value="">{{vc.i18n('必填，请选择访问房屋','updateVisitSpace')}}</option>
+                            <option v-for="(item,index) in updateVisitSpaceInfo.rooms" :key="index"
+                                    :value="item.roomId">
+                                {{item.roomName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <span><vc:i18n name="拜访事由" namespace="updateVisitSpace"></vc:i18n></span>
+                    </label>
+                    <div class="col-sm-4">
+                        <textarea v-model="updateVisitSpaceInfo.visitCase" type="text"
+                                  :placeholder="vc.i18n('请填写访客拜访事由','updateVisitSpace')" rows="3" class="form-control">
+                        </textarea>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="照片信息" namespace="updateVisitSpace"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <vc:create path="frame/uploadImageUrl" callBackListener="updateVisitSpace"
+                                   callBackFunction="notifyUploadImage" imageCount="1" namespace="updateVisitSpace">
+                        </vc:create>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_updateVisitFinish()">
+                        <i class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                            @click="vc.goBack()">
+                        <i class="fa fa-close"></i>&nbsp;取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/chooseOwner" callBackListener="updateVisitSpace" callBackFunction="ownerInfo"></vc:create>
+</div>

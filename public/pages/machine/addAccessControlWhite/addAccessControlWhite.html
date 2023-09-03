@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>
+            <vc:i18n name="添加" namespace="addAccessControlWhite"></vc:i18n>
+        </h5>
+        <div class="ibox-tools" style="top:10px;">
+          <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+            <i class="fa fa-close"></i>返回
+          </button>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='人员类别' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <select class="custom-select" v-model="addAccessControlWhiteInfo.personType">
+              <option selected value="">请选择人员类型</option>
+              <option :value="item.statusCd" v-for="(item,index) in addAccessControlWhiteInfo.personTypes">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='用户名称' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.personName" type="text"
+              :placeholder="vc.i18n('必填，请填写用户名称','addAccessControlWhite')" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='手机号' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.tel" type="text"
+              :placeholder="vc.i18n('必填，请填写手机号','addAccessControlWhite')" class="form-control">
+          </div>
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='身份证号' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.idCard" type="text"
+              :placeholder="vc.i18n('选填，请填写身份证号','addAccessControlWhite')" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='授权设备' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <div class="checkbox custom-control-inline" v-for="(item,index) in addAccessControlWhiteInfo.machines">
+              <label>
+                <input type="checkbox" v-model="addAccessControlWhiteInfo.machineIds" :value="item.machineId">
+                {{item.machineName}}
+              </label>
+            </div>
+          </div>
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='门禁卡号' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.accessControlKey" type="text"
+              :placeholder="vc.i18n('选填，请填写门禁卡号','addAccessControlWhite')" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='开始时间' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.startTime" type="text"
+              :placeholder="vc.i18n('必填，请填写开始时间','addAccessControlWhite')"
+              class="form-control addAccessControlWhiteStartTime">
+          </div>
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='结束时间' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <input v-model="addAccessControlWhiteInfo.endTime" type="text"
+              :placeholder="vc.i18n('必填，请填写结束时间','addAccessControlWhite')"
+              class="form-control addAccessControlWhiteEndTime">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right"><span>
+              <vc:i18n name='门禁人脸' namespace='addAccessControlWhite'></vc:i18n>
+            </span></label>
+          <div class="col-sm-4">
+            <vc:create path="frame/uploadImageUrl" callBackListener="addAccessControlWhite"
+              callBackFunction="notifyUploadImage" imageCount="1" namespace="addAccessControlWhite">
+            </vc:create>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
+            <span>
+              <vc:i18n name="返回"></vc:i18n>
+            </span>
+          </button>
+          <button class="btn btn-primary" type="button" v-on:click="saveAccessControlWhiteInfo()"><i
+              class="fa fa-check"></i>&nbsp;提交
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

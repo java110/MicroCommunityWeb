@@ -1,0 +1,172 @@
+<div class=" animated fadeInRight ecommerce">
+    <div class="row" v-if="inspectionPlanManageInfo.inspectionPlanStaffModel == false">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="查询条件" namespace="inspectionPlanManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入计划ID','inspectionPlanManage')"
+                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanId"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入计划名称','inspectionPlanManage')"
+                                       v-model="inspectionPlanManageInfo.conditions.inspectionPlanName"
+                                       class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="custom-select" v-model="inspectionPlanManageInfo.conditions.state">
+                                <option selected value="">{{vc.i18n('请选择状态','inspectionPlanManage')}}</option>
+                                <option v-for="(item,index) in inspectionPlanManageInfo.states" :key="index"
+                                        v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryInspectionPlanMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetInspectionPlanMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <span><vc:i18n name="巡检计划信息(凌晨2点更新)" namespace="inspectionPlanManage"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddInspectionPlanModal()">
+                            <i class="fa fa-plus"></i><span>
+                            <vc:i18n name="添加" namespace="inspectionPlanManage"></vc:i18n></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <!-- <th class="text-center">
+                                <span><vc:i18n name="计划ID" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th> -->
+                            <th class="text-center">
+                                <span><vc:i18n name="计划名称" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计划路线" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="计划周期" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="签到方式" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="日期范围" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="时间范围" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="任务提前(分钟)" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="制定人" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="制定时间" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="inspectionPlanManage"></vc:i18n></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="inspectionPlan in inspectionPlanManageInfo.inspectionPlans">
+                            <!-- <td class="text-center">{{inspectionPlan.inspectionPlanId}}</td> -->
+                            <td class="text-center">{{inspectionPlan.inspectionPlanName}}</td>
+                            <td class="text-center">{{inspectionPlan.inspectionRouteName}}</td>
+                            <td class="text-center">{{inspectionPlan.inspectionPlanPeriodName}}</td>
+                            <td class="text-center">{{inspectionPlan.signTypeName}}</td>
+                            <td class="text-center">{{inspectionPlan.startDate}}~{{inspectionPlan.endDate}}</td>
+                            <td class="text-center">{{inspectionPlan.startTime}}~{{inspectionPlan.endTime}}</td>
+                            <td class="text-center">{{inspectionPlan.beforeTime}}</td>
+                            <td class="text-center">{{inspectionPlan.createUserName}}</td>
+                            <td class="text-center">{{inspectionPlan.createTime}}</td>
+                            <td class="text-center">{{inspectionPlan.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditInspectionPlanModel(inspectionPlan)">
+                                        <vc:i18n name="修改" namespace="inspectionPlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteInspectionPlanModel(inspectionPlan)">
+                                        <vc:i18n name="删除" namespace="inspectionPlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-if="inspectionPlan.state == '2020025'"
+                                            v-on:click="_openDisabledInspectionPlanModel(inspectionPlan)">
+                                        <vc:i18n name="停用" namespace="inspectionPlanManage"></vc:i18n>
+                                    </button>
+                                    <button class="btn-white btn btn-xs" v-else
+                                            v-on:click="_openEnabledInspectionPlanModel(inspectionPlan)">
+                                        <vc:i18n name="启用" namespace="inspectionPlanManage"></vc:i18n>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="row margin-top-xs">
+                        <div class="col-sm-9">
+                            <div>
+                                请确保计划开始时间和计划结束时间是有效时间范围，并且设置了巡检人，不然无法生成巡检任务
+                            </div>
+                        </div>
+                        <div class="col-sm-3 float-right">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div v-show="inspectionPlanManageInfo.inspectionPlanStaffModel == true">
+        <vc:create path="/pages/property/inspectionPlanStaffManage"></vc:create>
+    </div> -->
+    <vc:create path="property/editInspectionPlan"></vc:create>
+    <vc:create path="property/deleteInspectionPlan"></vc:create>
+    <vc:create path="property/inspectionPlanState"></vc:create>
+</div>

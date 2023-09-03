@@ -1,0 +1,106 @@
+<div id="editQuestionAnswerModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改问卷信息" namespace="editQuestionAnswer"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="问卷类型" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editQuestionAnswerInfo.qaType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editQuestionAnswer')}}，请选择问卷类型
+                                        </option>
+                                        <option value="1001">{{vc.i18n('业主问卷','editQuestionAnswer')}}</option>
+                                        <!-- <option value="2002">{{vc.i18n('员工自评','editQuestionAnswer')}}</option> -->
+                                        <option value="3003">{{vc.i18n('业主投票','editQuestionAnswer')}}</option>
+                                        <option value="4004">{{vc.i18n('员工投票','editQuestionAnswer')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="名称" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editQuestionAnswerInfo.qaName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写名称','editQuestionAnswer')"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="开始时间" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editQuestionAnswerInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editQuestionAnswer')"
+                                           class="form-control editStartTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="结束时间" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editQuestionAnswerInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editQuestionAnswer')"
+                                           class="form-control editEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="内容" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editQuestionAnswerInfo.content"
+                                              :placeholder="vc.i18n('选填，请填写内容','editQuestionAnswer')"
+                                              class="form-control">
+                                     </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="备注" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editQuestionAnswerInfo.remark"
+                                              :placeholder="vc.i18n('选填，请填写备注','editQuestionAnswer')"
+                                              class="form-control">
+                                     </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="图片" namespace="editQuestionAnswer"></vc:i18n></span>
+                                </label>
+                                <div class="content-img col-sm-10">
+                                    <vc:create path="frame/uploadImageUrl" callBackListener="editQuestionAnswer"
+                                               callBackFunction="notifyUploadImage" namespace="editQuestionAnswer">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editQuestionAnswer()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

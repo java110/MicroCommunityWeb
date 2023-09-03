@@ -1,0 +1,93 @@
+<div id="editMenuCatalogModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改菜单目录" namespace="editMenuCatalog"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="名称" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMenuCatalogInfo.name" type="text"
+                                           :placeholder="vc.i18n('必填，请填写名称','editMenuCatalog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="图标" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMenuCatalogInfo.icon" type="text"
+                                           :placeholder="vc.i18n('必填，请填写图标','editMenuCatalog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="顺序" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMenuCatalogInfo.seq" type="text"
+                                           :placeholder="vc.i18n('必填，请填写顺序','editMenuCatalog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="商户类型" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editMenuCatalogInfo.storeType">
+                                        <option selected disabled value="">{{vc.i18n('必填','editMenuCatalog')}}，请选择商户类型
+                                        </option>
+                                        <option value="800900000001">{{vc.i18n('运营团队','editMenuCatalog')}}</option>
+                                        <option value="800900000003">{{vc.i18n('物业','editMenuCatalog')}}</option>
+                                        <option value="800900000005">{{vc.i18n('商家','editMenuCatalog')}}</option>
+                                        <option value="800900000000">{{vc.i18n('开发团队','editMenuCatalog')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="页面" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMenuCatalogInfo.url" type="text"
+                                           :placeholder="vc.i18n('必填，请填写页面','editMenuCatalog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="是否显示" namespace="editMenuCatalog"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editMenuCatalogInfo.isShow">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','editMenuCatalog')}}，请选择是否显示
+                                        </option>
+                                        <option value="Y">{{vc.i18n('是','editMenuCatalog')}}</option>
+                                        <option value="N">{{vc.i18n('否','editMenuCatalog')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editMenuCatalog()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <span><vc:i18n name="取消" namespace="editMenuCatalog"></vc:i18n></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

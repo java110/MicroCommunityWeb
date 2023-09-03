@@ -1,0 +1,42 @@
+<div class="coupon-market">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-5 padding-lr-0 margin-left-sm">
+            <input type="text" class="form-control" placeholder="请输入优惠券名称" @keyup.enter="_doSearch()" />
+        </div>
+        <div class="col-md-1 padding-lr-0 margin-left-sm">
+            <button type="button" class="form-control btn btn-primary" @click="_doSearch()">
+                <span>
+                    <vc:i18n name="查询"></vc:i18n>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="row margin-top-xs margin-bottom-sm">
+        <div class="col-md-3"></div>
+        <div class="col-md-5 padding-lr-0 margin-left-sm">
+            <a href="javascript:void(0)" @click="_querySupplierCoupon(item)" v-for="(item,index) in couponMarketInfo.suppliers">{{item.supplierName}}</a>
+        </div>
+    </div>
+    <div class="vc-line"></div>
+    <div class="row " style="margin:15px auto">
+        <div v-for="(item,index) in couponMarketInfo.coupons" class="coupon margin padding-xs" :key="index">
+            <!-- <img :src="item.url" class="border-radius"/> -->
+            <img :src="couponMarketInfo.url" class="border-radius" />
+            <div class="title padding-xs">
+                <span>{{item.name}}</span>
+            </div>
+            <div class="row padding-xs">
+                <div class="col-md-6">
+                    售价：<span style="color: #ff0036">￥{{item.valuePrice}}</span>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="">购买</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-if="couponMarketInfo.records > 1">
+        <vc:create path="frame/pagination"></vc:create>
+    </div>
+</div>

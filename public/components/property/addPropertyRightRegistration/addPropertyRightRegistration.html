@@ -1,0 +1,185 @@
+<div id="addPropertyRightRegistrationModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addPropertyRightRegistration"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="楼栋" namespace="addPropertyRightRegistration"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addPropertyRightRegistrationInfo.floorId" @change="_queryUnit">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择楼栋','addPropertyRightRegistration')}}
+                                        </option>
+                                        <option v-for="(item,index) in addPropertyRightRegistrationInfo.floors"
+                                                :key="index" v-bind:value="item.floorId">
+                                            {{item.floorNum}}{{vc.i18n('号楼','addPropertyRightRegistration')}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{vc.i18n('单元','addPropertyRightRegistration')}}</label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addPropertyRightRegistrationInfo.unitId" @change="_queryRoom">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择单元','addPropertyRightRegistration')}}
+                                        </option>
+                                        <option v-for="(item,index) in addPropertyRightRegistrationInfo.units"
+                                                :key="index" v-bind:value="item.unitId">
+                                            {{item.unitNum}}{{vc.i18n('单元','addPropertyRightRegistration')}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="房屋" namespace="addPropertyRightRegistration"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addPropertyRightRegistrationInfo.roomId">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填','addPropertyRightRegistration')}}，请选择房屋
+                                        </option>
+                                        <option v-for="(item,index) in addPropertyRightRegistrationInfo.rooms"
+                                                :key="index" v-bind:value="item.roomId">
+                                            {{item.roomNum}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="姓名" namespace="addPropertyRightRegistration"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addPropertyRightRegistrationInfo.name" type="text" :placeholder="vc.i18n('必填，请填写姓名','addPropertyRightRegistration')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="联系方式" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addPropertyRightRegistrationInfo.link" type="text" id="phone" :placeholder="vc.i18n('必填，请填写联系方式','addPropertyRightRegistration')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="地址" namespace="addPropertyRightRegistration"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addPropertyRightRegistrationInfo.address" type="text" :placeholder="vc.i18n('必填，请填写地址','addPropertyRightRegistration')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="身份证号" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="addPropertyRightRegistrationInfo.idCard" type="text" :placeholder="vc.i18n('必填，请填写身份证号','addPropertyRightRegistration')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="身份证照片上传" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImageUrl" callBackListener="addPropertyRightRegistration" callBackFunction="notifyUploadIdCardImage" imageCount="2" namespace="addPropertyRightRegistration1">
+                                    </vc:create>
+                                    <p class="help-block">*请上传正反两张身份证照片*</p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="购房合同图片上传" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImageUrl" callBackListener="addPropertyRightRegistration" callBackFunction="notifyUploadHousePurchaseImage" imageCount="10" namespace="addPropertyRightRegistration2">
+                                    </vc:create>
+                                    <p class="help-block">*请上传不超过十张购房合同图片*</p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="维修基金是否缴纳" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addPropertyRightRegistrationInfo.isTrue">
+                                        <option selected value="">
+                                            {{vc.i18n('请选择维修基金是否缴纳','addPropertyRightRegistration')}}
+                                        </option>
+                                        <option value="true">{{vc.i18n('是','addPropertyRightRegistration')}}</option>
+                                        <option value="false">{{vc.i18n('否','addPropertyRightRegistration')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="addPropertyRightRegistrationInfo.isTrue == 'true'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="维修基金图片上传" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImageUrl" callBackListener="addPropertyRightRegistration" callBackFunction="notifyUploadRepairImage" imageCount="3" namespace="addPropertyRightRegistration3">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="契税是否缴纳" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addPropertyRightRegistrationInfo.flag">
+                                        <option selected value="">
+                                            {{vc.i18n('请选择契税是否缴纳','addPropertyRightRegistration')}}
+                                        </option>
+                                        <option value="0">{{vc.i18n('是','addPropertyRightRegistration')}}</option>
+                                        <option value="1">{{vc.i18n('否','addPropertyRightRegistration')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="addPropertyRightRegistrationInfo.flag == '0'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
+                                        <vc:i18n name="契税证明图片上传" namespace="addPropertyRightRegistration"></vc:i18n>
+                                    </span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="frame/uploadImageUrl" callBackListener="addPropertyRightRegistration" callBackFunction="notifyUploadDeedTaxImage" imageCount="3" namespace="addPropertyRightRegistration4">
+                                    </vc:create>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button" v-on:click="savePropertyRightRegistrationInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

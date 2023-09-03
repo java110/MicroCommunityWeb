@@ -1,0 +1,43 @@
+(function (vc, vm) {
+    vc.extends({
+        data: {
+            deleteServiceImplInfo: {}
+        },
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteServiceImpl', 'openDeleteServiceImplModal', function (_params) {
+                vc.component.deleteServiceImplInfo = _params;
+                $('#deleteServiceImplModel').modal('show');
+            });
+        },
+        methods: {
+            deleteServiceImpl: function () {
+                //vc.component.deleteServiceImplInfo.communityId=vc.getCurrentCommunity().communityId;
+                vc.http.apiPost(
+                    '/serviceImpl.deleteServiceImpl',
+                    JSON.stringify(vc.component.deleteServiceImplInfo),
+                    {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        if (res.status == 200) {
+                            //关闭model
+                            $('#deleteServiceImplModel').modal('hide');
+                            vc.emit('serviceImplManage', 'listServiceImpl', {});
+                            vc.toast("删除成功");
+                            return;
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(json);
+                    });
+            },
+            closeDeleteServiceImplModel: function () {
+                $('#deleteServiceImplModel').modal('hide');
+            }
+        }
+    });
+})(window.vc, window.vc.component);

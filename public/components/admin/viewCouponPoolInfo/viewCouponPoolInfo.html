@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="优惠券池信息" namespace="viewCouponPoolInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewCouponPoolInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectCouponPoolInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择优惠券池" namespace="viewCouponPoolInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewCouponPoolInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddCouponPoolInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加优惠券池" namespace="viewCouponPoolInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="池" namespace="viewCouponPoolInfo"></vc:i18n></span>ID：</label>
+                            <label class="">{{viewCouponPoolInfo.poolId}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="优惠券类型" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.couponType}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="优惠券名称" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.couponName}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="面值" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.actualPrice}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="购买价格" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.buyPrice}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="数量" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.couponStock}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="有效期" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.validityDay}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="排序" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.seq}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="状态" namespace="viewCouponPoolInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewCouponPoolInfo.state}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" >primary：</label>
+                            <label class="">{{viewCouponPoolInfo.primary}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="admin/addCouponPool"
+               callBackListener="viewCouponPoolInfo"
+               callBackFunction="chooseCouponPool"
+    ></vc:create>
+
+
+    <vc:create path="admin/chooseCouponPool"
+               emitChooseCouponPool="viewCouponPoolInfo"
+               emitLoadData="viewCouponPoolInfo"
+    ></vc:create>
+</div>

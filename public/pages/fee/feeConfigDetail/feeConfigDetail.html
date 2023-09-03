@@ -1,0 +1,178 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                费用项信息
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用类型：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeTypeCdName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用项：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="费用标识：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.feeFlagName || '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="缴费周期：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.paymentCycle}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="催缴类型：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.billTypeName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="开始时间：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="结束时间：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.endTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="账户抵扣：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.deductFrom == 'Y'?'是':'否'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="手机缴费：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.payOnline == 'Y'?'是':'否'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="进位方式：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label v-if="feeDetailInfo.scale == '1'">{{vc.i18n('四舍五入','feeDetailInfo')}}</label>
+                                <label v-if="feeDetailInfo.scale == '3'">{{vc.i18n('向上进位','feeDetailInfo')}}</label>
+                                <label v-if="feeDetailInfo.scale == '4'">{{vc.i18n('向下进位','feeDetailInfo')}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="保留小数：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.decimalPlace}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="计算公式：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.computingFormulaName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="计费单价：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.squarePrice}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="附加费：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.additionalAmount}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeConfigDetailHis'}" v-on:click="changeTab('feeConfigDetailHis')">
+                        <vc:i18n name="修改记录" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailFeeObj'}" v-on:click="changeTab('feeDetailFeeObj')">
+                        <vc:i18n name="创建对象" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeConfigDetailDiscount'}" v-on:click="changeTab('feeConfigDetailDiscount')">
+                        <vc:i18n name="优惠折扣" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-if="feeDetailInfo._currentTab == 'feeConfigDetailHis'">
+            <vc:create path="fee/feeConfigDetailHis"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailFeeObj'">
+            <vc:create path="fee/feeDetailFeeObj"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeConfigDetailDiscount'">
+            <vc:create path="fee/feeConfigDetailDiscount"></vc:create>
+        </div>
+        
+
+    </div>
+</div>

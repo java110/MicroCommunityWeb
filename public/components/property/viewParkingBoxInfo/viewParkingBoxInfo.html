@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="岗亭信息" namespace="viewParkingBoxInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewParkingBoxInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectParkingBoxInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择岗亭" namespace="viewParkingBoxInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewParkingBoxInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddParkingBoxInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加岗亭" namespace="viewParkingBoxInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="岗亭名称" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.boxName}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="临时车是否进场" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.tempCarIn}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="是否收费" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.fee}}</label>
+                        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="蓝牌车进场" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.blueCarIn}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="黄牌车进场" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.yelowCarIn}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="备注" namespace="viewParkingBoxInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewParkingBoxInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="property/addParkingBox"
+               callBackListener="viewParkingBoxInfo"
+               callBackFunction="chooseParkingBox"
+    ></vc:create>
+
+
+    <vc:create path="property/chooseParkingBox"
+               emitChooseParkingBox="viewParkingBoxInfo"
+               emitLoadData="viewParkingBoxInfo"
+    ></vc:create>
+</div>

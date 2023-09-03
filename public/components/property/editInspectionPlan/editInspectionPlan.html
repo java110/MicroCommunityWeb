@@ -1,0 +1,183 @@
+<div id="editInspectionPlanModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改" namespace="editInspectionPlan"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="计划名称" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="editInspectionPlanInfo.inspectionPlanName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写计划名称','editInspectionPlan')"
+                                           class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="巡检路线" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editInspectionPlanInfo.inspectionRouteId"
+                                            @change="_changeInspectionPeriod()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择巡检路线','editInspectionPlan')}}
+                                        </option>
+                                        <option :value="item.inspectionRouteId"
+                                                v-for="(item,index) in editInspectionPlanInfo.inspectionRoutes">
+                                            {{item.routeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="巡检周期" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editInspectionPlanInfo.inspectionPlanPeriod"
+                                            @change="_changeInspectionPeriod()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择巡检周期','editInspectionPlan')}}
+                                        </option>
+                                        <option value="2020022">月/天</option>
+                                        <option value="2020023">按周</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="任务提前" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-2">
+                                    <input v-model="editInspectionPlanInfo.beforeTime" type="text"
+                                           :placeholder="vc.i18n('多少','editInspectionPlan')"
+                                           class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-left">
+                                    分钟生成
+                                </label>
+                            </div>
+                            <div class="form-group row margin-bottom-0"
+                                 v-if="editInspectionPlanInfo.inspectionPlanPeriod == '2020022'">
+                                <label class="col-sm-2  text-right">
+                                    <span><vc:i18n name="月" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <label class="margin-left" v-for="index in 12">
+                                        <input type="checkbox" v-model="editInspectionPlanInfo.months" :value="index">
+                                        {{index}}月
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row  margin-bottom-0"
+                                 v-if="editInspectionPlanInfo.inspectionPlanPeriod == '2020022'">
+                                <label class="col-sm-2  text-right">
+                                    <span><vc:i18n name="日" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <label class="margin-left" v-for="index in 31">
+                                        <input type="checkbox" v-model="editInspectionPlanInfo.days" :value="index">
+                                        {{index}}日
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row  margin-bottom-0"
+                                 v-if="editInspectionPlanInfo.inspectionPlanPeriod == '2020023'">
+                                <label class="col-sm-2  text-right">
+                                    <span><vc:i18n name="周" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <label class="margin-left" v-for="index in 7">
+                                        <input type="checkbox" v-model="editInspectionPlanInfo.workdays" :value="index">
+                                        {{vc.getWorkDay(index)}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="开始日期" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="editInspectionPlanInfo.startDate" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始日期','editInspectionPlan')"
+                                           class="form-control editInspectionPlanStartDate">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="结束日期" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="editInspectionPlanInfo.endDate" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束日期','editInspectionPlan')"
+                                           class="form-control editInspectionPlanEndDate">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="开始时间" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="editInspectionPlanInfo.startTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写开始时间','editInspectionPlan')"
+                                           class="form-control editInspectionPlanStartTime">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="结束时间" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="editInspectionPlanInfo.endTime" type="text"
+                                           :placeholder="vc.i18n('必填，请填写结束时间','editInspectionPlan')"
+                                           class="form-control editInspectionPlanEndTime">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="签到方式" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editInspectionPlanInfo.signType">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择签到方式','editInspectionPlan')}}
+                                        </option>
+                                        <option v-for="(item,index) in editInspectionPlanInfo.signTypes" :key="index"
+                                                v-bind:value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="允许补检" namespace="editInspectionPlanInfo"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="editInspectionPlanInfo.canReexamine">
+                                        <option value="1000">不允许补检</option>
+                                        <option value="2000">允许补检</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="选择员工" namespace="editInspectionPlan"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <vc:create path="property/selectStaffs"></vc:create>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editInspectionPlan()">
+                                    <i class="fa fa-check"></i>&nbsp;保存
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div id="addAccessControlWhiteAuthModel" class="modal fade" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b "><span>
+                        <vc:i18n name="授权" namespace="addAccessControlWhiteAuth"></vc:i18n>
+                    </span></h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"><span>
+                                        <vc:i18n name='门禁' namespace='addAccessControlWhiteAuth'></vc:i18n>
+                                    </span></label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="addAccessControlWhiteAuthInfo.machineId">
+                                        <option selected value="">请选择授权设备</option>
+                                        <option :value="item.machineId" v-for="(item,index) in addAccessControlWhiteAuthInfo.machines">
+                                          {{item.machineName}}({{item.machineCode}})
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                    v-on:click="saveAccessControlWhiteAuthInfo()"><i class="fa fa-check"></i>&nbsp;
+                                    <span>
+                                        <vc:i18n name="保存"></vc:i18n>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal">
+                                    <span>
+                                        <vc:i18n name="取消"></vc:i18n>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div id = "chooseRepairSettingModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chooseRepairSettingModelLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chooseRepairSettingModelLabel"><span><vc:i18n name="选择报修设置" namespace="chooseRepairSetting"></vc:i18n></span></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="row">
+
+                                <div class="col-sm-7 m-b-xs">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('输入报修设置名称','chooseRepairSetting')" type="text" v-model="chooseRepairSettingInfo._currentRepairSettingName" class="form-control form-control-sm">
+                                        <span class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryRepairSettings()"><span><vc:i18n name="查询" namespace="chooseRepairSetting"></vc:i18n></span></button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" style="margin-top:15px">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                                                        <th class="text-center"><span><vc:i18n name="设置" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="类型名称" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="派单方式" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="说明" namespace="chooseRepairSetting"></vc:i18n></span></th>
+                            <th class="text-center"><span><vc:i18n name="操作" namespace="chooseRepairSetting"></vc:i18n></span></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="repairSetting in chooseRepairSettingInfo.repairSettings">
+                                                                        <td class="text-center">{{repairSetting.settingId}}</td>
+                            <td class="text-center">{{repairSetting.repairTypeName}}</td>
+                            <td class="text-center">{{repairSetting.repairWay}}</td>
+                            <td class="text-center">{{repairSetting.remark}}</td>
+
+                                            <td>
+                                                <button class="btn btn-primary btn-xs" v-on:click="chooseRepairSetting(repairSetting)"><span><vc:i18n name="选择" namespace="chooseRepairSetting"></vc:i18n></span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

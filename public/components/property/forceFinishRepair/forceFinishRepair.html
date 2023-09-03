@@ -1,0 +1,226 @@
+<div id="forceFinishRepairModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="强制回单" namespace="forceFinishRepair"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row" v-if="forceFinishRepairInfo.repairObjType != '004'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="是否用料" namespace="forceFinishRepair"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="forceFinishRepairInfo.maintenanceType">
+                                        <option selected value="">{{vc.i18n('请选择是否用料','forceFinishRepair')}}</option>
+                                        <option v-for="(item,index) in forceFinishRepairInfo.maintenanceTypes"
+                                                :key="index" :value="item.statusCd"
+                                                v-if="item.statusCd != '1001' && item.statusCd != '1002'">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" v-if="forceFinishRepairInfo.repairObjType == '004'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="维修类型" namespace="forceFinishRepair"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="forceFinishRepairInfo.maintenanceType">
+                                        <option selected value="">{{vc.i18n('请选择维修类型','forceFinishRepair')}}</option>
+                                        <option v-for="(item,index) in forceFinishRepairInfo.maintenanceTypes"
+                                                :key="index" :value="item.statusCd"
+                                                v-if="item.statusCd != '1003' && item.statusCd != '1004'">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group row"
+                                 v-if="forceFinishRepairInfo.maintenanceType == '1001' || forceFinishRepairInfo.maintenanceType == '1003'">
+                                <label class="col-sm-2 col-form-label">&nbsp;</label>
+                                <div class="col-sm-10">
+                                    <button class="btn btn-primary" type="button"
+                                            v-on:click="_openChooseSingleResourceModel()">
+                                        <i class="fa fa-plus"></i>&nbsp;选择商品
+                                    </button>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group row"
+                                 v-if="forceFinishRepairInfo.maintenanceType == '1001' || forceFinishRepairInfo.maintenanceType == '1003'">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="商品类型" namespace="forceFinishRepair"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="forceFinishRepairInfo.rsId"
+                                            v-on:change="_listSonResourceStoreType()">
+                                        <option selected value="">{{vc.i18n('请选择商品类型','chooseSingleResource')}}</option>
+                                        <option v-for="(item,index) in forceFinishRepairInfo.resourceStoreTypes"
+                                                :key="index" :value="item.rstId">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div v-if="forceFinishRepairInfo.isCustom">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="商品名" namespace="forceFinishRepair"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input :placeholder="vc.i18n('必填，请填写商品名','forceFinishRepair')" cols="15"
+                                               class="form-control" v-model="forceFinishRepairInfo.customGoodsName">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="forceFinishRepairInfo.maintenanceType == '1001'">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="自定义价格" namespace="forceFinishRepair"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input placeholder='必填，请填写自定义价格' cols="15" class="form-control"
+                                               v-model="forceFinishRepairInfo.price">
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div class="form-group row"
+                                     v-if="forceFinishRepairInfo.maintenanceType == '1001' || forceFinishRepairInfo.maintenanceType == '1003'">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="二级分类" namespace="forceFinishRepair"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select id="goods" class="custom-select" v-model="forceFinishRepairInfo.rstId"
+                                                v-on:change="_choseGoods()">
+                                            <option selected value="">
+                                                {{vc.i18n('请选择二级类型','forceFinishRepair')}}
+                                            </option>
+                                            <option v-for="(item,index) in forceFinishRepairInfo.sonResourceStoreTypes"
+                                                    :key="index" :value="item.rstId">{{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="forceFinishRepairInfo.rstId != ''">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="商品" namespace="forceFinishRepair"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select id="goodsPrice" class="custom-select"
+                                                v-model="forceFinishRepairInfo.resId" v-on:change="_chosePrice()">
+                                            <option selected value="">{{vc.i18n('请选择商品','forceFinishRepair')}}</option>
+                                            <option v-for="(item,index) in forceFinishRepairInfo.resourceStores"
+                                                    :key="index" :value="item.resId">
+                                                {{item.resName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="forceFinishRepairInfo.resId != ''">
+                                <div v-if="forceFinishRepairInfo.maintenanceType == '1001'">
+                                    <div class="form-group row"
+                                         v-if="forceFinishRepairInfo.outLowPrice == forceFinishRepairInfo.outHighPrice">
+                                        <label class="col-sm-2 col-form-label">
+                                            <span><vc:i18n name="商品价格" namespace="forceFinishRepair"></vc:i18n></span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input :placeholder="vc.i18n('必填，请填写商品价格','forceFinishRepair')" cols="15"
+                                                   class="form-control"
+                                                   disabled="disabled" v-model="forceFinishRepairInfo.price">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row"
+                                         v-if="forceFinishRepairInfo.outLowPrice != forceFinishRepairInfo.outHighPrice">
+                                        <label class="col-sm-2 col-form-label">
+                                            <span><vc:i18n name="自定义价格" namespace="forceFinishRepair"></vc:i18n></span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input placeholder='必填，请填写自定义价格' cols="15" class="form-control"
+                                                   v-model="forceFinishRepairInfo.price">
+                                            <span><vc:i18n name="价格范围" namespace="forceFinishRepair"></vc:i18n></span>
+                                            {{forceFinishRepairInfo.outLowPrice}}-{{forceFinishRepairInfo.outHighPrice}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">
+                                            <span><vc:i18n name="规格" namespace="forceFinishRepair"></vc:i18n></span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input cols="15" class="form-control"
+                                                   v-model="forceFinishRepairInfo.selectedGoodsInfo.specName"
+                                                   disabled="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="forceFinishRepairInfo.resId != '' || forceFinishRepairInfo.isCustom">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="商品数量" namespace="forceFinishRepair"></vc:i18n></span>
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" v-on:click="_useNumDec()">-</button>
+                                            </span>
+                                            <input type="text" class="form-control"
+                                                   v-model="forceFinishRepairInfo.useNumber">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button"
+                                                        v-on:click="_useNumInc()">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group" v-if="forceFinishRepairInfo.maintenanceType == '1001'">
+                                    <label class="col-sm-2 col-form-label">
+                                        <span><vc:i18n name="支付方式" namespace="forceFinishRepair"></vc:i18n></span>:
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="custom-select" v-model="forceFinishRepairInfo.payType">
+                                            <option selected disabled value="">
+                                                {{vc.i18n('必填','forceFinishRepair')}}，请选择支付方式
+                                            </option>
+                                            <option v-for="(item,index) in forceFinishRepairInfo.payTypes" :key="index"
+                                                    :value="item.statusCd">{{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="说明" namespace="forceFinishRepair"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea :placeholder="vc.i18n('必填，请填写说明','forceFinishRepair')" cols="15"
+                                              class="form-control" v-model="forceFinishRepairInfo.context">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="_forceFinishRepairInfo()">
+                                    <i class="fa fa-check"></i>&nbsp;提交
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-times"></i>&nbsp;取消
+                                </button>
+                            </div>
+                            <!--<vc:create path="common/chooseSingleResource" emitChooseSingleResource="forceFinishRepairInfo"
+                                       emitLoadData="forceFinishRepairInfo">
+                            </vc:create>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

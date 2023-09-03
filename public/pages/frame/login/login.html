@@ -1,0 +1,28 @@
+<div>
+    <div class="layui-form-item">
+        <input type="text" v-model="loginInfo.username" lay-verify="required|account" maxlength="20"
+               :placeholder="vc.i18n('请输入用户名','login')" autocomplete="off" autofocus="autofocus" class="layui-input"
+               @keyup.enter="doLogin">
+    </div>
+    <div class="layui-form-item">
+        <input type="password" v-model="loginInfo.passwd" lay-verify="required" maxlength="20"
+               :placeholder="vc.i18n('请输入密码','login')" autocomplete="off" class="layui-input" @keyup.enter="doLogin">
+    </div>
+    <vc:create path="frame/validateCode"></vc:create>
+    <div class="layui-form-item">
+        <button class="login_btn layui-btn layui-btn-radius layui-btn-normal" lay-submit v-on:click="doLogin()"
+                lay-filter="login">
+            <span><vc:i18n name="signIn"></vc:i18n></span>
+        </button>
+    </div>
+    <!-- <strong class="text-white">
+        <span>
+            <span><vc:i18n name="noAccount"></vc:i18n></span>
+        </span>
+        <a href="javascript:void(0)" v-on:click="_doRegister()" style="color: cornflowerblue;">
+            <span><vc:i18n name="register"></vc:i18n></span>
+            &raquo;
+        </a>
+    </strong> -->
+    <vc:create path="frame/initData"></vc:create>
+</div>

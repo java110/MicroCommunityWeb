@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5><span><vc:i18n name="报表组信息" namespace="viewReportCustomGroupInfo"></vc:i18n></span></h5>
+                <div class="ibox-tools" style="top:10px;">
+                    <button type="button" v-if="viewReportCustomGroupInfo.index != 2" class="btn btn-primary btn-sm" style="margin-right:10px;"  v-on:click="_openSelectReportCustomGroupInfoModel()">
+                        <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="选择报表组" namespace="viewReportCustomGroupInfo"></vc:i18n></span></button>
+
+                    <button type="button" v-if="viewReportCustomGroupInfo.index != 2" class="btn btn-primary btn-sm" v-on:click="_openAddReportCustomGroupInfoModel()">
+                        <i class="glyphicon glyphicon-plus"></i> <span><vc:i18n name="添加报表组" namespace="viewReportCustomGroupInfo"></vc:i18n></span></button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="组名称" namespace="viewReportCustomGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewReportCustomGroupInfo.name}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="组" namespace="viewReportCustomGroupInfo"></vc:i18n></span>url：</label>
+                            <label class="">{{viewReportCustomGroupInfo.url}}</label>
+                        </div>
+</div>
+<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-form-label" ><span><vc:i18n name="描述" namespace="viewReportCustomGroupInfo"></vc:i18n></span>：</label>
+                            <label class="">{{viewReportCustomGroupInfo.remark}}</label>
+                        </div>
+</div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="dev/addReportCustomGroup"
+               callBackListener="viewReportCustomGroupInfo"
+               callBackFunction="chooseReportCustomGroup"
+    ></vc:create>
+
+
+    <vc:create path="dev/chooseReportCustomGroup"
+               emitChooseReportCustomGroup="viewReportCustomGroupInfo"
+               emitLoadData="viewReportCustomGroupInfo"
+    ></vc:create>
+</div>

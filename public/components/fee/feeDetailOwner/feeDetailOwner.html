@@ -1,0 +1,119 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="业主人脸" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="姓名" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="性别" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="身份证" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="家庭住址" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="房屋数" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="业主成员" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="车辆数" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="投诉" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="报修" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="欠费" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="业主合同" namespace="feeDetailOwner"></vc:i18n>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="owner in feeDetailOwnerInfo.owners">
+                <td class="text-center" style="white-space: nowrap;">
+                    <img style="width: 60px; height: 60px;" class="border-radius" v-if="owner.url" v-bind:src="owner.url" v-on:click="_viewOwnerFace(owner.url)" />
+                    <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
+                </td>
+                <td class="text-center">
+                    {{owner.name}}({{owner.link}})
+                </td>
+                <td class="text-center">
+                    {{owner.sex == 0 ? '男' : '女'}}
+                </td>
+                <td class="text-center">
+                    {{owner.idCard || '-'}}
+                </td>
+                <td class="text-center">
+                    {{owner.address || '-'}}
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewOwnerRooms(owner)">
+                    {{owner.roomCount || 0}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewOwnerMembers(owner)">
+                    {{owner.memberCount || 0}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewOwnerCars(owner)">
+                    {{owner.carCount || 0}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewComplaints(owner)">
+                    {{owner.complaintCount || 0}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewRepairs(owner)">
+                    {{owner.repairCount || 0}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewOweFees(owner)">
+                    {{owner.oweFee || '0.00'}}
+                </a>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" @click="_viewRoomContracts(owner)">
+                    {{owner.contractCount || 0}}
+                </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailOwner" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="owner/ownerRooms"></vc:create>
+    <vc:create path="owner/ownerMembers"></vc:create>
+    <vc:create path="owner/ownerCars"></vc:create>
+    <vc:create path="owner/ownerComplaints"></vc:create>
+    <vc:create path="owner/ownerRepairs"></vc:create>
+    <vc:create path="owner/ownerOweFees"></vc:create>
+    <vc:create path="room/roomContracts"></vc:create>
+    <vc:create path="common/viewImage"></vc:create>
+</div>

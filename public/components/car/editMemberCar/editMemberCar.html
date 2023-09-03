@@ -1,0 +1,71 @@
+<div id="editMemberCarModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="修改" namespace="editMemberCar"></vc:i18n></span>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="车牌号" namespace="editMemberCar"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMemberCarInfo.carNum" type="text" :placeholder="vc.i18n('必填，请填写车牌号','editMemberCar')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="车品牌" namespace="editMemberCar"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMemberCarInfo.carBrand" type="text" :placeholder="vc.i18n('可选，请填写车品牌，如 宝马X6','editMemberCar')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="车类型" namespace="editMemberCar"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="custom-select" v-model="editMemberCarInfo.carType">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择类型','editMemberCar')}}</option>
+                                        <option v-for="carType in carTypes" :key="carType.statusCd"
+                                                v-bind:value="carType.statusCd">{{carType.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="颜色" namespace="editMemberCar"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="editMemberCarInfo.carColor" type="text" :placeholder="vc.i18n('可选，请填写车颜色，如白色','editMemberCar')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name="备注" namespace="editMemberCar"></vc:i18n></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="editMemberCarInfo.remark" type="text" :placeholder="vc.i18n('请填写备注信息','editMemberCar')" rows="3" class="form-control">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="_submitEditMemberCarInfo()">
+                        <i class="fa fa-check"></i>&nbsp;保存
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                        <span><vc:i18n name="取消" namespace="editMemberCar"></vc:i18n></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

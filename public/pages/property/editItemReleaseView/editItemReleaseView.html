@@ -1,0 +1,158 @@
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>
+            <span>
+              <vc:i18n name="编辑放行" namespace="addStaff"></vc:i18n>
+            </span>
+          </h5>
+          <div class="ibox-tools" style="top:10px;">
+            <button type="button" class="btn btn-white " v-on:click="vc.goBack()">
+              <vc:i18n name="返回"></vc:i18n>
+            </button>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='放行类型' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <select class="custom-select" v-model="editItemReleaseViewInfo.typeId" disabled>
+                <option selected disabled value="">{{vc.i18n('必填，请选择放行类型','editItemReleaseView')}}</option>
+                <option :value="item.typeId" v-for="(item,index) in editItemReleaseViewInfo.itemReleaseTypes"
+                  v-if="item.state =='C'">{{item.typeName}}</option>
+              </select>
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='申请单位' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.applyCompany" type="text"
+                :placeholder="vc.i18n('必填，请填写申请单位','editItemReleaseView')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='申请人' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.applyPerson" type="text"
+                :placeholder="vc.i18n('必填，请填写申请人','editItemReleaseView')" class="form-control">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='身份证' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.idCard" type="text"
+                :placeholder="vc.i18n('必填，请填写身份证','editItemReleaseView')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='手机号' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.applyTel" type="text"
+                :placeholder="vc.i18n('必填，请填写手机号','editItemReleaseView')" class="form-control">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='通行时间' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.passTime" type="text"
+                :placeholder="vc.i18n('必填，请填写通行时间','editItemReleaseView')" class="form-control editPassTime">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='车牌号' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <input v-model="editItemReleaseViewInfo.carNum" type="text"
+                :placeholder="vc.i18n('选填，请填写车牌号','editItemReleaseView')" class="form-control">
+            </div>
+            <label class="col-sm-2 col-form-label text-right"><span>
+                <vc:i18n name='备注' namespace='editItemReleaseView'></vc:i18n>
+              </span></label>
+            <div class="col-sm-4">
+              <textarea v-model="editItemReleaseViewInfo.remark" :placeholder="vc.i18n('选填，请填写备注','editItemReleaseView')"
+                class="form-control"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>
+            <span>
+              <vc:i18n name="放行物品" namespace="editItemReleaseView"></vc:i18n>
+            </span>
+          </h5>
+          <div class="ibox-tools" style="top:10px;">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;" v-on:click="_addResName()">
+              <vc:i18n name="添加物品" namespace="editItemReleaseView"></vc:i18n>
+            </button>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+              <tr>
+                <th class="text-center">
+                  <span>
+                    <vc:i18n name="物品名称" namespace="editItemReleaseView"></vc:i18n>
+                  </span>
+                </th>
+                <th class="text-center">
+                  <span>
+                    <vc:i18n name="物品数量" namespace="editItemReleaseView"></vc:i18n>
+                  </span>
+                </th>
+                <th class="text-center">
+                  <span>
+                    <vc:i18n name="操作" namespace="editItemReleaseView"></vc:i18n>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="res in editItemReleaseViewInfo.resNames">
+                <td class="text-center" style="vertical-align: inherit;">
+                  <input v-model="res.resName" :placeholder="vc.i18n('必填，请填写物品名称','editItemReleaseView')"
+                    class="form-control" style="width: 70%;display:inline; margin: auto">
+                </td>
+                <td class="text-center" style="vertical-align: inherit;">
+                  <input v-model="res.amount" type="number" class="form-control"
+                    :placeholder="vc.i18n('必填，请填写数量','editItemReleaseView')">
+                </td>
+                <td class="text-center" style="vertical-align: inherit;">
+                  <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;"
+                    v-on:click="_removeResName(res.resName)">
+                    <vc:i18n name="移除" namespace="editItemReleaseView"></vc:i18n>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="margin-top">
+    <button class="btn btn-primary float-right" type="button" v-on:click="_updateItemReleaseInfo()">
+      <vc:i18n name="提交"></vc:i18n>
+    </button>
+    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="vc.goBack()">
+      <vc:i18n name="取消"></vc:i18n>
+    </button>
+  </div>
+</div>

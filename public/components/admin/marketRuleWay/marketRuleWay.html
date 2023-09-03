@@ -1,0 +1,56 @@
+<div class=" margin-top">
+    <div class="text-left">
+        <button type="button" class="btn btn-primary btn-sm" 
+        v-if=" marketRuleWayInfo.marketRuleWays.length < 1"
+        v-on:click="_openAddMarketRuleWayModal()">
+            <span>
+                <vc:i18n name="关联营销方式"></vc:i18n>
+            </span>
+        </button>
+    </div>
+    <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+        <thead>
+            <tr>
+                <th class="text-center"><span>
+                        <vc:i18n name='营销类型' namespace='marketRuleWayManage'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='营销方式' namespace='marketRuleWayManage'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='备注' namespace='marketRuleWayManage'></vc:i18n>
+                    </span></th>
+                <th class="text-center"><span>
+                        <vc:i18n name='操作'></vc:i18n>
+                    </span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="marketRuleWay in marketRuleWayInfo.marketRuleWays">
+                <td class="text-center">{{marketRuleWay.wayTypeName}}</td>
+                <td class="text-center">{{marketRuleWay.textName}}{{marketRuleWay.picName}}{{marketRuleWay.goodsName}}</td>
+                <td class="text-center">{{marketRuleWay.remark}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteMarketRuleWayModel(marketRuleWay)"><span><vc:i18n name='删除'></vc:i18n></span></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- 分页 -->
+    <!-- <vc:create path="frame/pagination"></vc:create> -->
+    <vc:create path="frame/paginationPlus" namespace="roleCommunityInfo"></vc:create>
+    <vc:create path="admin/addMarketRuleWay"
+               callBackListener=""
+               callBackFunction=""
+    ></vc:create>
+    <vc:create path="admin/deleteMarketRuleWay"></vc:create>
+</div>

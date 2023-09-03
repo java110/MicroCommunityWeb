@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-1 ">
+        <div class="vc-line-y-primary"></div> 
+    </div>
+    <div class="col-md-11">
+
+        <div>
+            <div>
+                <h3><span>
+                        <vc:i18n name="收费信息" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                    </span></h3>
+            </div>
+            <div class="form-group  margin-top-xs margin-bottom-xs">
+                <label class="col-form-label"><span>
+                        <vc:i18n name="收费车辆" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                    </span></label>
+                <div class="">
+                    <input v-model="parkingAreaTotalControlFeeInfo.feeCarNum" disabled="disabled" type="text" :placeholder="vc.i18n('车牌号','parkingAreaTotalControlFee')" class="form-control">
+                </div>
+            </div>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span>
+                        <vc:i18n name="停车时间" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                    </span></label>
+                <div class="">
+                    <input v-model="parkingAreaTotalControlFeeInfo.costMin" disabled="disabled" type="text" :placeholder="vc.i18n('停车时间','parkingAreaTotalControlFee')" class="form-control">
+                </div>
+            </div>
+            <div class="form-group margin-bottom-xs">
+                <label class=" col-form-label"><span>
+                        <vc:i18n name="应收" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                    </span></label>
+                <div class="">
+                    <input v-model="parkingAreaTotalControlFeeInfo.payCharge" type="text" disabled="disabled" :placeholder="vc.i18n('应收','parkingAreaTotalControlFee')" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center margin-top">
+            <button class="btn btn-white" type="button" v-on:click="_showInParkingAreaQrCode()"><span>
+                    <vc:i18n name="场内二维码" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                </span></button>
+            <button class="btn btn-primary" type="button" :disabled="parkingAreaTotalControlFeeInfo.pay==0" v-on:click="saveTempFeeInfo()"><span>
+                    <vc:i18n name="临时车收费" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                </span></button>
+        </div>
+
+        <div style="margin-top: 30px;min-height: 300px;">
+            <div>
+                <h3><span>
+                        <vc:i18n name="开门信息" namespace="parkingAreaTotalControlFee"></vc:i18n>
+                    </span></h3>
+            </div>
+            <div class="form-group  margin-top " style="font-size: 16px;" v-if="parkingAreaTotalControlFeeInfo.carInoutInfos.length>0">
+                <div v-for="(item,index) in parkingAreaTotalControlFeeInfo.carInoutInfos" class="margin-bottom-sm border-bottom padding-bottom-xs">
+                    <span>{{item.inOutTime}}</span>
+                    <span>{{item.carNum}}</span>
+                    <span v-if="item.inoutType == '1001'">进场</span>
+                    <span v-else>出场</span>
+                    <span>{{item.open}};</span>
+                    <span>{{item.openMsg}}</span>
+                    <span v-if="item.payCharge>0 && item.inoutType == '2002'">
+                        (<a href="javascript:void(0)"  @click="_parkingAreaTotalControlFeeArrayCarOut(item)">出场</a>)
+                    </span>
+                </div>
+            </div>
+            <div class="form-group  margin-top margin-bottom-xs" style="font-size: 16px;" v-else>
+                <div>
+                    <span>没有进出场车辆</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <vc:create path="property/barrierGateQrCode"></vc:create>
+</div>

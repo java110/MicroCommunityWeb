@@ -1,0 +1,10 @@
+<div class="vc-input-search text-left"
+     v-if="inputSearchRoomByOwnerInfo.rooms && inputSearchRoomByOwnerInfo.rooms.length>0">
+    <div class="close">
+        <i class="fa fa-remove" @click="_doInputSearchRoomByOwnerClose()"></i>
+    </div>
+    <div class="padding-left-sm padding-top-sm" style="cursor:pointer;"
+         v-for="(item,index) in inputSearchRoomByOwnerInfo.rooms" @click="_inputSearchRoomChooseRoomByOwner(item)">
+        <span>{{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}({{item.ownerName}})</span>
+    </div>
+</div>

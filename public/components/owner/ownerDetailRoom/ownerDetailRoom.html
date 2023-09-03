@@ -1,0 +1,108 @@
+<div class="margin-top">
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="ownerDetailRoomInfo.roomNum" type="text"
+                   :placeholder="vc.i18n('请填写房屋编号','ownerDetailRoom')" class="form-control">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_qureyOwnerDetailRoom()">
+                <i class="fa fa-search"></i>查询
+            </button>
+        </div>
+        
+        <div class="col-lg-8 text-right">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-if="vc.hasPrivilege('502023021978930012')" v-on:click="_openAddOwnerRoom()">
+                <vc:i18n name="交房" namespace="simplifyRoomFee"></vc:i18n>
+            </button>
+            
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="房屋编号" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="楼层" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="类型" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="建筑/室内面积" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="租金" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="房屋状态" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="房屋欠费" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="操作" namespace="ownerDetailRoom"></vc:i18n>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="room in ownerDetailRoomInfo.rooms">
+                <td class="text-center">
+                    {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
+                </td>
+                <td class="text-center">
+                    {{room.layer}}
+                </td>
+                <td class="text-center">
+                    {{room.roomSubTypeName}}
+                </td>
+                <td class="text-center">
+                    {{room.builtUpArea}}/{{room.roomArea}}
+                </td>
+                <td class="text-center">
+                    {{room.roomRent}}
+                </td>
+                <td class="text-center">
+                    {{room.stateName}}
+                </td>
+                <td class="text-center">
+                    {{room.roomOweFee || '0.00'}}(按天更新)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group" v-if="vc.hasPrivilege('502020082493857941')">
+                        <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(room)">
+                            <vc:i18n name="修改" namespace="ownerDetailRoom"></vc:i18n>
+                        </button>
+                    </div>
+                    <div class="btn-group" v-if="vc.hasPrivilege('502023021973760015')">
+                        <button class="btn-white btn btn-xs" v-on:click="ownerExitRoomModel(room)">
+                            <vc:i18n name="退房" namespace="ownerDetailRoom"></vc:i18n>
+                        </button>
+                    </div>
+                    <div class="btn-group" v-if="room.state != '2002'">
+                        <button class="btn-white btn btn-xs" v-on:click="_toSimplifyAcceptance(room)">
+                            <vc:i18n name="业务受理" namespace="ownerDetailRoom"></vc:i18n>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                <span>
+                    <span><vc:i18n name="欠费小计：" namespace="ownerDetailRoom"></vc:i18n> </span>{{ownerDetailRoomInfo.allOweFeeAmount}}
+                </span>
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="ownerDetailRoom" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/ownerExitRoom"></vc:create>
+    <vc:create path="property/editRoom"></vc:create>
+</div>

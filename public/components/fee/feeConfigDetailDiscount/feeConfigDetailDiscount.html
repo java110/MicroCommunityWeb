@@ -1,0 +1,83 @@
+<div>
+
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+           
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="费用项名称" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="折扣名称" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="规则" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="折扣类型" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费起始时间" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费结束时间" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="折扣终止时间" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="feeConfigDetailDiscount"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="payFeeConfigDiscount in feeConfigDetailDiscountInfo.discounts">
+                    <td class="text-center">{{feeConfigDetailDiscountInfo.feeName}}</td>
+                    <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
+                    <td class="text-center">
+                        <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
+                            {{item.specName}}：{{item.specValue}}
+                        </div>
+                    </td>
+                    <td class="text-center">{{payFeeConfigDiscount.discountType == '1001'?'优惠':'违约'}}</td>
+                    <td class="text-center">{{payFeeConfigDiscount.startTime}}</td>
+                    <td class="text-center">{{payFeeConfigDiscount.endTime}}</td>
+                    <td class="text-center">{{payFeeConfigDiscount.payMaxEndTime}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs"
+                                v-on:click="_openDeletePayFeeConfigDiscountModel(payFeeConfigDiscount)">
+                                <vc:i18n name="删除" namespace="feeConfigDetailDiscount"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="9">
+                        <ul class="pagination float-right"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- 分页 -->
+        <div class="row margin-top-xs">
+            <div class="col-sm-9">
+                <div> 缴费起始时间和缴费结束时间：这个约束缴费的时间，也就是前台收银员操作缴费的时间</div>
+                <div> 折扣终止时间：这个表示最大缴费到什么时候</div>
+                <div> 如果本年度费用不能享受优惠 那么在折扣设置中规则选择打折无欠费规则，并且欠费时长为0</div>
+                <div> 这样所有欠费的费用则不享受优惠，本年度的费用属于欠费所以不享受优惠</div>
+            </div>
+            <div class="col-sm-3 float-right">
+                <vc:create path="frame/paginationPlus" namespace="feeConfigDetailDiscount"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>
