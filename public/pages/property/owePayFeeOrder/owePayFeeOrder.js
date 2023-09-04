@@ -43,7 +43,7 @@
             $that._loadOweFees();
             //与字典表支付方式关联
             vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
-                vc.component.owePayFeeOrderInfo.primeRates = _data;
+                $that.owePayFeeOrderInfo.primeRates = _data;
             });
         },
         _initEvent: function() {},
@@ -132,7 +132,7 @@
                 return parseFloat(_price).toFixed(2);
             },
             _payFee: function() {
-                if (vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {
+                if ($that.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {
                     vc.toast('未选择费用');
                     return;
                 }
@@ -141,7 +141,7 @@
                 $that.owePayFeeOrderInfo.payType = 'common';
             },
             _openPayFee: function() {
-                if (vc.component.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {
+                if ($that.owePayFeeOrderInfo.selectPayFeeIds.length <= 0) {
                     vc.toast('未选择费用');
                     return;
                 }
@@ -303,7 +303,7 @@
                     backdrop: "static", //点击空白处不关闭对话框
                     show: true
                 });
-                vc.component.owePayFeeOrderInfo.selectPayFeeIds = [];
+                $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                 $that._loadOweFees();
                 vc.toast(_json.msg);
             },
@@ -355,11 +355,11 @@
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {
                         if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
-                            vc.component.owePayFeeOrderInfo.selectPayFeeIds.push(checkObj[i].value);
+                            $that.owePayFeeOrderInfo.selectPayFeeIds.push(checkObj[i].value);
                         }
                     }
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
-                    vc.component.owePayFeeOrderInfo.selectPayFeeIds = [];
+                    $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                 }
             }
         }

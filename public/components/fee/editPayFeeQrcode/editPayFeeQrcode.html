@@ -1,0 +1,95 @@
+<div id="editPayFeeQrcodeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">
+          <vc:i18n name="修改" namespace="editPayFeeQrcode"></vc:i18n>
+        </h3>
+        <div class="ibox-content">
+          <div>
+            <div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='名称' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <input v-model="editPayFeeQrcodeInfo.qrcodeName" type="text"
+                    :placeholder="vc.i18n('必填，请填写名称','editPayFeeQrcode')" class="form-control">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='查询方式' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editPayFeeQrcodeInfo.queryWay">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择查询方式' ,'editPayFeeQrcode')}}</option>
+                    <option value="1001">{{vc.i18n('按业主手机号' ,'editPayFeeQrcode')}} </option>
+                    <option value="2002">{{vc.i18n('按房屋' ,'editPayFeeQrcode')}} </option>
+                    <option value="3003">{{vc.i18n('按房屋或者业主手机号' ,'editPayFeeQrcode')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='验证' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editPayFeeQrcodeInfo.smsValidate">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择验证' ,'editPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('短信验证码验证' ,'editPayFeeQrcode')}} </option>
+                    <option value="OFF">{{vc.i18n('不验证' ,'editPayFeeQrcode')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='自定义缴费' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editPayFeeQrcodeInfo.customFee">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择自定义缴费' ,'editPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('是' ,'editPayFeeQrcode')}} </option>
+                    <option value="OFF">{{vc.i18n('否' ,'editPayFeeQrcode')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='预交费' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="editPayFeeQrcodeInfo.preFee">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择预交费' ,'editPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('是' ,'editPayFeeQrcode')}} </option>
+                    <option value="OFF">{{vc.i18n('否' ,'editPayFeeQrcode')}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='提示内容' namespace='editPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <textarea v-model="editPayFeeQrcodeInfo.content"
+                    :placeholder="vc.i18n('必填，请填写提示内容','editPayFeeQrcode')" class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="editPayFeeQrcode()"><i
+                    class="fa fa-check"></i>&nbsp;<span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span></button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                    <vc:i18n name="取消"></vc:i18n>
+                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
