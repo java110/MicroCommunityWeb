@@ -1,106 +1,177 @@
 <div>
-    <vc:create path="property/memberSelectOwner">
-    </vc:create>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                        <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="成员ID" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="名称" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="性别" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
+        <div class="col-md-3">
+            <vc:create path="property/memberSelectOwner"></vc:create>
+        </div>
+        <div class="col-md-9 padding-l-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件" namespace="listOwnerMember"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
 
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="类型" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="身份证" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="联系方式" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="家庭住址" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="创建人" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="备注" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                                <th v-for="(item,index) in memberInfo.listColumns" class="text-center">{{item}}</th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="listOwnerMember"></vc:i18n></span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="owner in memberInfo.members">
-                                <td class="text-center">
-                                    {{owner.memberId}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.name}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.sex == 0 ? '男' : '女'}}
-                                </td>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请填写成员名称','listOwnerMember')"
+                                            v-model="memberInfo.conditions.nameLike" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="number" :placeholder="vc.i18n('请输入成员手机号','listOwnerMember')"
+                                            v-model="memberInfo.conditions.link" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请输入成员身份证号','listOwnerMember')"
+                                            v-model="memberInfo.conditions.idCard" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <select class="custom-select" v-model="memberInfo.conditions.ownerTypeCd">
+                                            <option selected disabled value="">{{vc.i18n('必填，请选择类型','listOwnerMember')}}
+                                            </option>
+                                            <option value="1002">{{vc.i18n('家庭成员','listOwnerMember')}}</option>
+                                            <option value="1003">{{vc.i18n('租客','listOwnerMember')}}</option>
+                                            <option value="1005">{{vc.i18n('其他','listOwnerMember')}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_queryOwnerMember()">
+                                        <vc:i18n name="查询" namespace="listOwnerMember"></vc:i18n>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="成员人脸" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <!-- <th class="text-center">
+                                            <vc:i18n name="成员编号" namespace="listOwnerMember"></vc:i18n>
+                                        </th> -->
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="名称" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="性别" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="类型" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="身份证" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="联系方式" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="家庭住址" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="创建人" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th data-hide="phone" class="text-center">
+                                            <vc:i18n name="备注" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                        <th v-for="(item,index) in memberInfo.listColumns" class="text-center">{{item}}
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="操作" namespace="listOwnerMember"></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="owner in memberInfo.members">
+                                        <td class="text-center" style="white-space: nowrap;">
+                                            <img style="width: 60px; height: 60px;" class="border-radius" v-if="owner.url" v-bind:src="owner.url" v-on:click="_viewOwnerFace(owner.url)" />
+                                            <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
+                                        </td>
+                                        <!-- <td class="text-center">
+                                            {{owner.memberId}}
+                                        </td> -->
+                                        <td class="text-center">
+                                            {{owner.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.sex == 0 ? '男' : '女'}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.ownerTypeName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.idCard}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.link}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.address}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.userName}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.remark}}
+                                        </td>
+                                        <td v-for="item in owner.listValues" class="text-center">
+                                            {{item}}
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openEditOwnerMemberModel(owner)"
+                                                    v-if="vc.hasPrivilege('502023032899781711')">
+                                                    <span>
+                                                        <vc:i18n name="修改" namespace="listOwnerMember"></vc:i18n>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openDeleteOwnerModel(owner)"
+                                                    v-if="vc.hasPrivilege('502023032818941714')">
+                                                    <span>
+                                                        <vc:i18n name="删除" namespace="listOwnerMember"></vc:i18n>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
 
-                                <td class="text-center">
-                                    {{owner.ownerTypeName}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.idCard}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.link}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.address}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.userName}}
-                                </td>
-                                <td class="text-center">
-                                    {{owner.remark}}
-                                </td>
-                                <td v-for="item in owner.listValues" class="text-center">
-                                    {{item}}
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditOwnerMemberModel(owner)" v-if="vc.hasPrivilege('502023032899781711')">
-                                        <span><vc:i18n name="修改" namespace="listOwnerMember"></vc:i18n></span>
-                                    </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteOwnerModel(owner)" v-if="vc.hasPrivilege('502023032818941714')">
-                                        <span><vc:i18n name="删除" namespace="listOwnerMember"></vc:i18n></span>
-                                    </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="15">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+
     <!-- 删除员工权限 -->
     <vc:create path="property/editOwner" notifyLoadDataComponentName="listOwnerMember" componentTitle="成员">
     </vc:create>

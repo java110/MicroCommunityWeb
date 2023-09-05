@@ -5,7 +5,17 @@
             memberInfo: {
                 members: [],
                 _currentOwnerId: '',
-                listColumns: []
+                listColumns: [],
+                currentPage:1,
+                total:0,
+                records:0,
+                conditions:{
+                    ownerId:'',
+                    nameLike:'',
+                    link:'',
+                    idCard:'',
+                    ownerTypeCd:''
+                }
             }
         },
         _initMethod: function() {
@@ -13,41 +23,55 @@
         },
         _initEvent: function() {
             vc.on('listOwnerMember', 'loadOwner', function(_param) {
-                vc.component._loadOwners(_param);
+                $that.memberInfo.conditions.ownerId = _param.ownerId;
+                $that._loadOwners($that.memberInfo.currentPage,10);
             });
             vc.on('listOwnerMember', 'listOwnerData', function(_param) {
-                vc.component._loadOwners(_param);
+                $that.memberInfo.conditions.ownerId = _param.ownerId;
+                $that._loadOwners($that.memberInfo.currentPage,10);
+            });
+            vc.on('pagination', 'page_event', function (_currentPage) {
+                $that.memberInfo.currentPage = _currentPage;
+                $that._listOwnerData(_currentPage, 10);
             });
         },
         methods: {
-            _loadOwners: function(_param) {
-                if (_param.hasOwnProperty('ownerId')) {
-                    vc.component.memberInfo._currentOwnerId = _param.ownerId;
-                }
-                var param = {
-                    params: {
-                        ownerId: vc.component.memberInfo._currentOwnerId,
-                        communityId: vc.getCurrentCommunity().communityId
-                    }
+            _loadOwners: function(_page,_row) {
+                $that.memberInfo.conditions.page = _page;
+                $that.memberInfo.conditions.row = _row;
+                $that.memberInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+
+                let param = {
+                    params: $that.memberInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwnerMembers',
                     param,
                     function(json) {
                         var _memberInfo = JSON.parse(json);
-                        vc.component.memberInfo.members = _memberInfo.owners;
+                        $that.memberInfo.members = _memberInfo.owners;
                         $that.dealOwnerAttr(_memberInfo.owners);
+                        $that.memberInfo.total = _memberInfo.total;
+                        $that.memberInfo.records = _memberInfo.records;
+                        vc.emit('pagination', 'init', {
+                            total: $that.memberInfo.records,
+                            dataCount: $that.memberInfo.total,
+                            currentPage: _page
+                        });
                     },
                     function() {
                         console.log('请求失败处理');
                     });
             },
+            _queryOwnerMember:function(){
+                $that._loadOwners(1,10);
+            },
             _openDeleteOwnerModel: function(_member) {
-                _member.ownerId = vc.component.memberInfo._currentOwnerId;
+                _member.ownerId = $that.memberInfo.conditions.ownerId;
                 vc.emit('deleteOwner', 'openOwnerModel', _member);
             },
             _openEditOwnerMemberModel: function(_member) {
-                _member.ownerId = vc.component.memberInfo._currentOwnerId;
+                _member.ownerId = $that.memberInfo.conditions.ownerId;
                 vc.emit('editOwner', 'openEditOwnerModal', _member);
             },
             dealOwnerAttr: function(owners) {
@@ -106,7 +130,12 @@
                 //         break;
                 //     }
                 // }
-            }
+            },
+            _viewOwnerFace: function (_url) {
+                vc.emit('viewImage', 'showImage', {
+                    url: _url
+                });
+            },
         }
     });
 })(window.vc);

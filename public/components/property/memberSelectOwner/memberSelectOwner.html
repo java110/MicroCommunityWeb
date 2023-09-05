@@ -6,88 +6,62 @@
                     <vc:i18n name="业主信息" namespace="memberSelectOwner"></vc:i18n>
                 </h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchOwnerModel()" >
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchOwnerModel()">
                         <i class="fa fa-search"></i>
-                        <span><vc:i18n name="选择业主" namespace="memberSelectOwner"></vc:i18n></span>
+                        <span>
+                            <vc:i18n name="选择" namespace="memberSelectOwner"></vc:i18n>
+                        </span>
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != '' && vc.hasPrivilege('502023032885101706')" 
-                    style="margin-left:10px" v-on:click="openAddMemberModel()">
+                    <button type="button" class="btn btn-primary btn-sm"
+                        v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != '' && vc.hasPrivilege('502023032885101706')"
+                        style="margin-left:10px" v-on:click="openAddMemberModel()">
                         <i class="fa fa-plus"></i>
-                        <span><vc:i18n name="添加成员" namespace="memberSelectOwner"></vc:i18n></span>
+                        <span>
+                            <vc:i18n name="添加成员" namespace="memberSelectOwner"></vc:i18n>
+                        </span>
                     </button>
                 </div>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <image width="120px" height="120px" v-bind:src="ownerInfo.ownerPhoto" @error="errorLoadImg" />
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="业主" namespace="memberSelectOwner"></vc:i18n></span>ID
-                                    </label>：
-                                    <label class="">{{ownerInfo.ownerId}}</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="名称" namespace="memberSelectOwner"></vc:i18n></span>
-                                    </label>：
-                                    <label class="">{{ownerInfo.name}}</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="性别" namespace="memberSelectOwner"></vc:i18n></span>
-                                    </label>：
-                                    <label class="">{{ownerInfo.sexName}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="身份证" namespace="memberSelectOwner"></vc:i18n></span>
-                                    </label>：
-                                    <label class="">{{ownerInfo.idCard}}</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="联系方式" namespace="memberSelectOwner"></vc:i18n></span>
-                                    </label>：
-                                    <label class="">{{ownerInfo.link}}</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <vc:i18n name="创建员工：" namespace="memberSelectOwner"></vc:i18n>
-                                    </label>
-                                    <label class="">{{ownerInfo.userName}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
 
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">
-                                        <span><vc:i18n name="备注" namespace="memberSelectOwner"></vc:i18n></span>
-                                    </label>：
-                                    <label class="">{{ownerInfo.remark}}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="业主ID：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.ownerId}}</label>
                 </div>
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="名称：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.name}}</label>
+                </div>
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="性别：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.sexName}}</label>
+                </div>
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="身份证：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.idCard}}</label>
+                </div>
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="联系方式：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.link}}</label>
+                </div>
+                <div class="form-group flex justify-between">
+                    <label class="col-form-label">
+                        <vc:i18n name="备注：" namespace="memberSelectOwner"></vc:i18n>
+                    </label>
+                    <label class="">{{ownerInfo.remark}}</label>
+                </div>
+
             </div>
         </div>
     </div>
