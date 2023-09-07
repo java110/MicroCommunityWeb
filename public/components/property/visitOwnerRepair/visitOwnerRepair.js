@@ -32,7 +32,7 @@
                             limit: "maxin",
                             param: "2,50",
                             errInfo: "满意度错误"
-                        },
+                        }
                     ],
                     'visitOwnerRepairInfo.context': [
                         {
@@ -44,7 +44,7 @@
                             limit: "maxLength",
                             param: "1000",
                             errInfo: "回访内容不能超过1000个字"
-                        },
+                        }
                     ],
                     'visitOwnerRepairInfo.repairId': [
                         {

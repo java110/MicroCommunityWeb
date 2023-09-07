@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -99,7 +99,7 @@
                         $that.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
 
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
@@ -107,6 +107,16 @@
                 vc.emit('floorFeeSummary', 'notify', param.params);
                 vc.emit('configFeeSummary', 'notify', param.params);
 
+            },
+            //重置
+            _resetMethod: function (_page, _rows) {
+                vc.component.reportFeeSummaryInfo.conditions.floorName = "";
+                vc.component.reportFeeSummaryInfo.conditions.floorId = "";
+                vc.component.reportFeeSummaryInfo.conditions.unitId = "";
+                vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
+                vc.component.reportFeeSummaryInfo.conditions.startTime = "";
+                vc.component.reportFeeSummaryInfo.conditions.endTime = "";
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function() {
                 if ($that.reportFeeSummaryInfo.moreCondition) {
@@ -130,9 +140,19 @@
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.reportFeeSummaryInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _openChooseFloorMethod: function () {
+                vc.emit('searchFloor', 'openSearchFloorModel', {});
+            },
+            _moreCondition: function () {
+                if (vc.component.reportFeeSummaryInfo.moreCondition) {
+                    vc.component.reportFeeSummaryInfo.moreCondition = false;
+                } else {
+                    vc.component.reportFeeSummaryInfo.moreCondition = true;
+                }
             },
             _listFloors: function() {
                 let param = {
@@ -148,7 +168,7 @@
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.reportFeeSummaryInfo.floors = _feeConfigManageInfo.apiFloorDataVoList;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
@@ -172,7 +192,7 @@
                         console.log('请求失败处理');
                     });
             },
-            _toDetail: function(_fee) {
+            _toDetail: function (_fee) {
                 let _configIds = "";
                 $that.reportFeeSummaryInfo.feeConfigNames.forEach(item => {
                     _configIds += (item.configId + ',')
@@ -182,7 +202,7 @@
                 }
                 vc.jumpToPage('/#/pages/property/reportFeeSummaryDetail?feeYear=' + _fee.feeYear + "&feeMonth=" + _fee.feeMonth + "&configIds=" + _configIds + "&" + vc.objToGetParam($that.reportFeeSummaryInfo.conditions))
             },
-            _printFeeSummary: function() {
+            _printFeeSummary: function () {
                 let _param = vc.objToGetParam($that.reportFeeSummaryInfo.conditions);
                 window.open('/print.html#/pages/property/reportFeeSummaryPrint?' + _param);
             }

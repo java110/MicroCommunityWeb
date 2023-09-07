@@ -139,13 +139,15 @@
             },
             _getAttrValue: function (_attrs, _specCd) {
                 let _value = "";
-                _attrs.forEach(item => {
-                    if (item.specCd == _specCd) {
-                        _value = item.value;
-                        return;
-                    }
-                });
-                return _value;
+                if (_attrs && _attrs.length > 0) {
+                    _attrs.forEach(item => {
+                        if (item.specCd == _specCd) {
+                            _value = item.value;
+                            return;
+                        }
+                    });
+                    return _value;
+                }
             },
             _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
@@ -288,7 +290,7 @@
             _openPrestoreAccountModal: function() {
                 window.open('/#/pages/owner/ownerDetail?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&currentTab=ownerDetailAccount")
             },
-            _viewRoomFeeConfig: function(_fee) {
+            _viewRoomFeeConfig: function (_fee) {
                 let param = {
                     params: {
                         page: 1,
@@ -317,7 +319,6 @@
                                 "公式": _feeConfig.computingFormulaName,
                                 "计费单价": _feeConfig.computingFormula == '2002' ? '-' : _feeConfig.squarePrice,
                                 "附加/固定费用": _feeConfig.additionalAmount,
-
                             }
                         })
                     },
@@ -325,7 +326,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _viewRoomFee: function (_fee) {
                 let _data = {

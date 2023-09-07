@@ -179,31 +179,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
-                                <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
-                                <td class="text-center">{{resourceStore.resName}}</td>
-                                <td class="text-center">{{resourceStore.shName}}</td>
-                                <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
-                                <td class="text-center">
-                                    {{resourceStore.supplierName ? resourceStore.supplierName : '-'}}
-                                </td>
-                                <td class="text-center">{{resourceStore.resCode}}</td>
-                                <td class="text-center">{{resourceStore.isFixedName}}</td>
-                                <td class="text-center">{{resourceStore.consultPrice? '￥'+ resourceStore.consultPrice : '-'}}</td>
-                                <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
-                                <td class="text-center">{{resourceStore.stock ? + resourceStore.stock : '0'}}{{resourceStore.unitCodeName}}</td>
-                                <td class="text-center">{{resourceStore.quantity}}{{resourceStore.unitCodeName}}</td>
-                                <td class="text-center">{{resourceStore.remark}}</td>
-                                <td class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">
-                                    {{resourceStore.purchasePrice ? '￥' + resourceStore.purchasePrice : '-'}}
-                                </td>
-                                <td class="text-center">
-                                    {{resourceStore.purchaseQuantity? resourceStore.purchaseQuantity+resourceStore.unitCodeName: '-'}}
-                                </td>
-                                <td class="text-center">
-                                    {{resourceStore.purchaseRemark? resourceStore.purchaseRemark :'-'}}
-                                </td>
-                            </tr>
+                        <tr v-for="resourceStore in purchaseApplyDetailInfo.purchaseApplyDetailVo">
+                            <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
+                            <td class="text-center">{{resourceStore.resName}}</td>
+                            <td class="text-center">{{resourceStore.shName}}</td>
+                            <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
+                            <td class="text-center">
+                                {{resourceStore.supplierName ? resourceStore.supplierName : '-'}}
+                            </td>
+                            <td class="text-center">{{resourceStore.resCode}}</td>
+                            <td class="text-center">{{resourceStore.isFixedName}}</td>
+                            <td class="text-center">
+                                {{resourceStore.consultPrice? '￥'+ resourceStore.consultPrice : '-'}}
+                            </td>
+                            <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">
+                                {{resourceStore.stock ? + resourceStore.stock : '0'}}{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center">{{resourceStore.quantity}}{{resourceStore.unitCodeName}}</td>
+                            <td class="text-center">{{resourceStore.remark}}</td>
+                            <td class="text-center" v-if="purchaseApplyDetailInfo.resOrderType==10000">
+                                {{resourceStore.purchasePrice ? '￥' + resourceStore.purchasePrice : '-'}}
+                            </td>
+                            <td class="text-center">
+                                {{resourceStore.purchaseQuantity?
+                                resourceStore.purchaseQuantity+resourceStore.unitCodeName: '-'}}
+                            </td>
+                            <td class="text-center">
+                                {{resourceStore.purchaseRemark? resourceStore.purchaseRemark :'-'}}
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
                             <tr>

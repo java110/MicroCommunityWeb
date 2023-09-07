@@ -142,7 +142,7 @@
                             errInfo: "折扣错误"
                         },
                     ],
-                    'reviewApplyRoomDiscountInfo.refundAmount': [
+                    /*'reviewApplyRoomDiscountInfo.refundAmount': [
                         {
                             limit: "required",
                             param: "",
@@ -153,7 +153,7 @@
                             param: "",
                             errInfo: "返还金额不是有效的金额"
                         }
-                    ],
+                    ],*/
                     'reviewApplyRoomDiscountInfo.startTime': [
                         {
                             limit: "required",
@@ -234,6 +234,11 @@
                 }
                 if (vc.component.reviewApplyRoomDiscountInfo.returnWay == '1002' && vc.component.reviewApplyRoomDiscountInfo.selectedFees.length <= 0) {
                     vc.toast('请选择缴费记录');
+                    return;
+                }
+                if (vc.component.reviewApplyRoomDiscountInfo.returnWay == '1002' && vc.component.reviewApplyRoomDiscountInfo.state != '5'
+                    && !vc.component.reviewApplyRoomDiscountInfo.refundAmount) {
+                    vc.toast("返还金额不能为空！");
                     return;
                 }
                 vc.http.apiPost(
@@ -338,6 +343,33 @@
             },
             showImg: function (e) {
                 vc.emit('viewImage', 'showImage', {url: e});
+            },
+            dealAmount: function (e) {
+                let fees = vc.component.reviewApplyRoomDiscountInfo.fees;
+                fees.forEach((item, index) => {
+                    if (item.detailId == e.detailId) {
+                        item.checked = !item.checked;
+                    }
+                })
+                // console.log('ceshi', e);
+                $that.calcAmount();
+            },
+            calcAmount: function () {
+                vc.http.apiPost(
+                    '/applyRoomDiscount/dealWithRefundAmount',
+                    JSON.stringify(vc.component.reviewApplyRoomDiscountInfo), {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        var _json = JSON.parse(json);
+                        vc.component.reviewApplyRoomDiscountInfo.refundAmount = _json.data.returnAmount;
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        // let _json = JSON.parse(json);
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
             }
         }
     });

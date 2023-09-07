@@ -3,56 +3,83 @@
         <div>
             <div class="row">
                 <div class="col-sm-4">
-                    <span><span><vc:i18n name="申请单号" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.applyOrderId}}</span>
+                    <span>
+                        <span><vc:i18n name="申请单号" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.applyOrderId}}
+                    </span>
                 </div>
                 <div class="col-sm-4">
-                    <span><span><vc:i18n name="使用人" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.endUserName}}</span>
+                    <span>
+                        <span><vc:i18n name="使用人" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.endUserName}}
+                    </span>
                 </div>
                 <div class="col-sm-4">
-                    <span><span><vc:i18n name="联系电话" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.endUserTel}}</span>
+                    <span>
+                        <span><vc:i18n name="联系电话" namespace="printPurchaseApply"></vc:i18n></span>：{{printPurchaseApplyInfo.endUserTel}}
+                    </span>
                 </div>
             </div>
             <table class="table table-bordered margin-top">
                 <thead>
-                    <tr>
-                        <th scope="col" class="text-center"><span><vc:i18n name="编号" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="名称" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="编码规格" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="参考价格" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="申请数量" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="采购数量" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span></th>
-                    </tr>
+                <tr>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="编号" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="名称" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="编码规格" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="采购单价" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="申请数量" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="采购数量" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,index) in printPurchaseApplyInfo.purchaseApplyDetailVo">
-                        <th scope="row" class="text-center">{{index +1}}</th>
-                        <td class="text-center">{{item.resName}}</td>
-                        <td class="text-center">{{item.resCode}}</td>
-                        <td class="text-center">{{item.price}}</td>
-                        <td class="text-center">{{item.quantity}}</td>
-                        <td class="text-center">{{item.purchaseQuantity? item.purchaseQuantity : '-'}}</td>
-                        <td class="text-center">{{item.remark}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"><span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span></th>
-                        <td colspan="4">{{printPurchaseApplyInfo.description}}</td>
-                        <td class="text-center">参考总价格</td>
-                        <td>{{printPurchaseApplyInfo.totalPrice}}</td>
-                    </tr>
-                    <tr height="60px">
-                        <td colspan="2" class="text-center " style="vertical-align:middle;"><span><vc:i18n name="厂家签字" namespace="printPurchaseApply"></vc:i18n></span></td>
-                        <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;"><span><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></span></td>
-                        <td></td>
-
-                    </tr>
-                    <tr height="60px">
-                        <td colspan="2" class="text-center" style="vertical-align:middle;"><span><vc:i18n name="采购人员签字" namespace="printPurchaseApply"></vc:i18n></span></td>
-                        <td colspan="2"></td>
-                        <td class="text-center " style="vertical-align:middle;"><span><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></span></td>
-                        <td></td>
-                    </tr>
+                <tr v-for="(item,index) in printPurchaseApplyInfo.purchaseApplyDetailVo">
+                    <th scope="row" class="text-center">{{index +1}}</th>
+                    <td class="text-center">{{item.resName}}</td>
+                    <td class="text-center">{{item.resCode}}</td>
+                    <td class="text-center">{{item.purchasePrice}}</td>
+                    <td class="text-center">{{item.quantity}}</td>
+                    <td class="text-center">{{item.purchaseQuantity? item.purchaseQuantity : '-'}}</td>
+                    <td class="text-center">{{item.remark}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">
+                        <span><vc:i18n name="备注" namespace="printPurchaseApply"></vc:i18n></span>
+                    </th>
+                    <td colspan="4">{{printPurchaseApplyInfo.description}}</td>
+                    <td class="text-center">实际采购总价格</td>
+                    <td>{{printPurchaseApplyInfo.purchaseTotalPrice}}</td>
+                </tr>
+                <tr height="60px">
+                    <td colspan="2" class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="厂家签字" namespace="printPurchaseApply"></vc:i18n></span>
+                    </td>
+                    <td colspan="2"></td>
+                    <td class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></span>
+                    </td>
+                </tr>
+                <tr height="60px">
+                    <td colspan="2" class="text-center" style="vertical-align:middle;">
+                        <span><vc:i18n name="采购人员签字" namespace="printPurchaseApply"></vc:i18n></span>
+                    </td>
+                    <td colspan="2"></td>
+                    <td class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="时间" namespace="printPurchaseApply"></vc:i18n></span>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -60,7 +87,9 @@
             <button class="btn btn-primary float-right" type="button" v-on:click="_printPurchaseApplyDiv()">
                 <i class="fa fa-check"></i>&nbsp;打印
             </button>
-            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="_closePage()"><span><vc:i18n name="取消" namespace="printPurchaseApply"></vc:i18n></span>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_closePage()">
+                <span><vc:i18n name="取消" namespace="printPurchaseApply"></vc:i18n></span>
             </button>
         </div>
     </div>
