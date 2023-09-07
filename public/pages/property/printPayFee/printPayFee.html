@@ -25,6 +25,7 @@
                         <!-- <th scope="col" class="text-center"><span><vc:i18n name="周期" namespace="printPayFee"></vc:i18n></span></th> -->
                         <th scope="col" class="text-center"><vc:i18n name="单价" namespace="printPayFee"></vc:i18n></th>
                         <th scope="col" class="text-center"><vc:i18n name="面积/用量" namespace="printPayFee"></vc:i18n></th>
+                        <th scope="col" class="text-center"><vc:i18n name="支付方式" namespace="printPayFee"></vc:i18n></th>
                         <th scope="col" class="text-center"><vc:i18n name="金额" namespace="printPayFee"></vc:i18n></th>
                         <th scope="col" class="text-center"><vc:i18n name="优惠金额" namespace="printPayFee"></vc:i18n></th>
                         <th scope="col" class="text-center"><vc:i18n name="备注" namespace="printPayFee"></vc:i18n></th>
@@ -52,8 +53,11 @@
                         <!-- <td class="text-center">{{item.cycle}}</td> -->
                         <td class="text-center">{{item.squarePrice}}</br>{{item.units}}</td>
                         <td class="text-center">{{item.area}}</td>
+                        <td class="text-center">{{item.primeRate}}</td>
                         <td class="text-center" v-if="item.amount < 0">{{item.amount}}<vc:i18n name="元(退费)" namespace="printPayFee"></vc:i18n></td>
-                        <td class="text-center" v-else>{{item.amount}}<vc:i18n name="元" namespace="printPayFee"></vc:i18n></td>
+                        <td class="text-center" v-else>{{item.amount}}
+                           <span> <vc:i18n name="元" namespace="printPayFee"></vc:i18n></span>
+                        </td>
                         <td class="text-center">{{item.discountPrice || 0}}</td>
                         <td class="text-center" width="200px">{{item.remark}}</td>
                     </tr>
