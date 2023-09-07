@@ -162,6 +162,9 @@
                         }
                         let _data = _staffInfo.data;
                         vc.copyObject(_data[0], $that.addOwnerSettledApplyInfo.audit);
+                        if(!_data[0].assignee.startsWith('-')){
+                            $that.addOwnerSettledApplyInfo.audit.staffId = $that.addOwnerSettledApplyInfo.audit.assignee;
+                        }
                     },
                     function() {
                         console.log('请求失败处理');

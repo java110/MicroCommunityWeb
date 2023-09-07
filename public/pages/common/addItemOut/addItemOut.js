@@ -193,6 +193,9 @@
                         }
                         let _data = _staffInfo.data;
                         vc.copyObject(_data[0], $that.addItemOutInfo.audit);
+                        if(!_data[0].assignee.startsWith('-')){
+                            $that.addItemOutInfo.audit.staffId = $that.addItemOutInfo.audit.assignee;
+                        }
                     },
                     function() {
                         console.log('请求失败处理');
