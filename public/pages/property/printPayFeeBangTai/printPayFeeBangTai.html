@@ -24,6 +24,7 @@
                         <th scope="col" class="text-center"><span><vc:i18n name="周期" namespace="printPayFeeBangTai"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="单价" namespace="printPayFeeBangTai"></vc:i18n></span>/固定费</th>
                         <th scope="col" class="text-center"><span><vc:i18n name="面积" namespace="printPayFeeBangTai"></vc:i18n></span>/用量</th>
+                        <th scope="col" class="text-center"><vc:i18n name="支付方式" namespace="printPayFee"></vc:i18n></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="金额" namespace="printPayFeeBangTai"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="优惠金额" namespace="printPayFeeBangTai"></vc:i18n></span></th>
                         <th scope="col" class="text-center"><span><vc:i18n name="备注" namespace="printPayFeeBangTai"></vc:i18n></span></th>
@@ -49,6 +50,7 @@
                         <td class="text-center">{{item.cycle}}</td>
                         <td class="text-center">{{item.squarePrice}}</td>
                         <td class="text-center">{{item.area}}</td>
+                        <td class="text-center">{{item.primeRate}}</td>
                         <td class="text-center">{{item.amount}}</td>
                         <td class="text-center">{{item.discountPrice}}</td>
                         <td class="text-center" width="200px">{{item.remark}}</td>
@@ -80,7 +82,7 @@
             <div class="col-md-10">
                 <div class="row" style="color:#000;font-size:20px;margin-left: 10px;">
                     <div class="float-left" style="width: 20%;"><span><vc:i18n name="部门负责人" namespace="printPayFeeBangTai"></vc:i18n></span>：</div>
-                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="经办人" namespace="printPayFeeBangTai"></vc:i18n></span>：</div>
+                    <div class="float-left" style="width: 20%;"><span><vc:i18n name="经办人" namespace="printPayFeeBangTai"></vc:i18n></span>：{{vc.getData('/nav/getUserInfo').name}}</div>
                     <div class="float-left" style="width: 20%;"><span><vc:i18n name="财务收款" namespace="printPayFeeBangTai"></vc:i18n></span>：</div>
                     <div class="float-left" style="width: 20%;"><span><vc:i18n name="客户确认" namespace="printPayFeeBangTai"></vc:i18n></span>：</div>
                 </div>
