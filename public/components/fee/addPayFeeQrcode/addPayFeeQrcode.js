@@ -12,7 +12,7 @@
                 queryWay: '',
                 smsValidate: '',
                 customFee: '',
-                preFee: '',
+                preFee: 'OFF',
                 content: '',
 
             }
@@ -141,7 +141,7 @@
                     queryWay: '',
                     smsValidate: '',
                     customFee: '',
-                    preFee: '',
+                    preFee: 'OFF',
                     content: '',
 
                 };
