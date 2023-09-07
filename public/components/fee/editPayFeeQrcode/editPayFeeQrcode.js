@@ -10,7 +10,7 @@
                 customFee: '',
                 preFee: 'OFF',
                 content: '',
-
+                qrCodeUrl:'',
             }
         },
         _initMethod: function () {
@@ -148,7 +148,7 @@
                     customFee: '',
                     preFee: 'OFF',
                     content: '',
-
+                    qrCodeUrl:''
                 }
             }
         }
