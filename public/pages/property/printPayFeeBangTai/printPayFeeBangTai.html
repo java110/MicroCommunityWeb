@@ -91,7 +91,7 @@
                         <td colspan="3" class="text-center "><span>
                                 <vc:i18n name="大写人民币" namespace="printPayFeeBangTai"></vc:i18n>
                             </span>（元）</td>
-                        <td colspan="3" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
+                        <td colspan="4" class="text-center ">{{vc.changeNumMoneyToChinese(printPayFeeInfo.amount)}}
                         </td>
                         <td colspan="1" class="text-center ">{{_computeSumArea()}}
                         </td>
@@ -104,7 +104,7 @@
                             <div v-html="printPayFeeInfo.content"></div>
                             </p>
                         </td>
-                        <td colspan="4">
+                        <td colspan="5">
                             <img :src="printPayFeeInfo.qrImg" width="100px" height="100px">
                         </td>
 
