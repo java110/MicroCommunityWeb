@@ -91,7 +91,7 @@
                     $that.reportPayFeeDetailInfo.conditions.endTime = _value;
                     let start = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.startTime))
                     let end = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.endTime))
-                    if (start - end >= 0) {
+                    if (start - end > 0) {
                         vc.toast("结束时间必须大于开始时间")
                         $that.reportPayFeeDetailInfo.conditions.endTime = '';
                     }
