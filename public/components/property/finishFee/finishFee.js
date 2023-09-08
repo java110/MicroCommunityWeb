@@ -12,17 +12,17 @@
         _initEvent: function() {
             vc.on('finishFee', 'openFinishFeeModal', function(_params) {
 
-                vc.component.finishFeeInfo = _params;
+                $that.finishFeeInfo = _params;
                 $('#finishFeeModel').modal('show');
 
             });
         },
         methods: {
             finishFee: function() {
-                vc.component.finishFeeInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.finishFeeInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'fee.finishFee',
-                    JSON.stringify(vc.component.finishFeeInfo), {
+                    JSON.stringify($that.finishFeeInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -36,6 +36,7 @@
                             vc.emit('simplifyCarFee', 'notify', {});
                             vc.emit('listContractFee', 'notify', {});
                             vc.emit('contractDetailRoomFee', 'notify', {});
+                            vc.emit('ownerDetailRoomFee', 'notify', {});
                             vc.toast("结束费用成功");
                             return;
                         }
@@ -52,4 +53,4 @@
         }
     });
 
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

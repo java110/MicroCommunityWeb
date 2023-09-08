@@ -37,17 +37,20 @@
             vc.on('payFeeUserAccount', 'computeFeeUserAmount', function (_param) {
                 $that.payFeeUserAccountInfo.selectAccountIds = [];
                 vc.copyObject(_param, $that.payFeeUserAccountInfo);
-                vc.component._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('payFeeUserAccount', 'refresh', function () {
-                vc.component._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('payFeeUserAccount', 'clear', function () {
-                vc.component.payFeeUserAccountInfo.accountList = [];
-                vc.component.payFeeUserAccountInfo.selectAccountIds = [];
+                $that.payFeeUserAccountInfo.accountList = [];
+                $that.payFeeUserAccountInfo.selectAccountIds = [];
             });
         },
         methods: {
+            _queryPayFeeUserAccount:function(){
+                $that._listUserAccount(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
             _listUserAccount: function (_page, _rows) {
                 let param = {
                     params: {
@@ -75,7 +78,8 @@
             },
             // 预存
             _openAddUserAmountModal: function (_userAccount) {
-                vc.emit('payFeeOrder', 'openAddModalWithParams', _userAccount)
+                //vc.emit('payFeeOrder', 'openAddModalWithParams', _userAccount);
+                window.open('/#/pages/owner/ownerDetail?ownerId=' + _userAccount.objId + "&currentTab=ownerDetailAccount")
             },
             checkAllAccount: function (e) {
                 var checkObj = document.querySelectorAll('.checkAccountItem'); // 获取所有checkbox项
@@ -83,11 +87,11 @@
                     for (var i = 0; i < checkObj.length; i++) {
                         if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
                             let _value = checkObj[i].value;
-                            vc.component.payFeeUserAccountInfo.selectAccountIds.push(_value);
+                            $that.payFeeUserAccountInfo.selectAccountIds.push(_value);
                         }
                     }
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
-                    vc.component.payFeeUserAccountInfo.selectAccountIds = [];
+                    $that.payFeeUserAccountInfo.selectAccountIds = [];
                 }
             },
             _computeFeeUserAmount: function () {

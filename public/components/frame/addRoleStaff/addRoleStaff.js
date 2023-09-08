@@ -47,7 +47,7 @@
                     params: {
                         page: _page,
                         row: _row,
-                        userName: _name,
+                        searchUserName: _name,
                         roleId: vc.component.addRoleStaffInfo.roleId
                     }
                 };

@@ -7,16 +7,16 @@
         },
         _initEvent: function () {
             vc.on('deleteFee', 'openDeleteFeeModal', function (_params) {
-                vc.component.deleteFeeInfo = _params;
+                $that.deleteFeeInfo = _params;
                 $('#deleteFeeModel').modal('show');
             });
         },
         methods: {
             deleteFee: function () {
-                vc.component.deleteFeeInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.deleteFeeInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/fee.deleteFee',
-                    JSON.stringify(vc.component.deleteFeeInfo), {
+                    JSON.stringify($that.deleteFeeInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
@@ -33,7 +33,7 @@
                             vc.emit('simplifyContractFee', 'notify', {});
                             vc.emit('carDetailFee', 'notify', {});
                             vc.emit('contractDetailRoomFee', 'notify', {});
-                           
+                            vc.emit('ownerDetailRoomFee', 'notify', {});
                             
                             vc.toast("删除费用成功");
                             vc.emit('listRoomFee', 'notify', {});
@@ -52,4 +52,4 @@
             }
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);
