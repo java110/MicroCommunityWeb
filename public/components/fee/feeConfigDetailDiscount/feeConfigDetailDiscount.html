@@ -10,9 +10,9 @@
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
                 <tr>
-                    <th class="text-center">
+                    <!-- <th class="text-center">
                         <vc:i18n name="费用项名称" namespace="feeConfigDetailDiscount"></vc:i18n>
-                    </th>
+                    </th> -->
                     <th class="text-center">
                         <vc:i18n name="折扣名称" namespace="feeConfigDetailDiscount"></vc:i18n>
                     </th>
@@ -38,7 +38,7 @@
             </thead>
             <tbody>
                 <tr v-for="payFeeConfigDiscount in feeConfigDetailDiscountInfo.discounts">
-                    <td class="text-center">{{feeConfigDetailDiscountInfo.feeName}}</td>
+                    <!-- <td class="text-center">{{feeConfigDetailDiscountInfo.feeName}}</td> -->
                     <td class="text-center">{{payFeeConfigDiscount.discountName}}</td>
                     <td class="text-center">
                         <div v-for="(item,index) in payFeeConfigDiscount.feeDiscountSpecs">
