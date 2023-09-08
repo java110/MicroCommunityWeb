@@ -14,7 +14,7 @@
                 customFee: '',
                 preFee: 'OFF',
                 content: '',
-
+                state:'ON'
             }
         },
         _initMethod: function () {
@@ -143,6 +143,7 @@
                     customFee: '',
                     preFee: 'OFF',
                     content: '',
+                    state:'ON'
 
                 };
             }

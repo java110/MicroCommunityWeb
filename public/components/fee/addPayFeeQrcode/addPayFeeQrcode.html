@@ -54,6 +54,18 @@
                   </select>
                 </div>
               </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='状态' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.state">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择状态','addPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('启用','addPayFeeQrcode')}}</option>
+                    <option value="OFF">{{vc.i18n('停用','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
               <!-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">
                     <vc:i18n name='预交费' namespace='addPayFeeQrcode'></vc:i18n>
