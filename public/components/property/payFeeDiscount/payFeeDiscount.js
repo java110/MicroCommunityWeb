@@ -42,7 +42,7 @@
                 if ($that.payFeeDiscountInfo.cycles < 0) {
                     return;
                 }
-                vc.component._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listFeeDiscounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -135,11 +135,11 @@
                     for (var i = 0; i < checkObj.length; i++) {
                         if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
                             let _value = checkObj[i].value;
-                            vc.component.payFeeDiscountInfo.selectDiscountIds.push(_value);
+                            $that.payFeeDiscountInfo.selectDiscountIds.push(_value);
                         }
                     }
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
-                    vc.component.payFeeDiscountInfo.selectDiscountIds = [];
+                    $that.payFeeDiscountInfo.selectDiscountIds = [];
                 }
             },
             _computeFeeDiscount: function () {
@@ -147,8 +147,8 @@
                 let _selectDiscount = [];
                 $that.payFeeDiscountInfo.selectDiscountIds.forEach(item => {
                     $that.payFeeDiscountInfo.feeDiscounts.forEach(disItem => {
-                        if (disItem.feeDiscountSpecs != null && disItem.feeDiscountSpecs != undefined && disItem.feeDiscountSpecs.length > 0) {
-                            var specValue = "";
+                        if (disItem.feeDiscountSpecs && disItem.feeDiscountSpecs.length > 0) {
+                            let specValue = "";
                             disItem.feeDiscountSpecs.forEach(feeItem => {
                                 if (feeItem.specName == "月份") {
                                     specValue = feeItem.specValue;
@@ -159,14 +159,26 @@
                             }
                         }
                         if (item == disItem.discountId && disItem.discountPrice != 0 && disItem.ruleId != "102020008") {
-                            if (disItem.feeDiscountSpecs != null && disItem.feeDiscountSpecs != undefined && disItem.feeDiscountSpecs.length > 0) {
-                                var specValue = "";
+                            if (disItem.feeDiscountSpecs && disItem.feeDiscountSpecs.length > 0) {
+                                let specValue = "";
                                 disItem.feeDiscountSpecs.forEach(feeItem => {
                                     if (feeItem.specName == "月份") {
                                         specValue = feeItem.specValue;
                                     }
                                 })
-                                if (specValue != "" && parseFloat($that.payFeeDiscountInfo.cycles) >= parseFloat(specValue)) {
+                                if (specValue&& parseFloat($that.payFeeDiscountInfo.cycles) >= parseFloat(specValue)) {
+                                    _totalDiscountMoney += parseFloat(disItem.discountPrice);
+                                    _selectDiscount.push(disItem);
+                                }
+
+                                //todo 考虑滞纳金
+                                specValue = "";
+                                disItem.feeDiscountSpecs.forEach(feeItem => {
+                                    if (feeItem.specName == "滞纳金") {
+                                        specValue = feeItem.specValue;
+                                    }
+                                })
+                                if (specValue) {
                                     _totalDiscountMoney += parseFloat(disItem.discountPrice);
                                     _selectDiscount.push(disItem);
                                 }
