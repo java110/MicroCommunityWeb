@@ -3,7 +3,7 @@
  **/
 (function(vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 30;
+    var DEFAULT_ROWS = 50;
     vc.extends({
         data: {
             simplifyFeeReceiptInfo: {
