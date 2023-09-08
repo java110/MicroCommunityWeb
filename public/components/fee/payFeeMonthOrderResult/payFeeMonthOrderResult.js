@@ -171,7 +171,11 @@
             },
             _closeDoBatchPayFeeModal:function(){
                 $("#doPayFeeMonthOrderResultModal").modal('hide');
-            }
+            },
+            _printAndBack: function() {
+                $('#payFeeResult').modal("hide");
+                window.open($that.payFeeMonthOrderResultInfo.printUrl + "?detailIds=" + $that.payFeeMonthOrderResultInfo.detailIds)
+            },
         }
     });
 })(window.vc);

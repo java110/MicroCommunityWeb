@@ -1,6 +1,6 @@
 (function(vc) {
-    var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    let DEFAULT_PAGE = 1;
+    let DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             batchPayFeeOrderInfo: {
