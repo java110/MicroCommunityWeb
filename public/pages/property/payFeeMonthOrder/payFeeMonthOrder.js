@@ -133,7 +133,7 @@
                         }
                     })
                 });
-                $that.payFeeMonthOrderInfo.totalAmount = _totalAmount;
+                $that.payFeeMonthOrderInfo.totalAmount = _totalAmount.toFixed(2);
 
             },
             _openPayFee: function () {
@@ -166,6 +166,16 @@
             _queryMonthFeeAll:function(){
                 $that.payFeeMonthOrderInfo.payMonthDate = "";
                 $that._listOweMonthFee();
+            },
+            getOnePrice1: function (fee) {
+                let _price = fee.mwPrice;
+                if (!_price) {
+                    return fee.squarePrice;
+                }
+                if (parseFloat(_price) > 0) {
+                    return _price;
+                }
+                return fee.squarePrice;
             },
         }
     });
