@@ -13,6 +13,7 @@
                 payObjId: '',
                 roomId: '',
                 carId: '',
+                receiptCode:'',
                 total: '',
                 records: '',
                 ownerId: '',
@@ -71,12 +72,13 @@
                 } else {
                     _objId = $that.simplifyFeeReceiptInfo.contractId
                 }
-                var param = {
+                let param = {
                     params: {
                         page: _page,
                         row: _rows,
                         objType: $that.simplifyFeeReceiptInfo.objType,
                         objId: _objId,
+                        receiptCode:$that.simplifyFeeReceiptInfo.receiptCode,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
@@ -158,6 +160,7 @@
                     objId: '',
                     roomId: '',
                     carId: '',
+                    receiptCode:'',
                     total: '',
                     records: '',
                     ownerId: '',

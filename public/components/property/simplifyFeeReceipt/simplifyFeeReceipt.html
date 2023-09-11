@@ -33,9 +33,18 @@
                 </option>
             </select>
         </div>
+        <div class="col-lg-1 padding-right-xs padding-left-xl input-group-sm">
+            <input v-model="simplifyFeeReceiptInfo.receiptCode" type="text"  
+                   :placeholder="vc.i18n('收据编号','simplifyFeeReceipt')" class="form-control ">
+        </div>
+        <div class="col-lg-1 padding-right-xs padding-left-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                   v-on:click="_queryFeeReceiptMethod()">查询
+            </button>
+        </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666' ">
         </div>
-        <div class="col-lg-6 text-right padding-right-lg">
+        <div class="col-lg-4 text-right padding-right-lg">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_printFeeReceipt()">打印
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="_printFeeSmallReceipt()">打印小票
