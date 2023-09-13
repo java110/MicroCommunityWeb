@@ -60,6 +60,9 @@
                                     <vc:i18n name='自定义缴费' namespace='payFeeQrcode'></vc:i18n>
                                 </th>
                                 <th class="text-center">
+                                    <vc:i18n name='展示费用' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
                                     <vc:i18n name='状态' namespace='payFeeQrcode'></vc:i18n>
                                 </th>
                                 <!-- <th class="text-center">
@@ -84,6 +87,7 @@
                                 <td class="text-center" v-else>按房屋或者业主手机号</td>
                                 <td class="text-center">{{payFeeQrcode.smsValidate == 'ON'?'短信验证码验证':'否'}}</td>
                                 <td class="text-center">{{payFeeQrcode.customFee == 'ON'?'是':'否'}}</td>
+                                <td class="text-center">{{payFeeQrcode.feeType == 'OWNER'?'业主费用':'房屋费用'}}</td>
                                 <td class="text-center">{{payFeeQrcode.state == 'ON'?'启用':'停用'}}</td>
                                 <!-- <td class="text-center">{{payFeeQrcode.preFee == 'ON'?'是':'否'}}</td> -->
                                 <td class="text-center">{{payFeeQrcode.createStaffName}}</td>

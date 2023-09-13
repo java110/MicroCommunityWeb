@@ -14,7 +14,8 @@
                 customFee: '',
                 preFee: 'OFF',
                 content: '',
-                state:'ON'
+                state:'ON',
+                feeType:'OWNER'
             }
         },
         _initMethod: function () {
@@ -143,8 +144,8 @@
                     customFee: '',
                     preFee: 'OFF',
                     content: '',
-                    state:'ON'
-
+                    state:'ON',
+                    feeType:'OWNER'
                 };
             }
         }

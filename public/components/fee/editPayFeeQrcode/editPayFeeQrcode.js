@@ -11,7 +11,8 @@
                 preFee: 'OFF',
                 content: '',
                 qrCodeUrl:'',
-                state:'ON'
+                state:'ON',
+                feeType:''
             }
         },
         _initMethod: function () {
@@ -150,7 +151,8 @@
                     preFee: 'OFF',
                     content: '',
                     qrCodeUrl:'',
-                    state:'ON'
+                    state:'ON',
+                    feeType:''
                 }
             }
         }
