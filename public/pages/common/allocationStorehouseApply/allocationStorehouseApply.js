@@ -57,6 +57,9 @@
                         newItem.shzId = '';
                         newItem.timesId = '';
                         newItem.curStock = '0'
+                        if(newItem.times && newItem.times.length >0){
+                            newItem.timesId = newItem.times[0].timesId;
+                        }
                         oldList.forEach((oldItem) => {
                             if (oldItem.resId == newItem.resId) {
                                 delete resourceStores[newIndex];
@@ -210,7 +213,8 @@
                         // 存储价格对应库存，方便校验库存
                         $that.allocationStorehouseApplyInfo.resourceStores[index].selectedStock = item.stock;
                     }
-                })
+                });
+                $that.$forceUpdate();
             },
             _getTimesStock: function(_resourceStore) {
                 if (!_resourceStore.timesId) {

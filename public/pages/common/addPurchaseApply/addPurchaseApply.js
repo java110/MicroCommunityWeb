@@ -44,12 +44,14 @@
                 resourceStores.forEach((newItem, newIndex) => {
                         newItem.rsId = '';
                         newItem.timesId = '';
+                        if(newItem.times && newItem.times.length >0){
+                            newItem.timesId = newItem.times[0].timesId;
+                        }
                         oldList.forEach((oldItem) => {
                             if (oldItem.resId == newItem.resId && newItem.times && newItem.times.length < 2) {
                                 delete resourceStores[newIndex];
                             }
-                        })
-
+                        });
                     })
                     // 合并已有商品和新添加商品
                 resourceStores.push.apply(resourceStores, oldList);
@@ -129,7 +131,9 @@
                         // 存储价格对应库存，方便校验库存
                         $that.addPurchaseApplyInfo.resourceStores[index].selectedStock = item.stock;
                     }
-                })
+                });
+
+                $that.$forceUpdate();
             },
             _getTimesStock: function(_resourceStore) {
                 if (!_resourceStore.timesId) {
