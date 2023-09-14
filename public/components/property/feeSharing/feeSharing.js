@@ -29,10 +29,10 @@
             });
             vc.on("feeSharing", "notify", function (_param) {
                 if (_param.hasOwnProperty("floorId")) {
-                    vc.component.feeSharingInfo.floorId = _param.floorId;
+                    $that.feeSharingInfo.floorId = _param.floorId;
                 }
                 if (_param.hasOwnProperty("unitId")) {
-                    vc.component.feeSharingInfo.unitId = _param.unitId;
+                    $that.feeSharingInfo.unitId = _param.unitId;
                 }
             });
         },
@@ -50,7 +50,7 @@
                 $('.feeSharingStartTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".feeSharingStartTime").val();
-                        vc.component.feeSharingInfo.startTime = value;
+                        $that.feeSharingInfo.startTime = value;
                     });
                 $('.feeSharingEndTime').datetimepicker({
                     language: 'zh-CN',
@@ -64,19 +64,19 @@
                 $('.feeSharingEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".feeSharingEndTime").val();
-                        var start = Date.parse(new Date(vc.component.feeSharingInfo.startTime))
+                        var start = Date.parse(new Date($that.feeSharingInfo.startTime))
                         var end = Date.parse(new Date(value))
                         if (start - end >= 0) {
                             vc.toast("结束时间必须大于开始时间")
                             $(".addCurReadingTime").val('')
                         } else {
-                            vc.component.feeSharingInfo.endTime = value;
+                            $that.feeSharingInfo.endTime = value;
                         }
                     });
             },
             feeSharingValidate() {
                 return vc.validate.validate({
-                    feeSharingInfo: vc.component.feeSharingInfo
+                    feeSharingInfo: $that.feeSharingInfo
                 }, {
                     'feeSharingInfo.totalDegrees': [
                         {
@@ -144,7 +144,7 @@
                 } else {
                     $that.feeSharingInfo.objId = $that.feeSharingInfo.unitId;
                 }
-                if (!vc.component.feeSharingValidate()) {
+                if (!$that.feeSharingValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
@@ -153,11 +153,11 @@
                     vc.toast("请选择公摊楼栋或者单元");
                     return;
                 }
-                vc.component.feeSharingInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.feeSharingInfo.roomState = vc.component.feeSharingInfo.roomState.join(',');
+                $that.feeSharingInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.feeSharingInfo.roomState = $that.feeSharingInfo.roomState.join(',');
                 vc.http.apiPost(
                     '/importFee/feeSharing',
-                    JSON.stringify(vc.component.feeSharingInfo),
+                    JSON.stringify($that.feeSharingInfo),
                     {
                         emulateJSON: true
                     },
@@ -167,7 +167,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#feeSharingModel').modal('hide');
-                            vc.component.clearFeeSharingInfo();
+                            $that.clearFeeSharingInfo();
                             vc.emit('roomFeeImport', 'listFee', {});
                             return;
                         }
@@ -202,7 +202,7 @@
             },
             clearFeeSharingInfo: function () {
                 let _formulas = $that.feeSharingInfo.formulas;
-                vc.component.feeSharingInfo = {
+                $that.feeSharingInfo = {
                     totalDegrees: '',
                     scope: '1001',
                     formulaId: '',

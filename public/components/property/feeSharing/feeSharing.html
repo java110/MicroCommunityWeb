@@ -3,14 +3,14 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <span><vc:i18n name="费用公摊" namespace="feeSharing"></vc:i18n></span>
+                    <vc:i18n name="费用公摊" namespace="feeSharing"></vc:i18n>
                 </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="费用名称" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="费用名称" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <input v-model="feeSharingInfo.feeName" type="text"
@@ -19,7 +19,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="费用类型" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="费用类型" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.feeTypeCd">
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="房屋类型" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="房屋类型" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.roomType"
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="使用量" namespace="feeSharing"></vc:i18n></span>
+                                   <vc:i18n name="使用量" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <input v-model="feeSharingInfo.totalDegrees" type="text"
@@ -56,7 +56,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="公摊范围" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="公摊范围" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.scope">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="楼层" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="楼层" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-8" v-if="feeSharingInfo.feeLayer != '全部'">
                                     <input type="text" v-model="feeSharingInfo.feeLayer"
@@ -111,31 +111,31 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="房屋状态" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="房屋状态" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10" v-if="feeSharingInfo.roomType == '1010301'">
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2001">
-                                            <span><vc:i18n name="已入住" namespace="feeSharing"></vc:i18n></span>
+                                            已入住
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2003">
-                                            <span><vc:i18n name="已交房" namespace="feeSharing"></vc:i18n></span>
+                                            已交房
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2005">
-                                            <span><vc:i18n name="已装修" namespace="feeSharing"></vc:i18n></span>
+                                            已装修
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2004">
-                                            <span><vc:i18n name="未入住" namespace="feeSharing"></vc:i18n></span>
+                                            未入住
                                         </label>
                                     </div>
                                 </div>
@@ -143,20 +143,20 @@
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2006">
-                                            <span><vc:i18n name="已出租" namespace="feeSharing"></vc:i18n></span>
+                                           已出租
                                         </label>
                                     </div>
                                     <div class="checkbox custom-control-inline">
                                         <label>
                                             <input type="checkbox" v-model="feeSharingInfo.roomState" value="2007">
-                                            <span><vc:i18n name="已出售" namespace="feeSharing"></vc:i18n></span>
+                                            已出售
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="公摊公式" namespace="feeSharing"></vc:i18n></span>
+                                    <vc:i18n name="公摊公式" namespace="feeSharing"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="feeSharingInfo.formulaId">
