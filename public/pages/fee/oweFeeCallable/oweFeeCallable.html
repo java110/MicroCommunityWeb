@@ -72,11 +72,11 @@
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <button type="button" class="btn btn-white btn-sm" v-on:click="_openWritePrintOweFeeCallableModal()">
-                            <vc:i18n name="登记" namespace="oweFeeCallable"></vc:i18n>
-                        </button>
+                                    <vc:i18n name="登记" namespace="oweFeeCallable"></vc:i18n>
+                                </button>
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOweFeeCallableModal()">
-                            <vc:i18n name="催缴" namespace="oweFeeCallable"></vc:i18n>
-                        </button>
+                                    <vc:i18n name="催缴" namespace="oweFeeCallable"></vc:i18n>
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">
@@ -134,13 +134,15 @@
                                         <td class="text-center">{{oweFeeCallable.callableWayName}}</td>
                                         <td class="text-center">{{oweFeeCallable.staffName}}</td>
                                         <td class="text-center">{{oweFeeCallable.stateName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.remark}}</td>
+                                        <td class="text-center">
+                                            <div class="textAuto" style="max-width: 200px;">{{oweFeeCallable.remark}}</div>
+                                        </td>
                                         <td class="text-center">{{oweFeeCallable.createTime}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs" v-on:click="_openDeleteOweFeeCallableModel(oweFeeCallable)">
-                                            <vc:i18n name='删除'></vc:i18n>
-                                        </button>
+                                                    <vc:i18n name='删除'></vc:i18n>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
