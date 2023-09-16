@@ -18,9 +18,9 @@
         },
         _initEvent: function () {
             vc.on('addShops', 'addShopsModel', function (_params) {
-                vc.component.refreshAddShopsInfo();
+                $that.refreshAddShopsInfo();
                 $('#addShopsModel').modal('show');
-                vc.component.addShopsInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.addShopsInfo.communityId = vc.getCurrentCommunity().communityId;
             });
             vc.on('addShops', 'addShops', 'notify', function (_param) {
                 if (_param.hasOwnProperty('floorId')) {
@@ -31,7 +31,7 @@
         methods: {
             addShopsValidate: function () {
                 return vc.validate.validate({
-                    addShopsInfo: vc.component.addShopsInfo
+                    addShopsInfo: $that.addShopsInfo
                 }, {
                     'addShopsInfo.roomNum': [
                         {
@@ -127,13 +127,13 @@
                 });
             },
             addShops: function () {
-                if (!vc.component.addShopsValidate()) {
+                if (!$that.addShopsValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost(
-                    'room.saveShops',
-                    JSON.stringify(vc.component.addShopsInfo),
+                    '/room.saveShops',
+                    JSON.stringify($that.addShopsInfo),
                     {
                         emulateJSON: true
                     },
@@ -155,7 +155,7 @@
                     });
             },
             refreshAddShopsInfo: function () {
-                vc.component.addShopsInfo = {
+                $that.addShopsInfo = {
                     floorId: '',
                     roomNum: '',
                     layer: '',
@@ -170,4 +170,4 @@
             }
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);
