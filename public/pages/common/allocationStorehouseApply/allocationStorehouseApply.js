@@ -113,15 +113,16 @@
             _openAllocationStorehouseModel: function() {
                 vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {
                     resOrderType: '20000',
-                    shId: $that.allocationStorehouseApplyInfo.shId
+                    shId: $that.allocationStorehouseApplyInfo.shId,
                 });
             },
             _listAllocationStorehouse: function(_page, _rows) {
+                //communityId: vc.getCurrentCommunity().communityId
                 let param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        
                     }
                 };
                 //发送get请求

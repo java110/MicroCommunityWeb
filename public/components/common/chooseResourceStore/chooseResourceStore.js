@@ -57,7 +57,7 @@
         },
         methods: {
             _loadAllResourceStoreInfo: function(_page, _row, _name) {
-                var param = {
+                let param = {
                     params: {
                         page: _page,
                         row: _row,
@@ -71,6 +71,9 @@
                         shId: $that.chooseResourceStoreInfo.shId
                     }
                 };
+                if($that.chooseResourceStoreInfo.shId){
+                    param.params.communityId = '';
+                }
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listResourceStores',
                     param,
