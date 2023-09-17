@@ -114,6 +114,7 @@
                 vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {
                     resOrderType: '20000',
                     shId: $that.allocationStorehouseApplyInfo.shId,
+                    isAllocation:true
                 });
             },
             _listAllocationStorehouse: function(_page, _rows) {
