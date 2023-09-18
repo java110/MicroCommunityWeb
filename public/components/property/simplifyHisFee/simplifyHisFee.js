@@ -103,7 +103,10 @@
                         }
                         //$that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
                         $('#generatorReceiptModel').modal('hide');
-                        vc.emit('simplifyAcceptance', 'doSearch','simplifyHisFee')
+                        setTimeout(function(){
+                            $that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
+                        },1000)
+                        //vc.emit('simplifyAcceptance', 'doSearch','simplifyHisFee')
 
                     },
                     function(errInfo, error) {
