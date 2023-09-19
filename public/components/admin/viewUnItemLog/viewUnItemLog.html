@@ -1,0 +1,75 @@
+<div id="viewUnItemLogModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="受理记录" namespace="viewUnItemLog"></vc:i18n>
+                </h3>
+                <div class="ibox-content">
+                    <div>
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="受理服务" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input v-model="viewUnItemLogInfo.serviceName" disabled="disabled" type="text"
+                                        :placeholder="vc.i18n('受理服务','viewUnItemLog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <vc:i18n name="受理动作" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="viewUnItemLogInfo.action" disabled="disabled" type="text"
+                                        :placeholder="vc.i18n('动作','viewUnItemLog')" class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="受理表" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="viewUnItemLogInfo.actionObj" disabled="disabled" type="text"
+                                        :placeholder="vc.i18n('受理服务','viewUnItemLog')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                        <vc:i18n name="受理前" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="viewUnItemLogInfo.preValue" rows="5"  class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                        <vc:i18n name="受理后" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="viewUnItemLogInfo.afterValue" rows="5"  class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                        <vc:i18n name="原始记录" namespace="viewUnItemLog"></vc:i18n>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea v-model="viewUnItemLogInfo.logText" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            
+
+                            <div class="ibox-content">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                    data-dismiss="modal"><span>
+                                        <vc:i18n name="取消" namespace="viewUnItemLog"></vc:i18n>
+                                    </span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
