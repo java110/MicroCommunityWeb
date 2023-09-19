@@ -99,13 +99,13 @@
                     .on('changeDate', function (ev) {
                         var value = $(".roomCreateFeeStartTime").val();
                         var start = Date.parse(new Date(value));
-                        var end = Date.parse(new Date(vc.component.roomCreateFeeAddInfo.endTime));
-                        if (!vc.component.roomCreateFeeAddInfo.feeFlag && !vc.component.roomCreateFeeAddInfo.feeTypeCd && start - end >= 0) {
+                        var end = Date.parse(new Date($that.roomCreateFeeAddInfo.endTime));
+                        if (!$that.roomCreateFeeAddInfo.feeFlag && !$that.roomCreateFeeAddInfo.feeTypeCd && start - end >= 0) {
                             vc.toast("计费起始时间必须小于计费终止时间");
                             $(".roomCreateFeeStartTime").val('');
-                            vc.component.roomCreateFeeAddInfo.startTime = "";
+                            $that.roomCreateFeeAddInfo.startTime = "";
                         } else {
-                            vc.component.roomCreateFeeAddInfo.startTime = value;
+                            $that.roomCreateFeeAddInfo.startTime = value;
                         }
                     });
                 $('.roomCreateFeeEndTime').datetimepicker({
@@ -121,14 +121,14 @@
                 $('.roomCreateFeeEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".roomCreateFeeEndTime").val();
-                        var start = Date.parse(new Date(vc.component.roomCreateFeeAddInfo.startTime));
+                        var start = Date.parse(new Date($that.roomCreateFeeAddInfo.startTime));
                         var end = Date.parse(new Date(value));
                         if (start - end >= 0) {
                             vc.toast("计费终止时间必须大于计费起始时间");
                             $(".roomCreateFeeEndTime").val('');
-                            vc.component.roomCreateFeeAddInfo.endTime = "";
+                            $that.roomCreateFeeAddInfo.endTime = "";
                         } else {
-                            vc.component.roomCreateFeeAddInfo.endTime = value;
+                            $that.roomCreateFeeAddInfo.endTime = value;
                         }
                     });
                 //防止多次点击时间插件失去焦点

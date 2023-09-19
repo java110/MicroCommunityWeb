@@ -101,8 +101,12 @@
                         if (_json.code != '0') {
                             return;
                         }
-                        $that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
+                        //$that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
                         $('#generatorReceiptModel').modal('hide');
+                        setTimeout(function(){
+                            vc.emit('simplifyAcceptance', 'doSearch','simplifyHisFee')
+                        },1000)
+                        //
 
                     },
                     function(errInfo, error) {

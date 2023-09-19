@@ -1,12 +1,12 @@
 <div>
     <div class="bg-white padding-sm border-radius">
-        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
+        <button type="button" class="btn btn-white btn-sm" v-if="vc.hasPrivilege('502022073096990007')" style="margin-left:10px" v-on:click="_openFeeImportExcel()">
             <vc:i18n name="自定义模板" namespace="roomCreateFee"></vc:i18n>
         </button>
-        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="_openDoCreateRoomFee()">
+        <button type="button" class="btn btn-white btn-sm" v-if="vc.hasPrivilege('502022073096990007')" style="margin-left:10px" v-on:click="_openDoCreateRoomFee()">
             <vc:i18n name="自定义导入" namespace="roomCreateFee"></vc:i18n>
         </button>
-        <button type="button" class="btn btn-white btn-sm" style="margin-left:10px"
+        <button type="button" class="btn btn-white btn-sm" v-if="vc.hasPrivilege('502022073096990007')" style="margin-left:10px"
                 v-on:click="_openRoomCreateFeeAddModal(null,true)">
             <i class="fa fa-plus"></i>
             <span><vc:i18n name="批量创建" namespace="roomCreateFee"></vc:i18n></span>
