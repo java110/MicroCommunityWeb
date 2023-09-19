@@ -1,4 +1,4 @@
-(function (vc) {
+(function(vc) {
     vc.extends({
         data: {
             addAttendanceClassesInfo: {
@@ -9,14 +9,13 @@
                 lateOffset: '',
                 classesObjType: '',
                 classesObjId: '',
-                classesObjName: ''
-                maxLastOffset:'',
+                classesObjName: '',
+                maxLastOffset: '',
             }
         },
-        _initMethod: function () {
-        },
-        _initEvent: function () {
-            vc.on('addAttendanceClasses', 'openAddAttendanceClassesModal', function () {
+        _initMethod: function() {},
+        _initEvent: function() {
+            vc.on('addAttendanceClasses', 'openAddAttendanceClassesModal', function() {
                 $('#addAttendanceClassesModel').modal('show');
             });
         },
@@ -25,8 +24,7 @@
                 return vc.validate.validate({
                     addAttendanceClassesInfo: vc.component.addAttendanceClassesInfo
                 }, {
-                    'addAttendanceClassesInfo.classesName': [
-                        {
+                    'addAttendanceClassesInfo.classesName': [{
                             limit: "required",
                             param: "",
                             errInfo: "班次名称不能为空"
@@ -37,8 +35,7 @@
                             errInfo: "班次名称格式错误"
                         }
                     ],
-                    'addAttendanceClassesInfo.timeOffset': [
-                        {
+                    'addAttendanceClassesInfo.timeOffset': [{
                             limit: "required",
                             param: "",
                             errInfo: "打卡范围不能为空"
@@ -49,8 +46,7 @@
                             errInfo: "打卡范围格式错误"
                         }
                     ],
-                    'addAttendanceClassesInfo.clockCount': [
-                        {
+                    'addAttendanceClassesInfo.clockCount': [{
                             limit: "required",
                             param: "",
                             errInfo: "打卡次数不能为空"
@@ -61,8 +57,7 @@
                             errInfo: "打卡次数错误"
                         }
                     ],
-                    'addAttendanceClassesInfo.leaveOffset': [
-                        {
+                    'addAttendanceClassesInfo.leaveOffset': [{
                             limit: "required",
                             param: "",
                             errInfo: "迟到范围不能为空"
@@ -73,8 +68,7 @@
                             errInfo: "迟到范围错误"
                         }
                     ],
-                    'addAttendanceClassesInfo.lateOffset': [
-                        {
+                    'addAttendanceClassesInfo.lateOffset': [{
                             limit: "required",
                             param: "",
                             errInfo: "早退范围不能为空"
@@ -85,8 +79,7 @@
                             errInfo: "早退范围错误"
                         }
                     ],
-                    'addAttendanceClassesInfo.classesObjId': [
-                        {
+                    'addAttendanceClassesInfo.classesObjId': [{
                             limit: "required",
                             param: "",
                             errInfo: "班次对象不能为空"
@@ -99,13 +92,13 @@
                     ]
                 });
             },
-            saveAttendanceClassesInfo: function () {
+            saveAttendanceClassesInfo: function() {
                 vc.http.apiPost(
                     '/attendanceClasses.saveAttendanceClasses',
                     JSON.stringify(vc.component.addAttendanceClassesInfo), {
                         emulateJSON: true
                     },
-                    function (json, res) {
+                    function(json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -119,12 +112,12 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function (errInfo, error) {
+                    function(errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            clearAddAttendanceClassesInfo: function () {
+            clearAddAttendanceClassesInfo: function() {
                 vc.component.addAttendanceClassesInfo = {
                     classesId: '',
                     classesName: '',
@@ -133,8 +126,8 @@
                     lateOffset: '',
                     classesObjType: '',
                     classesObjId: '',
-                    classesObjName: ''
-                    maxLastOffset:'',
+                    classesObjName: '',
+                    maxLastOffset: '',
                 };
             },
         }
