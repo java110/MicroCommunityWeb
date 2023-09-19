@@ -392,11 +392,8 @@
                 </span>{{simplifyRoomFeeInfo.totalAmount}}
             </span>
         </div>
-        <div class="col-sm-5 float-right">
+        <div class="col-sm-5 float-right" v-show="simplifyRoomFeeInfo.showFlag == 'DEFAULT'">
             <vc:create namespace="simplifyRoomFee" path="frame/paginationPlus"></vc:create>
-        </div>
-        <div class="col-sm-5 float-right">
-            <vc:create path="frame/pagination"></vc:create>
         </div>
     </div>
     <vc:create path="property/tempImportRoomFee"></vc:create>
