@@ -1,100 +1,125 @@
 <div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>
-                        <vc:i18n name="查询条件" namespace="userLogin"></vc:i18n>
-                    </h5>
-                    <div class="ibox-tools" style="top:10px;">
-                       
-                    </div>
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <!--  -->
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in userLoginInfo.stores"
+                            :key="index" @click="swatchStore(item)"
+                            :class="{'vc-node-selected':userLoginInfo.conditions.storeId == item.storeId}">
+                            {{item.name}}<span v-if="item.storeTypeName">({{item.storeTypeName}})</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="ibox-content">
-                    <div class="row">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件" namespace="userLogin"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
 
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入员工名称','userLogin')"
-                                    v-model="userLoginInfo.conditions.name" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入手机号','userLogin')"
-                                    v-model="userLoginInfo.conditions.tel" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入员工ID','userLogin')"
-                                    v-model="userLoginInfo.conditions.userLoginId" class=" form-control">
-                            </div>
-                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
 
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryUserLoginMethod()">
-                                <i class="fa fa-search"></i> <span>
-                                    <vc:i18n name="查询" namespace="userLogin"></vc:i18n>
-                                </span>
-                            </button>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请输入员工名称','userLogin')"
+                                            v-model="userLoginInfo.conditions.name" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="number" :placeholder="vc.i18n('请输入手机号','userLogin')"
+                                            v-model="userLoginInfo.conditions.tel" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="登录开始时间"
+                                            v-model="userLoginInfo.conditions.startTime"
+                                            class=" form-control startTime">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="登录结束时间"
+                                            v-model="userLoginInfo.conditions.endTime" class=" form-control endTime">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_queryUserLoginMethod()">
+                                        <i class="fa fa-search"></i> <span>
+                                            <vc:i18n name="查询" namespace="userLogin"></vc:i18n>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="登录日志" namespace="userLogin"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>
-                        <vc:i18n name="登录日志" namespace="userLogin"></vc:i18n>
-                    </h5>
-                    <div class="ibox-tools" style="top:10px;">
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="登录ID" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="公司" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="部门" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="名称" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="登录时间" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="员工ID" namespace="userLogin"></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="gradeX" v-for="userLogin in userLoginInfo.logs">
+                                        <td class="text-center">{{userLogin.loginId}}</td>
+                                        <td class="text-center">{{userLogin.parentOrgName || '-'}}</td>
+                                        <td class="text-center">{{userLogin.orgName}}</td>
+                                        <td class="text-center">{{userLogin.userName}}</td>
+                                        <td class="text-center">{{userLogin.loginTime}}</td>
+                                        <td class="text-center">{{userLogin.userId}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
 
+                        </div>
                     </div>
-                </div>
-                <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                        <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <vc:i18n name="登录ID" namespace="userLogin"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="公司" namespace="userLogin"></vc:i18n>
-                                </th >
-                                <th class="text-center">
-                                    <vc:i18n name="部门" namespace="userLogin"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="名称" namespace="userLogin"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="登录时间" namespace="userLogin"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="员工ID" namespace="userLogin"></vc:i18n>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="gradeX" v-for="userLogin in userLoginInfo.logs">
-                                <td class="text-center">{{userLogin.loginId}}</td>
-                                <td class="text-center">{{userLogin.parentOrgName || '-'}}</td>
-                                <td class="text-center">{{userLogin.orgName}}</td>
-                                <td class="text-center">{{userLogin.userName}}</td>
-                                <td class="text-center">{{userLogin.loginTime}}</td>
-                                <td class="text-center">{{userLogin.userId}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
-
                 </div>
             </div>
         </div>
