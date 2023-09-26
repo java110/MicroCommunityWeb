@@ -2446,7 +2446,7 @@
             if (text == null || text == undefined) {
                 return true;
             }
-            let regMoney = /^\d+\.?\d{0,2}$/;
+            let regMoney = /^\-?\d+\.?\d{0,2}$/;
             return regMoney.test(text);
         },
         /**
