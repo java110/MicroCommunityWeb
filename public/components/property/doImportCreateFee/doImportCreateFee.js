@@ -15,7 +15,7 @@
         methods: {
             doImportCreateFeeValidate() {
                 return vc.validate.validate({
-                    doImportCreateFeeInfo: vc.component.doImportCreateFeeInfo
+                    doImportCreateFeeInfo: $that.doImportCreateFeeInfo
                 }, {
                     'doImportCreateFeeInfo.communityId': [{
                         limit: "required",
@@ -30,26 +30,28 @@
                 });
             },
             _doImportCreateFeeData: function() {
-                if (!vc.component.doImportCreateFeeValidate()) {
+                if (!$that.doImportCreateFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 // 导入数据
-                if (!vc.component.checkOwnerFileType(vc.component.doImportCreateFeeInfo.excelTemplate.name.split('.')[1])) {
+                if (!$that.checkOwnerFileType($that.doImportCreateFeeInfo.excelTemplate.name.split('.')[1])) {
                     vc.toast('不是有效的Excel格式');
                     return;
                 }
-                if (!vc.component.checkOwnerFileSize(vc.component.doImportCreateFeeInfo.excelTemplate.size)) {
+                if (!$that.checkOwnerFileSize($that.doImportCreateFeeInfo.excelTemplate.size)) {
                     vc.toast('Excel文件大小不能超过2M');
                     return;
                 }
-                var param = new FormData();
-                param.append("uploadFile", vc.component.doImportCreateFeeInfo.excelTemplate);
-                param.append('communityId', vc.component.doImportCreateFeeInfo.communityId);
-                // param.append('feeTypeCd', vc.component.importRoomFeeInfo.feeTypeCd);
-                // param.append('objType', $that.importRoomFeeInfo.objType);
+
+                let param = new FormData();
+                param.append("uploadFile", $that.doImportCreateFeeInfo.excelTemplate);
+                param.append('communityId', $that.doImportCreateFeeInfo.communityId);
+                param.append('importAdapt', "importCustomFee");
+
+                
                 vc.http.upload(
-                    'importAndExportFee',
+                    'assetImport',
                     'importData',
                     param, {
                         emulateJSON: true,
@@ -58,33 +60,33 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             vc.toast("处理成功");
                             $('#doImportCreateFeeModel').modal('hide');
-                            // vc.jumpToPage('/#/pages/property/listOwner')
-                            vc.emit('listOwnerCar', 'listOwnerCarData', {});
+                            vc.jumpToPage('/#/pages/property/assetImportLogDetail?logId=' + _json.data.logId + '&logType=importCustomFee');
                             return;
                         }
-                        vc.toast(json, 10000);
+                        vc.toast(_json.msg, 10000);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo, 10000);
                     });
             },
             clearAddFeeConfigInfo: function() {
-                // var _feeTypeCds = vc.component.importRoomFeeInfo.feeTypeCds;
-                vc.component.doImportCreateFeeInfo = {
+                // var _feeTypeCds = $that.importRoomFeeInfo.feeTypeCds;
+                $that.doImportCreateFeeInfo = {
                     communityId: vc.getCurrentCommunity().communityId,
                     excelTemplate: ''
                 };
             },
             getExcelTemplate: function(e) {
                 //console.log("getExcelTemplate 开始调用")
-                vc.component.doImportCreateFeeInfo.excelTemplate = e.target.files[0];
+                $that.doImportCreateFeeInfo.excelTemplate = e.target.files[0];
             },
             checkOwnerFileType: function(fileType) {
                 const acceptTypes = ['xlsx', 'xls'];
