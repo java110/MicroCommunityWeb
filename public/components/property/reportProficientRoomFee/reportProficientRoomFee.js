@@ -8,7 +8,7 @@
         data: {
             reportProficientRoomFeeInfo: {
                 fees: [],
-                listColumns: [],
+                listColumns: [2023],
                 roomId: '',
                 roomName: '',
                 conditions: {}
@@ -98,6 +98,7 @@
             clearReportProficientRoomFeeInfo: function () {
                 $that.reportProficientRoomFeeInfo = {
                     fees: [],
+                    listColumns: [2023],
                     roomId: '',
                     roomName: '',
                     name: ''

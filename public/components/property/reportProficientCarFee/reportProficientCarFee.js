@@ -8,7 +8,7 @@
         data: {
             reportProficientCarFeeInfo: {
                 fees: [],
-                listColumns: [],
+                listColumns: [2023],
                 roomId: '',
                 roomName: '',
                 conditions: {}
@@ -88,13 +88,13 @@
             clearReportProficientCarFeeInfo: function () {
                 $that.reportProficientCarFeeInfo = {
                     fees: [],
+                    listColumns: [2023],
                     roomId: '',
                     roomName: '',
                     name: ''
                 }
             },
             _showCarFeeDetail: function (fee, item) {
-                console.log(fee, item)
                 vc.emit('viewFeeDetail', 'listFeeDetail', {
                     roomName: fee.objName,
                     feeId: fee.feeId,
