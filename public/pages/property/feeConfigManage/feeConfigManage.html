@@ -30,25 +30,40 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <input type="text" :placeholder="vc.i18n('请输入费用项ID','feeConfigManage')"
                                                v-model="feeConfigManageInfo.conditions.configId" class=" form-control">
                                     </div>
                                 </div>
                                 <!--收费项目-->
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <input type="text" :placeholder="vc.i18n('请输入收费项目','feeConfigManage')"
                                                v-model="feeConfigManageInfo.conditions.feeName" class=" form-control">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <select class="custom-select" v-model="feeConfigManageInfo.conditions.feeFlag">
                                         <option selected value="">{{vc.i18n('请选择费用标识','feeConfigManage')}}</option>
                                         <option v-for="(item,index) in feeConfigManageInfo.feeFlags" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="custom-select" v-model="feeConfigManageInfo.conditions.paymentCd">
+                                        <option selected value="">{{vc.i18n('请选择付费类型','feeConfigManage')}}</option>
+                                        <option v-for="(item,index) in feeConfigManageInfo.paymentCds" :key="index"
+                                                :value="item.statusCd">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="custom-select" v-model="feeConfigManageInfo.conditions.deductFrom">
+                                        <option selected value="">{{vc.i18n('请选择账户抵扣','feeConfigManage')}}</option>
+                                        <option value="Y">是</option>
+                                        <option value="N">否</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
@@ -65,38 +80,22 @@
                                 </div>
                             </div>
                             <div class="row" v-show="feeConfigManageInfo.moreCondition == true">
-                                <div class="col-sm-3">
-                                    <select class="custom-select" v-model="feeConfigManageInfo.conditions.paymentCd">
-                                        <option selected value="">{{vc.i18n('请选择付费类型','feeConfigManage')}}</option>
-                                        <option v-for="(item,index) in feeConfigManageInfo.paymentCds" :key="index"
-                                                :value="item.statusCd">{{item.name}}
-                                        </option>
-                                    </select>
-                                </div>
+                                
                                 <!--出账类型-->
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <select class="custom-select" v-model="feeConfigManageInfo.conditions.billType">
-                                        <option selected value="">{{vc.i18n('请选择出账类型','feeConfigManage')}}</option>
+                                        <option selected value="">{{vc.i18n('请选择催缴类型','feeConfigManage')}}</option>
                                         <option v-for="(item,index) in feeConfigManageInfo.billTypes" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <select class="custom-select" v-model="feeConfigManageInfo.conditions.isDefault">
                                         <option selected value="">{{vc.i18n('请选择默认费用','feeConfigManage')}}</option>
                                         <option v-for="(item,index) in feeConfigManageInfo.isDefaults" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row" v-show="feeConfigManageInfo.moreCondition == true" style="margin-top: 16px">
-                                <div class="col-sm-3">
-                                    <select class="custom-select" v-model="feeConfigManageInfo.conditions.deductFrom">
-                                        <option selected value="">{{vc.i18n('请选择账户抵扣','feeConfigManage')}}</option>
-                                        <option value="Y">是</option>
-                                        <option value="N">否</option>
                                     </select>
                                 </div>
                             </div>
@@ -109,7 +108,7 @@
                     <div class="ibox">
                         <div class="ibox-title">
                             <h5>
-                                <span><vc:i18n name="费用项信息" namespace="feeConfigManage"></vc:i18n></span>
+                                <span><vc:i18n name="费用项" namespace="feeConfigManage"></vc:i18n></span>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <button type="button" class="btn btn-primary btn-sm"
@@ -130,7 +129,7 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">
-                                        <span><vc:i18n name="编号" namespace="feeConfigManage"></vc:i18n></span>
+                                        <vc:i18n name="编号" namespace="feeConfigManage"></vc:i18n>
                                     </th>
                                     <th class="text-center">
                                         <vc:i18n name="费用类型" namespace="feeConfigManage"></vc:i18n>
@@ -154,6 +153,9 @@
                                        <vc:i18n name="有效期" namespace="feeConfigManage"></vc:i18n>
                                     </th>
                                     <th class="text-center">
+                                        <vc:i18n name="公式" namespace="feeConfigManage"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
                                         <vc:i18n name="计费单价(单位:元)" namespace="feeConfigManage"></vc:i18n>
                                     </th>
                                     <th class="text-center">
@@ -162,9 +164,7 @@
                                     <th class="text-center">
                                         <vc:i18n name="账户抵扣" namespace="feeConfigManage"></vc:i18n>
                                     </th>
-                                    <th class="text-center">
-                                        <vc:i18n name="默认费用" namespace="feeConfigManage"></vc:i18n>
-                                    </th>
+                                 
                                     <th class="text-center">
                                         <vc:i18n name="操作" namespace="feeConfigManage"></vc:i18n>
                                     </th>
@@ -181,12 +181,13 @@
                                     <td class="text-center">{{feeConfig.paymentCycle}}</td>
                                     <td class="text-center">{{feeConfig.startTime}}<br/> {{feeConfig.endTime}}
                                     </td>
+                                    <td class="text-center">{{feeConfig.computingFormulaName}}</td>
                                     <td class="text-center">{{feeConfig.computingFormula == '2002' ?
                                         '-':feeConfig.squarePrice}}
                                     </td>
                                     <td class="text-center">{{feeConfig.additionalAmount}}</td>
                                     <td class="text-center">{{feeConfig.deductFrom == 'Y' ? '是':'否'}}</td>
-                                    <td class="text-center">{{feeConfig.isDefault == 'T' ? '默认费用':'自定义费用'}}</td>
+                                   
                                     <td class="text-center">
                                         <div class="btn-group" v-if="vc.hasPrivilege('502022022549630561')">
                                             <button class="btn-white btn btn-xs"
