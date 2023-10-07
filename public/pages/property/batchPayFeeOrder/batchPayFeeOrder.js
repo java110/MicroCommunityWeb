@@ -357,12 +357,14 @@
                     detailIds += (item + ',');
                 })
                 $that.batchPayFeeOrderInfo.detailIds = detailIds;
-                //vc.saveData('_feeInfo', _feeInfo);
-                //关闭model
-                $("#payFeeResult").modal({
-                    backdrop: "static", //点击空白处不关闭对话框
-                    show: true
-                });
+                //todo 这里等三秒，有可能收据队列还没有生成
+                setTimeout(function(){
+                    $("#payFeeResult").modal({
+                        backdrop: "static", //点击空白处不关闭对话框
+                        show: true
+                    });
+                },3000);
+                
                 $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                 $that._loadBatchFees();
             },
