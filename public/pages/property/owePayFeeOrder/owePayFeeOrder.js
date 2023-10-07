@@ -19,6 +19,8 @@
                 payType: 'common',
                 authCode: '',
                 orderId: '',
+                printUrl: '/print.html#/pages/property/printPayFee',
+                detailIds:'',
             }
         },
         watch: {
@@ -45,9 +47,34 @@
             vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
                 $that.owePayFeeOrderInfo.primeRates = _data;
             });
+            $that._listFeePrintPages();
         },
         _initEvent: function() {},
         methods: {
+            _listFeePrintPages: function(_page, _rows) {
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 1,
+                        state: 'T',
+                        communityId: vc.getCurrentCommunity().communityId
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/feePrintPage.listFeePrintPage',
+                    param,
+                    function(json, res) {
+                        let _json = JSON.parse(json);
+                        let feePrintPages = _json.data;
+                        if (feePrintPages && feePrintPages.length > 0) {
+                            $that.owePayFeeOrderInfo.printUrl = feePrintPages[0].url;
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
             _loadOweFees: function() {
                 let param = {
                     params: {
@@ -292,17 +319,19 @@
             _doDealPayResult: function(_json) {
                 $that._closeDoOwePayFeeModal();
                 let _data = _json.data;
-                let receiptIds = '';
-                _data.receipts.forEach(item => {
-                    receiptIds += (item.receiptId + ',');
+                let _detailIds = '';
+                _data.details.forEach(item => {
+                    _detailIds += (item + ',');
                 })
-                $that.owePayFeeOrderInfo.receiptIds = receiptIds;
+                $that.owePayFeeOrderInfo.detailIds = _detailIds;
                 //vc.saveData('_feeInfo', _feeInfo);
-                //关闭model
-                $("#payFeeResult").modal({
-                    backdrop: "static", //点击空白处不关闭对话框
-                    show: true
-                });
+                setTimeout(function(){
+                    $("#payFeeResult").modal({
+                        backdrop: "static", //点击空白处不关闭对话框
+                        show: true
+                    });
+                },2000);
+               
                 $that.owePayFeeOrderInfo.selectPayFeeIds = [];
                 $that._loadOweFees();
                 vc.toast(_json.msg);
@@ -313,7 +342,8 @@
             },
             _printAndBack: function() {
                 $('#payFeeResult').modal("hide");
-                window.open("/print.html#/pages/property/printPayFee?receiptIds=" + $that.owePayFeeOrderInfo.receiptIds)
+               // window.open("/print.html#/pages/property/printPayFee?receiptIds=" + $that.owePayFeeOrderInfo.receiptIds);
+                window.open($that.owePayFeeOrderInfo.printUrl + "?detailIds=" + $that.owePayFeeOrderInfo.detailIds)
             },
             _dealSelectFee: function() {
                 let totalFee = 0.00;

@@ -363,7 +363,7 @@
                         backdrop: "static", //点击空白处不关闭对话框
                         show: true
                     });
-                },3000);
+                },2000);
                 
                 $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                 $that._loadBatchFees();
