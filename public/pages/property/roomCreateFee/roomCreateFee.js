@@ -188,8 +188,8 @@
                 });
             },
             _downloadCollectionLetterOrder: function () {
-                //vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId);
-                vc.emit('downloadCollectionLetterOrder', 'openExportExcel',{})
+                vc.jumpToPage('/#/pages/fee/addOweFeeCallable?callableWay=EXCEL');
+                //vc.emit('downloadCollectionLetterOrder', 'openExportExcel',{})
             },
             _downloadRoomCollectionLetterOrder: function (_room) {
                 //vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);

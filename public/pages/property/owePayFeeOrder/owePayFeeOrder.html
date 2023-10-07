@@ -18,7 +18,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <input type="checkbox" class="i-checks" @click="checkAll($event)">
+                                    <input type="checkbox" class="i-checks all-check" @click="checkAll($event)">
                                 </th>
                                 <th class="text-center">
                                     <vc:i18n name="收费对象" namespace="owePayFeeOrder"></vc:i18n>
@@ -98,29 +98,23 @@
                 <div class="modal-body">
                     <div class="row">
                         <label class="col-sm-3 col-form-label">
-                            <span>
-                                <span><vc:i18n name="房屋" namespace="owePayFeeOrder"></vc:i18n></span>
-                            </span>：
+                            <vc:i18n name="房屋：" namespace="owePayFeeOrder"></vc:i18n>
                         </label>
                         <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.roomName}}</label>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label">
-                            <span>
-                                <span><vc:i18n name="金额" namespace="owePayFeeOrder"></vc:i18n></span>
-                            </span>：
+                            <vc:i18n name="金额：" namespace="owePayFeeOrder"></vc:i18n>
                         </label>
                         <label class="col-sm-9 col-form-label">{{owePayFeeOrderInfo.feePrices}}
                             <span>
-                                <span><vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n></span>
+                                <vc:i18n name="元" namespace="owePayFeeOrder"></vc:i18n>
                             </span>
                         </label>
                     </div>
                     <div class="row form-group">
                         <label class="col-sm-3 col-form-label">
-                            <span>
-                                <span><vc:i18n name="支付方式" namespace="owePayFeeOrder"></vc:i18n></span>
-                            </span>:
+                            <vc:i18n name="支付方式:" namespace="owePayFeeOrder"></vc:i18n>
                         </label>
                         <div class="col-sm-9">
                             <select class="custom-select" v-model="owePayFeeOrderInfo.primeRate"  v-if="owePayFeeOrderInfo.payType == 'common'">
@@ -167,9 +161,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <span>
-                            <span><vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n></span>
-                        </span>
+                        <vc:i18n name="缴费提示" namespace="owePayFeeOrder"></vc:i18n>
                     </h5>
                     <button type="button " class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -181,7 +173,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="_back()"><vc:i18n name="返回" namespace="owePayFeeOrder"></vc:i18n>
                     </button>
-                    <!-- <button type="button" class="btn btn-primary" @click="_printAndBack()"><span><span><vc:i18n name="打印收据" namespace="owePayFeeOrder"></vc:i18n></span></span></button> -->
+                    <!-- <button type="button" class="btn btn-primary" @click="_printAndBack()"><vc:i18n name="打印收据" namespace="owePayFeeOrder"></vc:i18n></button> -->
                 </div>
             </div>
         </div>
