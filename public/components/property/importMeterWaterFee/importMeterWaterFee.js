@@ -106,7 +106,27 @@
                     vc.toast('请选择抄表类型');
                     return;
                 }
-                vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + '&meterType=' + _meterType);
+               // vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' +  + '&meterType=' + _meterType);
+               $('#importMeterWaterFeeModel').modal('hide');
+                let param = {
+                    params: {
+                        communityId:vc.getCurrentCommunity().communityId,
+                        meterType:_meterType,
+                        pagePath:'exportMeterWater'
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/export.exportData', param,
+                    function(json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if (_json.code == 0) {
+                            vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    });
             },
             _listImportMeterTypes: function (_page, _rows) {
                 var param = {

@@ -4,20 +4,20 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="m-t-none m-b ">
-                    <span><vc:i18n name="抄表导入" namespace="importMeterWaterFee2"></vc:i18n></span>2
+                    <vc:i18n name="抄表导入2" namespace="importMeterWaterFee2"></vc:i18n>
                 </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="费用类型" namespace="importMeterWaterFee2"></vc:i18n></span>
+                                    <vc:i18n name="费用类型" namespace="importMeterWaterFee2"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFee2Info.feeTypeCd"
                                             @change="_changeImportMeterWaterFeeTypeCd2(importMeterWaterFee2Info.feeTypeCd)">
                                         <option selected disabled value="">
-                                            {{vc.i18n('必填','importMeterWaterFee2')}}，请选择费用类型
+                                            {{vc.i18n('必填，请选择费用类型','importMeterWaterFee2')}}
                                         </option>
                                         <option value="888800010015">{{vc.i18n('水费','importMeterWaterFee2')}}</option>
                                         <option value="888800010016">{{vc.i18n('电费','importMeterWaterFee2')}}</option>
@@ -27,12 +27,12 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="收费项目" namespace="importMeterWaterFee2"></vc:i18n></span>
+                                    <vc:i18n name="收费项目" namespace="importMeterWaterFee2"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFee2Info.configId">
                                         <option selected disabled value="">
-                                            {{vc.i18n('必填','importMeterWaterFee2')}}，请选择收费项目
+                                            {{vc.i18n('必填，请选择收费项目','importMeterWaterFee2')}}
                                         </option>
                                         <option v-for="(item,index) in importMeterWaterFee2Info.feeConfigs" :key="index"
                                                 v-bind:value="item.configId">{{item.feeName}}
@@ -42,12 +42,12 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="抄表类型" namespace="importMeterWaterFee2"></vc:i18n></span>
+                                    <vc:i18n name="抄表类型" namespace="importMeterWaterFee2"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="importMeterWaterFee2Info.meterType">
                                         <option selected disabled value="">
-                                            {{vc.i18n('必填','importMeterWaterFee2')}}，请选择抄表类型
+                                            {{vc.i18n('必填，请选择抄表类型','importMeterWaterFee2')}}
                                         </option>
                                         <option v-for="(item,index) in importMeterWaterFee2Info.meterTypes" :key="index"
                                                 v-bind:value="item.typeId">{{item.typeName}}
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
-                                    <span><vc:i18n name="选择文件" namespace="importMeterWaterFee2"></vc:i18n></span>
+                                    <vc:i18n name="选择文件" namespace="importMeterWaterFee2"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
