@@ -44,18 +44,6 @@
                 return vc.validate.validate({
                     addAccessControlWhiteInfo: vc.component.addAccessControlWhiteInfo
                 }, {
-                    'addAccessControlWhiteInfo.machineId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "30",
-                            errInfo: "设备不能超过30"
-                        }
-                    ],
                     'addAccessControlWhiteInfo.personName': [
                         {
                             limit: "required",
@@ -172,7 +160,7 @@
             clearAddAccessControlWhiteInfo: function () {
                 let _personTypes = $that.addAccessControlWhiteInfo.personTypes;
                 vc.component.addAccessControlWhiteInfo = {
-                    machineId: '',
+                    machineIds: [],
                     personName: '',
                     tel: '',
                     idCard: '',
