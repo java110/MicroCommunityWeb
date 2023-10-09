@@ -1,0 +1,168 @@
+<div>
+    <div class="row">
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff">
+                    <ul class="list-group text-center border-radius">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in invoiceApplyInfo.states"
+                            :key="index" @click="swatchState(item)"
+                            :class="{'vc-node-selected':invoiceApplyInfo.conditions.state == item.state}">
+                            {{item.stateName}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请填写编号','invoiceApply')"
+                                            v-model="invoiceApplyInfo.conditions.applyId" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="custom-select" v-model="invoiceApplyInfo.conditions.invoiceType">
+                                        <option selected value="">
+                                            请选择发票类型
+                                        </option>
+                                        <option value="1001">个人</option>
+                                        <option value="2002">企业</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择业主名称','invoiceApply')"
+                                            v-model="invoiceApplyInfo.conditions.ownerName" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择申请人','invoiceApply')"
+                                            v-model="invoiceApplyInfo.conditions.createUserName" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请选择申请人电话','invoiceApply')"
+                                            v-model="invoiceApplyInfo.conditions.applyTel" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_queryInvoiceApplyMethod()">
+                                        <i class="glyphicon glyphicon-search"></i> <span>
+                                            <vc:i18n name="查询"></vc:i18n>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="申请发票" namespace="invoiceApply"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+                                <button type="button" class="btn btn-primary btn-sm" @click="_invoiceApply">
+                                    <vc:i18n name="申请"></vc:i18n>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name='编号' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='发票类型' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='业主名称' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='申请人' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='发票名头' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='纳税人识别号' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='地址、电话' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='申请金额' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+
+                                        <th class="text-center">
+                                            <vc:i18n name='审核状态' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='操作'></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="invoiceApply in invoiceApplyInfo.invoiceApplys">
+                                        <td class="text-center">{{invoiceApply.applyId}}</td>
+                                        <td class="text-center">{{invoiceApply.invoiceType == '1001'?'个人':'企业'}}</td>
+                                        <td class="text-center">{{invoiceApply.ownerName}}</td>
+                                        <td class="text-center">
+                                            {{invoiceApply.createUserName}}({{invoiceApply.applyTel}})</td>
+                                        <td class="text-center">{{invoiceApply.invoiceName}}</td>
+                                        <td class="text-center">{{invoiceApply.invoiceNum}}</td>
+                                        <td class="text-center">{{invoiceApply.invoiceAddress}}</td>
+
+                                        <td class="text-center">{{invoiceApply.invoiceAmount}}</td>
+                                        <td class="text-center">{{invoiceApply.state}}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openDeleteInvoiceApplyModel(invoiceApply)">
+                                                    <vc:i18n name='删除'></vc:i18n>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="fee/deleteInvoiceApply"></vc:create>
+</div>

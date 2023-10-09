@@ -1,0 +1,73 @@
+<div id="editOwnerInvoiceModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">
+          <vc:i18n name="修改" namespace="editOwnerInvoice"></vc:i18n>
+        </h3>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='发票类型' namespace='editOwnerInvoice'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <select class="custom-select" v-model="editOwnerInvoiceInfo.invoiceType">
+                <option selected disabled value="">{{vc.i18n('必填，请选择发票类型' ,'editOwnerInvoice')}}</option>
+                <option value="1001">{{vc.i18n('个人' ,'editOwnerInvoice')}} </option>
+                <option value="2002">{{vc.i18n('企业' ,'editOwnerInvoice')}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='发票名头' namespace='editOwnerInvoice'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <input v-model="editOwnerInvoiceInfo.invoiceName" type="text"
+                :placeholder="vc.i18n('必填，请填写发票名头','editOwnerInvoice')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='纳税人识别号' namespace='editOwnerInvoice'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <input v-model="editOwnerInvoiceInfo.invoiceNum" type="text"
+                :placeholder="vc.i18n('必填，请填写纳税人识别号','editOwnerInvoice')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='地址、电话' namespace='editOwnerInvoice'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <input v-model="editOwnerInvoiceInfo.invoiceAddress" type="text"
+                :placeholder="vc.i18n('必填，请填写地址、电话','editOwnerInvoice')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span>
+                <vc:i18n name='备注' namespace='editOwnerInvoice'></vc:i18n>
+              </span> </label>
+            <div class="col-sm-10">
+              <textarea v-model="editOwnerInvoiceInfo.remark" type="text"
+                :placeholder="vc.i18n('选填，请填写备注','editOwnerInvoice')" class="form-control"></textarea>
+            </div>
+          </div>
+
+          <div class="ibox-content">
+            <button class="btn btn-primary float-right" type="button" v-on:click="editOwnerInvoice()"><i
+                class="fa fa-check"></i>&nbsp;<span>
+                <vc:i18n name="保存"></vc:i18n>
+              </span></button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+              data-dismiss="modal"><span>
+                <vc:i18n name="取消"></vc:i18n>
+              </span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="发票抬头" namespace="ownerApplyInvoice"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-white btn-sm" v-on:click="vc.goBack()">
+                            返回
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="发票抬头" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-3">
+                                    <input v-model="ownerApplyInvoiceInfo.ownerName" disabled type="text"
+                                        :placeholder="vc.i18n('必填，请选择发票抬头','ownerApplyInvoice')" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_openChooseOwner()">选择
+                                    </button>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="纳税人识别号" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceName"  type="text"
+                                        :placeholder="vc.i18n('必填，请选择纳税人识别号','ownerApplyInvoice')" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="发票类型" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="ownerApplyInvoiceInfo.invoiceType">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择发票类型','ownerApplyInvoice')}}</option>
+                                        <option value="1001">{{vc.i18n('个人','ownerApplyInvoice')}}</option>
+                                        <option value="2002">{{vc.i18n('企业','ownerApplyInvoice')}}</option>
+                                      </select>
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="地址、电话" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceAddress"  type="text"
+                                        :placeholder="vc.i18n('必填，请选择地址、电话','ownerApplyInvoice')" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <vc:create path="property/searchOwner" emitChooseOwner="ownerApplyInvoice" emitLoadData="ownerApplyInvoice">
+            </vc:create>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="已缴费费用" namespace="handover"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                        data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="费用项目" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="开始时间" namespace="handover"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="结束时间" namespace="handover"></vc:i18n>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="fee in ownerApplyInvoiceInfo.feeDetails">
+                                <td class="text-center">
+                                    {{fee.feeName}}
+                                </td>
+                                <td class="text-center">
+                                    {{fee.startTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{fee.endTime?fee.endTime:'-'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary" type="button" v-on:click="saveHandoverInfo()"><i
+                    class="fa fa-check"></i>&nbsp;提交</button>
+        </div>
+    </div>
+</div>

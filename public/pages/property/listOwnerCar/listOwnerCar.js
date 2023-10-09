@@ -80,7 +80,7 @@
                 vc.http.apiGet('/owner.queryOwnerCars',
                     param,
                     function(json, res) {
-                        var _json = JSON.parse(json);
+                        let _json = JSON.parse(json);
                         $that.listOwnerCarInfo.total = _json.total;
                         $that.listOwnerCarInfo.records = _json.records;
                         $that.listOwnerCarInfo.ownerCars = _json.data;

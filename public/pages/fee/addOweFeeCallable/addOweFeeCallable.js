@@ -11,6 +11,9 @@
                 roomIds: [],
                 rooms: [],
                 feeConfigs: [],
+                hasTime:'OFF',
+                startTime:'',
+                endTime:'',
                 floors: []
             }
         },
@@ -33,6 +36,13 @@
             if(_callableWay){
                 $that.addOweFeeCallableInfo.callableWay = _callableWay;
             }
+
+            vc.initDate('addStartTime',function(_value){
+                $that.addOweFeeCallableInfo.startTime = _value;
+            });
+            vc.initDate('addEndTime',function(_value){
+                $that.addOweFeeCallableInfo.endTime = _value;
+            })
             $that._listFeeConfigs();
             $that._loadOweFeeFloors();
         },
@@ -65,6 +75,11 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
+                let _roomIds = $that.addOweFeeCallableInfo.roomIds;
+                if(!_roomIds || _roomIds.length < 1){
+                    vc.toast('未包含房屋');
+                    return;
+                }
                 vc.http.apiPost('/oweFeeCallable.saveOweFeeCallable',
                     JSON.stringify($that.addOweFeeCallableInfo),
                     {
@@ -87,14 +102,23 @@
                     });
             },
             _exportCollectionLetterExcel: function() {
+
+                let _roomIds = $that.addOweFeeCallableInfo.roomIds;
+                if(!_roomIds || _roomIds.length < 1){
+                    vc.toast('不存在欠费房屋');
+                    return;
+                }
                 let param = {
                     params: {
                         communityId:vc.getCurrentCommunity().communityId,
                         pagePath:'dataFeeManualCollection',
                         configIds:$that.addOweFeeCallableInfo.configIds.join(','),
-                        roomIds:$that.addOweFeeCallableInfo.roomIds.join(',')
+                        roomIds:$that.addOweFeeCallableInfo.roomIds.join(','),
+                        startTime:$that.addOweFeeCallableInfo.startTime,
+                        endTime:$that.addOweFeeCallableInfo.endTime,
                     }
                 };
+              
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,
                     function(json, res) {
