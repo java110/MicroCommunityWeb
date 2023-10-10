@@ -9,7 +9,10 @@
                 invoiceAddress: '',
                 invoiceNum: '',
                 detailIds: [],
-                feeDetails: []
+                feeDetails: [],
+                invoiceFlag:'FEE',
+                arIds:[],
+                acctDetails:[]
             }
         },
         watch: {
@@ -18,6 +21,17 @@
                 handler: function () {
                     let checkObj = document.querySelectorAll('.all-check'); // 获取所有checkbox项
                     if ($that.ownerApplyInvoiceInfo.detailIds.length < $that.ownerApplyInvoiceInfo.feeDetails.length) {
+                        checkObj[0].checked = false;
+                    } else {
+                        checkObj[0].checked = true;
+                    }
+                }
+            },
+            'ownerApplyInvoiceInfo.arIds': {
+                deep: true,
+                handler: function () {
+                    let checkObj = document.querySelectorAll('.all-check-acct'); // 获取所有checkbox项
+                    if ($that.ownerApplyInvoiceInfo.arIds.length < $that.ownerApplyInvoiceInfo.acctDetails.length) {
                         checkObj[0].checked = false;
                     } else {
                         checkObj[0].checked = true;

@@ -22,6 +22,7 @@
                     link: '',
                     memberCarNumLike: ''
                 },
+                currentPage: DEFAULT_PAGE,
                 listColumns: [],
             }
         },
@@ -30,9 +31,11 @@
         },
         _initEvent: function() {
             vc.on('listOwnerCar', 'listOwnerCarData', function() {
-                $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerCar($that.listOwnerCarInfo.currentPage, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function(_currentPage) {
+                $that.listOwnerCarInfo.currentPage = _currentPage;
+
                 $that._listOwnerCar(_currentPage, DEFAULT_ROWS);
             });
             //与字典表关联
@@ -57,6 +60,7 @@
         methods: {
             swatchLeaseType: function(_item) {
                 $that.listOwnerCarInfo.conditions.leaseType = _item.statusCd;
+                $that.listOwnerCarInfo.currentPage = DEFAULT_PAGE;
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listOwnerCar: function(_page, _row) {
@@ -114,6 +118,7 @@
                 $that.listOwnerCarInfo.conditions.leaseType = "H";
                 $that.listOwnerCarInfo.conditions.ownerName = "";
                 $that.listOwnerCarInfo.conditions.link = "";
+                $that.listOwnerCarInfo.currentPage = DEFAULT_PAGE;
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function() {

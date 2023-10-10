@@ -25,14 +25,14 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            v-on:click="_openChooseOwner()">选择
+                                        v-on:click="_openChooseOwner()">选择
                                     </button>
                                 </div>
                                 <label class="col-sm-2 col-form-label text-right">
                                     <vc:i18n name="纳税人识别号" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input v-model="ownerApplyInvoiceInfo.invoiceNum"  type="text"
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceNum" type="text"
                                         :placeholder="vc.i18n('必填，请选择纳税人识别号','ownerApplyInvoice')" class="form-control">
                                 </div>
                             </div>
@@ -42,16 +42,17 @@
                                 </label>
                                 <div class="col-sm-4">
                                     <select class="custom-select" v-model="ownerApplyInvoiceInfo.invoiceType">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择发票类型','ownerApplyInvoice')}}</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择发票类型','ownerApplyInvoice')}}
+                                        </option>
                                         <option value="1001">{{vc.i18n('个人','ownerApplyInvoice')}}</option>
                                         <option value="2002">{{vc.i18n('企业','ownerApplyInvoice')}}</option>
-                                      </select>
+                                    </select>
                                 </div>
                                 <label class="col-sm-2 col-form-label text-right">
                                     <vc:i18n name="地址、电话" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input v-model="ownerApplyInvoiceInfo.invoiceAddress"  type="text"
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceAddress" type="text"
                                         :placeholder="vc.i18n('必填，请选择地址、电话','ownerApplyInvoice')" class="form-control">
                                 </div>
                             </div>
@@ -60,8 +61,19 @@
                                     <vc:i18n name="业主" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input v-model="ownerApplyInvoiceInfo.ownerName" disabled  type="text"
+                                    <input v-model="ownerApplyInvoiceInfo.ownerName" disabled type="text"
                                         :placeholder="vc.i18n('必填，请选择地址、电话','ownerApplyInvoice')" class="form-control">
+                                </div>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="开票内容" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" v-model="ownerApplyInvoiceInfo.invoiceFlag">
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择开票内容','ownerApplyInvoice')}}
+                                        </option>
+                                        <option value="FEE">{{vc.i18n('已缴费用','ownerApplyInvoice')}}</option>
+                                        <option value="ACCT">{{vc.i18n('账户预存','ownerApplyInvoice')}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -69,12 +81,13 @@
 
                 </div>
             </div>
-            <vc:create path="fee/searchOwnerInvoice" emitChooseOwner="ownerApplyInvoice" emitLoadData="ownerApplyInvoice">
+            <vc:create path="fee/searchOwnerInvoice" emitChooseOwner="ownerApplyInvoice"
+                emitLoadData="ownerApplyInvoice">
             </vc:create>
         </div>
     </div>
 
-    <div class="row" v-if="ownerApplyInvoiceInfo.feeDetails && ownerApplyInvoiceInfo.feeDetails.length >0">
+    <div class="row" v-if="ownerApplyInvoiceInfo.invoiceFlag == 'FEE'">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
@@ -90,7 +103,8 @@
                         data-page-size="10">
                         <thead>
                             <tr>
-                                <th class="text-center"><input type="checkbox" class="i-checks all-check" @click="checkAll($event)"></th>
+                                <th class="text-center"><input type="checkbox" class="i-checks all-check"
+                                        @click="checkAll($event)"></th>
                                 <th class="text-center">
                                     <vc:i18n name="费用项" namespace="ownerApplyInvoice"></vc:i18n>
                                 </th>
@@ -124,7 +138,8 @@
                         <tbody>
                             <tr v-for="feeDetail in ownerApplyInvoiceInfo.feeDetails">
                                 <td class="text-center">
-                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="feeDetail.detailId" v-model="ownerApplyInvoiceInfo.detailIds">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="feeDetail.detailId"
+                                        v-model="ownerApplyInvoiceInfo.detailIds">
                                 </td>
                                 <td class="text-center">
                                     {{feeDetail.feeName}}
@@ -159,6 +174,69 @@
                                 <td class="text-center">
                                     {{feeDetail.remark}}
                                 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" v-if="ownerApplyInvoiceInfo.invoiceFlag == 'ACCT'">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="账户预存" namespace="ownerApplyInvoice"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                        data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><input type="checkbox" class="i-checks all-check-acct"
+                                        @click="checkAllAcct($event)"></th>
+                                <th class="text-center">
+                                    <vc:i18n name="账户名称" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="账户类型" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="业主" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="预存金额" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="预存方式" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="总金额" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="预存时间" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="acctDetail in ownerApplyInvoiceInfo.acctDetails">
+                                <td class="text-center">
+                                    <input type="checkbox" class="i-checks checkItemAcct" v-bind:value="acctDetail.arId"
+                                        v-model="ownerApplyInvoiceInfo.arIds">
+                                </td>
+                                <td class="text-center">{{acctDetail.acctName}}</td>
+                                <td class="text-center">{{acctDetail.acctTypeName}}</td>
+                                <td class="text-center">{{acctDetail.ownerName}}</td>
+                                <td class="text-center">{{acctDetail.receivedAmount}}</td>
+                                <td class="text-center">{{acctDetail.primeRateName}}</td>
+                                <td class="text-center">{{acctDetail.amount}}元</td>
+                                <td class="text-center">{{acctDetail.createTime}}</td>
                             </tr>
                         </tbody>
                     </table>
