@@ -33,7 +33,7 @@
             });
             vc.on('simplifyHisFee', 'paginationPlus', 'page_event',
                 function(_currentPage) {
-                    vc.component._listSimplifyFeeDetails(_currentPage, DEFAULT_ROWS);
+                    $that._listSimplifyFeeDetails(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
@@ -52,12 +52,12 @@
                     param,
                     function(json) {
                         let _feeConfigInfo = JSON.parse(json);
-                        vc.component.simplifyHisFeeInfo.total = _feeConfigInfo.total;
-                        vc.component.simplifyHisFeeInfo.records = _feeConfigInfo.records;
-                        vc.component.simplifyHisFeeInfo.feeDetails = _feeConfigInfo.feeDetails;
+                        $that.simplifyHisFeeInfo.total = _feeConfigInfo.total;
+                        $that.simplifyHisFeeInfo.records = _feeConfigInfo.records;
+                        $that.simplifyHisFeeInfo.feeDetails = _feeConfigInfo.feeDetails;
                         vc.emit('simplifyHisFee', 'paginationPlus', 'init', {
-                            total: vc.component.simplifyHisFeeInfo.records,
-                            dataCount: vc.component.simplifyHisFeeInfo.total,
+                            total: $that.simplifyHisFeeInfo.records,
+                            dataCount: $that.simplifyHisFeeInfo.total,
                             currentPage: _page
                         });
                     },

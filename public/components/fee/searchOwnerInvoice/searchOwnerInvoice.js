@@ -40,7 +40,7 @@
                         let _json = JSON.parse(json);
                         $that.searchOwnerInvoiceInfo.ownerInvoices = _json.data;
                         vc.emit('searchOwnerInvoice', 'paginationPlus', 'init', {
-                            total: _ownerInfo.records,
+                            total: _json.records,
                             currentPage: _page
                         });
                     },

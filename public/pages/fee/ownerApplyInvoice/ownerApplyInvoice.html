@@ -20,7 +20,7 @@
                                     <vc:i18n name="发票抬头" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-3">
-                                    <input v-model="ownerApplyInvoiceInfo.ownerName" disabled type="text"
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceName" disabled type="text"
                                         :placeholder="vc.i18n('必填，请选择发票抬头','ownerApplyInvoice')" class="form-control">
                                 </div>
                                 <div class="col-sm-1">
@@ -32,7 +32,7 @@
                                     <vc:i18n name="纳税人识别号" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input v-model="ownerApplyInvoiceInfo.invoiceName"  type="text"
+                                    <input v-model="ownerApplyInvoiceInfo.invoiceNum"  type="text"
                                         :placeholder="vc.i18n('必填，请选择纳税人识别号','ownerApplyInvoice')" class="form-control">
                                 </div>
                             </div>
@@ -55,22 +55,31 @@
                                         :placeholder="vc.i18n('必填，请选择地址、电话','ownerApplyInvoice')" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <vc:i18n name="业主" namespace="ownerApplyInvoice"></vc:i18n>
+                                </label>
+                                <div class="col-sm-4">
+                                    <input v-model="ownerApplyInvoiceInfo.ownerName" disabled  type="text"
+                                        :placeholder="vc.i18n('必填，请选择地址、电话','ownerApplyInvoice')" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <vc:create path="property/searchOwner" emitChooseOwner="ownerApplyInvoice" emitLoadData="ownerApplyInvoice">
+            <vc:create path="fee/searchOwnerInvoice" emitChooseOwner="ownerApplyInvoice" emitLoadData="ownerApplyInvoice">
             </vc:create>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" v-if="ownerApplyInvoiceInfo.feeDetails && ownerApplyInvoiceInfo.feeDetails.length >0">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>
-                        <vc:i18n name="已缴费费用" namespace="handover"></vc:i18n>
+                        <vc:i18n name="已缴费费用" namespace="ownerApplyInvoice"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
 
@@ -81,28 +90,74 @@
                         data-page-size="10">
                         <thead>
                             <tr>
-                                <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="费用项目" namespace="handover"></vc:i18n>
+                                <th class="text-center"><input type="checkbox" class="i-checks all-check" @click="checkAll($event)"></th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用项" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="收费对象" namespace="ownerApplyInvoice"></vc:i18n>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="开始时间" namespace="handover"></vc:i18n>
+                                    <vc:i18n name="应收/实收" namespace="ownerApplyInvoice"></vc:i18n>
                                 </th>
                                 <th data-hide="phone" class="text-center">
-                                    <vc:i18n name="结束时间" namespace="handover"></vc:i18n>
+                                    <vc:i18n name="缴费方式" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="缴费起始段" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="缴费时间" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="收银员" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="状态" namespace="ownerApplyInvoice"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="备注" namespace="ownerApplyInvoice"></vc:i18n>
                                 </th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="fee in ownerApplyInvoiceInfo.feeDetails">
+                            <tr v-for="feeDetail in ownerApplyInvoiceInfo.feeDetails">
                                 <td class="text-center">
-                                    {{fee.feeName}}
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="feeDetail.detailId" v-model="ownerApplyInvoiceInfo.detailIds">
                                 </td>
                                 <td class="text-center">
-                                    {{fee.startTime}}
+                                    {{feeDetail.feeName}}
                                 </td>
                                 <td class="text-center">
-                                    {{fee.endTime?fee.endTime:'-'}}
+                                    {{feeDetail.payerObjName}}
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.receivableAmount}}/{{feeDetail.receivedAmount}}
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.primeRateName}}
+                                </td>
+                                <td class="text-center">
+                                    {{vc.dateFormat(feeDetail.startTime)}}~</br>
+                                    <span v-if="feeDetail.startTime >= feeDetail.endTime">
+                                        {{vc.dateFormat(feeDetail.endTime)}}
+                                    </span>
+                                    <span v-else>
+                                        {{vc.dateSubOneDay(vc.dateFormat(feeDetail.endTime),vc.dateFormat(feeDetail.endTime),feeDetail.feeFlag)}}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.createTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.cashierName || '-'}}
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.stateName}}
+                                </td>
+                                <td class="text-center">
+                                    {{feeDetail.remark}}
                                 </td>
                             </tr>
                         </tbody>

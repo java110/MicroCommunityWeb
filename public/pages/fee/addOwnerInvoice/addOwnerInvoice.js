@@ -17,8 +17,9 @@
 
         },
         _initEvent: function () {
-            vc.on('addOwnerInvoice', 'chooseOwnerInvoice', function (_owner) {
-               vc.copyObject(_owner,$that.addOwnerInvoiceInfo);
+            vc.on('addOwnerInvoice', 'chooseOwner', function (_owner) {
+                $that.addOwnerInvoiceInfo.ownerName = _owner.name;
+                $that.addOwnerInvoiceInfo.ownerId = _owner.ownerId;
                 $that._loadFeeDetails();
             });
         },
@@ -115,16 +116,21 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.goBack();
+
                             return;
                         }
                         vc.toast(_json.msg);
+
                     },
                     function (errInfo, error) {
+                        console.log('请求失败处理');
+
                         vc.toast(errInfo);
+
                     });
             },
             _openChooseOwner: function () {
-                vc.emit('searchOwnerInvoice', 'openSearchOwnerInvoiceModel', {});
+                vc.emit('searchOwner', 'openSearchOwnerModel', {});
             },
 
         }

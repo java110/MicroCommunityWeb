@@ -61,7 +61,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="ownerInvoice in ownerInvoiceInfo.ownerInvoices">
+                                        <tr v-for="ownerInvoice in searchOwnerInvoiceInfo.ownerInvoices">
                                             <td class="text-center">{{ownerInvoice.ownerName}}</td>
                                             <td class="text-center">{{ownerInvoice.invoiceType == '1001'?'个人':'公司'}}
                                             </td>
