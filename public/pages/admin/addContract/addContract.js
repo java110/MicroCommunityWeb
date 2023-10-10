@@ -79,14 +79,14 @@
                 $that.addContractInfo.objId = param.ownerId;
             })
             vc.on("addContract", "notify3", function (info) {
-                vc.component.addContractInfo.nextUserId = info.staffId;
-                vc.component.addContractInfo.staffName = info.staffName;
+                $that.addContractInfo.nextUserId = info.staffId;
+                $that.addContractInfo.staffName = info.staffName;
             });
         },
         methods: {
             addContractValidate() {
                 return vc.validate.validate({
-                    addContractInfo: vc.component.addContractInfo
+                    addContractInfo: $that.addContractInfo
                 }, {
                     'addContractInfo.contractName': [
                         {
@@ -255,7 +255,7 @@
                     param,
                     function (json, res) {
                         var _contractTFile = JSON.parse(json);
-                        vc.component.addContractInfo.rooms = _contractTFile.data;
+                        $that.addContractInfo.rooms = _contractTFile.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -263,15 +263,15 @@
                 );
             },
             saveContractInfo: function () {
-                if (!vc.component.addContractValidate()) {
+                if (!$that.addContractValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.addContractInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.apiPost(
                     '/contract/saveContract',
-                    JSON.stringify(vc.component.addContractInfo), {
+                    JSON.stringify($that.addContractInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
@@ -293,7 +293,7 @@
             },
             clearAddContractInfo: function () {
                 let _contractTypes = $that.addContractInfo.contractTypes;
-                vc.component.addContractInfo = {
+                $that.addContractInfo = {
                     contractName: '',
                     contractCode: '',
                     contractType: '',
@@ -343,7 +343,7 @@
                     param,
                     function (json, res) {
                         var _contractTypeManageInfo = JSON.parse(json);
-                        vc.component.addContractInfo.contractTypes = _contractTypeManageInfo.data;
+                        $that.addContractInfo.contractTypes = _contractTypeManageInfo.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -362,7 +362,7 @@
                     param,
                     function (json, res) {
                         var _contractTypeManageInfo = JSON.parse(json);
-                        vc.component.addContractInfo.contractPartyAs = _contractTypeManageInfo.data;
+                        $that.addContractInfo.contractPartyAs = _contractTypeManageInfo.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -433,20 +433,20 @@
                 }
             },
             getFile: function (e, index) {
-                vc.component.addContractInfo.tempfile = e.target.files[0];
-                $that.addContractInfo.contractFilePo[index].fileRealName = vc.component.addContractInfo.tempfile.name;
+                $that.addContractInfo.tempfile = e.target.files[0];
+                $that.addContractInfo.contractFilePo[index].fileRealName = $that.addContractInfo.tempfile.name;
                 this._importData(index);
             },
             _importData: function (index) {
                 // 导入数据
-                let _fileName = vc.component.addContractInfo.tempfile.name;
+                let _fileName = $that.addContractInfo.tempfile.name;
                 let _suffix = _fileName.substring(_fileName.lastIndexOf('.') + 1);
-                if (!vc.component.checkFileType(_suffix.toLowerCase())) {
+                if (!$that.checkFileType(_suffix.toLowerCase())) {
                     vc.toast('操作失败，请上传图片、PDF格式的文件');
                     return;
                 }
-                var param = new FormData();
-                param.append("uploadFile", vc.component.addContractInfo.tempfile);
+                let param = new FormData();
+                param.append("uploadFile", $that.addContractInfo.tempfile);
                 vc.http.upload(
                     'importRoomFee',
                     'uploadContactFile',
@@ -505,7 +505,7 @@
                     param,
                     function (json, res) {
                         let _expirationContractInfo = JSON.parse(json);
-                        vc.copyObject(_expirationContractInfo.data[0], vc.component.addContractInfo);
+                        vc.copyObject(_expirationContractInfo.data[0], $that.addContractInfo);
                         $that.addContractInfo.contractId = '';
                         $that.addContractInfo.contractCode = '';
                         $that.addContractInfo.contractName = '';
