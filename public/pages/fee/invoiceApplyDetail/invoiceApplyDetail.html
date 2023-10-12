@@ -1,0 +1,214 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                发票详情
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="编号：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.applyId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发票类型：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceType == '1001'?'个人':'企业'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="业主名称：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.ownerName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="申请人：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.createUserName}}({{invoiceApplyDetailInfo.applyTel}})</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发票名头：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="纳税人识别号：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="地址、电话：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceAddress}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="申请金额：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceAmount}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="审核状态：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailFee'}" v-on:click="changeTab('invoiceApplyDetailFee')">
+                        <vc:i18n name="车辆费用" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'ownerDetailHisFee'}" v-on:click="changeTab('ownerDetailHisFee')">
+                        <vc:i18n name="缴费记录" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailHis'}" v-on:click="changeTab('invoiceApplyDetailHis')">
+                        <vc:i18n name="修改记录" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailMember'}" v-on:click="changeTab('invoiceApplyDetailMember')">
+                        <vc:i18n name="成员车辆" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailOwner'}" v-on:click="changeTab('invoiceApplyDetailOwner')">
+                        <vc:i18n name="业主信息" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'ownerDetailRoom'}" v-on:click="changeTab('ownerDetailRoom')">
+                        <vc:i18n name="业主房屋" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'ownerDetailCar'}" v-on:click="changeTab('ownerDetailCar')">
+                        <vc:i18n name="业主车辆" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'ownerDetailOweFee'}" v-on:click="changeTab('ownerDetailOweFee')">
+                        <vc:i18n name="业主欠费" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailTransactionCar'}" v-on:click="changeTab('invoiceApplyDetailTransactionCar')">
+                        <vc:i18n name="车牌同步" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailApplyParkingSpace'}" v-on:click="changeTab('invoiceApplyDetailApplyParkingSpace')">
+                        <vc:i18n name="车位申请" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCarInout'}" v-on:click="changeTab('invoiceApplyDetailCarInout')">
+                        <vc:i18n name="出入场记录" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCoupon'}" v-on:click="changeTab('invoiceApplyDetailCoupon')">
+                        <vc:i18n name="优惠券" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCouponOrder'}" v-on:click="changeTab('invoiceApplyDetailCouponOrder')">
+                        <vc:i18n name="优惠券核销" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailFee'">
+            <vc:create path="car/invoiceApplyDetailFee"></vc:create>
+        </div>
+
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'ownerDetailRoom'">
+            <vc:create path="owner/ownerDetailRoom"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'ownerDetailCar'">
+            <vc:create path="owner/ownerDetailCar"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'ownerDetailOweFee'">
+            <vc:create path="owner/ownerDetailOweFee"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'ownerDetailHisFee'">
+            <vc:create path="owner/ownerDetailHisFee"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailHis'">
+            <vc:create path="car/invoiceApplyDetailHis"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailMember'">
+            <vc:create path="car/invoiceApplyDetailMember"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailOwner'">
+            <vc:create path="car/invoiceApplyDetailOwner"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailTransactionCar'">
+            <vc:create path="car/invoiceApplyDetailTransactionCar"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailApplyParkingSpace'">
+            <vc:create path="car/invoiceApplyDetailApplyParkingSpace"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCarInout'">
+            <vc:create path="car/invoiceApplyDetailCarInout"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCoupon'">
+            <vc:create path="car/invoiceApplyDetailCoupon"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailCouponOrder'">
+            <vc:create path="car/invoiceApplyDetailCouponOrder"></vc:create>
+        </div>
+
+
+    </div>
+
+
+    <vc:create path="property/editCar" notifyLoadDataComponentName="invoiceApplyDetail"></vc:create>
+</div>
