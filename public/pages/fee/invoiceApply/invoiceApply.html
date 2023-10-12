@@ -4,9 +4,7 @@
             <div class=" border-radius ">
                 <div class="margin-xs-r  treeview attendance-staff">
                     <ul class="list-group text-center border-radius">
-                        <li class="list-group-item node-orgTree " v-for="(item,index) in invoiceApplyInfo.states"
-                            :key="index" @click="swatchState(item)"
-                            :class="{'vc-node-selected':invoiceApplyInfo.conditions.state == item.state}">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in invoiceApplyInfo.states" :key="index" @click="swatchState(item)" :class="{'vc-node-selected':invoiceApplyInfo.conditions.state == item.state}">
                             {{item.stateName}}
                         </li>
                     </ul>
@@ -29,8 +27,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写编号','invoiceApply')"
-                                            v-model="invoiceApplyInfo.conditions.applyId" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写编号','invoiceApply')" v-model="invoiceApplyInfo.conditions.applyId" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -44,25 +41,21 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择业主名称','invoiceApply')"
-                                            v-model="invoiceApplyInfo.conditions.ownerName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请选择业主名称','invoiceApply')" v-model="invoiceApplyInfo.conditions.ownerName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择申请人','invoiceApply')"
-                                            v-model="invoiceApplyInfo.conditions.createUserName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请选择申请人','invoiceApply')" v-model="invoiceApplyInfo.conditions.createUserName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请选择申请人电话','invoiceApply')"
-                                            v-model="invoiceApplyInfo.conditions.applyTel" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请选择申请人电话','invoiceApply')" v-model="invoiceApplyInfo.conditions.applyTel" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        v-on:click="_queryInvoiceApplyMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryInvoiceApplyMethod()">
                                         <i class="glyphicon glyphicon-search"></i> <span>
                                             <vc:i18n name="查询"></vc:i18n>
                                         </span>
@@ -135,13 +128,12 @@
                                         <td class="text-center">{{invoiceApply.invoiceAddress}}</td>
 
                                         <td class="text-center">{{invoiceApply.invoiceAmount}}</td>
-                                        <td class="text-center">{{invoiceApply.state}}</td>
+                                        <td class="text-center">{{invoiceApply.stateName}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                             </div>
                                             <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openDeleteInvoiceApplyModel(invoiceApply)">
+                                                <button class="btn-white btn btn-xs" v-on:click="_openDeleteInvoiceApplyModel(invoiceApply)">
                                                     <vc:i18n name='删除'></vc:i18n>
                                                 </button>
                                             </div>
