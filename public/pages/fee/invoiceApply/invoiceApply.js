@@ -33,19 +33,23 @@
                 }],
                 conditions: {
                     applyId: '',
+                    invoiceCode:'',
                     invoiceType: '',
                     ownerName: '',
                     applyTel: '',
                     createUserName: '',
                     state: '',
-                }
+                },
+                audit:{}
             }
         },
         _initMethod: function () {
             $that._listInvoiceApplys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
-
+            vc.on('invoiceApply', 'notifyAuditInfo', function (_auditInfo) {
+                $that._auditInvoiceState(_auditInfo);
+            });
             vc.on('invoiceApply', 'listInvoiceApply', function (_param) {
                 $that._listInvoiceApplys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
@@ -97,6 +101,38 @@
             },
             _invoiceApply:function(){
                 vc.jumpToPage('/#/pages/fee/ownerApplyInvoice')
+            },
+            _openInvoiceApplyDetail:function(_invoiceApply){
+                vc.jumpToPage('/#/pages/fee/invoiceApplyDetail?applyId='+_invoiceApply.applyId);
+            },
+            _openInvoiceAuditModel(_invoiceApply) {
+                $that.invoiceApplyInfo.audit = _invoiceApply;
+                vc.emit('audit', 'openAuditModal', {});
+            },
+            _auditInvoiceState: function (_auditInfo) {
+                $that.invoiceApplyInfo.audit.state = _auditInfo.state;
+                $that.invoiceApplyInfo.audit.remark = _auditInfo.remark;
+                vc.http.apiPost(
+                    '/invoice.auditInvoiceApply',
+                    JSON.stringify( $that.invoiceApplyInfo.audit), {
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            $that._listInvoiceApplys(DEFAULT_PAGE, DEFAULT_ROWS);
+                            vc.toast("审核成功");
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
+                        }
+                    },
+                    function (errInfo, error) {
+                        vc.toast(errInfo);
+                    });
+            },
+            _openUploadInvoicePhoto:function(_apply){
+                vc.emit('uploadInvoicePhoto', 'openInvoicePhotoModal',_apply);
             }
 
 

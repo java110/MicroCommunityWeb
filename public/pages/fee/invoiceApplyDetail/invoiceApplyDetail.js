@@ -6,62 +6,52 @@
     vc.extends({
         data: {
             invoiceApplyDetailInfo: {
-                memberId: '',
-                carId: '',
-                carNum: '',
-                carTypeCd: '',
-                carTypeCdName: '',
-                carType: '',
-                carTypeName: '',
-                startTime: '',
-                endTime: '',
-                leaseType: '',
-                leaseTypeName: '',
-                areaNum: '',
-                num: '',
-                remark: '',
+                applyId: '',
+                invoiceType: '',
+                ownerName: '',
+                createUserName: '',
+                invoiceName: '',
+                invoiceNum: '',
+                invoiceAddress: '',
+                invoiceAmount: '',
                 stateName: '',
-                carColor: '',
-                carBrand: '',
-                ownerId: '',
-                roomName: '',
-                carNumType: '',
-                paId: '',
+                createTime:'',
+                invoiceCode:'',
+                urls:[],
                 _currentTab: 'invoiceApplyDetailFee',
-                needBack: false,
             }
         },
         _initMethod: function() {
-            $that.invoiceApplyDetailInfo.memberId = vc.getParam('memberId');
-            if (!vc.notNull($that.invoiceApplyDetailInfo.memberId)) {
+            $that.invoiceApplyDetailInfo.applyId = vc.getParam('applyId');
+            if (!vc.notNull($that.invoiceApplyDetailInfo.applyId)) {
                 return;
             }
-            vc.component._loadinvoiceApplyDetailInfo();
+            $that._loadinvoiceApplyInfo();
 
         },
         _initEvent: function() {
             vc.on('invoiceApplyDetail', 'listCarData', function(_info) {
-                //vc.component._loadinvoiceApplyDetailInfo();
+                //$that._loadinvoiceApplyInfo();
                 $that.changeTab($that.invoiceApplyDetailInfo._currentTab);
             });
         },
         methods: {
-            _loadinvoiceApplyDetailInfo: function() {
+            _loadinvoiceApplyInfo: function() {
                 let param = {
                     params: {
                         page: 1,
                         row: 1,
-                        memberId: $that.invoiceApplyDetailInfo.memberId,
+                        applyId: $that.invoiceApplyDetailInfo.applyId,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/owner.queryOwnerCars',
+                vc.http.apiGet('/invoice.listInvoiceApply',
                     param,
                     function(json) {
-                        let _carInfo = JSON.parse(json);
+                        let _json = JSON.parse(json);
                         // 员工列表 和 岗位列表匹配
-                        vc.copyObject(_carInfo.data[0], $that.invoiceApplyDetailInfo);
+                        vc.copyObject(_json.data[0], $that.invoiceApplyDetailInfo);
                         $that.changeTab($that.invoiceApplyDetailInfo._currentTab);
                     },
                     function() {
@@ -72,15 +62,8 @@
             changeTab: function(_tab) {
                 $that.invoiceApplyDetailInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
-                    memberId: $that.invoiceApplyDetailInfo.memberId,
-                    carId: $that.invoiceApplyDetailInfo.carId,
-                    ownerId: $that.invoiceApplyDetailInfo.ownerId,
-                    carNum: $that.invoiceApplyDetailInfo.carNum,
-                    paId: $that.invoiceApplyDetailInfo.paId
+                    applyId: $that.invoiceApplyDetailInfo.applyId,
                 })
-            },
-            _openEditDetailOwnerCar: function() {
-                vc.emit('editCar', 'openEditCar', $that.invoiceApplyDetailInfo);
             },
         }
     });

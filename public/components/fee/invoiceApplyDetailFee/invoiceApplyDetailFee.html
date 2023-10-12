@@ -1,0 +1,47 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="类型" namespace="invoiceApplyDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="名称" namespace="invoiceApplyDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="金额" namespace="invoiceApplyDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费时间" namespace="invoiceApplyDetailFee"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费ID" namespace="invoiceApplyDetailFee"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="fee in invoiceApplyDetailFeeInfo.fees">
+                    <td class="text-center">{{fee.itemType == '2002'?'费用':'账户'}}</td>
+                    <td class="text-center">{{fee.itemName}}</td>
+                    <td class="text-center">{{fee.itemAmount}}</td>
+                    <td class="text-center">{{fee.payTime}}</td>
+                    <td class="text-center">{{fee.itemObjId}}
+                        （<a href="javascript:void(0)" v-if="fee.itemType == '2002'" @click="_viewFeeDetail(fee)">查看</a>
+                        <a href="javascript:void(0)" v-else @click="_viewAcctDetail(fee)">查看</a>
+                        ）
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="invoiceApplyDetailFee" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>

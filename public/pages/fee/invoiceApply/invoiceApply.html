@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写编号','invoiceApply')" v-model="invoiceApplyInfo.conditions.applyId" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写发票号','invoiceApply')" v-model="invoiceApplyInfo.conditions.invoiceCode" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -107,9 +107,14 @@
                                         <th class="text-center">
                                             <vc:i18n name='申请金额' namespace='invoiceApply'></vc:i18n>
                                         </th>
-
+                                        <th class="text-center">
+                                            <vc:i18n name='发票号' namespace='invoiceApply'></vc:i18n>
+                                        </th>
                                         <th class="text-center">
                                             <vc:i18n name='审核状态' namespace='invoiceApply'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='申请时间' namespace='invoiceApply'></vc:i18n>
                                         </th>
                                         <th class="text-center">
                                             <vc:i18n name='操作'></vc:i18n>
@@ -126,19 +131,30 @@
                                         <td class="text-center">{{invoiceApply.invoiceName}}</td>
                                         <td class="text-center">{{invoiceApply.invoiceNum}}</td>
                                         <td class="text-center">{{invoiceApply.invoiceAddress}}</td>
-
                                         <td class="text-center">{{invoiceApply.invoiceAmount}}</td>
+                                        <td class="text-center">{{invoiceApply.invoiceCode || '未上传'}}</td>
                                         <td class="text-center">{{invoiceApply.stateName}}</td>
+                                        <td class="text-center">{{invoiceApply.createTime}}</td>
                                         <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openInvoiceApplyDetail(invoiceApply)">
-                                                    <vc:i18n name='详情'></vc:i18n>
+                                            <div class="btn-group" v-if="invoiceApply.state == 'W'">
+                                                <button class="btn-white btn btn-xs"  v-on:click="_openInvoiceAuditModel(invoiceApply)">
+                                                    <vc:i18n name='审核'></vc:i18n>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group" v-if="invoiceApply.state == 'U' || invoiceApply.state == 'G' || invoiceApply.state == 'C'">
+                                                <button class="btn-white btn btn-xs"  v-on:click="_openUploadInvoicePhoto(invoiceApply)">
+                                                    {{invoiceApply.state == 'U'?'上传发票':'重新上传'}}
                                                 </button>
                                             </div>
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs" v-on:click="_openDeleteInvoiceApplyModel(invoiceApply)">
                                                     <vc:i18n name='删除'></vc:i18n>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openInvoiceApplyDetail(invoiceApply)">
+                                                    <vc:i18n name='详情'></vc:i18n>
                                                 </button>
                                             </div>
                                         </td>
@@ -161,4 +177,9 @@
         </div>
     </div>
     <vc:create path="fee/deleteInvoiceApply"></vc:create>
+    <vc:create path="fee/uploadInvoicePhoto"></vc:create>
+
+    <vc:create path="common/audit" callBackListener="invoiceApply" callBackFunction="notifyAuditInfo"></vc:create>
+
+    
 </div>

@@ -1,0 +1,39 @@
+<div class="">
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="类型" namespace="invoiceApplyDetailEvent"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作人" namespace="invoiceApplyDetailEvent"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="说明" namespace="invoiceApplyDetailEvent"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="时间" namespace="invoiceApplyDetailEvent"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="event in invoiceApplyDetailEventInfo.events">
+                    <td class="text-center">{{event.eventTypeName}}</td>
+                    <td class="text-center">{{event.createUserName}}</td>
+                    <td class="text-center">{{event.remark}}</td>
+                    <td class="text-center">{{event.createTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="invoiceApplyDetailEvent" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+</div>
