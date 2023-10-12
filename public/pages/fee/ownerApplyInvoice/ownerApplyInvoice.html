@@ -68,7 +68,7 @@
                                     <vc:i18n name="开票内容" namespace="ownerApplyInvoice"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4">
-                                    <select class="custom-select" v-model="ownerApplyInvoiceInfo.invoiceFlag">
+                                    <select class="custom-select" v-model="ownerApplyInvoiceInfo.invoiceFlag" @change="_changeInvoiceFlag">
                                         <option selected disabled value="">{{vc.i18n('必填，请选择开票内容','ownerApplyInvoice')}}
                                         </option>
                                         <option value="FEE">{{vc.i18n('已缴费用','ownerApplyInvoice')}}</option>
@@ -248,7 +248,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
-            <button class="btn btn-primary" type="button" v-on:click="saveHandoverInfo()"><i
+            <button class="btn btn-primary" type="button" v-on:click="_ownerApplySubmit()"><i
                     class="fa fa-check"></i>&nbsp;提交</button>
         </div>
     </div>

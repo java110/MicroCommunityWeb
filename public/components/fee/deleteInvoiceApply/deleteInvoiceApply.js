@@ -12,17 +12,17 @@
          _initEvent:function(){
              vc.on('deleteInvoiceApply','openDeleteInvoiceApplyModal',function(_params){
 
-                vc.component.deleteInvoiceApplyInfo = _params;
+                $that.deleteInvoiceApplyInfo = _params;
                 $('#deleteInvoiceApplyModel').modal('show');
 
             });
         },
         methods:{
             deleteInvoiceApply:function(){
-                vc.component.deleteInvoiceApplyInfo.communityId=vc.getCurrentCommunity().communityId;
+                $that.deleteInvoiceApplyInfo.communityId=vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
-                    'invoiceApply.deleteInvoiceApply',
-                    JSON.stringify(vc.component.deleteInvoiceApplyInfo),
+                    '/invoice.deleteInvoiceApply',
+                    JSON.stringify($that.deleteInvoiceApplyInfo),
                     {
                         emulateJSON:true
                      },
@@ -32,14 +32,14 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteInvoiceApplyModel').modal('hide');
-                            vc.emit('invoiceApplyManage','listInvoiceApply',{});
+                            vc.emit('invoiceApply','listInvoiceApply',{});
                             return ;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
                      },
                      function(errInfo,error){
                         console.log('请求失败处理');
-                        vc.message(json);
+                        vc.toast(json);
 
                      });
             },
@@ -49,4 +49,4 @@
         }
     });
 
-})(window.vc,window.vc.component);
+})(window.vc,window.$that);
