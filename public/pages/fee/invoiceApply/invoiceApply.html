@@ -138,6 +138,10 @@
                                         <td class="text-center">{{invoiceApply.state}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openInvoiceApplyDetail(invoiceApply)">
+                                                    <vc:i18n name='详情'></vc:i18n>
+                                                </button>
                                             </div>
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"
