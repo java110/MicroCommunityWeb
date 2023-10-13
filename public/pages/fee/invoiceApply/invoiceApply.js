@@ -133,6 +133,9 @@
             },
             _openUploadInvoicePhoto:function(_apply){
                 vc.emit('uploadInvoicePhoto', 'openInvoicePhotoModal',_apply);
+            },
+            _openUserGetInvoice:function(_apply){
+                vc.emit('wirteInvoiceEvent', 'openWirteInvoiceModal',_apply);
             }
 
 

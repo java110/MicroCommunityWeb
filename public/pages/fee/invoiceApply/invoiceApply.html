@@ -146,6 +146,11 @@
                                                     {{invoiceApply.state == 'U'?'上传发票':'重新上传'}}
                                                 </button>
                                             </div>
+                                            <div class="btn-group" v-if="invoiceApply.state == 'U' || invoiceApply.state == 'G' || invoiceApply.state == 'C'">
+                                                <button class="btn-white btn btn-xs"  v-on:click="_openUserGetInvoice(invoiceApply)">
+                                                    {{invoiceApply.state == 'G'?'核销':'登记'}}
+                                                </button>
+                                            </div>
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs" v-on:click="_openDeleteInvoiceApplyModel(invoiceApply)">
                                                     <vc:i18n name='删除'></vc:i18n>
@@ -178,6 +183,7 @@
     </div>
     <vc:create path="fee/deleteInvoiceApply"></vc:create>
     <vc:create path="fee/uploadInvoicePhoto"></vc:create>
+    <vc:create path="fee/wirteInvoiceEvent"></vc:create>
 
     <vc:create path="common/audit" callBackListener="invoiceApply" callBackFunction="notifyAuditInfo"></vc:create>
 
