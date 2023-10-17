@@ -374,6 +374,8 @@
                     $that.addFeeConfigInfo.paymentCd = '2100';
                 }
 
+                 
+
                 // todo 押金一般是一次性费用
                 if (_feeTypeCd == '888800010006') {
                     $that.addFeeConfigInfo.feeFlag = '2006012';
@@ -401,7 +403,12 @@
                     $that.addFeeConfigInfo.paymentCycle = '1';
                 }
 
-
+                // todo 公摊费
+                if (_feeTypeCd == '888800010017') {
+                    $that.addFeeConfigInfo.feeFlag = '2006012';
+                    $that.addFeeConfigInfo.computingFormula = '4004';
+                    $that.addFeeConfigInfo.paymentCd = '2100';
+                }
 
             }
         }
