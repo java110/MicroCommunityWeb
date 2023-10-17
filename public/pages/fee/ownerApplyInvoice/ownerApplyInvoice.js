@@ -201,7 +201,6 @@
                         if (_json.code == 0) {
                             //关闭model
                             vc.goBack();
-
                             return;
                         }
                         vc.toast(_json.msg);
