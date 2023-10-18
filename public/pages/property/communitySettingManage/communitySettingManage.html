@@ -31,10 +31,12 @@
                                 </label>
                                 <div class="col-sm-8">
                                     <input v-model="item.settingValue" type="text"
-                                           :placeholder="item.remark"
+                                           :placeholder="'必填，请输入'+item.settingName"
                                            class="form-control">
+                                           <div class="margin-top-xs">说明：{{item.remark}}</div>
                                 </div>
                             </div>
+                            <div> 温馨提示：填写前后不要有空格</div>
                         </div>
                         
                     </div>
