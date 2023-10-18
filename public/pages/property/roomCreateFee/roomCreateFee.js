@@ -35,10 +35,6 @@
             currentPage: 1,
         },
         _initMethod: function () {
-            /*if (vc.isBack()) {
-                console.log('back and select');
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
-            }*/
             vc.emit('roomTreeDiv', 'initRoomTreeDiv', {
                 callName: 'roomCreateFee'
             });
@@ -107,10 +103,11 @@
         },
         methods: {
             _openRoomCreateFeeAddModal: function (_room, _isMore) {
-                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
-                    isMore: _isMore,
-                    room: _room
-                });
+                // vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
+                //     isMore: _isMore,
+                //     room: _room
+                // });
+                vc.jumpToPage('/#/pages/fee/roomCreatePayFee')
             },
             listRoomInRoomCreateFee: function (_page, _row) {
                 let param = {
