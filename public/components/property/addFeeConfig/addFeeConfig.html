@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label text-right">
+                        <!-- <label class="col-sm-2 col-form-label text-right">
                             <vc:i18n name="催缴类型" namespace="addFeeConfig"></vc:i18n>
                         </label>
                         <div class="col-sm-4">
@@ -105,6 +105,13 @@
                                     :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
+                        </div> -->
+                        <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="单位" namespace="addFeeConfig"></vc:i18n>
+                        </label>
+                        <div class="col-sm-4">
+                            <input v-model="addFeeConfigInfo.units" type="text"
+                                :placeholder="vc.i18n('必填，请填写单位（如：元）','addFeeConfig')" class="form-control">
                         </div>
                         <label class="col-sm-2 col-form-label text-right">
                             <vc:i18n name="账户抵扣" namespace="addFeeConfig"></vc:i18n>
@@ -150,13 +157,7 @@
                                 <option value="4">{{vc.i18n('4位')}}</option>
                             </select>
                         </div>
-                        <label class="col-sm-2 col-form-label text-right">
-                            <vc:i18n name="单位" namespace="addFeeConfig"></vc:i18n>
-                        </label>
-                        <div class="col-sm-4">
-                            <input v-model="addFeeConfigInfo.units" type="text"
-                                :placeholder="vc.i18n('必填，请填写单位（如：元）','addFeeConfig')" class="form-control">
-                        </div>
+                        
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label text-right">
