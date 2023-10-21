@@ -82,14 +82,14 @@
                             <div class="row" v-show="feeConfigManageInfo.moreCondition == true">
                                 
                                 <!--出账类型-->
-                                <div class="col-sm-2">
+                                <!-- <div class="col-sm-2">
                                     <select class="custom-select" v-model="feeConfigManageInfo.conditions.billType">
                                         <option selected value="">{{vc.i18n('请选择催缴类型','feeConfigManage')}}</option>
                                         <option v-for="(item,index) in feeConfigManageInfo.billTypes" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-2">
                                     <select class="custom-select" v-model="feeConfigManageInfo.conditions.isDefault">
                                         <option selected value="">{{vc.i18n('请选择默认费用','feeConfigManage')}}</option>
