@@ -5,14 +5,12 @@
                 <div class="ibox-title">
                     <h5><span><vc:i18n name="查询条件" namespace="reportOweFeeDetail"></vc:i18n></span></h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{reportOweFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择楼栋','reportOweFeeDetail')"
                                        v-model="reportOweFeeDetailInfo.conditions.floorName" class=" form-control">
@@ -25,7 +23,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline"
                                         v-model="reportOweFeeDetailInfo.conditions.unitId">
@@ -37,11 +35,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportOweFeeDetail')"
                                        class="form-control form-control-md"
                                        v-model="reportOweFeeDetailInfo.conditions.objName">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择创建开始时间','reportOweFeeDetail')"
+                                       v-model="reportOweFeeDetailInfo.conditions.startTime"
+                                       class=" form-control startTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请选择创建结束时间','reportOweFeeDetail')"
+                                       v-model="reportOweFeeDetailInfo.conditions.endTime"
+                                       class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -56,20 +68,15 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-show="reportOweFeeDetailInfo.moreCondition == true">
-                        <div class="col-sm-4">
-                            <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择创建开始时间','reportOweFeeDetail')"
-                                       v-model="reportOweFeeDetailInfo.conditions.startTime"
-                                       class=" form-control startTime">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择创建结束时间','reportOweFeeDetail')"
-                                       v-model="reportOweFeeDetailInfo.conditions.endTime"
-                                       class=" form-control endTime">
-                            </div>
+                    <div class="row" v-if="reportOweFeeDetailInfo.communitys.length>1">
+                        <div class="col-sm-2" v-if="reportOweFeeDetailInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="reportOweFeeDetailInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                <option v-for="(item,index) in reportOweFeeDetailInfo.communitys" :key="index"
+                                        v-bind:value="item.communityId">
+                                    {{item.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>

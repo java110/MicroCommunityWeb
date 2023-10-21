@@ -11,22 +11,23 @@
                 orders: [],
                 inouts: [],
                 others: [],
+                communitys:[],
                 conditions: {
                     startDate: '',
                     endDate: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: ''
                 }
             }
         },
         _initMethod: function() {
             $that._initDate();
+            $that.dataReportInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            $that._loadStaffCommunitys();
             $that.changeTab($that.dataReportInfo._currentTab);
             $that._loadDataReportFee();
             $that._loadDataReportOrder();
             $that._loadDataReportInout();
             $that._loadDataReportOthers();
-
-
         },
         _initEvent: function() {
             vc.on('dataReport', 'listOwnerData', function(_info) {
@@ -159,8 +160,36 @@
                 vc.emit(_tab, 'switch', {
                     startDate: $that.dataReportInfo.conditions.startDate,
                     endDate: $that.dataReportInfo.conditions.endDate,
+                    communityId:$that.dataReportInfo.conditions.communityId
                 })
             },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.dataReportInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that.changeTab($that.dataReportInfo._currentTab);
+                $that._loadDataReportFee();
+                $that._loadDataReportOrder();
+                $that._loadDataReportInout();
+                $that._loadDataReportOthers();
+            }
         }
     });
 })(window.vc);

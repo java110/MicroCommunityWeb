@@ -12,6 +12,7 @@
                 floors: [],
                 configIds: [],
                 feeTypeCds: [],
+                communitys:[],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -24,12 +25,14 @@
                     feeTypeCd: '',
                     ownerName: '',
                     link: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: ''
                 }
             }
         },
         _initMethod: function() {
+            $that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId
             $that._initDate();
+            $that._loadStaffCommunitys();
             $that._listFeeConfigs();
             vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 $that.reportFeeSummaryInfo.feeTypeCds = _data
@@ -37,7 +40,9 @@
             $that._listFloors();
             $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {},
+        _initEvent: function() {
+            
+        },
         methods: {
             _initDate: function() {
                 vc.initDate('startDate', function(_value) {
@@ -78,7 +83,7 @@
             _listFees: function(_page, _rows) {
                 $that.reportFeeSummaryInfo.conditions.page = _page;
                 $that.reportFeeSummaryInfo.conditions.row = _rows;
-                $that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                //$that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 let param = {
                     params: $that.reportFeeSummaryInfo.conditions
                 };
@@ -120,7 +125,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.reportFeeSummaryInfo.conditions.communityId,
                         isDefault: 'F'
                     }
                 };
@@ -139,7 +144,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.reportFeeSummaryInfo.conditions.communityId
                     }
                 };
                 //发送get请求
@@ -154,7 +159,7 @@
             },
             _exportExcel: function() {
                 //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeSummary&' + vc.objToGetParam($that.reportFeeSummaryInfo.conditions));
-                $that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                //$that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 $that.reportFeeSummaryInfo.conditions.pagePath = 'reportFeeSummary';
                 let param = {
                     params: $that.reportFeeSummaryInfo.conditions
@@ -185,6 +190,31 @@
             _printFeeSummary: function() {
                 let _param = vc.objToGetParam($that.reportFeeSummaryInfo.conditions);
                 window.open('/print.html#/pages/property/reportFeeSummaryPrint?' + _param);
+            },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.reportFeeSummaryInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that._listFeeConfigs();
+                $that._listFloors();
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

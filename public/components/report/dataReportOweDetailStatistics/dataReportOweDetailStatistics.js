@@ -16,6 +16,7 @@
                 objName: '',
                 ownerName: '',
                 link: '',
+                communityId:'',
                 feeAmount: '0'
             }
         },
@@ -28,6 +29,7 @@
             vc.on('dataReportOweDetailStatistics', 'switch', function(_data) {
                 $that.dataReportOweDetailStatisticsInfo.startDate = _data.startDate;
                 $that.dataReportOweDetailStatisticsInfo.endDate = _data.endDate;
+                $that.dataReportOweDetailStatisticsInfo.communityId = _data.communityId;
                 $that._loadDataReportOweDetailStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('dataReportOweDetailStatistics', 'paginationPlus', 'page_event',
@@ -42,7 +44,7 @@
             _loadDataReportOweDetailStatisticsData: function(_page, _row) {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportOweDetailStatisticsInfo.communityId,
                         startDate: $that.dataReportOweDetailStatisticsInfo.startDate,
                         endDate: $that.dataReportOweDetailStatisticsInfo.endDate,
                         objName: $that.dataReportOweDetailStatisticsInfo.objName,
@@ -85,7 +87,7 @@
             _exportReportOweDetailExcel: function() {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportOweDetailStatisticsInfo.communityId,
                         startDate: $that.dataReportOweDetailStatisticsInfo.startDate,
                         endDate: $that.dataReportOweDetailStatisticsInfo.endDate,
                         objName: $that.dataReportOweDetailStatisticsInfo.objName,

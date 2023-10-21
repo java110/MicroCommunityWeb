@@ -60,7 +60,7 @@
             },
             //导出
             _exportExcel: function() {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&pagePath=reportPrePaymentFee");
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?communityId=' + $that.reportPrePaymentFeeInfo.conditions.communityId + "&pagePath=reportPrePaymentFee");
             }
         }
     });

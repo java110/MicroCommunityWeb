@@ -60,10 +60,10 @@
                 );
             },
             _exportReportFeeDetailContractExcel: function() {
-                vc.component.reportFeeDetailContractInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.reportFeeDetailContractInfo.conditions.pagePath = 'reportFeeDetailContract';
+                //$that.reportFeeDetailContractInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.reportFeeDetailContractInfo.conditions.pagePath = 'reportFeeDetailContract';
                 let param = {
-                    params: vc.component.reportFeeDetailContractInfo.conditions
+                    params: $that.reportFeeDetailContractInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,

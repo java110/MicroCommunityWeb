@@ -7,8 +7,8 @@
                         <vc:i18n name="查询条件" namespace="reportPayFeeDetail"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{reportPayFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button> -->
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">{{reportPayFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -66,8 +66,6 @@
                         </div>
                     </div>
                     <div class="row">
-
-
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
@@ -89,12 +87,24 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportPayFeeDetail')" class="form-control form-control-md" v-model="reportPayFeeDetailInfo.conditions.roomName">
                             </div>
                         </div>
+                        <div class="col-sm-2" v-if="reportPayFeeDetailInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                <option v-for="(item,index) in reportPayFeeDetailInfo.communitys" :key="index"
+                                        v-bind:value="item.communityId">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                       
+                    </div>
+                    <div class="row" v-show="reportPayFeeDetailInfo.moreCondition == true">
+                        
                         <div class="col-sm-2">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择收费开始时间','reportPayFeeDetail')" v-model="reportPayFeeDetailInfo.conditions.feeStartTime" class=" form-control feeStartTime">
@@ -106,7 +116,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@
         data: {
             reportRepairInfo: {
                 repairs: [],
+                communitys:[],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -31,16 +32,18 @@
                     statementNumber: '',   //结单总数量
                     returnNumber: '',   //回访总数量
                     score: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: ''
                 }
             }
         },
         _initMethod: function () {
-            vc.component._initDate();
-            vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._initDate();
+            $that.reportRepairInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            $that._loadStaffCommunitys();
+            $that._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //关联字典表费用类型
             vc.getDict('r_repair_user', "state", function (_data) {
-                vc.component.reportRepairInfo.states = _data;
+                $that.reportRepairInfo.states = _data;
             });
             $(".popover-show").mouseover(() => {
                 $('.popover-show').popover('show');
@@ -51,7 +54,7 @@
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listRepairs(_currentPage, DEFAULT_ROWS);
+                $that._listRepairs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -103,12 +106,12 @@
                 $('.begin_start_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".begin_start_time").val();
-                        vc.component.reportRepairInfo.conditions.beginStartTime = value;
+                        $that.reportRepairInfo.conditions.beginStartTime = value;
                     });
                 $('.begin_end_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".begin_end_time").val();
-                        vc.component.reportRepairInfo.conditions.beginEndTime = value;
+                        $that.reportRepairInfo.conditions.beginEndTime = value;
                         let start = Date.parse(new Date($that.reportRepairInfo.conditions.beginStartTime))
                         let end = Date.parse(new Date($that.reportRepairInfo.conditions.beginEndTime))
                         if (start - end > 0) {
@@ -119,12 +122,12 @@
                 $('.finish_start_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".finish_start_time").val();
-                        vc.component.reportRepairInfo.conditions.finishStartTime = value;
+                        $that.reportRepairInfo.conditions.finishStartTime = value;
                     });
                 $('.finish_end_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".finish_end_time").val();
-                        vc.component.reportRepairInfo.conditions.finishEndTime = value;
+                        $that.reportRepairInfo.conditions.finishEndTime = value;
                         let start = Date.parse(new Date($that.reportRepairInfo.conditions.finishStartTime))
                         let end = Date.parse(new Date($that.reportRepairInfo.conditions.finishEndTime))
                         if (start - end > 0) {
@@ -159,41 +162,41 @@
             },
             //查询
             _queryMethod: function () {
-                vc.component._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //查询方法
             _listRepairs: function (_page, _rows) {
-                vc.component.reportRepairInfo.conditions.page = _page;
-                vc.component.reportRepairInfo.conditions.row = _rows;
-                vc.component.reportRepairInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.reportRepairInfo.conditions.page = _page;
+                $that.reportRepairInfo.conditions.row = _rows;
+                //$that.reportRepairInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.reportRepairInfo.conditions
+                    params: $that.reportRepairInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryRepair',
                     param,
                     function (json, res) {
                         var _reportRepairInfo = JSON.parse(json);
-                        vc.component.reportRepairInfo.total = _reportRepairInfo.total;
-                        vc.component.reportRepairInfo.records = _reportRepairInfo.records;
-                        vc.component.reportRepairInfo.repairs = _reportRepairInfo.data;
-                        vc.component.reportRepairInfo.repairUsers = _reportRepairInfo.sumTotal;
+                        $that.reportRepairInfo.total = _reportRepairInfo.total;
+                        $that.reportRepairInfo.records = _reportRepairInfo.records;
+                        $that.reportRepairInfo.repairs = _reportRepairInfo.data;
+                        $that.reportRepairInfo.repairUsers = _reportRepairInfo.sumTotal;
                         //处理中总数量
-                        vc.component.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
+                        $that.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
                         //派单总数量
-                        vc.component.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
+                        $that.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
                         //转单总数量
-                        vc.component.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
+                        $that.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
                         //退单总数量
-                        vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
+                        $that.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
                         //结单总数量
-                        vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
+                        $that.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
                         //回访总数量
-                        vc.component.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
+                        $that.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.reportRepairInfo.records,
+                            total: $that.reportRepairInfo.records,
                             currentPage: _page,
-                            dataCount: vc.component.reportRepairInfo.total
+                            dataCount: $that.reportRepairInfo.total
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -202,44 +205,44 @@
             },
             //重置
             _resetMethod: function (_page, _rows) {
-                vc.component._resetListRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._resetListRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _resetListRepairs: function (_page, _rows) {
-                vc.component.reportRepairInfo.conditions.staffId = "";
-                vc.component.reportRepairInfo.conditions.staffName = "";
-                vc.component.reportRepairInfo.conditions.beginStartTime = "";
-                vc.component.reportRepairInfo.conditions.beginEndTime = "";
-                vc.component.reportRepairInfo.conditions.finishStartTime = "";
-                vc.component.reportRepairInfo.conditions.finishEndTime = "";
-                vc.component.reportRepairInfo.conditions.state = "";
-                vc.component.reportRepairInfo.conditions.stateName = "";
+                $that.reportRepairInfo.conditions.staffId = "";
+                $that.reportRepairInfo.conditions.staffName = "";
+                $that.reportRepairInfo.conditions.beginStartTime = "";
+                $that.reportRepairInfo.conditions.beginEndTime = "";
+                $that.reportRepairInfo.conditions.finishStartTime = "";
+                $that.reportRepairInfo.conditions.finishEndTime = "";
+                $that.reportRepairInfo.conditions.state = "";
+                $that.reportRepairInfo.conditions.stateName = "";
                 var param = {
-                    params: vc.component.reportRepairInfo.conditions
+                    params: $that.reportRepairInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics/queryRepair',
                     param,
                     function (json, res) {
                         var _reportRepairInfo = JSON.parse(json);
-                        vc.component.reportRepairInfo.total = _reportRepairInfo.total;
-                        vc.component.reportRepairInfo.records = _reportRepairInfo.records;
-                        vc.component.reportRepairInfo.repairs = _reportRepairInfo.data;
+                        $that.reportRepairInfo.total = _reportRepairInfo.total;
+                        $that.reportRepairInfo.records = _reportRepairInfo.records;
+                        $that.reportRepairInfo.repairs = _reportRepairInfo.data;
                         //处理中总数量
-                        vc.component.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
+                        $that.reportRepairInfo.conditions.dealNumber = _reportRepairInfo.rep.dealNumber;
                         //派单总数量
-                        vc.component.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
+                        $that.reportRepairInfo.conditions.dispatchNumber = _reportRepairInfo.rep.dispatchNumber;
                         //转单总数量
-                        vc.component.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
+                        $that.reportRepairInfo.conditions.transferOrderNumber = _reportRepairInfo.rep.transferOrderNumber;
                         //退单总数量
-                        vc.component.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
+                        $that.reportRepairInfo.conditions.chargebackNumber = _reportRepairInfo.rep.chargebackNumber;
                         //结单总数量
-                        vc.component.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
+                        $that.reportRepairInfo.conditions.statementNumber = _reportRepairInfo.rep.statementNumber;
                         //回访总数量
-                        vc.component.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
+                        $that.reportRepairInfo.conditions.returnNumber = _reportRepairInfo.rep.returnNumber;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.reportRepairInfo.records,
+                            total: $that.reportRepairInfo.records,
                             currentPage: _page,
-                            dataCount: vc.component.reportRepairInfo.total
+                            dataCount: $that.reportRepairInfo.total
                         });
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
@@ -247,14 +250,37 @@
                 );
             },
             _moreCondition: function () {
-                if (vc.component.reportRepairInfo.moreCondition) {
-                    vc.component.reportRepairInfo.moreCondition = false;
+                if ($that.reportRepairInfo.moreCondition) {
+                    $that.reportRepairInfo.moreCondition = false;
                 } else {
-                    vc.component.reportRepairInfo.moreCondition = true;
+                    $that.reportRepairInfo.moreCondition = true;
                 }
             },
             _exportFee: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportRepairDetail&' + vc.objToGetParam($that.reportRepairInfo.conditions));
+            },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.reportRepairInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that._listRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

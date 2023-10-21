@@ -4,6 +4,7 @@
             reportFeeDetailInfo: {
                 _currentTab: 'reportFeeDetailRoom',
                 floors: [],
+                communitys:[],
                 conditions: {
                     floorId: '',
                     objName: '',
@@ -13,13 +14,16 @@
                     feeTypeCd: '',
                     ownerName: '',
                     link: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: ''
                 }
             }
         },
         _initMethod: function() {
             $that._initDate();
-            vc.component.changeTab($that.reportFeeDetailInfo._currentTab);
+            $that._loadStaffCommunitys();
+            $that.reportFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            $that.changeTab($that.reportFeeDetailInfo._currentTab);
+
 
         },
         _initEvent: function() {
@@ -56,7 +60,30 @@
                 vc.emit(_tab, 'switch', $that.reportFeeDetailInfo.conditions)
             },
             _queryMethod: function() {
-                vc.component.changeTab($that.reportFeeDetailInfo._currentTab);
+                $that.changeTab($that.reportFeeDetailInfo._currentTab);
+            },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.reportFeeDetailInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that.changeTab($that.reportFeeDetailInfo._currentTab);
             }
         }
     })

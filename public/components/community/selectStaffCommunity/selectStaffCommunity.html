@@ -1,0 +1,12 @@
+<div class=" border-radius">
+    <div class="margin-xs-r  treeview attendance-staff" style="height: 650px;">
+        <ul class="list-group text-center border-radius">
+            <li class="list-group-item node-orgTree vc-node-selected " >
+                选择小区
+            </li>
+            <li class="list-group-item node-orgTree " v-for="(item,index) in selectStaffCommunityInfo.communitys" :key="index" @click="_swatchStaffCommunity(item)" :class="{'vc-node-selected-line':selectStaffCommunityInfo.communityId == item.communityId}">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -11,6 +11,7 @@
                 payObjTypes: [],
                 primeRates: [],
                 payFeeSum: [],
+                communitys:[],
                 total: 0,
                 records: 1,
                 totalReceivableAmount: 0.0,
@@ -20,7 +21,7 @@
                 moreCondition: false,
                 name: '',
                 conditions: {
-                    communityId: vc.getCurrentCommunity().communityId,
+                    communityId: '',
                     payObjType: '',
                     startTime: '',
                     endTime: '',
@@ -30,14 +31,16 @@
             }
         },
         _initMethod: function () {
-            vc.component._initDate();
-            vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
-            //vc.component._listFeeType();
+            $that.payFeeManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            $that._initDate();
+            $that._loadStaffCommunitys();
+            $that._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+            //$that._listFeeType();
             vc.getDict('pay_fee', "payer_obj_type", function (_data) {
-                vc.component.payFeeManageInfo.payObjTypes = _data;
+                $that.payFeeManageInfo.payObjTypes = _data;
             });
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
-                vc.component.payFeeManageInfo.primeRates = _data;
+                $that.payFeeManageInfo.primeRates = _data;
             })
             $(".popover-show").mouseover(() => {
                 $('.popover-show').popover('show');
@@ -48,7 +51,7 @@
         },
         _initEvent: function () {
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listpayFees(_currentPage, DEFAULT_ROWS);
+                $that._listpayFees(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -76,12 +79,12 @@
                 $('.start_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".start_time").val();
-                        vc.component.payFeeManageInfo.conditions.startTime = value;
+                        $that.payFeeManageInfo.conditions.startTime = value;
                     });
                 $('.end_time').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".end_time").val();
-                        vc.component.payFeeManageInfo.conditions.endTime = value;
+                        $that.payFeeManageInfo.conditions.endTime = value;
                     });
                 //防止多次点击时间插件失去焦点
                 document.getElementsByClassName('form-control form_datetime  start_time')[0].addEventListener('click', myfunc)
@@ -97,10 +100,10 @@
                 }
             },
             _listpayFees: function (_page, _rows) {
-                vc.component.payFeeManageInfo.conditions.page = _page;
-                vc.component.payFeeManageInfo.conditions.row = _rows;
-                var param = {
-                    params: vc.component.payFeeManageInfo.conditions
+                $that.payFeeManageInfo.conditions.page = _page;
+                $that.payFeeManageInfo.conditions.row = _rows;
+                let param = {
+                    params: $that.payFeeManageInfo.conditions
                 };
                 param.params.userName = param.params.userName.trim();
                 //发送get请求
@@ -109,28 +112,28 @@
                     param,
                     function (json, res) {
                         var _payFeeManageInfo = JSON.parse(json);
-                        vc.component.payFeeManageInfo.total = _payFeeManageInfo.total;
-                        vc.component.payFeeManageInfo.records = Math.ceil(_payFeeManageInfo.total / _rows);
-                        vc.component.payFeeManageInfo.payFees = _payFeeManageInfo.payFees;
-                        vc.component.payFeeManageInfo.payFeeSum = _payFeeManageInfo.payFeeSum;
+                        $that.payFeeManageInfo.total = _payFeeManageInfo.total;
+                        $that.payFeeManageInfo.records = Math.ceil(_payFeeManageInfo.total / _rows);
+                        $that.payFeeManageInfo.payFees = _payFeeManageInfo.payFees;
+                        $that.payFeeManageInfo.payFeeSum = _payFeeManageInfo.payFeeSum;
                         var allReceivableAmount = 0.0;
                         var allReceivedAmount = 0.0;
                         if (_payFeeManageInfo.payFeeSum.length > 0) {
                             if (_payFeeManageInfo.payFeeSum[0].allReceivableAmount != "") {
                                 allReceivableAmount = parseFloat(_payFeeManageInfo.payFeeSum[0].allReceivableAmount).toFixed(2);
-                                vc.component.payFeeManageInfo.allReceivableAmount = allReceivableAmount;
+                                $that.payFeeManageInfo.allReceivableAmount = allReceivableAmount;
                             } else {
-                                vc.component.payFeeManageInfo.allReceivableAmount = "0.0";
+                                $that.payFeeManageInfo.allReceivableAmount = "0.0";
                             }
                             if (_payFeeManageInfo.payFeeSum[0].allReceivedAmount != "") {
                                 allReceivedAmount = parseFloat(_payFeeManageInfo.payFeeSum[0].allReceivedAmount).toFixed(2);
-                                vc.component.payFeeManageInfo.allReceivedAmount = allReceivedAmount;
+                                $that.payFeeManageInfo.allReceivedAmount = allReceivedAmount;
                             } else {
-                                vc.component.payFeeManageInfo.allReceivedAmount = "0.0";
+                                $that.payFeeManageInfo.allReceivedAmount = "0.0";
                             }
                         } else {
-                            vc.component.payFeeManageInfo.allReceivableAmount = "0.0";
-                            vc.component.payFeeManageInfo.allReceivedAmount = "0.0";
+                            $that.payFeeManageInfo.allReceivableAmount = "0.0";
+                            $that.payFeeManageInfo.allReceivedAmount = "0.0";
                         }
                         var receivableAmount = 0.0;
                         var receivedAmount = 0.0;
@@ -142,17 +145,17 @@
                             //四舍五入保留两位
                             receivableAmount = parseFloat(receivableAmount).toFixed(2);
                             receivedAmount = parseFloat(receivedAmount).toFixed(2);
-                            vc.component.payFeeManageInfo.totalReceivableAmount = receivableAmount;
-                            vc.component.payFeeManageInfo.totalReceivedAmount = receivedAmount;
+                            $that.payFeeManageInfo.totalReceivableAmount = receivableAmount;
+                            $that.payFeeManageInfo.totalReceivedAmount = receivedAmount;
                         } else {
-                            vc.component.payFeeManageInfo.totalReceivableAmount = "0.0";
-                            vc.component.payFeeManageInfo.totalReceivedAmount = "0.0";
+                            $that.payFeeManageInfo.totalReceivableAmount = "0.0";
+                            $that.payFeeManageInfo.totalReceivedAmount = "0.0";
                         }
                         vc.emit('pagination', 'init', {
-                            total: vc.component.payFeeManageInfo.records,
-                            dataCount: vc.component.payFeeManageInfo.total,
+                            total: $that.payFeeManageInfo.records,
+                            dataCount: $that.payFeeManageInfo.total,
                             currentPage: _page,
-                            // dataCount: vc.component.payFeeManageInfo.total
+                            // dataCount: $that.payFeeManageInfo.total
                         });
                     },
                     function (errInfo, error) {
@@ -162,22 +165,22 @@
             },
             //查询
             _queryPayFeeMethod: function () {
-                vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetPayFeeMethod: function () {
-                vc.component.payFeeManageInfo.conditions.payObjType = "";
-                vc.component.payFeeManageInfo.conditions.startTime = "";
-                vc.component.payFeeManageInfo.conditions.endTime = "";
-                vc.component.payFeeManageInfo.conditions.userName = "";
-                vc.component.payFeeManageInfo.conditions.primeRate = "";
-                vc.component._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.payFeeManageInfo.conditions.payObjType = "";
+                $that.payFeeManageInfo.conditions.startTime = "";
+                $that.payFeeManageInfo.conditions.endTime = "";
+                $that.payFeeManageInfo.conditions.userName = "";
+                $that.payFeeManageInfo.conditions.primeRate = "";
+                $that._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.payFeeManageInfo.moreCondition) {
-                    vc.component.payFeeManageInfo.moreCondition = false;
+                if ($that.payFeeManageInfo.moreCondition) {
+                    $that.payFeeManageInfo.moreCondition = false;
                 } else {
-                    vc.component.payFeeManageInfo.moreCondition = true;
+                    $that.payFeeManageInfo.moreCondition = true;
                 }
             },
             //导出
@@ -196,7 +199,7 @@
                     param,
                     function (json, res) {
                         var _feeTypesInfo = JSON.parse(json);
-                        vc.component.payFeeManageInfo.payFeeTypes = _feeTypesInfo;
+                        $that.payFeeManageInfo.payFeeTypes = _feeTypesInfo;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -205,6 +208,29 @@
             },
             _detailFee: function (_fee) {
                 vc.jumpToPage('/#/pages/property/propertyFee?' + vc.objToGetParam(_fee));
+            },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.payFeeManageInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

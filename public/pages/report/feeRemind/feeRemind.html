@@ -11,29 +11,22 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.objName">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请填写业主名称','feeRemind')" v-model="feeRemindInfo.conditions.ownerName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写业主手机号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.link">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
-                                <vc:i18n name="查询" namespace="feeRemind"></vc:i18n>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
                             <select class="form-control-md form-control input-s-sm inline" v-model="feeRemindInfo.conditions.configId">
                                 <option selected value="">{{vc.i18n('请选择费用项','feeRemind')}}</option>
                                 <option v-for="(item,index) in feeRemindInfo.feeConfigs" :key="index"
@@ -41,6 +34,20 @@
                                     {{item.feeName}}
                                 </option>
                             </select>
+                        </div>
+                        <div class="col-sm-2" v-if="feeRemindInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="feeRemindInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','feeRemind')}}</option>
+                                <option v-for="(item,index) in feeRemindInfo.communitys" :key="index"
+                                        v-bind:value="item.communityId">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <vc:i18n name="查询" namespace="feeRemind"></vc:i18n>
+                            </button>
                         </div>
                     </div>
 

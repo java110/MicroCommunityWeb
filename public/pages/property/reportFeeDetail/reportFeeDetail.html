@@ -11,19 +11,29 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.startDate" class=" form-control startDate">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group input-group">
                                 <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.endDate" class=" form-control endDate">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','reportFeeDetail')" class="form-control form-control-md" v-model="reportFeeDetailInfo.conditions.objName">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group input-group">
+                                <input type="text" :placeholder="vc.i18n('请填写业主名称','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.ownerName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','reportFeeDetail')" class="form-control form-control-md" v-model="reportFeeDetailInfo.conditions.link">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -33,15 +43,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主名称','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.ownerName" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','reportFeeDetail')" class="form-control form-control-md" v-model="reportFeeDetailInfo.conditions.link">
-                            </div>
+                        <div class="col-sm-2" v-if="reportFeeDetailInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeDetailInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                <option v-for="(item,index) in reportFeeDetailInfo.communitys" :key="index"
+                                        v-bind:value="item.communityId">
+                                    {{item.name}}
+                                </option>
+                            </select>
                         </div>
                     </div>
 
