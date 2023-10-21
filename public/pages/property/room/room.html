@@ -40,23 +40,23 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="查询条件" namespace="room"></vc:i18n></span>
+                        <vc:i18n name="查询条件" namespace="room"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">{{roomInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请填写房屋编号  格式 楼栋-单元-房屋','room')"
                                        class="form-control form-control-sm" v-model="roomInfo.conditions.roomId">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select class="form-control-sm form-control input-s-sm inline"
                                     v-model="roomInfo.conditions.state">
                                 <option selected value="">{{vc.i18n('请选择状态','room')}}</option>
@@ -65,13 +65,20 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select class="form-control-sm form-control input-s-sm inline"
                                     v-model="roomInfo.conditions.roomSubType">
                                 <option selected value="">{{vc.i18n('必填，请选择房屋类型','room')}}</option>
                                 <option :value="item.statusCd" v-for="(item,index) in roomInfo.roomSubTypes">
                                     {{item.name}}
                                 </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.isAll"
+                                    @change="_changeIsAll()">
+                                <option value="N">当前楼栋单元</option>
+                                <option value="Y">全部楼栋单元</option>
                             </select>
                         </div>
                         <div class="col-sm-2">
@@ -83,15 +90,6 @@
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="room"></vc:i18n></span>
                             </button>
-                        </div>
-                    </div>
-                    <div class="row" v-show="roomInfo.moreCondition == true">
-                        <div class="col-sm-4">
-                            <select class="form-control-sm form-control input-s-sm inline" v-model="roomInfo.isAll"
-                                    @change="_changeIsAll()">
-                                <option value="N">当前楼栋单元</option>
-                                <option value="Y">全部楼栋单元</option>
-                            </select>
                         </div>
                     </div>
                 </div>
