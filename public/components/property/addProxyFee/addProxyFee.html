@@ -2,9 +2,9 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span>
+                <h3 class="m-t-none m-b ">
                         <vc:i18n name="按量缴费" namespace="addProxyFee"></vc:i18n>
-                    </span></h3>
+                </h3>
                 <div class="ibox-content">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">
@@ -28,12 +28,12 @@
                             <select class="custom-select" v-model="addProxyFeeInfo.configId" @change="_changeProxyFeeConfig()">
                                 <option selected disabled value="">{{vc.i18n('必填，请选择收费项目','addProxyFee')}}
                                 </option>
-                                <option  disabled value="" v-if="!addProxyFeeInfo.feeConfigs || addProxyFeeInfo.feeConfigs.length <1">{{vc.i18n('请添加公式为(用量*单价+附加费)的费用项','addProxyFee')}}</option> 
                                 <option v-for="(item,index) in addProxyFeeInfo.feeConfigs" :key="index"
-                                    v-bind:value="item.configId" v-else>
+                                    v-bind:value="item.configId" >
                                     {{item.feeName}}
                                 </option>
                             </select>
+                            <span>说明：显示公式为(用量*单价+附加费)的费用项</span>
                         </div>
                     </div>
                     <div class="form-group row">

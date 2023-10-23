@@ -109,6 +109,12 @@
                 // });
                 vc.jumpToPage('/#/pages/fee/roomCreatePayFee')
             },
+            _openOnlyRoomCreateFeeAddModal: function (_room, _isMore) {
+                vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
+                    isMore: _isMore,
+                    room: _room
+                });
+            },
             listRoomInRoomCreateFee: function (_page, _row) {
                 let param = {
                     params: {
