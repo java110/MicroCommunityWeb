@@ -28,6 +28,12 @@
                 deep: true,
                 handler: function() {
                     $that._dealSelectFee();
+                    let checkObj = document.querySelectorAll('.all-check'); // 获取所有checkbox项
+                    if ($that.owePayFeeOrderInfo.selectPayFeeIds.length < $that.owePayFeeOrderInfo.oweFees.length) {
+                        checkObj[0].checked = false;
+                    } else {
+                        checkObj[0].checked = true;
+                    }
                 }
             }
         },

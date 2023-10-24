@@ -19,7 +19,7 @@
                         <vc:i18n name="付费类型" namespace="feeDetailConfig"></vc:i18n>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="缴费周期(单位:月)" namespace="feeDetailConfig"></vc:i18n>
+                        <vc:i18n name="缴费周期" namespace="feeDetailConfig"></vc:i18n>
                     </th>
                     <th class="text-center">
                         <vc:i18n name="有效期" namespace="feeDetailConfig"></vc:i18n>
@@ -28,10 +28,13 @@
                         <vc:i18n name="单位" namespace="feeDetailConfig"></vc:i18n>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="计费单价(单位:元)" namespace="feeDetailConfig"></vc:i18n>
+                        <vc:i18n name="公式" namespace="feeDetailConfig"></vc:i18n>
                     </th>
                     <th class="text-center">
-                        <vc:i18n name="附加/固定费用(单位:元)" namespace="feeDetailConfig"></vc:i18n>
+                        <vc:i18n name="计费单价" namespace="feeDetailConfig"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="附加/固定费用" namespace="feeDetailConfig"></vc:i18n>
                     </th>
                     <th class="text-center">
                         <vc:i18n name="账户抵扣" namespace="feeDetailConfig"></vc:i18n>
@@ -57,6 +60,8 @@
                     <td class="text-center">{{feeConfig.startTime}}<br /> {{feeConfig.endTime}}
                     </td>
                     <td class="text-center">{{feeConfig.units}}
+                    </td>
+                    <td class="text-center">{{feeConfig.computingFormulaName}}
                     </td>
                     <td class="text-center">{{feeConfig.computingFormula == '2002' ?
                         '-':feeConfig.squarePrice}}

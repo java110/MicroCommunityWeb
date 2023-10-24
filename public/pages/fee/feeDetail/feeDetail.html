@@ -97,6 +97,14 @@
                                 <label class="">{{_getDeadlineTime(feeDetailInfo)}}</label>
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="欠费金额：" namespace="feeDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{feeDetailInfo.amountOwed}}</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3" v-for="(item,index) in feeDetailInfo.attrs">
@@ -152,7 +160,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailOwner'}" v-on:click="changeTab('feeDetailOwner')">
-                        <vc:i18n name="业主信息" namespace="feeDetail"></vc:i18n>
+                        <vc:i18n name="业主" namespace="feeDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -178,6 +186,16 @@
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailReceipt'}" v-on:click="changeTab('feeDetailReceipt')">
                         <vc:i18n name="补打收据" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" v-if="feeDetailInfo.feeFlag == '2006012'">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailFeeRule'}" v-on:click="changeTab('feeDetailFeeRule')">
+                        <vc:i18n name="账单规则" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item" v-if="feeDetailInfo.feeFlag == '2006012'">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailRuleBill'}" v-on:click="changeTab('feeDetailRuleBill')">
+                        <vc:i18n name="费用账单" namespace="feeDetail"></vc:i18n>
                     </a>
                 </li>
             </ul>
@@ -227,7 +245,14 @@
         <div v-if="feeDetailInfo._currentTab == 'feeDetailReceipt'">
             <vc:create path="fee/feeDetailReceipt"></vc:create>
         </div>
-
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailFeeRule'">
+            <vc:create path="fee/feeDetailFeeRule"></vc:create>
+        </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailRuleBill'">
+            <vc:create path="fee/feeDetailRuleBill"></vc:create>
+        </div>
+        
+        
     </div>
 
 
