@@ -125,7 +125,7 @@
                 }
                 //1.不是押金 2.不是周期性费用
                 if ($that.roomCreateFeeAddInfo.feeTypeCd != '888800010006' && $that.roomCreateFeeAddInfo.feeFlag != '1003006') {
-                    if ($that.roomCreateFeeAddInfo.endTime) {
+                    if (!$that.roomCreateFeeAddInfo.endTime) {
                         vc.toast("计费终止时间不能为空");
                         return;
                     }
