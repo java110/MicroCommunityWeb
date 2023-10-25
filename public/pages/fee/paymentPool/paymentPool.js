@@ -8,6 +8,7 @@
         data: {
             paymentPoolInfo: {
                 paymentPools: [],
+                paymentTypes:[],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -21,6 +22,9 @@
             }
         },
         _initMethod: function () {
+            vc.getDict('payment_key', 'payment_type', function (_data) {
+                $that.paymentPoolInfo.paymentTypes = _data;
+            });
             $that._listPaymentPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {

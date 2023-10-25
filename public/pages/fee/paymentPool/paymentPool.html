@@ -20,14 +20,22 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择支付厂家','paymentPool')"
-                                    v-model="paymentPoolInfo.conditions.paymentType" class=" form-control">
+                                <select class="custom-select" v-model="paymentPoolInfo.conditions.paymentType">
+                                    <option selected value="">{{vc.i18n('请选择支付厂家','addPaymentPool')}}</option>
+                                    <option :value="item.statusCd"
+                                        v-for="(item,index) in paymentPoolInfo.paymentTypes" :key="index">
+                                        {{item.name}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择状态','paymentPool')"
-                                    v-model="paymentPoolInfo.conditions.state" class=" form-control">
+                                <select class="custom-select" v-model="paymentPoolInfo.conditions.state">
+                                    <option selected value="">{{vc.i18n('请选择状态' ,'paymentPool')}}
+                                    </option>
+                                    <option value="Y">{{vc.i18n('启用' ,'paymentPool')}} </option>
+                                    <option value="N">{{vc.i18n('停用' ,'paymentPool')}} </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-1">
