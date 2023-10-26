@@ -17,9 +17,7 @@
             }
         },
         _initMethod: function () {
-            vc.getDict('payment_key', 'payment_type', function (_data) {
-                $that.editPaymentPoolInfo.paymentTypes = _data;
-            });
+            $that._loadEditPaymentAdapt();
         },
         _initEvent: function () {
             vc.on('editPaymentPool', 'openEditPaymentPoolModal', function (_params) {
@@ -173,6 +171,24 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         $that.editPaymentPoolInfo.feeConfigs = _json.feeConfigs;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _loadEditPaymentAdapt:function(){
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/payment.listPaymentAdapt', param,
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        $that.editPaymentPoolInfo.paymentTypes = _json.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

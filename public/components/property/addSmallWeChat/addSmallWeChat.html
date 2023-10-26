@@ -33,43 +33,6 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">
-                            <vc:i18n name="支付密码" namespace="addSmallWeChat"></vc:i18n>
-                        </label>
-                        <div class="col-sm-10">
-                            <input v-model="addSmallWeChatInfo.payPassword" type="text"
-                                :placeholder="vc.i18n('必填，请填写支付密码','addSmallWeChat')" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">
-                            <vc:i18n name="商户ID" namespace="addSmallWeChat"></vc:i18n>
-                        </label>
-                        <div class="col-sm-10">
-                            <input v-model="addSmallWeChatInfo.mchId" type="text"
-                                :placeholder="vc.i18n('必填，请填写商户ID','addSmallWeChat')" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">
-                            <vc:i18n name="商户名称" namespace="addSmallWeChat"></vc:i18n>
-                        </label>
-                        <div class="col-sm-10">
-                            <input v-model="addSmallWeChatInfo.mchName" type="text"
-                                :placeholder="vc.i18n('必填，请填写商户名称','addSmallWeChat')" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">
-                            <vc:i18n name="商户证书(.p12)" namespace="addSmallWeChat"></vc:i18n>
-                        </label>
-                        <div class="col-sm-10">
-                            <vc:create path="frame/uploadFile" callBackListener="addSmallWeChat"
-                                callBackFunction="notifyCert" namespace="addSmallWeChat">
-                            </vc:create>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">
                             <vc:i18n name="描述" namespace="addSmallWeChat"></vc:i18n>
                         </label>
                         <div class="col-sm-10">

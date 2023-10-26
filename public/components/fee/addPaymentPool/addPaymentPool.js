@@ -22,10 +22,11 @@
         },
         _initMethod: function () {
 
-            vc.getDict('payment_key', 'payment_type', function (_data) {
-                $that.addPaymentPoolInfo.paymentTypes = _data;
-            })
+            // vc.getDict('payment_key', 'payment_type', function (_data) {
+            //     $that.addPaymentPoolInfo.paymentTypes = _data;
+            // })
 
+            $that._loadAddPaymentAdapt();
         },
         _initEvent: function () {
             vc.on('addPaymentPool', 'openAddPaymentPoolModal', function () {
@@ -176,6 +177,25 @@
                     }
                 );
             },
+
+            _loadAddPaymentAdapt:function(){
+                let param = {
+                    params: {
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/payment.listPaymentAdapt', param,
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        $that.addPaymentPoolInfo.paymentTypes = _json.data;
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                    }
+                );
+            }
 
         }
     });

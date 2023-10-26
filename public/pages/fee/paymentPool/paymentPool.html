@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <select class="custom-select" v-model="paymentPoolInfo.conditions.paymentType">
                                     <option selected value="">{{vc.i18n('请选择支付厂家','addPaymentPool')}}</option>
-                                    <option :value="item.statusCd"
+                                    <option :value="item.paymentType"
                                         v-for="(item,index) in paymentPoolInfo.paymentTypes" :key="index">
                                         {{item.name}}</option>
                                 </select>
