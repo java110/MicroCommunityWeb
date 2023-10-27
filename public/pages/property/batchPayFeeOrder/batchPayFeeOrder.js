@@ -440,7 +440,7 @@
             },
             _getBatchPaymentCycles: function (fee) {
                 let paymentCycles = [];
-                for (let _index = 1; _index < 7; _index++) {
+                for (let _index = 1; _index < 13; _index++) {
                     paymentCycles.push(_index * parseFloat(fee.paymentCycle))
                 }
                 return paymentCycles;
