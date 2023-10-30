@@ -31,6 +31,11 @@
                 if($that.propertyIndexInfo.storeTypeCd == '800900000001'){
                     vc.emit('adminIndex', 'initData',{})
                 }
+
+                if($that.propertyIndexInfo.storeTypeCd == '800900000000'){
+                    vc.emit('devIndex', 'initData',{})
+                }
+                
             }
         }
     })
