@@ -13,10 +13,14 @@
         },
         _initMethod: function() {
 
-            $that._loadIndexComplaintData();
-            $that._loadIndexRepairData();
+           
         },
-        _initEvent: function() {},
+        _initEvent: function() {
+            vc.on('indexRepairComplaint','initData',function(){
+                $that._loadIndexComplaintData();
+                $that._loadIndexRepairData();
+            })
+        },
         methods: {
             _loadIndexRepairData: function() {
                 let param = {
