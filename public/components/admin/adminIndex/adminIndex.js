@@ -166,7 +166,7 @@
                     tooltip: {},
                     title: {
                         show: "true",
-                        text: '小区缴费统计'
+                        text: '小区报修统计'
                     },
                     color: ['#FFDAB9', '#66CDAA'],
                     dataset: {
