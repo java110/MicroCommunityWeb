@@ -58,6 +58,13 @@
                     }
                 );
             },
+            _computeTableDivWidth: function () {
+                let mainWidth = document.getElementsByTagName('body')[0].clientWidth - document.getElementById('menu-nav').offsetWidth;
+                //let treeWidth = document.getElementsByClassName('room-floor-unit-tree')[0].offsetWidth;
+                mainWidth = mainWidth - 20 - 15 - 20;
+                //document.getElementsByClassName('hc-table-div')[0].style.width=mainWidth+'px';
+                return mainWidth + 'px';
+            },
             //查询
             _queryPayFeeMethod: function () {
                 $that._listpayFees(DEFAULT_PAGE, DEFAULT_ROWS);

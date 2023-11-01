@@ -1,0 +1,156 @@
+<div class="row animated fadeInRight ecommerce">
+    <div class="col-md-2">
+        <vc:create path="community/selectAdminCommunity"></vc:create>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>
+                            <vc:i18n name="查询条件" namespace="communityFeeSummary"></vc:i18n>
+                        </h5>
+                        <div class="ibox-tools" style="top:10px;">
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group input-group">
+                                    <input type="text" :placeholder="vc.i18n('请选择开始时间','communityFeeSummary')"
+                                        v-model="communityFeeSummaryInfo.conditions.startDate"
+                                        class=" form-control startDate">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group input-group">
+                                    <input type="text" :placeholder="vc.i18n('请选择结束时间','communityFeeSummary')"
+                                        v-model="communityFeeSummaryInfo.conditions.endDate"
+                                        class=" form-control endDate">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                    v-model="communityFeeSummaryInfo.conditions.feeTypeCd">
+                                    <option selected value="">{{vc.i18n('请选择费用大类','communityFeeSummary')}}</option>
+                                    <option v-for="(item,index) in communityFeeSummaryInfo.feeTypeCds" :key="index"
+                                        v-bind:value="item.statusCd">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                    <vc:i18n name="查询" namespace="communityFeeSummary"></vc:i18n>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>
+                            <vc:i18n name="费用汇总表" namespace="communityFeeSummary"></vc:i18n>
+                        </h5>
+                        <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                            data-content="以月份为维度，进行费用情况汇总"></span>
+                        <span style="font-size: 10px;">(按天更新)</span>
+                        <div class="ibox-tools" style="top:10px;">
+                            <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                                <i class="fa fa-plus"></i>
+                                <span>
+                                    <vc:i18n name="导出" namespace="communityFeeSummary"></vc:i18n>
+                                </span>
+                            </button> -->
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-bordered" data-page-size="15">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name="总户数" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="收费户" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="欠费户" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" colspan="3">
+                                        <vc:i18n name="历史欠费+当期欠费=欠费" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" colspan="4">
+                                        <vc:i18n name="欠费追回+当期部分+预交=实缴" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="当期应收" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="当期实收" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="已交户/收费户=户收费率" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="当期实收/当期应收=收费率" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="欠费追回/(欠费追回+历史欠费)=清缴率" namespace="communityFeeSummary"></vc:i18n>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="fee in communityFeeSummaryInfo.fees">
+                                    <td class="text-center">{{fee.roomCount}}</td>
+                                    <td class="text-center">{{fee.feeRoomCount}}</td>
+                                    <td class="text-center">{{fee.oweRoomCount}}</td>
+                                    <td class="text-center">{{fee.hisOweFee}}</td>
+                                    <td class="text-center">{{fee.curOweFee}}</td>
+                                    <td class="text-center">{{(fee.curOweFee+fee.hisOweFee).toFixed(2)}}</td>
+                                    <td class="text-center">{{fee.hisReceivedFee}}</td>
+                                    <td class="text-center">
+                                        {{(fee.receivedFee-fee.hisReceivedFee-fee.preReceivedFee).toFixed(2)}}</td>
+                                    <td class="text-center">{{fee.preReceivedFee}}</td>
+                                    <td class="text-center">
+                                        {{fee.receivedFee}}
+                                    </td>
+                                    <td class="text-center">
+                                        {{fee.curReceivableFee}}
+                                    </td>
+                                    <td class="text-center">
+                                        {{(fee.curReceivableFee-fee.curOweFee).toFixed(2)}}
+                                    </td>
+                                    <td class="text-center" v-if="fee.feeRoomCount>0">
+                                        {{((fee.feeRoomCount-fee.oweRoomCount)/fee.feeRoomCount*100).toFixed(2)}}%
+                                    </td>
+                                    <td class="text-center" v-else>
+                                        0%
+                                    </td>
+                                    <td class="text-center" v-if="(fee.curReceivableFee)>0">
+                                        {{((fee.curReceivableFee-fee.curOweFee)/(fee.curReceivableFee)*100).toFixed(2)}}%
+                                    </td>
+                                    <td class="text-center" v-else>
+                                        0%
+                                    </td>
+                                    <td class="text-center" v-if="(fee.hisReceivedFee+fee.hisOweFee)>0">
+                                        {{((fee.hisReceivedFee)/(fee.hisReceivedFee+fee.hisOweFee)*100).toFixed(2)}}%
+                                    </td>
+                                    <td class="text-center" v-else>
+                                        0%
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
