@@ -51,6 +51,9 @@
                         $that._initAnalysisChart(_carInData,'communityCarIn','车辆进场数','车辆进场数');
                         let _personInData = _json.data.personInData;
                         $that._initAnalysisChart(_personInData,'communityPersonIn','开门记录','开门记录');
+
+                        let _contractData = _json.data.contractData;
+                        $that._initAnalysisChart(_contractData,'communityContract','签订合同数','合同数');
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
