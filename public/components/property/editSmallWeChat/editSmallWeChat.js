@@ -77,17 +77,7 @@
                             errInfo: "应用密钥不能超过200个字符"
                         },
                     ],
-                    'editSmallWeChatInfo.payPassword': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "支付密码不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "1,200",
-                            errInfo: "支付密码不能超过200个字符"
-                        },
-                    ],
+                   
                     'editSmallWeChatInfo.wechatId': [{
                         limit: "required",
                         param: "",
@@ -97,11 +87,6 @@
                         limit: "required",
                         param: "",
                         errInfo: "配置不能为空"
-                    }],
-                    'editSmallWeChatInfo.mchId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "商户id不能为空"
                     }],
 
                 });
