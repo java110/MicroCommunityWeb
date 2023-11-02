@@ -5,6 +5,7 @@
                 _currentTab: 'reportFeeDetailRoom',
                 floors: [],
                 moreCondition: false,
+                communitys:[],
                 conditions: {
                     floorId: '',
                     objName: '',
@@ -14,13 +15,17 @@
                     feeTypeCd: '',
                     ownerName: '',
                     link: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: ''
                 }
             }
         },
         _initMethod: function () {
             $that._initDate();
-            vc.component.changeTab($that.reportFeeDetailInfo._currentTab);
+            $that._loadStaffCommunitys();
+            $that.reportFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+            $that.changeTab($that.reportFeeDetailInfo._currentTab);
+
+
         },
         _initEvent: function () {
             vc.on("indexContext", "_queryIndexContextData", function (_param) {
@@ -56,24 +61,32 @@
                 $that.reportFeeDetailInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', $that.reportFeeDetailInfo.conditions)
             },
-            //查询
-            _queryMethod: function () {
-                vc.component.changeTab($that.reportFeeDetailInfo._currentTab);
+            _queryMethod: function() {
+                $that.changeTab($that.reportFeeDetailInfo._currentTab);
             },
-            //重置
-            _resetMethod: function () {
-                vc.component.reportFeeDetailInfo.conditions.objName = "";
-                vc.component.reportFeeDetailInfo.conditions.ownerName = "";
-                vc.component.reportFeeDetailInfo.conditions.link = "";
-                vc.component.changeTab($that.reportFeeDetailInfo._currentTab);
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.reportFeeDetailInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
             },
-            _moreCondition: function () {
-                if (vc.component.reportFeeDetailInfo.moreCondition) {
-                    vc.component.reportFeeDetailInfo.moreCondition = false;
-                } else {
-                    vc.component.reportFeeDetailInfo.moreCondition = true;
-                }
-            },
+            _changCommunity:function(){
+                $that.changeTab($that.reportFeeDetailInfo._currentTab);
+            }
         }
     })
 })(window.vc);

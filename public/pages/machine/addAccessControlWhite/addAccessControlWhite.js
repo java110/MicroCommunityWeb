@@ -35,27 +35,15 @@
             });
             vc.on("addAccessControlWhite", "notifyUploadImage", function (_param) {
                 if (_param.length > 0) {
-                    vc.component.addAccessControlWhiteInfo.photo = _param[0].url;
+                    $that.addAccessControlWhiteInfo.photo = _param[0].url;
                 }
             });
         },
         methods: {
             addAccessControlWhiteValidate() {
                 return vc.validate.validate({
-                    addAccessControlWhiteInfo: vc.component.addAccessControlWhiteInfo
+                    addAccessControlWhiteInfo: $that.addAccessControlWhiteInfo
                 }, {
-                    'addAccessControlWhiteInfo.machineId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "30",
-                            errInfo: "设备不能超过30"
-                        }
-                    ],
                     'addAccessControlWhiteInfo.personName': [
                         {
                             limit: "required",
@@ -133,7 +121,7 @@
                 });
             },
             saveAccessControlWhiteInfo: function () {
-                if (!vc.component.addAccessControlWhiteValidate()) {
+                if (!$that.addAccessControlWhiteValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
@@ -142,10 +130,10 @@
                     return ;
                 }
 
-                vc.component.addAccessControlWhiteInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.addAccessControlWhiteInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/machine.saveAccessControlWhite',
-                    JSON.stringify(vc.component.addAccessControlWhiteInfo),
+                    JSON.stringify($that.addAccessControlWhiteInfo),
                     {
                         emulateJSON: true
                     },
@@ -155,7 +143,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#addAccessControlWhiteModel').modal('hide');
-                            vc.component.clearAddAccessControlWhiteInfo();
+                            $that.clearAddAccessControlWhiteInfo();
                             vc.emit('accessControlWhiteManage', 'listAccessControlWhite', {});
                             vc.toast("添加成功");
                            vc.goBack();
@@ -171,8 +159,8 @@
             },
             clearAddAccessControlWhiteInfo: function () {
                 let _personTypes = $that.addAccessControlWhiteInfo.personTypes;
-                vc.component.addAccessControlWhiteInfo = {
-                    machineId: '',
+                $that.addAccessControlWhiteInfo = {
+                    machineIds: [],
                     personName: '',
                     tel: '',
                     idCard: '',

@@ -15,6 +15,7 @@
                 endDate: '',
                 objName: '',
                 ownerName: '',
+                communityId:'',
                 link: '',
                 feeAmount: '0'
             }
@@ -28,6 +29,7 @@
             vc.on('dataReportEarnedDetailStatistics', 'switch', function (_data) {
                 $that.dataReportEarnedDetailStatisticsInfo.startDate = _data.startDate;
                 $that.dataReportEarnedDetailStatisticsInfo.endDate = _data.endDate;
+                $that.dataReportEarnedDetailStatisticsInfo.communityId = _data.communityId;
                 $that._loadDataReportEarnedDetailStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('dataReportEarnedDetailStatistics', 'paginationPlus', 'page_event',
@@ -42,7 +44,7 @@
             _loadDataReportEarnedDetailStatisticsData: function (_page, _row) {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportEarnedDetailStatisticsInfo.communityId,
                         startDate: $that.dataReportEarnedDetailStatisticsInfo.startDate,
                         endDate: $that.dataReportEarnedDetailStatisticsInfo.endDate,
                         objName: $that.dataReportEarnedDetailStatisticsInfo.objName,
@@ -76,7 +78,7 @@
             _exportReportEarnedDetailExcel: function () {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportEarnedDetailStatisticsInfo.communityId,
                         startDate: $that.dataReportEarnedDetailStatisticsInfo.startDate,
                         endDate: $that.dataReportEarnedDetailStatisticsInfo.endDate,
                         objName: $that.dataReportEarnedDetailStatisticsInfo.objName,

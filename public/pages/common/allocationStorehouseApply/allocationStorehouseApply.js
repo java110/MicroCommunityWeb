@@ -57,6 +57,9 @@
                         newItem.shzId = '';
                         newItem.timesId = '';
                         newItem.curStock = '0'
+                        if(newItem.times && newItem.times.length >0){
+                            newItem.timesId = newItem.times[0].timesId;
+                        }
                         oldList.forEach((oldItem) => {
                             if (oldItem.resId == newItem.resId) {
                                 delete resourceStores[newIndex];
@@ -110,15 +113,17 @@
             _openAllocationStorehouseModel: function() {
                 vc.emit('chooseResourceStore', 'openChooseResourceStoreModel', {
                     resOrderType: '20000',
-                    shId: $that.allocationStorehouseApplyInfo.shId
+                    shId: $that.allocationStorehouseApplyInfo.shId,
+                    isAllocation:true
                 });
             },
             _listAllocationStorehouse: function(_page, _rows) {
+                //communityId: vc.getCurrentCommunity().communityId
                 let param = {
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                       
                     }
                 };
                 //发送get请求
@@ -210,7 +215,8 @@
                         // 存储价格对应库存，方便校验库存
                         $that.allocationStorehouseApplyInfo.resourceStores[index].selectedStock = item.stock;
                     }
-                })
+                });
+                $that.$forceUpdate();
             },
             _getTimesStock: function(_resourceStore) {
                 if (!_resourceStore.timesId) {
@@ -259,6 +265,9 @@
                         }
                         let _data = _staffInfo.data;
                         vc.copyObject(_data[0], $that.allocationStorehouseApplyInfo.audit);
+                        if(!_data[0].assignee.startsWith('-')){
+                            $that.allocationStorehouseApplyInfo.audit.staffId = $that.allocationStorehouseApplyInfo.audit.assignee;
+                        }
                     },
                     function() {
                         console.log('请求失败处理');

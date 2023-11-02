@@ -14,7 +14,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <!--费用类型-->
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select class="custom-select" v-model="reportOwnerPayFeeInfo.conditions.feeTypeCd"
                                     @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">{{vc.i18n('请选择收费大类','reportOwnerPayFee')}}</option>
@@ -23,7 +23,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
@@ -35,12 +35,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-md"
                                        :placeholder="vc.i18n('请填写房屋编号','reportOwnerPayFee')" @input="_meterInputRoom()"
                                        v-model="reportOwnerPayFeeInfo.conditions.roomName">
                                 <vc:create path="property/inputSearchRoom"></vc:create>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-md"
+                                       :placeholder="vc.i18n('请填写业主名称','reportOwnerPayFee')" @input="_meterInputOwner()"
+                                       v-model="reportOwnerPayFeeInfo.conditions.ownerName">
+                                <vc:create path="property/inputSearchOwner"></vc:create>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -56,18 +65,10 @@
                     </div>
                     <div class="row" v-show="reportOwnerPayFeeInfo.moreCondition == true">
                         <!--费用类型-->
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" class="form-control form-control-md"
                                    :placeholder="vc.i18n('请填写年份','reportOwnerPayFee')"
                                    v-model="reportOwnerPayFeeInfo.conditions.pfYear">
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-md"
-                                       :placeholder="vc.i18n('请填写业主名称','reportOwnerPayFee')" @input="_meterInputOwner()"
-                                       v-model="reportOwnerPayFeeInfo.conditions.ownerName">
-                                <vc:create path="property/inputSearchOwner"></vc:create>
-                            </div>
                         </div>
                     </div>
                 </div>

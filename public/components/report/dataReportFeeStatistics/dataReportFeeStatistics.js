@@ -15,6 +15,7 @@
                 startDate: '',
                 endDate: '',
                 feeTypeCd: '',
+                communityId:'',
                 feeAmount: '0'
             }
         },
@@ -28,6 +29,7 @@
             vc.on('dataReportFeeStatistics', 'switch', function(_data) {
                 $that.dataReportFeeStatisticsInfo.startDate = _data.startDate;
                 $that.dataReportFeeStatisticsInfo.endDate = _data.endDate;
+                $that.dataReportFeeStatisticsInfo.communityId = _data.communityId;
                 // $that._loadDataReportFeeStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
                 $that._loadFloors();
             });
@@ -43,7 +45,7 @@
             _loadDataReportFeeStatisticsData: function(_floorIds) {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportFeeStatisticsInfo.communityId,
                         startDate: $that.dataReportFeeStatisticsInfo.startDate,
                         endDate: $that.dataReportFeeStatisticsInfo.endDate,
                         feeTypeCd: $that.dataReportFeeStatisticsInfo.feeTypeCd,
@@ -70,7 +72,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.dataReportFeeStatisticsInfo.communityId
                     }
                 };
                 $that.dataReportFeeStatisticsInfo.fees = [];
@@ -117,7 +119,7 @@
                 }
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportFeeStatisticsInfo.communityId,
                         startDate: $that.dataReportFeeStatisticsInfo.startDate,
                         endDate: $that.dataReportFeeStatisticsInfo.endDate,
                         feeTypeCd: $that.dataReportFeeStatisticsInfo.feeTypeCd,

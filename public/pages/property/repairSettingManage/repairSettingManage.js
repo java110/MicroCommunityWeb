@@ -27,40 +27,40 @@
             }
         },
         _initMethod: function () {
-            vc.component._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
             vc.getDict('r_repair_setting', "repair_way", function (_data) {
-                vc.component.repairSettingManageInfo.repairWays = _data;
+                $that.repairSettingManageInfo.repairWays = _data;
             });
             //与字典表关联
             vc.getDict('r_repair_setting', "repair_setting_type", function (_data) {
-                vc.component.repairSettingManageInfo.repairSettingTypes = _data;
+                $that.repairSettingManageInfo.repairSettingTypes = _data;
             });
             //与字典表关联
             vc.getDict('r_repair_setting', "public_area", function (_data) {
-                vc.component.repairSettingManageInfo.publicAreas = _data;
+                $that.repairSettingManageInfo.publicAreas = _data;
             });
             //与字典表关联
             vc.getDict('r_repair_setting', "return_visit_flag", function (_data) {
-                vc.component.repairSettingManageInfo.returnVisitFlags = _data;
+                $that.repairSettingManageInfo.returnVisitFlags = _data;
             });
         },
         _initEvent: function () {
             vc.on('repairSettingManage', 'listRepairSetting', function (_param) {
-                vc.component._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listRepairSettings(_currentPage, DEFAULT_ROWS);
+                $that._listRepairSettings(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
             _listRepairSettings: function (_page, _rows) {
-                vc.component.repairSettingManageInfo.conditions.page = _page;
-                vc.component.repairSettingManageInfo.conditions.row = _rows;
-                vc.component.repairSettingManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.repairSettingManageInfo.conditions.page = _page;
+                $that.repairSettingManageInfo.conditions.row = _rows;
+                $that.repairSettingManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.repairSettingManageInfo.conditions
+                    params: $that.repairSettingManageInfo.conditions
                 };
                 //类型名称去空
                 param.params.repairTypeName = param.params.repairTypeName.trim();
@@ -71,12 +71,12 @@
                     param,
                     function (json, res) {
                         var _repairSettingManageInfo = JSON.parse(json);
-                        vc.component.repairSettingManageInfo.total = _repairSettingManageInfo.total;
-                        vc.component.repairSettingManageInfo.records = _repairSettingManageInfo.records;
-                        vc.component.repairSettingManageInfo.repairSettings = _repairSettingManageInfo.data;
+                        $that.repairSettingManageInfo.total = _repairSettingManageInfo.total;
+                        $that.repairSettingManageInfo.records = _repairSettingManageInfo.records;
+                        $that.repairSettingManageInfo.repairSettings = _repairSettingManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.repairSettingManageInfo.records,
-                            dataCount: vc.component.repairSettingManageInfo.total,
+                            total: $that.repairSettingManageInfo.records,
+                            dataCount: $that.repairSettingManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -87,12 +87,12 @@
             },
             //重置方法
             _resetListRepairSettings: function (_page, _rows) {
-                vc.component.repairSettingManageInfo.conditions.repairTypeName = '';
-                vc.component.repairSettingManageInfo.conditions.repairWay = '';
-                vc.component.repairSettingManageInfo.conditions.repairType = '';
-                vc.component.repairSettingManageInfo.conditions.repairSettingType = '';
-                vc.component.repairSettingManageInfo.conditions.publicArea = '';
-                vc.component.repairSettingManageInfo.conditions.returnVisitFlag = '';
+                $that.repairSettingManageInfo.conditions.repairTypeName = '';
+                $that.repairSettingManageInfo.conditions.repairWay = '';
+                $that.repairSettingManageInfo.conditions.repairType = '';
+                $that.repairSettingManageInfo.conditions.repairSettingType = '';
+                $that.repairSettingManageInfo.conditions.publicArea = '';
+                $that.repairSettingManageInfo.conditions.returnVisitFlag = '';
                 $that._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddRepairSettingModal: function () {
@@ -106,17 +106,17 @@
             },
             //查询
             _queryRepairSettingMethod: function () {
-                vc.component._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _queryResetRepairSettingMethod: function () {
-                vc.component._resetListRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._resetListRepairSettings(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.repairSettingManageInfo.moreCondition) {
-                    vc.component.repairSettingManageInfo.moreCondition = false;
+                if ($that.repairSettingManageInfo.moreCondition) {
+                    $that.repairSettingManageInfo.moreCondition = false;
                 } else {
-                    vc.component.repairSettingManageInfo.moreCondition = true;
+                    $that.repairSettingManageInfo.moreCondition = true;
                 }
             },
             _viewRepairTypeUser: function (_repairSetting) {

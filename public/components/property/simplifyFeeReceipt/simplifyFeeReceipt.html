@@ -2,8 +2,8 @@
     <div class="row margin-top-lg">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.objType"
-                    @change="_changeSimplifyFeeReceiptFeeTypeCd(simplifyFeeReceiptInfo.objType)">
-                <!--<option disabled value="">{{vc.i18n('请选择收费类型','simplifyFeeReceipt')}}</option>
+                @change="_changeSimplifyFeeReceiptFeeTypeCd(simplifyFeeReceiptInfo.objType)">
+                <option disabled value="">{{vc.i18n('请选择收费类型','simplifyFeeReceipt')}}</option>
                 <option selected value="3333">{{vc.i18n('房屋费','simplifyFeeReceipt')}}</option>
                 <option value="6666">{{vc.i18n('车位费','simplifyFeeReceipt')}}</option>
                 <option value="7777">{{vc.i18n('合同费','simplifyFeeReceipt')}}</option>-->
@@ -17,21 +17,16 @@
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType == '6666'">
             <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.carId"
-                    @change="changeSimplifyFeeReceiptCar()">
-                <option disabled value="">
-                    {{vc.i18n('请选择车辆','simplifyFeeReceipt')}}
-                </option>
-                <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerCars" :value="item.carId">
-                    {{item.carNum}}
+                @change="changeSimplifyFeeReceiptCar()">
+                <option disabled value="">{{vc.i18n('请选择车辆','simplifyFeeReceipt')}}</option>
+                <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerCars" :value="item.carId">{{item.carNum}}
                 </option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-else-if="simplifyFeeReceiptInfo.objType == '7777'">
             <select class="custom-select custom-select-sm" v-model="simplifyCarFeeInfo.contractId"
-                    @change="changeSimplifyFeeReceiptCar()">
-                <option disabled value="">
-                    {{vc.i18n('请选择合同','simplifyFeeReceipt')}}
-                </option>
+                @change="changeSimplifyFeeReceiptCar()">
+                <option disabled value="">{{vc.i18n('请选择合同','simplifyFeeReceipt')}}</option>
                 <option v-for="(item,index) in simplifyFeeReceiptInfo.ownerContracts" :value="item.contractId">
                     {{item.contractCode}}
                 </option>
@@ -39,94 +34,103 @@
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '7777'">
             <select class="custom-select custom-select-sm" v-model="simplifyFeeReceiptInfo.ownerFlag"
-                    @change="_queryFeeReceiptMethod()">
-                <option value="F">
-                    {{vc.i18n('当前','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}
+                @change="_queryFeeReceiptMethod()">
+                <option value="F">{{vc.i18n('当前','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType ==
+                    '6666'?'车辆':'房屋'}}
                 </option>
                 <option value="T">
                     {{vc.i18n('全部','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}
                 </option>
             </select>
         </div>
+        <div class="col-lg-1 padding-right-xs padding-left-xl input-group-sm">
+            <input v-model="simplifyFeeReceiptInfo.receiptCode" type="text"
+                :placeholder="vc.i18n('收据编号','simplifyFeeReceipt')" class="form-control ">
+        </div>
+        <div class="col-lg-1 padding-right-xs padding-left-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_queryFeeReceiptMethod()">查询
+            </button>
+        </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType != '6666' ">
         </div>
-        <div class="col-lg-6 text-right padding-right-lg">
+        <div class="col-lg-4 text-right padding-right-lg">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_printFeeReceipt()">
-                <i class="fa fa-print"></i>打印
+                v-on:click="_printFeeReceipt()">打印
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_printFeeSmallReceipt()">
-                <i class="fa fa-print"></i>打印小票
+                v-on:click="_printFeeSmallReceipt()">打印小票
             </button>
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_printApplyFeeReceipt()">
-                <i class="fa fa-plus"></i>申请单
+                v-on:click="_printApplyFeeReceipt()">申请单
             </button>
         </div>
     </div>
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
             <thead>
-            <tr>
-                <th class="text-center">
-                    <input type="checkbox" class="i-checks" v-bind:checked="simplifyFeeReceiptInfo.quan == true"
-                           @click="checkAllReceipt($event)">
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="收据" namespace="simplifyFeeReceipt"></vc:i18n></span>ID
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="收据编号" namespace="simplifyFeeReceipt"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="费用类型" namespace="simplifyFeeReceipt"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    {{_getFeeObjName(simplifyFeeReceiptInfo.objType)}}
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="业主" namespace="simplifyFeeReceipt"></vc:i18n></span>
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="费用项目" namespace="simplifyFeeReceipt"></vc:i18n></span>
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="收费时间段" namespace="simplifyFeeReceipt"></vc:i18n></span>
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="总金额" namespace="simplifyFeeReceipt"></vc:i18n></span>
-                </th>
-                <th class="text-center">
-                    <span><vc:i18n name="缴费时间" namespace="simplifyFeeReceipt"></vc:i18n></span>
-                </th>
-            </tr>
+                <tr>
+                    <th class="text-center">
+                        <input type="checkbox" class="i-checks" v-bind:checked="simplifyFeeReceiptInfo.quan == true"
+                            @click="checkAllReceipt($event)">
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收据编号" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用类型" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        {{_getFeeObjName(simplifyFeeReceiptInfo.objType)}}
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="业主" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用项目" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收费时间段" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="总金额" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="缴费时间" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="收据ID" namespace="simplifyFeeReceipt"></vc:i18n>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            <tr v-for="feeReceipt in simplifyFeeReceiptInfo.feeReceipts">
-                <td class="text-center">
-                    <input type="checkbox" class="i-checks checReceiptItem" v-bind:value="feeReceipt.receiptId"
-                           v-model="simplifyFeeReceiptInfo.selectReceipts">
-                </td>
-                <td class="text-center">{{feeReceipt.receiptId}}</td>
-                <td class="text-center">{{feeReceipt.receiptCode}}</td>
-                <td class="text-center">
-                    {{_getFeeObjName(feeReceipt.objType)}}费
-                </td>
-                <td class="text-center">{{feeReceipt.objName}}</td>
-                <td class="text-center">{{feeReceipt.payObjName}}</td>
-                <td class="text-center">{{feeReceipt.feeName}}</td>
-                <td class="text-center">{{vc.dateFormat(feeReceipt.startTime)}}~<br/>
-                    <span class="text-center" v-if="feeReceipt.startTime >= feeReceipt.endTime">
-                        {{vc.dateFormat(feeReceipt.endTime)}}
-                    </span>
-                    <span class="text-center" v-else>
-                        {{vc.dateSubOneDay(vc.dateFormat(feeReceipt.endTime),vc.dateFormat(feeReceipt.endTime),feeReceipt.feeFlag)}}
-                    </span>
-                </td>
-                <td class="text-center">{{feeReceipt.amount}}元</td>
-                <td class="text-center">{{feeReceipt.createTime}}</td>
-            </tr>
+                <tr v-for="feeReceipt in simplifyFeeReceiptInfo.feeReceipts">
+                    <td class="text-center">
+                        <input type="checkbox" class="i-checks checReceiptItem" v-bind:value="feeReceipt.receiptId"
+                            v-model="simplifyFeeReceiptInfo.selectReceipts">
+                    </td>
+                    <td class="text-center">{{feeReceipt.receiptCode}}
+                    </td>
+                    <td class="text-center">{{_getFeeObjName(feeReceipt.objType)}}
+                        <span>
+                            <vc:i18n name="费" namespace="simplifyFeeReceipt"></vc:i18n>
+                        </span>
+                    </td>
+                    <td class="text-center">{{feeReceipt.objName}}</td>
+                    <td class="text-center">{{feeReceipt.payObjName}}</td>
+                    <td class="text-center">{{feeReceipt.feeName}}</td>
+                    <td class="text-center">{{vc.dateFormat(feeReceipt.startTime)}}~<br />
+                        <span class="text-center" v-if="feeReceipt.startTime >= feeReceipt.endTime">
+                            {{vc.dateFormat(feeReceipt.endTime)}}
+                        </span>
+                        <span class="text-center" v-else>
+                            {{vc.dateSubOneDay(vc.dateFormat(feeReceipt.endTime),vc.dateFormat(feeReceipt.endTime),feeReceipt.feeFlag)}}
+                        </span>
+                    </td>
+                    <td class="text-center">{{feeReceipt.amount}}元</td>
+                    <td class="text-center">{{feeReceipt.createTime}}</td>
+                    <td class="text-center">{{feeReceipt.receiptId}}</td>
+                </tr>
             </tbody>
             <tfoot>
             <tr>

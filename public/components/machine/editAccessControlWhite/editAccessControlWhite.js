@@ -28,38 +28,26 @@
         },
         _initEvent: function () {
             vc.on('editAccessControlWhite', 'openEditAccessControlWhiteModal', function (_params) {
-                vc.component.refreshEditAccessControlWhiteInfo();
+                $that.refreshEditAccessControlWhiteInfo();
                 $('#editAccessControlWhiteModel').modal('show');
-                vc.copyObject(_params, vc.component.editAccessControlWhiteInfo);
+                vc.copyObject(_params, $that.editAccessControlWhiteInfo);
                 $that.editAccessControlWhiteInfo.photo = _params.personFace;
-                vc.component.editAccessControlWhiteInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.editAccessControlWhiteInfo.communityId = vc.getCurrentCommunity().communityId;
                 let _photos = [];
                 _photos.push(_params.personFace);
                 vc.emit('editAccessControlWhite', 'uploadImageUrl', 'notifyPhotos', _photos);
             });
             vc.on("editAccessControlWhite", "notifyUploadImage", function (_param) {
                 if (_param.length > 0) {
-                    vc.component.editAccessControlWhiteInfo.photo = _param[0].url;
+                    $that.editAccessControlWhiteInfo.photo = _param[0].url;
                 }
             });
         },
         methods: {
             editAccessControlWhiteValidate: function () {
                 return vc.validate.validate({
-                    editAccessControlWhiteInfo: vc.component.editAccessControlWhiteInfo
+                    editAccessControlWhiteInfo: $that.editAccessControlWhiteInfo
                 }, {
-                    'editAccessControlWhiteInfo.machineId': [
-                        {
-                            limit: "required",
-                            param: "",
-                            errInfo: "设备不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "30",
-                            errInfo: "设备不能超过30"
-                        }
-                    ],
                     'editAccessControlWhiteInfo.personName': [
                         {
                             limit: "required",
@@ -144,13 +132,13 @@
                 });
             },
             editAccessControlWhite: function () {
-                if (!vc.component.editAccessControlWhiteValidate()) {
+                if (!$that.editAccessControlWhiteValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost(
                     '/machine.updateAccessControlWhite',
-                    JSON.stringify(vc.component.editAccessControlWhiteInfo),
+                    JSON.stringify($that.editAccessControlWhiteInfo),
                     {
                         emulateJSON: true
                     },
@@ -174,7 +162,7 @@
             },
             refreshEditAccessControlWhiteInfo: function () {
                 let _personTypes = $that.editAccessControlWhiteInfo.personTypes;
-                vc.component.editAccessControlWhiteInfo = {
+                $that.editAccessControlWhiteInfo = {
                     acwId: '',
                     personName: '',
                     tel: '',
@@ -212,4 +200,4 @@
             },
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

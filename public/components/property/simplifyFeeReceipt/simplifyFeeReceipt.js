@@ -3,7 +3,7 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 50;
     vc.extends({
         data: {
             simplifyFeeReceiptInfo: {
@@ -13,6 +13,7 @@
                 payObjId: '',
                 roomId: '',
                 carId: '',
+                receiptCode:'',
                 total: '',
                 records: '',
                 ownerId: '',
@@ -76,12 +77,13 @@
                 } else {
                     _objId = $that.simplifyFeeReceiptInfo.contractId
                 }
-                var param = {
+                let param = {
                     params: {
                         page: _page,
                         row: _rows,
                         objType: $that.simplifyFeeReceiptInfo.objType,
                         objId: _objId,
+                        receiptCode:$that.simplifyFeeReceiptInfo.receiptCode,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
@@ -161,6 +163,7 @@
                     objId: '',
                     roomId: '',
                     carId: '',
+                    receiptCode:'',
                     total: '',
                     records: '',
                     ownerId: '',

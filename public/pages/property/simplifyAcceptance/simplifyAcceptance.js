@@ -72,6 +72,12 @@
                 $that.simplifyAcceptanceInfo.searchValue = _param.roomName;
                 $that.simplifyAcceptanceInfo.searchPlaceholder = "请输入房屋编号 楼栋-单元-房屋 如1-1-1";
                 $that._doSearch();
+            });
+            vc.on('simplifyAcceptance', 'doSearch', function (_tab) {
+                $that._doSearch();
+                setTimeout(function(){
+                    $that.changeTab(_tab)
+                },2000)
             })
         },
         methods: {

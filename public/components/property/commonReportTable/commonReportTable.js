@@ -21,7 +21,12 @@
                 $that._listReportCustomTableComponent();
             })
             vc.on('commonReportTable', 'paginationPlus', 'page_event', function (_currentPage) {
-                vc.component._listReportCustomTableDatas(_currentPage, DEFAULT_ROWS, $that.commonReportTableInfo.components[0]);
+                let item = $that.commonReportTableInfo.components[0];
+                let _condition = {};
+                item.conditions.forEach(_item => {
+                    _condition[_item.param] = _item.value;
+                })
+                $that._listReportCustomTableDatas(_currentPage, DEFAULT_ROWS, $that.commonReportTableInfo.components[0],_condition);
             });
         },
         methods: {

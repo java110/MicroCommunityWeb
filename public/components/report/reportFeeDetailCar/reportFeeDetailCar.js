@@ -58,11 +58,11 @@
                     }
                 );
             },
-            _exportReportFeeDetailCarExcel: function () {
-                vc.component.reportFeeDetailCarInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.reportFeeDetailCarInfo.conditions.pagePath = 'reportFeeDetailCar';
+            _exportReportFeeDetailCarExcel: function() {
+                //$that.reportFeeDetailCarInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.reportFeeDetailCarInfo.conditions.pagePath = 'reportFeeDetailCar';
                 let param = {
-                    params: vc.component.reportFeeDetailCarInfo.conditions
+                    params: $that.reportFeeDetailCarInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,

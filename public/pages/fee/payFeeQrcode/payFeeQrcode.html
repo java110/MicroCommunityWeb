@@ -50,47 +50,55 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">
-                                <vc:i18n name='名称' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='查询方式' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='验证' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='自定义缴费' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='预交费' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='创建人' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='创建时间' namespace='payFeeQrcode'></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name='操作'></vc:i18n>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name='名称' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='查询方式' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='验证' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='自定义缴费' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='展示费用' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='状态' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <!-- <th class="text-center">
+                                    <vc:i18n name='预交费' namespace='payFeeQrcode'></vc:i18n>
+                                </th> -->
+                                <th class="text-center">
+                                    <vc:i18n name='创建人' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='创建时间' namespace='payFeeQrcode'></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name='操作'></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFeeQrcode in payFeeQrcodeInfo.payFeeQrcodes">
-                            <td class="text-center">{{payFeeQrcode.qrcodeName}}</td>
-                            <td class="text-center" v-if="payFeeQrcode.queryWay == '1001'">按业主手机号</td>
-                            <td class="text-center" v-else-if="payFeeQrcode.queryWay == '2002'">按房屋</td>
-                            <td class="text-center" v-else>按房屋或者业主手机号</td>
-                            <td class="text-center">{{payFeeQrcode.smsValidate == 'ON'?'短信验证码验证':'否'}}</td>
-                            <td class="text-center">{{payFeeQrcode.customFee == 'ON'?'是':'否'}}</td>
-                            <td class="text-center">{{payFeeQrcode.preFee == 'ON'?'是':'否'}}</td>
-                            <td class="text-center">{{payFeeQrcode.createStaffName}}</td>
-                            <td class="text-center">{{payFeeQrcode.createTime}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
+                            <tr v-for="payFeeQrcode in payFeeQrcodeInfo.payFeeQrcodes">
+                                <td class="text-center">{{payFeeQrcode.qrcodeName}}</td>
+                                <td class="text-center" v-if="payFeeQrcode.queryWay == '1001'">按业主手机号</td>
+                                <td class="text-center" v-else-if="payFeeQrcode.queryWay == '2002'">按房屋</td>
+                                <td class="text-center" v-else>按房屋或者业主手机号</td>
+                                <td class="text-center">{{payFeeQrcode.smsValidate == 'ON'?'短信验证码验证':'否'}}</td>
+                                <td class="text-center">{{payFeeQrcode.customFee == 'ON'?'是':'否'}}</td>
+                                <td class="text-center">{{payFeeQrcode.feeType == 'OWNER'?'业主费用':'房屋费用'}}</td>
+                                <td class="text-center">{{payFeeQrcode.state == 'ON'?'启用':'停用'}}</td>
+                                <!-- <td class="text-center">{{payFeeQrcode.preFee == 'ON'?'是':'否'}}</td> -->
+                                <td class="text-center">{{payFeeQrcode.createStaffName}}</td>
+                                <td class="text-center">{{payFeeQrcode.createTime}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
                                             v-on:click="_openViewPayFeeQrcodeModel(payFeeQrcode)">
                                         <vc:i18n name='二维码'></vc:i18n>
                                     </button>

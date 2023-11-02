@@ -59,11 +59,11 @@
                     }
                 );
             },
-            _exportReportFeeDetailOwnerExcel: function () {
-                vc.component.reportFeeDetailOwnerInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.reportFeeDetailOwnerInfo.conditions.pagePath = 'reportFeeDetailOwner';
+            _exportReportFeeDetailOwnerExcel: function() {
+                //$that.reportFeeDetailOwnerInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.reportFeeDetailOwnerInfo.conditions.pagePath = 'reportFeeDetailOwner';
                 let param = {
-                    params: vc.component.reportFeeDetailOwnerInfo.conditions
+                    params: $that.reportFeeDetailOwnerInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,

@@ -9,9 +9,13 @@
             }
         },
         _initMethod: function () {
-            $that._loadPropertyIndexNotices();
+           
         },
-        _initEvent: function() {},
+        _initEvent: function() {
+            vc.on('indexNotice','initData',function(){
+                $that._loadPropertyIndexNotices();
+            })
+        },
         methods: {
             _loadPropertyIndexNotices: function() {
                 let param = {

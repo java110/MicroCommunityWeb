@@ -1,84 +1,114 @@
-<div id="roomsImportTempFeeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="roomsImportTempFeeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="临时收费" namespace="roomsImportTempFee"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="临时收费" namespace="roomsImportTempFee"></vc:i18n>
+                </h3>
                 <div class="ibox-content">
-                    <div>
-                        <div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="房屋" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-model="roomsImportTempFeeInfo.objId" >
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择房屋','roomsImportTempFee')}}</option>
-                                        <option v-for="(item,index) in roomsImportTempFeeInfo.rooms" :key="index"
-                                            v-bind:value="item.roomId" >
-                                            {{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用类型" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" v-model="roomsImportTempFeeInfo.feeTypeCd" @change="_changeFeeTypeCd(roomsImportTempFeeInfo.feeTypeCd)">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择费用类型','roomsImportTempFee')}}</option>
-                                        <option v-for="(item,index) in roomsImportTempFeeInfo.feeTypeCds" :key="index"
-                                            v-bind:value="item.statusCd" >
-                                            {{item.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row" v-if="roomsImportTempFeeInfo.feeNameFlag == 'S'">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name="费用名称" namespace="roomsImportTempFee"></vc:i18n></span></label>
-                                <div class="col-sm-8">
-                                    <select class="custom-select" v-model="roomsImportTempFeeInfo.feeName">
-                                        <option selected disabled value="">{{vc.i18n('必填','roomsImportTempFee')}}，请选择收费项目</option>
-                                        <option v-for="(item,index) in roomsImportTempFeeInfo.feeConfigs" :key="index"
-                                                v-bind:value="item.feeName">{{item.feeName}}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button type="button" class="btn btn-white" @click="_inputFeeName()"><vc:i18n name="输入" namespace="roomsImportTempFee"></vc:i18n></button>
-                                </div>
-                            </div>
-                            <div class="form-group row" v-else>
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="费用名称" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-8">
-                                    <input v-model="roomsImportTempFeeInfo.feeName" type="text" :placeholder="vc.i18n('必填，请填写费用名称','roomsImportTempFee')" class="form-control ">
-                                </div>
-                                <div class="col-sm-2">
-                                    <button type="button" class="btn btn-white" @click="_inputFeeName()"><vc:i18n name="选择" namespace="roomsImportTempFee"></vc:i18n></button>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="收费金额" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-10">
-                                    <input v-model="roomsImportTempFeeInfo.amount" type="text" :placeholder="vc.i18n('必填，请填写收费金额','roomsImportTempFee')" class="form-control ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="开始时间" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-10">
-                                    <input v-model="roomsImportTempFeeInfo.startTime" type="text" :placeholder="vc.i18n('必填，请填写开始时间','roomsImportTempFee')" class="form-control tempImportFeeStartTime">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><vc:i18n name="结束时间" namespace="roomsImportTempFee"></vc:i18n></label>
-                                <div class="col-sm-10">
-                                    <input v-model="roomsImportTempFeeInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','roomsImportTempFee')" class="form-control tempImportFeeEndTime">
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="_saveTempImportFeeInfo()"><i
-                                        class="fa fa-check"></i>&nbsp;提交
-                                </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span><vc:i18n name="取消" namespace="roomsImportTempFee"></vc:i18n></span>
-                                </button>
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="房屋" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" v-model="roomsImportTempFeeInfo.objId">
+                                <option selected disabled value="">{{vc.i18n('必填，请选择房屋','roomsImportTempFee')}}
+                                </option>
+                                <option v-for="(item,index) in roomsImportTempFeeInfo.rooms" :key="index"
+                                    v-bind:value="item.roomId">
+                                    {{item.floorNum}}-{{item.unitNum}}-{{item.roomNum}}
+                                </option>
+                            </select>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="费用类型" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" v-model="roomsImportTempFeeInfo.feeTypeCd"
+                                @change="_changeFeeTypeCd(roomsImportTempFeeInfo.feeTypeCd)">
+                                <option selected disabled value="">
+                                    {{vc.i18n('必填，请选择费用类型','roomsImportTempFee')}}</option>
+                                <option v-for="(item,index) in roomsImportTempFeeInfo.feeTypeCds" :key="index"
+                                    v-bind:value="item.statusCd">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" v-if="roomsImportTempFeeInfo.feeNameFlag == 'S'">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="费用名称" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="custom-select" v-model="roomsImportTempFeeInfo.feeName">
+                                <option selected disabled value="">
+                                    {{vc.i18n('必填，请选择收费项目','roomsImportTempFee')}}</option>
+                                <option v-for="(item,index) in roomsImportTempFeeInfo.feeConfigs" :key="index"
+                                    v-bind:value="item.feeName">{{item.feeName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-white" @click="_inputFeeName()">
+                                <vc:i18n name="输入" namespace="roomsImportTempFee"></vc:i18n>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group row" v-else>
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="费用名称" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-8">
+                            <input v-model="roomsImportTempFeeInfo.feeName" type="text"
+                                :placeholder="vc.i18n('必填，请填写费用名称','roomsImportTempFee')" class="form-control ">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-white" @click="_inputFeeName()">
+                                <vc:i18n name="选择" namespace="roomsImportTempFee"></vc:i18n>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="收费金额" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <input v-model="roomsImportTempFeeInfo.amount" type="text"
+                                :placeholder="vc.i18n('必填，请填写收费金额','roomsImportTempFee')" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="开始时间" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <input v-model="roomsImportTempFeeInfo.startTime" type="text"
+                                :placeholder="vc.i18n('必填，请填写开始时间','roomsImportTempFee')"
+                                class="form-control tempImportFeeStartTime">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="结束时间" namespace="roomsImportTempFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <input v-model="roomsImportTempFeeInfo.endTime" type="text"
+                                :placeholder="vc.i18n('必填，请填写结束时间','roomsImportTempFee')"
+                                class="form-control tempImportFeeEndTime">
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button class="btn btn-primary float-right" type="button"
+                            v-on:click="_saveTempImportFeeInfo()"><i class="fa fa-check"></i>&nbsp;提交
+                        </button>
+                        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                            data-dismiss="modal"><span>
+                                <vc:i18n name="取消" namespace="roomsImportTempFee"></vc:i18n>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>

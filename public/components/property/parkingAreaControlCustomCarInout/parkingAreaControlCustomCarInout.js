@@ -27,18 +27,18 @@
         },
         _initEvent: function () {
             vc.on('parkingAreaControlCustomCarInout', 'open', function (_params) {
-                vc.component.refreshParkingAreaControlCustomCarInoutInfo();
+                $that.refreshParkingAreaControlCustomCarInoutInfo();
                 $('#parkingAreaControlCustomCarInoutModel').modal('show');
                 // = _params;
-                vc.copyObject(_params, vc.component.parkingAreaControlCustomCarInoutInfo);
-                vc.component.parkingAreaControlCustomCarInoutInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.copyObject(_params, $that.parkingAreaControlCustomCarInoutInfo);
+                $that.parkingAreaControlCustomCarInoutInfo.communityId = vc.getCurrentCommunity().communityId;
                 $that._queryCustomCarMoney();
             });
         },
         methods: {
             parkingAreaControlCustomCarInoutValidate: function () {
                 return vc.validate.validate({
-                    parkingAreaControlCustomCarInoutInfo: vc.component.parkingAreaControlCustomCarInoutInfo
+                    parkingAreaControlCustomCarInoutInfo: $that.parkingAreaControlCustomCarInoutInfo
                 }, {
                     'parkingAreaControlCustomCarInoutInfo.carNum': [{
                         limit: "required",
@@ -48,13 +48,13 @@
                 });
             },
             parkingAreaControlCustomCarInout: function () {
-                if (!vc.component.parkingAreaControlCustomCarInoutValidate()) {
+                if (!$that.parkingAreaControlCustomCarInoutValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost(
                     '/machine.customCarInOutCmd',
-                    JSON.stringify(vc.component.parkingAreaControlCustomCarInoutInfo), {
+                    JSON.stringify($that.parkingAreaControlCustomCarInoutInfo), {
                     emulateJSON: true
                 },
                     function (json, res) {
@@ -76,7 +76,7 @@
             },
             refreshParkingAreaControlCustomCarInoutInfo: function () {
                 let _payTypes = $that.parkingAreaControlCustomCarInoutInfo.payTypes;
-                vc.component.parkingAreaControlCustomCarInoutInfo = {
+                $that.parkingAreaControlCustomCarInoutInfo = {
                     carNum: '',
                     amount: '',
                     remark: '',
@@ -217,4 +217,4 @@
         }
     });
 
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

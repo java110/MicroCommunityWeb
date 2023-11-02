@@ -28,7 +28,7 @@
         methods: {
             addCouponPropertyPoolValidate() {
                 return vc.validate.validate({
-                    addCouponPropertyPoolInfo: vc.component.addCouponPropertyPoolInfo
+                    addCouponPropertyPoolInfo: $that.addCouponPropertyPoolInfo
                 }, {
                     'addCouponPropertyPoolInfo.couponName': [{
                             limit: "required",
@@ -88,17 +88,17 @@
                 });
             },
             saveCouponPropertyPoolInfo: function() {
-                if (!vc.component.addCouponPropertyPoolValidate()) {
+                if (!$that.addCouponPropertyPoolValidate()) {
                     vc.toast(vc.validate.errInfo);
 
                     return;
                 }
 
-                vc.component.addCouponPropertyPoolInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.addCouponPropertyPoolInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.apiPost(
                     '/couponProperty.saveCouponPropertyPool',
-                    JSON.stringify(vc.component.addCouponPropertyPoolInfo), {
+                    JSON.stringify($that.addCouponPropertyPoolInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -107,23 +107,23 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#addCouponPropertyPoolModel').modal('hide');
-                            vc.component.clearAddCouponPropertyPoolInfo();
+                            $that.clearAddCouponPropertyPoolInfo();
                             vc.emit('couponPropertyPoolManage', 'listCouponPropertyPool', {});
 
                             return;
                         }
-                        vc.message(_json.msg);
+                        vc.toast(_json.msg);
 
                     },
                     function(errInfo, error) {
                         console.log('请求失败处理');
 
-                        vc.message(errInfo);
+                        vc.toast(errInfo);
 
                     });
             },
             clearAddCouponPropertyPoolInfo: function() {
-                vc.component.addCouponPropertyPoolInfo = {
+                $that.addCouponPropertyPoolInfo = {
                     couponName: '',
                     fromType: '2002',
                     toType: '',

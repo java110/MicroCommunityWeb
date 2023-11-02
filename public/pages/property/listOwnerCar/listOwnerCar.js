@@ -23,32 +23,36 @@
                     memberCarNumLike: ''
                 },
                 listColumns: []
+                currentPage: DEFAULT_PAGE,
+                listColumns: [],
             }
         },
         _initMethod: function () {
             $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function () {
-            vc.on('listOwnerCar', 'listOwnerCarData', function () {
-                $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+        _initEvent: function() {
+            vc.on('listOwnerCar', 'listOwnerCarData', function() {
+                $that._listOwnerCar($that.listOwnerCarInfo.currentPage, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function (_currentPage) {
+            vc.on('pagination', 'page_event', function(_currentPage) {
+                $that.listOwnerCarInfo.currentPage = _currentPage;
+
                 $that._listOwnerCar(_currentPage, DEFAULT_ROWS);
             });
             //与字典表关联
-            vc.getDict('owner_car', "car_type_cd", function (_data) {
-                vc.component.listOwnerCarInfo.carTypeCds = _data;
+            vc.getDict('owner_car', "car_type_cd", function(_data) {
+                $that.listOwnerCarInfo.carTypeCds = _data;
             });
             //与字典表关联
-            vc.getDict('owner_car', "lease_type", function (_data) {
-                vc.component.listOwnerCarInfo.leaseTypes = [{
+            vc.getDict('owner_car', "lease_type", function(_data) {
+                $that.listOwnerCarInfo.leaseTypes = [{
                     statusCd: '',
                     name: '全部车辆'
                 }];
                 _data.forEach(item => {
-                    vc.component.listOwnerCarInfo.leaseTypes.push(item);
+                    $that.listOwnerCarInfo.leaseTypes.push(item);
                 });
-                vc.component.listOwnerCarInfo.leaseTypes.push({
+                $that.listOwnerCarInfo.leaseTypes.push({
                     statusCd: 'expireCar',
                     name: '到期车辆'
                 })
@@ -57,7 +61,8 @@
         methods: {
             swatchLeaseType: function (_item) {
                 $that.listOwnerCarInfo.conditions.leaseType = _item.statusCd;
-                vc.component._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.listOwnerCarInfo.currentPage = DEFAULT_PAGE;
+                $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _listOwnerCar: function (_page, _row) {
                 let _params = vc.deepClone($that.listOwnerCarInfo.conditions);
@@ -78,8 +83,8 @@
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwnerCars',
                     param,
-                    function (json, res) {
-                        var _json = JSON.parse(json);
+                    function(json, res) {
+                        let _json = JSON.parse(json);
                         $that.listOwnerCarInfo.total = _json.total;
                         $that.listOwnerCarInfo.records = _json.records;
                         $that.listOwnerCarInfo.ownerCars = _json.data;
@@ -106,13 +111,14 @@
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetMethod: function () {
-                vc.component.listOwnerCarInfo.conditions.carNumLike = "";
-                vc.component.listOwnerCarInfo.conditions.num = "";
-                vc.component.listOwnerCarInfo.conditions.valid = "";
-                vc.component.listOwnerCarInfo.conditions.leaseType = "H";
-                vc.component.listOwnerCarInfo.conditions.ownerName = "";
-                vc.component.listOwnerCarInfo.conditions.link = "";
+            _resetMethod: function() {
+                $that.listOwnerCarInfo.conditions.carNumLike = "";
+                $that.listOwnerCarInfo.conditions.num = "";
+                $that.listOwnerCarInfo.conditions.valid = "";
+                $that.listOwnerCarInfo.conditions.leaseType = "H";
+                $that.listOwnerCarInfo.conditions.ownerName = "";
+                $that.listOwnerCarInfo.conditions.link = "";
+                $that.listOwnerCarInfo.currentPage = DEFAULT_PAGE;
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {

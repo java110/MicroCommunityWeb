@@ -1,0 +1,30 @@
+<div class="modal fade" id="deleteFeeRuleModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <span><vc:i18n name="请确认您的操作" namespace="deleteFeeRule"></vc:i18n></span>!
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <tr align="center">
+                    <th>
+                        <vc:i18n name="确定删除账单规则，删除账单规则时，相关费用及缴费记录也会被删除！" namespace="deleteFeeRule"></vc:i18n>
+                    </th>
+                </tr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="closeDeleteFeeRuleModel()">
+                    <span><vc:i18n name="点错了" namespace="deleteFeeRule"></vc:i18n></span>
+                </button>
+                <button type="button" class="btn btn-primary" v-on:click="deleteFeeRule()">
+                    <span><vc:i18n name="确认删除" namespace="deleteFeeRule"></vc:i18n></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,7 +25,7 @@
         },
         methods: {
             listEnterCommunity: function (_page, _row) {
-                var param = {
+                let param = {
                     params: {
                         _uid: '123mlkdinkldldijdhuudjdjkkd',
                         page: _page,

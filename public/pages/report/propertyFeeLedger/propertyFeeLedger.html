@@ -1,0 +1,183 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="propertyFeeLedger"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择缴费开始时间','propertyFeeLedger')"
+                                    v-model="propertyFeeLedgerInfo.conditions.startTime"
+                                    class="form-control form_datetime  start_time">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择缴费结束时间','propertyFeeLedger')"
+                                    v-model="propertyFeeLedgerInfo.conditions.endTime"
+                                    class="form-control form_datetime  end_time">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <input size="16" type="text" :placeholder="vc.i18n('请填写员工姓名','propertyFeeLedger')"
+                                v-model="propertyFeeLedgerInfo.conditions.userName" class="form-control">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryPayFeeMethod()">
+                                <vc:i18n name="查询" namespace="propertyFeeLedger"></vc:i18n>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="物业费台账" namespace="propertyFeeLedger"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-plus"></i>
+                            <span>
+                                <vc:i18n name="导出" namespace="propertyFeeLedger"></vc:i18n>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="hc-table-div" :style="{'width':_computeTableDivWidth()}">
+                        <table class="table table-bordered" data-page-size="15">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="物业公司" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="小区名称" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="业主名称" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="性别" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="电话号码" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="房屋编号" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="交付时间" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="房屋状态" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="建筑面积" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="物业费单价" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="月物业费" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" rowspan="2">
+                                        <vc:i18n name="最后缴费时间" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" colspan="6">
+                                        <vc:i18n name="当期物业费" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center" colspan="6" v-for="month in 12">
+                                       {{new Date().getFullYear()}}年{{month}}月
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name="年累饱和应收总金额" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="实收总金额" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="减免总金额" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="欠费总金额" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="收费率" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="欠费原因" namespace="propertyFeeLedger"></vc:i18n>
+                                    </th>					
+                                    <template v-for="month in 12">
+                                        <th class="text-center">
+                                            账单编号
+                                        </th>
+                                        <th class="text-center">
+                                            应收金额
+                                        </th>
+                                        <th class="text-center">
+                                            实收金额
+                                        </th>
+                                        <th class="text-center">
+                                           减免金额
+                                        </th>
+                                        <th class="text-center">
+                                            欠费金额
+                                        </th>
+                                        <th class="text-center">
+                                            缴费状态
+                                        </th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="payFee in propertyFeeLedgerInfo.payFees">
+                                    <td class="text-center">{{payFee.feeTypeCdName}}</td>
+                                    <td class="text-center">{{payFee.feeName}}</td>
+                                    <td class="text-center">{{payFee.payObjName}}</td>
+                                    <td class="text-center">{{payFee.detailId}}</td>
+                                    <td class="text-center">{{payFee.primeRate}}</td>
+                                    <td class="text-center">{{payFee.cycles}}</td>
+                                    <td class="text-center">{{payFee.receivableAmount}}</td>
+                                    <td class="text-center">{{payFee.receivedAmount}}</td>
+                                    <td class="text-center">{{payFee.userName}}</td>
+                                    <td class="text-center">{{payFee.createTime}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)">
+                                            <span>
+                                                <vc:i18n name="详情" namespace="propertyFeeLedger"></vc:i18n>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8 text-center">
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

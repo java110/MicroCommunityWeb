@@ -1,0 +1,165 @@
+<div class="">
+    <div class="white-bg padding-left padding-right padding-top border-radius-top">
+        <div class="flex justify-between">
+            <div class="text-title">
+                发票详情
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
+                    <vc:i18n name="返回"></vc:i18n>
+                </button>
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="编号：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.applyId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发票类型：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceType == '1001'?'个人':'企业'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="业主名称：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.ownerName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="申请人：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label
+                                    class="">{{invoiceApplyDetailInfo.createUserName}}({{invoiceApplyDetailInfo.applyTel}})</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发票名头：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="纳税人识别号：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceNum}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="地址、电话：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceAddress}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="申请金额：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceAmount}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="审核状态：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="申请时间：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.createTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发票编号：" namespace="invoiceApplyDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{invoiceApplyDetailInfo.invoiceCode || '未上传'}}</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vc-line-primary margin-top"></div>
+
+        <div class="margin-top-sm">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link"
+                        v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailFee'}"
+                        v-on:click="changeTab('invoiceApplyDetailFee')">
+                        <vc:i18n name="开票明细" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailEvent'}"
+                        v-on:click="changeTab('invoiceApplyDetailEvent')">
+                        <vc:i18n name="审核记录" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        v-bind:class="{active:invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailJpg'}"
+                        v-on:click="changeTab('invoiceApplyDetailJpg')">
+                        <vc:i18n name="查看发票" namespace="invoiceApplyDetail"></vc:i18n>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailFee'">
+            <vc:create path="fee/invoiceApplyDetailFee"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailEvent'">
+            <vc:create path="fee/invoiceApplyDetailEvent"></vc:create>
+        </div>
+        <div v-if="invoiceApplyDetailInfo._currentTab == 'invoiceApplyDetailJpg'">
+            <div v-if="invoiceApplyDetailInfo.urls && invoiceApplyDetailInfo.urls.length>0">
+                <div v-for="(item,index) in invoiceApplyDetailInfo.urls">
+                    <image :src="item" style="width: 100%;height: 400px;"></image>
+                </div>
+            </div>
+            <div class="padding" v-else>
+                没有发票
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

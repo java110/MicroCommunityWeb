@@ -1,0 +1,108 @@
+<div class="">
+    <div class="row ">
+        <div class="col-lg-12 text-right">
+
+        </div>
+    </div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="规则编号" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用项" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用标识" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="建账时间" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="账单有效期" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="账单公式" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="计费单价" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="附加/固定费用" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="状态" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="账单日" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="账单周期" namespace="feeDetailFeeRule"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="feeDetailRuleBill"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="fee in feeDetailFeeRuleInfo.rules">
+                    <td class="text-center hand">
+                        {{fee.ruleId}}
+                    </td>
+                    <td class="text-center hand">
+                        {{fee.feeTypeCdName}}>{{fee.feeName}}
+                    </td>
+                    <td class="text-center hand">
+                        {{fee.feeFlagName}}
+                    </td>
+                    <td class="text-center">{{fee.startTime}}</td>
+                    <td class="text-center">{{fee.endTime}}</br>~{{fee.maxTime}}</td>
+                    <td class="text-center">{{fee.computingFormulaName}}</td>
+                    <td class="text-center">{{fee.computingFormula == '2002' ?
+                        '-':fee.squarePrice}}
+                    </td>
+                    <td class="text-center">{{fee.additionalAmount}}</td>
+                    <td class="text-center" v-if="fee.state == '2008001'">有效</td>
+                    <td class="text-center" v-else>失效</td>
+                    <td class="text-center">
+                        {{fee.curYearMonth}}
+                    </td>
+                    <td class="text-center">
+                        按月
+                    </td>
+                    <td class="text-center" v-if="fee.state != '2009001'">
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502020090427190001')"
+                            v-on:click="_updateFeeRule(fee)">
+                            <vc:i18n name="变更" namespace="feeDetailRuleBill"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-if="vc.hasPrivilege('502021070488970005')"
+                            v-on:click="_finishFeeRule(fee)">
+                            <vc:i18n name="手工结束" namespace="feeDetailRuleBill"></vc:i18n>
+                        </button>
+                        <button class="btn btn-link btn-xs" v-if=" vc.hasPrivilege('502020090604200029')"
+                            v-on:click="_deleteFeeRule(fee)">
+                            <vc:i18n name="取消" namespace="feeDetailRuleBill"></vc:i18n>
+                        </button>
+                    </td>
+                    <td class="text-center" v-else>-</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+                <vc:create namespace="feeDetailFeeRule" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+    <vc:create path="fee/deleteFeeRule"></vc:create>
+    <vc:create path="fee/editFeeRule"></vc:create>
+    <vc:create path="fee/finishFeeRule"></vc:create>
+
+</div>

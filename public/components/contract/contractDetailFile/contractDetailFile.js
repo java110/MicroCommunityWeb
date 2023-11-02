@@ -34,8 +34,8 @@
                 vc.http.apiGet('/contractFile/queryContractFile',
                     param,
                     function (json, res) {
-                        var _contractTFile = JSON.parse(json);
-                        vc.component.contractDetailInfo.files = _contractTFile.data;
+                        let _contractTFile = JSON.parse(json);
+                        $that.contractDetailFileInfo.files = _contractTFile.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -19,7 +19,7 @@
         },
         _initMethod: function() {
             vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
-                vc.component.tempImportRoomFeeInfo.feeTypeCds = _data;
+                $that.tempImportRoomFeeInfo.feeTypeCds = _data;
             });
             vc.initDate('tempImportFeeStartTime', function(_startTime) {
                 $that.tempImportRoomFeeInfo.startTime = _startTime;
@@ -49,7 +49,7 @@
 
             tempImportRoomFeeValidate() {
                 return vc.validate.validate({
-                    tempImportRoomFeeInfo: vc.component.tempImportRoomFeeInfo
+                    tempImportRoomFeeInfo: $that.tempImportRoomFeeInfo
                 }, {
                     'tempImportRoomFeeInfo.communityId': [{
                         limit: "required",
@@ -108,8 +108,8 @@
                 });
             },
             clearTempImportRoomFeeInfo: function() {
-                var _feeTypeCds = vc.component.tempImportRoomFeeInfo.feeTypeCds;
-                vc.component.tempImportRoomFeeInfo = {
+                let _feeTypeCds = $that.tempImportRoomFeeInfo.feeTypeCds;
+                $that.tempImportRoomFeeInfo = {
                     communityId: vc.getCurrentCommunity().communityId,
                     feeTypeCd: '',
                     feeTypeCds: _feeTypeCds,
@@ -126,15 +126,15 @@
                 };
             },
             _saveTempImportFeeInfo: function() {
-                if (!vc.component.tempImportRoomFeeValidate()) {
+                if (!$that.tempImportRoomFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.tempImportRoomFeeInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.tempImportRoomFeeInfo.communityId = vc.getCurrentCommunity().communityId;
 
                 vc.http.post(
                     'importRoomFee', 'importTempData',
-                    JSON.stringify(vc.component.tempImportRoomFeeInfo), {
+                    JSON.stringify($that.tempImportRoomFeeInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -177,11 +177,11 @@
                     });
             },
             _inputFeeName: function() {
-                let _feeNameFlag = vc.component.tempImportRoomFeeInfo.feeNameFlag;
+                let _feeNameFlag = $that.tempImportRoomFeeInfo.feeNameFlag;
                 if (_feeNameFlag != 'S') {
-                    vc.component.tempImportRoomFeeInfo.feeNameFlag = 'S';
+                    $that.tempImportRoomFeeInfo.feeNameFlag = 'S';
                 } else {
-                    vc.component.tempImportRoomFeeInfo.feeNameFlag = 'I';
+                    $that.tempImportRoomFeeInfo.feeNameFlag = 'I';
                 }
             }
         }

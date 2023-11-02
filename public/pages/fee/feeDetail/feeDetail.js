@@ -7,6 +7,7 @@
             feeDetailInfo: {
                 feeId: '',
                 configId: '',
+                feeFlag:'',
                 feeFlagName: '',
                 feeTypeCdName: '',
                 payerObjName: '',

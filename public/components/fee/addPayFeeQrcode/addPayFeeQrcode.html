@@ -99,6 +99,102 @@
                         </div>
                     </div>
                 </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                  <vc:i18n name='查询方式' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.queryWay">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择查询方式','addPayFeeQrcode')}}</option>
+                    <option value="1001">{{vc.i18n('按业主手机号','addPayFeeQrcode')}}</option>
+                    <option value="2002">{{vc.i18n('按房屋','addPayFeeQrcode')}}</option>
+                    <option value="3003">{{vc.i18n('按房屋或者业主手机号','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='验证' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.smsValidate">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择验证','addPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('短信验证码验证','addPayFeeQrcode')}}</option>
+                    <option value="OFF">{{vc.i18n('不验证','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='自定义缴费' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.customFee">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择自定义缴费','addPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('是','addPayFeeQrcode')}}</option>
+                    <option value="OFF">{{vc.i18n('否','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='展示费用' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.feeType">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择展示费用','addPayFeeQrcode')}}</option>
+                    <option value="OWNER">{{vc.i18n('业主费用','addPayFeeQrcode')}}</option>
+                    <option value="ROOM">{{vc.i18n('房屋费用','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='状态' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.state">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择状态','addPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('启用','addPayFeeQrcode')}}</option>
+                    <option value="OFF">{{vc.i18n('停用','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='预交费' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <select class="custom-select" v-model="addPayFeeQrcodeInfo.preFee">
+                    <option selected disabled value="">{{vc.i18n('必填，请选择预交费','addPayFeeQrcode')}}</option>
+                    <option value="ON">{{vc.i18n('是','addPayFeeQrcode')}}</option>
+                    <option value="OFF">{{vc.i18n('否','addPayFeeQrcode')}}</option>
+                  </select>
+                </div>
+              </div> -->
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">
+                    <vc:i18n name='提示内容' namespace='addPayFeeQrcode'></vc:i18n>
+                </label>
+                <div class="col-sm-10">
+                  <textarea v-model="addPayFeeQrcodeInfo.content"
+                    :placeholder="vc.i18n('必填，请填写提示内容','addPayFeeQrcode')" class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="ibox-content">
+                <button class="btn btn-primary float-right" type="button" v-on:click="savePayFeeQrcodeInfo()"><i
+                    class="fa fa-check"></i>&nbsp;
+                  <span>
+                    <vc:i18n name="保存"></vc:i18n>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                  data-dismiss="modal">
+                    <vc:i18n name="取消"></vc:i18n>
+                </button>
+              </div>
             </div>
         </div>
     </div>

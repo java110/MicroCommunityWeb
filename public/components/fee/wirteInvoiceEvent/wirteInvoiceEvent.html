@@ -1,0 +1,43 @@
+<div id="wirteInvoiceEventModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="登记核销" namespace="wirteInvoiceEvent"></vc:i18n>
+                </h3>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="类型" namespace="wirteInvoiceEvent"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" v-model="wirteInvoiceEventInfo.eventType" >
+                                <option selected disabled value="">{{vc.i18n('必填，请选择类型','wirteInvoiceEvent')}}</option>
+                                <option value="4004">领用</option>
+                                <option value="5005">登记</option>   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="说明" namespace="wirteInvoiceEvent"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea v-model.trim="wirteInvoiceEventInfo.remark"  :placeholder="vc.i18n('必填，请填写说明','wirteInvoiceEvent')" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="ibox-content">
+                        <button class="btn btn-primary float-right" type="button" v-on:click="_wirteEvent()">
+                            <i class="fa fa-check"></i>&nbsp;保存
+                        </button>
+                        <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                            data-dismiss="modal">
+                                <vc:i18n name="取消" namespace="wirteInvoiceEvent"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

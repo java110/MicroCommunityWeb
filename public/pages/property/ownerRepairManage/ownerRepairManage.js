@@ -27,29 +27,29 @@
             }
         },
         _initMethod: function () {
-            //vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-            //vc.component._validateParam();
+            //$that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            //$that._validateParam();
             vc.getDict('r_repair_pool', "state", function (_data) {
-                vc.component.ownerRepairManageInfo.states = _data;
+                $that.ownerRepairManageInfo.states = _data;
             });
-            vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
             // vc.getDict('r_repair_pool', "repair_type", function (_data) {
-            //     vc.component.ownerRepairManageInfo.repairTypes = _data;
+            //     $that.ownerRepairManageInfo.repairTypes = _data;
             // });
             // 获取repair_types 不再从字典表查询
             $that._listRepairTypes(DEFAULT_PAGE, 50);
             //与字典表关联
             vc.getDict('r_repair_pool', "state", function (_data) {
-                vc.component.ownerRepairManageInfo.states = _data;
+                $that.ownerRepairManageInfo.states = _data;
             });
         },
         _initEvent: function () {
             vc.on('ownerRepairManage', 'listOwnerRepair', function (_param) {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
+                $that._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -67,7 +67,7 @@
                     param,
                     function (json, res) {
                         var _repairTypesInfo = JSON.parse(json);
-                        vc.component.ownerRepairManageInfo.repairTypes = _repairTypesInfo.data;
+                        $that.ownerRepairManageInfo.repairTypes = _repairTypesInfo.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -76,12 +76,12 @@
             },
             //查询方法
             _listOwnerRepairs: function (_page, _rows) {
-                vc.component.ownerRepairManageInfo.conditions.page = _page;
-                vc.component.ownerRepairManageInfo.conditions.row = _rows;
-                vc.component.ownerRepairManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                // vc.component.ownerRepairManageInfo.conditions.state = '1000';
+                $that.ownerRepairManageInfo.conditions.page = _page;
+                $that.ownerRepairManageInfo.conditions.row = _rows;
+                $that.ownerRepairManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                // $that.ownerRepairManageInfo.conditions.state = '1000';
                 var param = {
-                    params: vc.component.ownerRepairManageInfo.conditions
+                    params: $that.ownerRepairManageInfo.conditions
                 };
                 //报修ID去空
                 param.params.repairId = param.params.repairId.trim();
@@ -94,12 +94,12 @@
                     param,
                     function (json, res) {
                         var _ownerRepairManageInfo = JSON.parse(json);
-                        vc.component.ownerRepairManageInfo.total = _ownerRepairManageInfo.total;
-                        vc.component.ownerRepairManageInfo.records = _ownerRepairManageInfo.records;
-                        vc.component.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.data;
+                        $that.ownerRepairManageInfo.total = _ownerRepairManageInfo.total;
+                        $that.ownerRepairManageInfo.records = _ownerRepairManageInfo.records;
+                        $that.ownerRepairManageInfo.ownerRepairs = _ownerRepairManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.ownerRepairManageInfo.records,
-                            dataCount: vc.component.ownerRepairManageInfo.total,
+                            total: $that.ownerRepairManageInfo.records,
+                            dataCount: $that.ownerRepairManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -110,19 +110,19 @@
             },
             //重置方法
             _resetListOwnerRepairs: function (_page, _rows) {
-                vc.component.ownerRepairManageInfo.conditions.repairId = '';
-                vc.component.ownerRepairManageInfo.conditions.repairName = '';
-                vc.component.ownerRepairManageInfo.conditions.tel = '';
-                vc.component.ownerRepairManageInfo.conditions.repairType = '';
-                vc.component.ownerRepairManageInfo.conditions.state = '';
+                $that.ownerRepairManageInfo.conditions.repairId = '';
+                $that.ownerRepairManageInfo.conditions.repairName = '';
+                $that.ownerRepairManageInfo.conditions.tel = '';
+                $that.ownerRepairManageInfo.conditions.repairType = '';
+                $that.ownerRepairManageInfo.conditions.state = '';
                 $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openAddOwnerRepairModal: function () {
-                vc.emit('addOwnerRepair', 'openAddOwnerRepairModal', vc.component.ownerRepairManageInfo.conditions);
+                vc.emit('addOwnerRepair', 'openAddOwnerRepairModal', $that.ownerRepairManageInfo.conditions);
             },
             _openEditOwnerRepairModel: function (_ownerRepair) {
-                _ownerRepair.roomName = vc.component.ownerRepairManageInfo.conditions.roomName;
-                _ownerRepair.roomId = vc.component.ownerRepairManageInfo.conditions.roomId;
+                _ownerRepair.roomName = $that.ownerRepairManageInfo.conditions.roomName;
+                _ownerRepair.roomId = $that.ownerRepairManageInfo.conditions.roomId;
                 vc.emit('editOwnerRepair', 'openEditOwnerRepairModal', _ownerRepair);
             },
             _openDeleteOwnerRepairModel: function (_ownerRepair) {
@@ -130,20 +130,20 @@
             },
             //查询
             _queryOwnerRepairMethod: function () {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetOwnerRepairMethod: function () {
-                vc.component._resetListOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._resetListOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openDispatchRepair: function (_ownerRepair) {
                 vc.jumpToPage('/#/pages/property/repairDispatchStep?repairId=' + _ownerRepair.repairId);
             },
             _moreCondition: function () {
-                if (vc.component.ownerRepairManageInfo.moreCondition) {
-                    vc.component.ownerRepairManageInfo.moreCondition = false;
+                if ($that.ownerRepairManageInfo.moreCondition) {
+                    $that.ownerRepairManageInfo.moreCondition = false;
                 } else {
-                    vc.component.ownerRepairManageInfo.moreCondition = true;
+                    $that.ownerRepairManageInfo.moreCondition = true;
                 }
             }
         }

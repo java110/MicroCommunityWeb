@@ -19,23 +19,23 @@
             }
         },
         _initMethod: function () {
-            vc.component._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
 
             vc.on('listStoreManage', 'listListStore', function (_param) {
-                vc.component._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listListStores(_currentPage, DEFAULT_ROWS);
+                $that._listListStores(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             _listListStores: function (_page, _rows) {
-                vc.component.listStoreManageInfo.conditions.page = _page;
-                vc.component.listStoreManageInfo.conditions.row = _rows;
+                $that.listStoreManageInfo.conditions.page = _page;
+                $that.listStoreManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.listStoreManageInfo.conditions
+                    params: $that.listStoreManageInfo.conditions
                 };
 
                 //发送get请求
@@ -43,12 +43,12 @@
                     param,
                     function (json, res) {
                         var _listStoreManageInfo = JSON.parse(json);
-                        vc.component.listStoreManageInfo.total = _listStoreManageInfo.total;
-                        vc.component.listStoreManageInfo.records = _listStoreManageInfo.records;
-                        vc.component.listStoreManageInfo.listStores = _listStoreManageInfo.data;
+                        $that.listStoreManageInfo.total = _listStoreManageInfo.total;
+                        $that.listStoreManageInfo.records = _listStoreManageInfo.records;
+                        $that.listStoreManageInfo.listStores = _listStoreManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.listStoreManageInfo.records,
-                            dataCount: vc.component.listStoreManageInfo.total,
+                            total: $that.listStoreManageInfo.records,
+                            dataCount: $that.listStoreManageInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -60,14 +60,14 @@
                 vc.emit('storesCommunity','openStoresCommunity', _listStore);
             },
             _queryListStoreMethod: function () {
-                vc.component._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listListStores(DEFAULT_PAGE, DEFAULT_ROWS);
 
             },
             _moreCondition: function () {
-                if (vc.component.listStoreManageInfo.moreCondition) {
-                    vc.component.listStoreManageInfo.moreCondition = false;
+                if ($that.listStoreManageInfo.moreCondition) {
+                    $that.listStoreManageInfo.moreCondition = false;
                 } else {
-                    vc.component.listStoreManageInfo.moreCondition = true;
+                    $that.listStoreManageInfo.moreCondition = true;
                 }
             }
 

@@ -26,41 +26,54 @@
                     roomName: '',
                     ownerId: '',
                     state: '',
-                    maintenanceType: ''
+                    maintenanceType: '',
+                    startTime:'',
+                    endTime:'',
+                    repairObjName:''
                 }
             }
         },
         _initMethod: function () {
-            //vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
-            //vc.component._validateParam();
             $that._listRepairSettings(DEFAULT_PAGE, 50);
             vc.getDict('r_repair_pool', "state", function (_data) {
-                vc.component.repairPoolManageInfo.states = _data;
+                $that.repairPoolManageInfo.states = [{
+                    statusCd:'',
+                    name:'全部'
+                }]
+                _data.forEach(item => {
+                    $that.repairPoolManageInfo.states.push(item);
+                });
             });
             vc.getDict('r_repair_setting', "repair_setting_type", function (_data) {
-                vc.component.repairPoolManageInfo.repairSettingTypes = _data;
+                $that.repairPoolManageInfo.repairSettingTypes = _data;
             });
             vc.getDict('r_repair_pool', "maintenance_type", function (_data) {
-                vc.component.repairPoolManageInfo.maintenanceTypes = _data;
+                $that.repairPoolManageInfo.maintenanceTypes = _data;
             });
-            vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.initDate('repairStartTime',function(_value){
+                $that.repairPoolManageInfo.conditions.startTime = _value;
+            });
+            vc.initDate('repairEndTime',function(_value){
+                $that.repairPoolManageInfo.conditions.endTime = _value;
+            })
+            $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('repairPoolManage', 'listRepairPool', function (_param) {
-                vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listRepairPools(_currentPage, DEFAULT_ROWS);
+                $that._listRepairPools(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
             _listRepairPools: function (_page, _rows) {
-                vc.component.repairPoolManageInfo.conditions.page = _page;
-                vc.component.repairPoolManageInfo.conditions.row = _rows;
-                vc.component.repairPoolManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.repairPoolManageInfo.conditions.page = _page;
+                $that.repairPoolManageInfo.conditions.row = _rows;
+                $that.repairPoolManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.repairPoolManageInfo.conditions
+                    params: $that.repairPoolManageInfo.conditions
                 };
                 //报修人查询框去空
                 param.params.repairName = param.params.repairName.trim();
@@ -72,13 +85,13 @@
                 vc.http.apiGet('/ownerRepair.listOwnerRepairs',
                     param,
                     function (json, res) {
-                        var _repairPoolManageInfo = JSON.parse(json);
-                        vc.component.repairPoolManageInfo.total = _repairPoolManageInfo.total;
-                        vc.component.repairPoolManageInfo.records = _repairPoolManageInfo.records;
-                        vc.component.repairPoolManageInfo.repairPools = _repairPoolManageInfo.data;
+                        let _json = JSON.parse(json);
+                        $that.repairPoolManageInfo.total = _json.total;
+                        $that.repairPoolManageInfo.records = _json.records;
+                        $that.repairPoolManageInfo.repairPools = _json.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.repairPoolManageInfo.records,
-                            dataCount: vc.component.repairPoolManageInfo.total,
+                            total: $that.repairPoolManageInfo.records,
+                            dataCount: $that.repairPoolManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -89,13 +102,13 @@
             },
             //重置方法
             _resetRepairPools: function (_page, _rows) {
-                vc.component.repairPoolManageInfo.conditions.repairType = "";
-                vc.component.repairPoolManageInfo.conditions.repairName = "";
-                vc.component.repairPoolManageInfo.conditions.state = "";
-                vc.component.repairPoolManageInfo.conditions.repairId = "";
-                vc.component.repairPoolManageInfo.conditions.tel = "";
-                vc.component.repairPoolManageInfo.conditions.repairSettingType = "";
-                vc.component.repairPoolManageInfo.conditions.maintenanceType = "";
+                $that.repairPoolManageInfo.conditions.repairType = "";
+                $that.repairPoolManageInfo.conditions.repairName = "";
+                $that.repairPoolManageInfo.conditions.state = "";
+                $that.repairPoolManageInfo.conditions.repairId = "";
+                $that.repairPoolManageInfo.conditions.tel = "";
+                $that.repairPoolManageInfo.conditions.repairSettingType = "";
+                $that.repairPoolManageInfo.conditions.maintenanceType = "";
                 $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openRepairDetail: function (_repairPool) {
@@ -106,25 +119,23 @@
             },
             //查询
             _queryRepairPoolMethod: function () {
-                vc.component._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetRepairPoolMethod: function () {
-                vc.component._resetRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._resetRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openEditOwnerRepairModel: function (_repairPool) {
-                // _ownerRepair.roomName = vc.component.ownerRepairManageInfo.conditions.roomName;
-                // _ownerRepair.roomId = vc.component.ownerRepairManageInfo.conditions.roomId;
                 vc.emit('editOwnerRepair', 'openEditOwnerRepairModal', _repairPool);
             },
             _openDispatchRepair: function (_repairPool) {
                 vc.jumpToPage('/#/pages/property/repairDispatchStep?repairId=' + _repairPool.repairId);
             },
             _moreCondition: function () {
-                if (vc.component.repairPoolManageInfo.moreCondition) {
-                    vc.component.repairPoolManageInfo.moreCondition = false;
+                if ($that.repairPoolManageInfo.moreCondition) {
+                    $that.repairPoolManageInfo.moreCondition = false;
                 } else {
-                    vc.component.repairPoolManageInfo.moreCondition = true;
+                    $that.repairPoolManageInfo.moreCondition = true;
                 }
             },
             //派单
@@ -149,7 +160,7 @@
                     param,
                     function (json, res) {
                         var _repairSettingManageInfo = JSON.parse(json);
-                        vc.component.repairPoolManageInfo.repairSettings = _repairSettingManageInfo.data;
+                        $that.repairPoolManageInfo.repairSettings = _repairSettingManageInfo.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -182,6 +193,10 @@
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
+            },
+            swatchRepairState:function(_state){
+                $that.repairPoolManageInfo.conditions.state = _state.statusCd;
+                $that._listRepairPools(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

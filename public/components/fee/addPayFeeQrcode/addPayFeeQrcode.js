@@ -11,8 +11,10 @@
                 queryWay: '',
                 smsValidate: '',
                 customFee: '',
-                preFee: '',
-                content: ''
+                preFee: 'OFF',
+                content: '',
+                state:'ON',
+                feeType:'OWNER'
             }
         },
         _initMethod: function () {
@@ -133,8 +135,10 @@
                     queryWay: '',
                     smsValidate: '',
                     customFee: '',
-                    preFee: '',
-                    content: ''
+                    preFee: 'OFF',
+                    content: '',
+                    state:'ON',
+                    feeType:'OWNER'
                 };
             }
         }

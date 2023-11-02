@@ -7,8 +7,11 @@
                 queryWay: '',
                 smsValidate: '',
                 customFee: '',
-                preFee: '',
-                content: ''
+                preFee: 'OFF',
+                content: '',
+                qrCodeUrl:'',
+                state:'ON',
+                feeType:''
             }
         },
         _initMethod: function () {
@@ -143,8 +146,11 @@
                     queryWay: '',
                     smsValidate: '',
                     customFee: '',
-                    preFee: '',
-                    content: ''
+                    preFee: 'OFF',
+                    content: '',
+                    qrCodeUrl:'',
+                    state:'ON',
+                    feeType:''
                 }
             }
         }

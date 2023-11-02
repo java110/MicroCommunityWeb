@@ -1,6 +1,6 @@
-(function(vc) {
-    var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+(function (vc) {
+    let DEFAULT_PAGE = 1;
+    let DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             batchPayFeeOrderInfo: {
@@ -29,18 +29,18 @@
         watch: {
             'batchPayFeeOrderInfo.selectPayFeeIds': {
                 deep: true,
-                handler: function() {
+                handler: function () {
                     $that._doComputeTotalFee();
                     let checkObj = document.querySelectorAll('.all-check'); // 获取所有checkbox项
-                    if($that.batchPayFeeOrderInfo.selectPayFeeIds.length < $that.batchPayFeeOrderInfo.batchFees.length){
+                    if ($that.batchPayFeeOrderInfo.selectPayFeeIds.length < $that.batchPayFeeOrderInfo.batchFees.length) {
                         checkObj[0].checked = false;
-                    }else{
+                    } else {
                         checkObj[0].checked = true;
                     }
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             let _ownerId = vc.getParam('ownerId');
             let _payerObjType = vc.getParam('payerObjType');
             if (!vc.notNull(_ownerId)) {
@@ -52,14 +52,14 @@
             $that.batchPayFeeOrderInfo.payerObjType = _payerObjType;
             $that._loadBatchFees();
             //与字典表支付方式关联
-            vc.getDict('pay_fee_detail', "prime_rate", function(_data) {
+            vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
                 $that.batchPayFeeOrderInfo.primeRates = _data;
             });
             $that._listFeePrintPages();
         },
-        _initEvent: function() {},
+        _initEvent: function () { },
         methods: {
-            _listFeePrintPages: function(_page, _rows) {
+            _listFeePrintPages: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -71,19 +71,19 @@
                 //发送get请求
                 vc.http.apiGet('/feePrintPage.listFeePrintPage',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feePrintPageManageInfo = JSON.parse(json);
                         let feePrintPages = _feePrintPageManageInfo.data;
                         if (feePrintPages && feePrintPages.length > 0) {
                             $that.batchPayFeeOrderInfo.printUrl = feePrintPages[0].url;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadBatchFees: function() {
+            _loadBatchFees: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -94,16 +94,25 @@
                         state: '2008001'
                     }
                 };
+                $that.batchPayFeeOrderInfo.batchFees = [];
                 //发送get请求
                 vc.http.apiGet('/fee.listFee',
                     param,
-                    function(json) {
+                    function (json) {
                         let _json = JSON.parse(json);
                         let _fees = _json.fees;
                         if (!_fees || _fees.length < 1) {
                             return;
                         }
-                        $that.batchPayFeeOrderInfo.batchFees = _fees.sort($that._batchRoomFeeCompare);
+                        _fees = _fees.sort($that._batchRoomFeeCompare);
+                        //todo 过滤 费用为0 的场景
+                        _fees.forEach(_feeItem => {
+                            if (parseFloat(_feeItem.amountOwed) == 0 && _feeItem.feeFlag == '2006012') {
+                                return;
+                            }
+                            $that.batchPayFeeOrderInfo.batchFees.push(_feeItem);
+
+                        })
                         // 防止后台设置有误
                         let toFixedSign = _fees[0].val;
                         if (toFixedSign == 1 || toFixedSign == 2 || toFixedSign == 3 || toFixedSign == 4 || toFixedSign == 5) {
@@ -121,12 +130,12 @@
                         $that._pushPayObjs();
                         $that._doComputeTotalFee();
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _batchRoomFeeCompare: function(a, b) {
+            _batchRoomFeeCompare: function (a, b) {
                 let val1 = a.payerObjName;
                 let val2 = b.payerObjName;
                 if (val1 < val2) {
@@ -137,7 +146,7 @@
                     return 0;
                 }
             },
-            _pushPayObjs: function() {
+            _pushPayObjs: function () {
                 let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
                 let _payObjs = $that.batchPayFeeOrderInfo.payObjs;
                 let _payerObjNames = $that.batchPayFeeOrderInfo.payerObjNames;
@@ -158,7 +167,7 @@
                     }
                 });
             },
-            _chanagePayerObjName: function() {
+            _chanagePayerObjName: function () {
                 let _allBatchFees = $that.batchPayFeeOrderInfo.allBatchFees;
                 $that.batchPayFeeOrderInfo.batchFees = [];
                 _allBatchFees.forEach(_fee => {
@@ -175,7 +184,7 @@
 
                 $that._doComputeTotalFee();
             },
-            _hasPayObjsIn: function(_payerObjName) {
+            _hasPayObjsIn: function (_payerObjName) {
                 let _payObjs = $that.batchPayFeeOrderInfo.payObjs;
                 let _hasIn = false;
                 _payObjs.forEach(item => {
@@ -186,7 +195,7 @@
 
                 return _hasIn;
             },
-            _hasPayObjNamesIn: function(_payerObjName) {
+            _hasPayObjNamesIn: function (_payerObjName) {
                 let _payObjs = $that.batchPayFeeOrderInfo.payerObjNames;
                 let _hasIn = false;
                 _payObjs.forEach(item => {
@@ -197,7 +206,7 @@
                 console.log(_payerObjName, _hasIn)
                 return _hasIn;
             },
-            _payFee: function() {
+            _payFee: function () {
                 if ($that.batchPayFeeOrderInfo.selectPayFeeIds.length <= 0) {
                     vc.toast('未选择费用');
                     return;
@@ -206,7 +215,7 @@
                 $("#doBatchPayFeeModal").modal('show');
                 $that.batchPayFeeOrderInfo.payType = 'common';
             },
-            _openPayFee: function() {
+            _openPayFee: function () {
                 if ($that.batchPayFeeOrderInfo.selectPayFeeIds.length <= 0) {
                     vc.toast('未选择费用');
                     return;
@@ -215,13 +224,13 @@
                 $("#doBatchPayFeeModal").modal('show');
                 $that.batchPayFeeOrderInfo.payType = 'qrCode';
             },
-            _closeDoBatchPayFeeModal: function() {
+            _closeDoBatchPayFeeModal: function () {
                 $("#doBatchPayFeeModal").modal('hide');
             },
-            _getPayFees: function() {
+            _getPayFees: function () {
                 let _fees = [];
-                $that.batchPayFeeOrderInfo.selectPayFeeIds.forEach(function(_item) {
-                    $that.batchPayFeeOrderInfo.batchFees.forEach(function(_batchFeeItem) {
+                $that.batchPayFeeOrderInfo.selectPayFeeIds.forEach(function (_item) {
+                    $that.batchPayFeeOrderInfo.batchFees.forEach(function (_batchFeeItem) {
                         if (_item == _batchFeeItem.feeId) {
                             _batchFeeItem.primeRate = $that.batchPayFeeOrderInfo.primeRate;
                             _fees.push(_batchFeeItem);
@@ -230,7 +239,7 @@
                 });
                 return _fees;
             },
-            _doPayFee: function() {
+            _doPayFee: function () {
 
                 if ($that.batchPayFeeOrderInfo.primeRate == '') {
                     vc.toast('请选择支付方式');
@@ -248,9 +257,9 @@
                 vc.http.apiPost(
                     '/fee.payBatchFee',
                     JSON.stringify(_data), {
-                        emulateJSON: true
-                    },
-                    function(json, res) {
+                    emulateJSON: true
+                },
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
 
@@ -260,13 +269,13 @@
                         }
                         vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         $that._closeDoBatchPayFeeModal();
                         vc.toast(errInfo);
                     });
             },
-            _qrCodePayFee: function() {
+            _qrCodePayFee: function () {
                 if ($that.batchPayFeeOrderInfo.primeRate == '') {
                     vc.toast('请选择支付方式');
                     return;
@@ -289,9 +298,9 @@
                 vc.http.apiPost(
                     '/payment.qrCodePayment',
                     JSON.stringify(_data), {
-                        emulateJSON: true
-                    },
-                    function(json, res) {
+                    emulateJSON: true
+                },
+                    function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
                             vc.toast(_data.msg);
@@ -306,13 +315,13 @@
                             vc.toast(_data.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
-            _qrCodeCheckPayFinish: function() {
+            _qrCodeCheckPayFinish: function () {
                 let _fees = $that._getPayFees();
                 if (_fees.length < 1) {
                     vc.toast('未选中要缴费的项目');
@@ -330,9 +339,9 @@
                 vc.http.apiPost(
                     '/payment.checkPayFinish',
                     JSON.stringify(_data), {
-                        emulateJSON: true
-                    },
-                    function(json, res) {
+                    emulateJSON: true
+                },
+                    function (json, res) {
                         let _data = JSON.parse(json);
                         if (_data.code == 404) {
                             vc.toast(_data.msg);
@@ -343,13 +352,13 @@
                         }
                         $that._doDealPayResult(_data);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     }
                 );
             },
-            _doDealPayResult: function(_json) {
+            _doDealPayResult: function (_json) {
                 $that._closeDoBatchPayFeeModal();
                 let _data = _json.data;
                 let detailIds = '';
@@ -357,27 +366,29 @@
                     detailIds += (item + ',');
                 })
                 $that.batchPayFeeOrderInfo.detailIds = detailIds;
-                //vc.saveData('_feeInfo', _feeInfo);
-                //关闭model
-                $("#payFeeResult").modal({
-                    backdrop: "static", //点击空白处不关闭对话框
-                    show: true
-                });
+                //todo 这里等三秒，有可能收据队列还没有生成
+                setTimeout(function () {
+                    $("#payFeeResult").modal({
+                        backdrop: "static", //点击空白处不关闭对话框
+                        show: true
+                    });
+                }, 2000);
+
                 $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                 $that._loadBatchFees();
             },
-            _back: function() {
+            _back: function () {
                 $('#payFeeResult').modal("hide");
                 vc.getBack();
             },
-            _printAndBack: function() {
+            _printAndBack: function () {
                 $('#payFeeResult').modal("hide");
                 window.open($that.batchPayFeeOrderInfo.printUrl + "?detailIds=" + $that.batchPayFeeOrderInfo.detailIds)
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             },
-            _printOwnOrder: function() {
+            _printOwnOrder: function () {
                 vc.saveData('java110_printFee', {
                     fees: $that.batchPayFeeOrderInfo.batchFees,
                     roomName: $that.batchPayFeeOrderInfo.roomName
@@ -385,7 +396,7 @@
                 //打印催交单
                 window.open('/print.html#/pages/property/printBatchFee?roomId=' + $that.batchPayFeeOrderInfo.payObjId)
             },
-            _getDeadlineTime: function(_fee) {
+            _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
                     return "-";
                 }
@@ -395,14 +406,14 @@
                 //return vc.dateSub(_fee.deadlineTime, _fee.feeFlag);
                 return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
             },
-            _getEndTime: function(_fee) {
+            _getEndTime: function (_fee) {
                 if (_fee.state == '2009001') {
                     return "-";
                 }
                 return vc.dateFormat(_fee.endTime);
             },
 
-            checkAll: function(e) {
+            checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {
@@ -414,7 +425,7 @@
                     $that.batchPayFeeOrderInfo.selectPayFeeIds = [];
                 }
             },
-            _getBatchPayFeeRoomName: function(fee) {
+            _getBatchPayFeeRoomName: function (fee) {
                 console.log(fee);
                 let _feeName = ''
                 if (!fee.feeAttrs) {
@@ -427,14 +438,14 @@
                 })
                 return _feeName;
             },
-            _getBatchPaymentCycles: function(fee) {
+            _getBatchPaymentCycles: function (fee) {
                 let paymentCycles = [];
-                for (let _index = 1; _index < 7; _index++) {
+                for (let _index = 1; _index < 13; _index++) {
                     paymentCycles.push(_index * parseFloat(fee.paymentCycle))
                 }
                 return paymentCycles;
             },
-            _doComputeTotalFee: function() {
+            _doComputeTotalFee: function () {
                 let _selectPayFeeIds = $that.batchPayFeeOrderInfo.selectPayFeeIds;
                 let _batchFees = $that.batchPayFeeOrderInfo.batchFees;
                 let _totalFee = 0;
@@ -449,7 +460,7 @@
                 $that.batchPayFeeOrderInfo.feePrices = _totalFee.toFixed(2);
 
             },
-            _changeMonth: function(_cycles, _fee) {
+            _changeMonth: function (_cycles, _fee) {
                 if (_cycles == '') {
                     _cycles = _fee.cycles;
                 }
@@ -465,14 +476,14 @@
                 //发送get请求
                 vc.http.apiGet('/feeApi/listFeeObj',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listRoomData = JSON.parse(json);
                         _fee.receivableAmount = $that._getFixedNum(listRoomData.data.feeTotalPrice);
                         _fee.receivedAmount = _fee.receivableAmount;
                         $that._doComputeTotalFee();
                         $that.$forceUpdate();
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
@@ -480,7 +491,7 @@
             /**
              * 格式化数字
              */
-            _getFixedNum: function(num) {
+            _getFixedNum: function (num) {
                 if ($that.batchPayFeeOrderInfo.toFixedSign == 2) {
                     return $that._mathToFixed1(num);
                 } else if ($that.batchPayFeeOrderInfo.toFixedSign == 3) {
@@ -496,31 +507,31 @@
             /**
              * 向上取整
              */
-            _mathCeil: function(_price) {
+            _mathCeil: function (_price) {
                 return Math.ceil(_price);
             },
             /**
              * 向下取整
              */
-            _mathFloor: function(_price) {
+            _mathFloor: function (_price) {
                 return Math.floor(_price);
             },
             /**
              * 四首五入取整
              */
-            _mathRound: function(_price) {
+            _mathRound: function (_price) {
                 return Math.round(_price);
             },
             /**
              * 保留小数点后一位
              */
-            _mathToFixed1: function(_price) {
+            _mathToFixed1: function (_price) {
                 return parseFloat(_price).toFixed(1);
             },
             /**
              * 保留小数点后两位
              */
-            _mathToFixed2: function(_price) {
+            _mathToFixed2: function (_price) {
                 return parseFloat(_price).toFixed(2);
             },
         }

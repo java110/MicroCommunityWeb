@@ -62,23 +62,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="callable in simplifyCallableInfo.callables">
-                <td class="text-center">{{callable.ofcId}}</td>
-                <td class="text-center">{{callable.ownerName}}</td>
-                <td class="text-center">{{callable.payerObjName}}</td>
-                <td class="text-center">{{callable.feeName}}</td>
-                <td class="text-center">{{callable.amountdOwed}}</td>
-                <td class="text-center">
-                    {{callable.startTime}}</br>~{{callable.endTime}}
-                </td>
-                <td class="text-center">{{callable.callableWayName}}</td>
-                <td class="text-center">{{callable.staffName}}</td>
-                <td class="text-center">{{callable.stateName}}</td>
-                <td class="text-center">{{callable.remark}}</td>
-                <td class="text-center">{{callable.createTime}}</td>
-                <td class="text-center">
-                    <div class="btn-group">
-                        <button class="btn-white btn btn-xs"
+                <tr v-for="callable in simplifyCallableInfo.callables">
+                    <td class="text-center">{{callable.ofcId}}</td>
+                    <td class="text-center">{{callable.ownerName}}</td>
+                    <td class="text-center">{{callable.payerObjName}}</td>
+                    <td class="text-center">{{callable.feeName}}</td>
+                    <td class="text-center">{{callable.amountdOwed}}</td>
+                    <td class="text-center">{{callable.startTime}}</br>
+                        ~{{callable.endTime}}
+                    </td>
+                    <td class="text-center">{{callable.callableWayName}}</td>
+                    <td class="text-center">{{callable.staffName}}</td>
+                    <td class="text-center">{{callable.stateName}}</td>
+                    <td class="text-center">
+                        <div class="textAuto" style="max-width: 200px;">{{callable.remark}}</div>
+                    </td>
+                    <td class="text-center">{{callable.createTime}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs"
                                 v-on:click="_openDeleteOweFeeCallableModel(callable)">
                             <vc:i18n name='删除'></vc:i18n>
                         </button>

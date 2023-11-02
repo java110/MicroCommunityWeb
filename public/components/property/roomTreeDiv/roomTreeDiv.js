@@ -54,6 +54,10 @@
                 });
                 $("#jstree_floorUnitRoomDiv").on("ready.jstree", function(e, data) {
                     //data.instance.open_all();//打开所有节点
+                    let _callName = $that.roomTreeDivInfo.callName;
+                    if(_callName == 'oweFeeCallable'){
+                        return;
+                    }
                     $('#jstree_floorUnitRoomDiv').jstree('select_node', _data[0].children[0].id /* , true */ );
 
                 });

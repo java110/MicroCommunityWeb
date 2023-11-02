@@ -1,0 +1,104 @@
+<div id="editPaymentPoolModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="m-t-none m-b ">
+          <vc:i18n name="修改" namespace="editPaymentPool"></vc:i18n>
+        </h3>
+        <div class="ibox-content">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='名称' namespace='editPaymentPool'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <input v-model="editPaymentPoolInfo.paymentName" type="text"
+                :placeholder="vc.i18n('必填，请填写名称','editPaymentPool')" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='支付厂家' namespace='editPaymentPool'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <select class="custom-select" v-model="editPaymentPoolInfo.paymentType" disabled>
+                <option selected disabled value="">{{vc.i18n('必填，请选择支付厂家','editPaymentPool')}}</option>
+                <option :value="item.paymentType" v-for="(item,index) in editPaymentPoolInfo.paymentTypes" :key="index">
+                  {{item.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" v-for="(item,index) in editPaymentPoolInfo.paymentKeys" :key="index">
+            <label class="col-sm-2 col-form-label">{{item.name}}</label>
+            <div class="col-sm-10">
+              <textarea v-model="item.columnValue" :placeholder="item.remark" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group row" v-if="editPaymentPoolInfo.paymentType == 'WECHAT'">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name="商户证书(.p12)" namespace="editPaymentPool"></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <vc:create path="frame/uploadFile" callBackListener="editPaymentPool" callBackFunction="notifyCert"
+                namespace="editPaymentPool">
+              </vc:create>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='支付范围' namespace='editPaymentPool'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <select class="custom-select" v-model="editPaymentPoolInfo.payType" disabled>
+                <option selected disabled value="">{{vc.i18n('必填，请选择支付范围','editPaymentPool')}}</option>
+                <option value="1001">小区费用</option>
+                <option value="2002">临时停车费</option>
+                <option value="3003">费用项</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" v-if="editPaymentPoolInfo.payType == '3003'">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name="费用项" namespace="addPropertyCompany"></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <label class="margin-left" v-for="(item,index) in editPaymentPoolInfo.feeConfigs">
+                <input type="checkbox" v-model="editPaymentPoolInfo.configIds" :value="item.configId"> {{item.feeName}}
+              </label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='状态' namespace='editPaymentPool'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <select class="custom-select" v-model="editPaymentPoolInfo.state">
+                <option selected disabled value="">{{vc.i18n('必填，请选择状态' ,'editPaymentPool')}}</option>
+                <option value="Y">{{vc.i18n('启用' ,'editPaymentPool')}} </option>
+                <option value="N">{{vc.i18n('停用' ,'editPaymentPool')}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <vc:i18n name='使用说明' namespace='editPaymentPool'></vc:i18n>
+            </label>
+            <div class="col-sm-10">
+              <textarea v-model="editPaymentPoolInfo.remark" :placeholder="vc.i18n('选填，请填写使用说明','editPaymentPool')"
+                class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <button class="btn btn-primary float-right" type="button" v-on:click="editPaymentPool()"><i
+                class="fa fa-check"></i>&nbsp;<span>
+                <vc:i18n name="保存"></vc:i18n>
+              </span></button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+              data-dismiss="modal">
+                <vc:i18n name="取消"></vc:i18n>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

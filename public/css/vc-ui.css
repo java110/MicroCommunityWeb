@@ -2146,7 +2146,11 @@ table.table-mail tr td {
 
 .vc-node-selected {
     color: #FFFFFF;
-    background-color: #1ab394;
+    background-color: #3E77FC;
+}
+
+.vc-node-selected-line {
+    color: #3E77FC;
 }
 
 .vc-line {

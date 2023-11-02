@@ -1,4 +1,4 @@
-<div id="editRoomModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div id="editRoomModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -42,7 +42,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.unitId">
-                                        <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择单元</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择单元','editRoom')}}</option>
                                         <option v-for="(unit,index) in editRoomUnits" :key="index"
                                                 v-bind:value="unit.unitId">{{unit.unitNum}}{{vc.i18n('单元','editRoom')}}
                                         </option>
@@ -55,7 +55,7 @@
                                 </label>
                                 <div class="col-sm-5" style="display: inline">
                                     <select class="custom-select" v-model="editRoomInfo.apartment1">
-                                        <option selected value="">{{vc.i18n('必填','editRoom')}}，请选择房屋户型</option>
+                                        <option selected value="">{{vc.i18n('必填，请选择房屋户型','editRoom')}}</option>
                                         <option value="10">{{vc.i18n('一室','editRoom')}}</option>
                                         <option value="20">{{vc.i18n('两室','editRoom')}}</option>
                                         <option value="30">{{vc.i18n('三室','editRoom')}}</option>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-sm-5" style="display: inline">
                                     <select class="custom-select" v-model="editRoomInfo.apartment2">
-                                        <option selected value="">{{vc.i18n('必填','editRoom')}}，请选择房屋户型</option>
+                                        <option selected value="">{{vc.i18n('必填，请选择房屋户型','editRoom')}}</option>
                                         <option value="101">{{vc.i18n('一厅','editRoom')}}</option>
                                         <option value="102">{{vc.i18n('两厅','editRoom')}}</option>
                                         <option value="103">{{vc.i18n('三厅','editRoom')}}</option>
@@ -87,7 +87,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editRoomInfo.roomSubType">
-                                        <option selected disabled value="">{{vc.i18n('必填','editRoom')}}，请选择房屋类型</option>
+                                        <option selected disabled value="">{{vc.i18n('必填，请选择房屋类型','editRoom')}}</option>
                                         <option :value="item.statusCd"
                                                 v-for="(item,index) in editRoomInfo.roomSubTypes">{{item.name}}
                                         </option>
@@ -143,8 +143,8 @@
                                         <option value="2005">{{vc.i18n('已装修','editRoom')}}</option>
                                         <option value="2004">{{vc.i18n('未入住','editRoom')}}</option>
                                         <!--wuxw 关闭  这里和后端对不上 后端要求提供开始时间和结束时间 前段 没有这个选项，不清楚什么场景下的需求，后面的兄弟记得补充-->
-                                        <!-- <option value="2006">{{vc.i18n('已出租','editRoom')}}</option> -->
-                                        <option value="2008">{{vc.i18n('空闲','editRoom')}}</option>
+                                        <!-- <option value="2006">{{vc.i18n('已出租','editRoom')}}</option> 
+                                        <option value="2008">{{vc.i18n('空闲','editRoom')}}</option>-->
                                         <option value="2009">{{vc.i18n('装修中','editRoom')}}</option>
                                     </select>
                                 </div>

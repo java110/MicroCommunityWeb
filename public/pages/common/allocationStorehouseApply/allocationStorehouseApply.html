@@ -118,7 +118,7 @@
                                     </option>
                                     <option v-for="(item,index) in allocationStorehouseApplyInfo.storehouses"
                                             :key="index" v-bind:value="item.shId"
-                                            v-if="item.shId != resourceStore.shId">
+                                            v-if="item.shId != resourceStore.shId && item.communityId == allocationStorehouseApplyInfo.communityId">
                                         {{item.shName}}
                                     </option>
                                 </select>

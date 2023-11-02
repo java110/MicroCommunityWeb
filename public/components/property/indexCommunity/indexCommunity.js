@@ -11,9 +11,12 @@
             }
         },
         _initMethod: function () {
-            $that._loadPropertyIndexAssets();
+            
         },
         _initEvent: function () {
+            vc.on('indexCommunityView','initData',function(){
+                $that._loadPropertyIndexAssets();
+            })
         },
         methods: {
             _loadPropertyIndexAssets: function () {

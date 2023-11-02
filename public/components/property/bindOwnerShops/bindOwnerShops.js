@@ -31,7 +31,7 @@
         },
         _initEvent: function () {
             vc.on('bindOwnerShops', 'bindOwnerShopsModel', function (_params) {
-                vc.component.refreshAddShopsInfo();
+                $that.refreshAddShopsInfo();
                 $that.bindOwnerShopsInfo.roomId = _params.roomId;
                 $that.bindOwnerShopsInfo.shopsState = _params.shopsState;
                 if (_params.shopsState == '2007') {
@@ -40,13 +40,13 @@
                 }
                 $that.bindOwnerShopsInfo.shopsName = _params.floorNum + '-' + _params.roomNum;
                 $('#bindOwnerShopsModel').modal('show');
-                vc.component.bindOwnerShopsInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.bindOwnerShopsInfo.communityId = vc.getCurrentCommunity().communityId;
             });
         },
         methods: {
             bindOwnerShopsValidate: function () {
                 return vc.validate.validate({
-                    bindOwnerShopsInfo: vc.component.bindOwnerShopsInfo
+                    bindOwnerShopsInfo: $that.bindOwnerShopsInfo
                 }, {
                     'bindOwnerShopsInfo.roomId': [
                         {
@@ -98,13 +98,13 @@
                 });
             },
             bindOwnerShops: function () {
-                if (!vc.component.bindOwnerShopsValidate()) {
+                if (!$that.bindOwnerShopsValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost(
                     '/room.saveOwnerShops',
-                    JSON.stringify(vc.component.bindOwnerShopsInfo), {
+                    JSON.stringify($that.bindOwnerShopsInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
@@ -158,7 +158,7 @@
                 );
             },
             refreshAddShopsInfo: function () {
-                vc.component.bindOwnerShopsInfo = {
+                $that.bindOwnerShopsInfo = {
                     roomId: '',
                     roomNum: '',
                     shopsName: '',
@@ -174,4 +174,4 @@
             }
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

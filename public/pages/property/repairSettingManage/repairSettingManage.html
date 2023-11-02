@@ -4,34 +4,59 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="查询条件" namespace="repairSettingManage"></vc:i18n></span>
+                       <vc:i18n name="查询条件" namespace="repairSettingManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
                                 v-on:click="_moreCondition()">
                             {{repairSettingManageInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入派单类型','repairSettingManage')"
                                        v-model="repairSettingManageInfo.conditions.repairType" class=" form-control">
                             </div>
-                        </div>
-                        <div class="col-sm-4">
+                        </div> -->
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入类型名称','repairSettingManage')"
                                        v-model="repairSettingManageInfo.conditions.repairTypeName"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select class="custom-select" v-model="repairSettingManageInfo.conditions.repairWay">
                                 <option selected value="">{{vc.i18n('请选择派单方式','repairSettingManage')}}</option>
                                 <option v-for="(item,index) in repairSettingManageInfo.repairWays" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="custom-select"
+                                    v-model="repairSettingManageInfo.conditions.repairSettingType">
+                                <option selected value="">{{vc.i18n('请选择报修设置类型','repairSettingManage')}}</option>
+                                <option v-for="(item,index) in repairSettingManageInfo.repairSettingTypes" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="custom-select" v-model="repairSettingManageInfo.conditions.publicArea">
+                                <option selected value="">{{vc.i18n('请选择是否公共区域','repairSettingManage')}}</option>
+                                <option v-for="(item,index) in repairSettingManageInfo.publicAreas" :key="index"
+                                        :value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="custom-select" v-model="repairSettingManageInfo.conditions.returnVisitFlag">
+                                <option selected value="">{{vc.i18n('请选择是否回访','repairSettingManage')}}</option>
+                                <option v-for="(item,index) in repairSettingManageInfo.returnVisitFlags" :key="index"
                                         :value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
@@ -47,33 +72,6 @@
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="repairSettingManage"></vc:i18n></span>
                             </button>
-                        </div>
-                    </div>
-                    <div class="row" v-show="repairSettingManageInfo.moreCondition == true">
-                        <div class="col-sm-3">
-                            <select class="custom-select"
-                                    v-model="repairSettingManageInfo.conditions.repairSettingType">
-                                <option selected value="">{{vc.i18n('请选择报修设置类型','repairSettingManage')}}</option>
-                                <option v-for="(item,index) in repairSettingManageInfo.repairSettingTypes" :key="index"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="custom-select" v-model="repairSettingManageInfo.conditions.publicArea">
-                                <option selected value="">{{vc.i18n('请选择是否公共区域','repairSettingManage')}}</option>
-                                <option v-for="(item,index) in repairSettingManageInfo.publicAreas" :key="index"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="custom-select" v-model="repairSettingManageInfo.conditions.returnVisitFlag">
-                                <option selected value="">{{vc.i18n('请选择是否回访','repairSettingManage')}}</option>
-                                <option v-for="(item,index) in repairSettingManageInfo.returnVisitFlags" :key="index"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
                         </div>
                     </div>
                 </div>
@@ -103,41 +101,41 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th class="text-center">
-                                <span><vc:i18n name="派单类型" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="类型名称" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="报修设置类型" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="派单方式" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="公共区域" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="业主端是否展示" namespace="repairSettingManage"></vc:i18n></span>
-                            </th>
                             <!-- <th class="text-center">
-                            <span><vc:i18n name="收费范围" namespace="repairSettingManage"></vc:i18n></span>
+                               <vc:i18n name="派单类型" namespace="repairSettingManage"></vc:i18n>
                             </th> -->
                             <th class="text-center">
-                                <span><vc:i18n name="是否回访" namespace="repairSettingManage"></vc:i18n></span>
+                                <vc:i18n name="类型名称" namespace="repairSettingManage"></vc:i18n>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="创建时间" namespace="repairSettingManage"></vc:i18n></span>
+                                <vc:i18n name="报修设置类型" namespace="repairSettingManage"></vc:i18n>
                             </th>
                             <th class="text-center">
-                                <span><vc:i18n name="操作" namespace="repairSettingManage"></vc:i18n></span>
+                                <vc:i18n name="派单方式" namespace="repairSettingManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="公共区域" namespace="repairSettingManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="业主端是否展示" namespace="repairSettingManage"></vc:i18n>
+                            </th>
+                            <!-- <th class="text-center">
+                           <vc:i18n name="收费范围" namespace="repairSettingManage"></vc:i18n>
+                            </th> -->
+                            <th class="text-center">
+                                <vc:i18n name="是否回访" namespace="repairSettingManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="创建时间" namespace="repairSettingManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="repairSettingManage"></vc:i18n>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="repairSetting in repairSettingManageInfo.repairSettings">
-                            <td class="text-center">{{repairSetting.repairType}}</td>
+                            <!-- <td class="text-center">{{repairSetting.repairType}}</td> -->
                             <td class="text-center">{{repairSetting.repairTypeName}}</td>
                             <td class="text-center">{{repairSetting.repairSettingTypeName}}</td>
                             <td class="text-center">{{repairSetting.repairWayName}}</td>
@@ -150,31 +148,24 @@
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openEditRepairSettingModel(repairSetting)">
-                                        <span><vc:i18n name="修改" namespace="repairSettingManage"></vc:i18n></span>
+                                        <vc:i18n name="修改" namespace="repairSettingManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_viewRepairTypeUser(repairSetting)">
-                                        <span><vc:i18n name="绑定维修师傅" namespace="repairSettingManage"></vc:i18n></span>
+                                        <vc:i18n name="绑定维修师傅" namespace="repairSettingManage"></vc:i18n>
                                     </button>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteRepairSettingModel(repairSetting)">
-                                        <span><vc:i18n name="删除" namespace="repairSettingManage"></vc:i18n></span>
+                                        <vc:i18n name="删除" namespace="repairSettingManage"></vc:i18n>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="9">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
-                        </tfoot>
                     </table>
                     <!-- 分页 -->
                     <div class="row margin-top-xs">

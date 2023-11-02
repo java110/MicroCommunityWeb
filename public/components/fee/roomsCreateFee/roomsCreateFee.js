@@ -52,13 +52,13 @@
                     .on('changeDate', function (ev) {
                         var value = $(".roomCreateFeeStartTime").val();
                         var start = Date.parse(new Date(value));
-                        var end = Date.parse(new Date(vc.component.roomsCreateFeeInfo.endTime));
+                        var end = Date.parse(new Date($that.roomsCreateFeeInfo.endTime));
                         if (start - end >= 0) {
                             vc.toast("计费起始时间必须小于计费终止时间");
                             $(".roomCreateFeeStartTime").val('');
-                            vc.component.roomsCreateFeeInfo.startTime = "";
+                            $that.roomsCreateFeeInfo.startTime = "";
                         } else {
-                            vc.component.roomsCreateFeeInfo.startTime = value;
+                            $that.roomsCreateFeeInfo.startTime = value;
                         }
                     });
                 $('.roomCreateFeeEndTime').datetimepicker({
@@ -74,14 +74,14 @@
                 $('.roomCreateFeeEndTime').datetimepicker()
                     .on('changeDate', function (ev) {
                         var value = $(".roomCreateFeeEndTime").val();
-                        var start = Date.parse(new Date(vc.component.roomsCreateFeeInfo.startTime));
+                        var start = Date.parse(new Date($that.roomsCreateFeeInfo.startTime));
                         var end = Date.parse(new Date(value));
                         if (start - end >= 0) {
                             vc.toast("计费终止时间必须大于计费起始时间");
                             $(".roomCreateFeeEndTime").val('');
-                            vc.component.roomsCreateFeeInfo.endTime = "";
+                            $that.roomsCreateFeeInfo.endTime = "";
                         } else {
-                            vc.component.roomsCreateFeeInfo.endTime = value;
+                            $that.roomsCreateFeeInfo.endTime = value;
                         }
                     });
                 //防止多次点击时间插件失去焦点
@@ -171,6 +171,7 @@
                             }
                             vc.toast("创建收费成功，总共[" + _json.totalRoom + "]房屋，成功[" + _json.successRoom + "],失败[" + _json.errorRoom + "]", 8000);
                             vc.emit('listRoomFee', 'notify', {});
+                            vc.emit('ownerDetailRoomFee', 'notify', {});
                             return;
                         }
                         vc.toast(json);

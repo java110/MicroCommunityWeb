@@ -3,59 +3,67 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件" namespace="payFeeManage"></vc:i18n></span></h5>
+                    <h5>
+                        <vc:i18n name="查询条件" namespace="payFeeManage"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{payFeeManageInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
+
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.payObjType">
                                 <option selected value="">{{vc.i18n('请选择收费对象','payFeeManage')}}</option>
                                 <option v-for="(item,index) in payFeeManageInfo.payObjTypes" :key="index"
-                                        v-bind:value="item.statusCd">{{item.name}}
+                                    v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input size="16" type="text" :placeholder="vc.i18n('请选择缴费开始时间','payFeeManage')"
-                                       v-model="payFeeManageInfo.conditions.startTime"
-                                       class="form-control form_datetime  start_time">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input size="16" type="text" :placeholder="vc.i18n('请选择缴费结束时间','payFeeManage')"
-                                       v-model="payFeeManageInfo.conditions.endTime"
-                                       class="form-control form_datetime  end_time">
+                                    v-model="payFeeManageInfo.conditions.startTime"
+                                    class="form-control form_datetime  start_time">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryPayFeeMethod()">
-                                <i class="fa fa-search"></i>
-                                <span><vc:i18n name="查询" namespace="payFeeManage"></vc:i18n></span>
-                            </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetPayFeeMethod()"
-                                    style="margin-left: 20px;">
-                                <i class="fa fa-repeat"></i>
-                                <span><vc:i18n name="重置" namespace="payFeeManage"></vc:i18n></span>
-                            </button>
+                            <div class="form-group">
+                                <input size="16" type="text" :placeholder="vc.i18n('请选择缴费结束时间','payFeeManage')"
+                                    v-model="payFeeManageInfo.conditions.endTime"
+                                    class="form-control form_datetime  end_time">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" v-show="payFeeManageInfo.moreCondition == true">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <input size="16" type="text" :placeholder="vc.i18n('请填写员工姓名','payFeeManage')"
-                                   v-model="payFeeManageInfo.conditions.userName" class="form-control">
+                                v-model="payFeeManageInfo.conditions.userName" class="form-control">
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select class="custom-select" v-model="payFeeManageInfo.conditions.primeRate">
                                 <option selected value="">{{vc.i18n('请选择支付方式','payFeeManage')}}</option>
                                 <option v-for="(item,index) in payFeeManageInfo.primeRates" :key="index"
-                                        v-bind:value="item.statusCd">{{item.name}}
+                                    v-bind:value="item.statusCd">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_queryPayFeeMethod()">
+                                <vc:i18n name="查询" namespace="payFeeManage"></vc:i18n>
+                            </button>
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetPayFeeMethod()"
+                                style="margin-left: 20px;">
+                                <vc:i18n name="重置" namespace="payFeeManage"></vc:i18n>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2" v-if="payFeeManageInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline"
+                                v-model="payFeeManageInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                <option v-for="(item,index) in payFeeManageInfo.communitys" :key="index"
+                                    v-bind:value="item.communityId">
+                                    {{item.name}}
                                 </option>
                             </select>
                         </div>
@@ -68,92 +76,106 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="缴费清单" namespace="payFeeManage"></vc:i18n></span></h5>
+                    <h5>
+                        <vc:i18n name="缴费清单" namespace="payFeeManage"></vc:i18n>
+                    </h5>
                     <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
-                          data-content="所有房屋缴费记录"></span>
+                        data-content="所有房屋缴费记录"></span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
                             <i class="fa fa-plus"></i>
-                            <span><vc:i18n name="导出" namespace="payFeeManage"></vc:i18n></span>
+                            <span>
+                                <vc:i18n name="导出" namespace="payFeeManage"></vc:i18n>
+                            </span>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                        <tr>
-                            <th class="text-center">
-                                <span><vc:i18n name="费用类型" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="费用项目" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="付费方" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="缴费" namespace="payFeeManage"></vc:i18n></span>ID
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="支付方式" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="付费周期" namespace="payFeeManage"></vc:i18n></span>(单位:月)
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="应付金额" namespace="payFeeManage"></vc:i18n></span>(单位:元)
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="实付金额" namespace="payFeeManage"></vc:i18n></span>(单位:元)
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="操作人" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="缴费时间" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></span>
-                            </th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="费用类型" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="费用项目" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="付费方" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="缴费ID" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="支付方式" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="付费周期(单位:月)" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="应付金额(单位:元)" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="实付金额(单位:元)" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="操作人" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="缴费时间" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                                <th class="text-center">
+                                    <vc:i18n name="详情" namespace="payFeeManage"></vc:i18n>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="payFee in payFeeManageInfo.payFees">
-                            <td class="text-center">{{payFee.feeTypeCdName}}</td>
-                            <td class="text-center">{{payFee.feeName}}</td>
-                            <td class="text-center">{{payFee.payObjName}}</td>
-                            <td class="text-center">{{payFee.detailId}}</td>
-                            <td class="text-center">{{payFee.primeRate}}</td>
-                            <td class="text-center">{{payFee.cycles}}</td>
-                            <td class="text-center">{{payFee.receivableAmount}}</td>
-                            <td class="text-center">{{payFee.receivedAmount}}</td>
-                            <td class="text-center">{{payFee.userName}}</td>
-                            <td class="text-center">{{payFee.createTime}}</td>
-                            <td class="text-center">
-                                <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)">
-                                    <span><vc:i18n name="详情" namespace="payFeeManage"></vc:i18n></span>
-                                </button>
-                            </td>
-                        </tr>
+                            <tr v-for="payFee in payFeeManageInfo.payFees">
+                                <td class="text-center">{{payFee.feeTypeCdName}}</td>
+                                <td class="text-center">{{payFee.feeName}}</td>
+                                <td class="text-center">{{payFee.payObjName}}</td>
+                                <td class="text-center">{{payFee.detailId}}</td>
+                                <td class="text-center">{{payFee.primeRate}}</td>
+                                <td class="text-center">{{payFee.cycles}}</td>
+                                <td class="text-center">{{payFee.receivableAmount}}</td>
+                                <td class="text-center">{{payFee.receivedAmount}}</td>
+                                <td class="text-center">{{payFee.userName}}</td>
+                                <td class="text-center">{{payFee.createTime}}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-link btn-xs" v-on:click="_detailFee(payFee)">
+                                        <span>
+                                            <vc:i18n name="详情" namespace="payFeeManage"></vc:i18n>
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td colspan="11">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="11">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-4">
                             <span class="margin-left">
-                                <span><vc:i18n name="小计应收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.totalReceivableAmount}}
-                                <span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                                <span>
+                                    <vc:i18n name="小计应收" namespace="payFeeManage"></vc:i18n>
+                                </span>: {{payFeeManageInfo.totalReceivableAmount}}
+                                <span>
+                                    <vc:i18n name="元" namespace="payFeeManage"></vc:i18n>
+                                </span>
                             </span>
                             <span class="margin-left">
-                                <span><vc:i18n name="小计实收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.totalReceivedAmount}}
-                                <span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                                <span>
+                                    <vc:i18n name="小计实收" namespace="payFeeManage"></vc:i18n>
+                                </span>: {{payFeeManageInfo.totalReceivedAmount}}
+                                <span>
+                                    <vc:i18n name="元" namespace="payFeeManage"></vc:i18n>
+                                </span>
                             </span>
                         </div>
                         <div class="col-md-8 text-center">
@@ -163,20 +185,27 @@
                     <div class="row">
                         <div class="col-md-4">
                             <span class="margin-left">
-                                <span><vc:i18n name="大计应收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.allReceivableAmount}}
-                                <span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                                <span>
+                                    <vc:i18n name="大计应收" namespace="payFeeManage"></vc:i18n>
+                                </span>: {{payFeeManageInfo.allReceivableAmount}}
+                                <span>
+                                    <vc:i18n name="元" namespace="payFeeManage"></vc:i18n>
+                                </span>
                             </span>
                             <span class="margin-left">
-                                <span><vc:i18n name="大计实收" namespace="payFeeManage"></vc:i18n></span>: {{payFeeManageInfo.allReceivedAmount}}
-                                <span><vc:i18n name="元" namespace="payFeeManage"></vc:i18n></span>
+                                <span>
+                                    <vc:i18n name="大计实收" namespace="payFeeManage"></vc:i18n>
+                                </span>: {{payFeeManageInfo.allReceivedAmount}}
+                                <span>
+                                    <vc:i18n name="元" namespace="payFeeManage"></vc:i18n>
+                                </span>
                             </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <span class="margin-left">
-                                <vc:i18n name="温馨提示：不包含已退费和退费单的缴费记录，只包含正常，退费中和退费失败的缴费记录"
-                                         namespace="payFeeManage">
+                                <vc:i18n name="温馨提示：不包含已退费和退费单的缴费记录，只包含正常，退费中和退费失败的缴费记录" namespace="payFeeManage">
                                 </vc:i18n>
                             </span>
                         </div>

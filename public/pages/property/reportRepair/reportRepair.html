@@ -43,6 +43,15 @@
                                        class="form-control form_datetime  finish_end_time" autocomplete="off">
                             </div>
                         </div>
+                        <div class="col-sm-2" v-if="reportRepairInfo.communitys.length>1">
+                            <select class="form-control-md form-control input-s-sm inline" v-model="reportRepairInfo.conditions.communityId" @change="_changCommunity()">
+                                <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                <option v-for="(item,index) in reportRepairInfo.communitys" :key="index"
+                                        v-bind:value="item.communityId">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i>

@@ -16,7 +16,8 @@
                 resourceStoreTypes: [],
                 resourceStoreSonTypes: [],
                 name: '',
-                resOrderType: ''
+                resOrderType: '',
+                isAllocation:false,
             }
         },
         watch: { // 监视双向绑定的数据数组
@@ -32,7 +33,6 @@
             }
         },
         _initMethod: function() {
-            $that._listStorehouses();
             $that._listResourceStoreTypes();
         },
         _initEvent: function() {
@@ -40,6 +40,8 @@
                 $('#chooseResourceStoreModel').modal('show');
                 $that.chooseResourceStoreInfo.resOrderType = _param.resOrderType;
                 $that.chooseResourceStoreInfo.shId = _param.shId;
+                $that.chooseResourceStoreInfo.isAllocation = _param.isAllocation;
+                $that._listStorehouses();
                 $that._refreshChooseResourceStoreInfo();
                 $that._loadAllResourceStoreInfo(1, 10, '');
             });
@@ -57,7 +59,7 @@
         },
         methods: {
             _loadAllResourceStoreInfo: function(_page, _row, _name) {
-                var param = {
+                let param = {
                     params: {
                         page: _page,
                         row: _row,
@@ -71,6 +73,9 @@
                         shId: $that.chooseResourceStoreInfo.shId
                     }
                 };
+                if($that.chooseResourceStoreInfo.shId){
+                    param.params.communityId = '';
+                }
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listResourceStores',
                     param,
@@ -126,7 +131,7 @@
                 $that.chooseResourceStoreInfo._currentResourceStoreName = "";
             },
             _listStorehouses: function(_page, _rows) {
-                var param = {
+                let param = {
                     params: {
                         page: 1,
                         row: 100,
@@ -135,8 +140,11 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
+                if( $that.chooseResourceStoreInfo.isAllocation){
+                    param.params.communityId = '';
+                }
                 //发送get请求
-                vc.http.apiGet('resourceStore.listStorehouses',
+                vc.http.apiGet('/resourceStore.listStorehouses',
                     param,
                     function(json, res) {
                         var _storehouseManageInfo = JSON.parse(json);

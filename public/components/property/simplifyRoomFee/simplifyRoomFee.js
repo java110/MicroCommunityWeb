@@ -366,7 +366,8 @@
                         payerObjType: '3333',
                         configId: $that.simplifyRoomFeeInfo.configId,
                         feeTypeCd: $that.simplifyRoomFeeInfo.feeTypeCd,
-                        detailId: '-1'
+                        detailId: '-1',
+                        feeState:'2008001'
                     }
                 };
                 //按业主查询

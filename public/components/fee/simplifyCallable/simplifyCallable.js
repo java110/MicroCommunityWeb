@@ -39,7 +39,7 @@
                     params: {
                         page: _page,
                         row: _row,
-                        roomId: $that.simplifyCallableInfo.roomId,
+                        payerObjId: $that.simplifyCallableInfo.roomId,
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };

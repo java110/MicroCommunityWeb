@@ -39,7 +39,7 @@
             });
             vc.on('ownerDetailAccountReceipt', 'paginationPlus', 'page_event',
                 function(_currentPage) {
-                    vc.component._listOwnerDetailAccountReceipt(_currentPage, DEFAULT_ROWS);
+                    $that._listOwnerDetailAccountReceipt(_currentPage, DEFAULT_ROWS);
                 });
         },
         methods: {
@@ -58,13 +58,13 @@
                 vc.http.apiGet('/receipt.listAccountReceipt',
                     param,
                     function(json, res) {
-                        var _feeReceiptManageInfo = JSON.parse(json);
-                        vc.component.ownerDetailAccountReceiptInfo.total = _feeReceiptManageInfo.total;
-                        vc.component.ownerDetailAccountReceiptInfo.records = _feeReceiptManageInfo.records;
-                        vc.component.ownerDetailAccountReceiptInfo.feeReceipts = _feeReceiptManageInfo.data;
+                        let _json = JSON.parse(json);
+                        $that.ownerDetailAccountReceiptInfo.total = _json.total;
+                        $that.ownerDetailAccountReceiptInfo.records = _json.records;
+                        $that.ownerDetailAccountReceiptInfo.feeReceipts = _json.data;
                         vc.emit('ownerDetailAccountReceipt', 'paginationPlus', 'init', {
-                            total: vc.component.ownerDetailAccountReceiptInfo.records,
-                            dataCount: vc.component.ownerDetailAccountReceiptInfo.total,
+                            total: $that.ownerDetailAccountReceiptInfo.records,
+                            dataCount: $that.ownerDetailAccountReceiptInfo.total,
                             currentPage: _page
                         });
                     },
@@ -74,7 +74,7 @@
                 );
             },
             _queryFeeAccountReceiptMethod: function() {
-                vc.component._listOwnerDetailAccountReceipt(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerDetailAccountReceipt(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _printFeeAccountReceipt: function(_receipt) {
                 if ($that.ownerDetailAccountReceiptInfo.selectReceipts.length < 1) {
@@ -109,11 +109,11 @@
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {
                         if (!checkObj[i].checked) { // 将未勾选的checkbox选项push到绑定数组中
-                            vc.component.ownerDetailAccountReceiptInfo.selectReceipts.push(checkObj[i].value);
+                            $that.ownerDetailAccountReceiptInfo.selectReceipts.push(checkObj[i].value);
                         }
                     }
                 } else { // 如果是去掉全选则清空checkbox选项绑定数组
-                    vc.component.ownerDetailAccountReceiptInfo.selectReceipts = [];
+                    $that.ownerDetailAccountReceiptInfo.selectReceipts = [];
                 }
             }
         }

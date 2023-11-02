@@ -14,7 +14,7 @@
             }
         },
         _initMethod: function () {
-            vc.component._initEditFeeDateInfo();
+            $that._initEditFeeDateInfo();
         },
         _initEvent: function () {
             vc.on('editFee', 'openEditFeeModal',
@@ -36,24 +36,24 @@
 
                 vc.initDate('editFeeStartTime',function(_value){
                     let start = Date.parse(new Date(_value));
-                    let end = Date.parse(new Date(vc.component.editFeeInfo.endTime));
+                    let end = Date.parse(new Date($that.editFeeInfo.endTime));
                     if (start - end >= 0) {
                         vc.toast("建账时间必须小于计费起始时间");
                         $(".editFeeStartTime").val('');
-                        vc.component.editFeeInfo.startTime = "";
+                        $that.editFeeInfo.startTime = "";
                     } else {
-                        vc.component.editFeeInfo.startTime = _value;
+                        $that.editFeeInfo.startTime = _value;
                     }
                 });
                 vc.initDate('editFeeEndTime',function(_value){
-                    let start = Date.parse(new Date(vc.component.editFeeInfo.startTime))
+                    let start = Date.parse(new Date($that.editFeeInfo.startTime))
                     let end = Date.parse(new Date(_value))
                     if (start - end >= 0) {
                         vc.toast("计费起始时间必须大于建账时间");
                         $(".editFeeEndTime").val('');
-                        vc.component.editFeeInfo.endTime = "";
+                        $that.editFeeInfo.endTime = "";
                     } else {
-                        vc.component.editFeeInfo.endTime = _value;
+                        $that.editFeeInfo.endTime = _value;
                     }
                 })
                 vc.initDate('editRoomRateStartTime', function (_endTime) {
@@ -77,7 +77,7 @@
             },
             editFeeValidate() {
                 return vc.validate.validate({
-                    editFeeInfo: vc.component.editFeeInfo
+                    editFeeInfo: $that.editFeeInfo
                 }, {
                     'editFeeInfo.startTime': [{
                         limit: "required",
@@ -92,12 +92,12 @@
                 });
             },
             _doEidtFee: function () {
-                if (!vc.component.editFeeValidate()) {
+                if (!$that.editFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.editFeeInfo.communityId = vc.getCurrentCommunity().communityId;
-                vc.http.apiPost('fee.updateFee', JSON.stringify(vc.component.editFeeInfo), {
+                $that.editFeeInfo.communityId = vc.getCurrentCommunity().communityId;
+                vc.http.apiPost('fee.updateFee', JSON.stringify($that.editFeeInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
@@ -105,7 +105,7 @@
                         if (_json.code == 0) {
                             //关闭model
                             $('#editFeeModel').modal('hide');
-                            vc.component.clearAddFeeConfigInfo();
+                            $that.clearAddFeeConfigInfo();
                             vc.emit('roomCreateFee', 'notify', {});
                             vc.emit('listParkingSpaceFee', 'notify', {});
                             vc.emit('listContractFee', 'notify', {});
@@ -114,7 +114,7 @@
                             vc.emit('simplifyContractFee', 'notify', {});
                             vc.emit('carDetailFee', 'notify', {});
                             vc.emit('contractDetailRoomFee', 'notify', {});
-
+                            vc.emit('ownerDetailRoomFee', 'notify', {});
                             vc.toast("操作成功");
                             return;
                         } else {
@@ -127,7 +127,7 @@
                     });
             },
             clearAddFeeConfigInfo: function () {
-                vc.component.editFeeInfo = {
+                $that.editFeeInfo = {
                     feeId: '',
                     startTime: '',
                     endTime: '',

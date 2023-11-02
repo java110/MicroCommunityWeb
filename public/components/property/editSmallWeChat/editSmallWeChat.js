@@ -8,12 +8,12 @@
                 name: '',
                 appId: '',
                 appSecret: '',
-                payPassword: '',
+                payPassword: '1',
                 createTime: '',
                 objType: '',
                 objId: '',
-                mchId: '',
-                mchName:'',
+                mchId: '1',
+                mchName:'1',
                 remarks: '',
                 objTypes: '1000',
                 certPath: ''
@@ -25,12 +25,12 @@
         },
         _initEvent: function() {
             vc.on('editSmallWeChat', 'openEditSmallWeChatModal', function(_params) {
-                vc.component.refreshEditSmallWeChatInfo();
+                $that.refreshEditSmallWeChatInfo();
                 vc.getDict('small_wechat', "obj_type", function(_data) {
-                    vc.component.editSmallWeChatInfo.objTypes = _data;
+                    $that.editSmallWeChatInfo.objTypes = _data;
                 });
                 $('#editSmallWeChatModel').modal('show');
-                vc.copyObject(_params, vc.component.editSmallWeChatInfo);
+                vc.copyObject(_params, $that.editSmallWeChatInfo);
                 if ($that.editSmallWeChatInfo.certPath) {
                     vc.emit('editSmallWeChat', 'uploadFile', 'notifyVedio', $that.editSmallWeChatInfo.certPath)
                 }
@@ -42,7 +42,7 @@
         methods: {
             editSmallWeChatValidate: function() {
                 return vc.validate.validate({
-                    editSmallWeChatInfo: vc.component.editSmallWeChatInfo
+                    editSmallWeChatInfo: $that.editSmallWeChatInfo
                 }, {
                     'editSmallWeChatInfo.name': [{
                             limit: "required",
@@ -77,17 +77,7 @@
                             errInfo: "应用密钥不能超过200个字符"
                         },
                     ],
-                    'editSmallWeChatInfo.payPassword': [{
-                            limit: "required",
-                            param: "",
-                            errInfo: "支付密码不能为空"
-                        },
-                        {
-                            limit: "maxin",
-                            param: "1,200",
-                            errInfo: "支付密码不能超过200个字符"
-                        },
-                    ],
+                   
                     'editSmallWeChatInfo.wechatId': [{
                         limit: "required",
                         param: "",
@@ -98,24 +88,19 @@
                         param: "",
                         errInfo: "配置不能为空"
                     }],
-                    'editSmallWeChatInfo.mchId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "商户id不能为空"
-                    }],
 
                 });
             },
             editSmallWeChat: function() {
-                if (!vc.component.editSmallWeChatValidate()) {
+                if (!$that.editSmallWeChatValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 //1000表示改小程序作用于当前小区 否则作用于所有小区
-                vc.component.editSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
+                $that.editSmallWeChatInfo.objId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     'smallWeChat.updateSmallWeChat',
-                    JSON.stringify(vc.component.editSmallWeChatInfo), {
+                    JSON.stringify($that.editSmallWeChatInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -135,18 +120,18 @@
                     });
             },
             refreshEditSmallWeChatInfo: function() {
-                vc.component.editSmallWeChatInfo = {
+                $that.editSmallWeChatInfo = {
                     wechatId: '',
                     weChatId:'',
                     name: '',
                     appId: '',
                     appSecret: '',
-                    payPassword: '',
+                    payPassword: '1',
                     createTime: '',
                     objType: '',
                     objId: '',
-                    mchId: '',
-                    mchName:'',
+                    mchId: '1',
+                    mchName:'1',
                     remarks: '',
                     objTypes: '1000',
                     certPath: ''
@@ -156,4 +141,4 @@
         }
     });
 
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

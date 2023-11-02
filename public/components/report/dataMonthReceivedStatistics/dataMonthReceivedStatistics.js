@@ -16,6 +16,7 @@
                 feeStartDate: '',
                 feeEndDate: '',
                 feeTypeCd: '',
+                communityId:'',
                 feeAmount: '0'
             }
         },
@@ -30,6 +31,8 @@
             vc.on('dataMonthReceivedStatistics', 'switch', function (_data) {
                  $that.dataMonthReceivedStatisticsInfo.feeStartDate = _data.startDate;
                  $that.dataMonthReceivedStatisticsInfo.feeEndDate = _data.endDate;
+                 $that.dataMonthReceivedStatisticsInfo.communityId = _data.communityId;
+
                  setTimeout(function(){
                     $that._initMonthReceivedDate();
                  },1000);
@@ -59,7 +62,7 @@
                     params: {
                         page:_page,
                         row:_row,
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataMonthReceivedStatisticsInfo.communityId,
                         feeStartDate: $that.dataMonthReceivedStatisticsInfo.feeStartDate,
                         feeEndDate: $that.dataMonthReceivedStatisticsInfo.feeEndDate,
                         feeTypeCd: $that.dataMonthReceivedStatisticsInfo.feeTypeCd,
@@ -90,7 +93,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.dataMonthReceivedStatisticsInfo.communityId
                     }
                 };
                 $that.dataMonthReceivedStatisticsInfo.fees = [];
@@ -117,7 +120,7 @@
                
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataMonthReceivedStatisticsInfo.communityId,
                         feeStartDate: $that.dataMonthReceivedStatisticsInfo.feeStartDate,
                         feeEndDate: $that.dataMonthReceivedStatisticsInfo.feeEndDate,
                         feeTypeCd: $that.dataMonthReceivedStatisticsInfo.feeTypeCd,

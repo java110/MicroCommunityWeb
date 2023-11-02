@@ -16,15 +16,16 @@
                 records: 0
             }
         },
-        _initMethod: function () {
-            $that._listReportFeeDetailRoomFloors();
-            vc.getDict('pay_fee_config', "fee_type_cd_show", function (_data) {
+        _initMethod: function() {
+           
+            vc.getDict('pay_fee_config', "fee_type_cd_show", function(_data) {
                 $that.reportFeeDetailRoomInfo.feeTypeCds = _data
             });
         },
         _initEvent: function () {
             vc.on('reportFeeDetailRoom', 'switch', function (_data) {
                 $that.reportFeeDetailRoomInfo.conditions = _data;
+                $that._listReportFeeDetailRoomFloors();
                 $that._listReportFeeDetailRooms(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('reportFeeDetailRoom', 'notify', function (_data) {
@@ -41,7 +42,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.reportFeeDetailRoomInfo.conditions.communityId
                     }
                 };
                 //发送get请求
@@ -84,11 +85,12 @@
                     }
                 );
             },
-            _exportReportFeeDetailRoomExcel: function () {
-                vc.component.reportFeeDetailRoomInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                vc.component.reportFeeDetailRoomInfo.conditions.pagePath = 'reportFeeDetailRoom';
+
+            _exportReportFeeDetailRoomExcel: function() {
+               // $that.reportFeeDetailRoomInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.reportFeeDetailRoomInfo.conditions.pagePath = 'reportFeeDetailRoom';
                 let param = {
-                    params: vc.component.reportFeeDetailRoomInfo.conditions
+                    params: $that.reportFeeDetailRoomInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,

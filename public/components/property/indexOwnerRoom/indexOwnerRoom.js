@@ -9,9 +9,13 @@
             }
         },
         _initMethod: function() {
-            $that._loadIndexOwnerRegisterData();
         },
-        _initEvent: function() {},
+        _initEvent: function() {
+            vc.on('indexOwnerRoom','initData',function(){
+                $that._loadIndexOwnerRegisterData();
+
+            })
+        },
         methods: {
             _loadIndexOwnerRegisterData: function() {
                 let param = {

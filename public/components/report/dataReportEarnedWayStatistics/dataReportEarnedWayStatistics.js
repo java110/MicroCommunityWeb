@@ -12,6 +12,7 @@
                 roomNum: '',
                 startDate: '',
                 endDate: '',
+                communityId:'',
                 feeAmount: '0'
             }
         },
@@ -21,6 +22,7 @@
             vc.on('dataReportEarnedWayStatistics', 'switch', function (_data) {
                 $that.dataReportEarnedWayStatisticsInfo.startDate = _data.startDate;
                 $that.dataReportEarnedWayStatisticsInfo.endDate = _data.endDate;
+                $that.dataReportEarnedWayStatisticsInfo.communityId = _data.communityId;
                 $that._loadDataReportEarnedWayStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
         },
@@ -28,7 +30,7 @@
             _loadDataReportEarnedWayStatisticsData: function (_page, _row) {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportEarnedWayStatisticsInfo.communityId,
                         startDate: $that.dataReportEarnedWayStatisticsInfo.startDate,
                         endDate: $that.dataReportEarnedWayStatisticsInfo.endDate,
                         page: _page,
@@ -50,7 +52,7 @@
             _exportReportEarnedWayExcel: function () {
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataReportEarnedWayStatisticsInfo.communityId,
                         startDate: $that.dataReportEarnedStatisticsInfo.startDate,
                         endDate: $that.dataReportEarnedStatisticsInfo.endDate,
                         pagePath: 'dataReportEarnedWayStatistics'

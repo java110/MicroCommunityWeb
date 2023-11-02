@@ -37,8 +37,8 @@
             _listDeadlineFees: function (_page, _rows) {
                 $that.reportDeadlineFeeInfo.conditions.page = _page;
                 $that.reportDeadlineFeeInfo.conditions.row = _rows;
-                $that.reportDeadlineFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
-                var param = {
+                //$that.reportDeadlineFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                let param = {
                     params: $that.reportDeadlineFeeInfo.conditions
                 };
                 //发送get请求

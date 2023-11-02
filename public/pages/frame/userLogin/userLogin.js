@@ -5,86 +5,54 @@
         data: {
             userLoginInfo: {
                 moreCondition: false,
-                branchOrgs: [],
-                departmentOrgs: [],
+                logs: [],
+                stores:[],
                 conditions: {
-                    branchOrgId: '',
-                    departmentOrgId: '',
-                    orgId: '',
-                    orgName: '',
-                    orgLevel: '',
-                    parentOrgId: '',
                     name: '',
                     tel: '',
-                    userLoginId: ''
+                    userLoginId: '',
+                    storeId:'',
+                    startTime:'',
+                    endTime:''
                 }
             },
-            userLoginData: [],
-
-        },
-        watch: {
-            "userLoginInfo.conditions.branchOrgId": {//深度监听，可监听到对象、数组的变化
-                handler(val, oldVal) {
-                    vc.component._getOrgsByOrgLeveluserLogin(DEFAULT_PAGE, DEFAULT_ROWS, 3, val);
-
-                    vc.component.userLoginInfo.conditions.branchOrgId = val;
-                    vc.component.userLoginInfo.conditions.parentOrgId = val;
-
-
-                    vc.component.userLoginInfo.conditions.departmentOrgId = '';
-
-                    vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS);
-
-                },
-                deep: true
-            },
-            "userLoginInfo.conditions.departmentOrgId": {//深度监听，可监听到对象、数组的变化
-                handler(val, oldVal) {
-                    vc.component.userLoginInfo.conditions.orgId = val;
-                    vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS);
-                },
-                deep: true
-            }
         },
         _initMethod: function () {
-            vc.component.loadData(1, 10);
-            vc.component._getOrgsByOrgLeveluserLogin(DEFAULT_PAGE, DEFAULT_ROWS, 2, '');
+            $that.loadData(1, DEFAULT_ROWS);
+            $that._listListStores();
+
+            vc.initDateTime('startTime',function(_value){
+                $that.userLoginInfo.conditions.startTime = _value;
+            });
+            vc.initDateTime('endTime',function(_value){
+                $that.userLoginInfo.conditions.endTime = _value;
+            })
 
         },
         _initEvent: function () {
-            vc.component.$on('pagination_page_event', function (_currentPage) {
-                vc.component.currentPage(_currentPage);
+            vc.on('pagination', 'page_event', function(_currentPage) {
+                $that.loadData(_currentPage, DEFAULT_ROWS);
             });
-            vc.component.$on('adduserLogin_reload_event', function () {
-                vc.component.loadData(1, 10);
-            });
-            vc.component.$on('edituserLogin_reload_event', function () {
-                vc.component.loadData(1, 10);
-            });
-            vc.component.$on('deleteuserLogin_reload_event', function () {
-                vc.component.loadData(1, 10);
-            });
-
-
         },
         methods: {
             loadData: function (_page, _rows) {
-                vc.component.userLoginInfo.conditions.page = _page;
-                vc.component.userLoginInfo.conditions.rows = _rows;
-                vc.component.userLoginInfo.conditions.row = _rows;
+                $that.userLoginInfo.conditions.page = _page;
+                $that.userLoginInfo.conditions.rows = _rows;
+                $that.userLoginInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.userLoginInfo.conditions
+                    params: $that.userLoginInfo.conditions
                 };
 
                 //发送get请求
                 vc.http.apiGet('/userLogin/queryUserLogin',
                     param,
                     function (json) {
-                        var _userLoginInfo = JSON.parse(json);
-                        vc.component.userLoginData = _userLoginInfo.data;
-                        vc.component.$emit('pagination_info_event', {
+                        let _userLoginInfo = JSON.parse(json);
+                        $that.userLoginInfo.logs = _userLoginInfo.data;
+                        vc.emit('pagination', 'init', {
                             total: _userLoginInfo.records,
-                            currentPage: _userLoginInfo.page
+                            dataCount: _userLoginInfo.total,
+                            currentPage: _page
                         });
 
                     }, function () {
@@ -93,48 +61,51 @@
                 );
 
             },
-            currentPage: function (_currentPage) {
-                vc.component.loadData(_currentPage, 10);
-            },
+           
 
             _moreCondition: function () {
-                if (vc.component.userLoginInfo.moreCondition) {
-                    vc.component.userLoginInfo.moreCondition = false;
+                if ($that.userLoginInfo.moreCondition) {
+                    $that.userLoginInfo.moreCondition = false;
                 } else {
-                    vc.component.userLoginInfo.moreCondition = true;
+                    $that.userLoginInfo.moreCondition = true;
                 }
             },
-            _getOrgsByOrgLeveluserLogin: function (_page, _rows, _orgLevel, _parentOrgId) {
+           
 
-                var param = {
+            _queryUserLoginMethod: function () {
+                $that.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
+            },
+            _listListStores: function (_page, _rows) {
+                let param = {
                     params: {
-                        page: _page,
-                        row: _rows,
-                        orgLevel: _orgLevel,
-                        parentOrgId: _parentOrgId
+                        page:1,
+                        row:100
                     }
                 };
 
+                $that.userLoginInfo.stores = [{
+                    storeId: '',
+                    name: '全部'
+                }];
+
                 //发送get请求
-                vc.http.get('userLogin',
-                    'list',
+                vc.http.apiGet('/store.listStores',
                     param,
                     function (json, res) {
-                        var _orgInfo = JSON.parse(json);
-                        if (_orgLevel == 2) {
-                            vc.component.userLoginInfo.branchOrgs = _orgInfo.orgs;
-                        } else {
-                            vc.component.userLoginInfo.departmentOrgs = _orgInfo.orgs;
-                        }
+                        let _json = JSON.parse(json);
+                        _json.data.forEach(item => {
+                            $that.userLoginInfo.stores.push(item);
+                        });
+                     
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-
-            _queryuserLoginMethod: function () {
-                vc.component.loadData(DEFAULT_PAGE, DEFAULT_ROWS)
-            }
+            swatchStore:function(_app){
+                $that.userLoginInfo.conditions.storeId = _app.storeId;
+                $that.loadData(1, DEFAULT_ROWS);
+            },
 
 
         },

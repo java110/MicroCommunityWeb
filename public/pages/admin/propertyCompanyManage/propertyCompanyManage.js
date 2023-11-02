@@ -20,22 +20,22 @@
             }
         },
         _initMethod: function () {
-            vc.component._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
             vc.on('propertyCompanyManage', 'listPropertyCompany', function (_param) {
-                vc.component._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listPropertyCompanys(_currentPage, DEFAULT_ROWS);
+                $that._listPropertyCompanys(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             _listPropertyCompanys: function (_page, _rows) {
-                vc.component.propertyCompanyManageInfo.conditions.page = _page;
-                vc.component.propertyCompanyManageInfo.conditions.row = _rows;
+                $that.propertyCompanyManageInfo.conditions.page = _page;
+                $that.propertyCompanyManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.propertyCompanyManageInfo.conditions
+                    params: $that.propertyCompanyManageInfo.conditions
                 };
                 param.params.storeId = param.params.storeId.trim();
                 param.params.name = param.params.name.trim();
@@ -45,12 +45,12 @@
                     param,
                     function (json, res) {
                         var _propertyCompanyManageInfo = JSON.parse(json);
-                        vc.component.propertyCompanyManageInfo.total = _propertyCompanyManageInfo.total;
-                        vc.component.propertyCompanyManageInfo.records = _propertyCompanyManageInfo.records;
-                        vc.component.propertyCompanyManageInfo.propertyCompanys = _propertyCompanyManageInfo.data;
+                        $that.propertyCompanyManageInfo.total = _propertyCompanyManageInfo.total;
+                        $that.propertyCompanyManageInfo.records = _propertyCompanyManageInfo.records;
+                        $that.propertyCompanyManageInfo.propertyCompanys = _propertyCompanyManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.propertyCompanyManageInfo.records,
-                            dataCount: vc.component.propertyCompanyManageInfo.total,
+                            total: $that.propertyCompanyManageInfo.records,
+                            dataCount: $that.propertyCompanyManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -70,20 +70,20 @@
             },
             //查询
             _queryPropertyCompanyMethod: function () {
-                vc.component._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetPropertyCompanyMethod: function () {
-                vc.component.propertyCompanyManageInfo.conditions.storeId = "";
-                vc.component.propertyCompanyManageInfo.conditions.name = "";
-                vc.component.propertyCompanyManageInfo.conditions.tel = "";
-                vc.component._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.propertyCompanyManageInfo.conditions.storeId = "";
+                $that.propertyCompanyManageInfo.conditions.name = "";
+                $that.propertyCompanyManageInfo.conditions.tel = "";
+                $that._listPropertyCompanys(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.propertyCompanyManageInfo.moreCondition) {
-                    vc.component.propertyCompanyManageInfo.moreCondition = false;
+                if ($that.propertyCompanyManageInfo.moreCondition) {
+                    $that.propertyCompanyManageInfo.moreCondition = false;
                 } else {
-                    vc.component.propertyCompanyManageInfo.moreCondition = true;
+                    $that.propertyCompanyManageInfo.moreCondition = true;
                 }
             },
             _openManageCommunity: function (_propertyCompany) {

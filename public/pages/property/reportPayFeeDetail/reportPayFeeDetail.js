@@ -17,6 +17,7 @@
                 states: [],
                 feeTypeCds: [],
                 floors: [],
+                communitys:[],
                 totalReceivableAmount: 0.0,
                 totalReceivedAmount: 0.0,
                 allReceivableAmount: 0.0,
@@ -45,13 +46,15 @@
                     endTime: '',
                     feeStartTime: '',
                     feeEndTime: '',
-                    communityId: vc.getCurrentCommunity().communityId
+                    communityId: '',
                 }
             }
         },
         _initMethod: function () {
             $that._initDate();
+            $that.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
             $that.loadFloors();
+            $that._loadStaffCommunitys();
             $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表支付方式关联
             vc.getDict('pay_fee_detail', "prime_rate", function (_data) {
@@ -91,7 +94,7 @@
                     $that.reportPayFeeDetailInfo.conditions.endTime = _value;
                     let start = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.startTime))
                     let end = Date.parse(new Date($that.reportPayFeeDetailInfo.conditions.endTime))
-                    if (start - end >= 0) {
+                    if (start - end > 0) {
                         vc.toast("结束时间必须大于开始时间")
                         $that.reportPayFeeDetailInfo.conditions.endTime = '';
                     }
@@ -209,7 +212,7 @@
             _listFees: function (_page, _rows) {
                 $that.reportPayFeeDetailInfo.conditions.page = _page;
                 $that.reportPayFeeDetailInfo.conditions.row = _rows;
-                $that.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                //$that.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 let param = {
                     params: $that.reportPayFeeDetailInfo.conditions
                 };
@@ -339,7 +342,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.reportPayFeeDetailInfo.conditions.communityId
                     }
                 }
                 vc.http.apiGet(
@@ -360,7 +363,7 @@
                     params: {
                         page: 1,
                         row: 50,
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.reportPayFeeDetailInfo.conditions.communityId,
                         feeTypeCd: $that.reportPayFeeDetailInfo.conditions.feeTypeCd,
                         isFlag: "0"
                     }
@@ -384,7 +387,7 @@
             },
             _exportFee: function () {
                 //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeDetail&' + vc.objToGetParam($that.reportPayFeeDetailInfo.conditions));
-                $that.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                //$that.reportPayFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 $that.reportPayFeeDetailInfo.conditions.pagePath = 'reportPayFeeDetail';
                 let param = {
                     params: $that.reportPayFeeDetailInfo.conditions
@@ -401,6 +404,30 @@
                     function (errInfo, error) {
                         console.log('请求失败处理');
                     });
+            },
+            _loadStaffCommunitys: function () {
+                let param = {
+                    params: {
+                        _uid: '123mlkdinkldldijdhuudjdjkkd',
+                        page: 1,
+                        row: 100,
+                    }
+                };
+                vc.http.apiGet('/community.listMyEnteredCommunitys',
+                    param,
+                    function (json, res) {
+                        if (res.status == 200) {
+                            let _data = JSON.parse(json);
+                            $that.reportPayFeeDetailInfo.communitys = _data.communitys;
+                        }
+                    }, function () {
+                        console.log('请求失败处理');
+                    }
+                );
+            },
+            _changCommunity:function(){
+                $that.loadFloors();
+                $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             }
         }
     });

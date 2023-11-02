@@ -15,7 +15,8 @@
                 builtUpArea: '',
                 payObjType: '',
                 payObjName: '',
-                ownerName: ''
+                ownerName: '',
+                printName:'',
             },
             printFlag: '0'
         },
@@ -66,6 +67,8 @@
                         if (_data.length > 0) {
                             $that.printPayFeeInfo.content = _data[0].content;
                             $that.printPayFeeInfo.qrImg = _data[0].qrImg;
+                            $that.printPayFeeInfo.printName = _data[0].printName;
+                            
                         }
                     },
                     function(errInfo, error) {

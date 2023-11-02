@@ -28,21 +28,21 @@
         },
         _initMethod: function () {
             vc.getDict('r_repair_pool', "state", function (_data) {
-                vc.component.repairDispatchManageInfo.states = _data;
+                $that.repairDispatchManageInfo.states = _data;
             });
-            vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.component._listRepairTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listRepairTypes(DEFAULT_PAGE, DEFAULT_ROWS);
             //与字典表关联
             vc.getDict('r_repair_pool', "state", function (_data) {
-                vc.component.repairDispatchManageInfo.states = _data;
+                $that.repairDispatchManageInfo.states = _data;
             });
         },
         _initEvent: function () {
             vc.on('repairDispatchManage', 'listOwnerRepair', function (_param) {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
+                $that._listOwnerRepairs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -54,11 +54,11 @@
                     vc.jumpToPage('/#/pages/property/listOwner');
                     return;
                 }
-                vc.component.repairDispatchManageInfo.conditions.roomId = _roomId;
-                vc.component.repairDispatchManageInfo.conditions.ownerId = _ownerId;
-                var param = {
+                $that.repairDispatchManageInfo.conditions.roomId = _roomId;
+                $that.repairDispatchManageInfo.conditions.ownerId = _ownerId;
+                let param = {
                     params: {
-                        roomId: vc.component.repairDispatchManageInfo.conditions.roomId,
+                        roomId: $that.repairDispatchManageInfo.conditions.roomId,
                         communityId: vc.getCurrentCommunity().communityId,
                         page: 1,
                         row: 1
@@ -75,9 +75,9 @@
                                 vc.jumpToPage('/#/pages/property/listOwner');
                                 return;
                             }
-                            var _roomInfo = _roomInfos.rooms[0];
-                            vc.component.repairDispatchManageInfo.conditions.roomName = _roomInfo.floorNum + "号楼 " + _roomInfo.unitNum + "单元 " + _roomInfo.roomNum + "室";
-                            vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                            let _roomInfo = _roomInfos.rooms[0];
+                            $that.repairDispatchManageInfo.conditions.roomName = _roomInfo.floorNum + "号楼 " + _roomInfo.unitNum + "单元 " + _roomInfo.roomNum + "室";
+                            $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
                         } else {
                             vc.toast("非法操作，未找到房屋信息");
                             vc.jumpToPage('/#/pages/property/listOwner');
@@ -91,11 +91,11 @@
                 );
             },
             _listOwnerRepairs: function (_page, _rows) {
-                vc.component.repairDispatchManageInfo.conditions.page = _page;
-                vc.component.repairDispatchManageInfo.conditions.row = _rows;
-                vc.component.repairDispatchManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
+                $that.repairDispatchManageInfo.conditions.page = _page;
+                $that.repairDispatchManageInfo.conditions.row = _rows;
+                $that.repairDispatchManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
-                    params: vc.component.repairDispatchManageInfo.conditions
+                    params: $that.repairDispatchManageInfo.conditions
                 };
                 param.params.repairId = param.params.repairId.trim();
                 param.params.repairName = param.params.repairName.trim();
@@ -105,12 +105,12 @@
                     param,
                     function (json, res) {
                         var _repairDispatchManageInfo = JSON.parse(json);
-                        vc.component.repairDispatchManageInfo.total = _repairDispatchManageInfo.total;
-                        vc.component.repairDispatchManageInfo.records = _repairDispatchManageInfo.records;
-                        vc.component.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.data;
+                        $that.repairDispatchManageInfo.total = _repairDispatchManageInfo.total;
+                        $that.repairDispatchManageInfo.records = _repairDispatchManageInfo.records;
+                        $that.repairDispatchManageInfo.ownerRepairs = _repairDispatchManageInfo.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.repairDispatchManageInfo.records,
-                            dataCount: vc.component.repairDispatchManageInfo.total,
+                            total: $that.repairDispatchManageInfo.records,
+                            dataCount: $that.repairDispatchManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -121,16 +121,16 @@
             },
             //查询
             _queryOwnerRepairMethod: function () {
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetOwnerRepairMethod: function () {
-                vc.component.repairDispatchManageInfo.conditions.repairId = "";
-                vc.component.repairDispatchManageInfo.conditions.repairName = "";
-                vc.component.repairDispatchManageInfo.conditions.tel = "";
-                vc.component.repairDispatchManageInfo.conditions.repairType = "";
-                vc.component.repairDispatchManageInfo.conditions.state = "";
-                vc.component._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.repairDispatchManageInfo.conditions.repairId = "";
+                $that.repairDispatchManageInfo.conditions.repairName = "";
+                $that.repairDispatchManageInfo.conditions.tel = "";
+                $that.repairDispatchManageInfo.conditions.repairType = "";
+                $that.repairDispatchManageInfo.conditions.state = "";
+                $that._listOwnerRepairs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //办结
             _openFinishRepair: function (_ownerRepair) {
@@ -156,7 +156,7 @@
                     param,
                     function (json, res) {
                         var _repairTypesInfo = JSON.parse(json);
-                        vc.component.repairDispatchManageInfo.repairTypes = _repairTypesInfo.data;
+                        $that.repairDispatchManageInfo.repairTypes = _repairTypesInfo.data;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -164,10 +164,10 @@
                 );
             },
             _moreCondition: function () {
-                if (vc.component.repairDispatchManageInfo.moreCondition) {
-                    vc.component.repairDispatchManageInfo.moreCondition = false;
+                if ($that.repairDispatchManageInfo.moreCondition) {
+                    $that.repairDispatchManageInfo.moreCondition = false;
                 } else {
-                    vc.component.repairDispatchManageInfo.moreCondition = true;
+                    $that.repairDispatchManageInfo.moreCondition = true;
                 }
             },
             //转单

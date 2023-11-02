@@ -16,6 +16,7 @@
                 feeStartDate: '',
                 feeEndDate: '',
                 feeTypeCd: '',
+                communityId:'',
                 feeAmount: '0'
             }
         },
@@ -30,6 +31,7 @@
             vc.on('dataMonthOweStatistics', 'switch', function (_data) {
                  $that.dataMonthOweStatisticsInfo.feeStartDate = _data.startDate;
                  $that.dataMonthOweStatisticsInfo.feeEndDate = _data.endDate;
+                 $that.dataMonthOweStatisticsInfo.communityId = _data.communityId;
                 setTimeout(function(){
                     $that._initMonthOweDate();
                  },1000);
@@ -58,7 +60,7 @@
                     params: {
                         page:_page,
                         row:_row,
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataMonthOweStatisticsInfo.communityId,
                         feeStartDate: $that.dataMonthOweStatisticsInfo.feeStartDate,
                         feeEndDate: $that.dataMonthOweStatisticsInfo.feeEndDate,
                         feeTypeCd: $that.dataMonthOweStatisticsInfo.feeTypeCd,
@@ -89,7 +91,7 @@
                     params: {
                         page: 1,
                         row: 100,
-                        communityId: vc.getCurrentCommunity().communityId
+                        communityId: $that.dataMonthOweStatisticsInfo.communityId
                     }
                 };
                 $that.dataMonthOweStatisticsInfo.fees = [];
@@ -116,7 +118,7 @@
                 
                 let param = {
                     params: {
-                        communityId: vc.getCurrentCommunity().communityId,
+                        communityId: $that.dataMonthOweStatisticsInfo.communityId,
                         feeStartDate: $that.dataMonthOweStatisticsInfo.feeStartDate,
                         feeEndDate: $that.dataMonthOweStatisticsInfo.feeEndDate,
                         feeTypeCd: $that.dataMonthOweStatisticsInfo.feeTypeCd,

@@ -13,7 +13,7 @@
         },
         _initMethod: function () {
             vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
-                vc.component.importMeterWaterFeeInfo.feeTypeCds = _data;
+                $that.importMeterWaterFeeInfo.feeTypeCds = _data;
             });
         },
         _initEvent: function () {
@@ -27,7 +27,7 @@
         methods: {
             importMeterWaterFeeValidate() {
                 return vc.validate.validate({
-                    importMeterWaterFeeInfo: vc.component.importMeterWaterFeeInfo
+                    importMeterWaterFeeInfo: $that.importMeterWaterFeeInfo
                 }, {
                     'importMeterWaterFeeInfo.communityId': [
                         {
@@ -53,25 +53,25 @@
                 });
             },
             _importMeterWaterData: function () {
-                if (!vc.component.importMeterWaterFeeValidate()) {
+                if (!$that.importMeterWaterFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 // 导入数据
-                if (!vc.component.checkFileType(vc.component.importMeterWaterFeeInfo.excelTemplate.name.split('.')[1])) {
+                if (!$that.checkFileType($that.importMeterWaterFeeInfo.excelTemplate.name.split('.')[1])) {
                     vc.toast('不是有效的Excel格式');
                     return;
                 }
-                if (!vc.component.checkFileSize(vc.component.importMeterWaterFeeInfo.excelTemplate.size)) {
+                if (!$that.checkFileSize($that.importMeterWaterFeeInfo.excelTemplate.size)) {
                     vc.toast('Excel文件大小不能超过2M');
                     return;
                 }
                 let param = new FormData();
-                param.append("uploadFile", vc.component.importMeterWaterFeeInfo.excelTemplate);
-                param.append('communityId', vc.component.importMeterWaterFeeInfo.communityId);
-                param.append('feeTypeCd', vc.component.importMeterWaterFeeInfo.feeTypeCd);
-                param.append('configId', vc.component.importMeterWaterFeeInfo.configId);
-                param.append('meterType', vc.component.importMeterWaterFeeInfo.meterType);
+                param.append("uploadFile", $that.importMeterWaterFeeInfo.excelTemplate);
+                param.append('communityId', $that.importMeterWaterFeeInfo.communityId);
+                param.append('feeTypeCd', $that.importMeterWaterFeeInfo.feeTypeCd);
+                param.append('configId', $that.importMeterWaterFeeInfo.configId);
+                param.append('meterType', $that.importMeterWaterFeeInfo.meterType);
                 param.append('importAdapt', "importMeterWaterFee");
                 vc.http.upload(
                     'assetImport',
@@ -106,7 +106,27 @@
                     vc.toast('请选择抄表类型');
                     return;
                 }
-                vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + '&meterType=' + _meterType);
+               // vc.jumpToPage('/callComponent/importMeterWaterFee/exportData?communityId=' +  + '&meterType=' + _meterType);
+               $('#importMeterWaterFeeModel').modal('hide');
+                let param = {
+                    params: {
+                        communityId:vc.getCurrentCommunity().communityId,
+                        meterType:_meterType,
+                        pagePath:'exportMeterWater'
+                    }
+                };
+                //发送get请求
+                vc.http.apiGet('/export.exportData', param,
+                    function(json, res) {
+                        let _json = JSON.parse(json);
+                        vc.toast(_json.msg);
+                        if (_json.code == 0) {
+                            vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
+                        }
+                    },
+                    function(errInfo, error) {
+                        console.log('请求失败处理');
+                    });
             },
             _listImportMeterTypes: function (_page, _rows) {
                 var param = {
@@ -129,7 +149,7 @@
                 );
             },
             clearAddFeeConfigInfo: function () {
-                vc.component.importMeterWaterFeeInfo = {
+                $that.importMeterWaterFeeInfo = {
                     communityId: vc.getCurrentCommunity().communityId,
                     excelTemplate: '',
                     configId: '',
@@ -141,7 +161,7 @@
             },
             getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
-                vc.component.importMeterWaterFeeInfo.excelTemplate = e.target.files[0];
+                $that.importMeterWaterFeeInfo.excelTemplate = e.target.files[0];
             },
             checkFileType: function (fileType) {
                 const acceptTypes = ['xlsx'];
@@ -175,7 +195,7 @@
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
                     function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
-                        vc.component.importMeterWaterFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
+                        $that.importMeterWaterFeeInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

@@ -1,8 +1,8 @@
 <div class=" animated fadeInRight ecommerce">
-    <div class="row">
+    <div class="flex justify-start">
         <div class="col-md-1 padding-r-0">
             <div class=" border-radius ">
-                <div class="margin-xs-r  treeview attendance-staff" style="height: 650px;">
+                <div class="margin-xs-r  treeview attendance-staff" style="max-height: 650px;height: auto;">
                     <ul class="list-group text-center border-radius">
                         <li class="list-group-item node-orgTree " @click="swatchFloor('')"
                             :class="{'vc-node-selected':reportFeeSummaryInfo.conditions.floorId == ''}">
@@ -34,25 +34,35 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group input-group">
                                         <input type="text" :placeholder="vc.i18n('请选择开始时间','reportFeeSummary')"
                                                v-model="reportFeeSummaryInfo.conditions.startDate"
                                                class=" form-control startDate">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group input-group">
                                         <input type="text" :placeholder="vc.i18n('请选择结束时间','reportFeeSummary')"
                                                v-model="reportFeeSummaryInfo.conditions.endDate"
                                                class=" form-control endDate">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <input type="text" :placeholder="vc.i18n('请填写房屋编号','reportFeeSummary')"
                                                class="form-control form-control-md"
                                                v-model="reportFeeSummaryInfo.conditions.roomNum">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group input-group">
+                                        <input type="text" :placeholder="vc.i18n('请填写业主名称','reportFeeSummary')" v-model="reportFeeSummaryInfo.conditions.ownerName" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请填写业主手机号','reportFeeSummary')" class="form-control form-control-md" v-model="reportFeeSummaryInfo.conditions.link">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -66,10 +76,9 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="row" v-show="reportFeeSummaryInfo.moreCondition == true">
-                                <div class="col-sm-3">
-                                    <select class="form-control-md form-control input-s-sm inline"
-                                            v-model="reportFeeSummaryInfo.conditions.feeTypeCd">
+                            <div class="row margin-bottom">
+                                <div class="col-sm-2">
+                                    <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeSummaryInfo.conditions.feeTypeCd">
                                         <option selected value="">{{vc.i18n('请选择费用大类','reportFeeSummary')}}</option>
                                         <option v-for="(item,index) in reportFeeSummaryInfo.feeTypeCds" :key="index"
                                                 v-bind:value="item.statusCd">
@@ -91,9 +100,19 @@
                                                v-model="reportFeeSummaryInfo.conditions.link">
                                     </div>
                                 </div>
+                                <div class="col-sm-2" v-if="reportFeeSummaryInfo.communitys.length>1">
+                                    <select class="form-control-md form-control input-s-sm inline" v-model="reportFeeSummaryInfo.conditions.communityId" @change="_changCommunity()">
+                                        <option disabled selected value="">{{vc.i18n('请选择小区','reportFeeSummary')}}</option>
+                                        <option v-for="(item,index) in reportFeeSummaryInfo.communitys" :key="index"
+                                                v-bind:value="item.communityId">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                
                             </div>
-                            <div class="row" v-show="reportFeeSummaryInfo.moreCondition == true">
-                                <div class="col-sm-12">
+                            <div class="row ">
+                                <div class="col-sm-12 ">
                                     <div class="form-group ">
                                         <span class="margin-right"
                                               v-for="(item,index) in reportFeeSummaryInfo.feeConfigs">
