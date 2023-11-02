@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editChargeRuleFeeInfo: {
@@ -8,12 +7,10 @@
                 minEnergyPrice: '',
                 maxEnergyPrice: '',
                 durationPrice: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editChargeRuleFee', 'openEditChargeRuleFeeModal', function (_params) {
@@ -38,7 +35,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "规则ID不能超过30"
-                        },
+                        }
                     ],
                     'editChargeRuleFeeInfo.minEnergyPrice': [
                         {
@@ -50,7 +47,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "最小功率不能超过30"
-                        },
+                        }
                     ],
                     'editChargeRuleFeeInfo.maxEnergyPrice': [
                         {
@@ -62,7 +59,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "最大功率不能超过30"
-                        },
+                        }
                     ],
                     'editChargeRuleFeeInfo.durationPrice': [
                         {
@@ -74,21 +71,22 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "小时电价不能超过30"
-                        },
+                        }
                     ],
                     'editChargeRuleFeeInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注不能超过512"
-                        },
+                        }
                     ],
                     'editChargeRuleFeeInfo.crfId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "编号不能为空"
-                        }]
+                        }
+                    ]
                 });
             },
             editChargeRuleFee: function () {
@@ -96,7 +94,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/chargeRule.updateChargeRuleFee',
                     JSON.stringify(vc.component.editChargeRuleFeeInfo),
@@ -110,9 +107,11 @@
                             //关闭model
                             $('#editChargeRuleFeeModel').modal('hide');
                             vc.emit('chargeRuleFee', 'listChargeRuleFee', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -126,11 +125,9 @@
                     minEnergyPrice: '',
                     maxEnergyPrice: '',
                     durationPrice: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

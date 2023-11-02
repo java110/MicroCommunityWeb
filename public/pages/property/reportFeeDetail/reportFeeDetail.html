@@ -7,69 +7,90 @@
                         <vc:i18n name="查询条件" namespace="reportFeeDetail"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{reportFeeDetailInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.startDate" class=" form-control startDate">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportFeeDetail')"
+                                       v-model="reportFeeDetailInfo.conditions.startDate"
+                                       class=" form-control startDate">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.endDate" class=" form-control endDate">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportFeeDetail')"
+                                       v-model="reportFeeDetailInfo.conditions.endDate" class=" form-control endDate">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','reportFeeDetail')" class="form-control form-control-md" v-model="reportFeeDetailInfo.conditions.objName">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','reportFeeDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportFeeDetailInfo.conditions.objName">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
+                                <i class="fa fa-search"></i>
                                 <vc:i18n name="查询" namespace="reportFeeDetail"></vc:i18n>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-md" v-on:click="_resetMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <vc:i18n name="重置" namespace="reportFeeDetail"></vc:i18n>
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-show="reportFeeDetailInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主名称','reportFeeDetail')" v-model="reportFeeDetailInfo.conditions.ownerName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请填写业主名称','reportFeeDetail')"
+                                       v-model="reportFeeDetailInfo.conditions.ownerName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','reportFeeDetail')" class="form-control form-control-md" v-model="reportFeeDetailInfo.conditions.link">
+                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','reportFeeDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportFeeDetailInfo.conditions.link">
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="white-bg padding-lg">
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailRoom'}" v-on:click="changeTab('reportFeeDetailRoom')">
+                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailRoom'}"
+                       v-on:click="changeTab('reportFeeDetailRoom')">
                         <vc:i18n name="房屋费用明细" namespace="reportFeeDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailOwner'}" v-on:click="changeTab('reportFeeDetailOwner')">
+                    <a class="nav-link"
+                       v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailOwner'}"
+                       v-on:click="changeTab('reportFeeDetailOwner')">
                         <vc:i18n name="业主费用明细" namespace="reportFeeDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailContract'}" v-on:click="changeTab('reportFeeDetailContract')">
+                    <a class="nav-link"
+                       v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailContract'}"
+                       v-on:click="changeTab('reportFeeDetailContract')">
                         <vc:i18n name="合同费用明细" namespace="reportFeeDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailCar'}" v-on:click="changeTab('reportFeeDetailCar')">
+                    <a class="nav-link" v-bind:class="{active:reportFeeDetailInfo._currentTab == 'reportFeeDetailCar'}"
+                       v-on:click="changeTab('reportFeeDetailCar')">
                         <vc:i18n name="车辆费用明细" namespace="reportFeeDetail"></vc:i18n>
                     </a>
                 </li>
@@ -88,7 +109,6 @@
             <div v-if="reportFeeDetailInfo._currentTab == 'reportFeeDetailCar'">
                 <vc:create path="report/reportFeeDetailCar"></vc:create>
             </div>
-
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 100;
     vc.extends({
@@ -20,7 +20,7 @@
                 taskId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.allocationStorehouseDetailInfo.applyId = vc.getParam('applyId');
             $that.allocationStorehouseDetailInfo.applyType = vc.getParam('applyType');
             $that.allocationStorehouseDetailInfo.applyTypeName = vc.getParam('applyTypeName');
@@ -29,9 +29,10 @@
             $that._listAllocationStorehouseApply();
             $that._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {},
+        _initEvent: function () {
+        },
         methods: {
-            _listPurchaseApply: function(_page, _rows) {
+            _listPurchaseApply: function (_page, _rows) {
                 let param = {
                     params: {
                         page: _page,
@@ -42,17 +43,17 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listAllocationStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _allocationStorehouseDetailInfo = JSON.parse(json);
                         let _purchaseApply = _allocationStorehouseDetailInfo.data;
                         $that.allocationStorehouseDetailInfo.resourceStores = _purchaseApply;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listAllocationStorehouseApply: function() {
+            _listAllocationStorehouseApply: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -63,14 +64,13 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listAllocationStorehouseApplys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _allocationStorehouseDetailInfo = JSON.parse(json);
                         let _purchaseApply = _allocationStorehouseDetailInfo.data[0];
                         vc.copyObject(_purchaseApply, $that.allocationStorehouseDetailInfo);
                         if ($that.allocationStorehouseDetailInfo.applyType == 10000) {
                             $that._loadAuditUser();
                         }
-
                         if ($that.allocationStorehouseDetailInfo.action == 'audit') {
                             vc.emit('auditDiv', 'noifyData', {
                                 createUserId: _purchaseApply.startUserId,
@@ -81,12 +81,12 @@
                             });
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadAuditUser: function() {
+            _loadAuditUser: function () {
                 let param = {
                     params: {
                         businessKey: $that.allocationStorehouseDetailInfo.applyId,
@@ -96,17 +96,20 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _json = JSON.parse(json);
                         $that.allocationStorehouseDetailInfo.auditUsers = _json.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _callBackListPurchaseApply: function() {
+            _callBackListPurchaseApply: function () {
                 vc.getBack();
+            },
+            _printAllocationStorehouse: function () {
+                window.open("/print.html#/pages/property/printAllocationStorehouse?applyId=" + $that.allocationStorehouseDetailInfo.applyId)
             }
         }
     });

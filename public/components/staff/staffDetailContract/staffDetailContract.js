@@ -9,7 +9,7 @@
             staffDetailContractInfo: {
                 contracts: [],
                 staffId: '',
-                tel:''
+                tel: ''
             }
         },
         _initMethod: function () {
@@ -18,7 +18,6 @@
             vc.on('staffDetailContract', 'switch', function (_data) {
                 $that.staffDetailContractInfo.staffId = _data.staffId;
                 $that.staffDetailContractInfo.tel = _data.tel;
-
                 $that._loadStaffDetailContractData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('staffDetailContract', 'paginationPlus', 'page_event',
@@ -36,7 +35,6 @@
                         operatorLink: $that.staffDetailContractInfo.tel,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,

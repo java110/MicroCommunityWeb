@@ -112,7 +112,7 @@
                         page: 1,
                         row: 100,
                         communityId: vc.getCurrentCommunity().communityId,
-                        parentId:'0'
+                        parentId: '0'
                     }
                 };
                 //发送get请求

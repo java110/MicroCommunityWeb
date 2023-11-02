@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -11,7 +11,6 @@
                 total: 0,
                 records: 1,
                 moreCondition: false,
-                ausId: '',
                 subTotalQuantity: '',
                 highTotalQuantity: '',
                 conditions: {
@@ -19,9 +18,12 @@
                     resName: '',
                     acceptUserId: '',
                     acceptUserName: '',
+                    startUserId: '',
+                    startUserName: '',
                     parentRstId: '',
                     rstId: '',
                     rssId: '',
+                    ausId: '',
                     communityId: vc.getCurrentCommunity().communityId
                 },
                 resourceStoreTypes: [],
@@ -29,26 +31,29 @@
                 resourceStoreSpecifications: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._listAllocationUserStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listResourceStoreTypes();
             $that._listResourceStoreSpecifications();
         },
-        _initEvent: function() {
-            vc.on('allocationUserStorehouseManage', 'listAllocationUserStorehouse', function(_param) {
+        _initEvent: function () {
+            vc.on('allocationUserStorehouseManage', 'listAllocationUserStorehouse', function (_param) {
                 $that._listAllocationUserStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 $that._listAllocationUserStorehouses(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAllocationUserStorehouses: function(_page, _rows) {
+            _listAllocationUserStorehouses: function (_page, _rows) {
                 $that.allocationUserStorehouseManageInfo.conditions.page = _page;
                 $that.allocationUserStorehouseManageInfo.conditions.row = _rows;
                 var param = {
                     params: $that.allocationUserStorehouseManageInfo.conditions
                 };
+                param.params.ausId = param.params.ausId.trim();
+                param.params.startUserId = param.params.startUserId.trim();
+                param.params.startUserName = param.params.startUserName.trim();
                 param.params.resId = param.params.resId.trim();
                 param.params.resName = param.params.resName.trim();
                 param.params.acceptUserId = param.params.acceptUserId.trim();
@@ -56,7 +61,7 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listAllocationUserStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _allocationUserStorehouseManageInfo = JSON.parse(json);
                         $that.allocationUserStorehouseManageInfo.total = _allocationUserStorehouseManageInfo.total;
                         $that.allocationUserStorehouseManageInfo.records = _allocationUserStorehouseManageInfo.records;
@@ -74,21 +79,24 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryAllocationUserStorehouseMethod: function() {
+            _queryAllocationUserStorehouseMethod: function () {
                 $that._listAllocationUserStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAllocationUserStorehouseMethod: function() {
+            _resetAllocationUserStorehouseMethod: function () {
                 $that.allocationUserStorehouseManageInfo.conditions.resId = "";
                 $that.allocationUserStorehouseManageInfo.conditions.resName = "";
                 $that.allocationUserStorehouseManageInfo.conditions.acceptUserId = "";
                 $that.allocationUserStorehouseManageInfo.conditions.acceptUserName = "";
+                $that.allocationUserStorehouseManageInfo.conditions.startUserId = "";
+                $that.allocationUserStorehouseManageInfo.conditions.startUserName = "";
+                $that.allocationUserStorehouseManageInfo.conditions.ausId = "";
                 $that.allocationUserStorehouseManageInfo.conditions.rstId = "";
                 $that.allocationUserStorehouseManageInfo.conditions.parentRstId = "";
                 $that.allocationUserStorehouseManageInfo.conditions.rssId = "";
@@ -96,28 +104,28 @@
                 $that.allocationUserStorehouseManageInfo.resourceStoreSpecifications = [];
                 $that._listAllocationUserStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listResourceStoreTypes: function() {
+            _listResourceStoreTypes: function () {
                 var param = {
                     params: {
                         page: 1,
                         row: 100,
                         communityId: vc.getCurrentCommunity().communityId,
-                        parentId:'0'
+                        parentId: '0'
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         $that.allocationUserStorehouseManageInfo.resourceStoreTypes = _resourceStoreTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSonTypes: function() {
+            _listResourceStoreSonTypes: function () {
                 $that.allocationUserStorehouseManageInfo.conditions.rstId = '';
                 $that.allocationUserStorehouseManageInfo.resourceStoreSonTypes = [];
                 if ($that.allocationUserStorehouseManageInfo.conditions.parentRstId == '') {
@@ -134,16 +142,16 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStoreType.listResourceStoreTypes',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceStoreTypeManageInfo = JSON.parse(json);
                         $that.allocationUserStorehouseManageInfo.resourceStoreSonTypes = _resourceStoreTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listResourceStoreSpecifications: function() {
+            _listResourceStoreSpecifications: function () {
                 $that.allocationUserStorehouseManageInfo.resourceStoreSpecifications = [];
                 $that.allocationUserStorehouseManageInfo.conditions.rssId = '';
                 var param = {
@@ -158,16 +166,16 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listResourceStoreSpecifications',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _allocationUserStorehouseManageInfo = JSON.parse(json);
                         $that.allocationUserStorehouseManageInfo.resourceStoreSpecifications = _allocationUserStorehouseManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if ($that.allocationUserStorehouseManageInfo.moreCondition) {
                     $that.allocationUserStorehouseManageInfo.moreCondition = false;
                 } else {
@@ -175,7 +183,7 @@
                 }
             },
             //导出
-            _exportExcel: function() {
+            _exportExcel: function () {
                 vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=allocationUserStorehouseManage&' + vc.objToGetParam($that.allocationUserStorehouseManageInfo.conditions));
             }
         }

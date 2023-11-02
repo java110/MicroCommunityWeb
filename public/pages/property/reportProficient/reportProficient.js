@@ -23,7 +23,7 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //vc.component._queryIndexContextData();
             vc.component.changeTab($that.reportProficientInfo._currentTab);
             //关联字典表费用类型
@@ -32,9 +32,9 @@
             });
             // $that._initDate();
         },
-        _initEvent: function() {
-            vc.on("indexContext", "_queryIndexContextData", function(_param) {
-               // vc.component._queryIndexContextData();
+        _initEvent: function () {
+            vc.on("indexContext", "_queryIndexContextData", function (_param) {
+                // vc.component._queryIndexContextData();
             });
         },
         methods: {

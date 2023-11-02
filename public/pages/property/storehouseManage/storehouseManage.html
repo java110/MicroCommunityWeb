@@ -16,7 +16,8 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入仓库名称','storehouseManage')" v-model="storehouseManageInfo.conditions.shName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入仓库名称','storehouseManage')"
+                                       v-model="storehouseManageInfo.conditions.shName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -30,7 +31,8 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入仓库编号','storehouseManage')" v-model="storehouseManageInfo.conditions.shId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入仓库编号','storehouseManage')"
+                                       v-model="storehouseManageInfo.conditions.shId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -56,7 +58,8 @@
                         <vc:i18n name="仓库信息" namespace="storehouseManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()" v-if="vc.hasPrivilege('502021101638940007')">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddStorehouseModal()"
+                                v-if="vc.hasPrivilege('502021101638940007')">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="storehouseManage"></vc:i18n></span>
                         </button>
@@ -65,82 +68,89 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <vc:i18n name="仓库编号" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="仓库名称" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="对外开放" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="允许采购" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="允许领用" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="采购审核" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="领用审核" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="调拨审核" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="创建时间" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="描述" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="操作" namespace="storehouseManage"></vc:i18n>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <vc:i18n name="仓库编号" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="仓库名称" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="对外开放" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="允许采购" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="允许领用" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="采购审核" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="领用审核" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="调拨审核" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="创建时间" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="描述" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="storehouseManage"></vc:i18n>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="storehouse in storehouseManageInfo.storehouses">
-                                <td class="text-center">{{storehouse.shId}}</td>
-                                <td class="text-center">{{storehouse.shName}}</td>
-                                <td class="text-center">{{storehouse.isShow == 'true'?'是':'否'}}</td>
-                                <td class="text-center">{{storehouse.allowPurchase == 'ON'?'是':'否'}}</td>
-                                <td class="text-center">{{storehouse.allowUse == 'ON'?'是':'否'}}</td>
-                                <td class="text-center" v-if="storehouse.purchaseSwitch == 'ON'">{{storehouse.purchaseFlowName}}</td>
-                                <td class="text-center" v-else>不审核</td>
-                                <td class="text-center" v-if="storehouse.useSwitch == 'ON'">{{storehouse.useFlowName}}</td>
-                                <td class="text-center" v-else>不审核</td>
-                                <td class="text-center" v-if="storehouse.allocationSwitch == 'ON'">{{storehouse.allocationFlowName}}</td>
-                                <td class="text-center" v-else>不审核</td>
-
-                                <td class="text-center">{{storehouse.createTime}}</td>
-                                <td class="text-center">{{storehouse.shDesc || '-'}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group" v-if="vc.hasPrivilege('502021101197710001')">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditStorehouseModel(storehouse)">
+                        <tr v-for="storehouse in storehouseManageInfo.storehouses">
+                            <td class="text-center">{{storehouse.shId}}</td>
+                            <td class="text-center">{{storehouse.shName}}</td>
+                            <td class="text-center">{{storehouse.isShow == 'true'?'是':'否'}}</td>
+                            <td class="text-center">{{storehouse.allowPurchase == 'ON'?'是':'否'}}</td>
+                            <td class="text-center">{{storehouse.allowUse == 'ON'?'是':'否'}}</td>
+                            <td class="text-center" v-if="storehouse.purchaseSwitch == 'ON'">
+                                {{storehouse.purchaseFlowName}}
+                            </td>
+                            <td class="text-center" v-else>不审核</td>
+                            <td class="text-center" v-if="storehouse.useSwitch == 'ON'">{{storehouse.useFlowName}}</td>
+                            <td class="text-center" v-else>不审核</td>
+                            <td class="text-center" v-if="storehouse.allocationSwitch == 'ON'">
+                                {{storehouse.allocationFlowName}}
+                            </td>
+                            <td class="text-center" v-else>不审核</td>
+                            <td class="text-center">{{storehouse.createTime}}</td>
+                            <td class="text-center">{{storehouse.shDesc || '-'}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" v-if="vc.hasPrivilege('502021101197710001')">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditStorehouseModel(storehouse)">
                                         <vc:i18n name="修改" namespace="storehouseManage"></vc:i18n>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021122129210001')" v-on:click="_openDeleteStorehouseModel(storehouse)">
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-if="vc.hasPrivilege('502021122129210001')"
+                                            v-on:click="_openDeleteStorehouseModel(storehouse)">
                                         <vc:i18n name="删除" namespace="storehouseManage"></vc:i18n>
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDetailStorehouseModel(storehouse)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDetailStorehouseModel(storehouse)">
                                         <vc:i18n name="详情" namespace="storehouseManage"></vc:i18n>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="11">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

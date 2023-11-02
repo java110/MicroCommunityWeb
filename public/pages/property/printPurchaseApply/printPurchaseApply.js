@@ -32,8 +32,6 @@
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.component.printPurchaseApplyInfo = _purchaseApply[0];
-                        console.log("look")
-                        console.log(vc.component.printPurchaseApplyInfo)
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -41,7 +39,6 @@
             },
             _printPurchaseApplyDiv: function () {
                 $that.printFlag = '1';
-                console.log('console.log($that.printFlag);', $that.printFlag);
                 document.getElementById("print-btn").style.display = "none";//隐藏
                 window.print();
                 //$that.printFlag = false;

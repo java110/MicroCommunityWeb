@@ -1,15 +1,15 @@
 /**
  入驻小区
  **/
- (function (vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             staffDetailRepairInfo: {
                 ownerRepairs: [],
-                staffId:'',
-                undoOrder: 'undo',
+                staffId: '',
+                undoOrder: 'undo'
             }
         },
         _initMethod: function () {
@@ -17,14 +17,14 @@
         _initEvent: function () {
             vc.on('staffDetailRepair', 'switch', function (_data) {
                 $that.staffDetailRepairInfo.staffId = _data.staffId;
-                $that._loadStaffDetailRepairData(DEFAULT_PAGE,DEFAULT_ROWS)
+                $that._loadStaffDetailRepairData(DEFAULT_PAGE, DEFAULT_ROWS)
             });
             vc.on('staffDetailRepair', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     vc.component._loadStaffDetailRepairData(_currentPage, DEFAULT_ROWS);
                 });
             vc.on('staffDetailRepair', 'notify', function (_data) {
-                $that._loadStaffDetailRepairData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadStaffDetailRepairData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
@@ -32,17 +32,15 @@
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        staffId:$that.staffDetailRepairInfo.staffId,
-                        page:_page,
-                        row:_row
+                        staffId: $that.staffDetailRepairInfo.staffId,
+                        page: _page,
+                        row: _row
                     }
                 };
-
                 let _url = "/ownerRepair.listUndoRepairsByStaff";
-                if($that.staffDetailRepairInfo.undoOrder == 'do'){
+                if ($that.staffDetailRepairInfo.undoOrder == 'do') {
                     _url = "/ownerRepair.listFinishRepairsByStaff";
                 }
-               
                 //发送get请求
                 vc.http.apiGet(_url,
                     param,
@@ -64,14 +62,13 @@
             _qureyStaffDetailRepair: function () {
                 $that._loadStaffDetailRepairData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _switchUndoOrder:function(_order){
+            _switchUndoOrder: function (_order) {
                 $that.staffDetailRepairInfo.undoOrder = _order;
-                $that._loadStaffDetailRepairData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadStaffDetailRepairData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _openRepairDetail: function (_repairPool) {
                 vc.jumpToPage('/#/pages/property/ownerRepairDetail?repairId=' + _repairPool.repairId)
-            },
-           
+            }
         }
     });
 })(window.vc);

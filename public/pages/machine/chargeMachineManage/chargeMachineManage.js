@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,73 +20,77 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listChargeMachines(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('chargeMachineManage', 'listChargeMachine', function(_param) {
+        _initEvent: function () {
+            vc.on('chargeMachineManage', 'listChargeMachine', function (_param) {
                 vc.component._listChargeMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listChargeMachines(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listChargeMachines: function(_page, _rows) {
-
+            _listChargeMachines: function (_page, _rows) {
                 vc.component.chargeMachineManageInfo.conditions.page = _page;
                 vc.component.chargeMachineManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.chargeMachineManageInfo.conditions
                 };
-
+                param.params.machineName = param.params.machineName.trim();
+                param.params.machineCode = param.params.machineCode.trim();
                 //发送get请求
                 vc.http.apiGet('/chargeMachine.listChargeMachine',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _chargeMachineManageInfo = JSON.parse(json);
                         vc.component.chargeMachineManageInfo.total = _chargeMachineManageInfo.total;
                         vc.component.chargeMachineManageInfo.records = _chargeMachineManageInfo.records;
                         vc.component.chargeMachineManageInfo.chargeMachines = _chargeMachineManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.chargeMachineManageInfo.records,
+                            dataCount: vc.component.chargeMachineManageInfo.total,
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddChargeMachineModal: function() {
+            _openAddChargeMachineModal: function () {
                 vc.emit('addChargeMachine', 'openAddChargeMachineModal', {});
             },
-            _openEditChargeMachineModel: function(_chargeMachine) {
+            _openEditChargeMachineModel: function (_chargeMachine) {
                 vc.emit('editChargeMachine', 'openEditChargeMachineModal', _chargeMachine);
             },
-            _openDeleteChargeMachineModel: function(_chargeMachine) {
+            _openDeleteChargeMachineModel: function (_chargeMachine) {
                 vc.emit('deleteChargeMachine', 'openDeleteChargeMachineModal', _chargeMachine);
             },
-            _queryChargeMachineMethod: function() {
+            //查询
+            _queryChargeMachineMethod: function () {
                 vc.component._listChargeMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetChargeMachineMethod: function () {
+                vc.component.chargeMachineManageInfo.conditions.machineName = "";
+                vc.component.chargeMachineManageInfo.conditions.machineCode = "";
+                vc.component._listChargeMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.chargeMachineManageInfo.moreCondition) {
                     vc.component.chargeMachineManageInfo.moreCondition = false;
                 } else {
                     vc.component.chargeMachineManageInfo.moreCondition = true;
                 }
             },
-            _viewPort: function(_chargeMachine) {
+            _viewPort: function (_chargeMachine) {
                 vc.jumpToPage('/#/pages/machine/chargeMachinePortManage?machineId=' + _chargeMachine.machineId);
             },
-            _chargeMachineQrCode: function(_chargeMachine) {
+            _chargeMachineQrCode: function (_chargeMachine) {
                 vc.emit('chargeMachineQrCode', 'openChargeMachineQrCodeModal', _chargeMachine);
             }
-
-
         }
     });
 })(window.vc);

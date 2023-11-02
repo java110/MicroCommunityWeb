@@ -4,18 +4,18 @@
         <div class="col-lg-8 text-right">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn  btn-sm"
-                    v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200405','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200405'}"
-                    v-on:click="_switchUndoMaintainanceOrder('20200405')">
+                        v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200405','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200405'}"
+                        v-on:click="_switchUndoMaintainanceOrder('20200405')">
                     <vc:i18n name="未开始" namespace="staffDetailMaintainance"></vc:i18n>
                 </button>
                 <button type="button" class="btn btn-sm"
-                    v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200406','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200406'}"
-                    v-on:click="_switchUndoMaintainanceOrder('20200406')">
+                        v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200406','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200406'}"
+                        v-on:click="_switchUndoMaintainanceOrder('20200406')">
                     <vc:i18n name="待验收" namespace="staffDetailMaintainance"></vc:i18n>
                 </button>
                 <button type="button" class="btn btn-sm"
-                    v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200407','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200407'}"
-                    v-on:click="_switchUndoMaintainanceOrder('20200407')">
+                        v-bind:class="{'btn-primary': staffDetailMaintainanceInfo.undoOrder == '20200407','btn-light':staffDetailMaintainanceInfo.undoOrder != '20200407'}"
+                        v-on:click="_switchUndoMaintainanceOrder('20200407')">
                     <vc:i18n name="巡检完成" namespace="staffDetailMaintainance"></vc:i18n>
                 </button>
             </div>
@@ -24,87 +24,86 @@
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <vc:i18n name="编号" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="设备名称" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="计划名称" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="保养标准" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="计划保养人" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <span>
-                            <vc:i18n name="保养人" namespace="maintainanceTaskDetails"></vc:i18n>
-                        </span><br />
-                        <span>
-                            <vc:i18n name="开始/结束时间" namespace="maintainanceTaskDetails"></vc:i18n>
-                        </span>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="实际保养时间" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="实际保养人" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="任务状态" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="保养情况" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="保养照片" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="创建时间" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="操作" namespace="maintainanceTaskDetails"></vc:i18n>
-                    </th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="编号" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="设备名称" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="计划名称" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="保养标准" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="计划保养人" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="保养人" namespace="maintainanceTaskDetails"></vc:i18n>
+                    </span><br/>
+                    <span>
+                        <vc:i18n name="开始/结束时间" namespace="maintainanceTaskDetails"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="实际保养时间" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="实际保养人" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="任务状态" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="保养情况" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="保养照片" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="创建时间" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="操作" namespace="maintainanceTaskDetails"></vc:i18n>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="maintainanceTask in staffDetailMaintainanceInfo.maintainanceTasks">
-                    <td class="text-center">{{maintainanceTask.taskDetailId}}</td>
-                    <td class="text-center">{{maintainanceTask.machineName}}</td>
-                    <td class="text-center">{{maintainanceTask.planName}}</td>
-                    <td class="text-center">{{maintainanceTask.standardName}}</td>
-                    <td class="text-center">{{maintainanceTask.planUserName}}</td>
-                    <td class="text-center">{{maintainanceTask.planInsTime}}<br />{{maintainanceTask.planEndTime}}</td>
-                    <td class="text-center">{{maintainanceTask.inspectionTime ? maintainanceTask.inspectionTime : '-'}}
-                    </td>
-                    <td class="text-center">{{maintainanceTask.actUserName ? maintainanceTask.actUserName : '-'}}</td>
-                    <td class="text-center">{{maintainanceTask.stateName}}</td>
-                    <td class="text-center text-primary">
-                        {{maintainanceTask.description ? maintainanceTask.description : '-'}}
-                    </td>
-                    <td class="text-center" style="white-space: nowrap;">
-                        <span v-for="_photo in maintainanceTask.photos">
-                            <img style="width: 60px; height: 60px;" v-bind:src="_photo.url"
-                                v-on:click="openFile(_photo)" />
-                        </span>
-                    </td>
-                    <td class="text-center">{{maintainanceTask.createTime}}</td>
-                    <td class="text-center">
-                        <a
-                            :href="'/#/pages/property/maintainanceTaskDetailView?taskDetailId='+maintainanceTask.taskDetailId">详情</a>
-                    </td>
-                </tr>
+            <tr v-for="maintainanceTask in staffDetailMaintainanceInfo.maintainanceTasks">
+                <td class="text-center">{{maintainanceTask.taskDetailId}}</td>
+                <td class="text-center">{{maintainanceTask.machineName}}</td>
+                <td class="text-center">{{maintainanceTask.planName}}</td>
+                <td class="text-center">{{maintainanceTask.standardName}}</td>
+                <td class="text-center">{{maintainanceTask.planUserName}}</td>
+                <td class="text-center">{{maintainanceTask.planInsTime}}<br/>{{maintainanceTask.planEndTime}}</td>
+                <td class="text-center">
+                    {{maintainanceTask.inspectionTime ? maintainanceTask.inspectionTime : '-'}}
+                </td>
+                <td class="text-center">{{maintainanceTask.actUserName ? maintainanceTask.actUserName : '-'}}</td>
+                <td class="text-center">{{maintainanceTask.stateName}}</td>
+                <td class="text-center text-primary">
+                    {{maintainanceTask.description ? maintainanceTask.description : '-'}}
+                </td>
+                <td class="text-center" style="white-space: nowrap;">
+                    <span v-for="_photo in maintainanceTask.photos">
+                        <img style="width: 60px; height: 60px;" v-bind:src="_photo.url" v-on:click="openFile(_photo)"/>
+                    </span>
+                </td>
+                <td class="text-center">{{maintainanceTask.createTime}}</td>
+                <td class="text-center">
+                    <a :href="'/#/pages/property/maintainanceTaskDetailView?taskDetailId='+maintainanceTask.taskDetailId">
+                        详情
+                    </a>
+                </td>
+            </tr>
             </tbody>
         </table>
         <!-- 分页 -->
         <div class="row">
-            <div class="col-sm-4">
-
-            </div>
+            <div class="col-sm-4"></div>
             <div class="col-sm-8">
                 <vc:create namespace="staffDetailMaintainance" path="frame/paginationPlus"></vc:create>
             </div>

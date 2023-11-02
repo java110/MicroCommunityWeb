@@ -20,12 +20,11 @@
         },
         methods: {
             _listChargeRules: function () {
-
                 let param = {
                     params: {
-                        page:1,
-                        row:100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
@@ -36,10 +35,9 @@
                         $that.chargeRuleDivInfo.total = _chargeRuleManageInfo.total;
                         $that.chargeRuleDivInfo.records = _chargeRuleManageInfo.records;
                         $that.chargeRuleDivInfo.chargeRules = _chargeRuleManageInfo.data;
-                        if($that.chargeRuleDivInfo.chargeRules && $that.chargeRuleDivInfo.chargeRules.length>0){
+                        if ($that.chargeRuleDivInfo.chargeRules && $that.chargeRuleDivInfo.chargeRules.length > 0) {
                             $that._switchChargeRule($that.chargeRuleDivInfo.chargeRules[0])
                         }
-                        
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }

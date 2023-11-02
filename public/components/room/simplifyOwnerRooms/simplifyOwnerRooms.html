@@ -5,6 +5,7 @@
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                     v-if="vc.hasPrivilege('502020082314267912') && simplifyOwnerRoomsInfo.ownerId"
                     v-on:click="_openSimplifyOwnerRoomsBatchPayFeeModal()">
+                <i class="fa fa-plus"></i>
                 <span><vc:i18n name="批量缴费" namespace="simplifyOwnerRooms"></vc:i18n></span>
             </button>
         </div>
@@ -12,99 +13,103 @@
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <span>
-                            <vc:i18n name="房屋编号" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="楼层" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="类型" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="建筑/室内面积" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="租金" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="房屋状态" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <span>
-                            <vc:i18n name="房屋欠费" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                    <th class="text-center">
-                        <span>
-                            <vc:i18n name="操作" namespace="simplifyOwnerRooms"></vc:i18n>
-                        </span>
-                    </th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="房屋编号" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="楼层" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="类型" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="建筑/室内面积" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="租金" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="房屋状态" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <span>
+                        <vc:i18n name="房屋欠费" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="操作" namespace="simplifyOwnerRooms"></vc:i18n>
+                    </span>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="room in simplifyOwnerRoomsInfo.rooms">
-                    <td class="text-center">
-                        {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
-                    </td>
-                    <td class="text-center">
-                        {{room.layer}}
-                    </td>
-                    <td class="text-center">
-                        {{room.roomSubTypeName}}
-                    </td>
-                    <td class="text-center">
-                        {{room.builtUpArea}}/{{room.roomArea}}
-                    </td>
-                    <td class="text-center">
-                        {{room.roomRent}}
-                    </td>
-                    <td class="text-center">
-                        {{room.stateName}}
-                    </td>
-                    <td class="text-center">
-                        {{room.roomOweFee || '0.00'}}(按天更新)
-                    </td>
-                    <td class="text-center">
-                        <div class="btn-group" v-if="simplifyOwnerRoomsInfo.roomId != room.roomId">
-                            <button class="btn-white btn btn-xs" v-on:click="_toChooseOwnerRoomModel(room)">
-                                <span>
-                                    <vc:i18n name="选择" namespace="simplifyOwnerRooms"></vc:i18n>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="btn-group" v-else>
-                            当前房屋
-                        </div>
-                    </td>
-                </tr>
+            <tr v-for="room in simplifyOwnerRoomsInfo.rooms">
+                <td class="text-center">
+                    {{room.floorNum}}-{{room.unitNum}}-{{room.roomNum}}
+                </td>
+                <td class="text-center">
+                    {{room.layer}}
+                </td>
+                <td class="text-center">
+                    {{room.roomSubTypeName}}
+                </td>
+                <td class="text-center">
+                    {{room.builtUpArea}}/{{room.roomArea}}
+                </td>
+                <td class="text-center">
+                    {{room.roomRent}}
+                </td>
+                <td class="text-center">
+                    {{room.stateName}}
+                </td>
+                <td class="text-center">
+                    {{room.roomOweFee || '0.00'}}(按天更新)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group" v-if="simplifyOwnerRoomsInfo.roomId != room.roomId">
+                        <button class="btn-white btn btn-xs" v-on:click="_toChooseOwnerRoomModel(room)">
+                            <span>
+                                <vc:i18n name="选择" namespace="simplifyOwnerRooms"></vc:i18n>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="btn-group" v-else>
+                        当前房屋
+                    </div>
+                </td>
+            </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="row">
-            <div class="col-sm-8">
-
-            </div>
-            <div class="col-sm-2">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-10 float-right">
                 <span>
-                    <span>
-                        <span>
-                            <vc:i18n name="欠费小计" namespace="simplifyRoomFee"></vc:i18n>
-                        </span>
-                    </span>：{{simplifyOwnerRoomsInfo.allOweFeeAmount}}
-                </span>
+                    <span><vc:i18n name="欠费小计" namespace="simplifyRoomFee"></vc:i18n></span>
+                </span>：{{simplifyOwnerRoomsInfo.allOweFeeAmount}}
+            </div>
+            <div class="col-sm-12 float-right">
+                <vc:create namespace="simplifyOwnerRooms" path="frame/paginationPlus"></vc:create>
             </div>
         </div>
     </div>

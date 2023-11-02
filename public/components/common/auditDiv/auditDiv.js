@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             auditDivInfo: {
@@ -16,12 +16,13 @@
                     staffName: '',
                     taskId: ''
                 },
-                nextAudit: {},
+                nextAudit: {}
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('auditDiv', 'noifyData', function(_data) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('auditDiv', 'noifyData', function (_data) {
                 $that.auditDivInfo.createUserId = _data.createUserId;
                 $that.auditDivInfo.action = _data.action;
                 $that.auditDivInfo.audit.taskId = _data.taskId;
@@ -32,19 +33,19 @@
             });
         },
         methods: {
-            chooseStaff: function() {
+            chooseStaff: function () {
                 vc.emit('selectStaff', 'openStaff', $that.auditDivInfo.audit);
             },
-            _auditSubmit: function() {
+            _auditSubmit: function () {
                 let _audit = $that.auditDivInfo.audit;
                 _audit.flowId = $that.auditDivInfo.flowId;
                 _audit.id = $that.auditDivInfo.id;
                 /**
-                 * assigness 
+                 * assigness
                  *  -1 表示 下一个节点为 结束节点
                  *  -2 表示 需要指定依稀处理人
                  *  其他表示 下一指定人ID
-                 * 
+                 *
                  */
                 if ($that.auditDivInfo.nextAudit.assignee != '-2') {
                     _audit.staffId = $that.auditDivInfo.nextAudit.assignee;
@@ -61,28 +62,28 @@
                     vc.toast('请选择下一节点处理人');
                     return;
                 }
-
                 vc.http.apiPost(
                     $that.auditDivInfo.url,
                     JSON.stringify(_audit), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             vc.toast('提交成功');
                             vc.goBack();
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _loadNextAuditPerson: function() {
+            _loadNextAuditPerson: function () {
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -93,19 +94,19 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow.queryNextDealUser',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _nextAudit = JSON.parse(json);
                         if (_nextAudit.code != '0') {
                             return;
                         }
                         $that.auditDivInfo.nextAudit = _nextAudit.data[0];
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddBasePrivilegeInfo: function() {
+            clearAddBasePrivilegeInfo: function () {
                 $that.auditDivInfo = {
                     state: '',
                     remark: '',

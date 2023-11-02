@@ -4,7 +4,7 @@
             viewPayFeeQrcodeInfo: {
                 qrCodeUrl: '',
                 pfqId: '',
-                qrcodeName: '',
+                qrcodeName: ''
             }
         },
         _initMethod: function () {

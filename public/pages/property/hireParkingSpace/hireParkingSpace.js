@@ -16,32 +16,33 @@
                 carAttrs: '',
                 attrs: [],
                 value: '',
-                ownerId:'',
-                ownerName:'',
-                psId:'',
-                psName:'',
-                carTypes:[{
-                    key: '9901',
-                    value: '家用小汽车'
-                },
-                {
-                    key: '9902',
-                    value: '客车'
-                },
-                {
-                    key: '9903',
-                    value: '货车'
-                }],
+                ownerId: '',
+                ownerName: '',
+                psId: '',
+                psName: '',
+                carTypes: [
+                    {
+                        key: '9901',
+                        value: '家用小汽车'
+                    },
+                    {
+                        key: '9902',
+                        value: '客车'
+                    },
+                    {
+                        key: '9903',
+                        value: '货车'
+                    }
+                ]
             }
         },
         _initMethod: function () {
             let _ownerId = vc.getParam('ownerId');
-            if(_ownerId){
+            if (_ownerId) {
                 $that.hireParkingSpaceInfo.ownerId = _ownerId;
                 $that.hireParkingSpaceInfo.ownerName = vc.getParam('ownerName');
-
             }
-            vc.getDict('owner_car', "car_type", function(_data) {
+            vc.getDict('owner_car', "car_type", function (_data) {
                 vc.component.hireParkingSpaceInfo.carTypes = _data;
             });
             vc.initDate('addStartTime', function (_value) {
@@ -50,7 +51,6 @@
             vc.initDate('addEndTime', function (_value) {
                 $that.hireParkingSpaceInfo.endTime = _value;
             });
-
             $that._loadCarAttrSpec();
         },
         _initEvent: function () {
@@ -60,16 +60,16 @@
             });
             vc.on('hireParkingSpace', 'chooseParkingSpace', function (_parkingSpace) {
                 vc.copyObject(_parkingSpace, vc.component.hireParkingSpaceInfo);
-                $that.hireParkingSpaceInfo.psName = _parkingSpace.areaNum+"-"+_parkingSpace.num;
+                $that.hireParkingSpaceInfo.psName = _parkingSpace.areaNum + "-" + _parkingSpace.num;
             });
         },
         methods: {
-            addCarValidate: function() {
+            addCarValidate: function () {
                 return vc.validate.validate({
                     hireParkingSpaceInfo: vc.component.hireParkingSpaceInfo
                 }, {
-
-                    'hireParkingSpaceInfo.carNum': [{
+                    'hireParkingSpaceInfo.carNum': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "车牌号不能为空"
@@ -80,27 +80,32 @@
                             errInfo: "车牌号不正确"
                         }
                     ],
-                    'hireParkingSpaceInfo.carBrand': [{
-                        limit: "maxLength",
-                        param: "50",
-                        errInfo: "车品牌超出限制"
-                    }],
-
-                    'hireParkingSpaceInfo.carType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "车类型不能为空"
-                    }],
-                    'hireParkingSpaceInfo.carColor': [{
-                        limit: "maxLength",
-                        param: "12",
-                        errInfo: "车颜色超出限制"
-                    }]
+                    'hireParkingSpaceInfo.carBrand': [
+                        {
+                            limit: "maxLength",
+                            param: "50",
+                            errInfo: "车品牌超出限制"
+                        }
+                    ],
+                    'hireParkingSpaceInfo.carType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "车类型不能为空"
+                        }
+                    ],
+                    'hireParkingSpaceInfo.carColor': [
+                        {
+                            limit: "maxLength",
+                            param: "12",
+                            errInfo: "车颜色超出限制"
+                        }
+                    ]
                 });
             },
-            _loadCarAttrSpec: function() {
+            _loadCarAttrSpec: function () {
                 $that.hireParkingSpaceInfo.attrs = [];
-                vc.getAttrSpec('owner_car_attr', function(data) {
+                vc.getAttrSpec('owner_car_attr', function (data) {
                     data.forEach(item => {
                         item.value = '';
                         if (item.specShow == 'Y') {
@@ -112,8 +117,8 @@
                     });
                 });
             },
-            _loadAttrValue: function(_specCd, _values) {
-                vc.getAttrValue(_specCd, function(data) {
+            _loadAttrValue: function (_specCd, _values) {
+                vc.getAttrValue(_specCd, function (data) {
                     data.forEach(item => {
                         if (item.valueShow == 'Y') {
                             _values.push(item);
@@ -127,12 +132,11 @@
             openSearchParkingSpaceModel() {
                 vc.emit('searchParkingSpace', 'openSearchParkingSpaceModel', {});
             },
-            _changeLeaseType:function(){
+            _changeLeaseType: function () {
                 $that.hireParkingSpaceInfo.startTime = '';
                 $that.hireParkingSpaceInfo.endTime = '';
             },
-            saveAddCarInfo: function() {
-               
+            saveAddCarInfo: function () {
                 // 验证attr必填项
                 let msg = '';
                 vc.component.hireParkingSpaceInfo.attrs.forEach((item) => {
@@ -150,7 +154,6 @@
                     return;
                 }
                 $that.hireParkingSpaceInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     '/owner.saveOwnerCar',
                     JSON.stringify($that.hireParkingSpaceInfo), {
@@ -174,7 +177,7 @@
                     }
                 );
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             }
         }

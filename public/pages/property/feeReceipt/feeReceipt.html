@@ -22,7 +22,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" v-model="feeReceiptManageInfo.conditions.roomId"
-                                       class=" form-control" :placeholder="vc.i18n('请输入房屋或车位信息','feeReceipt')">
+                                       class=" form-control"
+                                       :placeholder="vc.i18n('请输入房屋或车位信息，格式为楼栋-单元-房屋，如1-1-1','feeReceipt')">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -41,11 +42,11 @@
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="feeReceipt"></vc:i18n></span>
                             </button>
-                            <!-- <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
+                            <!--<button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_printFeeReceipts(feeReceiptManageInfo.conditions)">
                                 <i class="fa fa-files-o"></i>
                                 <span><vc:i18n name="打印" namespace="feeReceipt"></vc:i18n></span>
-                            </button> -->
+                            </button>-->
                         </div>
                     </div>
                     <div class="row" v-show="feeReceiptManageInfo.moreCondition == true">
@@ -99,7 +100,10 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <vc:i18n name="收据编号" namespace="simplifyFeeReceipt"></vc:i18n>
+                                <span><vc:i18n name="收据ID" namespace="simplifyFeeReceipt"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="收据编号" namespace="simplifyFeeReceipt"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="费用类型" namespace="feeReceipt"></vc:i18n></span>
@@ -129,6 +133,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="feeReceipt in feeReceiptManageInfo.feeReceipts">
+                            <td class="text-center">{{feeReceipt.receiptId}}</td>
                             <td class="text-center">{{feeReceipt.receiptCode || '-'}}</td>
                             <td class="text-center">{{feeReceipt.objType == '3333'? '房屋费':'车位费'}}</td>
                             <td class="text-center">{{feeReceipt.feeName}}</td>

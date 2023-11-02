@@ -55,7 +55,7 @@
                 <td class="text-center">
                     {{room.builtUpArea}}/{{room.roomArea}}
                 </td>
-                <td  class="text-center">
+                <td class="text-center">
                     {{room.roomRent}}
                 </td>
                 <td class="text-center">
@@ -63,12 +63,17 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="10">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <!-- 分页 -->
         <div class="row">
-            <div class="col-sm-4">
-              
-            </div>
+            <div class="col-sm-4"></div>
             <div class="col-sm-8">
                 <vc:create namespace="roomDetailHis" path="frame/paginationPlus"></vc:create>
             </div>

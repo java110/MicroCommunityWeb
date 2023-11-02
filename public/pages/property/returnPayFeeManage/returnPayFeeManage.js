@@ -108,6 +108,8 @@
                 };
                 param.params.detailId = param.params.detailId.trim();
                 param.params.payerObjName = param.params.payerObjName.trim();
+                param.params.applyPersonName = param.params.applyPersonName.trim();
+                param.params.auditPersonName = param.params.auditPersonName.trim();
                 vc.http.apiGet('/returnPayFee.listReturnPayFees',
                     param,
                     function (json) {
@@ -152,6 +154,8 @@
                 $that.returnPayFeeManageInfo.conditions.payerObjName = "";
                 $that.returnPayFeeManageInfo.conditions.startTime = "";
                 $that.returnPayFeeManageInfo.conditions.endTime = "";
+                $that.returnPayFeeManageInfo.conditions.applyPersonName = "";
+                $that.returnPayFeeManageInfo.conditions.auditPersonName = "";
                 $that._listReturnPayFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _auditReturnPayFeeState: function (_auditInfo) {

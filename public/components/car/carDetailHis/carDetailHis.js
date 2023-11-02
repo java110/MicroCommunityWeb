@@ -9,12 +9,12 @@
             carDetailHisInfo: {
                 cars: [],
                 carId: '',
-                memberId:'',
-                carNum:'',
-                carNumLike:'',
-                logStartTime:'',
-                logEndTime:'',
-                paId:''
+                memberId: '',
+                carNum: '',
+                carNumLike: '',
+                logStartTime: '',
+                logEndTime: '',
+                paId: ''
             }
         },
         _initMethod: function () {
@@ -28,6 +28,7 @@
                 $that.carDetailHisInfo.carNumLike = _data.carNumLike;
                 $that.carDetailHisInfo.logStartTime = _data.logStartTime;
                 $that.carDetailHisInfo.logEndTime = _data.logEndTime;
+                $that.carDetailHisInfo.staffNameLike = _data.staffNameLike;
                 $that._loadCarDetailHisData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('carDetailHis', 'notify',
@@ -45,14 +46,14 @@
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         carNum: $that.carDetailHisInfo.carNum,
-                        carNumLike:$that.carDetailHisInfo.carNumLike,
-                        logStartTime:$that.carDetailHisInfo.logStartTime,
-                        logEndTime:$that.carDetailHisInfo.logEndTime,
+                        carNumLike: $that.carDetailHisInfo.carNumLike,
+                        logStartTime: $that.carDetailHisInfo.logStartTime,
+                        logEndTime: $that.carDetailHisInfo.logEndTime,
+                        staffNameLike: $that.carDetailHisInfo.staffNameLike,
                         page: _page,
                         row: _row
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/car.queryHisOwnerCar',
                     param,
@@ -74,32 +75,28 @@
             _qureyCarDetailHis: function () {
                 $that._loadCarDetailHisData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-
-            _getHisOperate:function(_car){
+            _getHisOperate: function (_car) {
                 let _carCount = 0;
                 $that.carDetailHisInfo.cars.forEach(item => {
-                    if(_car.bId == item.bId){
+                    if (_car.bId == item.bId) {
                         _carCount += 1;
                     }
                 });
-
-                if(_carCount <= 1){
-                    if(_car.operate == 'ADD'){
+                if (_carCount <= 1) {
+                    if (_car.operate == 'ADD') {
                         return '添加';
                     }
-                    if(_car.operate == 'DEL'){
+                    if (_car.operate == 'DEL') {
                         return '删除';
                     }
                     return "-"
                 }
-
-                if(_car.operate == 'ADD'){
+                if (_car.operate == 'ADD') {
                     return '修改(新)';
                 }
-                if(_car.operate == 'DEL'){
+                if (_car.operate == 'DEL') {
                     return '修改(旧)';
                 }
-
                 return "-"
             }
         }

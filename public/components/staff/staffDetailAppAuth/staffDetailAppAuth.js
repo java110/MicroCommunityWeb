@@ -1,33 +1,31 @@
 /**
  入驻小区
  **/
- (function (vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             staffDetailAppAuthInfo: {
-                staffId:'',
+                staffId: '',
                 staffName: '',
                 appType: '',
                 stateName: '',
                 auId: '',
                 openId: '',
-                createTime:'',
-                openName:''
+                createTime: '',
+                openName: ''
             }
         },
         _initMethod: function () {
-     
         },
         _initEvent: function () {
             vc.on('staffDetailAppAuth', 'switch', function (_data) {
                 $that.staffDetailAppAuthInfo.staffId = _data.staffId;
-                $that._loadStaffDetailAppAuthData(DEFAULT_PAGE,DEFAULT_ROWS)
+                $that._loadStaffDetailAppAuthData(DEFAULT_PAGE, DEFAULT_ROWS)
             });
-           
             vc.on('staffDetailAppAuth', 'notify', function (_data) {
-                $that._loadStaffDetailAppAuthData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadStaffDetailAppAuthData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
@@ -36,7 +34,7 @@
                     params: {
                         page: 1,
                         row: 1,
-                        staffId:$that.staffDetailAppAuthInfo.staffId
+                        staffId: $that.staffDetailAppAuthInfo.staffId
                     }
                 };
                 //发送get请求
@@ -56,8 +54,7 @@
             },
             _openAddStaffAppAuthModal: function () {
                 vc.emit('addStaffAppAuth', 'openAddStaffAppAuthModal', {});
-            },
-           
+            }
         }
     });
 })(window.vc);

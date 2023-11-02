@@ -31,14 +31,14 @@
                     _param.forEach((item) => {
                         vc.component.addQuestionAnswerInfo.photos.push(item.fileId);
                     })
-                }else{
+                } else {
                     vc.component.addQuestionAnswerInfo.photos = [];
                 }
             });
         },
         methods: {
             _initAnswerDate: function () {
-                $('.addStartTime').datetimepicker({
+                $('.startTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -47,9 +47,9 @@
                     autoClose: 1,
                     todayBtn: true
                 });
-                $('.addStartTime').datetimepicker()
+                $('.startTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".addStartTime").val();
+                        var value = $(".startTime").val();
                         vc.component.addQuestionAnswerInfo.startTime = value;
                         let start = Date.parse(new Date(vc.component.addQuestionAnswerInfo.startTime))
                         let end = Date.parse(new Date(vc.component.addQuestionAnswerInfo.endTime))
@@ -58,7 +58,7 @@
                             vc.component.addQuestionAnswerInfo.startTime = '';
                         }
                     });
-                $('.addEndTime').datetimepicker({
+                $('.endTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -67,9 +67,9 @@
                     autoClose: 1,
                     todayBtn: true
                 });
-                $('.addEndTime').datetimepicker()
+                $('.endTime').datetimepicker()
                     .on('changeDate', function (ev) {
-                        var value = $(".addEndTime").val();
+                        var value = $(".endTime").val();
                         vc.component.addQuestionAnswerInfo.endTime = value;
                         let start = Date.parse(new Date(vc.component.addQuestionAnswerInfo.startTime))
                         let end = Date.parse(new Date(vc.component.addQuestionAnswerInfo.endTime))
@@ -79,13 +79,13 @@
                         }
                     });
                 //防止多次点击时间插件失去焦点
-                document.getElementsByClassName('form-control addStartTime')[0].addEventListener('click', myfunc)
+                document.getElementsByClassName('form-control startTime')[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();
                 }
 
-                document.getElementsByClassName("form-control addEndTime")[0].addEventListener('click', myfunc)
+                document.getElementsByClassName("form-control endTime")[0].addEventListener('click', myfunc)
 
                 function myfunc(e) {
                     e.currentTarget.blur();

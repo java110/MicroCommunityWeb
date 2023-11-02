@@ -28,22 +28,23 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initDate();
             $that._listFeeConfigs();
-            vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
+            vc.getDict('pay_fee_config', "fee_type_cd", function (_data) {
                 $that.reportFeeSummaryInfo.feeTypeCds = _data
             });
             $that._listFloors();
             $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {},
+        _initEvent: function () {
+        },
         methods: {
-            _initDate: function() {
-                vc.initDate('startDate', function(_value) {
+            _initDate: function () {
+                vc.initDate('startDate', function (_value) {
                     $that.reportFeeSummaryInfo.conditions.startDate = _value;
                 });
-                vc.initDate('endDate', function(_value) {
+                vc.initDate('endDate', function (_value) {
                     $that.reportFeeSummaryInfo.conditions.endDate = _value;
                 });
                 let _data = new Date();
@@ -61,21 +62,20 @@
                 if (_month < 10) {
                     _newDate = _data.getFullYear() + "-0" + _month + '-' + _data.getDate();
                 } else {
-                    _newDate = _data.getFullYear() + "-" + _month + '-'+ _data.getDate();
+                    _newDate = _data.getFullYear() + "-" + _month + '-' + _data.getDate();
                 }
                 $that.reportFeeSummaryInfo.conditions.endDate = _newDate;
             },
             //查询
-            _queryMethod: function() {
+            _queryMethod: function () {
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            swatchFloor: function(_floorId) {
+            swatchFloor: function (_floorId) {
                 $that.reportFeeSummaryInfo.conditions.floorId = _floorId;
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             //查询方法
-            _listFees: function(_page, _rows) {
+            _listFees: function (_page, _rows) {
                 $that.reportFeeSummaryInfo.conditions.page = _page;
                 $that.reportFeeSummaryInfo.conditions.row = _rows;
                 $that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -85,19 +85,17 @@
                 param.params.roomNum = param.params.roomNum.trim();
                 param.params.ownerName = param.params.ownerName.trim();
                 param.params.link = param.params.link.trim();
-
                 if ($that.reportFeeSummaryInfo.configIds.length > 0) {
                     param.params.configIds = $that.reportFeeSummaryInfo.configIds.join(',');
+                } else {
+                    param.params.configIds = vc.component.reportFeeSummaryInfo.configIds;
                 }
-
                 //发送get请求
                 vc.http.apiGet('/reportFeeMonthStatistics.queryReportFeeSummary',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _reportFeeSummaryInfo = JSON.parse(json);
-
                         $that.reportFeeSummaryInfo.fees = _reportFeeSummaryInfo.data;
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -106,7 +104,6 @@
                 //楼栋收费率
                 vc.emit('floorFeeSummary', 'notify', param.params);
                 vc.emit('configFeeSummary', 'notify', param.params);
-
             },
             //重置
             _resetMethod: function (_page, _rows) {
@@ -116,16 +113,11 @@
                 vc.component.reportFeeSummaryInfo.conditions.roomNum = "";
                 vc.component.reportFeeSummaryInfo.conditions.startTime = "";
                 vc.component.reportFeeSummaryInfo.conditions.endTime = "";
+                vc.component.reportFeeSummaryInfo.configIds = [];
+                vc.component.reportFeeSummaryInfo.conditions.configId = "";
                 $that._listFees(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
-                if ($that.reportFeeSummaryInfo.moreCondition) {
-                    $that.reportFeeSummaryInfo.moreCondition = false;
-                } else {
-                    $that.reportFeeSummaryInfo.moreCondition = true;
-                }
-            },
-            _listFeeConfigs: function() {
+            _listFeeConfigs: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -136,7 +128,7 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.reportFeeSummaryInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
@@ -154,7 +146,7 @@
                     vc.component.reportFeeSummaryInfo.moreCondition = true;
                 }
             },
-            _listFloors: function() {
+            _listFloors: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -164,7 +156,7 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/floor.queryFloors', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         $that.reportFeeSummaryInfo.floors = _feeConfigManageInfo.apiFloorDataVoList;
                     },
@@ -172,7 +164,7 @@
                         console.log('请求失败处理');
                     });
             },
-            _exportExcel: function() {
+            _exportExcel: function () {
                 //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeSummary&' + vc.objToGetParam($that.reportFeeSummaryInfo.conditions));
                 $that.reportFeeSummaryInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 $that.reportFeeSummaryInfo.conditions.pagePath = 'reportFeeSummary';
@@ -181,14 +173,14 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         vc.toast(_json.msg);
                         if (_json.code == 0) {
                             vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
@@ -200,7 +192,8 @@
                 if (_configIds.endsWith(',')) {
                     _configIds = _configIds.substring(0, _configIds.length - 1);
                 }
-                vc.jumpToPage('/#/pages/property/reportFeeSummaryDetail?feeYear=' + _fee.feeYear + "&feeMonth=" + _fee.feeMonth + "&configIds=" + _configIds + "&" + vc.objToGetParam($that.reportFeeSummaryInfo.conditions))
+                vc.jumpToPage('/#/pages/property/reportFeeSummaryDetail?feeYear=' + _fee.feeYear + "&feeMonth=" + _fee.feeMonth +
+                    "&configIds=" + _configIds + "&" + vc.objToGetParam($that.reportFeeSummaryInfo.conditions))
             },
             _printFeeSummary: function () {
                 let _param = vc.objToGetParam($that.reportFeeSummaryInfo.conditions);

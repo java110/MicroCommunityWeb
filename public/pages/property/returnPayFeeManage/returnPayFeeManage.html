@@ -59,14 +59,14 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入审核人','returnPayFeeManage')"
+                                <input type="text" :placeholder="vc.i18n('请填写审核人','returnPayFeeManage')"
                                        v-model="returnPayFeeManageInfo.conditions.auditPersonName"
                                        class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号  车辆编号等','returnPayFeeManage')"
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号、车辆编号等','returnPayFeeManage')"
                                        v-model="returnPayFeeManageInfo.conditions.payerObjName" class=" form-control">
                             </div>
                         </div>
@@ -74,14 +74,14 @@
                     <div class="row" v-show="returnPayFeeManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入申请开始时间','returnPayFeeManage')"
+                                <input type="text" :placeholder="vc.i18n('请填写申请开始时间','returnPayFeeManage')"
                                        v-model="returnPayFeeManageInfo.conditions.startTime"
                                        class="form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入申请结束时间','returnPayFeeManage')"
+                                <input type="text" :placeholder="vc.i18n('请填写申请结束时间','returnPayFeeManage')"
                                        v-model="returnPayFeeManageInfo.conditions.endTime" class="form-control endTime">
                             </div>
                         </div>

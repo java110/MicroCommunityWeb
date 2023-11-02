@@ -9,7 +9,7 @@
             staffDetailItemOutApplyInfo: {
                 purchaseApplys: [],
                 staffId: '',
-                tel:''
+                tel: ''
             }
         },
         _initMethod: function () {
@@ -18,7 +18,6 @@
             vc.on('staffDetailItemOutApply', 'switch', function (_data) {
                 $that.staffDetailItemOutApplyInfo.staffId = _data.staffId;
                 $that.staffDetailItemOutApplyInfo.tel = _data.tel;
-
                 $that._loadStaffDetailItemOutApplyData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('staffDetailItemOutApply', 'paginationPlus', 'page_event',
@@ -37,7 +36,6 @@
                         endUserTel: $that.staffDetailItemOutApplyInfo.tel,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,

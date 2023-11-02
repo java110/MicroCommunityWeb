@@ -2,20 +2,22 @@
     <div class="row">
         <div class="col-lg-2 padding-right-xs padding-left-xl">
             <input type="text" :placeholder="vc.i18n('请输入日期 YYYY-MM','scheduleClassesPage')"
-                v-model="staffDetailAttendanceInfo.curDate" class=" form-control queryAttendanceDate">
+                   v-model="staffDetailAttendanceInfo.curDate" class=" form-control queryAttendanceDate">
         </div>
         <div class="col-lg-2 padding-right-xs padding-right-xl">
             <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-on:click="_listStaffAttendanceClassess()">
+                    v-on:click="_listStaffAttendanceClassess()">
                 <i class="fa fa-search"></i>查询
             </button>
         </div>
     </div>
     <div class="row  bg-white border-radius padding ">
         <div class="row  bg-white border-radius padding ">
-            <div class="col-md-2 text-center border padding-lg labeling-strip" v-for="index in staffDetailAttendanceInfo.maxDay" :key="index" :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
+            <div class="col-md-2 text-center border padding-lg labeling-strip"
+                 v-for="index in staffDetailAttendanceInfo.maxDay" :key="index"
+                 :style="{'background-color': _getBgColor(index)}" style="border-radius: 5px;cursor:pointer">
                 <div>{{staffDetailAttendanceInfo.curYear}}-{{staffDetailAttendanceInfo.curMonth}}-{{index}}</div>
-                <div  v-for="(item,detailIndex) in _getAttendanceDetail(index)">
+                <div v-for="(item,detailIndex) in _getAttendanceDetail(index)">
                     <div v-if="item.rest">{{item.rest}}</div>
                     <div v-else>
                         {{item.specCd=='1001'?'上班':'下班'}}：

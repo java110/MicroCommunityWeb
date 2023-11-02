@@ -1,5 +1,5 @@
 <div id="ownerOweFeesModel" class="modal fade" role="dialog" aria-labelledby="ownerOweFeesModelLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,69 +19,69 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="收费对象" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="业主名称" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="手机号" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="开始时间" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="结束时间" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="合计" namespace="ownerOweFees"></vc:i18n>
-                                                </span>(单位:元)
-                                            </th>
-                                            <th class="text-center">
-                                                <span>
-                                                    <vc:i18n name="更新时间" namespace="ownerOweFees"></vc:i18n>
-                                                </span>
-                                            </th>
-                                            <!-- <th class="text-center">
+                                    <tr>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="收费对象" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="业主名称" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="手机号" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="开始时间" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="结束时间" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="合计" namespace="ownerOweFees"></vc:i18n>
+                                            </span>(单位:元)
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="更新时间" namespace="ownerOweFees"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <!--<th class="text-center">
                                             <span><vc:i18n name="操作" namespace="ownerOweFees"></vc:i18n></span>
-                                        </th> -->
-                                        </tr>
+                                        </th>-->
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="fee in ownerOweFeesInfo.fees">
-                                            <td class="text-center">{{fee.payerObjName}}</td>
-                                            <td class="text-center">{{fee.ownerName}}</td>
-                                            <td class="text-center">{{fee.ownerTel}}</td>
-                                            <td class="text-center">{{fee.endTime}}</td>
-                                            <td class="text-center">{{fee.deadlineTime}}</td>
-                                            <td class="text-center">{{fee.amountOwed}}</td>
-                                            <td class="text-center">{{fee.updateTime}}</td>
-                                            <!-- <td class="text-center">
+                                    <tr v-for="fee in ownerOweFeesInfo.fees">
+                                        <td class="text-center">{{fee.payerObjName}}</td>
+                                        <td class="text-center">{{fee.ownerName}}</td>
+                                        <td class="text-center">{{fee.ownerTel}}</td>
+                                        <td class="text-center">{{fee.endTime}}</td>
+                                        <td class="text-center">{{fee.deadlineTime}}</td>
+                                        <td class="text-center">{{fee.amountOwed}}</td>
+                                        <td class="text-center">{{fee.updateTime}}</td>
+                                        <!--<td class="text-center">
                                             <button class="btn btn-primary btn-xs" v-on:click="chooseRoom(room)">
                                                 <span><vc:i18n name="选择" namespace="ownerOweFees"></vc:i18n></span>
                                             </button>
-                                        </td> -->
-                                        </tr>
+                                        </td>-->
+                                    </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td colspan="6">
-                                                <ul class="pagination float-right"></ul>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="8">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
                                     </tfoot>
                                 </table>
                                 <vc:create namespace="ownerOweFees" path="frame/paginationPlus"></vc:create>

@@ -25,7 +25,7 @@
             }
         },
         _initMethod: function () {
-            vc.getDict('contract_type', "audit", function(_data) {
+            vc.getDict('contract_type', "audit", function (_data) {
                 vc.component.contractTypeManageInfo.audits = _data;
             });
             vc.component._listContractTypes(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -91,7 +91,7 @@
             _openContractTypeSpecModel: function (_contractType) {
                 vc.jumpToPage('/#/pages/admin/contractTypeSpecManage?contractTypeId=' + _contractType.contractTypeId);
             },
-            _toAuditPage:function(){
+            _toAuditPage: function () {
                 vc.jumpToPage('/#/pages/property/workflowManage?tab=流程管理');
             },
             _loadContractAttrs: function (_contractTypeId) {

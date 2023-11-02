@@ -16,6 +16,7 @@
                 carTypes: [],
                 conditions: {
                     areaNum: '',
+                    areaNumLike: '',
                     feeName: '',
                     paId: '',
                     carType: '',
@@ -45,7 +46,7 @@
                 var param = {
                     params: vc.component.tempCarFeeConfigManageInfo.conditions
                 };
-                param.params.areaNum = param.params.areaNum.trim();
+                param.params.areaNumLike = param.params.areaNumLike.trim();
                 param.params.feeName = param.params.feeName.trim();
                 //发送get请求
                 vc.http.apiGet('/fee.listTempCarFeeConfigs',
@@ -82,7 +83,7 @@
             //重置
             _resetTempCarFeeConfigMethod: function () {
                 vc.component.tempCarFeeConfigManageInfo.conditions.feeName = "";
-                vc.component.tempCarFeeConfigManageInfo.conditions.areaNum = "";
+                vc.component.tempCarFeeConfigManageInfo.conditions.areaNumLike = "";
                 vc.component.tempCarFeeConfigManageInfo.conditions.carType = "";
                 vc.component._listTempCarFeeConfigs(DEFAULT_PAGE, DEFAULT_ROWS);
             },

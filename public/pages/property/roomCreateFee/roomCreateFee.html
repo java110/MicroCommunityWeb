@@ -83,8 +83,9 @@
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                                    v-on:click="_roomCreateFeetoSimplifyAcceptance()" v-if="roomCreateFeeInfo.ownerName">
-                                    业务受理
+                                        v-on:click="_roomCreateFeetoSimplifyAcceptance()"
+                                        v-if="roomCreateFeeInfo.ownerName">
+                                    <i class="fa fa-plus"></i>业务受理
                                 </button>
                                 <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                         v-on:click="_openProxyFeeModal()"
@@ -118,9 +119,7 @@
                                 <button type="button" class="btn btn-primary btn-sm"
                                         v-on:click="vc.showMarkdown('/pages/property/roomCreateFee')">
                                     <i class="fa fa-file"></i>
-                                    <span>
-                                        <vc:i18n name="文档"></vc:i18n>
-                                    </span>
+                                    <span><vc:i18n name="文档"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>
@@ -268,33 +267,32 @@
                                         <button class="btn btn-link btn-xs"
                                                 v-if="fee.state != '2009001' && vc.hasPrivilege('502020082314267912')"
                                                 v-on:click="_payFee(fee)">
-                                                <span>
-                                                    <span><vc:i18n name="缴费" namespace="listRoomFee"></vc:i18n></span>
-                                                </span>
+                                            <span>
+                                                <span><vc:i18n name="缴费" namespace="listRoomFee"></vc:i18n></span>
+                                            </span>
                                         </button>
                                         <button class="btn btn-link btn-xs" v-on:click="_payFeeHis(fee)">
-                                                <span>
-                                                    <span><vc:i18n name="历史" namespace="listRoomFee"></vc:i18n></span>
-                                                </span>
+                                            <span>
+                                                <span><vc:i18n name="历史" namespace="listRoomFee"></vc:i18n></span>
+                                            </span>
                                         </button>
                                         <button class="btn btn-link btn-xs"
                                                 v-if="vc.hasPrivilege('502020090604200029')"
                                                 v-on:click="_deleteFee(fee)">
-                                                <span>
-                                                    <span><vc:i18n name="取消" namespace="listRoomFee"></vc:i18n></span>
-                                                </span>
+                                            <span>
+                                                <span><vc:i18n name="取消" namespace="listRoomFee"></vc:i18n></span>
+                                            </span>
                                         </button>
                                         <button class="btn btn-link btn-xs"
                                                 v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
                                                 v-on:click="_editFee(fee)">
-                                                <vc:i18n name="变更" namespace="listRoomFee"></vc:i18n>
-                                            </button>
-                                            <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+fee.feeId">
-                                                <vc:i18n name="详情" namespace="listRoomFee"></vc:i18n>
-                                            </a>
-
-                                        </td>
-                                    </tr>
+                                            <vc:i18n name="变更" namespace="listRoomFee"></vc:i18n>
+                                        </button>
+                                        <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+fee.feeId">
+                                            <vc:i18n name="详情" namespace="listRoomFee"></vc:i18n>
+                                        </a>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>

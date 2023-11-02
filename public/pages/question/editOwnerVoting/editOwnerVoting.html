@@ -5,8 +5,7 @@
                 <h5>
                     <vc:i18n name="编辑投票" namespace="editOwnerVoting"></vc:i18n>
                 </h5>
-                <div class="ibox-tools" style="top:10px;">
-                </div>
+                <div class="ibox-tools" style="top:10px;"></div>
             </div>
             <div class="ibox-content">
                 <div class="row">
@@ -16,13 +15,15 @@
                                 <vc:i18n name="投票名称" namespace="editOwnerVoting"></vc:i18n>
                             </label>
                             <div class="col-sm-4">
-                                <input v-model="editOwnerVotingInfo.qaName" type="text" :placeholder="vc.i18n('必填，请填写投票名称','editOwnerVoting')" class="form-control">
+                                <input v-model="editOwnerVotingInfo.qaName" type="text"
+                                       :placeholder="vc.i18n('必填，请填写投票名称','editOwnerVoting')" class="form-control">
                             </div>
                             <label class="col-sm-2 col-form-label text-right">
                                 <vc:i18n name="类型" namespace="editOwnerVoting"></vc:i18n>
                             </label>
                             <div class="col-sm-4">
-                                <select class="custom-select" v-model="editOwnerVotingInfo.titleType" @change="_changeAddTitleType()">
+                                <select class="custom-select" v-model="editOwnerVotingInfo.titleType"
+                                        @change="_changeAddTitleType()">
                                     <option selected disabled value="">
                                         {{vc.i18n('必填，请选择类型','editOwnerVoting')}}
                                     </option>
@@ -36,22 +37,26 @@
                                 <vc:i18n name="开始时间" namespace="editOwnerVoting"></vc:i18n>
                             </label>
                             <div class="col-sm-4">
-                                <input v-model="editOwnerVotingInfo.startTime" type="text" :placeholder="vc.i18n('必填，请选择开始时间','editOwnerVoting')" class="form-control startTime">
+                                <input v-model="editOwnerVotingInfo.startTime" type="text"
+                                       :placeholder="vc.i18n('必填，请选择开始时间','editOwnerVoting')"
+                                       class="form-control startTime">
                             </div>
                             <label class="col-sm-2 col-form-label text-right">
                                 <vc:i18n name="结束时间" namespace="editOwnerVoting"></vc:i18n>
                             </label>
                             <div class="col-sm-4">
-                                <input v-model="editOwnerVotingInfo.endTime" type="text" :placeholder="vc.i18n('必填，请选择结束时间','editOwnerVoting')" class="form-control endTime">
+                                <input v-model="editOwnerVotingInfo.endTime" type="text"
+                                       :placeholder="vc.i18n('必填，请选择结束时间','editOwnerVoting')"
+                                       class="form-control endTime">
                             </div>
                         </div>
-
                         <div class="form-group row" v-for="(item,index) in editOwnerVotingInfo.titleValues">
                             <label class="col-sm-2 col-form-label  text-right">
                                 <span><vc:i18n name="选项" namespace="editOwnerVoting"></vc:i18n></span>{{item.seq}}
                             </label>
                             <div class="col-sm-4">
-                                <input v-model="item.qaValue" type="text" :placeholder="vc.i18n('必填，请填写选项内容','editOwnerVoting')" class="form-control">
+                                <input v-model="item.qaValue" type="text"
+                                       :placeholder="vc.i18n('必填，请填写选项内容','editOwnerVoting')" class="form-control">
                             </div>
                             <div class="col-sm-2" v-if="index == editOwnerVotingInfo.titleValues.length-1">
                                 <button class="btn btn-link float-left" type="button" v-on:click="_addTitleValue()">
@@ -59,7 +64,8 @@
                                 </button>
                             </div>
                             <div class="col-sm-2" v-else>
-                                <button class="btn btn-link float-left" type="button" v-on:click="_deleteTitleValue(item.seq)">
+                                <button class="btn btn-link float-left" type="button"
+                                        v-on:click="_deleteTitleValue(item.seq)">
                                     <vc:i18n name="删除选项" namespace="editOwnerVoting"></vc:i18n>
                                 </button>
                             </div>
@@ -94,10 +100,12 @@
                     <button class="btn btn-primary float-right" type="button" v-on:click="_saveOwnerVoting()">
                         <i class="fa fa-check"></i>&nbsp;保存
                     </button>
-                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" @click="vc.goBack()">
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                            @click="vc.goBack()">
                         <span><vc:i18n name="取消" namespace="editOwnerVoting"></vc:i18n></span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+</div>

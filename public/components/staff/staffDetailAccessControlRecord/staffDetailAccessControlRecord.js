@@ -9,7 +9,7 @@
             staffDetailAccessControlRecordInfo: {
                 machineRecords: [],
                 staffId: '',
-                link: '',
+                link: ''
             }
         },
         _initMethod: function () {
@@ -35,7 +35,6 @@
                         tel: $that.staffDetailAccessControlRecordInfo.link,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/machineRecord.listMachineRecords',
                     param,
@@ -57,7 +56,7 @@
             _qureyStaffDetailAccessControlRecord: function () {
                 $that._loadStaffDetailAccessControlRecordData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _viewOwnerFace: function(_url) {
+            _viewOwnerFace: function (_url) {
                 vc.emit('viewImage', 'showImage', {
                     url: _url
                 });

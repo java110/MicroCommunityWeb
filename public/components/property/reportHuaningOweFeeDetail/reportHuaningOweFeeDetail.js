@@ -53,6 +53,7 @@
                         vc.component.reportHuaningOweFeeDetailInfo.fees = _feeConfigInfo.data;
                         vc.emit('reportHuaningOweFeeDetail', 'paginationPlus', 'init', {
                             total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportHuaningOweFeeDetailInfo.total,
                             currentPage: _page
                         });
                     }, function () {

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -19,27 +19,27 @@
                 feeAmount: '0'
             }
         },
-        _initMethod: function() {
-            vc.getDict('pay_fee_config', "fee_type_cd_show", function(_data) {
+        _initMethod: function () {
+            vc.getDict('pay_fee_config', "fee_type_cd_show", function (_data) {
                 $that.dataReportEarnedDetailStatisticsInfo.feeTypeCds = _data
             });
         },
-        _initEvent: function() {
-            vc.on('dataReportEarnedDetailStatistics', 'switch', function(_data) {
+        _initEvent: function () {
+            vc.on('dataReportEarnedDetailStatistics', 'switch', function (_data) {
                 $that.dataReportEarnedDetailStatisticsInfo.startDate = _data.startDate;
                 $that.dataReportEarnedDetailStatisticsInfo.endDate = _data.endDate;
                 $that._loadDataReportEarnedDetailStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('dataReportEarnedDetailStatistics', 'paginationPlus', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     $that._loadDataReportEarnedDetailStatisticsData(_currentPage, DEFAULT_ROWS);
                 });
-            vc.on('dataReportEarnedDetailStatistics', 'notify', function(_data) {
+            vc.on('dataReportEarnedDetailStatistics', 'notify', function (_data) {
                 $that._loadDataReportEarnedDetailStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
-            _loadDataReportEarnedDetailStatisticsData: function(_page, _row) {
+            _loadDataReportEarnedDetailStatisticsData: function (_page, _row) {
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -52,11 +52,10 @@
                         row: _row
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/dataReport.queryReceivedDetailStatistics',
                     param,
-                    function(json) {
+                    function (json) {
                         let _json = JSON.parse(json);
                         $that.dataReportEarnedDetailStatisticsInfo.fees = _json.data;
                         vc.emit('dataReportEarnedDetailStatistics', 'paginationPlus', 'init', {
@@ -64,18 +63,17 @@
                             dataCount: _json.total,
                             currentPage: _page
                         });
-                        
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _qureyDataReportEarnedDetailStatistics: function() {
+            _qureyDataReportEarnedDetailStatistics: function () {
                 $that._loadDataReportEarnedDetailStatisticsData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _exportReportEarnedDetailExcel: function() {
+            _exportReportEarnedDetailExcel: function () {
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -84,19 +82,19 @@
                         objName: $that.dataReportEarnedDetailStatisticsInfo.objName,
                         ownerName: $that.dataReportEarnedDetailStatisticsInfo.ownerName,
                         link: $that.dataReportEarnedDetailStatisticsInfo.link,
-                        pagePath:'dataReportEarnedDetailStatistics'
+                        pagePath: 'dataReportEarnedDetailStatistics'
                     }
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         vc.toast(_json.msg);
                         if (_json.code == 0) {
                             vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },

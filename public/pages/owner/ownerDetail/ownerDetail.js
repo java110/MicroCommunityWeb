@@ -59,7 +59,7 @@
                         var listOwnerData = JSON.parse(json);
                         vc.copyObject(listOwnerData.owners[0], vc.component.ownerDetailInfo);
                         $that.ownerDetailInfo.ownerAttrDtos = listOwnerData.owners[0].ownerAttrDtos
-                            //加载图片
+                        //加载图片
                         vc.component._loadOwnerPhoto();
                     },
                     function (errInfo, error) {

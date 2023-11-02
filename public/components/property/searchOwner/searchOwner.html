@@ -1,4 +1,5 @@
-<div id="searchOwnerModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchOwnerModelLabel" aria-hidden="true">
+<div id="searchOwnerModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchOwnerModelLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,19 +15,28 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-                                <div class="col-sm-7 m-b-xs">
+                                <div class="col-sm-4 m-b-xs">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入房屋编号楼栋-单元-房屋','searchOwner')" type="text" v-model="searchOwnerInfo.roomName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入房屋编号楼栋-单元-房屋','searchOwner')" type="text"
+                                               v-model.trim="searchOwnerInfo.roomName" class="form-control form-control-sm">
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入业主名称','searchOwner')" type="text" v-model="searchOwnerInfo._currentOwnerName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入业主名称','searchOwner')" type="text"
+                                               v-model.trim="searchOwnerInfo._currentOwnerName"
+                                               class="form-control form-control-sm" style="margin-right: 10px">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="searchOwners()">
-                                                    <span><vc:i18n name="查询" namespace="searchOwner"></vc:i18n></span>
-                                        </button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    v-on:click="searchOwners()" style="margin-right: 10px">
+                                                <i class="fa fa-search"></i>
+                                                <span><vc:i18n name="查询" namespace="searchOwner"></vc:i18n></span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                    v-on:click="resetOwners()">
+                                                <i class="fa fa-repeat"></i>
+                                                <span><vc:i18n name="重置" namespace="searchOwner"></vc:i18n></span>
+                                            </button>
                                         </span>
                                     </div>
                                 </div>
@@ -34,57 +44,64 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="名称" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-                                            <!-- <th><span><vc:i18n name="房屋编号" namespace="searchOwner"></vc:i18n></span></th> -->
-                                            <th class="text-center">
-                                                <span><vc:i18n name="性别" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-
-                                            <th class="text-center">
-                                                <span><vc:i18n name="身份证" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="联系方式" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="创建员工" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="操作" namespace="searchOwner"></vc:i18n></span>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="名称" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                        <!--<th>
+                                            <span><vc:i18n name="房屋编号" namespace="searchOwner"></vc:i18n></span>
+                                        </th>-->
+                                        <th class="text-center">
+                                            <span><vc:i18n name="性别" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="身份证" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="联系方式" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="创建员工" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="searchOwner"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="owner in searchOwnerInfo.owners">
-                                            <td class="text-center">
-                                                {{owner.name}}
-                                            </td>
-                                            <!-- <td>
-                                        {{owner.roomName}}
-                                        </td> -->
-                                            <td class="text-center">
-                                                {{owner.sex == 0 ? '男' : '女'}}
-                                            </td>
-
-                                            <td class="text-center">
-                                                {{owner.idCard}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{owner.link}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{owner.userName}}
-                                            </td>
-                                            <td class="text-center">
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseOwner(owner)">
+                                    <tr v-for="owner in searchOwnerInfo.owners">
+                                        <td class="text-center">
+                                            {{owner.name}}
+                                        </td>
+                                        <!--<td>
+                                            {{owner.roomName}}
+                                        </td>-->
+                                        <td class="text-center">
+                                            {{owner.sex == 0 ? '男' : '女'}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.idCard}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.link}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{owner.userName}}
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseOwner(owner)">
                                                 <span><vc:i18n name="选择" namespace="searchOwner"></vc:i18n></span>
                                             </button>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                                 <vc:create namespace="searchOwner" path="frame/paginationPlus"></vc:create>
                             </div>

@@ -58,7 +58,6 @@
         _initEvent: function () {
             $('#configIds').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
                 // do something...
-                console.log(e, clickedIndex, isSelected, previousValue)
                 if (isSelected) {
                     $that.listOweFeeInfo.feeConfigNames.push({
                         configId: $that.listOweFeeInfo.feeConfigs[clickedIndex].configId,

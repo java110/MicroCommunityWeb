@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -27,11 +27,11 @@
                 price: 0
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initAddMeterWaterDateInfo();
         },
-        _initEvent: function() {
-            vc.on('addMeterWater', 'openAddMeterWaterModal', function(_param) {
+        _initEvent: function () {
+            vc.on('addMeterWater', 'openAddMeterWaterModal', function (_param) {
                 vc.component.clearAddMeterWaterInfo();
                 if (_param.hasOwnProperty("objType")) {
                     $that.addMeterWaterInfo.objType = _param.objType;
@@ -50,7 +50,7 @@
                 $('#addMeterWaterModel').modal('show');
                 $that._listAddMeterTypes();
             });
-            vc.on("addMeterWater", "notify", function(_param) {
+            vc.on("addMeterWater", "notify", function (_param) {
                 if (_param.hasOwnProperty("roomId") && _param.roomId != "") {
                     vc.component.addMeterWaterInfo.roomId = _param.roomId;
                     vc.component.addMeterWaterInfo.objId = _param.roomId;
@@ -62,7 +62,7 @@
         },
         methods: {
             // 将1-1-1 转化为 1栋1单元1室
-            transRoomName: function(roomName) {
+            transRoomName: function (roomName) {
                 // 没有-则返回
                 if (roomName.indexOf('-') < 0) {
                     return roomName;
@@ -70,7 +70,7 @@
                 roomName = roomName.split('-');
                 return roomName[0] + '栋' + roomName[1] + '单元' + roomName[2] + '室';
             },
-            _initAddMeterWaterDateInfo: function() {
+            _initAddMeterWaterDateInfo: function () {
                 $('.addPreReadingTime').datetimepicker({
                     language: 'zh-CN',
                     fontAwesome: 'fa',
@@ -81,7 +81,7 @@
                     todayBtn: true
                 });
                 $('.addPreReadingTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addPreReadingTime").val();
                         var start = Date.parse(new Date(value));
                         var end = Date.parse(new Date(vc.component.addMeterWaterInfo.curReadingTime));
@@ -103,7 +103,7 @@
                     todayBtn: true
                 });
                 $('.addCurReadingTime').datetimepicker()
-                    .on('changeDate', function(ev) {
+                    .on('changeDate', function (ev) {
                         var value = $(".addCurReadingTime").val();
                         var start = Date.parse(new Date(vc.component.addMeterWaterInfo.preReadingTime))
                         var end = Date.parse(new Date(value))
@@ -132,7 +132,8 @@
                 return vc.validate.validate({
                     addMeterWaterInfo: vc.component.addMeterWaterInfo
                 }, {
-                    'addMeterWaterInfo.preDegrees': [{
+                    'addMeterWaterInfo.preDegrees': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "上期度数不能为空"
@@ -143,7 +144,8 @@
                             errInfo: "上期度数格式错误"
                         }
                     ],
-                    'addMeterWaterInfo.curDegrees': [{
+                    'addMeterWaterInfo.curDegrees': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "本期度数不能为空"
@@ -154,7 +156,8 @@
                             errInfo: "本期度数格式错误"
                         }
                     ],
-                    'addMeterWaterInfo.preReadingTime': [{
+                    'addMeterWaterInfo.preReadingTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "上期读表时间不能为空"
@@ -165,7 +168,8 @@
                             errInfo: "上期读表时间格式错误"
                         }
                     ],
-                    'addMeterWaterInfo.curReadingTime': [{
+                    'addMeterWaterInfo.curReadingTime': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "本期读表时间不能为空"
@@ -176,29 +180,37 @@
                             errInfo: "本期读表时间格式错误"
                         }
                     ],
-                    'addMeterWaterInfo.roomId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋必填"
-                    }],
-                    'addMeterWaterInfo.meterType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "抄表类型必填"
-                    }],
-                    'addMeterWaterInfo.configId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "费用必填"
-                    }],
-                    'addMeterWaterInfo.remark': [{
-                        limit: "maxLength",
-                        param: "500",
-                        errInfo: "备注格式错误"
-                    }],
+                    'addMeterWaterInfo.roomId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.meterType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "抄表类型必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.configId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用必填"
+                        }
+                    ],
+                    'addMeterWaterInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "500",
+                            errInfo: "备注格式错误"
+                        }
+                    ]
                 });
             },
-            saveMeterWaterInfo: function() {
+            saveMeterWaterInfo: function () {
                 if (!vc.component.addMeterWaterValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
@@ -218,10 +230,10 @@
                     JSON.stringify(vc.component.addMeterWaterInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         var _json = JSON.parse(json);
-                        if (res.status == 200) {
+                        if (_json.code == 0) {
                             //关闭model
                             $('#addMeterWaterModel').modal('hide');
                             vc.component.clearAddMeterWaterInfo();
@@ -237,12 +249,12 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
-            _changeAddMeterWaterFeeTypeCd: function(_feeTypeCd) {
+            _changeAddMeterWaterFeeTypeCd: function (_feeTypeCd) {
                 var param = {
                     params: {
                         page: 1,
@@ -255,18 +267,18 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/feeConfig.listFeeConfigs', param,
-                    function(json, res) {
+                    function (json, res) {
                         var _feeConfigManageInfo = JSON.parse(json);
                         vc.component.addMeterWaterInfo.feeConfigs = _feeConfigManageInfo.feeConfigs;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _changeAddMeterType: function() {
+            _changeAddMeterType: function () {
                 $that._queryPreMeterWater($that.addMeterWaterInfo.roomId);
             },
-            _queryPreMeterWater: function(_roomId) {
+            _queryPreMeterWater: function (_roomId) {
                 if (!_roomId) {
                     return;
                 }
@@ -280,7 +292,7 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/meterWater/queryPreMeterWater', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _meterWaterInfo = JSON.parse(json);
                         let _total = _meterWaterInfo.total;
                         if (_total < 1) {
@@ -294,11 +306,11 @@
                             $that.addMeterWaterInfo.price = _meterWaterInfo.data[0].price;
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },
-            _getChange: function() {
+            _getChange: function () {
                 //上期度数
                 var preDegrees = parseFloat(vc.component.addMeterWaterInfo.preDegrees);
                 //本期度数
@@ -308,7 +320,7 @@
                     vc.component.addMeterWaterInfo.curDegrees = "";
                 }
             },
-            _listAddMeterTypes: function(_page, _rows) {
+            _listAddMeterTypes: function (_page, _rows) {
                 var param = {
                     params: {
                         page: 1,
@@ -319,16 +331,16 @@
                 //发送get请求
                 vc.http.apiGet('meterType.listMeterType',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _meterTypeManageInfo = JSON.parse(json);
                         $that.addMeterWaterInfo.meterTypes = _meterTypeManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            clearAddMeterWaterInfo: function() {
+            clearAddMeterWaterInfo: function () {
                 vc.component.addMeterWaterInfo = {
                     waterId: '',
                     meterType: '',
@@ -351,7 +363,7 @@
                     price: 0
                 };
             },
-            changeFeeConfig: function() {
+            changeFeeConfig: function () {
                 let _configId = $that.addMeterWaterInfo.configId;
                 $that.addMeterWaterInfo.feeConfigs.forEach(item => {
                     if (_configId == item.configId) {

@@ -1,32 +1,26 @@
 <div class="margin-top">
     <div class="text-right">
         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportReportEarnedWayExcel()">
-                    <vc:i18n name="导出" namespace="dataReportEarnedWayStatisticsInfo"></vc:i18n>
-            </button>
+            <i class="fa fa-plus"></i>
+            <vc:i18n name="导出" namespace="dataReportEarnedWayStatisticsInfo"></vc:i18n>
+        </button>
     </div>
-
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
-                <tr>
-                    <template v-for="(item,index) in dataReportEarnedWayStatisticsInfo.fees">
-                        <th class="text-center">
-                            {{item.name}}
-                        </th>
-                    </template>
-                </tr>
+            <tr>
+                <template v-for="(item,index) in dataReportEarnedWayStatisticsInfo.fees">
+                    <th class="text-center">{{item.name}}</th>
+                </template>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <template v-for="(item,index) in dataReportEarnedWayStatisticsInfo.fees">
-                        <td class="text-center" >
-                            {{item.receivedAmount || 0}} 
-                        </td>
-                    </template>
-                </tr>
+            <tr>
+                <template v-for="(item,index) in dataReportEarnedWayStatisticsInfo.fees">
+                    <td class="text-center">{{item.receivedAmount || 0}}</td>
+                </template>
+            </tr>
             </tbody>
         </table>
-        <!-- 分页 -->
-
     </div>
 </div>

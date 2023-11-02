@@ -64,31 +64,25 @@
                 })
                 vc.jumpToPage('/#/pages/property/simplifyAcceptance?tab=业务受理');
             },
-            _sumRoomArea:function(){
-
-                if(!$that){
+            _sumRoomArea: function () {
+                if (!$that) {
                     return;
                 }
-
                 let _rooms = $that.contractDetailRoomInfo.rooms;
-                if(!_rooms || _rooms.length<1){
+                if (!_rooms || _rooms.length < 1) {
                     $that.contractDetailRoomInfo.totalArea = '0';
                     return 0;
                 }
-
                 let _totalArea = 0;
-
                 _rooms.forEach(_room => {
                     _totalArea += parseFloat(_room.builtUpArea)
                 });
                 $that.contractDetailRoomInfo.totalArea = _totalArea.toFixed(2);
-
                 return _totalArea.toFixed(2);
             },
-            _openAddContractRoom:function(){
+            _openAddContractRoom: function () {
                 vc.jumpToPage('/#/pages/admin/contractChangeDetail?param=contractChangeAssets');
             }
-            
         }
     });
 })(window.vc);

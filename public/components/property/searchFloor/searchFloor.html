@@ -1,4 +1,5 @@
-<div id="searchFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchFloorModelLabel" aria-hidden="true">
+<div id="searchFloorModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="searchFloorModelLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,51 +15,82 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-                                <div class="col-sm-7 m-b-xs">
+                                <div class="col-sm-3 m-b-xs">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('请输入楼栋ID','searchFloor')" type="text"
+                                               v-model.trim="searchFloorInfo.floorId"
+                                               class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 m-b-xs">
+                                    <div class="input-group">
+                                        <input :placeholder="vc.i18n('请输入楼栋名称','searchFloor')" type="text"
+                                               v-model.trim="searchFloorInfo.floorName"
+                                               class="form-control form-control-sm">
+                                    </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入小区楼编号','searchFloor')" type="text" v-model="searchFloorInfo._currentFloorNum" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入楼栋编号','searchFloor')" type="text"
+                                               v-model.trim="searchFloorInfo.floorNum" style="margin-right:10px"
+                                               class="form-control form-control-sm">
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                        v-on:click="searchFloors()"><span><vc:i18n name="查询" namespace="searchFloor"></vc:i18n></span></button>
-                                            </span>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    style="margin-right:10px"
+                                                    v-on:click="searchFloors()">
+                                                <i class="fa fa-search"></i>
+                                                <span><vc:i18n name="查询" namespace="searchFloor"></vc:i18n></span>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                    v-on:click="resetFloors()">
+                                                <i class="fa fa-repeat"></i>
+                                                <span><vc:i18n name="重置" namespace="searchFloor"></vc:i18n></span>
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="楼" namespace="searchFloor"></vc:i18n></span>ID</th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="名称" namespace="searchFloor"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="编号" namespace="searchFloor"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="创建人" namespace="searchFloor"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="操作" namespace="searchFloor"></vc:i18n></span>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="楼" namespace="searchFloor"></vc:i18n></span>ID
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="名称" namespace="searchFloor"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="编号" namespace="searchFloor"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="创建人" namespace="searchFloor"></vc:i18n></span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span><vc:i18n name="操作" namespace="searchFloor"></vc:i18n></span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="floor in searchFloorInfo.floors">
-                                            <td class="text-center">{{floor.floorId}}</td>
-                                            <td class="text-center">{{floor.floorName}}</td>
-                                            <td class="text-center">{{floor.floorNum}}</td>
-                                            <td class="text-center">{{floor.userName}}</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">
+                                    <tr v-for="floor in searchFloorInfo.floors">
+                                        <td class="text-center">{{floor.floorId}}</td>
+                                        <td class="text-center">{{floor.floorName}}</td>
+                                        <td class="text-center">{{floor.floorNum}}</td>
+                                        <td class="text-center">{{floor.userName}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary btn-xs" v-on:click="chooseFloor(floor)">
                                                 <span><vc:i18n name="选择" namespace="searchFloor"></vc:i18n></span>
                                             </button>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                                 <vc:create namespace="searchFloor" path="frame/paginationPlus"></vc:create>
                             </div>

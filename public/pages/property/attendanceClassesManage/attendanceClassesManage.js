@@ -9,10 +9,10 @@
             attendanceClassesManageInfo: {
                 attendanceClassess: [],
                 total: 0,
-                records: 1,
+                records: 1
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._listAttendanceClassess(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
@@ -29,8 +29,8 @@
             _listAttendanceClassess: function (_page, _rows) {
                 let param = {
                     params: {
-                        page:_page,
-                        row:_rows,
+                        page: _page,
+                        row: _rows
                     }
                 };
                 //发送get请求

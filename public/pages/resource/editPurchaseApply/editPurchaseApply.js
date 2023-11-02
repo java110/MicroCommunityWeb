@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             editPurchaseApplyInfo: {
@@ -15,46 +15,41 @@
                 resOrderType: '10000',
                 staffId: '',
                 staffName: '',
-                description: '',
-                endUserName: '',
-                endUserTel: '',
                 communityId: vc.getCurrentCommunity().communityId,
                 shId: '',
                 storehouses: [],
-                flowId: '',
+                flowId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.editPurchaseApplyInfo.applyOrderId = vc.getParam('applyOrderId');
             $that.editPurchaseApplyInfo.resOrderType = vc.getParam('resOrderType');
             $that._listPurchaseApply();
         },
-        _initEvent: function() {
-            vc.on('editPurchaseApply', 'setSelectResourceStores', function(resourceStores) {
+        _initEvent: function () {
+            vc.on('editPurchaseApply', 'setSelectResourceStores', function (resourceStores) {
                 let oldList = $that.editPurchaseApplyInfo.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
-                        newItem.rsId = '';
-                        newItem.timesId = '';
-                        oldList.forEach((oldItem) => {
-                            if (oldItem.resId == newItem.resId && newItem.times && newItem.times.length < 2) {
-                                delete resourceStores[newIndex];
-                            }
-                        })
-
+                    newItem.rsId = '';
+                    newItem.timesId = '';
+                    oldList.forEach((oldItem) => {
+                        if (oldItem.resId == newItem.resId && newItem.times && newItem.times.length < 2) {
+                            delete resourceStores[newIndex];
+                        }
                     })
-                    // 合并已有商品和新添加商品
+                })
+                // 合并已有商品和新添加商品
                 resourceStores.push.apply(resourceStores, oldList);
                 // 过滤空元素
                 resourceStores = resourceStores.filter((s) => {
                     return s.hasOwnProperty('resId');
                 });
-
                 $that.editPurchaseApplyInfo.resourceStores = resourceStores;
             });
         },
         methods: {
-            _listPurchaseApply: function(_page, _rows) {
+            _listPurchaseApply: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -66,20 +61,19 @@
                 //发送get请求
                 vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         let _purchaseApplys = _json.purchaseApplys;
                         vc.copyObject(_purchaseApplys[0], $that.editPurchaseApplyInfo);
                         $that.editPurchaseApplyInfo.resourceStores = _purchaseApplys[0].purchaseApplyDetailVo;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _editApplyPurchaseSummit: function() {
+            _editApplyPurchaseSummit: function () {
                 let _resourceStores = $that.editPurchaseApplyInfo.resourceStores;
-
                 if (!_resourceStores || _resourceStores.length < 0) {
                     vc.toast("未选择采购物品");
                     return;
@@ -89,36 +83,35 @@
                     JSON.stringify($that.editPurchaseApplyInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             vc.goBack();
+                            vc.toast("修改成功");
                             return;
                         }
                         vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-
             _openSelectResourceStoreInfoModel() {
                 let _shId = $that.editPurchaseApplyInfo.shId;
-
                 vc.emit('chooseResourceStore2', 'openChooseResourceStoreModel2', {
                     shId: _shId
                 });
             },
             // 移除选中item
-            _removeSelectResourceStoreItem: function(resId) {
+            _removeSelectResourceStoreItem: function (resId) {
                 $that.editPurchaseApplyInfo.resourceStores.forEach((item, index) => {
                     if (item.resId == resId) {
                         $that.editPurchaseApplyInfo.resourceStores.splice(index, 1);
                     }
                 })
             },
-            _changeTimesId: function(e, index) {
+            _changeTimesId: function (e, index) {
                 let timeId = e.target.value;
                 let times = $that.editPurchaseApplyInfo.resourceStores[index].times;
                 times.forEach((item) => {
@@ -128,7 +121,7 @@
                     }
                 })
             },
-            _getTimesStock: function(_resourceStore) {
+            _getTimesStock: function (_resourceStore) {
                 if (!_resourceStore.timesId) {
                     return "-";
                 }
@@ -145,9 +138,7 @@
                     _resourceStore.quantity = '';
                 }
                 return _stock;
-            },
-
-
+            }
         }
     });
 })(window.vc);

@@ -1,41 +1,57 @@
-<div id="editPrinterRuleMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="editPrinterRuleMachineModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span>
+                <h3 class="m-t-none m-b ">
+                    <span>
                         <vc:i18n name="关联" namespace="editPrinterRuleMachine"></vc:i18n>
-                    </span></h3>
+                    </span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
                                         <vc:i18n name='打印机' namespace='editPrinterRuleMachine'></vc:i18n>
-                                    </span></label>
+                                    </span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="editPrinterRuleMachineInfo.machineId">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择打印机','editPrinterRuleMachine')}}
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择打印机','editPrinterRuleMachine')}}
                                         </option>
-                                        <option :value="item.machineId" v-for="(item,index) in editPrinterRuleMachineInfo.machines">{{item.machineName}}({{item.machineCode}})</option>
+                                        <option :value="item.machineId"
+                                                v-for="(item,index) in editPrinterRuleMachineInfo.machines">
+                                            {{item.machineName}}({{item.machineCode}})
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span>
+                                <label class="col-sm-2 col-form-label">
+                                    <span>
                                         <vc:i18n name='打印数量' namespace='editPrinterRuleMachine'></vc:i18n>
-                                    </span> </label>
+                                    </span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editPrinterRuleMachineInfo.quantity" type="text" :placeholder="vc.i18n('必填，请填写打印数量','editPrinterRuleMachine')" class="form-control">
+                                    <input v-model="editPrinterRuleMachineInfo.quantity" type="text"
+                                           :placeholder="vc.i18n('必填，请填写打印数量','editPrinterRuleMachine')"
+                                           class="form-control">
                                 </div>
                             </div>
-
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="editPrinterRuleMachine()"><i class="fa fa-check"></i>&nbsp;<span>
-                                        <vc:i18n name="保存"></vc:i18n>
-                                    </span></button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal"><span>
-                                        <vc:i18n name="取消"></vc:i18n>
-                                    </span></button>
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="editPrinterRuleMachine()">
+                                    <i class="fa fa-check"></i>&nbsp;
+                                    <span><vc:i18n name="保存"></vc:i18n></span>
+                                </button>
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
+                                    <i class="fa fa-close"></i>
+                                    <span><vc:i18n name="取消"></vc:i18n></span>
+                                </button>
                             </div>
                         </div>
                     </div>

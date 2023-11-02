@@ -7,7 +7,8 @@
                         <vc:i18n name="查询条件" namespace="propertyRightRegistrationManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
                             {{propertyRightRegistrationManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -16,51 +17,67 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入房屋ID','propertyRightRegistrationManage')" v-model="propertyRightRegistrationManageInfo.conditions.roomId" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入房屋ID','propertyRightRegistrationManage')"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.roomId"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号 格式 楼栋-单元-房屋','propertyRightRegistrationManage')" class="form-control" v-model="propertyRightRegistrationManageInfo.conditions.allNum">
+                                <input type="text"
+                                       :placeholder="vc.i18n('请填写房屋编号 格式 楼栋-单元-房屋','propertyRightRegistrationManage')"
+                                       class="form-control"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.allNum">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入姓名','propertyRightRegistrationManage')" v-model="propertyRightRegistrationManageInfo.conditions.name" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入姓名','propertyRightRegistrationManage')"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.name"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryPropertyRightRegistrationMethod()">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryPropertyRightRegistrationMethod()">
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="propertyRightRegistrationManage"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetPropertyRightRegistrationMethod()">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetPropertyRightRegistrationMethod()">
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="propertyRightRegistrationManage"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
-                    <div class="row" v-if="propertyRightRegistrationManageInfo.moreCondition == true">
+                    <div class="row" v-show="propertyRightRegistrationManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入联系方式','propertyRightRegistrationManage')" v-model="propertyRightRegistrationManageInfo.conditions.link" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入联系方式','propertyRightRegistrationManage')"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.link"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入身份证号','propertyRightRegistrationManage')" v-model="propertyRightRegistrationManageInfo.conditions.idCard" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入身份证号','propertyRightRegistrationManage')"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.idCard"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入地址','propertyRightRegistrationManage')" v-model="propertyRightRegistrationManageInfo.conditions.address" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入地址','propertyRightRegistrationManage')"
+                                       v-model="propertyRightRegistrationManageInfo.conditions.address"
+                                       class=" form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-if="propertyRightRegistrationManageInfo.moreCondition == true">
+                    <div class="row" v-show="propertyRightRegistrationManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.state">
+                                <select class="custom-select"
+                                        v-model="propertyRightRegistrationManageInfo.conditions.state">
                                     <option selected value="">
                                         {{vc.i18n('请选择审核状态','propertyRightRegistrationManage')}}
                                     </option>
@@ -72,7 +89,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.floorId" @change="selectUnit()">
+                                <select class="custom-select"
+                                        v-model="propertyRightRegistrationManageInfo.conditions.floorId"
+                                        @change="selectUnit()">
                                     <option selected value="">
                                         {{vc.i18n('请选择楼栋','propertyRightRegistrationManage')}}
                                     </option>
@@ -84,8 +103,10 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="custom-select" v-model="propertyRightRegistrationManageInfo.conditions.unitId">
-                                    <option selected value="">{{vc.i18n('请选择单元','propertyRightRegistrationManage')}}
+                                <select class="custom-select"
+                                        v-model="propertyRightRegistrationManageInfo.conditions.unitId">
+                                    <option selected value="">
+                                        {{vc.i18n('请选择单元','propertyRightRegistrationManage')}}
                                     </option>
                                     <option v-for="(item,index) in propertyRightRegistrationManageInfo.units"
                                             :value="item.unitId">
@@ -107,7 +128,8 @@
                         <span><vc:i18n name="房屋产权" namespace="propertyRightRegistrationManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPropertyRightRegistrationModal()">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                v-on:click="_openAddPropertyRightRegistrationModal()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="添加" namespace="propertyRightRegistrationManage"></vc:i18n></span>
                         </button>
@@ -116,80 +138,84 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span>
+                        <tr>
+                            <th class="text-center">
+                                <span>
                                     <vc:i18n name="房屋产权ID" namespace="propertyRightRegistrationManage"></vc:i18n>
                                 </span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="房屋ID" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="房屋编号" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="姓名" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="联系方式" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="身份证号" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="地址" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="状态" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="propertyRightRegistrationManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="房屋ID" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="房屋编号" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="姓名" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="联系方式" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="身份证号" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="地址" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="状态" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="propertyRightRegistrationManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="propertyRightRegistration in propertyRightRegistrationManageInfo.propertyRightRegistrations">
-                                <td class="text-center">{{propertyRightRegistration.prrId}}</td>
-                                <td class="text-center">{{propertyRightRegistration.roomId}}</td>
-                                <td class="text-center">
-                                    {{propertyRightRegistration.floorNum}}-{{propertyRightRegistration.unitNum}}-{{propertyRightRegistration.roomNum}}
-                                </td>
-                                <td class="text-center">{{propertyRightRegistration.name}}</td>
-                                <td class="text-center">{{propertyRightRegistration.link}}</td>
-                                <td class="text-center">{{propertyRightRegistration.idCard}}</td>
-                                <td class="text-center">{{propertyRightRegistration.address}}</td>
-                                <td class="text-center">{{propertyRightRegistration.stateName}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-if="propertyRightRegistration.state != '1'" v-on:click="_openExaminePropertyRightRegistration(propertyRightRegistration)">
+                        <tr v-for="propertyRightRegistration in propertyRightRegistrationManageInfo.propertyRightRegistrations">
+                            <td class="text-center">{{propertyRightRegistration.prrId}}</td>
+                            <td class="text-center">{{propertyRightRegistration.roomId}}</td>
+                            <td class="text-center">
+                                {{propertyRightRegistration.floorNum}}-{{propertyRightRegistration.unitNum}}-{{propertyRightRegistration.roomNum}}
+                            </td>
+                            <td class="text-center">{{propertyRightRegistration.name}}</td>
+                            <td class="text-center">{{propertyRightRegistration.link}}</td>
+                            <td class="text-center">{{propertyRightRegistration.idCard}}</td>
+                            <td class="text-center">{{propertyRightRegistration.address}}</td>
+                            <td class="text-center">{{propertyRightRegistration.stateName}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-if="propertyRightRegistration.state != '1'"
+                                            v-on:click="_openExaminePropertyRightRegistration(propertyRightRegistration)">
                                         审核
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditPropertyRightRegistrationModel(propertyRightRegistration)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditPropertyRightRegistrationModel(propertyRightRegistration)">
                                         修改
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openPropertyRightRegistrationDetail(propertyRightRegistration)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openPropertyRightRegistrationDetail(propertyRightRegistration)">
                                         详情
                                     </button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeletePropertyRightRegistrationModel(propertyRightRegistration)">
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeletePropertyRightRegistrationModel(propertyRightRegistration)">
                                         删除
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="15">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="15">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

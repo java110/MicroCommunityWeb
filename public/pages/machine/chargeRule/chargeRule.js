@@ -8,7 +8,8 @@
                 tabName: 'chargeRuleConfig'
             },
         },
-        _initMethod: function () { },
+        _initMethod: function () {
+        },
         _initEvent: function () {
             vc.on('chargeRule', 'switchChargeRule', function (_param) {
                 $that.chargeRuleInfo.curChargeRule = _param;
@@ -18,7 +19,7 @@
         methods: {
             _changeChargeRuleTab: function (_tabName) {
                 $that.chargeRuleInfo.tabName = _tabName;
-                vc.emit('chargeRuleFee', 'switch', { ruleId: $that.chargeRuleInfo.curChargeRule.ruleId });
+                vc.emit('chargeRuleFee', 'switch', {ruleId: $that.chargeRuleInfo.curChargeRule.ruleId});
             }
         },
     });

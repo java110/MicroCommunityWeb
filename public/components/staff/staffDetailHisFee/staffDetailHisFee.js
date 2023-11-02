@@ -1,33 +1,33 @@
 /**
  入驻小区
  **/
- (function (vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             staffDetailHisFeeInfo: {
                 feeDetails: [],
-                staffId:'',
-                state:'',
+                staffId: '',
+                state: ''
             }
         },
         _initMethod: function () {
-            vc.getDict('return_pay_fee', "state", function(_data) {
+            vc.getDict('return_pay_fee', "state", function (_data) {
                 vc.component.staffDetailHisFeeInfo.returnPayFeeStates = _data;
             });
         },
         _initEvent: function () {
             vc.on('staffDetailHisFee', 'switch', function (_data) {
                 $that.staffDetailHisFeeInfo.staffId = _data.staffId;
-                $that._loadStaffDetailHisFeeData(DEFAULT_PAGE,DEFAULT_ROWS)
+                $that._loadStaffDetailHisFeeData(DEFAULT_PAGE, DEFAULT_ROWS)
             });
             vc.on('staffDetailHisFee', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     vc.component._loadStaffDetailHisFeeData(_currentPage, DEFAULT_ROWS);
                 });
             vc.on('staffDetailHisFee', 'notify', function (_data) {
-                $that._loadStaffDetailHisFeeData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadStaffDetailHisFeeData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
@@ -35,12 +35,11 @@
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        cashierId:$that.staffDetailHisFeeInfo.staffId,
-                        page:_page,
-                        row:_row
+                        cashierId: $that.staffDetailHisFeeInfo.staffId,
+                        page: _page,
+                        row: _row
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/fee.queryFeeDetail',
                     param,
@@ -65,7 +64,6 @@
             _toRefundFee: function (_detail) {
                 vc.jumpToPage('/#/pages/property/propertyFee?feeId=' + _detail.feeId);
             }
-           
         }
     });
 })(window.vc);

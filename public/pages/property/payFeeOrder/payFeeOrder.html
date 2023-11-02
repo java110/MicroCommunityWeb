@@ -14,6 +14,7 @@
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="vc.goBack()">
+                            <i class="fa fa-close"></i>
                             <span>
                                 <span><vc:i18n name="返回" namespace="payFeeOrder"></vc:i18n></span>
                             </span>
@@ -114,11 +115,12 @@
                                 </label>
                                 <div class="col-sm-3">
                                     <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','payFeeOrder')"
-                                        v-model="payFeeOrderInfo.customStartTime" class=" form-control customStartTime">
+                                           v-model="payFeeOrderInfo.customStartTime"
+                                           class=" form-control customStartTime">
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','payFeeOrder')"
-                                        v-model="payFeeOrderInfo.customEndTime" class=" form-control customEndTime">
+                                           v-model="payFeeOrderInfo.customEndTime" class=" form-control customEndTime">
                                 </div>
                             </div>
                             <div class="form-group row">

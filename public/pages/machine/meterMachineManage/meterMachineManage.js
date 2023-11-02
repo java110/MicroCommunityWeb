@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -25,82 +25,91 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listMeterMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._listMeterType();
             $that._listFactorys();
         },
-        _initEvent: function() {
-
-            vc.on('meterMachineManage', 'listMeterMachine', function(_param) {
+        _initEvent: function () {
+            vc.on('meterMachineManage', 'listMeterMachine', function (_param) {
                 vc.component._listMeterMachines(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listMeterMachines(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listMeterMachines: function(_page, _rows) {
-
+            _listMeterMachines: function (_page, _rows) {
                 vc.component.meterMachineManageInfo.conditions.page = _page;
                 vc.component.meterMachineManageInfo.conditions.row = _rows;
                 let param = {
                     params: vc.component.meterMachineManageInfo.conditions
                 };
-
+                param.params.machineNameLike = param.params.machineNameLike.trim();
+                param.params.address = param.params.address.trim();
+                param.params.roomNameLike = param.params.roomNameLike.trim();
                 //发送get请求
                 vc.http.apiGet('/meterMachine.listMeterMachine',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _meterMachineManageInfo = JSON.parse(json);
                         vc.component.meterMachineManageInfo.total = _meterMachineManageInfo.total;
                         vc.component.meterMachineManageInfo.records = _meterMachineManageInfo.records;
                         vc.component.meterMachineManageInfo.meterMachines = _meterMachineManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.meterMachineManageInfo.records,
+                            dataCount: vc.component.meterMachineManageInfo.total,
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddMeterMachineModal: function() {
+            _openAddMeterMachineModal: function () {
                 vc.jumpToPage('/#/pages/machine/addMeterMachine')
             },
-            _openEditMeterMachineModel: function(_meterMachine) {
+            _openEditMeterMachineModel: function (_meterMachine) {
                 vc.jumpToPage('/#/pages/machine/editMeterMachine?machineId=' + _meterMachine.machineId)
             },
-            _openDeleteMeterMachineModel: function(_meterMachine) {
+            _openDeleteMeterMachineModel: function (_meterMachine) {
                 vc.emit('deleteMeterMachine', 'openDeleteMeterMachineModal', _meterMachine);
             },
-            _openSettingMeterMachineRead: function() {
+            _openSettingMeterMachineRead: function () {
                 vc.emit('settingMeterMachineRead', 'openSettingMeterMachineReadModal', {});
             },
-            _openCustomRead: function() {
+            _openCustomRead: function () {
                 vc.emit('customReadMeterMachine', 'openCustomReadMeterMachineModal', {});
             },
-
-            _openImportMeterMachine(){
-                vc.emit('importMeterMachine', 'openImportMeterMachineModal',{})
+            _openImportMeterMachine() {
+                vc.emit('importMeterMachine', 'openImportMeterMachineModal', {})
             },
-
-            _toDetail: function(_meterMachine) {
+            _toDetail: function (_meterMachine) {
                 vc.jumpToPage('/#/pages/machine/meterMachineDetail?machineId=' + _meterMachine.machineId)
             },
-            _queryMeterMachineMethod: function() {
+            //查询
+            _queryMeterMachineMethod: function () {
                 vc.component._listMeterMachines(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            //重置
+            _resetMeterMachineMethod: function () {
+                vc.component.meterMachineManageInfo.conditions.machineNameLike = "";
+                vc.component.meterMachineManageInfo.conditions.address = "";
+                vc.component.meterMachineManageInfo.conditions.meterType = "";
+                vc.component.meterMachineManageInfo.conditions.machineModel = "";
+                vc.component.meterMachineManageInfo.conditions.roomNameLike = "";
+                vc.component.meterMachineManageInfo.conditions.implBean = "";
+                vc.component._listMeterMachines(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.meterMachineManageInfo.moreCondition) {
                     vc.component.meterMachineManageInfo.moreCondition = false;
                 } else {
                     vc.component.meterMachineManageInfo.moreCondition = true;
                 }
             },
-            _listMeterType: function(_page, _rows) {
+            _listMeterType: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -111,16 +120,16 @@
                 //发送get请求
                 vc.http.apiGet('/meterType.listMeterType',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _accessControlMachineManageInfo = JSON.parse(json);
                         $that.meterMachineManageInfo.meterTypes = _accessControlMachineManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listFactorys: function(_page, _rows) {
+            _listFactorys: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -129,17 +138,16 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/meterMachine.listMeterMachineFactory', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         $that.meterMachineManageInfo.factorys = _feeConfigManageInfo.data;
-
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _getMeterTypeName: function(meterType) {
+            _getMeterTypeName: function (meterType) {
                 let _meterTypeName = "";
                 $that.meterMachineManageInfo.meterTypes.forEach(item => {
                     if (meterType == item.typeId) {
@@ -151,8 +159,6 @@
                 }
                 return _meterTypeName;
             }
-
-
         }
     });
 })(window.vc);

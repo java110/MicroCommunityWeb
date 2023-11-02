@@ -86,7 +86,6 @@
                     }
                     $('#jstree_floorUnit').jstree('select_node', _data[0].children[0].id /* , true */);
                 });
-
                 $('#jstree_floorUnit').on("changed.jstree", function (e, data) {
                     if (data.action == 'model' || data.action == 'ready') {
                         //默认合并
@@ -151,7 +150,6 @@
                                 _includeMenu = true;
                             }
                         }
-
                         if (_units[_pIndex].unitNum == "0") {
                             continue;
                         }

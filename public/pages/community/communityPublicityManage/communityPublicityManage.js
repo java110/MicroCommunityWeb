@@ -54,6 +54,7 @@
                         $that.communityPublicityManageInfo.communityPublicitys = _communityPublicityManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: $that.communityPublicityManageInfo.records,
+                            dataCount: $that.communityPublicityManageInfo.total,
                             currentPage: _page
                         });
                     },

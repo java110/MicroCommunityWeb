@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var photoUrl = '/callComponent/download/getFile/file';
@@ -14,26 +14,26 @@
                 moreCondition: false,
                 qaId: '',
                 conditions: {
-                    qaType: '1001',
+                    qaType: '',
                     qaName: '',
                     qaId: '',
                     communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('questionAnswerManage', 'listQuestionAnswer', function(_param) {
+        _initEvent: function () {
+            vc.on('questionAnswerManage', 'listQuestionAnswer', function (_param) {
                 $that._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 $that._listQuestionAnswers(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listQuestionAnswers: function(_page, _rows) {
+            _listQuestionAnswers: function (_page, _rows) {
                 $that.questionAnswerManageInfo.conditions.page = _page;
                 $that.questionAnswerManageInfo.conditions.row = _rows;
                 let param = {
@@ -44,7 +44,7 @@
                 //发送get请求
                 vc.http.apiGet('/question.listQuestionAnswer',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _questionAnswerManageInfo = JSON.parse(json);
                         $that.questionAnswerManageInfo.total = _questionAnswerManageInfo.total;
                         $that.questionAnswerManageInfo.records = _questionAnswerManageInfo.records;
@@ -55,51 +55,52 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddQuestionAnswerModal: function() {
+            _openAddQuestionAnswerModal: function () {
                 vc.jumpToPage('/#/pages/question/addQuestionAnswer');
             },
-            _openEditQuestionAnswerModel: function(_questionAnswer) {
+            _openEditQuestionAnswerModel: function (_questionAnswer) {
                 vc.jumpToPage('/#/pages/question/editQuestionAnswer?qaId=' + _questionAnswer.qaId);
             },
-            _openDeleteQuestionAnswerModel: function(_questionAnswer) {
+            _openDeleteQuestionAnswerModel: function (_questionAnswer) {
                 vc.emit('deleteQuestionAnswer', 'openDeleteQuestionAnswerModal', _questionAnswer);
             },
             //查询
-            _queryQuestionAnswerMethod: function() {
+            _queryQuestionAnswerMethod: function () {
                 $that._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetQuestionAnswerMethod: function() {
+            _resetQuestionAnswerMethod: function () {
                 $that.questionAnswerManageInfo.conditions.qaId = "";
                 $that.questionAnswerManageInfo.conditions.qaName = "";
                 $that.questionAnswerManageInfo.conditions.qaType = "";
                 $that._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _toQuestionAnswerTitle: function(_questionAnswer) {
-                vc.jumpToPage('/#/pages/property/questionAnswerTitleManage?qaId=' + _questionAnswer.qaId + "&objType=" + _questionAnswer.objType + "&objId=" + _questionAnswer.objId)
+            _toQuestionAnswerTitle: function (_questionAnswer) {
+                vc.jumpToPage('/#/pages/property/questionAnswerTitleManage?qaId=' + _questionAnswer.qaId +
+                    "&objType=" + _questionAnswer.objType + "&objId=" + _questionAnswer.objId)
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if ($that.questionAnswerManageInfo.moreCondition) {
                     $that.questionAnswerManageInfo.moreCondition = false;
                 } else {
                     $that.questionAnswerManageInfo.moreCondition = true;
                 }
             },
-            showImg: function(e) {
-                vc.emit('viewImage', 'showImage', { url: e });
+            showImg: function (e) {
+                vc.emit('viewImage', 'showImage', {url: e});
             },
-            _openPublishOwnerVotingModel: function(_questionAnswer) {
+            _openPublishOwnerVotingModel: function (_questionAnswer) {
                 vc.emit('publishQuestionAnswer', 'openPublishQuestionAnswerModal', _questionAnswer);
             },
-            _ownerVotingDetail: function(_questionAnswer) {
+            _ownerVotingDetail: function (_questionAnswer) {
                 window.open('/print.html#/pages/question/printQuestionAnswer?qaId=' + _questionAnswer.qaId)
             },
-            _printQuestionAnswerDetail: function(_questionAnswer) {
+            _printQuestionAnswerDetail: function (_questionAnswer) {
                 window.open('/print.html#/pages/question/printQuestionAnswerDetail?qaId=' + _questionAnswer.qaId)
             }
         }

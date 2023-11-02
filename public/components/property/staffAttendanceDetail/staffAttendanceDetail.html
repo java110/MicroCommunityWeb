@@ -1,4 +1,5 @@
-<div id="staffAttendanceDetailModel" class="modal fade" role="dialog" aria-labelledby="staffAttendanceDetailModel" aria-hidden="true">
+<div id="staffAttendanceDetailModel" class="modal fade" role="dialog" aria-labelledby="staffAttendanceDetailModel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,31 +17,36 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
+                                    <tr>
+                                        <th class="text-center">
                                             <span><vc:i18n name="人脸" namespace="staffAttendanceDetail"></vc:i18n></span>
                                         </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="员工名称" namespace="staffAttendanceDetail"></vc:i18n></span>
-                                            </th>
-                                            <th class="text-center">
-                                                <span><vc:i18n name="考勤时间" namespace="staffAttendanceDetail"></vc:i18n></span>
-                                            </th>
-                                        </tr>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="员工名称" namespace="staffAttendanceDetail"></vc:i18n>
+                                            </span>
+                                        </th>
+                                        <th class="text-center">
+                                            <span>
+                                                <vc:i18n name="考勤时间" namespace="staffAttendanceDetail"></vc:i18n>
+                                            </span>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="detail in staffAttendanceDetailInfo.details">
-                                            <td class="text-center" style="white-space: nowrap;">
-                                                <img style="width: 60px; height: 60px;" class="border-radius" v-if="detail.facePath" v-bind:src="detail.facePath" />
-                                                <img style="width: 60px; height: 60px;" class="border-radius" v-else src="/img/noPhoto.jpg" />
-                                            </td>
-                                            <td class="text-center">{{detail.staffName}}</td>
-                                            <td class="text-center">{{detail.clockTime}}</td>
-                                        </tr>
+                                    <tr v-for="detail in staffAttendanceDetailInfo.details">
+                                        <td class="text-center" style="white-space: nowrap;">
+                                            <img style="width: 60px; height: 60px;" class="border-radius"
+                                                 v-if="detail.facePath" v-bind:src="detail.facePath"/>
+                                            <img style="width: 60px; height: 60px;" class="border-radius" v-else
+                                                 src="/img/noPhoto.jpg"/>
+                                        </td>
+                                        <td class="text-center">{{detail.staffName}}</td>
+                                        <td class="text-center">{{detail.clockTime}}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>

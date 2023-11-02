@@ -11,7 +11,7 @@
                 clockTypeValue: '',
                 leaveOffset: '',
                 lateOffset: '',
-                maxLastOffset:'',
+                maxLastOffset: '',
                 attrs: [],
                 clockTypeValues: []
             }
@@ -140,7 +140,7 @@
                     clockTypeValue: '',
                     leaveOffset: '',
                     lateOffset: '',
-                    maxLastOffset:'',
+                    maxLastOffset: '',
                     attrs: [],
                     clockTypeValues: []
                 }

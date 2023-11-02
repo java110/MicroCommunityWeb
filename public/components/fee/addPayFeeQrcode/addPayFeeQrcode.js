@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -13,12 +12,10 @@
                 smsValidate: '',
                 customFee: '',
                 preFee: '',
-                content: '',
-
+                content: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addPayFeeQrcode', 'openAddPayFeeQrcodeModal', function () {
@@ -40,7 +37,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "名称不能超过128"
-                        },
+                        }
                     ],
                     'addPayFeeQrcodeInfo.queryWay': [
                         {
@@ -52,7 +49,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "查询方式不能超过12"
-                        },
+                        }
                     ],
                     'addPayFeeQrcodeInfo.smsValidate': [
                         {
@@ -64,7 +61,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "验证不能超过12"
-                        },
+                        }
                     ],
                     'addPayFeeQrcodeInfo.customFee': [
                         {
@@ -76,7 +73,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "自定义缴费不能超过12"
-                        },
+                        }
                     ],
                     'addPayFeeQrcodeInfo.preFee': [
                         {
@@ -88,15 +85,15 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "预交费不能超过12"
-                        },
+                        }
                     ],
                     'addPayFeeQrcodeInfo.content': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "提示内容不能为空"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
             savePayFeeQrcodeInfo: function () {
@@ -104,10 +101,7 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 $that.addPayFeeQrcodeInfo.communityId = vc.getCurrentCommunity().communityId;
-            
-
                 vc.http.apiPost(
                     '/payFeeQrcode.savePayFeeQrcode',
                     JSON.stringify($that.addPayFeeQrcodeInfo),
@@ -122,17 +116,15 @@
                             $('#addPayFeeQrcodeModel').modal('hide');
                             $that.clearAddPayFeeQrcodeInfo();
                             vc.emit('payFeeQrcode', 'listPayFeeQrcode', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
-
                     });
             },
             clearAddPayFeeQrcodeInfo: function () {
@@ -142,11 +134,9 @@
                     smsValidate: '',
                     customFee: '',
                     preFee: '',
-                    content: '',
-
+                    content: ''
                 };
             }
         }
     });
-
 })(window.vc);

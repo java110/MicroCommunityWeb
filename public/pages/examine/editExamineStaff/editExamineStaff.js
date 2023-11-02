@@ -1,5 +1,4 @@
-(function(vc) {
-
+(function (vc) {
     vc.extends({
         data: {
             editExamineStaffInfo: {
@@ -11,19 +10,16 @@
                 headerImg: '',
                 allProjects: [],
                 projectIds: []
-
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.editExamineStaffInfo.esId = vc.getParam('esId');
             $that._initTextArea();
             $that._listExamineProjects();
-
             $that._listExamineStaffs();
         },
-        _initEvent: function() {
-
-            vc.on("editExamineStaff", "notifyUploadImage", function(_param) {
+        _initEvent: function () {
+            vc.on("editExamineStaff", "notifyUploadImage", function (_param) {
                 if (_param.length > 0) {
                     vc.component.editExamineStaffInfo.headerImg = _param[0].fileId;
                 } else {
@@ -36,7 +32,8 @@
                 return vc.validate.validate({
                     editExamineStaffInfo: vc.component.editExamineStaffInfo
                 }, {
-                    'editExamineStaffInfo.staffId': [{
+                    'editExamineStaffInfo.staffId': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "员工名称不能为空"
@@ -45,40 +42,39 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "员工不能超过30"
-                        },
+                        }
                     ]
                 });
             },
-            _updateExamineStaff: function() {
+            _updateExamineStaff: function () {
                 if (!vc.component.editExamineStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.component.editExamineStaffInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     '/examine.updateExamineStaff',
                     JSON.stringify(vc.component.editExamineStaffInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             vc.goBack();
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _listExamineProjects: function(_page, _rows) {
-
+            _listExamineProjects: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -86,21 +82,19 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/examine.listExamineProject',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _examineProjectManageInfo = JSON.parse(json);
                         $that.editExamineStaffInfo.allProjects = _examineProjectManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listExamineStaffs: function(_page, _rows) {
-
+            _listExamineStaffs: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -109,40 +103,41 @@
                         communityId: vc.getCurrentCommunity().communityId
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/examine.listExamineStaff',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _examineStaffManageInfo = JSON.parse(json);
                         vc.copyObject(_examineStaffManageInfo.data[0], $that.editExamineStaffInfo);
                         _examineStaffManageInfo.data[0].projects.forEach(item => {
                             $that.editExamineStaffInfo.projectIds.push(item.projectId);
                         });
-
                         $(".summernote").summernote('code', vc.component.editExamineStaffInfo.introduction);
                         var photos = [];
                         photos.push(vc.component.editExamineStaffInfo.headerImg);
                         vc.emit('editExamineStaff', 'uploadImageUrl', 'notifyPhotos', photos);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             },
-            _initTextArea: function() {
+            _initTextArea: function () {
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 300,
                     placeholder: '必填，请输入员工简介',
                     callbacks: {
-                        onImageUpload: function(files, editor, $editable) {
+                        onImageUpload: function (files, editor, $editable) {
                             $that.sendFile($summernote, files);
                         },
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
+                            if (contents && contents.indexOf("<p>") != -1 && contents.indexOf("</p>") != -1) {
+                                contents = contents.substring(3, contents.length - 4);
+                            }
                             vc.component.editExamineStaffInfo.introduction = contents;
                         }
                     },
@@ -159,8 +154,7 @@
                     ],
                 });
             },
-            sendFile: function($summernote, files) {
-                console.log('上传图片', files);
+            sendFile: function ($summernote, files) {
                 var param = new FormData();
                 param.append("uploadFile", files[0]);
                 param.append('communityId', vc.getCurrentCommunity().communityId);
@@ -174,7 +168,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         if (res.status == 200) {
                             var data = JSON.parse(json);
@@ -185,12 +179,11 @@
                         }
                         vc.toast(json);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
         }
     });
-
 })(window.vc);

@@ -11,26 +11,29 @@
                             <h5>
                                 <vc:i18n name="查询条件"></vc:i18n>
                             </h5>
-                            <div class="ibox-tools" style="top:10px;">
-
-                            </div>
+                            <div class="ibox-tools" style="top:10px;"></div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写业主名称','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.ownerName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写业主名称','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.ownerName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写费用名称','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.feeName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写费用名称','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.feeName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select class="custom-select" v-model="oweFeeCallableInfo.conditions.callableWay">
-                                            <option selected  value="">{{vc.i18n('请选择催缴方式','oweFeeCallable')}}</option>
+                                        <select class="custom-select"
+                                                v-model="oweFeeCallableInfo.conditions.callableWay">
+                                            <option selected value="">
+                                                {{vc.i18n('请选择催缴方式','oweFeeCallable')}}
+                                            </option>
                                             <option value="WECHAT">微信模板消息</option>
                                             <option value="SMS">短信</option>
                                             <option value="PRINT">上门催缴</option>
@@ -39,13 +42,14 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写催缴人','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.staffName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写催缴人','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.staffName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <select class="custom-select" v-model="oweFeeCallableInfo.conditions.state">
-                                            <option selected  value="">{{vc.i18n('请选择状态','oweFeeCallable')}}</option>
+                                            <option selected value="">{{vc.i18n('请选择状态','oweFeeCallable')}}</option>
                                             <option value="W">待催缴</option>
                                             <option value="C">催缴完成</option>
                                             <option value="F">催缴失败</option>
@@ -53,9 +57,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOweFeeCallableMethod()">
-                                            <vc:i18n name="查询"></vc:i18n>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_queryOweFeeCallableMethod()">
+                                        <i class="fa fa-search"></i>
+                                        <vc:i18n name="查询"></vc:i18n>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_resetOweFeeCallableMethod()">
+                                        <i class="fa fa-repeat"></i>
+                                        <vc:i18n name="重置"></vc:i18n>
                                     </button>
                                 </div>
                             </div>
@@ -71,86 +82,91 @@
                                 <vc:i18n name="催缴记录" namespace="oweFeeCallable"></vc:i18n>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <button type="button" class="btn btn-white btn-sm" v-on:click="_openWritePrintOweFeeCallableModal()">
-                            <vc:i18n name="登记" namespace="oweFeeCallable"></vc:i18n>
-                        </button>
-                                <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddOweFeeCallableModal()">
-                            <vc:i18n name="催缴" namespace="oweFeeCallable"></vc:i18n>
-                        </button>
+                                <button type="button" class="btn btn-white btn-sm"
+                                        v-on:click="_openWritePrintOweFeeCallableModal()">
+                                    <i class="fa fa-plus"></i>
+                                    <vc:i18n name="登记" namespace="oweFeeCallable"></vc:i18n>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_openAddOweFeeCallableModal()">
+                                    <i class="fa fa-plus"></i>
+                                    <vc:i18n name="催缴" namespace="oweFeeCallable"></vc:i18n>
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            <vc:i18n name='编号' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='业主名称' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='付费对象名称' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='费用名称' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='催缴金额' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='欠费时间段' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='催缴方式' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='催缴人' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='状态' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='说明' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='创建时间' namespace='oweFeeCallable'></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name='操作'></vc:i18n>
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name='编号' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='业主名称' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='付费对象名称' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='费用名称' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='催缴金额' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='欠费时间段' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='催缴方式' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='催缴人' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='状态' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='说明' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='创建时间' namespace='oweFeeCallable'></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name='操作'></vc:i18n>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="oweFeeCallable in oweFeeCallableInfo.oweFeeCallables">
-                                        <td class="text-center">{{oweFeeCallable.ofcId}}</td>
-                                        <td class="text-center">{{oweFeeCallable.ownerName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.payerObjName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.feeName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.amountdOwed}}</td>
-                                        <td class="text-center">{{oweFeeCallable.startTime}}</br>
-                                            ~{{oweFeeCallable.endTime}}
-                                        </td>
-                                        <td class="text-center">{{oweFeeCallable.callableWayName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.staffName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.stateName}}</td>
-                                        <td class="text-center">{{oweFeeCallable.remark}}</td>
-                                        <td class="text-center">{{oweFeeCallable.createTime}}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn-white btn btn-xs" v-on:click="_openDeleteOweFeeCallableModel(oweFeeCallable)">
-                                            <vc:i18n name='删除'></vc:i18n>
-                                        </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr v-for="oweFeeCallable in oweFeeCallableInfo.oweFeeCallables">
+                                    <td class="text-center">{{oweFeeCallable.ofcId}}</td>
+                                    <td class="text-center">{{oweFeeCallable.ownerName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.payerObjName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.feeName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.amountdOwed}}</td>
+                                    <td class="text-center">
+                                        {{oweFeeCallable.startTime}}</br>~{{oweFeeCallable.endTime}}
+                                    </td>
+                                    <td class="text-center">{{oweFeeCallable.callableWayName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.staffName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.stateName}}</td>
+                                    <td class="text-center">{{oweFeeCallable.remark}}</td>
+                                    <td class="text-center">{{oweFeeCallable.createTime}}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openDeleteOweFeeCallableModel(oweFeeCallable)">
+                                                <vc:i18n name='删除'></vc:i18n>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <td colspan="7">
-                                            <ul class="pagination float-right"></ul>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="12">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
                             <!-- 分页 -->
@@ -161,8 +177,6 @@
             </div>
         </div>
     </div>
-
     <vc:create path="fee/writeOweFeeCallable"></vc:create>
     <vc:create path="fee/deleteOweFeeCallable"></vc:create>
-
 </div>

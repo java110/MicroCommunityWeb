@@ -16,8 +16,7 @@
                     crcId: '',
                     ruleId: '',
                     communityId: vc.getCurrentCommunity().communityId,
-                    quantity: '',
-
+                    quantity: ''
                 }
             }
         },
@@ -39,13 +38,11 @@
         },
         methods: {
             _listChargeRuleFees: function (_page, _rows) {
-
                 vc.component.chargeRuleFeeInfo.conditions.page = _page;
                 vc.component.chargeRuleFeeInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.chargeRuleFeeInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/chargeRule.listChargeRuleFee',
                     param,
@@ -56,6 +53,7 @@
                         vc.component.chargeRuleFeeInfo.chargeRuleFees = _chargeRuleFeeInfo.data;
                         vc.emit('chargeRuleFee', 'paginationPlus', 'init', {
                             total: vc.component.chargeRuleFeeInfo.records,
+                            dataCount: vc.component.chargeRuleFeeInfo.total,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -65,7 +63,7 @@
             },
             _openAddChargeRuleFeeModal: function () {
                 vc.emit('addChargeRuleFee', 'openAddChargeRuleFeeModal', {
-                    ruleId:$that.chargeRuleFeeInfo.conditions.ruleId,
+                    ruleId: $that.chargeRuleFeeInfo.conditions.ruleId,
                 });
             },
             _openEditChargeRuleFeeModel: function (_chargeRuleFee) {
@@ -76,7 +74,6 @@
             },
             _queryChargeRuleFeeMethod: function () {
                 vc.component._listChargeRuleFees(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.chargeRuleFeeInfo.moreCondition) {

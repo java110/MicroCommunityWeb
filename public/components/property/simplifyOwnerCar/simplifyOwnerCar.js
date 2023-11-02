@@ -6,7 +6,9 @@
             simplifyOwnerCarInfo: {
                 ownerCars: [],
                 ownerId: '',
-                ownerName:'',
+                total: 0,
+                records: 1,
+                ownerName: ''
             }
         },
         _initMethod: function () {
@@ -42,6 +44,13 @@
                     function (json, res) {
                         let _json = JSON.parse(json);
                         $that.simplifyOwnerCarInfo.ownerCars = _json.data;
+                        vc.component.simplifyOwnerCarInfo.total = _json.total;
+                        vc.component.simplifyOwnerCarInfo.records = _json.records;
+                        vc.emit('simplifyOwnerCar', 'paginationPlus', 'init', {
+                            total: vc.component.simplifyOwnerCarInfo.records,
+                            dataCount: vc.component.simplifyOwnerCarInfo.total,
+                            currentPage: _page
+                        });
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -49,7 +58,7 @@
                 );
             },
             _addOwnerCar: function () { //添加车辆
-                vc.jumpToPage('/#/pages/property/hireParkingSpace?ownerId=' + $that.simplifyOwnerCarInfo.ownerId+"&ownerName="+$that.simplifyOwnerCarInfo.ownerName);
+                vc.jumpToPage('/#/pages/property/hireParkingSpace?ownerId=' + $that.simplifyOwnerCarInfo.ownerId + "&ownerName=" + $that.simplifyOwnerCarInfo.ownerName);
             },
             _openEditOwnerCar: function (_car) {
                 vc.emit('editCar', 'openEditCar', _car);

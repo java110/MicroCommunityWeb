@@ -1,7 +1,7 @@
 /**
-业主详情页面
+ 业主详情页面
  **/
- (function (vc) {
+(function (vc) {
     var _fileUrl = '/callComponent/download/getFile/fileByObjId';
     vc.extends({
         data: {
@@ -14,9 +14,9 @@
                 address: '',
                 photo: '/img/noPhoto.jpg',
                 url: '',
-                relCd:'',
+                relCd: '',
                 _currentTab: 'staffDetailOrgPrivilege',
-                needBack:false,
+                needBack: false
             }
         },
         _initMethod: function () {
@@ -61,8 +61,8 @@
                 $that.staffDetailInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     staffId: $that.staffDetailInfo.staffId,
-                    staffName:$that.staffDetailInfo.userName,
-                    tel:$that.staffDetailInfo.tel,
+                    staffName: $that.staffDetailInfo.userName,
+                    tel: $that.staffDetailInfo.tel,
                 })
             },
             _loadStaffPhoto: function () {
@@ -72,8 +72,8 @@
                 vc.component.staffDetailInfo.photo = "/img/noPhoto.jpg";
             },
             _openEditStaffModel: function () {
-                $that.staffDetailInfo.name=$that.staffDetailInfo.userName;
-                $that.staffDetailInfo.userId=$that.staffDetailInfo.staffId;
+                $that.staffDetailInfo.name = $that.staffDetailInfo.userName;
+                $that.staffDetailInfo.userId = $that.staffDetailInfo.staffId;
                 vc.component.$emit('edit_staff_event', $that.staffDetailInfo);
             },
             _resetStaffPwd: function (_staff) {

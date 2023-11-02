@@ -17,7 +17,7 @@
                                 <select class="custom-select" v-model="monthAttendanceManageInfo.conditions.classesId">
                                     <option selected value="">{{vc.i18n('请选择班次','monthAttendanceManage')}}</option>
                                     <option v-for="(item,index) in monthAttendanceManageInfo.attendanceClassess"
-                                        :key="index" v-bind:value="item.classesId">{{item.classesName}}
+                                            :key="index" v-bind:value="item.classesId">{{item.classesName}}
                                     </option>
                                 </select>
                             </div>
@@ -25,23 +25,23 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入员工名称','monthAttendanceManage')"
-                                    v-model="monthAttendanceManageInfo.conditions.staffName" class=" form-control">
+                                       v-model="monthAttendanceManageInfo.conditions.staffName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <input type="text" :placeholder="vc.i18n('请选择打卡时间','monthAttendanceManage')"
-                                v-model="monthAttendanceManageInfo.conditions.date" class=" form-control queryDate">
+                                   v-model="monthAttendanceManageInfo.conditions.date" class=" form-control queryDate">
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_queryMonthAttendanceMethod()">
+                                    v-on:click="_queryMonthAttendanceMethod()">
                                 <i class="fa fa-search"></i>
                                 <span>
                                     <vc:i18n name="查询" namespace="monthAttendanceManage"></vc:i18n>
                                 </span>
                             </button>
                             <button type="button" class="btn btn-primary btn-sm"
-                                v-on:click="_resetMonthAttendanceMethod()">
+                                    v-on:click="_resetMonthAttendanceMethod()">
                                 <i class="fa fa-repeat"></i>
                                 <span>
                                     <vc:i18n name="重置" namespace="monthAttendanceManage"></vc:i18n>
@@ -64,6 +64,7 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                            <i class="fa fa-download"></i>
                             <span><vc:i18n name="导出" namespace="monthAttendanceManage"></vc:i18n></span>
                         </button>
                     </div>
@@ -72,67 +73,67 @@
                     <div class="hc-table-div" :style="{'width':_computeTableDivWidth()}">
                         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                             <thead>
-                                <tr>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="考勤组" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="员工名称" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center" v-for="day in monthAttendanceManageInfo.curDays">
-                                        {{day}}日
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="正常考勤" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="迟到" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="早退" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="旷工" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                    <th class="text-center">
-                                        <span>
-                                            <vc:i18n name="免考勤" namespace="monthAttendanceManage"></vc:i18n>
-                                        </span>
-                                    </th>
-                                </tr>
+                            <tr>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="考勤组" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="员工名称" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center" v-for="day in monthAttendanceManageInfo.curDays">
+                                    {{day}}日
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="正常考勤" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="迟到" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="早退" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="旷工" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                                <th class="text-center">
+                                    <span>
+                                        <vc:i18n name="免考勤" namespace="monthAttendanceManage"></vc:i18n>
+                                    </span>
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="attendance in monthAttendanceManageInfo.attendances">
-                                    <td class="text-center">{{attendance.classesName}}</td>
-                                    <td class="text-center">{{attendance.staffName}}</td>
-                                    <th class="text-left" v-for="day in monthAttendanceManageInfo.curDays">
-                                         <span v-html="_getDayDetail(attendance.days,day)"></span>
-                                    </th>
-                                    <td class="text-center">{{attendance.clockIn}}</td>
-                                    <td class="text-center">{{attendance.late}}</td>
-                                    <td class="text-center">{{attendance.early}}</td>
-                                    <td class="text-center">{{attendance.noClockIn}}</td>
-                                    <td class="text-center">{{attendance.free}}</td>
-                                </tr>
+                            <tr v-for="attendance in monthAttendanceManageInfo.attendances">
+                                <td class="text-center">{{attendance.classesName}}</td>
+                                <td class="text-center">{{attendance.staffName}}</td>
+                                <th class="text-left" v-for="day in monthAttendanceManageInfo.curDays">
+                                    <span v-html="_getDayDetail(attendance.days,day)"></span>
+                                </th>
+                                <td class="text-center">{{attendance.clockIn}}</td>
+                                <td class="text-center">{{attendance.late}}</td>
+                                <td class="text-center">{{attendance.early}}</td>
+                                <td class="text-center">{{attendance.noClockIn}}</td>
+                                <td class="text-center">{{attendance.free}}</td>
+                            </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <ul class="pagination float-right"></ul>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     var photoUrl = '/callComponent/download/getFile/file';
@@ -24,18 +24,17 @@
                 userQuestion: {}
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.printQuestionAnswerDetailInfo.qaId = vc.getParam('qaId');
             $that._listValues();
         },
-        _initEvent: function() {
-            vc.on('ownerVoting', 'listQuestionAnswer', function(_param) {
+        _initEvent: function () {
+            vc.on('ownerVoting', 'listQuestionAnswer', function (_param) {
                 $that._listQuestionAnswers(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
         },
         methods: {
-            _listQuestionAnswers: function() {
+            _listQuestionAnswers: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -47,16 +46,16 @@
                 //发送get请求
                 vc.http.apiGet('/question.listQuestionAnswer',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _info = JSON.parse(json);
                         vc.copyObject(_info.data[0], $that.printQuestionAnswerDetailInfo);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadQuestionTitles: function() {
+            _loadQuestionTitles: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -68,20 +67,19 @@
                 //发送get请求
                 vc.http.apiGet('/question.listQuestionTitle',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _info = JSON.parse(json);
                         $that.printQuestionAnswerDetailInfo.questionTitles = _info.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _printPurchaseApplyDiv: function() {
+            _printPurchaseApplyDiv: function () {
                 $that.printFlag = '1';
                 document.getElementById("print-btn").style.display = "none"; //隐藏
                 document.getElementById("print-room").style.display = "none"; //隐藏
-
                 window.print();
                 //$that.printFlag = false;
                 window.opener = null;
@@ -89,11 +87,11 @@
                 // document.getElementById("print-btn").style.display = "display"; //隐藏
                 // document.getElementById("print-room").style.display = "display"; //隐藏
             },
-            _closePage: function() {
+            _closePage: function () {
                 window.opener = null;
                 window.close();
             },
-            _getTitleTypeName: function(_titleType) {
+            _getTitleTypeName: function (_titleType) {
                 if (_titleType == '1001') {
                     return '单选';
                 } else if (_titleType == '2002') {
@@ -102,12 +100,11 @@
                     return '简答';
                 }
             },
-            swatchRoom: function(_room) {
+            swatchRoom: function (_room) {
                 $that.printQuestionAnswerDetailInfo.roomId = _room.roomId;
                 $that.printQuestionAnswerDetailInfo.userQuestion = _room;
             },
-            _listValues: function() {
-
+            _listValues: function () {
                 let param = {
                     params: {
                         page: 1,
@@ -119,7 +116,7 @@
                 //发送get请求
                 vc.http.apiGet('/question.listUserQuestionAnswer',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _ownerVotingInfo = JSON.parse(json);
                         $that.printQuestionAnswerDetailInfo.userQuestions = _ownerVotingInfo.data;
                         $that._listQuestionAnswers();
@@ -128,15 +125,13 @@
                             $that.swatchRoom(_ownerVotingInfo.data[0]);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _getChooseValue: function(_title) {
-
+            _getChooseValue: function (_title) {
                 let _userQuestion = $that.printQuestionAnswerDetailInfo.userQuestion;
-
                 let _chooseValue = 'X';
                 if (_userQuestion.hasOwnProperty('values')) {
                     _userQuestion.values.forEach(tmpValue => {
@@ -145,10 +140,7 @@
                         }
                     })
                 }
-
                 return _chooseValue;
-
-
             }
         }
     });

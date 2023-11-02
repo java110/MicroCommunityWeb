@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editChargeMachineInfo: {
@@ -9,13 +8,12 @@
                 implBean: '',
                 ruleId: '',
                 energyPrice: '1',
-                factorys:[],
-                rules:[],
-                specs: [],
+                factorys: [],
+                rules: [],
+                specs: []
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editChargeMachine', 'openEditChargeMachineModal', function (_params) {
@@ -42,7 +40,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "名称不能超过200"
-                        },
+                        }
                     ],
                     'editChargeMachineInfo.machineCode': [
                         {
@@ -54,7 +52,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "设备编号不能超过30"
-                        },
+                        }
                     ],
                     'editChargeMachineInfo.implBean': [
                         {
@@ -66,14 +64,14 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "厂家不能超过30"
-                        },
+                        }
                     ],
                     'editChargeMachineInfo.ruleId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "小时电价不能为空"
-                        },
+                        }
                     ],
                     'editChargeMachineInfo.energyPrice': [
                         {
@@ -85,15 +83,15 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "用量电价不能超过12"
-                        },
+                        }
                     ],
                     'editChargeMachineInfo.machineId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "编号不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editChargeMachine: function () {
@@ -101,7 +99,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/chargeMachine.updateChargeMachine',
                     JSON.stringify(vc.component.editChargeMachineInfo),
@@ -115,13 +112,14 @@
                             //关闭model
                             $('#editChargeMachineModel').modal('hide');
                             vc.emit('chargeMachineManage', 'listChargeMachine', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
                     });
             },
@@ -133,12 +131,12 @@
                     implBean: '',
                     ruleId: '',
                     energyPrice: '1',
-                    factorys:[],
-                    rules:[],
-                    specs: [],
+                    factorys: [],
+                    rules: [],
+                    specs: []
                 }
             },
-            _listEditFactorys: function(_page, _rows) {
+            _listEditFactorys: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -147,16 +145,16 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/chargeMachine.listChargeMachineFactory', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _feeConfigManageInfo = JSON.parse(json);
                         $that.editChargeMachineInfo.factorys = _feeConfigManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _changeEditFactory: function() {
+            _changeEditFactory: function () {
                 let _factorys = $that.editChargeMachineInfo.factorys;
                 _factorys.forEach(item => {
                     if (item.factoryId == $that.editChargeMachineInfo.implBean) {
@@ -170,9 +168,9 @@
             _listEditChargeRules: function () {
                 let param = {
                     params: {
-                        page:1,
-                        row:100,
-                        communityId:vc.getCurrentCommunity().communityId
+                        page: 1,
+                        row: 100,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 };
                 //发送get请求
@@ -188,5 +186,4 @@
             },
         }
     });
-
 })(window.vc, window.vc.component);

@@ -7,23 +7,24 @@
                         <span><vc:i18n name="查询条件" namespace="contractCreateFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{contractCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button> -->
+                        <!--<button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">{{contractCreateFeeInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>-->
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同名称','contractCreateFee')"
-                                       v-model="contractCreateFeeInfo.conditions.contractName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同编号','contractCreateFee')"
+                                       v-model="contractCreateFeeInfo.conditions.contractCode" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入合同编号','contractCreateFee')"
-                                       v-model="contractCreateFeeInfo.conditions.contractCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入合同名称','contractCreateFee')"
+                                       v-model="contractCreateFeeInfo.conditions.contractNameLike"
+                                       class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -51,7 +52,9 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="合同信息" namespace="contractCreateFee"></vc:i18n></span></h5>
+                    <h5>
+                        <span><vc:i18n name="合同信息" namespace="contractCreateFee"></vc:i18n></span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
                                 v-on:click="_openContractCreateFeeAddModal(null,true)">
@@ -66,13 +69,13 @@
                         <thead>
                         <tr>
                             <th class="text-center">
-                                <span><vc:i18n name="合同名称" namespace="contractCreateFee"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
                                 <span><vc:i18n name="合同编号" namespace="contractCreateFee"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="父合同编号" namespace="contractCreateFee"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="合同名称" namespace="contractCreateFee"></vc:i18n></span>
                             </th>
                             <th class="text-center">
                                 <span><vc:i18n name="合同类型" namespace="contractCreateFee"></vc:i18n></span>
@@ -96,11 +99,11 @@
                         </thead>
                         <tbody>
                         <tr v-for="contract in contractCreateFeeInfo.contracts">
-                            <td class="text-center">{{contract.contractName}}</td>
                             <td class="text-center">{{contract.contractCode}}</td>
                             <td class="text-center">
                                 {{contract.parentContractCode?contract.parentContractCode:'-'}}
                             </td>
+                            <td class="text-center">{{contract.contractName}}</td>
                             <td class="text-center">{{contract.contractTypeName}}</td>
                             <td class="text-center">{{contract.bContacts}}</td>
                             <td class="text-center">{{contract.amount}}</td>

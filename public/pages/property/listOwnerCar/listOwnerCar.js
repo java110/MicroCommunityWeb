@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,25 +22,25 @@
                     link: '',
                     memberCarNumLike: ''
                 },
-                listColumns: [],
+                listColumns: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('listOwnerCar', 'listOwnerCarData', function() {
+        _initEvent: function () {
+            vc.on('listOwnerCar', 'listOwnerCarData', function () {
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 $that._listOwnerCar(_currentPage, DEFAULT_ROWS);
             });
             //与字典表关联
-            vc.getDict('owner_car', "car_type_cd", function(_data) {
+            vc.getDict('owner_car', "car_type_cd", function (_data) {
                 vc.component.listOwnerCarInfo.carTypeCds = _data;
             });
             //与字典表关联
-            vc.getDict('owner_car', "lease_type", function(_data) {
+            vc.getDict('owner_car', "lease_type", function (_data) {
                 vc.component.listOwnerCarInfo.leaseTypes = [{
                     statusCd: '',
                     name: '全部车辆'
@@ -55,11 +55,11 @@
             });
         },
         methods: {
-            swatchLeaseType: function(_item) {
+            swatchLeaseType: function (_item) {
                 $that.listOwnerCarInfo.conditions.leaseType = _item.statusCd;
                 vc.component._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _listOwnerCar: function(_page, _row) {
+            _listOwnerCar: function (_page, _row) {
                 let _params = vc.deepClone($that.listOwnerCarInfo.conditions);
                 _params.page = _page;
                 _params.row = _row;
@@ -71,7 +71,6 @@
                 param.params.num = param.params.num.trim();
                 param.params.ownerName = param.params.ownerName.trim();
                 param.params.link = param.params.link.trim();
-
                 if (_params.leaseType == 'expireCar') {
                     _params.leaseType = '';
                     _params.valid = 3;
@@ -79,7 +78,7 @@
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwnerCars',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _json = JSON.parse(json);
                         $that.listOwnerCarInfo.total = _json.total;
                         $that.listOwnerCarInfo.records = _json.records;
@@ -91,23 +90,23 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _addOwnerCar: function() { //出租
+            _addOwnerCar: function () { //出租
                 vc.jumpToPage('/#/pages/property/hireParkingSpace');
             },
-            _openEditOwnerCar: function(_car) {
+            _openEditOwnerCar: function (_car) {
                 vc.emit('editCar', 'openEditCar', _car);
             },
             //查询
-            _queryMethod: function() {
+            _queryMethod: function () {
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetMethod: function() {
+            _resetMethod: function () {
                 vc.component.listOwnerCarInfo.conditions.carNumLike = "";
                 vc.component.listOwnerCarInfo.conditions.num = "";
                 vc.component.listOwnerCarInfo.conditions.valid = "";
@@ -116,23 +115,23 @@
                 vc.component.listOwnerCarInfo.conditions.link = "";
                 $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if ($that.listOwnerCarInfo.moreCondition) {
                     $that.listOwnerCarInfo.moreCondition = false;
                 } else {
                     $that.listOwnerCarInfo.moreCondition = true;
                 }
             },
-            _openDelOwnerCarModel: function(_car) {
+            _openDelOwnerCarModel: function (_car) {
                 vc.emit('deleteOwnerCar', 'openOwnerCarModel', _car);
             },
-            _deleteCarParkingSpace: function(_car) {
+            _deleteCarParkingSpace: function (_car) {
                 vc.http.apiPost(
                     '/owner.deleteCarParkingSpace',
                     JSON.stringify(_car), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             $that._listOwnerCar(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -142,22 +141,22 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            _addCarParkingSpace: function(_car) {
+            _addCarParkingSpace: function (_car) {
                 vc.jumpToPage('/#/pages/property/carAddParkingSpace?carId=' + _car.carId);
             },
-            _toPayFee: function(_car) {
+            _toPayFee: function (_car) {
                 vc.jumpToPage('/#/pages/property/listCarFee?carId=' +
                     _car.carId + '&carNum=' + _car.carNum + '&areaNum=' + _car.areaNum + '&num=' + _car.num);
             },
-            _toCarMember: function(car) {
+            _toCarMember: function (car) {
                 vc.jumpToPage('/#/pages/property/listOwnerCarMember?carId=' + car.carId + "&carNum=" + car.carNum)
             },
-            _getCarState: function(car) {
+            _getCarState: function (car) {
                 if (car.state != null && car.state != '' && car.state != 'undefined' && car.state == '3003') {
                     return "到期";
                 }
@@ -167,17 +166,17 @@
                 }
                 return "到期";
             },
-            _openOwnerCarImport: function() {
+            _openOwnerCarImport: function () {
                 vc.emit('importOwnerCar', 'openImportOwnerCarModal', {});
             },
-            dealCarAttr: function(cars) {
-                $that._getColumns(cars, function() {
+            dealCarAttr: function (cars) {
+                $that._getColumns(cars, function () {
                     cars.forEach(item => {
                         $that._getColumnsValue(item);
                     });
                 });
             },
-            _getColumnsValue: function(_car) {
+            _getColumnsValue: function (_car) {
                 _car.listValues = [];
                 if (!_car.hasOwnProperty('ownerCarAttrDto') || _car.ownerCarAttrDto.length < 1) {
                     $that.listOwnerCarInfo.listColumns.forEach(_value => {
@@ -196,9 +195,9 @@
                     _car.listValues.push(_tmpValue);
                 })
             },
-            _getColumns: function(_cars, _call) {
+            _getColumns: function (_cars, _call) {
                 $that.listOwnerCarInfo.listColumns = [];
-                vc.getAttrSpec('owner_car_attr', function(data) {
+                vc.getAttrSpec('owner_car_attr', function (data) {
                     $that.listOwnerCarInfo.listColumns = [];
                     data.forEach(item => {
                         if (item.listShow == 'Y') {
@@ -208,7 +207,7 @@
                     _call();
                 });
             },
-            _viewOwner: function(_car) {
+            _viewOwner: function (_car) {
                 let param = {
                     params: {
                         page: 1,
@@ -220,7 +219,7 @@
                 }
                 vc.http.apiGet('/owner.queryOwners',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _owner = JSON.parse(json).owners[0];
                         let _data = {
                             "业主编号": _owner.ownerId,
@@ -241,12 +240,12 @@
                             data: _data
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _viewIotStateRemark: function(_car) {
+            _viewIotStateRemark: function (_car) {
                 let _data = {
                     "同步说明": _car.iotRemark
                 };
@@ -255,7 +254,7 @@
                     data: _data
                 });
             },
-            _exportExcel: function() {
+            _exportExcel: function () {
                 //vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportFeeSummary&' + vc.objToGetParam($that.reportFeeSummaryInfo.conditions));
                 $that.listOwnerCarInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 $that.listOwnerCarInfo.conditions.pagePath = 'exportOwnerCar';
@@ -264,14 +263,14 @@
                 };
                 //发送get请求
                 vc.http.apiGet('/export.exportData', param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         vc.toast(_json.msg);
                         if (_json.code == 0) {
                             vc.jumpToPage('/#/pages/property/downloadTempFile?tab=下载中心')
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     });
             },

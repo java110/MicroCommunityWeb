@@ -9,8 +9,8 @@
                 lateOffset: '',
                 classesObjType: '',
                 classesObjId: '',
-                classesObjName: ''
-                maxLastOffset:'',
+                classesObjName: '',
+                maxLastOffset: ''
             }
         },
         _initMethod: function () {
@@ -133,8 +133,8 @@
                     lateOffset: '',
                     classesObjType: '',
                     classesObjId: '',
-                    classesObjName: ''
-                    maxLastOffset:'',
+                    classesObjName: '',
+                    maxLastOffset: ''
                 };
             },
         }

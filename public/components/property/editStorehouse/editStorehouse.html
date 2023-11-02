@@ -13,10 +13,10 @@
                                     <vc:i18n name="仓库名称" namespace="editStorehouse"></vc:i18n>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input v-model="editStorehouseInfo.shName" type="text" :placeholder="vc.i18n('必填，请填写仓库名称','editStorehouse')" class="form-control">
+                                    <input v-model="editStorehouseInfo.shName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写仓库名称','editStorehouse')" class="form-control">
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
                                     <span><vc:i18n name="是否对外开放" namespace="editStorehouse"></vc:i18n></span>
@@ -55,8 +55,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
                                     <vc:i18n name="采购审核" namespace="editStorehouse"></vc:i18n>
@@ -70,7 +68,8 @@
                                         <option value="OFF">不审核</option>
                                     </select>
                                 </div>
-                                <label class="col-sm-2 col-form-label text-right" v-if="editStorehouseInfo.purchaseSwitch == 'ON'">
+                                <label class="col-sm-2 col-form-label text-right"
+                                       v-if="editStorehouseInfo.purchaseSwitch == 'ON'">
                                     <vc:i18n name="审核流程" namespace="editStorehouse"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4" v-if="editStorehouseInfo.purchaseSwitch == 'ON'">
@@ -78,7 +77,8 @@
                                         <option selected disabled value="">
                                             {{vc.i18n('必填，请选择流程','editStorehouse')}}
                                         </option>
-                                        <option v-for="(item,index) in editStorehouseInfo.flows" v-if="item.auditType== '10001'" :key="index"
+                                        <option v-for="(item,index) in editStorehouseInfo.flows"
+                                                v-if="item.auditType== '10001'" :key="index"
                                                 :value="item.rafId">{{item.flowName}}
                                         </option>
                                     </select>
@@ -97,7 +97,8 @@
                                         <option value="OFF">不审核</option>
                                     </select>
                                 </div>
-                                <label class="col-sm-2 col-form-label text-right" v-if="editStorehouseInfo.useSwitch == 'ON'">
+                                <label class="col-sm-2 col-form-label text-right"
+                                       v-if="editStorehouseInfo.useSwitch == 'ON'">
                                     <vc:i18n name="审核流程" namespace="editStorehouse"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4" v-if="editStorehouseInfo.useSwitch == 'ON'">
@@ -105,7 +106,8 @@
                                         <option selected disabled value="">
                                             {{vc.i18n('必填，请选择流程','editStorehouse')}}
                                         </option>
-                                        <option v-for="(item,index) in editStorehouseInfo.flows" v-if="item.auditType== '10002'" :key="index"
+                                        <option v-for="(item,index) in editStorehouseInfo.flows"
+                                                v-if="item.auditType== '10002'" :key="index"
                                                 :value="item.rafId">{{item.flowName}}
                                         </option>
                                     </select>
@@ -124,7 +126,8 @@
                                         <option value="OFF">不审核</option>
                                     </select>
                                 </div>
-                                <label class="col-sm-2 col-form-label text-right" v-if="editStorehouseInfo.allocationSwitch == 'ON'">
+                                <label class="col-sm-2 col-form-label text-right"
+                                       v-if="editStorehouseInfo.allocationSwitch == 'ON'">
                                     <vc:i18n name="审核流程" namespace="editStorehouse"></vc:i18n>
                                 </label>
                                 <div class="col-sm-4" v-if="editStorehouseInfo.allocationSwitch == 'ON'">
@@ -132,28 +135,29 @@
                                         <option selected disabled value="">
                                             {{vc.i18n('必填，请选择流程','editStorehouse')}}
                                         </option>
-                                        <option v-for="(item,index) in editStorehouseInfo.flows" v-if="item.auditType== '10003'" :key="index"
+                                        <option v-for="(item,index) in editStorehouseInfo.flows"
+                                                v-if="item.auditType== '10003'" :key="index"
                                                 :value="item.rafId">{{item.flowName}}
                                         </option>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">
                                     <span><vc:i18n name="描述" namespace="editStorehouse"></vc:i18n></span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <textarea v-model="editStorehouseInfo.shDesc" :placeholder="vc.i18n('必填，请填写描述','editStorehouse')" class="form-control">
+                                    <textarea v-model="editStorehouseInfo.shDesc"
+                                              :placeholder="vc.i18n('必填，请填写描述','editStorehouse')" class="form-control">
                                     </textarea>
                                 </div>
                             </div>
-
                             <div class="ibox-content">
                                 <button class="btn btn-primary float-right" type="button" v-on:click="editStorehouse()">
                                     <i class="fa fa-check"></i>&nbsp;保存
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
                                     <i class="fa fa-times"></i>&nbsp;取消
                                 </button>
                             </div>

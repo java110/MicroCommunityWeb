@@ -17,7 +17,7 @@
         },
         _initEvent: function () {
             vc.on('addContractType', 'openAddContractTypeModal', function () {
-                vc.getDict('contract_type', "audit", function(_data) {
+                vc.getDict('contract_type', "audit", function (_data) {
                     vc.component.addContractTypeInfo.audits = _data;
                 });
                 $('#addContractTypeModel').modal('show');
@@ -38,7 +38,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "类型名称不能超过64位"
-                        },
+                        }
                     ],
                     'addContractTypeInfo.audit': [
                         {
@@ -50,14 +50,14 @@
                             limit: "num",
                             param: "",
                             errInfo: "是否审核格式错误"
-                        },
+                        }
                     ],
                     'addContractTypeInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "描述超过200位"
-                        },
+                        }
                     ]
                 });
             },

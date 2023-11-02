@@ -180,7 +180,7 @@
                 $that.simplifyAcceptanceInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     ownerId: $that.simplifyAcceptanceInfo.ownerId,
-                    ownerName: $that.simplifyAcceptanceInfo.ownerName,
+                    ownerName: $that.simplifyAcceptanceInfo.name,
                     roomId: $that.simplifyAcceptanceInfo.roomId,
                     roomName: $that.simplifyAcceptanceInfo.roomName,
                     floorNum: $that.simplifyAcceptanceInfo.floorNum,
@@ -193,7 +193,8 @@
                     vc.toast('请先选择房屋');
                     return;
                 }
-                vc.jumpToPage('/#/pages/property/simplifyNotepadManage?roomId=' + $that.simplifyAcceptanceInfo.roomId + "&ownerId=" + $that.simplifyAcceptanceInfo.ownerId)
+                vc.jumpToPage('/#/pages/property/simplifyNotepadManage?roomId=' +
+                    $that.simplifyAcceptanceInfo.roomId + "&ownerId=" + $that.simplifyAcceptanceInfo.ownerId)
             },
             errorLoadImg: function () {
                 vc.component.simplifyAcceptanceInfo.ownerPhoto = "/img/noPhoto.jpg";
@@ -245,7 +246,8 @@
                 vc.jumpToPage('/#/pages/property/ownerExitRoom')
             },
             _simplifyInputOwner: function () {
-                if ($that.simplifyAcceptanceInfo.searchType != "2" && $that.simplifyAcceptanceInfo.searchType != "6" && $that.simplifyAcceptanceInfo.searchType != "1") {
+                if ($that.simplifyAcceptanceInfo.searchType != "2" && $that.simplifyAcceptanceInfo.searchType != "6"
+                    && $that.simplifyAcceptanceInfo.searchType != "1") {
                     return;
                 }
                 if ($that.simplifyAcceptanceInfo.timer) {

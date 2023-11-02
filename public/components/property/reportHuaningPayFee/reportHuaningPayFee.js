@@ -53,7 +53,11 @@
                         vc.component.reportHuaningPayFeeInfo.total = _feeConfigInfo.total;
                         vc.component.reportHuaningPayFeeInfo.records = _feeConfigInfo.records;
                         vc.component.reportHuaningPayFeeInfo.fees = _feeConfigInfo.data;
-                        
+                        vc.emit('reportHuaningPayFee', 'paginationPlus', 'init', {
+                            total: _feeConfigInfo.records,
+                            dataCount: vc.component.reportHuaningPayFeeInfo.total,
+                            currentPage: _page
+                        });
                     }, function () {
                         console.log('请求失败处理');
                     }

@@ -119,7 +119,7 @@
                             limit: "datetime",
                             param: "",
                             errInfo: "开始时间错误"
-                        },
+                        }
                     ],
                     'editApplyRoomDiscountInfo.endTime': [
                         {
@@ -131,7 +131,7 @@
                             limit: "datetime",
                             param: "",
                             errInfo: "结束时间错误"
-                        },
+                        }
                     ],
                     'editApplyRoomDiscountInfo.checkRemark': [
                         {
@@ -143,7 +143,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "申请申请说明"
-                        },
+                        }
                     ],
                     'editApplyRoomDiscountInfo.ardId': [
                         {

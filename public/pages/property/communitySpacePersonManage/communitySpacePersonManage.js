@@ -27,6 +27,7 @@
             }
         },
         _initMethod: function () {
+            vc.component._initDateInfo();
             $that._listCommunitySpacePersonCommunitySpaces();
             vc.component._listCommunitySpacePersons(DEFAULT_PAGE, DEFAULT_ROWS);
         },
@@ -39,13 +40,34 @@
             });
         },
         methods: {
+            _initDateInfo: function () {
+                $('.appointmentTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.appointmentTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".appointmentTime").val();
+                        vc.component.communitySpacePersonManageInfo.conditions.appointmentTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control appointmentTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _listCommunitySpacePersons: function (_page, _rows) {
                 vc.component.communitySpacePersonManageInfo.conditions.page = _page;
                 vc.component.communitySpacePersonManageInfo.conditions.row = _rows;
                 let param = {
                     params: vc.component.communitySpacePersonManageInfo.conditions
                 };
-                param.params.appointmentTime = param.params.appointmentTime.trim();
                 param.params.personName = param.params.personName.trim();
                 param.params.personTel = param.params.personTel.trim();
                 //发送get请求

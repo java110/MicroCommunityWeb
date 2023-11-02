@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <input type="text" :placeholder="vc.i18n('请选择预约时间','communitySpaceManage')"
                                                v-model="communitySpaceConfirmInfo.conditions.appointmentTime"
-                                               class=" form-control">
+                                               class=" form-control appointmentTime">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -104,43 +104,43 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">
-                                        核销订单
+                                        <vc:i18n name="核销订单" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        场馆
+                                        <vc:i18n name="场馆" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        场地
+                                        <vc:i18n name="场地" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        预约日期
+                                        <vc:i18n name="预约日期" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        预约时间
+                                        <vc:i18n name="预约时间" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        预约人
+                                        <vc:i18n name="预约人" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        预约电话
+                                        <vc:i18n name="预约电话" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        核销时间
+                                        <vc:i18n name="核销时间" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                     <th class="text-center">
-                                        备注
+                                        <vc:i18n name="备注" namespace="communitySpaceConfirm"></vc:i18n>
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="(item,index) in communitySpaceConfirmInfo.orders">
                                     <td class="text-center">{{item.orderId}}</td>
-                                    <th class="text-center">
+                                    <td class="text-center">
                                         {{item.venueName}}
-                                    </th>
-                                    <th class="text-center">
+                                    </td>
+                                    <td class="text-center">
                                         {{item.spaceName}}
-                                    </th>
+                                    </td>
                                     <td class="text-center">
                                         {{item.appointmentTime}}
                                     </td>
@@ -163,7 +163,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="10">
                                         <ul class="pagination float-right"></ul>
                                     </td>
                                 </tr>

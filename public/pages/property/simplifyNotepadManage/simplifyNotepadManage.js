@@ -20,7 +20,8 @@
                     objName: '',
                     createUserName: '',
                     state: '',
-                    objId: ''
+                    objId: '',
+                    communityId: vc.getCurrentCommunity().communityId
                 }
             }
         },

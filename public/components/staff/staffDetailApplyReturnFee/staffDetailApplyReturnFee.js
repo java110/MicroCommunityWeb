@@ -1,34 +1,34 @@
 /**
  入驻小区
  **/
- (function (vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
             staffDetailApplyReturnFeeInfo: {
                 returnPayFees: [],
-                staffId:'',
-                state:'',
-                returnPayFeeStates:[],
+                staffId: '',
+                state: '',
+                returnPayFeeStates: []
             }
         },
         _initMethod: function () {
-            vc.getDict('return_pay_fee', "state", function(_data) {
+            vc.getDict('return_pay_fee', "state", function (_data) {
                 vc.component.staffDetailApplyReturnFeeInfo.returnPayFeeStates = _data;
             });
         },
         _initEvent: function () {
             vc.on('staffDetailApplyReturnFee', 'switch', function (_data) {
                 $that.staffDetailApplyReturnFeeInfo.staffId = _data.staffId;
-                $that._loadStaffDetailApplyReturnFeeData(DEFAULT_PAGE,DEFAULT_ROWS)
+                $that._loadStaffDetailApplyReturnFeeData(DEFAULT_PAGE, DEFAULT_ROWS)
             });
             vc.on('staffDetailApplyReturnFee', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     vc.component._loadStaffDetailApplyReturnFeeData(_currentPage, DEFAULT_ROWS);
                 });
             vc.on('staffDetailApplyReturnFee', 'notify', function (_data) {
-                $that._loadStaffDetailApplyReturnFeeData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadStaffDetailApplyReturnFeeData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
@@ -36,13 +36,12 @@
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        applyPersonId:$that.staffDetailApplyReturnFeeInfo.staffId,
-                        state:$that.staffDetailApplyReturnFeeInfo.state,
-                        page:_page,
-                        row:_row
+                        applyPersonId: $that.staffDetailApplyReturnFeeInfo.staffId,
+                        state: $that.staffDetailApplyReturnFeeInfo.state,
+                        page: _page,
+                        row: _row
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/returnPayFee.listReturnPayFees',
                     param,
@@ -77,10 +76,9 @@
             _qureyStaffDetailApplyReturnFee: function () {
                 $that._loadStaffDetailApplyReturnFeeData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _toReturnFeeDetail: function(_payFee) {
+            _toReturnFeeDetail: function (_payFee) {
                 vc.jumpToPage('/#/pages/property/propertyFee?feeId=' + _payFee.feeId);
             }
-           
         }
     });
 })(window.vc);

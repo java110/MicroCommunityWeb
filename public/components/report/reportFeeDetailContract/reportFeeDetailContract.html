@@ -1,47 +1,47 @@
 <div>
     <div class="text-right">
         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportReportFeeDetailContractExcel()">
+            <i class="fa fa-plus"></i>
             <vc:i18n name="导出" namespace="reportFeeDetailContract"></vc:i18n>
         </button>
     </div>
     <div class="margin-top">
         <table class="table table-bordered" data-page-size="15">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <vc:i18n name="合同" namespace="reportFeeDetailContract"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="业主" namespace="reportFeeDetailContract"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="欠费" namespace="reportFeeDetailContract"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="实收" namespace="reportFeeDetailContract"></vc:i18n>
-                    </th>
-                    <th class="text-center" colspan="2" v-for="(item,index) in reportFeeDetailContractInfo.feeTypeCds">
-                        {{item.name}}</br>
-                        欠费/实收
-                    </th>
-
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="合同" namespace="reportFeeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="业主" namespace="reportFeeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="欠费" namespace="reportFeeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="实收" namespace="reportFeeDetailContract"></vc:i18n>
+                </th>
+                <th class="text-center" colspan="2" v-for="(item,index) in reportFeeDetailContractInfo.feeTypeCds">
+                    {{item.name}}</br>
+                    欠费/实收
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="fee in reportFeeDetailContractInfo.fees">
-                    <td class="text-center">{{fee.contractName}}</td>
-                    <td class="text-center">{{fee.ownerName}}({{fee.link}})</td>
-                    <td class="text-center">{{fee.oweFee || '0'}}</td>
-                    <td class="text-center">{{fee.receivedFee || '0'}}</td>
-                    <template v-for="(item,index) in reportFeeDetailContractInfo.feeTypeCds">
-                                <td class="text-center" >
-                                    {{fee['oweFee'+item.statusCd] || 0}} 
-                                </td>
-                                <td class="text-center" >
-                                    {{fee['receivedFee'+item.statusCd] || 0}}
-                                </td>
-                            </template>
-                </tr>
+            <tr v-for="fee in reportFeeDetailContractInfo.fees">
+                <td class="text-center">{{fee.contractName}}</td>
+                <td class="text-center">{{fee.ownerName}}({{fee.link}})</td>
+                <td class="text-center">{{fee.oweFee || '0'}}</td>
+                <td class="text-center">{{fee.receivedFee || '0'}}</td>
+                <template v-for="(item,index) in reportFeeDetailContractInfo.feeTypeCds">
+                    <td class="text-center">
+                        {{fee['oweFee'+item.statusCd] || 0}}
+                    </td>
+                    <td class="text-center">
+                        {{fee['receivedFee'+item.statusCd] || 0}}
+                    </td>
+                </template>
+            </tr>
             </tbody>
         </table>
     </div>

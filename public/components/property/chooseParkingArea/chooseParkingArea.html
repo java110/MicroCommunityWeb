@@ -21,11 +21,18 @@
                                         <input :placeholder="vc.i18n('输入停车场编号','chooseParkingArea')" type="text"
                                                v-model="chooseParkingAreaInfo._currentParkingAreaName"
                                                class="form-control form-control-sm">
+                                        <div class="col-sm-1"></div>
                                         <span class="input-group-append">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                         v-on:click="queryParkingAreas()">
                                                     <span>
                                                         <vc:i18n name="查询" namespace="chooseParkingArea"></vc:i18n>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="resetParkingAreas()">
+                                                    <span>
+                                                        <vc:i18n name="重置" namespace="chooseParkingArea"></vc:i18n>
                                                     </span>
                                                 </button>
                                         </span>
@@ -55,7 +62,7 @@
                                         <td class="text-center">{{parkingArea.paId}}</td>
                                         <td class="text-center">{{parkingArea.num}}</td>
                                         <td class="text-center">{{parkingArea.typeCd}}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <button class="btn btn-primary btn-xs"
                                                     v-on:click="chooseParkingArea(parkingArea)">
                                                 <span><vc:i18n name="选择" namespace="chooseParkingArea"></vc:i18n></span>
@@ -63,6 +70,13 @@
                                         </td>
                                     </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                                 <vc:create namespace="chooseParkingArea" path="frame/paginationPlus"></vc:create>
                             </div>

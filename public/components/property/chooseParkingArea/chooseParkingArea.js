@@ -6,6 +6,8 @@
         },
         data: {
             chooseParkingAreaInfo: {
+                total: 0,
+                records: 1,
                 parkingAreas: [],
                 _currentParkingAreaName: ''
             }
@@ -37,9 +39,12 @@
                     param,
                     function (json) {
                         var _parkingAreaInfo = JSON.parse(json);
+                        $that.chooseParkingAreaInfo.total = _parkingAreaInfo.total;
+                        $that.chooseParkingAreaInfo.records = _parkingAreaInfo.records;
                         vc.component.chooseParkingAreaInfo.parkingAreas = _parkingAreaInfo.parkingAreas;
                         vc.emit('chooseParkingArea', 'paginationPlus', 'init', {
-                            total: _parkingAreaInfo.records,
+                            total: $that.chooseParkingAreaInfo.records,
+                            dataCount: $that.chooseParkingAreaInfo.total,
                             currentPage: _page
                         });
                     },
@@ -58,7 +63,13 @@
                 });
                 $('#chooseParkingAreaModel').modal('hide');
             },
+            //查询
             queryParkingAreas: function () {
+                vc.component._loadAllParkingAreaInfo(1, 10, vc.component.chooseParkingAreaInfo._currentParkingAreaName);
+            },
+            //重置
+            resetParkingAreas: function () {
+                vc.component.chooseParkingAreaInfo._currentParkingAreaName = "";
                 vc.component._loadAllParkingAreaInfo(1, 10, vc.component.chooseParkingAreaInfo._currentParkingAreaName);
             },
             _refreshChooseParkingAreaInfo: function () {

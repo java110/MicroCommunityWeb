@@ -13,7 +13,7 @@
         },
         _initEvent: function () {
             vc.on('editContractType', 'openEditContractTypeModal', function (_params) {
-                vc.getDict('contract_type', "audit", function(_data) {
+                vc.getDict('contract_type', "audit", function (_data) {
                     vc.component.editContractTypeInfo.audits = _data;
                 });
                 vc.component.refreshEditContractTypeInfo();
@@ -37,7 +37,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "类型名称不能超过64位"
-                        },
+                        }
                     ],
                     'editContractTypeInfo.audit': [
                         {
@@ -49,14 +49,14 @@
                             limit: "num",
                             param: "",
                             errInfo: "是否审核格式错误"
-                        },
+                        }
                     ],
                     'editContractTypeInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "描述超过200位"
-                        },
+                        }
                     ],
                     'editContractTypeInfo.contractTypeId': [
                         {

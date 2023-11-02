@@ -10,7 +10,8 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">{{listParkingSpaceInfo.moreCondition == true?'隐藏':'更多'}}
+                                v-on:click="_moreCondition()">
+                            {{listParkingSpaceInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
                 </div>
@@ -79,8 +80,9 @@
                         </span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-white btn-sm"
+                        <button type="button" class="btn btn-primary btn-sm"
                                 v-on:click="_openBatchAddParkingSpaceModal()">
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="批量添加" namespace="listParkingSpace"></vc:i18n>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddParkingSpaceModal(-1)">

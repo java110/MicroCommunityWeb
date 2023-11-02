@@ -3,26 +3,35 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="查询条件"></vc:i18n></span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择员工名称','examineStaffValue')" v-model="examineStaffValueInfo.conditions.staffName" class=" form-control">
-                            </div>
-                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择考核项目','examineStaffValue')" v-model="examineStaffValueInfo.conditions.projectName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择员工名称','examineStaffValue')"
+                                       v-model="examineStaffValueInfo.conditions.staffName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryExamineStaffMethod()">
-                                    <i class="glyphicon glyphicon-search"></i> <span><vc:i18n name="查询"></vc:i18n></span>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请选择考核项目','examineStaffValue')"
+                                       v-model="examineStaffValueInfo.conditions.projectName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryExamineStaffMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetExamineStaffMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -37,45 +46,64 @@
                     <h5>
                         <vc:i18n name="考核记录" namespace="examineStaffValue"></vc:i18n>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
-                    </div>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span><vc:i18n name='年度' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='员工ID' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='员工名称' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='考核项目' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='权重' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='评分' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='实际得分' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='评分人' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='房屋' namespace='examineStaffValue'></vc:i18n></span></th>
-                                <th class="text-center"><span><vc:i18n name='评分时间' namespace='examineStaffValue'></vc:i18n></span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name='年度' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='员工ID' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='员工名称' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='考核项目' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='权重' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='评分' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='实际得分' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='评分人' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='房屋' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='评分时间' namespace='examineStaffValue'></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="value in examineStaffValueInfo.values">
-                                <td class="text-center">{{value.esYear}}</td>
-                                <td class="text-center">{{value.staffId}}</td>
-                                <td class="text-center">{{value.staffName}}</td>
-                                <td class="text-center">{{value.projectName}}</td>
-                                <td class="text-center">{{value.weight}}%</td>
-                                <td class="text-center">{{value.examineValue}}</td>
-                                <td class="text-center">{{value.examineValue}}</td>
-                                <td class="text-center">{{value.ownerName}}</td>
-                                <td class="text-center">{{value.roomName}}</td>
-                                <td class="text-center">{{value.createTime}}</td>
-                            </tr>
+                        <tr v-for="value in examineStaffValueInfo.values">
+                            <td class="text-center">{{value.esYear}}</td>
+                            <td class="text-center">{{value.staffId}}</td>
+                            <td class="text-center">{{value.staffName}}</td>
+                            <td class="text-center">{{value.projectName}}</td>
+                            <td class="text-center">{{value.weight}}%</td>
+                            <td class="text-center">{{value.examineValue}}</td>
+                            <td class="text-center">{{value.examineValue}}</td>
+                            <td class="text-center">{{value.ownerName}}</td>
+                            <td class="text-center">{{value.roomName}}</td>
+                            <td class="text-center">{{value.createTime}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

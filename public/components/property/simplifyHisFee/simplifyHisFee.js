@@ -24,7 +24,6 @@
                 }
                 vc.copyObject(_param, $that.simplifyHisFeeInfo)
                 $that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
-
             });
             vc.on('simplifyHisFee', 'notify', function () {
                 $that._listSimplifyFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -44,7 +43,6 @@
                         ownerId: $that.simplifyHisFeeInfo.ownerId,
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/fee.queryFeeDetail',
                     param,
@@ -64,7 +62,6 @@
                     }
                 );
             },
-
             clearSimplifyHisFeeInfo: function () {
                 $that.simplifyHisFeeInfo = {
                     total: 0,

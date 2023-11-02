@@ -1,5 +1,4 @@
 (function (vc) {
-
     vc.extends({
         propTypes: {
             callBackListener: vc.propTypes.string, //父组件名称
@@ -12,16 +11,14 @@
                 minEnergyPrice: '',
                 maxEnergyPrice: '',
                 durationPrice: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('addChargeRuleFee', 'openAddChargeRuleFeeModal', function (_param) {
-                vc.copyObject(_param,$that.addChargeRuleFeeInfo);
+                vc.copyObject(_param, $that.addChargeRuleFeeInfo);
                 $('#addChargeRuleFeeModel').modal('show');
             });
         },
@@ -40,7 +37,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "规则ID不能超过30"
-                        },
+                        }
                     ],
                     'addChargeRuleFeeInfo.minEnergyPrice': [
                         {
@@ -52,7 +49,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "最小功率不能超过30"
-                        },
+                        }
                     ],
                     'addChargeRuleFeeInfo.maxEnergyPrice': [
                         {
@@ -64,7 +61,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "最大功率不能超过30"
-                        },
+                        }
                     ],
                     'addChargeRuleFeeInfo.durationPrice': [
                         {
@@ -76,26 +73,23 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "小时电价不能超过30"
-                        },
+                        }
                     ],
                     'addChargeRuleFeeInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注不能超过512"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
             saveChargeRuleFeeInfo: function () {
                 if (!vc.component.addChargeRuleFeeValidate()) {
                     vc.toast(vc.validate.errInfo);
-
                     return;
                 }
-
                 vc.component.addChargeRuleFeeInfo.communityId = vc.getCurrentCommunity().communityId;
-          
                 vc.http.apiPost(
                     '/chargeRule.saveChargeRuleFee',
                     JSON.stringify(vc.component.addChargeRuleFeeInfo),
@@ -110,17 +104,15 @@
                             $('#addChargeRuleFeeModel').modal('hide');
                             vc.component.clearAddChargeRuleFeeInfo();
                             vc.emit('chargeRuleFee', 'listChargeRuleFee', {});
-
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
-
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.message(errInfo);
-
                     });
             },
             clearAddChargeRuleFeeInfo: function () {
@@ -129,10 +121,9 @@
                     minEnergyPrice: '',
                     maxEnergyPrice: '',
                     durationPrice: '',
-                    remark: '',
+                    remark: ''
                 };
             }
         }
     });
-
 })(window.vc);

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,23 +22,23 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //与字典表单位关联
-            vc.getDict('account', "acct_type", function(_data) {
+            vc.getDict('account', "acct_type", function (_data) {
                 vc.component.accountManageInfo.acctTypes = _data;
             });
             vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-            vc.on('accountManage', 'listshopAccount', function(_param) {
+        _initEvent: function () {
+            vc.on('accountManage', 'listshopAccount', function (_param) {
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAccounts(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAccounts: function(_page, _rows) {
+            _listAccounts: function (_page, _rows) {
                 vc.component.accountManageInfo.conditions.page = _page;
                 vc.component.accountManageInfo.conditions.row = _rows;
                 let param = {
@@ -51,7 +51,7 @@
                 //发送get请求
                 vc.http.apiGet('/account/queryOwnerAccount',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _accountManageInfo = JSON.parse(json);
                         vc.component.accountManageInfo.total = _accountManageInfo.total;
                         vc.component.accountManageInfo.records = _accountManageInfo.records;
@@ -62,34 +62,34 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //查询
-            _queryAccountMethod: function() {
+            _queryAccountMethod: function () {
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetAccountMethod: function() {
+            _resetAccountMethod: function () {
                 vc.component.accountManageInfo.conditions.ownerName = "";
                 vc.component.accountManageInfo.conditions.idCard = "";
                 vc.component.accountManageInfo.conditions.link = "";
                 vc.component.accountManageInfo.conditions.acctType = "";
                 vc.component._listAccounts(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.accountManageInfo.moreCondition) {
                     vc.component.accountManageInfo.moreCondition = false;
                 } else {
                     vc.component.accountManageInfo.moreCondition = true;
                 }
             },
-            _prestoreAccount: function() {
+            _prestoreAccount: function () {
                 vc.emit('prestoreAccount', 'openAddModal', {});
             },
-            _accountDetail: function(_account) {
+            _accountDetail: function (_account) {
                 vc.jumpToPage('/#/pages/property/accountDetailManage?acctId=' + _account.acctId);
             }
         }

@@ -4,29 +4,56 @@
             <div class="col-sm-12 margin-lr-0 padding-lr-0">
                 <table class="footable table table-stripped " style="margin-top:10px" data-page-size="10">
                     <thead>
-                        <tr>
-                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="房号" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center" style="border-bottom: none;"><vc:i18n name="面积" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="费用" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="费用开始时间" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="费用截止时间" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center " style="border-bottom: none;"><vc:i18n name="总未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n></th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningOweFeeDetailInfo.conditions.year}}<span><vc:i18n name="年" namespace="reportHuaningOweFeeDetail"></vc:i18n></span>1-{{reportHuaningOweFeeDetailInfo.conditions.month}}<span><vc:i18n name="月未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n></span></th>
-                            <th class="text-center " style="border-bottom: none;">{{reportHuaningOweFeeDetailInfo.conditions.year}}<span><vc:i18n name="年前未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n></span></th>
-                        </tr>
+                    <tr>
+                        <th class="text-center " style="border-bottom: none;">
+                            <vc:i18n name="房号" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center" style="border-bottom: none;">
+                            <vc:i18n name="面积" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <vc:i18n name="费用" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <vc:i18n name="费用开始时间" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <vc:i18n name="费用截止时间" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            <vc:i18n name="总未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            {{reportHuaningOweFeeDetailInfo.conditions.year}}
+                            <span><vc:i18n name="年" namespace="reportHuaningOweFeeDetail"></vc:i18n></span>
+                            1-{{reportHuaningOweFeeDetailInfo.conditions.month}}
+                            <span><vc:i18n name="月未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n></span>
+                        </th>
+                        <th class="text-center " style="border-bottom: none;">
+                            {{reportHuaningOweFeeDetailInfo.conditions.year}}
+                            <span><vc:i18n name="年前未收金额" namespace="reportHuaningOweFeeDetail"></vc:i18n></span>
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportHuaningOweFeeDetailInfo.fees">
-                            <td class="text-center ">{{fee.roomName}}</td>
-                            <td class="text-center ">{{fee.builtUpArea}}</td>
-                            <td class="text-center ">{{fee.feeName}}</td>
-                            <td class="text-center">{{fee.endTime}}</td>
-                            <td class="text-center">{{fee.deadlineTime}}</td>
-                            <td class="text-center">{{fee.oweAmount}}</td>
-                            <td class="text-center">{{fee.curOweAmount}}</td>
-                            <td class="text-center">{{fee.preOweAmount}}</td>
-                        </tr>
+                    <tr v-for="fee in reportHuaningOweFeeDetailInfo.fees">
+                        <td class="text-center ">{{fee.roomName}}</td>
+                        <td class="text-center ">{{fee.builtUpArea}}</td>
+                        <td class="text-center ">{{fee.feeName}}</td>
+                        <td class="text-center">{{fee.endTime}}</td>
+                        <td class="text-center">{{fee.deadlineTime}}</td>
+                        <td class="text-center">{{fee.oweAmount}}</td>
+                        <td class="text-center">{{fee.curOweAmount}}</td>
+                        <td class="text-center">{{fee.preOweAmount}}</td>
+                    </tr>
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="8">
+                            <ul class="pagination float-right"></ul>
+                        </td>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

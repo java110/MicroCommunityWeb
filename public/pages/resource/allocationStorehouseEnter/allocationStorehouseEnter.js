@@ -11,7 +11,7 @@
                 applyId: '',
                 taskId: '',
                 resourceSuppliers: [],
-                selectResIds: [],
+                selectResIds: []
             }
         },
         _initMethod: function () {
@@ -19,7 +19,8 @@
             $that.allocationStorehouseEnterInfo.taskId = vc.getParam('taskId');
             $that._listAllocationStorehouseApply();
         },
-        _initEvent: function () { },
+        _initEvent: function () {
+        },
         methods: {
             _listAllocationStorehouseApply: function () {
                 let param = {
@@ -72,24 +73,24 @@
                 vc.http.apiPost(
                     '/resourceStore.allocationStoreEnter',
                     JSON.stringify($that.allocationStorehouseEnterInfo), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //处理审核通过
                             vc.goBack();
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-
             checkAll: function (e) {
                 let checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态

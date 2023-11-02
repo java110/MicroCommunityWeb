@@ -115,7 +115,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "房屋格式错误"
-                        },
+                        }
                     ],
                     'addApplyRoomDiscountInfo.applyType': [
                         {
@@ -127,13 +127,15 @@
                             limit: "num",
                             param: "",
                             errInfo: "申请类型错误"
-                        },
+                        }
                     ],
-                    'addApplyRoomDiscountInfo.feeId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "费用项不能为空"
-                    }],
+                    'addApplyRoomDiscountInfo.feeId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "费用项不能为空"
+                        }
+                    ],
                     'addApplyRoomDiscountInfo.createUserName': [
                         {
                             limit: "required",
@@ -144,7 +146,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "申请人错误"
-                        },
+                        }
                     ],
                     'addApplyRoomDiscountInfo.createUserTel': [
                         {
@@ -156,7 +158,7 @@
                             limit: "phone",
                             param: "",
                             errInfo: "申请电话错误"
-                        },
+                        }
                     ],
                     'addApplyRoomDiscountInfo.startTime': [
                         {
@@ -168,7 +170,7 @@
                             limit: "datetime",
                             param: "",
                             errInfo: "开始时间错误"
-                        },
+                        }
                     ],
                     'addApplyRoomDiscountInfo.endTime': [
                         {
@@ -180,7 +182,7 @@
                             limit: "datetime",
                             param: "",
                             errInfo: "结束时间错误"
-                        },
+                        }
                     ],
                     'addApplyRoomDiscountInfo.createRemark': [
                         {
@@ -192,8 +194,8 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "申请申请说明"
-                        },
-                    ],
+                        }
+                    ]
                 });
             },
             saveApplyRoomDiscountInfo: function () {

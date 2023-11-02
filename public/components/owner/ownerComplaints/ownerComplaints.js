@@ -3,7 +3,7 @@
         data: {
             ownerComplaintsInfo: {
                 complaints: [],
-                ownerId:''
+                ownerId: ''
             }
         },
         _initMethod: function () {
@@ -22,13 +22,12 @@
             _loadOwnerComplaintInfo: function (_page, _row) {
                 let param = {
                     params: {
-                        page:_page,
-                        row:_row,
+                        page: _page,
+                        row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        ownerId:$that.ownerComplaintsInfo.ownerId 
+                        ownerId: $that.ownerComplaintsInfo.ownerId
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/complaint.listComplaints',
                     param,
@@ -56,9 +55,7 @@
             //查询
             ownerComplaintss: function () {
                 vc.component._loadAllRoomInfo(1, 15);
-            },
-            //重置
-    
+            }
         }
     });
 })(window.vc);

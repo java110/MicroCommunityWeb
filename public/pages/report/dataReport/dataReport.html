@@ -5,27 +5,31 @@
                 <span>统计时间：</span>
                 <span>
                     <input v-model="dataReportInfo.conditions.startDate" type="text"
-                                        readonly
-                                        class="startDate" style="border: none; outline: none;">
+                           readonly class="startDate" style="border: none; outline: none;">
                 </span>
                 <span>至：</span>
                 <span>
                     <input v-model="dataReportInfo.conditions.endDate" type="text"
-                    readonly
-                    class="endDate" style="border: none; outline: none;"></span>
+                           readonly class="endDate" style="border: none; outline: none;">
+                </span>
             </div>
             <div>
-                <span class="hand" :class="{'vc-active':dataReportInfo.curDay == 'today'}" @click="_changeDate('today')">今日</span>
-                <span :class="{'vc-active':dataReportInfo.curDay == 'yesterday'}" class="hand" @click="_changeDate('yesterday')">昨日</span>
-                <span :class="{'vc-active':dataReportInfo.curDay == 'seven'}" class="hand" @click="_changeDate('seven')">近7日</span>
-                <span :class="{'vc-active':dataReportInfo.curDay == 'thirty'}" class="hand" @click="_changeDate('thirty')">近30日</span>
+                <span class="hand" :class="{'vc-active':dataReportInfo.curDay == 'today'}"
+                      @click="_changeDate('today')">今日</span>
+                <span :class="{'vc-active':dataReportInfo.curDay == 'yesterday'}" class="hand"
+                      @click="_changeDate('yesterday')">昨日</span>
+                <span :class="{'vc-active':dataReportInfo.curDay == 'seven'}" class="hand"
+                      @click="_changeDate('seven')">近7日</span>
+                <span :class="{'vc-active':dataReportInfo.curDay == 'thirty'}" class="hand"
+                      @click="_changeDate('thirty')">近30日</span>
             </div>
         </div>
         <div class="flex justify-between margin-bottom">
             <div class="bg-white margin-top-sm data-report-i border-radius">
                 <div class="data-report-i-t">费用类统计</div>
                 <div class="flex justify-between flex-wrap">
-                    <div v-for="(item,index) in dataReportInfo.fees" :key="index" class=" border-radius data-report-item" style="border:1px solid #4297E5">
+                    <div v-for="(item,index) in dataReportInfo.fees" :key="index"
+                         class=" border-radius data-report-item" style="border:1px solid #4297E5">
                         <div class="data-report-item-title">{{item.name}}</div>
                         <div class="data-report-item-value">{{item.value}}</div>
                     </div>
@@ -34,7 +38,8 @@
             <div class="bg-white margin-top-sm data-report-i border-radius">
                 <div class="data-report-i-t">工单类统计</div>
                 <div class="flex justify-between flex-wrap">
-                    <div v-for="(item,index) in dataReportInfo.orders" :key="index" class=" border-radius data-report-item" style="border:1px solid #4297E5">
+                    <div v-for="(item,index) in dataReportInfo.orders" :key="index"
+                         class=" border-radius data-report-item" style="border:1px solid #4297E5">
                         <div class="data-report-item-title">{{item.name}}</div>
                         <div class="data-report-item-value">{{item.value}}</div>
                     </div>
@@ -43,7 +48,8 @@
             <div class="bg-white margin-top-sm data-report-i border-radius">
                 <div class="data-report-i-t">出入统计</div>
                 <div class="flex justify-between flex-wrap">
-                    <div v-for="(item,index) in dataReportInfo.inouts" :key="index" class=" border-radius data-report-item" style="border:1px solid #4297E5">
+                    <div v-for="(item,index) in dataReportInfo.inouts" :key="index"
+                         class=" border-radius data-report-item" style="border:1px solid #4297E5">
                         <div class="data-report-item-title">{{item.name}}</div>
                         <div class="data-report-item-value">{{item.value}}</div>
                     </div>
@@ -52,7 +58,8 @@
             <div class="bg-white margin-top-sm data-report-i border-radius">
                 <div class="data-report-i-t">其他统计</div>
                 <div class="flex justify-between flex-wrap">
-                    <div v-for="(item,index) in dataReportInfo.others" :key="index" class=" border-radius data-report-item" style="border:1px solid #4297E5">
+                    <div v-for="(item,index) in dataReportInfo.others" :key="index"
+                         class=" border-radius data-report-item" style="border:1px solid #4297E5">
                         <div class="data-report-item-title">{{item.name}}</div>
                         <div class="data-report-item-value">{{item.value}}</div>
                     </div>
@@ -63,43 +70,58 @@
             <div class="">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedStatistics'}" v-on:click="changeTab('dataReportEarnedStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedStatistics'}"
+                           v-on:click="changeTab('dataReportEarnedStatistics')">
                             <vc:i18n name="实收统计" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedDetailStatistics'}" v-on:click="changeTab('dataReportEarnedDetailStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedDetailStatistics'}"
+                           v-on:click="changeTab('dataReportEarnedDetailStatistics')">
                             <vc:i18n name="实收明细" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedWayStatistics'}" v-on:click="changeTab('dataReportEarnedWayStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportEarnedWayStatistics'}"
+                           v-on:click="changeTab('dataReportEarnedWayStatistics')">
                             <vc:i18n name="收款方式统计" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportOweStatistics'}" v-on:click="changeTab('dataReportOweStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportOweStatistics'}"
+                           v-on:click="changeTab('dataReportOweStatistics')">
                             <vc:i18n name="欠费统计" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportOweDetailStatistics'}" v-on:click="changeTab('dataReportOweDetailStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportOweDetailStatistics'}"
+                           v-on:click="changeTab('dataReportOweDetailStatistics')">
                             <vc:i18n name="欠费明细" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataReportFeeStatistics'}" v-on:click="changeTab('dataReportFeeStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataReportFeeStatistics'}"
+                           v-on:click="changeTab('dataReportFeeStatistics')">
                             <vc:i18n name="收缴情况" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataMonthReceivedStatistics'}" v-on:click="changeTab('dataMonthReceivedStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataMonthReceivedStatistics'}"
+                           v-on:click="changeTab('dataMonthReceivedStatistics')">
                             <vc:i18n name="月实收明细" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active:dataReportInfo._currentTab == 'dataMonthOweStatistics'}" v-on:click="changeTab('dataMonthOweStatistics')">
+                        <a class="nav-link"
+                           v-bind:class="{active:dataReportInfo._currentTab == 'dataMonthOweStatistics'}"
+                           v-on:click="changeTab('dataMonthOweStatistics')">
                             <vc:i18n name="月欠费明细" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
@@ -129,10 +151,6 @@
             <div v-if="dataReportInfo._currentTab == 'dataMonthOweStatistics'">
                 <vc:create path="report/dataMonthOweStatistics"></vc:create>
             </div>
-
         </div>
     </div>
-
-
-
 </div>

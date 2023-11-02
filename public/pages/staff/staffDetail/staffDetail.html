@@ -1,22 +1,19 @@
 <div class="">
     <div class="white-bg padding-left padding-right padding-top border-radius-top">
         <div class="flex justify-between">
-            <div class="text-title">
-                员工信息
-            </div>
+            <div class="text-title">员工信息</div>
             <div>
-                <button type="button" class="btn btn-white btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
-                    返回
-                </button>
-
-                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                v-if="vc.hasPrivilege('502022082992300002,502022101832220184')"
-                    v-on:click="_openEditStaffModel()">
-                    修改
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
+                    <i class="fa fa-times"></i>返回
                 </button>
                 <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
-                    v-on:click="_resetStaffPwd()">
-                    重置密码
+                        v-if="vc.hasPrivilege('502022082992300002,502022101832220184')"
+                        v-on:click="_openEditStaffModel()">
+                    <i class="fa fa-edit"></i>修改
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                        v-on:click="_resetStaffPwd()">
+                    <i class="fa fa-refresh"></i>重置密码
                 </button>
             </div>
         </div>
@@ -24,10 +21,10 @@
         <div class="margin-top">
             <div class="text-center vc-float-left" style="width: 150px;" v-if="staffDetailInfo.photo">
                 <image width="120px" height="140px" class="border-radius" v-bind:src="staffDetailInfo.photo"
-                    @error="errorLoadImg" />
+                       @error="errorLoadImg"/>
             </div>
             <div class="text-center vc-float-left" style="width: 150px;" v-else>
-                <image width="120px" height="140px" class="border-radius" src="/img/noPhoto.jpg" />
+                <image width="120px" height="140px" class="border-radius" src="/img/noPhoto.jpg"/>
             </div>
             <div class="row" style="min-height: 160px;">
                 <div class="col-sm-12">
@@ -91,49 +88,50 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailOrgPrivilege'}"
-                        v-on:click="changeTab('staffDetailOrgPrivilege')">
+                       v-on:click="changeTab('staffDetailOrgPrivilege')">
                         <vc:i18n name="组织权限" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailClasses'}"
-                        v-on:click="changeTab('staffDetailClasses')">
+                       v-on:click="changeTab('staffDetailClasses')">
                         <vc:i18n name="排班" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAttendance'}"
-                        v-on:click="changeTab('staffDetailAttendance')">
+                       v-on:click="changeTab('staffDetailAttendance')">
                         <vc:i18n name="考勤" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailRepair'}"
-                        v-on:click="changeTab('staffDetailRepair')">
+                       v-on:click="changeTab('staffDetailRepair')">
                         <vc:i18n name="维修" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailInspection'}"
-                        v-on:click="changeTab('staffDetailInspection')">
+                       v-on:click="changeTab('staffDetailInspection')">
                         <vc:i18n name="巡检" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailMaintainance'}"
-                        v-on:click="changeTab('staffDetailMaintainance')">
+                       v-on:click="changeTab('staffDetailMaintainance')">
                         <vc:i18n name="保养" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailPurchaseApply'}"
-                        v-on:click="changeTab('staffDetailPurchaseApply')">
+                    <a class="nav-link"
+                       v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailPurchaseApply'}"
+                       v-on:click="changeTab('staffDetailPurchaseApply')">
                         <vc:i18n name="采购" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailItemOutApply'}"
-                        v-on:click="changeTab('staffDetailItemOutApply')">
+                       v-on:click="changeTab('staffDetailItemOutApply')">
                         <vc:i18n name="领用" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
@@ -146,37 +144,40 @@
                 </li> -->
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailHisFee'}"
-                        v-on:click="changeTab('staffDetailHisFee')">
+                       v-on:click="changeTab('staffDetailHisFee')">
                         <vc:i18n name="收费单" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailApplyReturnFee'}"
-                        v-on:click="changeTab('staffDetailApplyReturnFee')">
+                    <a class="nav-link"
+                       v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailApplyReturnFee'}"
+                       v-on:click="changeTab('staffDetailApplyReturnFee')">
                         <vc:i18n name="退费单" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailContract'}"
-                        v-on:click="changeTab('staffDetailContract')">
+                       v-on:click="changeTab('staffDetailContract')">
                         <vc:i18n name="起草合同" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAppAuth'}"
-                        v-on:click="changeTab('staffDetailAppAuth')">
+                       v-on:click="changeTab('staffDetailAppAuth')">
                         <vc:i18n name="员工认证" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControl'}"
-                        v-on:click="changeTab('staffDetailAccessControl')">
+                    <a class="nav-link"
+                       v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControl'}"
+                       v-on:click="changeTab('staffDetailAccessControl')">
                         <vc:i18n name="人脸同步" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControlRecord'}"
-                        v-on:click="changeTab('staffDetailAccessControlRecord')">
+                    <a class="nav-link"
+                       v-bind:class="{active:staffDetailInfo._currentTab == 'staffDetailAccessControlRecord'}"
+                       v-on:click="changeTab('staffDetailAccessControlRecord')">
                         <vc:i18n name="开门记录" namespace="ownerDetail"></vc:i18n>
                     </a>
                 </li>
@@ -202,12 +203,9 @@
         <div v-show="staffDetailInfo._currentTab == 'staffDetailMaintainance'">
             <vc:create path="staff/staffDetailMaintainance"></vc:create>
         </div>
-        
-        
         <div v-show="staffDetailInfo._currentTab == 'staffDetailApplyReturnFee'">
             <vc:create path="staff/staffDetailApplyReturnFee"></vc:create>
         </div>
-        
         <div v-show="staffDetailInfo._currentTab == 'staffDetailAppAuth'">
             <vc:create path="staff/staffDetailAppAuth"></vc:create>
         </div>
@@ -229,9 +227,7 @@
         <div v-show="staffDetailInfo._currentTab == 'staffDetailHisFee'">
             <vc:create path="staff/staffDetailHisFee"></vc:create>
         </div>
-        
     </div>
-
     <vc:create path="frame/resetStaffPwd"></vc:create>
     <vc:create path="frame/editStaff"></vc:create>
 </div>

@@ -25,7 +25,6 @@
                 vc.getDict('account', "acct_type", function (_data) {
                     vc.component.prestoreAccountInfo.acctTypes = _data;
                 });
-
                 let _tel = _param.tel;
                 if (_tel) {
                     $that.prestoreAccountInfo.tel = _tel;
@@ -34,7 +33,6 @@
                     $that._changeTel();
                 }
             });
-
             vc.on('prestoreAccount', 'openAddModalWithParams', function (_param) {
                 vc.component.prestoreAccountInfo.amount = _param.redepositAmount;
                 $('#prestoreAccountModel').modal('show');
@@ -45,32 +43,39 @@
                 return vc.validate.validate({
                     prestoreAccountInfo: vc.component.prestoreAccountInfo
                 }, {
-                    'prestoreAccountInfo.ownerId': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "业主不能为空"
-                    }],
-                    'prestoreAccountInfo.amount': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "金额不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "金额格式错误"
-                    },
+                    'prestoreAccountInfo.ownerId': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "业主不能为空"
+                        }
                     ],
-                    'prestoreAccountInfo.acctType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "请选择账户类型"
-                    }],
-                    'prestoreAccountInfo.remark': [{
-                        limit: "maxLength",
-                        param: "200",
-                        errInfo: "备注长度不能超过200位"
-                    }]
+                    'prestoreAccountInfo.amount': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "金额不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "金额格式错误"
+                        }
+                    ],
+                    'prestoreAccountInfo.acctType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "请选择账户类型"
+                        }
+                    ],
+                    'prestoreAccountInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "备注长度不能超过200位"
+                        }
+                    ]
                 });
             },
             savePrestoreAccountInfo: function () {
@@ -82,11 +87,12 @@
                 vc.http.apiPost(
                     '/account/ownerPrestoreAccount',
                     JSON.stringify(vc.component.prestoreAccountInfo), {
-                    emulateJSON: true
-                },
+                        emulateJSON: true
+                    },
                     function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                        if (res.status == 200) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
                             //关闭model
                             $('#prestoreAccountModel').modal('hide');
                             vc.component.clearPrestoreAccountInfo();
@@ -94,6 +100,8 @@
                             vc.emit('ownerDetailAccount', 'notify', {});
                             vc.toast('预存成功');
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                         vc.component.prestoreAccountInfo.errorInfo = json;
                     },

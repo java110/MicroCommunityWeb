@@ -9,12 +9,13 @@
             ownerDetailHisInfo: {
                 owners: [],
                 ownerId: '',
-                ownerName:'',
+                ownerName: '',
                 carNum: '',
-                listColumns:[],
-                logStartTime:'',
-                logEndTime:'',
-                ownerNameLike:''
+                listColumns: [],
+                logStartTime: '',
+                logEndTime: '',
+                ownerNameLike: '',
+                staffNameLike: ''
             }
         },
         _initMethod: function () {
@@ -26,7 +27,7 @@
                 $that.ownerDetailHisInfo.ownerNameLike = _data.ownerNameLike;
                 $that.ownerDetailHisInfo.logStartTime = _data.logStartTime;
                 $that.ownerDetailHisInfo.logEndTime = _data.logEndTime;
-
+                $that.ownerDetailHisInfo.staffNameLike = _data.staffNameLike;
                 $that._getColumns(function () {
                     $that._loadOwnerDetailHisData(DEFAULT_PAGE, DEFAULT_ROWS);
                 });
@@ -35,9 +36,9 @@
                 function (_currentPage) {
                     $that._loadOwnerDetailHisData(_currentPage, DEFAULT_ROWS);
                 });
-                vc.on('ownerDetailHis', 'notify', function (_data) {
-                    $that._loadOwnerDetailHisData(DEFAULT_PAGE,DEFAULT_ROWS);
-                })
+            vc.on('ownerDetailHis', 'notify', function (_data) {
+                $that._loadOwnerDetailHisData(DEFAULT_PAGE, DEFAULT_ROWS);
+            })
         },
         methods: {
             _loadOwnerDetailHisData: function (_page, _row) {
@@ -45,14 +46,14 @@
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
                         memberId: $that.ownerDetailHisInfo.ownerId,
-                        ownerNameLike:$that.ownerDetailHisInfo.ownerNameLike,
-                        logStartTime:$that.ownerDetailHisInfo.logStartTime,
-                        logEndTime:$that.ownerDetailHisInfo.logEndTime,
+                        ownerNameLike: $that.ownerDetailHisInfo.ownerNameLike,
+                        logStartTime: $that.ownerDetailHisInfo.logStartTime,
+                        logEndTime: $that.ownerDetailHisInfo.logEndTime,
+                        staffNameLike: $that.ownerDetailHisInfo.staffNameLike,
                         page: _page,
                         row: _row
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/owner.queryHisOwner',
                     param,
@@ -114,31 +115,28 @@
                     _call();
                 });
             },
-            _getHisOwnerOperate:function(_owner){
+            _getHisOwnerOperate: function (_owner) {
                 let _ownerCount = 0;
                 $that.ownerDetailHisInfo.owners.forEach(item => {
-                    if(_owner.bId == item.bId){
+                    if (_owner.bId == item.bId) {
                         _ownerCount += 1;
                     }
                 });
-
-                if(_ownerCount <= 1){
-                    if(_owner.operate == 'ADD'){
+                if (_ownerCount <= 1) {
+                    if (_owner.operate == 'ADD') {
                         return '添加';
                     }
-                    if(_owner.operate == 'DEL'){
+                    if (_owner.operate == 'DEL') {
                         return '删除';
                     }
                     return "-"
                 }
-
-                if(_owner.operate == 'ADD'){
+                if (_owner.operate == 'ADD') {
                     return '修改(新)';
                 }
-                if(_owner.operate == 'DEL'){
+                if (_owner.operate == 'DEL') {
                     return '修改(旧)';
                 }
-
                 return "-"
             }
         }

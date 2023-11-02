@@ -101,7 +101,6 @@
                 vc.component._loadListRoomCreateFeeInfo(_currentPage, DEFAULT_ROW);
             });
             vc.on('roomCreateFee', 'notify', function () {
-                console.log('list notify');
                 vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             })
         },
@@ -189,14 +188,13 @@
             },
             _downloadCollectionLetterOrder: function () {
                 //vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId);
-                vc.emit('downloadCollectionLetterOrder', 'openExportExcel',{})
+                vc.emit('downloadCollectionLetterOrder', 'openExportExcel', {})
             },
             _downloadRoomCollectionLetterOrder: function (_room) {
                 //vc.jumpToPage('/callComponent/feeManualCollection/downloadCollectionLetterOrder?communityId=' + vc.getCurrentCommunity().communityId + "&roomId=" + _room.roomId);
-                vc.emit('downloadCollectionLetterOrder', 'openExportExcel',{
-                    roomId:_room.roomId
+                vc.emit('downloadCollectionLetterOrder', 'openExportExcel', {
+                    roomId: _room.roomId
                 })
-
             },
             _toPrintReminderFee: function (_room) {
             },

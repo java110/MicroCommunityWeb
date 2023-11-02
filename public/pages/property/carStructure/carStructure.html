@@ -1,22 +1,24 @@
 <div>
-
     <div class="row">
         <div class="col-md-2">
             <vc:create path="property/floorUnitTree" callBackListener="carStructure"></vc:create>
         </div>
         <div class="col-md-10 margin-bottom">
             <div class="row margin-top-xs bg-white border-radius">
-
-                <div class="col-md-1 text-center margin-sm padding-xs" title="vc.i18n('双击查看详情','carStructure')" @dblclick="_toSimplifyAcceptance(car)" v-for="(car,index) in carStructureInfo.cars" :style="{'background-color': _getBgColor(car)}" style="color: #fff;border-radius: 5px;cursor:pointer">
+                <div class="col-md-1 text-center margin-sm padding-xs" title="vc.i18n('双击查看详情','carStructure')"
+                     @dblclick="_toSimplifyAcceptance(car)" v-for="(car,index) in carStructureInfo.cars"
+                     :style="{'background-color': _getBgColor(car)}"
+                     style="color: #fff;border-radius: 5px;cursor:pointer">
                     <div>{{car.areaNum}}-{{car.num}}</div>
                     <div>{{car.carNum}}</div>
                     <div>{{car.floorNum}}-{{car.unitNum}}-{{car.roomNum}}</div>
                     <div>{{car.ownerName?car.ownerName:'无'}}</div>
-                    <div><span><vc:i18n name="欠费" namespace="carStructure"></vc:i18n></span>：{{car.oweAmount}}<span><vc:i18n name="元" namespace="carStructure"></vc:i18n></span></div>
+                    <div>
+                        <span><vc:i18n name="欠费" namespace="carStructure"></vc:i18n></span>：{{car.oweAmount}}
+                        <span><vc:i18n name="元" namespace="carStructure"></vc:i18n></span>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>

@@ -7,7 +7,7 @@
                         <vc:i18n name="添加车辆" namespace="hireParkingSpace"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
                             <i class="fa fa-close"></i>返回
                         </button>
                     </div>
@@ -43,8 +43,8 @@
                                             {{vc.i18n('必填，请选择车辆类型','hireParkingSpace')}}
                                         </option>
                                         <option v-for="carType in hireParkingSpaceInfo.carTypes" :key="carType.statusCd"
-                                            v-bind:value="carType.statusCd">{{carType.name}}
-                                    </option>
+                                                v-bind:value="carType.statusCd">{{carType.name}}
+                                        </option>
                                     </select>
                                 </div>
                                 <label class="col-sm-2 col-form-label text-right">
@@ -57,10 +57,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label text-right"><span><vc:i18n name="车牌类型" namespace="hireParkingSpace"></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label text-right">
+                                    <span><vc:i18n name="车牌类型" namespace="hireParkingSpace"></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-4">
-                                    <select class="custom-select" v-model="hireParkingSpaceInfo.leaseType" @change="_changeLeaseType()">
-                                        <option selected disabled value="">{{vc.i18n('必填，请选择车牌类型','hireParkingSpace')}}</option>
+                                    <select class="custom-select" v-model="hireParkingSpaceInfo.leaseType"
+                                            @change="_changeLeaseType()">
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择车牌类型','hireParkingSpace')}}
+                                        </option>
                                         <option value="H">{{vc.i18n('月租车','hireParkingSpace')}}</option>
                                         <option value="S">{{vc.i18n('出售车辆','hireParkingSpace')}}</option>
                                         <option value="I">{{vc.i18n('内部车','hireParkingSpace')}}</option>
@@ -86,8 +91,6 @@
                                            class="form-control addEndTime">
                                 </div>
                             </div>
-                           
-                            
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">
                                     <vc:i18n name="业主" namespace="hireParkingSpace"></vc:i18n>
@@ -101,7 +104,8 @@
                                     <button type="button" class="btn btn-primary btn-sm"
                                             v-on:click="_openChooseOwner()">选择业主
                                     </button>
-                                    <a v-if="vc.hasPrivilege('500201904010')" target="_blank" href="/#/pages/property/listOwner?tab=业主信息" class="margin-left-xs" >添加</a>
+                                    <a v-if="vc.hasPrivilege('500201904010')" target="_blank"
+                                       href="/#/pages/property/listOwner?tab=业主信息" class="margin-left-xs">添加</a>
                                 </div>
                                 <label class="col-sm-2 col-form-label text-right">
                                     <span><vc:i18n name="车位" namespace="hireParkingSpace"></vc:i18n></span>
@@ -115,30 +119,32 @@
                                     <button type="button" class="btn btn-primary btn-sm"
                                             v-on:click="openSearchParkingSpaceModel()">选择车位
                                     </button>
-                                    <a v-if="vc.hasPrivilege('500201906017')" target="_blank" href="/#/pages/property/listParkingSpace?tab=车位信息" class="margin-left-xs" >添加</a>
+                                    <a v-if="vc.hasPrivilege('500201906017')" target="_blank"
+                                       href="/#/pages/property/listParkingSpace?tab=车位信息" class="margin-left-xs">添加</a>
                                 </div>
                             </div>
                             <!-- dev - 属性管理 - 属性 - owner_car_attr -->
-                        <div v-for="(item,index) in hireParkingSpaceInfo.attrs">
-                            <div class="form-group row" v-if="item.specType == '2233'">
-                                <label class="col-sm-2 col-form-label text-right">{{item.specName}}</label>
-                                <div class="col-sm-4">
-                                    <input v-model="item.value" type="text" :placeholder="item.specHoldplace" class="form-control">
+                            <div v-for="(item,index) in hireParkingSpaceInfo.attrs">
+                                <div class="form-group row" v-if="item.specType == '2233'">
+                                    <label class="col-sm-2 col-form-label text-right">{{item.specName}}</label>
+                                    <div class="col-sm-4">
+                                        <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row" v-if="item.specType == '3344'">
+                                    <label class="col-sm-2 col-form-label text-right">{{item.specName}}</label>
+                                    <div class="col-sm-4">
+                                        <select class="custom-select" v-model="item.value">
+                                            <option selected disabled value="">{{item.specHoldplace}}</option>
+                                            <option v-for="value in item.values" :label="value.valueName"
+                                                    :value="value.value">
+                                                {{item.valueName}}
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row" v-if="item.specType == '3344'">
-                                <label class="col-sm-2 col-form-label text-right">{{item.specName}}</label>
-                                <div class="col-sm-4">
-                                    <select class="custom-select" v-model="item.value">
-                                        <option selected disabled value="">{{item.specHoldplace}}</option>
-                                        <option v-for="value in item.values" :label="value.valueName" :value="value.value">
-                                            {{item.valueName}}
-                                        </option>
-        
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">
                                     <span><vc:i18n name="备注" namespace="hireParkingSpace"></vc:i18n></span>
@@ -168,8 +174,8 @@
                        emitLoadData="hireParkingSpace">
             </vc:create>
             <vc:create path="property/searchParkingSpace" emitChooseParkingSpace="hireParkingSpace"
-               emitLoadData="hireParkingSpace" parkingSpaceFlag="F">
-    </vc:create>
+                       emitLoadData="hireParkingSpace" parkingSpaceFlag="F">
+            </vc:create>
         </div>
     </div>
 </div>

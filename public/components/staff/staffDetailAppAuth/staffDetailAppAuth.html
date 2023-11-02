@@ -1,70 +1,76 @@
 <div class="">
     <div class="row">
-        <div class="col-sm-2">
-
-        </div>
-        <div class="col-sm-2">
-
-        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
         <div class="col-lg-8 text-right">
             <button type="button" class="btn btn-white btn-sm" v-on:click="_qureyStaffDetailAppAuth()">
-                刷新
+                <i class="fa fa-refresh"></i>刷新
             </button>
         </div>
     </div>
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
-                <tr>
-                    <th class="text-center"><span>
-                            <vc:i18n name="员工名称" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="认证方式" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="认证名称" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span>ID</th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="认证状态" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="认证时间" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                    <th class="text-center"><span>
-                            <vc:i18n name="操作" namespace="staffDetailAppAuth"></vc:i18n>
-                        </span></th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="员工名称" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="认证方式" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="认证名称" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>ID
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="认证状态" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="认证时间" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+                <th class="text-center">
+                    <span>
+                        <vc:i18n name="操作" namespace="staffDetailAppAuth"></vc:i18n>
+                    </span>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">{{staffDetailAppAuthInfo.staffName}}</td>
-                    <td class="text-center">{{staffDetailAppAuthInfo.appType}}</td>
-                    <td class="text-center">{{staffDetailAppAuthInfo.openName}}</td>
-                    <td class="text-center">{{staffDetailAppAuthInfo.openId}}</td>
-                    <td class="text-center">{{staffDetailAppAuthInfo.stateName}}</td>
-                    <td class="text-center">{{staffDetailAppAuthInfo.createTime}}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button class="btn-white btn btn-xs" v-on:click="_openAddStaffAppAuthModal()"><span>
-                                    <vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n>
-                                </span></button>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td class="text-center">{{staffDetailAppAuthInfo.staffName}}</td>
+                <td class="text-center">{{staffDetailAppAuthInfo.appType}}</td>
+                <td class="text-center">{{staffDetailAppAuthInfo.openName}}</td>
+                <td class="text-center">{{staffDetailAppAuthInfo.openId}}</td>
+                <td class="text-center">{{staffDetailAppAuthInfo.stateName}}</td>
+                <td class="text-center">{{staffDetailAppAuthInfo.createTime}}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button class="btn-white btn btn-xs" v-on:click="_openAddStaffAppAuthModal()">
+                            <span><vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <!-- 分页 -->
         <div class="row">
-            <div class="col-sm-4">
-
-            </div>
-            <div class="col-sm-8">
-               
-            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8"></div>
         </div>
     </div>
     <vc:create path="property/addStaffAppAuth" callBackListener="" callBackFunction=""></vc:create>

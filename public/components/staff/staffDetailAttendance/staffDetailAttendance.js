@@ -7,26 +7,26 @@
     vc.extends({
         data: {
             staffDetailAttendanceInfo: {
-                staffId:'',
+                staffId: '',
                 attendances: [],
-                curDate:'',
+                curDate: '',
                 maxDay: '',
                 curYear: '',
-                curMonth: '',
+                curMonth: ''
             }
         },
         _initMethod: function () {
-                let _date = new Date(new Date());
-                $that.staffDetailAttendanceInfo.curMonth = _date.getMonth() + 1
-                $that.staffDetailAttendanceInfo.curYear = _date.getFullYear();
-                $that.staffDetailAttendanceInfo.curDate = _date.getFullYear() + "-" + (_date.getMonth() + 1);
-                $that.staffDetailAttendanceInfo.maxDay = new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate();
-                vc.initDateMonth('queryAttendanceDate', function (_value) {
-                    $that.staffDetailAttendanceInfo.curDate = _value;
-                    let _values = _value.split('-');
-                    $that.staffDetailAttendanceInfo.curYear = _values[0];
-                    $that.staffDetailAttendanceInfo.curMonth = _values[1];
-                });
+            let _date = new Date(new Date());
+            $that.staffDetailAttendanceInfo.curMonth = _date.getMonth() + 1
+            $that.staffDetailAttendanceInfo.curYear = _date.getFullYear();
+            $that.staffDetailAttendanceInfo.curDate = _date.getFullYear() + "-" + (_date.getMonth() + 1);
+            $that.staffDetailAttendanceInfo.maxDay = new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate();
+            vc.initDateMonth('queryAttendanceDate', function (_value) {
+                $that.staffDetailAttendanceInfo.curDate = _value;
+                let _values = _value.split('-');
+                $that.staffDetailAttendanceInfo.curYear = _values[0];
+                $that.staffDetailAttendanceInfo.curMonth = _values[1];
+            });
         },
         _initEvent: function () {
             vc.on('staffDetailAttendance', 'switch', function (_data) {
@@ -45,19 +45,16 @@
             _getAttendanceDetail: function (_day) {
                 let _attendance = $that._getDayAttendance(_day);
                 if (!_attendance) {
-
                     let _date = new Date();
                     let _taskYear = $that.staffDetailAttendanceInfo.curYear
                     let _taskMonth = $that.staffDetailAttendanceInfo.curMonth;
-                    if(_taskYear == _date.getFullYear() && parseInt(_taskMonth) == (_date.getMonth()+1) && _day > _date.getDate()){
+                    if (_taskYear == _date.getFullYear() && parseInt(_taskMonth) == (_date.getMonth() + 1) && _day > _date.getDate()) {
                         return [{
-                            rest:'未到时间',
-                        }];;
+                            rest: '未到时间',
+                        }];
                     }
-    
-
                     return [{
-                        rest:'无需考勤',
+                        rest: '无需考勤',
                     }];
                 }
                 return _attendance.attendanceClassesTaskDetails;

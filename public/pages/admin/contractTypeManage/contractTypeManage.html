@@ -49,9 +49,9 @@
                         <span><vc:i18n name="合同类型" namespace="contractTypeManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_toAuditPage()"
-                        v-if="vc.hasPrivilege('502020061767630003')">
-                            设置审核人员
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_toAuditPage()"
+                                v-if="vc.hasPrivilege('502020061767630003')">
+                            <i class="fa fa-plus"></i>设置审核人员
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddContractTypeModal()">
                             <i class="fa fa-plus"></i>添加

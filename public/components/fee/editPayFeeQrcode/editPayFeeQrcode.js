@@ -1,5 +1,4 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editPayFeeQrcodeInfo: {
@@ -9,12 +8,10 @@
                 smsValidate: '',
                 customFee: '',
                 preFee: '',
-                content: '',
-
+                content: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editPayFeeQrcode', 'openEditPayFeeQrcodeModal', function (_params) {
@@ -39,7 +36,7 @@
                             limit: "maxLength",
                             param: "128",
                             errInfo: "名称不能超过128"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.queryWay': [
                         {
@@ -51,7 +48,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "查询方式不能超过12"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.smsValidate': [
                         {
@@ -63,7 +60,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "验证不能超过12"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.customFee': [
                         {
@@ -75,7 +72,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "自定义缴费不能超过12"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.preFee': [
                         {
@@ -87,7 +84,7 @@
                             limit: "maxLength",
                             param: "12",
                             errInfo: "预交费不能超过12"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.content': [
                         {
@@ -99,15 +96,15 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "提示内容不能超过512"
-                        },
+                        }
                     ],
                     'editPayFeeQrcodeInfo.pfqId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "编号不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editPayFeeQrcode: function () {
@@ -115,7 +112,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/payFeeQrcode.updatePayFeeQrcode',
                     JSON.stringify($that.editPayFeeQrcodeInfo),
@@ -129,13 +125,14 @@
                             //关闭model
                             $('#editPayFeeQrcodeModel').modal('hide');
                             vc.emit('payFeeQrcode', 'listPayFeeQrcode', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
@@ -147,11 +144,9 @@
                     smsValidate: '',
                     customFee: '',
                     preFee: '',
-                    content: '',
-
+                    content: ''
                 }
             }
         }
     });
-
 })(window.vc, window.$that);

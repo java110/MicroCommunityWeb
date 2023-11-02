@@ -1,24 +1,25 @@
-(function(vc, vm) {
+(function (vc, vm) {
     vc.extends({
         data: {
             deleteQuestionAnswerInfo: {}
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('deleteQuestionAnswer', 'openDeleteQuestionAnswerModal', function(_params) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('deleteQuestionAnswer', 'openDeleteQuestionAnswerModal', function (_params) {
                 vc.component.deleteQuestionAnswerInfo = _params;
                 $('#deleteQuestionAnswerModel').modal('show');
             });
         },
         methods: {
-            deleteQuestionAnswer: function() {
+            deleteQuestionAnswer: function () {
                 vc.component.deleteQuestionAnswerInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/question.deleteQuestionAnswer',
                     JSON.stringify(vc.component.deleteQuestionAnswerInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
@@ -26,19 +27,18 @@
                             $('#deleteQuestionAnswerModel').modal('hide');
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {});
                             vc.emit('ownerVoting', 'listOwnerVoting', {});
-
                             vc.toast("删除成功");
                             return;
                         } else {
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
-            closeDeleteQuestionAnswerModel: function() {
+            closeDeleteQuestionAnswerModel: function () {
                 $('#deleteQuestionAnswerModel').modal('hide');
             }
         }
