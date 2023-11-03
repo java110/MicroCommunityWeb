@@ -6,7 +6,7 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            propertyFeeLedgerInfo: {
+            parkingFeeLedgerInfo: {
                 payFees: [],
                 communitys:[],
                 total: 0,
@@ -26,10 +26,10 @@
             $that._loadLedgerCommunitys();
 
             vc.initDate('start_time',function(_value){
-                $that.propertyFeeLedgerInfo.conditions.startTime = _value;
+                $that.parkingFeeLedgerInfo.conditions.startTime = _value;
             });
             vc.initDate('end_time',function(_value){
-                $that.propertyFeeLedgerInfo.conditions.endTime = _value;
+                $that.parkingFeeLedgerInfo.conditions.endTime = _value;
             });
         },
         _initEvent: function () {
@@ -47,19 +47,19 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/admin.getPropertyFeeSummary',
+                vc.http.apiGet('/admin.getParkingFeeSummary',
                     param,
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        $that.propertyFeeLedgerInfo.total = _json.total;
-                        $that.propertyFeeLedgerInfo.records = Math.ceil(_json.total / _rows);
-                        $that.propertyFeeLedgerInfo.payFees = _json.data;
+                        $that.parkingFeeLedgerInfo.total = _json.total;
+                        $that.parkingFeeLedgerInfo.records = Math.ceil(_json.total / _rows);
+                        $that.parkingFeeLedgerInfo.payFees = _json.data;
                        
                         vc.emit('pagination', 'init', {
-                            total: $that.propertyFeeLedgerInfo.records,
-                            dataCount: $that.propertyFeeLedgerInfo.total,
+                            total: $that.parkingFeeLedgerInfo.records,
+                            dataCount: $that.parkingFeeLedgerInfo.total,
                             currentPage: _page,
-                            // dataCount: $that.propertyFeeLedgerInfo.total
+                            // dataCount: $that.parkingFeeLedgerInfo.total
                         });
                     },
                     function (errInfo, error) {
@@ -154,7 +154,7 @@
                     function (json, res) {
                         if (res.status == 200) {
                             let _data = JSON.parse(json);
-                            $that.propertyFeeLedgerInfo.communitys = _data.communitys;
+                            $that.parkingFeeLedgerInfo.communitys = _data.communitys;
                         }
                     }, function () {
                         console.log('请求失败处理');
@@ -167,7 +167,7 @@
             
             //导出
             _exportExcel: function () {
-                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeManage&' + vc.objToGetParam($that.propertyFeeLedgerInfo.conditions));
+                vc.jumpToPage('/callComponent/exportReportFee/exportData?pagePath=reportPayFeeManage&' + vc.objToGetParam($that.parkingFeeLedgerInfo.conditions));
             },
         }
     });
