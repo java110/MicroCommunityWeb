@@ -11,7 +11,7 @@
                 orgs: [],
                 communitys: [],
                 roles: [],
-                staffId:'',
+                staffId: ''
             }
         },
         _initMethod: function () {
@@ -21,11 +21,11 @@
                 $that.staffDetailOrgPrivilegeInfo.staffId = _data.staffId;
                 $that._loadStaffPrivileges(_data.staffId);
                 $that._loadStaffOrgs();
-    //            $that._loadStaffCommunity();
+                //$that._loadStaffCommunity();
                 $that._loadStaffRole();
             });
             vc.on('staffDetailOrgPrivilege', 'notify', function (_data) {
-                $that._loadOwnerDetailRoomData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadOwnerDetailRoomData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {

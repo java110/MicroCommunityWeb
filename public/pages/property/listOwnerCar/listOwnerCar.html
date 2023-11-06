@@ -4,7 +4,6 @@
             <div class=" border-radius ">
                 <div class="margin-xs-r  treeview attendance-staff">
                     <ul class="list-group text-center border-radius">
-                        <!--  -->
                         <li class="list-group-item node-orgTree " v-for="(item,index) in listOwnerCarInfo.leaseTypes"
                             :key="index" @click="swatchLeaseType(item)"
                             :class="{'vc-node-selected':listOwnerCarInfo.conditions.leaseType == item.statusCd}">
@@ -23,9 +22,10 @@
                                 <vc:i18n name="查询条件" namespace="listOwnerCar"></vc:i18n>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-                                <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                        v-on:click="_moreCondition()">
                                     {{listOwnerCarInfo.moreCondition == true ? '隐藏' : '更多'}}
-                                </button> -->
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">
@@ -47,7 +47,7 @@
                                         <select class="custom-select" v-model="listOwnerCarInfo.conditions.valid">
                                             <option selected value="">{{vc.i18n('必填，请选择车位状态','listOwnerCar')}}</option>
                                             <option value="1">{{vc.i18n('正常','listOwnerCar')}}</option>
-                                            <!-- <option value="3">{{vc.i18n('到期','listOwnerCar')}}</option> -->
+                                            <option value="3">{{vc.i18n('到期','listOwnerCar')}}</option>
                                             <option value="2">{{vc.i18n('无车位','listOwnerCar')}}</option>
                                         </select>
                                     </div>
@@ -55,16 +55,14 @@
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMethod()">
                                         <i class="fa fa-search"></i>
-                                        <span>
-                                            <vc:i18n name="查询" namespace="listOwnerCar"></vc:i18n>
-                                        </span>
+                                        <span><vc:i18n name="查询" namespace="listOwnerCar"></vc:i18n></span>
                                     </button>
                                     <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMethod()">
                                         <i class="fa fa-repeat"></i> 重置
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" v-show="listOwnerCarInfo.moreCondition == true">
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <input type="text" :placeholder="vc.i18n('请填写业主名称','listOwnerCar')"
@@ -103,9 +101,7 @@
                                                 v-if="vc.hasPrivilege('502023032813991677')"
                                                 v-on:click="_addOwnerCar()">
                                                 <i class="fa fa-plus"></i>
-                                                <span>
-                                                    <vc:i18n name="添加" namespace="listOwnerCar"></vc:i18n>
-                                                </span>
+                                                <span><vc:i18n name="添加" namespace="listOwnerCar"></vc:i18n></span>
                                             </button>
                                             <button type="button" class="btn btn-white btn-sm"
                                                 v-on:click="_openOwnerCarImport(null,true)">车辆导入
@@ -122,44 +118,47 @@
                         <div class="ibox-content">
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            <vc:i18n name="车牌号" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="成员车辆" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="房屋号" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <!-- <th data-hide="phone" class="text-center">
-                                    <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
-                                </th> -->
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="车牌类型" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="车辆类型" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="颜色" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="业主" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="有效期" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th data-hide="phone" class="text-center">
-                                            <vc:i18n name="状态" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="操作" namespace="listOwnerCar"></vc:i18n>
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name="车牌号" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="成员车辆" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="房屋号" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <span><vc:i18n name="车辆品牌" namespace="listOwnerCar"></vc:i18n></span>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="车牌类型" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="车辆类型" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="颜色" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="业主" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="车位" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="有效期" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th data-hide="phone" class="text-center">
+                                        <vc:i18n name="状态" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="备注" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="操作" namespace="listOwnerCar"></vc:i18n>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="car in listOwnerCarInfo.ownerCars"
@@ -255,11 +254,11 @@
                                     </tr>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <td colspan="13">
-                                            <ul class="pagination float-right"></ul>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="13">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
                             <!-- 分页 -->

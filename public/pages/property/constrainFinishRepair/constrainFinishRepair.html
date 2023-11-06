@@ -16,9 +16,11 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="constrainFinishRepairInfo.maintenanceType">
-                                        <option selected value="">{{vc.i18n('请选择是否用料','constrainFinishRepair')}}</option>
-                                        <option v-for="(item,index) in constrainFinishRepairInfo.maintenanceTypes" :key="index"
-                                                :value="item.statusCd"
+                                        <option selected value="">
+                                            {{vc.i18n('请选择是否用料','constrainFinishRepair')}}
+                                        </option>
+                                        <option v-for="(item,index) in constrainFinishRepairInfo.maintenanceTypes"
+                                                :key="index" :value="item.statusCd"
                                                 v-if="item.statusCd != '1001' && item.statusCd != '1002'">
                                             {{item.name}}
                                         </option>
@@ -31,9 +33,11 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="constrainFinishRepairInfo.maintenanceType">
-                                        <option selected value="">{{vc.i18n('请选择维修类型','constrainFinishRepair')}}</option>
-                                        <option v-for="(item,index) in constrainFinishRepairInfo.maintenanceTypes" :key="index"
-                                                :value="item.statusCd"
+                                        <option selected value="">
+                                            {{vc.i18n('请选择维修类型','constrainFinishRepair')}}
+                                        </option>
+                                        <option v-for="(item,index) in constrainFinishRepairInfo.maintenanceTypes"
+                                                :key="index" :value="item.statusCd"
                                                 v-if="item.statusCd != '1003' && item.statusCd != '1004'">
                                             {{item.name}}
                                         </option>
@@ -58,25 +62,37 @@
                                     <div class="col-sm-10">
                                         <div class="row">
                                             <div class="col-sm-2 text-center">
-                                                <span><vc:i18n name="分类" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="分类" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                             <div class="col-sm-2 text-center">
-                                                <span><vc:i18n name="商品" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="商品" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                             <div class="col-sm-2 text-center"
                                                  v-show="constrainFinishRepairInfo.maintenanceType == '1001'">价格
                                             </div>
                                             <div class="col-sm-2 text-center">
-                                                <span><vc:i18n name="数量" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="数量" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                             <div class="col-sm-1 text-center">
-                                                <span><vc:i18n name="单位" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="单位" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                             <div class="col-sm-1 text-center">
-                                                <span><vc:i18n name="规格" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="规格" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                             <div class="col-sm-2 text-center">
-                                                <span><vc:i18n name="操作" namespace="constrainFinishRepair"></vc:i18n></span>
+                                                <span>
+                                                    <vc:i18n name="操作" namespace="constrainFinishRepair"></vc:i18n>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row" style="margin-bottom: 10px;"
@@ -93,13 +109,15 @@
                                                 <input cols="15" class="form-control" disabled="disabled"
                                                        v-model="item.resName">
                                             </div>
-                                            <div class="col-sm-2" v-show="constrainFinishRepairInfo.maintenanceType == '1001'">
+                                            <div class="col-sm-2"
+                                                 v-show="constrainFinishRepairInfo.maintenanceType == '1001'">
                                                 <input cols="15" class="form-control"
                                                        :disabled="!item.isCustom && item.outHighPrice == item.outLowPrice"
                                                        v-model="item.price" v-on:input="_updateTotalPrice()">
                                                 <span v-show="!item.isCustom && item.outHighPrice != item.outLowPrice">
                                                     <span>
-                                                        <vc:i18n name="价格范围" namespace="constrainFinishRepair"></vc:i18n>
+                                                        <vc:i18n name="价格范围" namespace="constrainFinishRepair">
+                                                        </vc:i18n>
                                                     </span>({{item.outLowPrice}} - {{item.outHighPrice}})
                                                 </span>
                                             </div>

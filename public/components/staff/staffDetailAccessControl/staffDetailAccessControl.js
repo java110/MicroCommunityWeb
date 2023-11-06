@@ -34,7 +34,6 @@
                         typeCd: '8899'
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/machineTranslate.listMachineTranslates',
                     param,

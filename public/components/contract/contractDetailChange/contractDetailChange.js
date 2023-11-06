@@ -11,10 +11,10 @@
                 contractId: '',
                 roomNum: '',
                 totalArea: '0',
-                logStartTime:'',
-                logEndTime:'',
-                contractCode:'',
-
+                logStartTime: '',
+                logEndTime: '',
+                contractCode: '',
+                staffNameLike: ''
             }
         },
         _initMethod: function () {
@@ -25,7 +25,6 @@
                 $that.contractDetailChangeInfo.logStartTime = _data.logStartTime;
                 $that.contractDetailChangeInfo.logEndTime = _data.logEndTime;
                 $that.contractDetailChangeInfo.contractCode = _data.contractCode;
-
                 $that._loadContractDetailChangeData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('contractDetailChange', 'paginationPlus', 'page_event',
@@ -41,9 +40,10 @@
                 let param = {
                     params: {
                         contractId: $that.contractDetailChangeInfo.contractId,
-                        logStartTime:$that.contractDetailChangeInfo.logStartTime,
-                        logEndTime:$that.contractDetailChangeInfo.logEndTime,
-                        contractCode:$that.contractDetailChangeInfo.contractCode,
+                        logStartTime: $that.contractDetailChangeInfo.logStartTime,
+                        logEndTime: $that.contractDetailChangeInfo.logEndTime,
+                        contractCode: $that.contractDetailChangeInfo.contractCode,
+                        staffNameLike: $that.contractDetailChangeInfo.staffNameLike,
                         page: _page,
                         row: _row
                     }
@@ -54,7 +54,7 @@
                     function (json, res) {
                         var _contractTFile = JSON.parse(json);
                         $that.contractDetailChangeInfo.contracts = _contractTFile.data;
-                        vc.emit('contractDetailChange','paginationPlus', 'init', {
+                        vc.emit('contractDetailChange', 'paginationPlus', 'init', {
                             total: _contractTFile.records,
                             currentPage: _page
                         });

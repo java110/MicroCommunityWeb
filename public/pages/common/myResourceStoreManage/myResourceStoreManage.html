@@ -53,8 +53,7 @@
                                         @change="_listResourceStoreSonTypes">
                                     <option selected value="">{{vc.i18n('请选择物品类型','myResourceStoreManage')}}</option>
                                     <option v-for="(item,index) in myResourceStoreManageInfo.resourceStoreTypes"
-                                            :key="index" v-bind:value="item.rstId">
-                                        {{item.name}}
+                                            :key="index" v-bind:value="item.rstId">{{item.name}}
                                     </option>
                                 </select>
                             </div>
@@ -84,15 +83,15 @@
                     <div class="row" v-show="myResourceStoreManageInfo.moreCondition == true">
                         <div class="col-sm-3" v-if="vc.hasPrivilege('502021071018550002')">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入用户名称','myResourceStoreManage')"
-                                       v-model="myResourceStoreManageInfo.conditions.searchUserName"
+                                <input type="text" :placeholder="vc.i18n('请输入用户ID','myResourceStoreManage')"
+                                       v-model="myResourceStoreManageInfo.conditions.searchUserId"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="vc.hasPrivilege('502021071018550002')">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入用户ID','myResourceStoreManage')"
-                                       v-model="myResourceStoreManageInfo.conditions.searchUserId"
+                                <input type="text" :placeholder="vc.i18n('请输入用户名称','myResourceStoreManage')"
+                                       v-model="myResourceStoreManageInfo.conditions.searchUserName"
                                        class=" form-control">
                             </div>
                         </div>

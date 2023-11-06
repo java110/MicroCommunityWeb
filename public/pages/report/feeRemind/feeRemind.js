@@ -4,6 +4,7 @@
             feeRemindInfo: {
                 _currentTab: 'reportPrePaymentFee',
                 feeConfigs: [],
+                moreCondition: false,
                 communitys: [],
                 conditions: {
                     objName: '',
@@ -50,6 +51,13 @@
                         console.log('请求失败处理');
                     });
             },
+            _moreCondition: function () {
+                if (vc.component.feeRemindInfo.moreCondition) {
+                    vc.component.feeRemindInfo.moreCondition = false;
+                } else {
+                    vc.component.feeRemindInfo.moreCondition = true;
+                }
+             },
             _loadStaffCommunitys: function () {
                 let param = {
                     params: {

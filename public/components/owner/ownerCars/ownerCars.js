@@ -3,7 +3,7 @@
         data: {
             ownerCarsInfo: {
                 cars: [],
-                ownerId:''
+                ownerId: ''
             }
         },
         _initMethod: function () {
@@ -22,13 +22,12 @@
             _loadOwnerCarInfo: function (_page, _row) {
                 let param = {
                     params: {
-                        page:_page,
-                        row:_row,
+                        page: _page,
+                        row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        ownerId:$that.ownerCarsInfo.ownerId 
+                        ownerId: $that.ownerCarsInfo.ownerId
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwnerCars',
                     param,
@@ -56,9 +55,7 @@
             //查询
             ownerCarss: function () {
                 vc.component._loadAllRoomInfo(1, 15);
-            },
-            //重置
-    
+            }
         }
     });
 })(window.vc);

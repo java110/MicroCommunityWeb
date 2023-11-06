@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -22,23 +22,23 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._listStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
-            vc.getDict('storehouse', "sh_type", function(_data) {
+            vc.getDict('storehouse', "sh_type", function (_data) {
                 $that.storehouseManageInfo.shTypes = _data;
             });
         },
-        _initEvent: function() {
-            vc.on('storehouseManage', 'listStorehouse', function(_param) {
+        _initEvent: function () {
+            vc.on('storehouseManage', 'listStorehouse', function (_param) {
                 $that._listStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 $that._listStorehouses(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             //查询方法
-            _listStorehouses: function(_page, _rows) {
+            _listStorehouses: function (_page, _rows) {
                 $that.storehouseManageInfo.conditions.page = _page;
                 $that.storehouseManageInfo.conditions.row = _rows;
                 $that.storehouseManageInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -50,7 +50,7 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _storehouseManageInfo = JSON.parse(json);
                         $that.storehouseManageInfo.total = _storehouseManageInfo.total;
                         $that.storehouseManageInfo.records = _storehouseManageInfo.records;
@@ -61,42 +61,42 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             //重置
-            _resetStorehouses: function(_page, _rows) {
+            _resetStorehouses: function (_page, _rows) {
                 $that.storehouseManageInfo.conditions.shId = "";
                 $that.storehouseManageInfo.conditions.shName = "";
                 $that.storehouseManageInfo.conditions.shType = "";
                 $that.storehouseManageInfo.conditions.isShow = "";
                 $that._listStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openAddStorehouseModal: function() {
+            _openAddStorehouseModal: function () {
                 vc.emit('addStorehouse', 'openAddStorehouseModal', {});
             },
-            _openEditStorehouseModel: function(_storehouse) {
+            _openEditStorehouseModel: function (_storehouse) {
                 vc.emit('editStorehouse', 'openEditStorehouseModal', _storehouse);
             },
-            _openDeleteStorehouseModel: function(_storehouse) {
+            _openDeleteStorehouseModel: function (_storehouse) {
                 vc.emit('deleteStorehouse', 'openDeleteStorehouseModal', _storehouse);
             },
-            _openDetailStorehouseModel: function(_storehouse) {
-                vc.jumpToPage("/#/pages/common/resourceStoreManage?shId=" + _storehouse.shId);
+            _openDetailStorehouseModel: function (_storehouse) {
+                vc.jumpToPage("/#/pages/common/resourceStoreManage?shId=" + _storehouse.shId + "&flag=1");
             },
-            _queryStorehouseMethod: function() {
+            _queryStorehouseMethod: function () {
                 $that._listStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
-            _resetStorehouseMethod: function() {
+            _resetStorehouseMethod: function () {
                 $that._resetStorehouses(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _toAuditPage: function() {
+            _toAuditPage: function () {
                 vc.jumpToPage('/#/pages/property/workflowManage?tab=流程管理');
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if ($that.storehouseManageInfo.moreCondition) {
                     $that.storehouseManageInfo.moreCondition = false;
                 } else {

@@ -73,7 +73,7 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_batchAuditFees()">
-                            批量审核
+                            <i class="fa fa-plus"></i>批量审核
                         </button>
                     </div>
                 </div>
@@ -169,7 +169,13 @@
                                 </td>
                             </tr>
                         </tbody>
-
+                        <tfoot>
+                        <tr>
+                            <td colspan="15">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
                     </table>
                     <!-- 分页 -->
                     <div class="row">

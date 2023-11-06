@@ -115,7 +115,8 @@
                             param: "",
                             errInfo: "开始时间格式错误"
                         },
-                    ], 'feeSharingInfo.endTime': [
+                    ],
+                    'feeSharingInfo.endTime': [
                         {
                             limit: "required",
                             param: "",
@@ -169,9 +170,11 @@
                             $('#feeSharingModel').modal('hide');
                             $that.clearFeeSharingInfo();
                             vc.emit('roomFeeImport', 'listFee', {});
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.message(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');

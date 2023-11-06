@@ -1,5 +1,4 @@
 <div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -9,7 +8,8 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="vc.goBack()">
-                             <vc:i18n name="返回" namespace="addItemOut"></vc:i18n>
+                            <i class="fa fa-close"></i>
+                            <vc:i18n name="返回" namespace="addItemOut"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                                     {{vc.i18n('必填，请选择仓库','addItemOut')}}
                                 </option>
                                 <option v-for="(item,index) in addItemOutInfo.storehouses" :key="index"
-                                    v-bind:value="item.shId">{{item.shName}}
+                                        v-bind:value="item.shId">{{item.shName}}
                                 </option>
                             </select>
                         </div>
@@ -34,7 +34,8 @@
                             <vc:i18n name="联系人" namespace="addItemOut"></vc:i18n>
                         </label>
                         <div class="col-sm-10">
-                            <input :placeholder="vc.i18n('必填，请填写联系人','addItemOut')" class="form-control" v-model="addItemOutInfo.endUserName" />
+                            <input :placeholder="vc.i18n('必填，请填写联系人','addItemOut')" class="form-control"
+                                   v-model="addItemOutInfo.endUserName"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -42,7 +43,8 @@
                             <vc:i18n name="联系电话" namespace="addItemOut"></vc:i18n>
                         </label>
                         <div class="col-sm-10">
-                            <input :placeholder="vc.i18n('必填，请填写联系电话','addItemOut')" class="form-control" v-model="addItemOutInfo.endUserTel" />
+                            <input :placeholder="vc.i18n('必填，请填写联系电话','addItemOut')" class="form-control"
+                                   v-model="addItemOutInfo.endUserTel"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,7 +52,8 @@
                             <vc:i18n name="申请说明" namespace="addItemOut"></vc:i18n>
                         </label>
                         <div class="col-sm-10">
-                            <textarea :placeholder="vc.i18n('必填，请填写申请说明','addItemOut')" class="form-control" v-model="addItemOutInfo.description">
+                            <textarea :placeholder="vc.i18n('必填，请填写申请说明','addItemOut')" class="form-control"
+                                      v-model="addItemOutInfo.description">
                             </textarea>
                         </div>
                     </div>
@@ -58,7 +61,6 @@
             </div>
         </div>
     </div>
-
     <!-- 选择物品 -->
     <div class="row">
         <div class="col-lg-12">
@@ -68,7 +70,9 @@
                         <vc:i18n name="物品信息" namespace="addItemOut"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;" v-on:click="_openSelectResourceStoreInfoModel()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;"
+                                v-on:click="_openSelectResourceStoreInfoModel()">
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="选择物品" namespace="addItemOut"></vc:i18n>
                         </button>
                     </div>
@@ -76,72 +80,80 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <vc:i18n name="物品类型" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="物品名称(编码)" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="物品规格" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="价格" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="物品库存" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="申请数量" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="备注" namespace="addItemOut"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="操作" namespace="addItemOut"></vc:i18n>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <vc:i18n name="物品类型" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="物品名称(编码)" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="物品规格" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="价格" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="物品库存" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="申请数量" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="备注" namespace="addItemOut"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="addItemOut"></vc:i18n>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(resourceStore, index) in addItemOutInfo.resourceStores">
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} > {{resourceStore.rstName ? resourceStore.rstName : '-'}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{resourceStore.resName}}({{resourceStore.resCode}})
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rssName ? resourceStore.rssName : '-'}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <select class="form-control" v-model="resourceStore.timesId" @change="_changeTimesId($event, index)">
-                                    <option value="" selected>{{vc.i18n('请选择价格','addItemOut')}}</option>
+                        <tr v-for="(resourceStore, index) in addItemOutInfo.resourceStores">
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
+                                {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.resName}}({{resourceStore.resCode}})
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.rssName ?
+                                resourceStore.rssName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <select class="form-control" v-model="resourceStore.timesId"
+                                        @change="_changeTimesId($event, index)">
+                                    <option value="" selected>
+                                        {{vc.i18n('请选择价格','addItemOut')}}
+                                    </option>
                                     <option v-for="time in resourceStore.times" :value="time.timesId">
                                         {{time.price}}
                                     </option>
                                 </select>
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{_getTimesStock(resourceStore)}}{{resourceStore.unitCodeName}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <input v-model="resourceStore.quantity" type="number" :placeholder="vc.i18n('必填，请填写申请数量','addItemOut')" class="form-control" style="width: 70%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <input v-model="resourceStore.remark" type="text" class="form-control" :placeholder="vc.i18n('选填，请填写备注','addItemOut')">
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;" v-on:click="_removeSelectResourceStoreItem(resourceStore.resId)">
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{_getTimesStock(resourceStore)}}{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <input v-model="resourceStore.quantity" type="number"
+                                       :placeholder="vc.i18n('必填，请填写申请数量','addItemOut')" class="form-control"
+                                       style="width: 70%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <input v-model="resourceStore.remark" type="text" class="form-control"
+                                       :placeholder="vc.i18n('选填，请填写备注','addItemOut')">
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <button type="button" class="btn btn-danger btn-sm" style="margin-right:10px;"
+                                        v-on:click="_removeSelectResourceStoreItem(resourceStore.resId)">
                                     <i class="fa fa-times"></i>
                                     <span><vc:i18n name="移除" namespace="addItemOut"></vc:i18n></span>
                                 </button>
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- 审批人 -->
@@ -160,7 +172,8 @@
                             <vc:i18n name="审批人" namespace="addItemOut"></vc:i18n>
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择审批人','addItemOut')" disabled v-model="addItemOutInfo.audit.staffName">
+                            <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择审批人','addItemOut')"
+                                   disabled v-model="addItemOutInfo.audit.staffName">
                         </div>
                         <div class="col-sm-2">
                             <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
@@ -180,7 +193,6 @@
             </button>
         </div>
     </div>
-
     <vc:create path="common/chooseResourceStore2" emitChooseResourceStore="addItemOut" emitLoadData="addItemOut">
     </vc:create>
     <vc:create path="property/selectStaff"></vc:create>

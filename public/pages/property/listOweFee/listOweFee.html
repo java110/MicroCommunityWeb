@@ -7,7 +7,8 @@
                         <span><vc:i18n name="查询条件" namespace="listOweFee"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
                             {{listOweFeeInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -16,9 +17,11 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择楼栋','listOweFee')" v-model="listOweFeeInfo.conditions.floorName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择楼栋','listOweFee')"
+                                       v-model="listOweFeeInfo.conditions.floorName" class=" form-control">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseFloorMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_openChooseFloorMethod()">
                                         <i class="fa fa-search"></i>
                                         <span><vc:i18n name="选择" namespace="listOweFee"></vc:i18n></span>
                                     </button>
@@ -27,7 +30,8 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="listOweFeeInfo.conditions.unitId">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="listOweFeeInfo.conditions.unitId">
                                     <option selected value="">{{vc.i18n('请选择单元','listOweFee')}}</option>
                                     <option v-for="(unit,index) in listOweFeeInfo.roomUnits" :key="index"
                                             v-bind:value="unit.unitId">
@@ -38,7 +42,9 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','listOweFee')" class="form-control form-control-md" v-model="listOweFeeInfo.conditions.roomNum">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号','listOweFee')"
+                                       class="form-control form-control-md"
+                                       v-model.trim="listOweFeeInfo.conditions.roomNum">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -55,7 +61,8 @@
                     <div class="row" v-show="listOweFeeInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group input-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="listOweFeeInfo.conditions.roomSubType">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="listOweFeeInfo.conditions.roomSubType">
                                     <option selected value="">{{vc.i18n('请选择房屋类型','listOweFee')}}</option>
                                     <option :value="item.statusCd" v-for="(item,index) in listOweFeeInfo.roomSubTypes">
                                         {{item.name}}
@@ -65,7 +72,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主名称','listOweFee')" class="form-control form-control-md" v-model="listOweFeeInfo.conditions.ownerName">
+                                <input type="text" :placeholder="vc.i18n('请填写业主名称','listOweFee')"
+                                       class="form-control form-control-md"
+                                       v-model.trim="listOweFeeInfo.conditions.ownerName">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -82,17 +91,20 @@
                     <div class="row" v-show="listOweFeeInfo.moreCondition == true">
                         <div class="col-sm-3" v-if="listOweFeeInfo.conditions.payObjType == '3333'">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','listOweFee')" class="form-control" v-model="listOweFeeInfo.conditions.num">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','listOweFee')"
+                                       class="form-control" v-model.trim="listOweFeeInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-4" v-if="listOweFeeInfo.conditions.payObjType == '6666'">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写车位编号，如6-8','listOweFee')" class="form-control " v-model="listOweFeeInfo.conditions.num">
+                                <input type="text" :placeholder="vc.i18n('请填写车位编号，如6-8','listOweFee')"
+                                       class="form-control " v-model.trim="listOweFeeInfo.conditions.num">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <select class="selectpicker" id="configIds" :placeholder="vc.i18n('请选择收费项','listOweFee')" multiple>
+                                <select class="selectpicker" id="configIds"
+                                        :placeholder="vc.i18n('请选择收费项','listOweFee')" multiple>
                                     <option v-for="(item,index) in listOweFeeInfo.feeConfigs" :key="index"
                                             :value="item.configId">{{item.feeName}}
                                     </option>
@@ -112,9 +124,9 @@
                         <vc:i18n name="欠费信息" namespace="listOweFee"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-primary btn-sm" v-on:click="_toFeeCollectionOrderManage()">
+                        <!--<button type="button" class="btn btn-primary btn-sm" v-on:click="_toFeeCollectionOrderManage()">
                             催缴记录
-                        </button> -->
+                        </button>-->
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
                             <i class="fa fa-plus"></i>
                             <span><vc:i18n name="导出" namespace="listOweFee"></vc:i18n></span>
@@ -122,69 +134,72 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
+                    <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px"
+                           data-page-size="10">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <vc:i18n name="序号" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="收费对象" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="业主名称" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="手机号" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="开始时间" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="结束时间" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <!-- <th class="text-center">
-                            <span><vc:i18n name="面积" namespace="listOweFee"></vc:i18n></span>
-                            </th> -->
-                                <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
-                                    {{item.configName}}
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="合计(单位:元)" namespace="listOweFee"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="更新时间" namespace="listOweFee"></vc:i18n>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <vc:i18n name="序号" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="收费对象" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="业主名称" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="手机号" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="开始时间" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="结束时间" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <!--<th class="text-center">
+                                <span><vc:i18n name="面积" namespace="listOweFee"></vc:i18n></span>
+                            </th>-->
+                            <th class="text-center" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
+                                {{item.configName}}
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="合计(单位:元)" namespace="listOweFee"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="更新时间" namespace="listOweFee"></vc:i18n>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(fee,i) in listOweFeeInfo.fees">
-                                <td class="text-center">{{i+1}}</td>
-                                <td class="text-center">{{fee.payerObjName}}</td>
-                                <td class="text-center">{{fee.ownerName}}</td>
-                                <td class="text-center">{{fee.ownerTel}}</td>
-                                <td class="text-center">{{fee.endTime}}</td>
-                                <td class="text-center">{{fee.deadlineTime}}</td>
-                                <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
-                                    {{_getFeeOweAmount(item,fee)}}
-                                </td>
-                                <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
-                                <td class="text-center">{{fee.updateTime}}</td>
-                            </tr>
+                        <tr v-for="(fee,i) in listOweFeeInfo.fees">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-center">{{fee.payerObjName}}</td>
+                            <td class="text-center">{{fee.ownerName}}</td>
+                            <td class="text-center">{{fee.ownerTel}}</td>
+                            <td class="text-center">{{fee.endTime}}</td>
+                            <td class="text-center">{{fee.deadlineTime}}</td>
+                            <td class="text-center" v-for="item in listOweFeeInfo.feeConfigNames">
+                                {{_getFeeOweAmount(item,fee)}}
+                            </td>
+                            <td class="text-center">{{_getAllFeeOweAmount(fee)}}</td>
+                            <td class="text-center">{{fee.updateTime}}</td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="10">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
                     <div class="row">
                         <div class="col-md-1 margin-left">
                             <div class="row">
-                                <b><span><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></span></b>
+                                <b>
+                                    <span><vc:i18n name="小计" namespace="listOweFee"></vc:i18n></span>
+                                </b>
                             </div>
                         </div>
                         <div class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
@@ -193,7 +208,9 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div><span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{_getFeeOweAllAmounts()}}
+                            <div>
+                                <span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>:
+                                {{_getFeeOweAllAmounts()}}
                                 <span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span>
                             </div>
                         </div>
@@ -201,7 +218,9 @@
                     <div class="row" v-if="listOweFeeInfo.fees && listOweFeeInfo.fees.length>0">
                         <div class="col-md-1 margin-left">
                             <div class="row">
-                                <b><span><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></span></b>
+                                <b>
+                                    <span><vc:i18n name="大计" namespace="listOweFee"></vc:i18n></span>
+                                </b>
                             </div>
                         </div>
                         <div class="col-md-2" v-for="(item,index) in listOweFeeInfo.feeConfigNames">
@@ -211,7 +230,8 @@
                         </div>
                         <div class="col-md-2">
                             <div>
-                                <span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>: {{listOweFeeInfo.fees[0].totalOweAmount}}
+                                <span><vc:i18n name="合计" namespace="listOweFee"></vc:i18n></span>:
+                                {{listOweFeeInfo.fees[0].totalOweAmount}}
                                 <span><vc:i18n name="元" namespace="listOweFee"></vc:i18n></span>
                             </div>
                         </div>

@@ -1,51 +1,45 @@
-(function(vc, vm) {
-
+(function (vc, vm) {
     vc.extends({
         data: {
-            deleteResourceAuditFlowInfo: {
-
-            }
+            deleteResourceAuditFlowInfo: {}
         },
-        _initMethod: function() {
-
+        _initMethod: function () {
         },
-        _initEvent: function() {
-            vc.on('deleteResourceAuditFlow', 'openDeleteResourceAuditFlowModal', function(_params) {
-
+        _initEvent: function () {
+            vc.on('deleteResourceAuditFlow', 'openDeleteResourceAuditFlowModal', function (_params) {
                 $that.deleteResourceAuditFlowInfo = _params;
                 $('#deleteResourceAuditFlowModel').modal('show');
-
             });
         },
         methods: {
-            deleteResourceAuditFlow: function() {
+            deleteResourceAuditFlow: function () {
                 $that.deleteResourceAuditFlowInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/resourceStore.deleteResourceAuditFlow',
                     JSON.stringify($that.deleteResourceAuditFlowInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#deleteResourceAuditFlowModel').modal('hide');
                             vc.emit('resourceAuditFlow', 'listResourceAuditFlow', {});
+                            vc.toast("删除成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(json);
-
                     });
             },
-            closeDeleteResourceAuditFlowModel: function() {
+            closeDeleteResourceAuditFlowModel: function () {
                 $('#deleteResourceAuditFlowModel').modal('hide');
             }
         }
     });
-
 })(window.vc, window.$that);

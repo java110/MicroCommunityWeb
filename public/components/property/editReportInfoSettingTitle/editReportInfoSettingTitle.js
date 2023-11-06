@@ -36,7 +36,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "题目类型格式错误"
-                        },
+                        }
                     ],
                     'editReportInfoSettingTitleInfo.title': [
                         {
@@ -48,7 +48,7 @@
                             limit: "maxLength",
                             param: "256",
                             errInfo: "问卷题目太长"
-                        },
+                        }
                     ],
                     'editReportInfoSettingTitleInfo.seq': [
                         {
@@ -60,7 +60,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "顺序必须是数字"
-                        },
+                        }
                     ],
                     'editReportInfoSettingTitleInfo.titleId': [
                         {

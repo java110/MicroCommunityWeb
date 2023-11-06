@@ -12,6 +12,8 @@
                 roomName: '',
                 logStartTime: '',
                 logEndTime: '',
+                staffNameLike: '',
+                payerObjName: ''
             }
         },
         _initMethod: function () {
@@ -22,10 +24,9 @@
                 $that.roomDetailHisInfo.roomName = _data.roomName;
                 $that.roomDetailHisInfo.logStartTime = _data.logStartTime;
                 $that.roomDetailHisInfo.logEndTime = _data.logEndTime;
-
-
+                $that.roomDetailHisInfo.staffNameLike = _data.staffNameLike;
+                $that.roomDetailHisInfo.payerObjName = _data.payerObjName;
                 $that._loadRoomDetailHisData(DEFAULT_PAGE, DEFAULT_ROWS);
-
             });
             vc.on('roomDetailHis', 'paginationPlus', 'page_event',
                 function (_currentPage) {
@@ -44,11 +45,12 @@
                         roomName: $that.roomDetailHisInfo.roomName,
                         logStartTime: $that.roomDetailHisInfo.logStartTime,
                         logEndTime: $that.roomDetailHisInfo.logEndTime,
+                        staffNameLike: $that.roomDetailHisInfo.staffNameLike,
+                        payerObjName: $that.roomDetailHisInfo.payerObjName,
                         page: _page,
                         row: _row
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/room.queryHisRoom',
                     param,
@@ -77,7 +79,6 @@
                         _roomCount += 1;
                     }
                 });
-
                 if (_roomCount <= 1) {
                     if (_room.operate == 'ADD') {
                         return '添加';
@@ -87,14 +88,12 @@
                     }
                     return "-"
                 }
-
                 if (_room.operate == 'ADD') {
                     return '修改(新)';
                 }
                 if (_room.operate == 'DEL') {
                     return '修改(旧)';
                 }
-
                 return "-"
             }
         }

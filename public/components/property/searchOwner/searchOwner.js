@@ -30,8 +30,8 @@
                         page: _page,
                         row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        name: vc.component.searchOwnerInfo._currentOwnerName,
-                        roomName: vc.component.searchOwnerInfo.roomName,
+                        name: vc.component.searchOwnerInfo._currentOwnerName.trim(),
+                        roomName: vc.component.searchOwnerInfo.roomName.trim(),
                         ownerTypeCd: '1001'
                     }
                 };
@@ -43,6 +43,7 @@
                         vc.component.searchOwnerInfo.owners = _ownerInfo.owners;
                         vc.emit('searchOwner', 'paginationPlus', 'init', {
                             total: _ownerInfo.records,
+                            dataCount: _ownerInfo.total,
                             currentPage: _page
                         });
                     },
@@ -58,7 +59,14 @@
                 });
                 $('#searchOwnerModel').modal('hide');
             },
+            //查询
             searchOwners: function () {
+                vc.component._loadAllOwnerInfo(1, 10, vc.component.searchOwnerInfo._currentOwnerName);
+            },
+            //重置
+            resetOwners: function () {
+                vc.component.searchOwnerInfo.roomName = "";
+                vc.component.searchOwnerInfo._currentOwnerName = "";
                 vc.component._loadAllOwnerInfo(1, 10, vc.component.searchOwnerInfo._currentOwnerName);
             },
             _refreshSearchOwnerData: function () {

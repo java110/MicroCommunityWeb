@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         propTypes: {
             emitChooseContract: vc.propTypes.string,
@@ -7,22 +7,23 @@
         data: {
             chooseContractInfo: {
                 contracts: [],
-                _currentContractName: '',
+                _currentContractName: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('chooseContract', 'openChooseContractModel', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('chooseContract', 'openChooseContractModel', function (_param) {
                 $('#chooseContractModel').modal('show');
                 vc.component._refreshChooseContractInfo();
                 vc.component._loadAllContractInfo(1, 10, '');
             });
-            vc.on('chooseContract', 'paginationPlus', 'page_event', function(_currentPage) {
+            vc.on('chooseContract', 'paginationPlus', 'page_event', function (_currentPage) {
                 vc.component._loadAllContractInfo(_currentPage, 10);
             });
         },
         methods: {
-            _loadAllContractInfo: function(_page, _row, _name) {
+            _loadAllContractInfo: function (_page, _row, _name) {
                 var param = {
                     params: {
                         page: _page,
@@ -30,26 +31,26 @@
                         contractNameLike: _name
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/contract/queryContract',
                     param,
-                    function(json) {
+                    function (json) {
                         var _contractInfo = JSON.parse(json);
                         vc.component.chooseContractInfo.contracts = _contractInfo.data;
                         vc.component.chooseContractInfo.total = _contractInfo.total;
                         vc.component.chooseContractInfo.records = _contractInfo.records;
                         vc.emit('chooseContract', 'paginationPlus', 'init', {
                             total: vc.component.chooseContractInfo.records,
+                            dataCount: vc.component.chooseContractInfo.total,
                             currentPage: _page
                         });
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseContract: function(_contract) {
+            chooseContract: function (_contract) {
                 if (_contract.hasOwnProperty('name')) {
                     _contract.contractName = _contract.name;
                 }
@@ -59,13 +60,12 @@
                 });
                 $('#chooseContractModel').modal('hide');
             },
-            queryContracts: function() {
+            queryContracts: function () {
                 vc.component._loadAllContractInfo(1, 10, vc.component.chooseContractInfo._currentContractName);
             },
-            _refreshChooseContractInfo: function() {
+            _refreshChooseContractInfo: function () {
                 vc.component.chooseContractInfo._currentContractName = "";
             }
         }
-
     });
 })(window.vc);

@@ -7,23 +7,30 @@
                         <vc:i18n name="查询条件" namespace="feeRemind"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{feeRemindInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.objName">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号/合同名称/车牌号','feeRemind')"
+                                       class="form-control form-control-md" v-model="feeRemindInfo.conditions.objName">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主名称','feeRemind')" v-model="feeRemindInfo.conditions.ownerName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请填写业主名称','feeRemind')"
+                                       v-model="feeRemindInfo.conditions.ownerName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','feeRemind')" class="form-control form-control-md" v-model="feeRemindInfo.conditions.link">
+                                <input type="text" :placeholder="vc.i18n('请填写业主手机号','feeRemind')"
+                                       class="form-control form-control-md" v-model="feeRemindInfo.conditions.link">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -50,22 +57,22 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <div class="white-bg padding-lg">
         <div class="">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportPrePaymentFee'}" v-on:click="changeTab('reportPrePaymentFee')">
+                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportPrePaymentFee'}"
+                       v-on:click="changeTab('reportPrePaymentFee')">
                         <vc:i18n name="预缴费提醒" namespace="feeRemind"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportDeadlineFee'}" v-on:click="changeTab('reportDeadlineFee')">
+                    <a class="nav-link" v-bind:class="{active:feeRemindInfo._currentTab == 'reportDeadlineFee'}"
+                       v-on:click="changeTab('reportDeadlineFee')">
                         <vc:i18n name="到期提醒" namespace="feeRemind"></vc:i18n>
                     </a>
                 </li>
@@ -78,7 +85,6 @@
             <div v-if="feeRemindInfo._currentTab == 'reportDeadlineFee'">
                 <vc:create path="report/reportDeadlineFee"></vc:create>
             </div>
-
         </div>
     </div>
 </div>

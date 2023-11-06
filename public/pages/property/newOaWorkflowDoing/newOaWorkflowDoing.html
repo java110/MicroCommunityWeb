@@ -8,7 +8,8 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryUndoOrderMethod()">
-                                <vc:i18n name="刷新" namespace="myAuditOrders"></vc:i18n>
+                            <i class="fa fa-refresh"></i>
+                            <vc:i18n name="刷新" namespace="myAuditOrders"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -16,70 +17,122 @@
                     <div class="row margin-top">
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/repairDispatchManage')"><span><vc:i18n name="报修待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.repair>0}">({{newOaWorkflowDoingInfo.repair}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/repairDispatchManage')">
+                                    <span><vc:i18n name="报修待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.repair>0}">
+                                        ({{newOaWorkflowDoingInfo.repair}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/common/myAuditComplaints')"><span><vc:i18n name="投诉待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.complaint>0}">({{newOaWorkflowDoingInfo.complaint}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/common/myAuditComplaints')">
+                                    <span><vc:i18n name="投诉待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.complaint>0}">
+                                        ({{newOaWorkflowDoingInfo.complaint}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/myAuditOrders')"><span><vc:i18n name="采购待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.purchase>0}">({{newOaWorkflowDoingInfo.purchase}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/myAuditOrders')">
+                                    <span><vc:i18n name="采购待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.purchase>0}">
+                                        ({{newOaWorkflowDoingInfo.purchase}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/myItemOutAuditOrders')"><span><vc:i18n name="物品领用待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.collection>0}">({{newOaWorkflowDoingInfo.collection}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/myItemOutAuditOrders')">
+                                    <span><vc:i18n name="物品领用待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.collection>0}">
+                                        ({{newOaWorkflowDoingInfo.collection}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/contractApplyAuditOrders')"><span><vc:i18n name="合同起草待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.contractApply>0}">({{newOaWorkflowDoingInfo.contractApply}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/contractApplyAuditOrders')">
+                                    <span><vc:i18n name="合同起草待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.contractApply>0}">
+                                        ({{newOaWorkflowDoingInfo.contractApply}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/contractChangeAuditOrders')"><span><vc:i18n name="合同变更待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.contractChange>0}">({{newOaWorkflowDoingInfo.contractChange}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/contractChangeAuditOrders')">
+                                    <span><vc:i18n name="合同变更待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.contractChange>0}">
+                                        ({{newOaWorkflowDoingInfo.contractChange}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="row ">
                         <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/allocationStorehouseAuditOrders')"><span><vc:i18n name="调拨待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.allocation>0}">({{newOaWorkflowDoingInfo.allocation}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/allocationStorehouseAuditOrders')">
+                                    <span><vc:i18n name="调拨待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.allocation>0}">
+                                        ({{newOaWorkflowDoingInfo.allocation}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/itemReleaseUndo')"><span><vc:i18n name="物品放行待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.itemReleaseCount>0}">({{newOaWorkflowDoingInfo.itemReleaseCount}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/itemReleaseUndo')">
+                                    <span><vc:i18n name="物品放行待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.itemReleaseCount>0}">
+                                        ({{newOaWorkflowDoingInfo.itemReleaseCount}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/visitUndo')"><span><vc:i18n name="访客待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.visitUndoCount>0}">({{newOaWorkflowDoingInfo.visitUndoCount}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/visitUndo')">
+                                    <span><vc:i18n name="访客待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.visitUndoCount>0}">
+                                        ({{newOaWorkflowDoingInfo.visitUndoCount}})
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <!-- <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/owner/ownerSettledApplyUndo')"><span><vc:i18n name="业主入驻待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':newOaWorkflowDoingInfo.ownerSettledApplyCount>0}">({{newOaWorkflowDoingInfo.ownerSettledApplyCount}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/owner/ownerSettledApplyUndo')">
+                                    <span><vc:i18n name="业主入驻待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':newOaWorkflowDoingInfo.ownerSettledApplyCount>0}">
+                                        ({{newOaWorkflowDoingInfo.ownerSettledApplyCount}})
+                                    </span>
+                                </a>
                             </div>
                         </div> -->
                         <div class="col-sm-2 margin-top" v-for="(item,index) in newOaWorkflowDoingInfo.newOaWorkflows">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGoA(item)">{{item.flowName}}<span><vc:i18n name="待办" namespace="newOaWorkflowDoing"></vc:i18n></span><span
-                                        :class="{'font-red':item.undoCount>0}">({{item.undoCount}})</span></a>
+                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGoA(item)">{{item.flowName}}
+                                    <span><vc:i18n name="待办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                    <span :class="{'font-red':item.undoCount>0}">({{item.undoCount}})</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -100,60 +153,91 @@
                     <div class="row margin-top">
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/myRepairDispatchManage')"><span><vc:i18n name="报修已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/myRepairDispatchManage')">
+                                    <span><vc:i18n name="报修已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/common/myAuditHistoryComplaints')"><span><vc:i18n name="投诉已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/common/myAuditHistoryComplaints')">
+                                    <span><vc:i18n name="投诉已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/myAuditHistoryOrders')"><span><vc:i18n name="采购已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/myAuditHistoryOrders')">
+                                    <span><vc:i18n name="采购已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/myItemOutAuditHistoryOrders')"><span><vc:i18n name="物品领用已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/myItemOutAuditHistoryOrders')">
+                                    <span><vc:i18n name="物品领用已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/contractApplyAuditHistoryOrders')"><span><vc:i18n name="合同起草已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/contractApplyAuditHistoryOrders')">
+                                    <span><vc:i18n name="合同起草已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/contractChangeAuditHistoryOrders')"><span><vc:i18n name="合同变更已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/contractChangeAuditHistoryOrders')">
+                                    <span><vc:i18n name="合同变更已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
-
                     </div>
                     <div class="row ">
                         <div class="col-sm-2 margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/admin/allocationStorehouseHistoryAuditOrders')"><span><vc:i18n name="物品调拨已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/admin/allocationStorehouseHistoryAuditOrders')">
+                                    <span><vc:i18n name="物品调拨已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2  margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/itemReleaseFinish')"><span><vc:i18n name="物品放行已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/itemReleaseFinish')">
+                                    <span><vc:i18n name="物品放行已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-sm-2  margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/property/visitFinish')"><span><vc:i18n name="访客已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/property/visitFinish')">
+                                    <span><vc:i18n name="访客已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                         <!-- <div class="col-sm-2  margin-top">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGo('/#/pages/owner/ownerSettledApplyFinish')"><span><vc:i18n name="业主入驻已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;"
+                                   @click="_toGo('/#/pages/owner/ownerSettledApplyFinish')">
+                                   <span><vc:i18n name="业主入驻已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div> -->
                         <div class="col-sm-2 margin-top" v-for="(item,index) in newOaWorkflowDoingInfo.newOaWorkflows">
                             <div class="form-group text-center">
-                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGoB(item)">{{item.flowName}}<span><vc:i18n name="已办" namespace="newOaWorkflowDoing"></vc:i18n></span></a>
+                                <a class="col-form-label" style="text-decoration:underline;" @click="_toGoB(item)">{{item.flowName}}
+                                    <span><vc:i18n name="已办" namespace="newOaWorkflowDoing"></vc:i18n></span>
+                                </a>
                             </div>
                         </div>
                     </div>

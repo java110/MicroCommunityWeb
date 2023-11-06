@@ -7,12 +7,15 @@
                         <vc:i18n name="查询条件"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{meterMachineManageInfo.moreCondition == true?'隐藏':'更多'}}
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请选择名称','meterMachineManage')"
                                     v-model="meterMachineManageInfo.conditions.machineNameLike" class=" form-control">
@@ -27,10 +30,11 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="meterMachineManageInfo.conditions.meterType">
-                                    <option selected value="">{{vc.i18n('请选择表类型','meterMachineManage')}}
+                                    <option selected value="">
+                                        {{vc.i18n('请选择表类型','meterMachineManage')}}
                                     </option>
                                     <option :value="item.typeId"
-                                        v-for="(item,index) in meterMachineManageInfo.meterTypes">{{item.typeName}}
+                                            v-for="(item,index) in meterMachineManageInfo.meterTypes">{{item.typeName}}
                                     </option>
                                 </select>
                             </div>
@@ -44,11 +48,12 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
+                    <div class="row" v-show="meterMachineManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="meterMachineManageInfo.conditions.machineModel">
-                                    <option selected value="">{{vc.i18n('请选择模式','meterMachineManage')}}
+                                    <option selected value="">
+                                        {{vc.i18n('请选择模式','meterMachineManage')}}
                                     </option>
                                     <option value="1001">{{vc.i18n('充值模式','meterMachineManage')}}</option>
                                     <option value="2002">{{vc.i18n('抄表模式','meterMachineManage')}}</option>
@@ -64,16 +69,16 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <select class="custom-select" v-model="meterMachineManageInfo.conditions.implBean">
-                                    <option selected value="">{{vc.i18n('请选择厂家','meterMachineManage')}}
+                                    <option selected value="">
+                                        {{vc.i18n('请选择厂家','meterMachineManage')}}
                                     </option>
                                     <option :value="item.factoryId"
-                                        v-for="(item,index) in meterMachineManageInfo.factorys">{{item.factoryName}}
+                                            v-for="(item,index) in meterMachineManageInfo.factorys">{{item.factoryName}}
                                     </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
                 </div>
             </div>
@@ -87,64 +92,65 @@
                         <vc:i18n name="智能水电表" namespace="meterMachineManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openCustomRead()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openCustomRead()">
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="手工抄表" namespace="meterMachineManage"></vc:i18n>
                         </button>
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openSettingMeterMachineRead()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openSettingMeterMachineRead()">
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="设置抄表时间" namespace="meterMachineManage"></vc:i18n>
                         </button>
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_openImportMeterMachine()">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openImportMeterMachine()">
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="导入" namespace="meterMachineManage"></vc:i18n>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMeterMachineModal()">
-                            <i class="glyphicon glyphicon-plus"></i>
+                            <i class="fa fa-plus"></i>
                             <vc:i18n name="添加" namespace="meterMachineManage"></vc:i18n>
                         </button>
-
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='编号' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='名称' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='表号' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='表类型' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='模式' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='房屋' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='费用项' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='厂家' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='剩余读数' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='当前读数' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='读表时间' namespace='meterMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='操作'></vc:i18n>
-                                    </span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name='编号' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='名称' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='表号' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='表类型' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='模式' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='房屋' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='费用项' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='厂家' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='剩余读数' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='当前读数' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='读表时间' namespace='meterMachineManage'></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name='操作'></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
                             <tr v-for="meterMachine in meterMachineManageInfo.meterMachines">
@@ -196,7 +202,4 @@
     <vc:create path="machine/settingMeterMachineRead"></vc:create>
     <vc:create path="machine/customReadMeterMachine"></vc:create>
     <vc:create path="machine/importMeterMachine"></vc:create>
-
-
-
 </div>

@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -20,67 +20,68 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             vc.component._listExamineProjects(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('examineProjectManage', 'listExamineProject', function(_param) {
+        _initEvent: function () {
+            vc.on('examineProjectManage', 'listExamineProject', function (_param) {
                 vc.component._listExamineProjects(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listExamineProjects(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listExamineProjects: function(_page, _rows) {
-
+            _listExamineProjects: function (_page, _rows) {
                 vc.component.examineProjectManageInfo.conditions.page = _page;
                 vc.component.examineProjectManageInfo.conditions.row = _rows;
                 let param = {
                     params: vc.component.examineProjectManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/examine.listExamineProject',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _examineProjectManageInfo = JSON.parse(json);
                         vc.component.examineProjectManageInfo.total = _examineProjectManageInfo.total;
                         vc.component.examineProjectManageInfo.records = _examineProjectManageInfo.records;
                         vc.component.examineProjectManageInfo.examineProjects = _examineProjectManageInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.examineProjectManageInfo.records,
+                            dataCount: vc.component.examineProjectManageInfo.total,
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openAddExamineProjectModal: function() {
+            _openAddExamineProjectModal: function () {
                 vc.emit('addExamineProject', 'openAddExamineProjectModal', {});
             },
-            _openEditExamineProjectModel: function(_examineProject) {
+            _openEditExamineProjectModel: function (_examineProject) {
                 vc.emit('editExamineProject', 'openEditExamineProjectModal', _examineProject);
             },
-            _openDeleteExamineProjectModel: function(_examineProject) {
+            _openDeleteExamineProjectModel: function (_examineProject) {
                 vc.emit('deleteExamineProject', 'openDeleteExamineProjectModal', _examineProject);
             },
-            _queryExamineProjectMethod: function() {
+            _queryExamineProjectMethod: function () {
                 vc.component._listExamineProjects(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
-            _moreCondition: function() {
+            _resetExamineProjectMethod: function () {
+                vc.component.examineProjectManageInfo.conditions.name = "";
+                vc.component.examineProjectManageInfo.conditions.post = "";
+                vc.component.examineProjectManageInfo.conditions.state = "";
+                vc.component._listExamineProjects(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _moreCondition: function () {
                 if (vc.component.examineProjectManageInfo.moreCondition) {
                     vc.component.examineProjectManageInfo.moreCondition = false;
                 } else {
                     vc.component.examineProjectManageInfo.moreCondition = true;
                 }
             }
-
-
         }
     });
 })(window.vc);

@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 1;
     vc.extends({
@@ -26,16 +26,17 @@
                 taskId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.purchaseApplyDetailInfo.applyOrderId = vc.getParam('applyOrderId');
             $that.purchaseApplyDetailInfo.resOrderType = vc.getParam('resOrderType');
             $that.purchaseApplyDetailInfo.action = vc.getParam('action');
             $that.purchaseApplyDetailInfo.taskId = vc.getParam('taskId');
             $that._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {},
+        _initEvent: function () {
+        },
         methods: {
-            _listPurchaseApply: function(_page, _rows) {
+            _listPurchaseApply: function (_page, _rows) {
                 let param = {
                     params: {
                         page: _page,
@@ -47,14 +48,13 @@
                 //发送get请求
                 vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.copyObject(_purchaseApply[0], $that.purchaseApplyDetailInfo);
                         if ($that.purchaseApplyDetailInfo.warehousingWay == 20000) {
                             $that._loadAuditUser();
                         }
-
                         if ($that.purchaseApplyDetailInfo.action == 'audit') {
                             vc.emit('auditDiv', 'noifyData', {
                                 createUserId: _purchaseApply[0].createUserId,
@@ -65,12 +65,12 @@
                             })
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadAuditUser: function() {
+            _loadAuditUser: function () {
                 let param = {
                     params: {
                         businessKey: $that.purchaseApplyDetailInfo.applyOrderId,
@@ -80,20 +80,24 @@
                 //发送get请求
                 vc.http.apiGet('workflow.listWorkflowAuditInfo',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _json = JSON.parse(json);
                         $that.purchaseApplyDetailInfo.auditUsers = _json.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _callBackListPurchaseApply: function() {
+            _callBackListPurchaseApply: function () {
                 vc.getBack();
             },
-            _printPurchaseApply: function() {
-                window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId=" + $that.purchaseApplyDetailInfo.applyOrderId + "&resOrderType=" + $that.purchaseApplyDetailInfo.resOrderType)
+            _printPurchaseApply: function () {
+                if (vc.component.purchaseApplyDetailInfo.resOrderType == '10000') {
+                    window.open("/print.html#/pages/property/printPurchaseApply?applyOrderId=" + $that.purchaseApplyDetailInfo.applyOrderId + "&resOrderType=" + $that.purchaseApplyDetailInfo.resOrderType)
+                } else if (vc.component.purchaseApplyDetailInfo.resOrderType == '20000') {
+                    window.open("/print.html#/pages/property/printPurchaseOutApply?applyOrderId=" + $that.purchaseApplyDetailInfo.applyOrderId + "&resOrderType=" + $that.purchaseApplyDetailInfo.resOrderType)
+                }
             }
         }
     });

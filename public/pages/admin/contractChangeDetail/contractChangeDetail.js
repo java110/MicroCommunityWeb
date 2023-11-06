@@ -76,7 +76,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "合同名称不能超过64位"
-                        },
+                        }
                     ],
                     'newContract.contractCode': [
                         {
@@ -88,7 +88,7 @@
                             limit: "maxLength",
                             param: "30",
                             errInfo: "合同编号错误"
-                        },
+                        }
                     ],
                     'newContract.contractType': [
                         {
@@ -100,7 +100,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "合同类型格式错误"
-                        },
+                        }
                     ],
                     'newContract.partyA': [
                         {
@@ -112,7 +112,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "甲方名称太长"
-                        },
+                        }
                     ],
                     'newContract.partyB': [
                         {
@@ -124,7 +124,7 @@
                             limit: "maxLength",
                             param: "200",
                             errInfo: "乙方名称太长"
-                        },
+                        }
                     ],
                     'newContract.aContacts': [
                         {
@@ -136,7 +136,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "甲方联系人长度超过64位"
-                        },
+                        }
                     ],
                     'newContract.bContacts': [
                         {
@@ -148,7 +148,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "甲方联系人长度超过64位"
-                        },
+                        }
                     ],
                     'newContract.aLink': [
                         {
@@ -160,7 +160,7 @@
                             limit: "phone",
                             param: "",
                             errInfo: "甲方联系电话错误"
-                        },
+                        }
                     ],
                     'newContract.bLink': [
                         {
@@ -172,7 +172,7 @@
                             limit: "phone",
                             param: "",
                             errInfo: "乙方联系电话错误"
-                        },
+                        }
                     ],
                     'newContract.operator': [
                         {
@@ -184,7 +184,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "经办人超过64位"
-                        },
+                        }
                     ],
                     'newContract.operatorLink': [
                         {
@@ -196,13 +196,15 @@
                             limit: "phone",
                             param: "",
                             errInfo: "经办人联系电话格式错误"
-                        },
+                        }
                     ],
-                    'newContract.amount': [{
-                        limit: "money",
-                        param: "",
-                        errInfo: "合同金额格式错误，如1.50"
-                    }],
+                    'newContract.amount': [
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "合同金额格式错误，如1.50"
+                        }
+                    ],
                     'newContract.startTime': [
                         {
                             limit: "required",
@@ -213,7 +215,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "合同开始时间格式错误"
-                        },
+                        }
                     ],
                     'newContract.endTime': [
                         {
@@ -225,7 +227,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "合同结束时间格式错误"
-                        },
+                        }
                     ],
                     'newContract.signingTime': [
                         {
@@ -237,7 +239,7 @@
                             limit: "dateTime",
                             param: "",
                             errInfo: "合同签订时间格式错误"
-                        },
+                        }
                     ],
                     'newContract.changeRemark': [
                         {
@@ -249,7 +251,7 @@
                             limit: "maxLength",
                             param: "1000",
                             errInfo: "变更原因太长"
-                        },
+                        }
                     ]
                 });
             },

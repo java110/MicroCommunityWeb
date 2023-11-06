@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             addItemOutInfo: {
@@ -23,10 +23,10 @@
                 communityId: vc.getCurrentCommunity().communityId,
                 shId: '',
                 storehouses: [],
-                flowId: '',
+                flowId: ''
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //10000 采购 20000出库
             let userInfo = vc.getData('/nav/getUserInfo');
             $that.addItemOutInfo.endUserName = userInfo.name;
@@ -34,8 +34,8 @@
             $that._loadResourceSuppliers();
             $that._listPurchaseStorehouses();
         },
-        _initEvent: function() {
-            vc.on('addItemOut', 'setSelectResourceStores', function(resourceStores) {
+        _initEvent: function () {
+            vc.on('addItemOut', 'setSelectResourceStores', function (resourceStores) {
                 let oldList = $that.addItemOutInfo.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
@@ -50,7 +50,8 @@
                             }
                         })
                     })
-                    // 合并已有商品和新添加商品
+                })
+                // 合并已有商品和新添加商品
                 resourceStores.push.apply(resourceStores, oldList);
                 // 过滤空元素
                 resourceStores = resourceStores.filter((s) => {
@@ -65,9 +66,8 @@
                     shId: $that.addItemOutInfo.shId
                 });
             },
-            _finishStep: function() {
+            _finishStep: function () {
                 let _resourceStores = $that.addItemOutInfo.resourceStores;
-
                 if (!_resourceStores || _resourceStores.length < 0) {
                     vc.toast("未选择采购物品");
                     return;
@@ -80,49 +80,48 @@
                         _validate = false;
                     }
                 });
-
-
                 if (!_validate) {
                     vc.toast('库存不够');
                     return;
                 }
-
                 vc.http.apiPost(
                     '/collection/goodsCollection',
                     JSON.stringify($that.addItemOutInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
-                        vc.toast(_json.msg);
                         if (_json.code == 0) {
                             //关闭model
                             vc.goBack();
+                            vc.toast("领用成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
             },
             _loadResourceSuppliers() {
                 let param = {
-                    params: { page: 1, row: 50 }
+                    params: {page: 1, row: 50}
                 };
                 //发送get请求
                 vc.http.apiGet('/resourceSupplier.listResourceSuppliers',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.addItemOutInfo.resourceSuppliers = _json.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _listPurchaseStorehouses: function(_page, _rows) {
+            _listPurchaseStorehouses: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -134,26 +133,26 @@
                 //发送get请求
                 vc.http.apiGet('/resourceStore.listStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.addItemOutInfo.storehouses = _json.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             // 移除选中item
-            _removeSelectResourceStoreItem: function(resId) {
+            _removeSelectResourceStoreItem: function (resId) {
                 $that.addItemOutInfo.resourceStores.forEach((item, index) => {
-                        if (item.resId == resId) {
-                            $that.addItemOutInfo.resourceStores.splice(index, 1);
-                        }
-                    })
-                    // 同时移除子页面复选框选项
+                    if (item.resId == resId) {
+                        $that.addItemOutInfo.resourceStores.splice(index, 1);
+                    }
+                })
+                // 同时移除子页面复选框选项
                 vc.emit('chooseResourceStore2', 'removeSelectResourceStoreItem', resId);
             },
-            _changeTimesId: function(e, index) {
+            _changeTimesId: function (e, index) {
                 let timeId = e.target.value;
                 let times = $that.addItemOutInfo.resourceStores[index].times;
                 times.forEach((item) => {
@@ -164,7 +163,7 @@
                 });
                 $that.$forceUpdate();
             },
-            _getTimesStock: function(_resourceStore) {
+            _getTimesStock: function (_resourceStore) {
                 if (!_resourceStore.timesId) {
                     return "-";
                 }
@@ -179,7 +178,7 @@
                 }
                 return _stock;
             },
-            _loadStaffOrg: function(_flowId) {
+            _loadStaffOrg: function (_flowId) {
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
@@ -189,7 +188,7 @@
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow.queryFirstAuditStaff',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _staffInfo = JSON.parse(json);
                         if (_staffInfo.code != 0) {
                             //vc.toast(_staffInfo.msg);
@@ -201,15 +200,15 @@
                             $that.addItemOutInfo.audit.staffId = $that.addItemOutInfo.audit.assignee;
                         }
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
             },
-            chooseStaff: function() {
+            chooseStaff: function () {
                 vc.emit('selectStaff', 'openStaff', $that.addItemOutInfo.audit);
             },
-            _computeFlow: function() {
+            _computeFlow: function () {
                 let _storehouses = $that.addItemOutInfo.storehouses;
                 let _flowId = "";
                 _storehouses.forEach(item => {

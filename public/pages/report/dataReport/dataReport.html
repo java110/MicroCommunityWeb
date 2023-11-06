@@ -115,7 +115,6 @@
                             <vc:i18n name="欠费明细" namespace="dataReport"></vc:i18n>
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link"
                             v-bind:class="{active:dataReportInfo._currentTab == 'dataReportFeeStatistics'}"
@@ -163,10 +162,6 @@
             <div v-if="dataReportInfo._currentTab == 'dataMonthOweStatistics'">
                 <vc:create path="report/dataMonthOweStatistics"></vc:create>
             </div>
-
         </div>
     </div>
-
-
-
 </div>

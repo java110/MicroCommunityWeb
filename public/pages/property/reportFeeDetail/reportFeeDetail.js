@@ -1,9 +1,10 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             reportFeeDetailInfo: {
                 _currentTab: 'reportFeeDetailRoom',
                 floors: [],
+                moreCondition: false,
                 communitys:[],
                 conditions: {
                     floorId: '',
@@ -18,7 +19,7 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initDate();
             $that._loadStaffCommunitys();
             $that.reportFeeDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
@@ -26,15 +27,16 @@
 
 
         },
-        _initEvent: function() {
-            vc.on("indexContext", "_queryIndexContextData", function(_param) {});
+        _initEvent: function () {
+            vc.on("indexContext", "_queryIndexContextData", function (_param) {
+            });
         },
         methods: {
-            _initDate: function() {
-                vc.initDate('startDate', function(_value) {
+            _initDate: function () {
+                vc.initDate('startDate', function (_value) {
                     $that.reportFeeDetailInfo.conditions.startDate = _value;
                 });
-                vc.initDate('endDate', function(_value) {
+                vc.initDate('endDate', function (_value) {
                     $that.reportFeeDetailInfo.conditions.endDate = _value;
                 });
                 let _data = new Date();
@@ -55,7 +57,7 @@
                 }
                 $that.reportFeeDetailInfo.conditions.endDate = _newDate;
             },
-            changeTab: function(_tab) {
+            changeTab: function (_tab) {
                 $that.reportFeeDetailInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', $that.reportFeeDetailInfo.conditions)
             },

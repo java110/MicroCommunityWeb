@@ -3,7 +3,7 @@
         data: {
             ownerOweFeesInfo: {
                 fees: [],
-                ownerId:''
+                ownerId: ''
             }
         },
         _initMethod: function () {
@@ -22,13 +22,12 @@
             _loadOwnerOweFeeInfo: function (_page, _row) {
                 let param = {
                     params: {
-                        page:_page,
-                        row:_row,
+                        page: _page,
+                        row: _row,
                         communityId: vc.getCurrentCommunity().communityId,
-                        ownerId:$that.ownerOweFeesInfo.ownerId 
+                        ownerId: $that.ownerOweFeesInfo.ownerId
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/reportOweFee/queryReportOweFee',
                     param,
@@ -53,7 +52,6 @@
                 });
                 $('#ownerOweFeesModel').modal('hide');
             },
-            
             _getFeeOweAllAmount: function (item) {
                 let _fees = $that.ownerOweFeesInfo.fees;
                 let _amountOwed = 0.0;

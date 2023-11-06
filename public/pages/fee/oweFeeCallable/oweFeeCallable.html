@@ -11,26 +11,29 @@
                             <h5>
                                 <vc:i18n name="查询条件"></vc:i18n>
                             </h5>
-                            <div class="ibox-tools" style="top:10px;">
-
-                            </div>
+                            <div class="ibox-tools" style="top:10px;"></div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写业主名称','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.ownerName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写业主名称','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.ownerName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写费用名称','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.feeName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写费用名称','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.feeName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select class="custom-select" v-model="oweFeeCallableInfo.conditions.callableWay">
-                                            <option selected  value="">{{vc.i18n('请选择催缴方式','oweFeeCallable')}}</option>
+                                        <select class="custom-select"
+                                                v-model="oweFeeCallableInfo.conditions.callableWay">
+                                            <option selected value="">
+                                                {{vc.i18n('请选择催缴方式','oweFeeCallable')}}
+                                            </option>
                                             <option value="WECHAT">微信模板消息</option>
                                             <option value="SMS">短信</option>
                                             <option value="PRINT">上门催缴</option>
@@ -39,13 +42,14 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请填写催缴人','oweFeeCallable')" v-model="oweFeeCallableInfo.conditions.staffName" class=" form-control">
+                                        <input type="text" :placeholder="vc.i18n('请填写催缴人','oweFeeCallable')"
+                                               v-model="oweFeeCallableInfo.conditions.staffName" class=" form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <select class="custom-select" v-model="oweFeeCallableInfo.conditions.state">
-                                            <option selected  value="">{{vc.i18n('请选择状态','oweFeeCallable')}}</option>
+                                            <option selected value="">{{vc.i18n('请选择状态','oweFeeCallable')}}</option>
                                             <option value="W">待催缴</option>
                                             <option value="C">催缴完成</option>
                                             <option value="F">催缴失败</option>
@@ -53,9 +57,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryOweFeeCallableMethod()">
-                                            <vc:i18n name="查询"></vc:i18n>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_queryOweFeeCallableMethod()">
+                                        <i class="fa fa-search"></i>
+                                        <vc:i18n name="查询"></vc:i18n>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_resetOweFeeCallableMethod()">
+                                        <i class="fa fa-repeat"></i>
+                                        <vc:i18n name="重置"></vc:i18n>
                                     </button>
                                 </div>
                             </div>
@@ -148,11 +159,11 @@
                                     </tr>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <td colspan="7">
-                                            <ul class="pagination float-right"></ul>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="12">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
                             <!-- 分页 -->
@@ -163,8 +174,6 @@
             </div>
         </div>
     </div>
-
     <vc:create path="fee/writeOweFeeCallable"></vc:create>
     <vc:create path="fee/deleteOweFeeCallable"></vc:create>
-
 </div>

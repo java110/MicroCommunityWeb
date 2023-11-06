@@ -74,7 +74,7 @@
                                             {{car.carColor}}
                                         </td>
                                         <td class="text-center">
-                                            {{car.ownerName}}({{car.link}})
+                                            {{car.ownerName}}<br>({{car.link}})
                                         </td>
                                         <td v-if="car.areaNum && car.state == '1001'" class="text-center">
                                             {{car.areaNum}}
@@ -99,7 +99,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <td colspan="6">
+                                        <td colspan="7">
                                             <ul class="pagination float-right"></ul>
                                         </td>
                                     </tr>

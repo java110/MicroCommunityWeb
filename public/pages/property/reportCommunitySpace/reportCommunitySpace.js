@@ -55,6 +55,7 @@
                         vc.component.reportCommunitySpaceInfo.communitySpaces = _reportCommunitySpaceInfo.data;
                         vc.emit('pagination', 'init', {
                             total: vc.component.reportCommunitySpaceInfo.records,
+                            dataCount: vc.component.reportCommunitySpaceInfo.total,
                             currentPage: _page
                         });
                     },

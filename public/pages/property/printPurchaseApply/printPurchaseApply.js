@@ -1,10 +1,8 @@
 (function (vc) {
-
     vc.extends({
         data: {
-            printPurchaseApplyInfo: {
-            },
-            printFlag:'0'
+            printPurchaseApplyInfo: {},
+            printFlag: '0'
         },
         _initMethod: function () {
             vc.component._initPrintPurchaseApplyDateInfo();
@@ -27,7 +25,6 @@
                         resOrderType: _resOrderType
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,
@@ -39,25 +36,19 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
-
             _printPurchaseApplyDiv: function () {
-                
                 $that.printFlag = '1';
-                console.log('console.log($that.printFlag);',$that.printFlag);
-                document.getElementById("print-btn").style.display="none";//隐藏
-
+                document.getElementById("print-btn").style.display = "none";//隐藏
                 window.print();
                 //$that.printFlag = false;
-                window.opener=null;
+                window.opener = null;
                 window.close();
             },
             _closePage: function () {
-                window.opener=null;
+                window.opener = null;
                 window.close();
             }
         }
     });
-
 })(window.vc);

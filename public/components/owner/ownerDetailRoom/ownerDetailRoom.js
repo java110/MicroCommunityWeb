@@ -8,9 +8,9 @@
         data: {
             ownerDetailRoomInfo: {
                 rooms: [],
-                ownerId:'',
+                ownerId: '',
                 roomNum: '',
-                allOweFeeAmount:'0'
+                allOweFeeAmount: '0'
             }
         },
         _initMethod: function () {
@@ -25,7 +25,7 @@
                     vc.component._loadOwnerDetailRoomData(_currentPage, DEFAULT_ROWS);
                 });
             vc.on('ownerDetailRoom', 'notify', function (_data) {
-                $that._loadOwnerDetailRoomData(DEFAULT_PAGE,DEFAULT_ROWS);
+                $that._loadOwnerDetailRoomData(DEFAULT_PAGE, DEFAULT_ROWS);
             })
         },
         methods: {
@@ -33,13 +33,12 @@
                 let param = {
                     params: {
                         communityId: vc.getCurrentCommunity().communityId,
-                        ownerId:$that.ownerDetailRoomInfo.ownerId,
-                        roomNum:$that.ownerDetailRoomInfo.roomNum,
-                        page:_page,
-                        row:_row
+                        ownerId: $that.ownerDetailRoomInfo.ownerId,
+                        roomNum: $that.ownerDetailRoomInfo.roomNum,
+                        page: _page,
+                        row: _row
                     }
                 };
-               
                 //发送get请求
                 vc.http.apiGet('/room.queryRoomsByOwner',
                     param,
@@ -62,29 +61,31 @@
             _qureyOwnerDetailRoom: function () {
                 $that._loadOwnerDetailRoomData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-
-            _computeOwnerRoomOweFeeAmount(){
+            //重置
+            _resetOwnerDetailRoom: function () {
+                vc.component.ownerDetailRoomInfo.roomNum = "";
+                $that._loadOwnerDetailRoomData(DEFAULT_PAGE, DEFAULT_ROWS);
+            },
+            _computeOwnerRoomOweFeeAmount() {
                 let _rooms = $that.ownerDetailRoomInfo.rooms;
                 let _totalOweFeeAmount = 0;
                 $that.ownerDetailRoomInfo.allOweFeeAmount = 0;
-                if(!_rooms ||_rooms.length <1){
-                    return ;
+                if (!_rooms || _rooms.length < 1) {
+                    return;
                 }
-
                 _rooms.forEach(_room => {
-                    if(_room.roomOweFee){
+                    if (_room.roomOweFee) {
                         _totalOweFeeAmount += parseFloat(_room.roomOweFee);
                     }
                 });
-
                 $that.ownerDetailRoomInfo.allOweFeeAmount = _totalOweFeeAmount.toFixed(2);
             },
             _openAddOwnerRoom: function () {
                 vc.jumpToPage("/#/pages/property/addOwnerRoomBinding?ownerId=" + $that.ownerDetailRoomInfo.ownerId);
             },
-            ownerExitRoomModel: function(_room) {
+            ownerExitRoomModel: function (_room) {
                 vc.emit('ownerExitRoom', 'openExitRoomModel', {
-                    ownerId:  $that.ownerDetailRoomInfo.ownerId,
+                    ownerId: $that.ownerDetailRoomInfo.ownerId,
                     roomId: _room.roomId
                 });
             },

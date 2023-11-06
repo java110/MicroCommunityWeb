@@ -23,8 +23,8 @@
                     roomNum: '',
                     roomId: '',
                     roomName: '',
-                    memberName:'',
-                    memberLink:''
+                    memberName: '',
+                    memberLink: ''
                 },
                 currentPage: DEFAULT_PAGE,
                 listColumns: []
@@ -84,6 +84,8 @@
                 param.params.link = param.params.link.trim();
                 param.params.ownerId = param.params.ownerId.trim();
                 param.params.idCard = param.params.idCard.trim();
+                param.params.memberName = param.params.memberName.trim();
+                param.params.memberLink = param.params.memberLink.trim();
                 //发送get请求
                 vc.http.apiGet('/owner.queryOwners',
                     param,
@@ -125,6 +127,8 @@
                 $that.listOwnerInfo.conditions.name = "";
                 $that.listOwnerInfo.conditions.roomName = "";
                 $that.listOwnerInfo.conditions.link = "";
+                $that.listOwnerInfo.conditions.memberName = "";
+                $that.listOwnerInfo.conditions.memberLink = "";
                 $that.listOwnerInfo.conditions.ownerId = "";
                 $that.listOwnerInfo.conditions.idCard = "";
                 $that._listOwnerData(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -139,7 +143,7 @@
                 vc.jumpToPage("/#/pages/property/sellParkingSpace?ownerId=" + _owner.ownerId);
             },
             _openOwnerDetailModel: function (_owner) {
-                vc.jumpToPage("/#/pages/owner/ownerDetail?ownerId=" + _owner.ownerId + "&ownerName=" + _owner.name+"&needBack=true");
+                vc.jumpToPage("/#/pages/owner/ownerDetail?ownerId=" + _owner.ownerId + "&ownerName=" + _owner.name + "&needBack=true");
             },
             _openDeleteOwnerRoom: function (_owner) {
                 vc.jumpToPage("/#/pages/property/deleteOwnerRoom?ownerId=" + _owner.ownerId);

@@ -17,10 +17,10 @@
                         <!--费用类型-->
                         <div class="col-sm-3">
                             <select class="custom-select" v-model="reportProficientInfo.conditions.feeTypeCd"
-                                @click="_changeReporficientFeeTypeCd()">
+                                    @click="_changeReporficientFeeTypeCd()">
                                 <option selected value="">{{vc.i18n('请选择收费类型','reportProficient')}}</option>
                                 <option v-for="(item,index) in reportProficientInfo.feeTypeCds" :key="index"
-                                    v-bind:value="item.statusCd">{{item.name}}
+                                        v-bind:value="item.statusCd">{{item.name}}
                                 </option>
                             </select>
                         </div>
@@ -28,10 +28,10 @@
                             <div class="form-group">
                                 <!-- @click="_changeReporficientConfigId()"-->
                                 <select class="form-control-md form-control input-s-sm inline"
-                                    v-model="reportProficientInfo.conditions.configId">
+                                        v-model="reportProficientInfo.conditions.configId">
                                     <option selected value="">{{vc.i18n('请选择收费项','reportProficient')}}</option>
                                     <option v-for="(item,index) in reportProficientInfo.feeConfigDtos" :key="index"
-                                        :value="item.configId">
+                                            :value="item.configId">
                                         {{item.feeName}}
                                     </option>
                                 </select>
@@ -40,8 +40,8 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-md"
-                                    :placeholder="_getReportProficientRoomName()"
-                                    v-model="reportProficientInfo.conditions.objName">
+                                       :placeholder="_getReportProficientRoomName()"
+                                       v-model="reportProficientInfo.conditions.objName">
                             </div>
                         </div>
                         <div class="col-sm-2">

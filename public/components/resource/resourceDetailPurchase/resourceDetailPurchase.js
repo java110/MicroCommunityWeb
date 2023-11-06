@@ -8,7 +8,7 @@
         data: {
             resourceDetailPurchaseInfo: {
                 purchaseApplyDetails: [],
-                resId: '',
+                resId: ''
             }
         },
         _initMethod: function () {
@@ -38,7 +38,6 @@
                         row: _row
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('/purchaseApplyDetail.listPurchaseApplyDetails',
                     param,
@@ -60,6 +59,13 @@
             _qureyResourceDetailPurchase: function () {
                 $that._loadResourceDetailPurchaseData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
+            _viewPurchaseApplyDetail: function(item) {
+                vc.emit('viewData', 'openViewDataModal', {
+                    data: {
+                        "备注": item.purchaseRemark
+                    }
+                })
+            }
         }
     });
 })(window.vc);

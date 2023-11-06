@@ -6,7 +6,13 @@
                 <option disabled value="">{{vc.i18n('请选择收费类型','simplifyFeeReceipt')}}</option>
                 <option selected value="3333">{{vc.i18n('房屋费','simplifyFeeReceipt')}}</option>
                 <option value="6666">{{vc.i18n('车位费','simplifyFeeReceipt')}}</option>
-                <option value="7777">{{vc.i18n('合同费','simplifyFeeReceipt')}}</option>
+                <option value="7777">{{vc.i18n('合同费','simplifyFeeReceipt')}}</option>-->
+                <option selected disabled value="">
+                    {{vc.i18n('请选择收费类型','simplifyFeeReceipt')}}
+                </option>
+                <option v-for="(item,index) in simplifyFeeReceiptInfo.objTypes" :key="index"
+                        v-bind:value="item.statusCd">{{item.name}}
+                </option>
             </select>
         </div>
         <div class="col-lg-2 padding-right-xs padding-left-xl" v-if="simplifyFeeReceiptInfo.objType == '6666'">
@@ -32,8 +38,8 @@
                 <option value="F">{{vc.i18n('当前','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType ==
                     '6666'?'车辆':'房屋'}}
                 </option>
-                <option value="T">{{vc.i18n('全部','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType ==
-                    '6666'?'车辆':'房屋'}}
+                <option value="T">
+                    {{vc.i18n('全部','simplifyFeeReceipt')}}{{simplifyFeeReceiptInfo.objType == '6666'?'车辆':'房屋'}}
                 </option>
             </select>
         </div>
@@ -127,11 +133,11 @@
                 </tr>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="8">
-                        <ul class="pagination float-right"></ul>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="10">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
             </tfoot>
         </table>
         <div class="row">

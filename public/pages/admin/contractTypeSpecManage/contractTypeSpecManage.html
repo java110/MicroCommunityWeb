@@ -17,17 +17,17 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入规格名称','contractTypeSpecManage')"
+                                       v-model="contractTypeSpecManageInfo.conditions.specName" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <select class="custom-select" v-model="contractTypeSpecManageInfo.conditions.specShow">
                                 <option selected value="">{{vc.i18n('请选择规格是否显示','contractTypeSpecManage')}}</option>
                                 <option value="Y">{{vc.i18n('是','contractTypeSpecManage')}}</option>
                                 <option value="N">{{vc.i18n('否','contractTypeSpecManage')}}</option>
                             </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入规格名称','contractTypeSpecManage')"
-                                       v-model="contractTypeSpecManageInfo.conditions.specName" class=" form-control">
-                            </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm"

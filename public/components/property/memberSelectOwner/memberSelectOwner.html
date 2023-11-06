@@ -8,23 +8,17 @@
                 <div class="ibox-tools" style="top:10px;">
                     <button type="button" class="btn btn-primary btn-sm" v-on:click="openSearchOwnerModel()">
                         <i class="fa fa-search"></i>
-                        <span>
-                            <vc:i18n name="选择" namespace="memberSelectOwner"></vc:i18n>
-                        </span>
+                        <span><vc:i18n name="选择" namespace="memberSelectOwner"></vc:i18n></span>
                     </button>
                     <button type="button" class="btn btn-primary btn-sm"
-                        v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != '' && vc.hasPrivilege('502023032885101706')"
-                        style="margin-left:10px" v-on:click="openAddMemberModel()">
+                            v-if="ownerInfo.ownerId != null && ownerInfo.ownerId != '' && vc.hasPrivilege('502023032885101706')"
+                            style="margin-left:10px" v-on:click="openAddMemberModel()">
                         <i class="fa fa-plus"></i>
-                        <span>
-                            <vc:i18n name="添加成员" namespace="memberSelectOwner"></vc:i18n>
-                        </span>
+                        <span><vc:i18n name="添加成员" namespace="memberSelectOwner"></vc:i18n></span>
                     </button>
                 </div>
             </div>
             <div class="ibox-content">
-
-
                 <div class="form-group flex justify-between">
                     <label class="col-form-label">
                         <vc:i18n name="业主ID：" namespace="memberSelectOwner"></vc:i18n>
@@ -61,7 +55,6 @@
                     </label>
                     <label class="">{{ownerInfo.remark}}</label>
                 </div>
-
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             publishQuestionAnswerInfo: {
@@ -7,9 +7,10 @@
                 notifyWay: ''
             }
         },
-        _initMethod: function() {},
-        _initEvent: function() {
-            vc.on('publishQuestionAnswer', 'openPublishQuestionAnswerModal', function(_param) {
+        _initMethod: function () {
+        },
+        _initEvent: function () {
+            vc.on('publishQuestionAnswer', 'openPublishQuestionAnswerModal', function (_param) {
                 vc.copyObject(_param, $that.publishQuestionAnswerInfo);
                 $('#publishQuestionAnswerModel').modal('show');
             });
@@ -28,28 +29,26 @@
                         limit: "required",
                         param: "",
                         errInfo: "通知方式不能为空"
-                    }, ]
+                    }]
                 });
             },
-            publishQuestionAnswer: function() {
+            publishQuestionAnswer: function () {
                 if (!$that.publishQuestionAnswerValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 $that.publishQuestionAnswerInfo.communityId = vc.getCurrentCommunity().communityId;
-
                 vc.http.apiPost(
                     '/question.publishQuestion',
                     JSON.stringify($that.publishQuestionAnswerInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //关闭model
                             $('#publishQuestionAnswerModel').modal('hide');
-
                             $that.clearPublishQuestionAnswerInfo();
                             vc.emit('ownerVoting', 'listOwnerVoting', {});
                             vc.emit('questionAnswerManage', 'listQuestionAnswer', {})
@@ -59,19 +58,18 @@
                             vc.toast(_json.msg);
                         }
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.message(errInfo);
                     });
             },
-            clearPublishQuestionAnswerInfo: function() {
+            clearPublishQuestionAnswerInfo: function () {
                 $that.publishQuestionAnswerInfo = {
                     qaId: '',
                     qaName: '',
-                    notifyWay: '',
+                    notifyWay: ''
                 };
-            },
-
+            }
         }
     });
 })(window.vc);

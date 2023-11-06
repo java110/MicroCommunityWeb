@@ -10,44 +10,44 @@
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <vc:i18n name="楼栋" namespace="dataReportEarnedStatistics"></vc:i18n>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <vc:i18n name="户数" namespace="dataReportEarnedStatistics"></vc:i18n>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <vc:i18n name="收费户数" namespace="dataReportEarnedStatistics"></vc:i18n>
-                    </th>
-                    <th data-hide="phone" class="text-center">
-                        <vc:i18n name="实收" namespace="dataReportEarnedStatistics"></vc:i18n>
-                    </th>
-                    <th class="text-center" v-for="(item,index) in dataReportEarnedStatisticsInfo.feeTypeCds">
-                        {{item.name}}
-                    </th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="楼栋" namespace="dataReportEarnedStatistics"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="户数" namespace="dataReportEarnedStatistics"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="收费户数" namespace="dataReportEarnedStatistics"></vc:i18n>
+                </th>
+                <th data-hide="phone" class="text-center">
+                    <vc:i18n name="实收" namespace="dataReportEarnedStatistics"></vc:i18n>
+                </th>
+                <th class="text-center" v-for="(item,index) in dataReportEarnedStatisticsInfo.feeTypeCds">
+                    {{item.name}}
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="fee in dataReportEarnedStatisticsInfo.fees">
+            <tr v-for="fee in dataReportEarnedStatisticsInfo.fees">
+                <td class="text-center">
+                    {{fee.floorNum}}
+                </td>
+                <td class="text-center">
+                    {{fee.roomCount}}
+                </td>
+                <td class="text-center">
+                    {{fee.feeRoomCount}}
+                </td>
+                <td class="text-center">
+                    {{fee.receivedFee}}
+                </td>
+                <template v-for="(item,index) in dataReportEarnedStatisticsInfo.feeTypeCds">
                     <td class="text-center">
-                        {{fee.floorNum}}
+                        {{fee['receivedFee'+item.statusCd] || 0}}
                     </td>
-                    <td class="text-center">
-                        {{fee.roomCount}}
-                    </td>
-                    <td class="text-center">
-                        {{fee.feeRoomCount}}
-                    </td>
-                    <td class="text-center">
-                        {{fee.receivedFee}}
-                    </td>
-                    <template v-for="(item,index) in dataReportEarnedStatisticsInfo.feeTypeCds">
-                        <td class="text-center">
-                            {{fee['receivedFee'+item.statusCd] || 0}}
-                        </td>
-                    </template>
-                </tr>
+                </template>
+            </tr>
             </tbody>
         </table>
         <!-- 分页 -->

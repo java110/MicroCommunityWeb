@@ -7,9 +7,10 @@
                         <vc:i18n name="查询条件" namespace="shops"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <!-- <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                            v-on:click="_moreCondition()">{{shopsInfo.moreCondition == true ? '隐藏' : '更多'}}
-                        </button> -->
+                        <!--<button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
+                            {{shopsInfo.moreCondition == true ? '隐藏' : '更多'}}
+                        </button>-->
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -21,6 +22,12 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请填写商铺编号 格式 楼栋-商铺','shops')"
+                                       class="form-control form-control-sm" v-model.trim="shopsInfo.conditions.roomNum">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <select class="form-control-sm form-control input-s-sm inline"
                                     v-model.trim="shopsInfo.conditions.state">
                                 <option selected value="">{{vc.i18n('请选择状态','shops')}}</option>
@@ -28,12 +35,6 @@
                                 <option value="2007">{{vc.i18n('已出售','shops')}}</option>
                                 <option value="2008">{{vc.i18n('空闲','shops')}}</option>
                             </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写商铺编号 格式 楼栋-商铺','shops')"
-                                       class="form-control form-control-sm" v-model.trim="shopsInfo.conditions.roomNum">
-                            </div>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryShopsMethod()">
@@ -126,10 +127,10 @@
                                 <span><vc:i18n name="层" namespace="shops"></vc:i18n></span>
                             </td>
                             <td class="text-center" v-if="shops.ownerName">
-                                <a target="_blank" :href="'/#/pages/owner/ownerDetail?ownerId='+shops.ownerId">{{shops.ownerName}}</a> 
+                                <a target="_blank" :href="'/#/pages/owner/ownerDetail?ownerId='+shops.ownerId">{{shops.ownerName}}</a>
                             </td>
                             <td class="text-center" v-else>
-                                -
+                                --
                             </td>
                             <td class="text-center">
                                 {{shops.link?shops.link:'-'}}

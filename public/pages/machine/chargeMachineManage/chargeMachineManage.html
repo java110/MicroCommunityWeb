@@ -3,30 +3,35 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5><span>
-                            <vc:i18n name="查询条件"></vc:i18n>
-                        </span></h5>
-                    <div class="ibox-tools" style="top:10px;">
-
-                    </div>
+                    <h5>
+                        <span><vc:i18n name="查询条件"></vc:i18n></span>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择名称','chargeMachineManage')" v-model="chargeMachineManageInfo.conditions.machineName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择名称','chargeMachineManage')"
+                                       v-model="chargeMachineManageInfo.conditions.machineName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请选择设备编号','chargeMachineManage')" v-model="chargeMachineManageInfo.conditions.machineCode" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请选择设备编号','chargeMachineManage')"
+                                       v-model="chargeMachineManageInfo.conditions.machineCode" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryChargeMachineMethod()">
-                                <i class="glyphicon glyphicon-search"></i> <span>
-                                    <vc:i18n name="查询"></vc:i18n>
-                                </span>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryChargeMachineMethod()">
+                                <i class="fa fa-search"></i>
+                                <span><vc:i18n name="查询"></vc:i18n></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetChargeMachineMethod()">
+                                <i class="fa fa-repeat"></i>
+                                <span><vc:i18n name="重置"></vc:i18n></span>
                             </button>
                         </div>
                     </div>
@@ -38,81 +43,101 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span>
+                    <h5>
+                        <span>
                             <vc:i18n name="充电桩" namespace="chargeMachineManage"></vc:i18n>
-                        </span></h5>
+                        </span>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddChargeMachineModal()">
-                                <vc:i18n name="添加" namespace="chargeMachineManage"></vc:i18n>
+                            <i class="fa fa-plus"></i>
+                            <vc:i18n name="添加" namespace="chargeMachineManage"></vc:i18n>
                         </button>
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='名称' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='设备编号' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='厂家' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='插槽个数' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                <th class="text-center"><span>
-                                        <vc:i18n name='充电规则' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                    <th class="text-center"><span>
-                                        <vc:i18n name='状态' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th>
-                                <!-- <th class="text-center"><span>
-                                        <vc:i18n name='用量电价' namespace='chargeMachineManage'></vc:i18n>
-                                    </span></th> -->
-                                <th class="text-center"><span>
-                                        <vc:i18n name='操作'></vc:i18n>
-                                    </span></th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='名称' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='设备编号' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='厂家' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='插槽个数' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='充电规则' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
+                                    <vc:i18n name='状态' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>
+                            <!--<th class="text-center">
+                                <span>
+                                    <vc:i18n name='用量电价' namespace='chargeMachineManage'></vc:i18n>
+                                </span>
+                            </th>-->
+                            <th class="text-center">
+                                <span><vc:i18n name='操作'></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="chargeMachine in chargeMachineManageInfo.chargeMachines">
-                                <td class="text-center">{{chargeMachine.machineName}}</td>
-                                <td class="text-center">{{chargeMachine.machineCode}}</td>
-                                <td class="text-center">{{chargeMachine.factoryName}}</td>
-                                <td class="text-center">{{chargeMachine.portCount || 0}}(<a href="javascript:void(0)" @click="_viewPort(chargeMachine)">查看</a>)</td>
-                                <td class="text-center">{{chargeMachine.ruleName}}</td>
-                                <td class="text-center">{{chargeMachine.stateName}}</td>
-
-                                <!-- <td class="text-center">{{chargeMachine.energyPrice}}</td> -->
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openEditChargeMachineModel(chargeMachine)"><span>
-                                                <vc:i18n name='修改'></vc:i18n>
-                                            </span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteChargeMachineModel(chargeMachine)"><span>
-                                                <vc:i18n name='删除'></vc:i18n>
-                                            </span></button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_chargeMachineQrCode(chargeMachine)">
-                                            <vc:i18n name="二维码" namespace="chargeMachineManage"></vc:i18n>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr v-for="chargeMachine in chargeMachineManageInfo.chargeMachines">
+                            <td class="text-center">{{chargeMachine.machineName}}</td>
+                            <td class="text-center">{{chargeMachine.machineCode}}</td>
+                            <td class="text-center">{{chargeMachine.factoryName}}</td>
+                            <td class="text-center">{{chargeMachine.portCount || 0}}
+                                (<a href="javascript:void(0)" @click="_viewPort(chargeMachine)">查看</a>)
+                            </td>
+                            <td class="text-center">{{chargeMachine.ruleName}}</td>
+                            <td class="text-center">{{chargeMachine.stateName}}</td>
+                            <!-- <td class="text-center">{{chargeMachine.energyPrice}}</td> -->
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditChargeMachineModel(chargeMachine)">
+                                        <span><vc:i18n name='修改'></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteChargeMachineModel(chargeMachine)">
+                                        <span><vc:i18n name='删除'></vc:i18n></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_chargeMachineQrCode(chargeMachine)">
+                                        <vc:i18n name="二维码" namespace="chargeMachineManage"></vc:i18n>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->
@@ -121,10 +146,8 @@
             </div>
         </div>
     </div>
-
     <vc:create path="machine/addChargeMachine" callBackListener="" callBackFunction=""></vc:create>
     <vc:create path="machine/editChargeMachine"></vc:create>
     <vc:create path="machine/deleteChargeMachine"></vc:create>
     <vc:create path="machine/chargeMachineQrCode"></vc:create>
-
 </div>

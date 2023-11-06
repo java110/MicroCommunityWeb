@@ -1,14 +1,8 @@
 <div class="margin-top">
     <div class="row margin-top-lg">
-        <div class="col-lg-2 padding-right-xs padding-left-xl">
-
-        </div>
-        <div class="col-lg-2 padding-right-xs padding-right-xl">
-
-        </div>
-        <div class="col-lg-8 text-right">
-            
-        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl"></div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl"></div>
+        <div class="col-lg-8 text-right"></div>
     </div>
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
@@ -27,7 +21,7 @@
                     <vc:i18n name="甲方" namespace="contractDetailChange"></vc:i18n>
                 </th>
                 <th class="text-center">
-                   <vc:i18n name="乙方" namespace="contractDetailChange"></vc:i18n>
+                    <vc:i18n name="乙方" namespace="contractDetailChange"></vc:i18n>
                 </th>
                 <th class="text-center">
                     <vc:i18n name="变更类型" namespace="contractDetailChange"></vc:i18n>
@@ -44,8 +38,8 @@
                 <th class="text-center">
                     <vc:i18n name="状态" namespace="contractDetailChange"></vc:i18n>
                 </th>
-                <th class="text-right">
-                   <vc:i18n name="操作" namespace="contractDetailChange"></vc:i18n>
+                <th class="text-center">
+                    <vc:i18n name="操作" namespace="contractDetailChange"></vc:i18n>
                 </th>
             </tr>
             </thead>
@@ -61,7 +55,7 @@
                 <td class="text-center">{{contract.createTime}}</td>
                 <td class="text-center">{{contract.remark}}</td>
                 <td class="text-center">{{contract.stateName}}</td>
-                <td class="text-right">
+                <td class="text-center">
                     <div class="btn-group">
                         <button class="btn-white btn btn-xs" v-on:click="_toContractDetails(contract)">
                             <vc:i18n name="明细" namespace="contractDetailChange"></vc:i18n>
@@ -80,9 +74,7 @@
         </table>
         <!-- 分页 -->
         <div class="row">
-            <div class="col-sm-4">
-              
-            </div>
+            <div class="col-sm-4"></div>
             <div class="col-sm-8">
                 <vc:create namespace="contractDetailChange" path="frame/paginationPlus"></vc:create>
             </div>

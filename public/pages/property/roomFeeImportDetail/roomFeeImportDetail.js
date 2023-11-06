@@ -15,8 +15,7 @@
                     floorNum: '',
                     unitNum: '',
                     roomNum: '',
-                    importFeeId:''
-
+                    importFeeId: ''
                 }
             }
         },
@@ -31,14 +30,12 @@
         },
         methods: {
             _listImportFeeDetails: function (_page, _rows) {
-
                 vc.component.roomFeeImportDetailInfo.conditions.page = _page;
                 vc.component.roomFeeImportDetailInfo.conditions.row = _rows;
                 vc.component.roomFeeImportDetailInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
                 var param = {
                     params: vc.component.roomFeeImportDetailInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/importFee/queryImportFeeDetail',
                     param,
@@ -57,12 +54,9 @@
                 );
             },
             _openBillDetail: function () {
-
-
             },
             _queryFeeDetailMethod: function () {
                 vc.component._listImportFeeDetails(DEFAULT_PAGE, DEFAULT_ROWS);
-
             },
             _moreCondition: function () {
                 if (vc.component.roomFeeImportDetailInfo.moreCondition) {
@@ -71,11 +65,9 @@
                     vc.component.roomFeeImportDetailInfo.moreCondition = true;
                 }
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             }
-
-
         }
     });
 })(window.vc);

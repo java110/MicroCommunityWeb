@@ -2,13 +2,19 @@
     <div class="row margin-top">
         <div class="col-lg-10 text-right"></div>
         <div class="col-lg-2 text-right">
-            <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId" v-on:click="_openWritePrintOweFeeCallableModal()">
+            <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId"
+                    v-on:click="_openWritePrintOweFeeCallableModal()">
+                <i class="fa fa-plus"></i>
                 <vc:i18n name="登记" namespace="simplifyRoomFee"></vc:i18n>
             </button>
-                    <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId" v-on:click="_openAddOweFeeCallableModal()">
+            <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId"
+                    v-on:click="_openAddOweFeeCallableModal()">
+                <i class="fa fa-plus"></i>
                 <vc:i18n name="催缴" namespace="simplifyRoomFee"></vc:i18n>
             </button>
-            <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId" v-on:click="_printOwnOrder()">
+            <button type="button" class="btn btn-primary btn-sm" v-if="simplifyCallableInfo.roomId"
+                    v-on:click="_printOwnOrder()">
+                <i class="fa fa-plus"></i>
                 <vc:i18n name="催缴单" namespace="simplifyRoomFee"></vc:i18n>
             </button>
         </div>
@@ -16,44 +22,44 @@
     <div>
         <table class="footable table table-stripped toggle-arrow-tiny" style="margin-top:10px" data-page-size="10">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <vc:i18n name='编号' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='业主名称' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='付费对象名称' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='费用名称' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='催缴金额' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='欠费时间段' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='催缴方式' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='催缴人' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='状态' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='说明' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='创建时间' namespace='simplifyCallable'></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name='操作'></vc:i18n>
-                    </th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name='编号' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='业主名称' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='付费对象名称' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='费用名称' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='催缴金额' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='欠费时间段' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='催缴方式' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='催缴人' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='状态' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='说明' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='创建时间' namespace='simplifyCallable'></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name='操作'></vc:i18n>
+                </th>
+            </tr>
             </thead>
             <tbody>
                 <tr v-for="callable in simplifyCallableInfo.callables">
@@ -76,12 +82,19 @@
                         <div class="btn-group">
                             <button class="btn-white btn btn-xs"
                                 v-on:click="_openDeleteOweFeeCallableModel(callable)">
-                                <vc:i18n name='删除'></vc:i18n>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                            <vc:i18n name='删除'></vc:i18n>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="16">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="row">
             <div class="col-sm-12 float-right">
@@ -89,7 +102,6 @@
             </div>
         </div>
     </div>
-
     <vc:create path="fee/writeOweFeeCallable"></vc:create>
     <vc:create path="fee/deleteOweFeeCallable"></vc:create>
 </div>

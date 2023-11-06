@@ -41,9 +41,10 @@
                 $that.chooseResourceStoreInfo2.resOrderType = _resOrderType;
             });
             vc.on('chooseResourceStore2', 'openChooseResourceStoreModel2', function (_param) {
-                vc.copyObject(_param,$that.chooseResourceStoreInfo2);
+                vc.copyObject(_param, $that.chooseResourceStoreInfo2);
                 $('#chooseResourceStoreModel2').modal('show');
                 $that.chooseResourceStoreInfo2._currentResourceStoreName = "";
+                $that._listStorehouses();
                 $that._loadAllResourceStoreInfo(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
@@ -132,7 +133,6 @@
                 //传参
                 vc.emit("viewResourceStoreInfo2", "setSelectResourceStores", _resourceStores);
                 vc.emit($props.emitChooseResourceStore, 'setSelectResourceStores', _resourceStores);
-
                 $('#chooseResourceStoreModel2').modal('hide');
             },
             _listStorehouses: function (_page, _rows) {
@@ -170,7 +170,7 @@
                         page: 1,
                         row: 100,
                         communityId: vc.getCurrentCommunity().communityId,
-                        parentId:'0'
+                        parentId: '0'
                     }
                 };
                 //发送get请求

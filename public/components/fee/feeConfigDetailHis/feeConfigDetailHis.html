@@ -1,102 +1,106 @@
 <div class="">
     <div class="row ">
-        <div class="col-lg-12 text-right">
-
-        </div>
+        <div class="col-lg-12 text-right"></div>
     </div>
-
     <div class="margin-top">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
             <thead>
-                <tr>
-                    <th class="text-center">
-                        <vc:i18n name="费用类型" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="收费项目" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="费用标识" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="催缴类型" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="付费类型" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="缴费周期(单位:月)" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="有效期" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="计费单价(单位:元)" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="附加/固定费用(单位:元)" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="账户抵扣" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="手机缴费" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="进位方式" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="保留小数" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="动作" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="操作人" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                    <th class="text-center">
-                        <vc:i18n name="操作时间" namespace="feeConfigDetailHis"></vc:i18n>
-                    </th>
-                </tr>
+            <tr>
+                <th class="text-center">
+                    <vc:i18n name="费用类型" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="收费项目" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="费用标识" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="催缴类型" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="付费类型" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="缴费周期(单位:月)" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="有效期" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="计费单价(单位:元)" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="附加/固定费用(单位:元)" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="账户抵扣" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="手机缴费" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="进位方式" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="保留小数" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="动作" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="操作人" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+                <th class="text-center">
+                    <vc:i18n name="操作时间" namespace="feeConfigDetailHis"></vc:i18n>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr v-for="feeConfig in feeConfigDetailHisInfo.feeDetails">
-                    <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
-                    <td class="text-center">{{feeConfig.feeName}}</td>
-                    <td class="text-center">{{feeConfig.feeFlagName}}</td>
-                    <td class="text-center">{{feeConfig.billTypeName}}</td>
-                    <td class="text-center">{{feeConfig.paymentCd == '1200' ? '预付费':'后付费'}}</td>
-                    <td class="text-center">{{feeConfig.paymentCycle}}</td>
-                    <td class="text-center">{{feeConfig.startTime}}<br /> {{feeConfig.endTime}}
-                    </td>
-                    <td class="text-center">{{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
-                    </td>
-                    <td class="text-center">{{feeConfig.additionalAmount}}</td>
-                    <td class="text-center">{{feeConfig.deductFrom == 'Y' ? '是':'否'}}</td>
-                    <td class="text-center">{{feeConfig.payOnline == 'Y'?'是':'否'}}</td>
-                    <td class="text-center">
-                        <div v-if="feeConfig.scale == '1'">{{vc.i18n('四舍五入','feeConfigDetailHis')}}</div>
-                        <div v-if="feeConfig.scale == '3'">{{vc.i18n('向上进位','feeConfigDetailHis')}}</div>
-                        <div v-if="feeConfig.scale == '4'">{{vc.i18n('向下进位','feeConfigDetailHis')}}</div>
-                    </td>
-                    <td class="text-center">{{feeConfig.decimalPlace}}</td>
-                    <td class="text-center">
-                        {{_getHisConfigOperate(feeConfig)}}
-                    </td>
-                    <td class="text-center">
-                        {{feeConfig.userName || '-'}}
-                    </td>
-                    <td class="text-center">
-                        {{feeConfig.createTime || '-'}}
-                    </td>
-                </tr>
+            <tr v-for="feeConfig in feeConfigDetailHisInfo.feeDetails">
+                <td class="text-center">{{feeConfig.feeTypeCdName}}</td>
+                <td class="text-center">{{feeConfig.feeName}}</td>
+                <td class="text-center">{{feeConfig.feeFlagName}}</td>
+                <td class="text-center">{{feeConfig.billTypeName}}</td>
+                <td class="text-center">{{feeConfig.paymentCd == '1200' ? '预付费':'后付费'}}</td>
+                <td class="text-center">{{feeConfig.paymentCycle}}</td>
+                <td class="text-center">
+                    {{feeConfig.startTime}}<br/> {{feeConfig.endTime}}
+                </td>
+                <td class="text-center">
+                    {{feeConfig.computingFormula == '2002' ? '-':feeConfig.squarePrice}}
+                </td>
+                <td class="text-center">{{feeConfig.additionalAmount}}</td>
+                <td class="text-center">{{feeConfig.deductFrom == 'Y' ? '是':'否'}}</td>
+                <td class="text-center">{{feeConfig.payOnline == 'Y'?'是':'否'}}</td>
+                <td class="text-center">
+                    <div v-if="feeConfig.scale == '1'">{{vc.i18n('四舍五入','feeConfigDetailHis')}}</div>
+                    <div v-if="feeConfig.scale == '3'">{{vc.i18n('向上进位','feeConfigDetailHis')}}</div>
+                    <div v-if="feeConfig.scale == '4'">{{vc.i18n('向下进位','feeConfigDetailHis')}}</div>
+                </td>
+                <td class="text-center">{{feeConfig.decimalPlace}}</td>
+                <td class="text-center">
+                    {{_getHisConfigOperate(feeConfig)}}
+                </td>
+                <td class="text-center">
+                    {{feeConfig.userName || '-'}}
+                </td>
+                <td class="text-center">
+                    {{feeConfig.createTime || '-'}}
+                </td>
+            </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="16">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <!-- 分页 -->
         <div class="row">
-            <div class="col-sm-4">
-
-            </div>
+            <div class="col-sm-4"></div>
             <div class="col-sm-8">
                 <vc:create namespace="feeConfigDetailHis" path="frame/paginationPlus"></vc:create>
             </div>

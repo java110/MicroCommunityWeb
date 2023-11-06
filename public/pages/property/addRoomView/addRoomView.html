@@ -24,7 +24,7 @@
                         <select class="custom-select" v-model="addRoomViewInfo.floorId" @change="_loadUnit()">
                             <option selected disabled value="">{{vc.i18n('必填，请选择楼栋','addRoomView')}}</option>
                             <option v-for="(floor,index) in addRoomViewInfo.floors" :key="index"
-                                v-bind:value="floor.floorId">{{floor.floorName}}
+                                    v-bind:value="floor.floorId">{{floor.floorName}}
                             </option>
                         </select>
                     </div>
@@ -37,7 +37,7 @@
                         <select class="custom-select" v-model="addRoomViewInfo.unitId">
                             <option selected disabled value="">{{vc.i18n('必填，请选择单元','addRoomView')}}</option>
                             <option v-for="(unit,index) in addRoomViewInfo.units" :key="index"
-                                v-if="unit.unitNum != '0'" v-bind:value="unit.unitId">{{unit.unitNum}}
+                                    v-if="unit.unitNum != '0'" v-bind:value="unit.unitId">{{unit.unitNum}}
                             </option>
                         </select>
                     </div>
@@ -50,7 +50,7 @@
                     </label>
                     <div class="col-sm-4">
                         <input v-model="addRoomViewInfo.roomNum" type="text"
-                            :placeholder="vc.i18n('必填，请填写房屋编号','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请填写房屋编号','addRoomView')" class="form-control">
                     </div>
                     <label class="col-sm-2 col-form-label text-right">
                         <span>
@@ -59,10 +59,9 @@
                     </label>
                     <div class="col-sm-4">
                         <input v-model="addRoomViewInfo.layer" type="text"
-                            :placeholder="vc.i18n('必填，请填写房屋楼层','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请填写房屋楼层','addRoomView')" class="form-control">
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label text-right">
                         <span>
@@ -84,7 +83,7 @@
                     </label>
                     <div class="col-sm-4" v-if="addRoomViewInfo.roomSubType != '110'">
                         <input v-model="addRoomViewInfo.roomRent" type="text"
-                            :placeholder="vc.i18n('必填，请填写租金','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请填写租金','addRoomView')" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -95,7 +94,7 @@
                     </label>
                     <div class="col-sm-4">
                         <input v-model="addRoomViewInfo.builtUpArea" type="text"
-                            :placeholder="vc.i18n('必填，请填写建筑面积','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请填写建筑面积','addRoomView')" class="form-control">
                     </div>
                     <label class="col-sm-2 col-form-label text-right">
                         <span>
@@ -104,7 +103,7 @@
                     </label>
                     <div class="col-sm-4">
                         <input v-model="addRoomViewInfo.roomArea" type="text"
-                            :placeholder="vc.i18n('必填，请填写室内面积','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请填写室内面积','addRoomView')" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -115,7 +114,7 @@
                     </label>
                     <div class="col-sm-4">
                         <input v-model="addRoomViewInfo.feeCoefficient" type="text"
-                            :placeholder="vc.i18n('请填写算费系数','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('请填写算费系数','addRoomView')" class="form-control">
                     </div>
                     <label class="col-sm-2 col-form-label text-right">
                         <span>
@@ -136,11 +135,11 @@
                 </div>
                 <div class="form-group row" v-if="addRoomViewInfo.state != '2002'">
                     <label class="col-sm-2 col-form-label text-right">
-                            <vc:i18n name="业主" namespace="addRoomView"></vc:i18n>
+                        <vc:i18n name="业主" namespace="addRoomView"></vc:i18n>
                     </label>
                     <div class="col-sm-3">
                         <input v-model="addRoomViewInfo.ownerName" disabled type="text"
-                            :placeholder="vc.i18n('必填，请选择业主','addRoomView')" class="form-control">
+                               :placeholder="vc.i18n('必填，请选择业主','addRoomView')" class="form-control">
                     </div>
                     <div class="col-sm-1">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openChooseOwner()">选择业主
@@ -152,7 +151,7 @@
                         <label class="col-sm-2 col-form-label  text-right">{{item.specName}}</label>
                         <div class="col-sm-4">
                             <input v-model="item.value" type="text" :placeholder="item.specHoldplace"
-                                class="form-control">
+                                   class="form-control">
                         </div>
                     </div>
                     <div class="form-group row" v-if="item.specType == '3344'">
@@ -175,7 +174,7 @@
                     </label>
                     <div class="col-sm-4">
                         <textarea :placeholder="vc.i18n('选填，请填写备注','addRoomView')" class="form-control"
-                            v-model="addRoomViewInfo.remark">
+                                  v-model="addRoomViewInfo.remark">
                         </textarea>
                     </div>
                 </div>
@@ -194,8 +193,5 @@
             </div>
         </div>
     </div>
-
-    <vc:create path="property/searchOwner" emitChooseOwner="addRoomView" emitLoadData="addRoomView">
-    </vc:create>
-
+    <vc:create path="property/searchOwner" emitChooseOwner="addRoomView" emitLoadData="addRoomView"></vc:create>
 </div>

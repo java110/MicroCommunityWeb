@@ -6,8 +6,10 @@
             simplifyOwnerRoomsInfo: {
                 rooms: [],
                 ownerId: '',
-                roomId:'',
-                allOweFeeAmount:0,
+                roomId: '',
+                total: 0,
+                records: 1,
+                allOweFeeAmount: 0
             }
         },
         _initMethod: function () {
@@ -32,7 +34,7 @@
             );
         },
         methods: {
-            _listSimplifyOwnerRooms: function (_param) {
+            _listSimplifyOwnerRooms: function (_page, _row) {
                 let param = {
                     params: {
                         ownerId: vc.component.simplifyOwnerRoomsInfo.ownerId,
@@ -46,42 +48,48 @@
                         let _data = JSON.parse(json);
                         $that.simplifyOwnerRoomsInfo.rooms = _data.rooms;
                         $that._computeOwnerRoomOweFeeAmount();
+                        $that.simplifyOwnerRoomsInfo.total = _data.total;
+                        $that.simplifyOwnerRoomsInfo.records = _data.records;
+                        vc.emit('simplifyOwnerRooms', 'paginationPlus', 'init', {
+                            total: $that.simplifyOwnerRoomsInfo.records,
+                            dataCount: $that.simplifyOwnerRoomsInfo.total,
+                            currentPage: _page
+                        });
                     },
                     function () {
                         console.log('请求失败处理');
                     });
             },
             _toChooseOwnerRoomModel: function (_room) {
-               vc.emit('simplifyAcceptance', 'notifyRoom',_room);
+                vc.emit('simplifyAcceptance', 'notifyRoom', _room);
             },
-            _computeOwnerRoomOweFeeAmount(){
+            _computeOwnerRoomOweFeeAmount() {
                 let _rooms = $that.simplifyOwnerRoomsInfo.rooms;
                 let _totalOweFeeAmount = 0;
                 $that.simplifyOwnerRoomsInfo.allOweFeeAmount = 0;
-                if(!_rooms ||_rooms.length <1){
-                    return ;
+                if (!_rooms || _rooms.length < 1) {
+                    return;
                 }
-
                 _rooms.forEach(_room => {
-                    if(_room.roomOweFee){
+                    if (_room.roomOweFee) {
                         _totalOweFeeAmount += parseFloat(_room.roomOweFee);
                     }
                 });
-
                 $that.simplifyOwnerRoomsInfo.allOweFeeAmount = _totalOweFeeAmount.toFixed(2);
             },
             clearSimplifyOwnerRoomsInfo: function () {
                 $that.simplifyOwnerRoomsInfo = {
                     rooms: [],
                     ownerId: '',
-                    roomId:'',
-                    allOweFeeAmount:0,
+                    roomId: '',
+                    total: 0,
+                    records: 1,
+                    allOweFeeAmount: 0,
                 }
             },
             _openSimplifyOwnerRoomsBatchPayFeeModal: function () {
                 vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&payerObjType=3333")
-            },
-           
+            }
         }
     });
 })(window.vc);

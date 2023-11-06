@@ -1,18 +1,18 @@
 /**
-业主详情页面
+ 业主详情页面
  **/
 (function (vc) {
     vc.extends({
         data: {
             resourceDetailInfo: {
-                resId:'',
+                resId: '',
                 shName: '',
                 parentRstName: '',
                 rstName: '',
                 resName: '',
                 resCode: '',
                 rssName: '',
-                isFixedName:'',
+                isFixedName: '',
                 price: '',
                 outHighPrice: '',
                 outLowPrice: '',
@@ -21,9 +21,9 @@
                 miniUnitStock: '',
                 miniUnitCodeName: '',
                 miniStock: '',
-                averagePrice:'',
+                averagePrice: '',
                 _currentTab: 'resourceDetailPurchase',
-                needBack: false,
+                needBack: false
             }
         },
         _initMethod: function () {
@@ -32,7 +32,6 @@
                 return;
             }
             $that._loadResourceDetailInfo();
-
         },
         _initEvent: function () {
             vc.on('resourceDetail', 'listCarData', function (_info) {

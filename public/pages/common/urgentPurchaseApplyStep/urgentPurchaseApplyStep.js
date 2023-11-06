@@ -1,7 +1,7 @@
 /**
  入驻小区
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             urgentPurchaseApplyStepInfo: {
@@ -18,7 +18,7 @@
                 storehouses: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             //10000 采购 20000出库
             $that.urgentPurchaseApplyStepInfo.resOrderType = vc.getParam('resOrderType');
             let userInfo = vc.getData('/nav/getUserInfo');
@@ -26,23 +26,23 @@
             $that.urgentPurchaseApplyStepInfo.endUserTel = userInfo.tel;
             $that._listAllocationStorehouse();
         },
-        _initEvent: function() {
-            vc.on('urgentPurchaseApplyStep', 'chooseResourceStore', function(_app) {
+        _initEvent: function () {
+            vc.on('urgentPurchaseApplyStep', 'chooseResourceStore', function (_app) {
                 vc.copyObject(_app, $that.urgentPurchaseApplyStepInfo);
             });
-            vc.on('urgentPurchaseApplyStep', 'setSelectResourceStores', function(resourceStores) {
+            vc.on('urgentPurchaseApplyStep', 'setSelectResourceStores', function (resourceStores) {
                 let oldList = $that.urgentPurchaseApplyStepInfo.resourceStores;
                 // 过滤重复选择的商品
                 resourceStores.forEach((newItem, newIndex) => {
-                        newItem.rsId = '';
-                        newItem.shzId = '';
-                        oldList.forEach((oldItem) => {
-                            if (oldItem.resId == newItem.resId) {
-                                delete resourceStores[newIndex];
-                            }
-                        })
+                    newItem.rsId = '';
+                    newItem.shzId = '';
+                    oldList.forEach((oldItem) => {
+                        if (oldItem.resId == newItem.resId) {
+                            delete resourceStores[newIndex];
+                        }
                     })
-                    // 合并已有商品和新添加商品
+                })
+                // 合并已有商品和新添加商品
                 resourceStores.push.apply(resourceStores, oldList);
                 // 过滤空元素
                 resourceStores = resourceStores.filter((s) => {
@@ -52,7 +52,7 @@
             });
         },
         methods: {
-            _finishStep: function() {
+            _finishStep: function () {
                 let _resourceStores = $that.urgentPurchaseApplyStepInfo.resourceStores;
                 if (!_resourceStores || _resourceStores.length < 1) {
                     vc.toast('请选择采购物品');
@@ -63,15 +63,17 @@
                     JSON.stringify($that.urgentPurchaseApplyStepInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             vc.goBack();
+                            vc.toast(_json.msg);
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                         vc.toast(errInfo);
                     });
@@ -81,7 +83,7 @@
                     shId: $that.urgentPurchaseApplyStepInfo.shId
                 });
             },
-            _listAllocationStorehouse: function(_page, _rows) {
+            _listAllocationStorehouse: function (_page, _rows) {
                 let param = {
                     params: {
                         page: 1,
@@ -93,16 +95,16 @@
                 //发送get请求
                 vc.http.apiGet('resourceStore.listStorehouses',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _storehouseManageInfo = JSON.parse(json);
                         $that.urgentPurchaseApplyStepInfo.storehouses = _storehouseManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            storeHousesChange: function(e, i) {
+            storeHousesChange: function (e, i) {
                 let shId = e.target.value;
                 $that.urgentPurchaseApplyStepInfo.storehouses.forEach((item) => {
                     if (item.shId == shId) {
@@ -111,7 +113,7 @@
                 })
             },
             // 移除选中item
-            _removeSelectResourceStoreItem: function(resId) {
+            _removeSelectResourceStoreItem: function (resId) {
                 $that.urgentPurchaseApplyStepInfo.resourceStores.forEach((item, index) => {
                     if (item.resId == resId) {
                         $that.urgentPurchaseApplyStepInfo.resourceStores.splice(index, 1);

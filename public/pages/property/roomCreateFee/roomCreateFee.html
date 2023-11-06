@@ -131,9 +131,7 @@
                                 <button type="button" class="btn btn-primary btn-sm"
                                     v-on:click="vc.showMarkdown('/pages/property/roomCreateFee')">
                                     <i class="fa fa-file"></i>
-                                    <span>
-                                        <vc:i18n name="文档"></vc:i18n>
-                                    </span>
+                                    <span><vc:i18n name="文档"></vc:i18n></span>
                                 </button>
                             </div>
                         </div>
@@ -297,14 +295,13 @@
                                             <button class="btn btn-link btn-xs"
                                                 v-if="fee.state != '2009001' && vc.hasPrivilege('502020090427190001')"
                                                 v-on:click="_editFee(fee)">
-                                                <vc:i18n name="变更" namespace="listRoomFee"></vc:i18n>
-                                            </button>
-                                            <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+fee.feeId">
-                                                <vc:i18n name="详情" namespace="listRoomFee"></vc:i18n>
-                                            </a>
-
-                                        </td>
-                                    </tr>
+                                            <vc:i18n name="变更" namespace="listRoomFee"></vc:i18n>
+                                        </button>
+                                        <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+fee.feeId">
+                                            <vc:i18n name="详情" namespace="listRoomFee"></vc:i18n>
+                                        </a>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>

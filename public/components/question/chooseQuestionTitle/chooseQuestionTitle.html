@@ -1,4 +1,5 @@
-<div id="chooseQuestionTitleModel" class="modal fade" role="dialog" aria-labelledby="chooseQuestionTitleModelLabel" aria-hidden="true">
+<div id="chooseQuestionTitleModel" class="modal fade" role="dialog" aria-labelledby="chooseQuestionTitleModelLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,14 +15,23 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="row">
-                                <div class="col-sm-7 m-b-xs">
-                                </div>
+                                <div class="col-sm-7 m-b-xs"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input :placeholder="vc.i18n('输入题目名称','chooseQuestionTitle')" type="text" v-model="chooseQuestionTitleInfo._currentQuestionTitleName" class="form-control form-control-sm">
+                                        <input :placeholder="vc.i18n('输入题目名称','chooseQuestionTitle')" type="text"
+                                               v-model="chooseQuestionTitleInfo._currentQuestionTitleName"
+                                               class="form-control form-control-sm">
+                                        <div class="col-sm-1"></div>
                                         <span class="input-group-append">
-                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="queryQuestionTitles()">
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="queryQuestionTitles()">
+                                                    <i class="fa fa-search"></i>
                                                     <vc:i18n name="查询" namespace="chooseQuestionTitle"></vc:i18n>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                        v-on:click="resetQuestionTitles()">
+                                                    <i class="fa fa-repeat"></i>
+                                                    <vc:i18n name="重置" namespace="chooseQuestionTitle"></vc:i18n>
                                                 </button>
                                         </span>
                                     </div>
@@ -30,28 +40,37 @@
                             <div class="table-responsive" style="margin-top:15px">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                <vc:i18n name="题目" namespace="chooseQuestionTitle"></vc:i18n>
-                                            </th>
-
-                                            <th class="text-center">
-                                                <vc:i18n name="创建时间" namespace="questionTitle"></vc:i18n>
-                                            </th>
-                                            <th class="text-center">
-                                                <vc:i18n name="操作" namespace="chooseQuestionTitle"></vc:i18n>
-                                            </th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="题目" namespace="chooseQuestionTitle"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="创建时间" namespace="questionTitle"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="操作" namespace="chooseQuestionTitle"></vc:i18n>
+                                        </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="questionTitle in chooseQuestionTitleInfo.questionTitles">
-                                            <td class="text-center">{{questionTitle.qaTitle}}</td>
-                                            <td class="text-center">{{questionTitle.createTime}}</td>
-                                            <td>
-                                                <button class="btn btn-primary btn-xs" v-on:click="chooseQuestionTitle(questionTitle)"><vc:i18n name="选择" namespace="chooseQuestionTitle"></vc:i18n></button>
-                                            </td>
-                                        </tr>
+                                    <tr v-for="questionTitle in chooseQuestionTitleInfo.questionTitles">
+                                        <td class="text-center">{{questionTitle.qaTitle}}</td>
+                                        <td class="text-center">{{questionTitle.createTime}}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-xs"
+                                                    v-on:click="chooseQuestionTitle(questionTitle)">
+                                                <vc:i18n name="选择" namespace="chooseQuestionTitle"></vc:i18n>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="3">
+                                            <ul class="pagination float-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                                 <vc:create namespace="chooseQuestionTitle" path="frame/paginationPlus"></vc:create>
                             </div>

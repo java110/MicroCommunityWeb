@@ -6,28 +6,27 @@
                     <h5>
                         <vc:i18n name="查询条件" namespace="resourceSupplierManage"></vc:i18n>
                     </h5>
-                    <div class="ibox-tools" style="top:10px;">
-                    </div>
+                    <div class="ibox-tools" style="top:10px;"></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" :placeholder="vc.i18n('请输入供应商编号','resourceSupplierManage')"
+                                       v-model="resourceSupplierManageInfo.conditions.rsId" class=" form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入供应商名称','resourceSupplierManage')"
                                        v-model="resourceSupplierManageInfo.conditions.supplierName"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入手机号','resourceSupplierManage')"
                                        v-model="resourceSupplierManageInfo.conditions.tel" class=" form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入供应商编号','resourceSupplierManage')"
-                                       v-model="resourceSupplierManageInfo.conditions.rsId" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">

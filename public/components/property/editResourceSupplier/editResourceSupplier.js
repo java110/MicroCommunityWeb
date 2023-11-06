@@ -37,7 +37,7 @@
                             limit: "maxLength",
                             param: "100",
                             errInfo: "供应商名称太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.address': [
                         {
@@ -49,29 +49,14 @@
                             limit: "maxLength",
                             param: "100",
                             errInfo: "供应商地址太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.tel': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "供应商联系方式不能为空"
-                        },
-                        {
-                            limit: "maxLength",
-                            param: "11",
-                            errInfo: "手机号格式错误"
-                        },
-                        {
-                            limit: "minLength",
-                            param: "11",
-                            errInfo: "手机号格式错误"
-                        },
-                        {
-                            limit: "phone",
-                            param: "",
-                            errInfo: "手机号格式错误"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.contactName': [
                         {
@@ -83,28 +68,28 @@
                             limit: "maxLength",
                             param: "50",
                             errInfo: "供应商联系人姓名太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.accountBank': [
                         {
                             limit: "maxLength",
                             param: "150",
                             errInfo: "供应商开户行太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.bankAccountNumber': [
                         {
                             limit: "maxLength",
                             param: "200",
                             errInfo: "供应商开户行账号太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注太长"
-                        },
+                        }
                     ],
                     'editResourceSupplierInfo.rsId': [
                         {
@@ -135,6 +120,8 @@
                             vc.emit('resourceSupplierManage', 'listResourceSupplier', {});
                             vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
                     },
                     function (errInfo, error) {

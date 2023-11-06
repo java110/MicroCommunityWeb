@@ -13,16 +13,16 @@
                 roomSubType: '110',
                 roomArea: '',
                 roomRent: '0',
-                unitPrice:'0',
-                floorId:'',
-                unitId:'',
-                ownerId:'',
-                ownerName:'',
+                unitPrice: '0',
+                floorId: '',
+                unitId: '',
+                ownerId: '',
+                ownerName: '',
                 communityId: vc.getCurrentCommunity().communityId,
                 attrs: [],
                 roomSubTypes: [],
-                floors:[],
-                units:[]
+                floors: [],
+                units: []
             }
         },
         _initMethod: function () {
@@ -44,87 +44,99 @@
                 return vc.validate.validate({
                     addRoomViewInfo: vc.component.addRoomViewInfo
                 }, {
-                    'addRoomViewInfo.roomNum': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋编号不能为空"
-                    },
-                    {
-                        limit: "maxLength",
-                        param: "64",
-                        errInfo: "房屋编号长度不能超过64位"
-                    },
+                    'addRoomViewInfo.roomNum': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋编号不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "64",
+                            errInfo: "房屋编号长度不能超过64位"
+                        }
                     ],
-                    'addRoomViewInfo.layer': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋楼层不能为空"
-                    }],
-                    'addRoomViewInfo.apartment': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋户型不能为空"
-                    },
-                    {
-                        limit: "maxLength",
-                        param: "50",
-                        errInfo: "房屋户型不能大于50"
-                    },
+                    'addRoomViewInfo.layer': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋楼层不能为空"
+                        }
                     ],
-                    'addRoomViewInfo.builtUpArea': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "建筑面积不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "建筑面积错误，如 300.00"
-                    },
+                    'addRoomViewInfo.apartment': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋户型不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "50",
+                            errInfo: "房屋户型不能大于50"
+                        }
                     ],
-                    'addRoomViewInfo.roomArea': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "室内面积不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "室内面积错误，如 300.00"
-                    },
+                    'addRoomViewInfo.builtUpArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "建筑面积不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "建筑面积错误，如 300.00"
+                        }
                     ],
-                    'addRoomViewInfo.feeCoefficient': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "算费系数不能为空"
-                    },
-                    {
-                        limit: "money",
-                        param: "",
-                        errInfo: "算费系数错误，如 300.00"
-                    }
+                    'addRoomViewInfo.roomArea': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "室内面积不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "室内面积错误，如 300.00"
+                        }
                     ],
-                    'addRoomViewInfo.state': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋状态不能为空"
-                    },
-                    {
-                        limit: "maxLength",
-                        param: "12",
-                        errInfo: "房屋状态 不能超过12位"
-                    },
+                    'addRoomViewInfo.feeCoefficient': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "算费系数不能为空"
+                        },
+                        {
+                            limit: "money",
+                            param: "",
+                            errInfo: "算费系数错误，如 300.00"
+                        }
                     ],
-                    'addRoomViewInfo.roomSubType': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "房屋类型不能为空"
-                    }],
-                    'addRoomViewInfo.remark': [{
-                        limit: "maxLength",
-                        param: "200",
-                        errInfo: "备注内容不能超过200"
-                    }],
+                    'addRoomViewInfo.state': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋状态不能为空"
+                        },
+                        {
+                            limit: "maxLength",
+                            param: "12",
+                            errInfo: "房屋状态 不能超过12位"
+                        }
+                    ],
+                    'addRoomViewInfo.roomSubType': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "房屋类型不能为空"
+                        }
+                    ],
+                    'addRoomViewInfo.remark': [
+                        {
+                            limit: "maxLength",
+                            param: "200",
+                            errInfo: "备注内容不能超过200"
+                        }
+                    ]
                 });
             },
             _loadRoomAttrSpec: function () {
@@ -137,7 +149,6 @@
                             $that._loadAttrValue(item.specCd, item.values);
                             $that.addRoomViewInfo.attrs.push(item);
                         }
-                        console.log('attrs : ', $that.addRoomViewInfo.attrs);
                     });
                 });
             },
@@ -186,53 +197,52 @@
                         vc.toast(errInfo);
                     });
             },
-            _goBack:function(){
+            _goBack: function () {
                 vc.goBack();
             },
             _openChooseOwner: function () {
                 vc.emit('searchOwner', 'openSearchOwnerModel', {});
             },
-            _loadFloor:function(){
+            _loadFloor: function () {
                 let param = {
-                    params:{
-                        page:1,
-                        row:300,
-                        communityId:vc.getCurrentCommunity().communityId
+                    params: {
+                        page: 1,
+                        row: 300,
+                        communityId: vc.getCurrentCommunity().communityId
                     }
                 }
                 //发送get请求
                 vc.http.apiGet('/floor.queryFloors',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listFloorData = JSON.parse(json);
                         $that.addRoomViewInfo.floors = listFloorData.apiFloorDataVoList;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadUnit:function(){
-                if(!$that.addRoomViewInfo.floorId){
-                    return ;
+            _loadUnit: function () {
+                if (!$that.addRoomViewInfo.floorId) {
+                    return;
                 }
-                
                 let param = {
-                    params:{
-                        page:1,
-                        row:300,
-                        communityId:vc.getCurrentCommunity().communityId,
-                        floorId:$that.addRoomViewInfo.floorId
+                    params: {
+                        page: 1,
+                        row: 300,
+                        communityId: vc.getCurrentCommunity().communityId,
+                        floorId: $that.addRoomViewInfo.floorId
                     }
                 }
                 //发送get请求
                 vc.http.apiGet('/unit.queryUnits',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let listFloorData = JSON.parse(json);
                         $that.addRoomViewInfo.units = listFloorData;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );

@@ -1,12 +1,7 @@
 <div class="">
     <div class="white-bg padding-left padding-right padding-top border-radius-top">
         <div class="flex justify-between">
-            <div class="text-title">
-                物品信息
-            </div>
-            <div>
-
-            </div>
+            <div class="text-title">物品信息</div>
         </div>
         <!-- 业主信息 -->
         <div class="margin-top">
@@ -28,7 +23,7 @@
                                 </label>
                                 <label class="">{{resourceDetailInfo.shName}}</label>
                             </div>
-                        </div>					
+                        </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">
@@ -38,13 +33,14 @@
                                     {{resourceDetailInfo.rstName ? ' > ' + resourceDetailInfo.rstName : ''}}</label>
                             </div>
                         </div>
-                        
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="col-form-label">
                                     <vc:i18n name="物品规格:" namespace="resourceDetail"></vc:i18n>
                                 </label>
-                                <label class="">{{resourceDetailInfo.rssName ? resourceDetailInfo.rssName : '-'}}</label>
+                                <label class="">
+                                    {{resourceDetailInfo.rssName ? resourceDetailInfo.rssName : '-'}}
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -107,7 +103,8 @@
                                 <label class="col-form-label">
                                     <vc:i18n name="物品均价:" namespace="resourceDetail"></vc:i18n>
                                 </label>
-                                <label class="">{{resourceDetailInfo.averagePrice ? '￥' + resourceDetailInfo.averagePrice : '￥0'}}</label>
+                                <label class="">{{resourceDetailInfo.averagePrice ? '￥' +
+                                    resourceDetailInfo.averagePrice : '￥0'}}</label>
                             </div>
                         </div>
                     </div>
@@ -118,39 +115,50 @@
         <div class="margin-top-sm">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailPurchase'}" v-on:click="changeTab('resourceDetailPurchase')">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailPurchase'}"
+                       v-on:click="changeTab('resourceDetailPurchase')">
                         <vc:i18n name="采购记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailItemOut'}" v-on:click="changeTab('resourceDetailItemOut')">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailItemOut'}"
+                       v-on:click="changeTab('resourceDetailItemOut')">
                         <vc:i18n name="领用记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
-                <li class="nav-item" >
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailInventory'}" v-on:click="changeTab('resourceDetailInventory')">
+                <li class="nav-item">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailInventory'}"
+                       v-on:click="changeTab('resourceDetailInventory')">
                         <vc:i18n name="盘点记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailAllocation'}" v-on:click="changeTab('resourceDetailAllocation')">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailAllocation'}"
+                       v-on:click="changeTab('resourceDetailAllocation')">
                         <vc:i18n name="调拨记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailAllocationUser'}" v-on:click="changeTab('resourceDetailAllocationUser')">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailAllocationUser'}"
+                       v-on:click="changeTab('resourceDetailAllocationUser')">
                         <vc:i18n name="转增记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailUseRecord'}" v-on:click="changeTab('resourceDetailUseRecord')">
+                    <a class="nav-link"
+                       v-bind:class="{active:resourceDetailInfo._currentTab == 'resourceDetailUseRecord'}"
+                       v-on:click="changeTab('resourceDetailUseRecord')">
                         <vc:i18n name="使用记录" namespace="resourceDetail"></vc:i18n>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-
     <div class="white-bg padding-left padding-right padding-top border-radius-bottom">
         <div v-if="resourceDetailInfo._currentTab == 'resourceDetailPurchase'">
             <vc:create path="resource/resourceDetailPurchase"></vc:create>
@@ -170,10 +178,5 @@
         <div v-if="resourceDetailInfo._currentTab == 'resourceDetailUseRecord'">
             <vc:create path="resource/resourceDetailUseRecord"></vc:create>
         </div>
-        
-        
-        
     </div>
-
-
 </div>

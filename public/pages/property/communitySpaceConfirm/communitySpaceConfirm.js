@@ -31,6 +31,7 @@
             }
         },
         _initMethod: function () {
+            $that._initCommunitySpaceConfirmDate();
             $that._listCommunitySpaceConfirms(1, 10);
         },
         _initEvent: function () {
@@ -39,6 +40,28 @@
             });
         },
         methods: {
+            _initCommunitySpaceConfirmDate: function () {
+                $(".appointmentTime").datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.appointmentTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".appointmentTime").val();
+                        $that.communitySpaceConfirmInfo.conditions.appointmentTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName(' form-control appointmentTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             _listCommunitySpaceConfirms: function (_page, _rows) {
                 vc.component.communitySpaceConfirmInfo.conditions.page = _page;
                 vc.component.communitySpaceConfirmInfo.conditions.row = _rows;

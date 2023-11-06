@@ -20,9 +20,10 @@
             }
         },
         _initMethod: function () {
-            vc.initDateTime('invTime', function (_value) {
+            /*vc.initDateTime('invTime', function (_value) {
                 $that.assetInventoryInInfo.invTime = _value;
-            });
+            });*/
+            vc.component._initAssetInventoryInDateInfo();
             vc.component._listShopHouses();
         },
         _initEvent: function () {
@@ -47,6 +48,28 @@
             });
         },
         methods: {
+            _initAssetInventoryInDateInfo: function () {
+                $('.invTime').datetimepicker({
+                    language: 'zh-CN',
+                    fontAwesome: 'fa',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    initTime: true,
+                    initialDate: new Date(),
+                    autoClose: 1,
+                    todayBtn: true
+                });
+                $('.invTime').datetimepicker()
+                    .on('changeDate', function (ev) {
+                        var value = $(".invTime").val();
+                        vc.component.assetInventoryInInfo.invTime = value;
+                    });
+                //防止多次点击时间插件失去焦点
+                document.getElementsByClassName('form-control invTime')[0].addEventListener('click', myfunc)
+
+                function myfunc(e) {
+                    e.currentTarget.blur();
+                }
+            },
             doAssetInventoryValidate() {
                 return vc.validate.validate({
                     assetInventoryInInfo: vc.component.assetInventoryInInfo
@@ -99,12 +122,13 @@
                     return;
                 }
                 for (var i = 0; i < _resourceStores.length; i++) {
-                    if (!_resourceStores[i].hasOwnProperty("quantity") || !_resourceStores[i].quantity || parseInt(_resourceStores[i].quantity) <= 0) {
-                        vc.toast("请填写数量");
+                    if (!_resourceStores[i].timesId) {
+                        vc.toast("未选择价格");
                         return;
                     }
-                    if(!_resourceStores[i].timesId){
-                        vc.toast(_resourceStores[i].resName + ",未选择价格");
+                    if (!_resourceStores[i].hasOwnProperty("quantity") || !_resourceStores[i].quantity
+                        || parseInt(_resourceStores[i].quantity) <= 0) {
+                        vc.toast("请填写数量");
                         return;
                     }
                     // _resourceStores[i].quantity = parseInt(_resourceStores[i].quantity);
@@ -127,9 +151,11 @@
                             //关闭model
                             vc.toast(_json.msg);
                             vc.goBack();
+                            vc.toast("添加成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -144,7 +170,6 @@
                 // vc.emit('chooseProductAndSpec', 'openChooseProductModel', {
                 //     shId: $that.assetInventoryInInfo.shId
                 // });
-            
             },
             _goBack: function () {
                 vc.goBack();
@@ -167,7 +192,7 @@
                         console.log('请求失败处理');
                     }
                 );
-            } ,
+            },
             _openSelectResourceStoreInfoModel() {
                 if (!$that.assetInventoryInInfo.shId) {
                     vc.toast('请先选择仓库');
@@ -175,11 +200,11 @@
                 }
                 vc.emit('chooseResourceStore2', 'openChooseResourceStoreModel2', {
                     shId: $that.assetInventoryInInfo.shId,
-                    unEditFlag:true
+                    unEditFlag: true
                 });
             },
             // 清空物品,确定仓库名称
-            selectResourceStores: function() {
+            selectResourceStores: function () {
                 vc.component.assetInventoryInInfo.resourceStores = [];
                 let _storehouses = vc.component.assetInventoryInInfo.storehouses;
                 _storehouses.forEach((item, index) => {

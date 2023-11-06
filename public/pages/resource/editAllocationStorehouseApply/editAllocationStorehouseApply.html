@@ -8,7 +8,8 @@
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="vc.goBack()">
-                             <vc:i18n name="返回" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            <i class="fa fa-close"></i>
+                            <vc:i18n name="返回" namespace="editAllocationStorehouseApply"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -18,7 +19,8 @@
                             <vc:i18n name="申请说明" namespace="editAllocationStorehouseApply"></vc:i18n>
                         </label>
                         <div class="col-sm-10">
-                            <textarea :placeholder="vc.i18n('必填，请填写申请说明','editAllocationStorehouseApply')" class="form-control" v-model="editAllocationStorehouseApplyInfo.remark">
+                            <textarea :placeholder="vc.i18n('必填，请填写申请说明','editAllocationStorehouseApply')"
+                                      class="form-control" v-model="editAllocationStorehouseApplyInfo.remark">
                             </textarea>
                         </div>
                     </div>
@@ -35,7 +37,9 @@
                         <vc:i18n name="采购物品" namespace="editAllocationStorehouseApply"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;" v-on:click="_openAllocationStorehouseModel()">
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-right:10px;"
+                                v-on:click="_openAllocationStorehouseModel()">
+                            <i class="fa fa-search"></i>
                             <vc:i18n name="选择" namespace="editAllocationStorehouseApply"></vc:i18n>
                         </button>
                     </div>
@@ -43,62 +47,67 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <vc:i18n name="物品类型" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="物品名称" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="物品规格" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="固定物品" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="源仓库" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="参考价格" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="库存" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="目标仓库" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="调拨数量" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="操作" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <vc:i18n name="物品类型" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="物品名称" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="物品规格" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="固定物品" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="源仓库" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="参考价格" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="库存" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="目标仓库" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="调拨数量" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="editAllocationStorehouseApply"></vc:i18n>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(resourceStore, index) in editAllocationStorehouseApplyInfo.resourceStores">
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} > {{resourceStore.rstName ? resourceStore.rstName : '-'}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.resName}}({{resourceStore.resCode}})</td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{resourceStore.rssName ? resourceStore.rssName : '-'}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.isFixedName}}</td>
-                                <td class="text-center" style="vertical-align: inherit;">{{resourceStore.shaName}}</td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <select class="form-control" v-model="resourceStore.timesId" @change="_changeTimesId($event, index)">
-                                    <option value="" selected>{{vc.i18n('请选择价格','editAllocationStorehouseApply')}}</option>
+                        <tr v-for="(resourceStore, index) in editAllocationStorehouseApplyInfo.resourceStores">
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.parentRstName ? resourceStore.parentRstName : '-'}} >
+                                {{resourceStore.rstName ? resourceStore.rstName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.resName}}({{resourceStore.resCode}})
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{resourceStore.rssName ? resourceStore.rssName : '-'}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.isFixedName}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">{{resourceStore.shaName}}</td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <select class="form-control" v-model="resourceStore.timesId"
+                                        @change="_changeTimesId($event, index)">
+                                    <option value="" selected>{{vc.i18n('请选择价格','editAllocationStorehouseApply')}}
+                                    </option>
                                     <option v-for="time in resourceStore.times" :value="time.timesId">{{time.price}}
                                     </option>
                                 </select>
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    {{_getTimesStock(resourceStore)}}{{resourceStore.unitCodeName}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <select class="custom-select" v-model="resourceStore.shzId" style="width: 70%">
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                {{_getTimesStock(resourceStore)}}{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <select class="custom-select" v-model="resourceStore.shzId" style="width: 70%">
                                     <option value="">{{vc.i18n('必填，请选择目标仓库','editAllocationStorehouseApply')}}
                                     </option>
                                     <option v-for="(item,index) in editAllocationStorehouseApplyInfo.storehouses"
@@ -107,25 +116,28 @@
                                         {{item.shName}}
                                     </option>
                                 </select>
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <input v-model="resourceStore.curStock" type="number" :placeholder="vc.i18n('必填，请填写调拨数量','editAllocationStorehouseApply')" class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
-                                </td>
-                                <td class="text-center" style="vertical-align: inherit;">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_openDeleteResourceStoreModel(resourceStore)">
-                                                <vc:i18n name="取消调拨" namespace="editAllocationStorehouseApply"></vc:i18n>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <input v-model="resourceStore.curStock" type="number"
+                                       :placeholder="vc.i18n('必填，请填写调拨数量','editAllocationStorehouseApply')"
+                                       class="form-control" style="width: 50%;display:inline; margin: auto">&nbsp;&nbsp;{{resourceStore.unitCodeName}}
+                            </td>
+                            <td class="text-center" style="vertical-align: inherit;">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs"
+                                            v-on:click="_openDeleteResourceStoreModel(resourceStore)">
+                                        <vc:i18n name="取消调拨" namespace="editAllocationStorehouseApply"></vc:i18n>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="10">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="10">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -133,15 +145,16 @@
 
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-primary" style="margin-left:10px;" v-on:click="_editApplyPurchaseSummit()">
+            <button type="button" class="btn btn-primary" style="margin-left:10px;"
+                    v-on:click="_editApplyPurchaseSummit()">
                 <vc:i18n name="提交" namespace="editAllocationStorehouseApply"></vc:i18n>
             </button>
         </div>
     </div>
-    <vc:create path="common/chooseResourceStore" emitChooseResourceStore="editAllocationStorehouseApply" emitLoadData="editAllocationStorehouseApply">
+    <vc:create path="common/chooseResourceStore" emitChooseResourceStore="editAllocationStorehouseApply"
+               emitLoadData="editAllocationStorehouseApply">
     </vc:create>
 </div>

@@ -1,7 +1,7 @@
 /**
  *入库
  **/
-(function(vc) {
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -13,19 +13,20 @@
                 resOrderType: '',
                 purchaseApplyDetailVo: [],
                 resourceSuppliers: [],
-                selectResIds: [],
+                selectResIds: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.resourceEnterManageInfo.applyOrderId = vc.getParam('applyOrderId');
             $that.resourceEnterManageInfo.resOrderType = vc.getParam('resOrderType');
             $that.resourceEnterManageInfo.taskId = vc.getParam('taskId');
             $that._listPurchaseApply(DEFAULT_PAGE, DEFAULT_ROWS);
             $that._loadResourceSuppliers();
         },
-        _initEvent: function() {},
+        _initEvent: function () {
+        },
         methods: {
-            _listPurchaseApply: function(_page, _rows) {
+            _listPurchaseApply: function (_page, _rows) {
                 var param = {
                     params: {
                         page: _page,
@@ -37,63 +38,64 @@
                 //发送get请求
                 vc.http.apiGet('/purchaseApply.listPurchaseApplys',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _purchaseApplyDetailInfo = JSON.parse(json);
                         var _purchaseApply = _purchaseApplyDetailInfo.purchaseApplys;
                         vc.copyObject(_purchaseApply[0], $that.resourceEnterManageInfo);
-                        $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function(item) {
+                        $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function (item) {
                             item.purchaseQuantity = '';
                             item.price = '';
                             item.purchaseRemark = '';
                             item.rsId = '';
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
             _loadResourceSuppliers() {
                 var param = {
-                    params: { page: 1, row: 50 }
+                    params: {page: 1, row: 50}
                 };
                 //发送get请求
                 vc.http.apiGet('resourceSupplier.listResourceSuppliers',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _resourceSupplierManageInfo = JSON.parse(json);
                         $that.resourceEnterManageInfo.resourceSuppliers = _resourceSupplierManageInfo.data;
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _openDetailResourceEnterModel: function(_resourceEnter) {
+            _openDetailResourceEnterModel: function (_resourceEnter) {
                 vc.jumpToPage("/#/pages/common/resourceEnterDetail?applyOrderId=" + _resourceEnter.applyOrderId + "&resOrderType=10000");
             },
-            _openResourceEnterDetailManageModel: function(_resourceEnter) {
+            _openResourceEnterDetailManageModel: function (_resourceEnter) {
                 vc.jumpToPage("/#/pages/common/resourceEnterDetailManage?applyOrderId=" + _resourceEnter.applyOrderId + "&resOrderType=10000");
             },
-            _queryResourceEnterMethod: function() {
+            _queryResourceEnterMethod: function () {
                 $that._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if ($that.resourceEnterManageInfo.moreCondition) {
                     $that.resourceEnterManageInfo.moreCondition = false;
                 } else {
                     $that.resourceEnterManageInfo.moreCondition = true;
                 }
             },
-            _queryInspectionPlanMethod: function() {
+            _queryInspectionPlanMethod: function () {
                 $that._listResourceEnters(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _openAddResourceQuantityModel: function() {},
-            _submit: function() {
+            _openAddResourceQuantityModel: function () {
+            },
+            _submit: function () {
                 //校验 是否填写正确
                 let msg = '';
                 let _tmpPurchaseApplyDetailVo = [];
-                $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function(item) {
+                $that.resourceEnterManageInfo.purchaseApplyDetailVo.forEach(function (item) {
                     $that.resourceEnterManageInfo.selectResIds.forEach(selectItem => {
                         if (item.resId == selectItem) {
                             _tmpPurchaseApplyDetailVo.push(item);
@@ -104,7 +106,7 @@
                     vc.toast('请选择入库物品')
                     return;
                 }
-                _tmpPurchaseApplyDetailVo.forEach(function(item) {
+                _tmpPurchaseApplyDetailVo.forEach(function (item) {
                     console.log(item);
                     if (!item.hasOwnProperty("purchaseQuantity") || !item.purchaseQuantity || parseInt(item.purchaseQuantity) < 0) {
                         msg = '采购数量未填写';
@@ -127,23 +129,23 @@
                     JSON.stringify($that.resourceEnterManageInfo), {
                         emulateJSON: true
                     },
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         if (_json.code == 0) {
                             //处理审核通过
                             vc.goBack();
+                            vc.toast("操作成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
-
                         vc.toast(errInfo);
                     });
             },
-
-            checkAll: function(e) {
+            checkAll: function (e) {
                 var checkObj = document.querySelectorAll('.checkItem'); // 获取所有checkbox项
                 if (e.target.checked) { // 判定全选checkbox的勾选状态
                     for (var i = 0; i < checkObj.length; i++) {

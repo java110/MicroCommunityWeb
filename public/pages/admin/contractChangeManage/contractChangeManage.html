@@ -88,7 +88,7 @@
                                 <vc:i18n name="甲方" namespace="contractChangeManage"></vc:i18n>
                             </th>
                             <th class="text-center">
-                               <vc:i18n name="乙方" namespace="contractChangeManage"></vc:i18n>
+                                <vc:i18n name="乙方" namespace="contractChangeManage"></vc:i18n>
                             </th>
                             <th class="text-center">
                                 <vc:i18n name="变更类型" namespace="contractChangeManage"></vc:i18n>
@@ -105,8 +105,8 @@
                             <th class="text-center">
                                 <vc:i18n name="状态" namespace="contractChangeManage"></vc:i18n>
                             </th>
-                            <th class="text-right">
-                               <vc:i18n name="操作" namespace="contractChangeManage"></vc:i18n>
+                            <th class="text-center">
+                                <vc:i18n name="操作" namespace="contractChangeManage"></vc:i18n>
                             </th>
                         </tr>
                         </thead>
@@ -122,7 +122,7 @@
                             <td class="text-center">{{contract.createTime}}</td>
                             <td class="text-center">{{contract.remark}}</td>
                             <td class="text-center">{{contract.stateName}}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="btn-group" v-if="contract.state == '11'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openDeleteContractModel(contract)">
@@ -149,7 +149,10 @@
                     <div class="row margin-top-xs">
                         <div class="col-sm-9">
                             <div>
-                                <span><vc:i18n name="注意：此功能使用前请先到系统管理>流程管理中设置合同变更流程" namespace="contractChangeManage"></vc:i18n></span>
+                                <span>
+                                    <vc:i18n name="注意：此功能使用前请先到系统管理>流程管理中设置合同变更流程"
+                                             namespace="contractChangeManage"></vc:i18n>
+                                </span>
                             </div>
                         </div>
                         <div class="col-sm-3 float-right">

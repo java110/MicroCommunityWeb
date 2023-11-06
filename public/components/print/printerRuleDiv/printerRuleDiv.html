@@ -1,18 +1,19 @@
 <div class="bg-white margin-top-xs padding border-radius">
     <div class=" ">
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openAddPrinterRuleModal()">
-            添加
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddPrinterRuleModal()">
+            <i class="fa fa-plus"></i>添加
         </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openEditPrinterRuleModel()">
-            修改
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openEditPrinterRuleModel()">
+            <i class="fa fa-edit"></i>修改
         </button>
-        <button type="button" class="btn btn-white btn-sm" v-on:click="_openDeletePrinterRuleModel()">
-            删除
+        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openDeletePrinterRuleModel()">
+            <i class="fa fa-close"></i>删除
         </button>
     </div>
     <div class="vc-org margin-top">
         <ul>
-            <li v-for="(rule,index) in printerRuleDivInfo.printerRules" @click="_switchPrinterRule(rule)" :class="{'active':rule.ruleId == printerRuleDivInfo.curPrinterRule.ruleId}">{{rule.ruleName}}
+            <li v-for="(rule,index) in printerRuleDivInfo.printerRules" @click="_switchPrinterRule(rule)"
+                :class="{'active':rule.ruleId == printerRuleDivInfo.curPrinterRule.ruleId}">{{rule.ruleName}}
             </li>
         </ul>
     </div>

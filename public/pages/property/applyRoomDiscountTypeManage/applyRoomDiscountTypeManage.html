@@ -13,14 +13,14 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入类型编码','applyRoomDiscountTypeManage')"
-                                       v-model="applyRoomDiscountTypeManageInfo.conditions.applyType"
+                                       v-model.trim="applyRoomDiscountTypeManageInfo.conditions.applyType"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入类型名称','applyRoomDiscountTypeManage')"
-                                       v-model="applyRoomDiscountTypeManageInfo.conditions.typeName"
+                                       v-model.trim="applyRoomDiscountTypeManageInfo.conditions.typeName"
                                        class=" form-control">
                             </div>
                         </div>

@@ -20,7 +20,6 @@
             vc.on('addReportInfoSettingTitle', 'openAddReportInfoSettingTitleModal', function (_param) {
                 vc.copyObject(_param, $that.addReportInfoSettingTitleInfo);
                 $('#addReportInfoSettingTitleModel').modal('show');
-                console.log($that.addReportInfoSettingTitleInfo);
             });
         },
         methods: {
@@ -38,7 +37,7 @@
                             limit: "maxLength",
                             param: "256",
                             errInfo: "问卷题目太长"
-                        },
+                        }
                     ],
                     'addReportInfoSettingTitleInfo.titleType': [
                         {
@@ -50,7 +49,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "题目类型格式错误"
-                        },
+                        }
                     ],
                     'addReportInfoSettingTitleInfo.seq': [
                         {
@@ -62,7 +61,7 @@
                             limit: "num",
                             param: "",
                             errInfo: "顺序必须是数字"
-                        },
+                        }
                     ]
                 });
             },

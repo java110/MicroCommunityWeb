@@ -4,10 +4,13 @@
             <div class=" border-radius ">
                 <div class="margin-xs-r  treeview attendance-staff" style="height: 650px;">
                     <ul class="list-group text-center border-radius">
-                        <li class="list-group-item node-orgTree " @click="swatchFloor('')" :class="{'vc-node-selected':reportFeeDetailRoomInfo.floorId == ''}">
+                        <li class="list-group-item node-orgTree " @click="swatchFloor('')"
+                            :class="{'vc-node-selected':reportFeeDetailRoomInfo.floorId == ''}">
                             全部
                         </li>
-                        <li class="list-group-item node-orgTree " v-for="(item,index) in reportFeeDetailRoomInfo.floors" :key="index" @click="swatchFloor(item.floorId)" :class="{'vc-node-selected':reportFeeDetailRoomInfo.floorId == item.floorId}">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in reportFeeDetailRoomInfo.floors"
+                            :key="index" @click="swatchFloor(item.floorId)"
+                            :class="{'vc-node-selected':reportFeeDetailRoomInfo.floorId == item.floorId}">
                             {{item.floorName}}
                         </li>
                     </ul>
@@ -17,47 +20,47 @@
         <div class="col-md-11">
             <div class="text-right">
                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportReportFeeDetailRoomExcel()">
+                    <i class="fa fa-plus"></i>
                     <vc:i18n name="导出" namespace="reportFeeDetailRoom"></vc:i18n>
                 </button>
             </div>
             <div class="margin-top">
                 <table class="table table-bordered" data-page-size="15">
                     <thead>
-                        <tr>
-                            <th class="text-center">
-                                <vc:i18n name="房屋" namespace="reportFeeDetailRoom"></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name="业主" namespace="reportFeeDetailRoom"></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name="欠费" namespace="reportFeeDetailRoom"></vc:i18n>
-                            </th>
-                            <th class="text-center">
-                                <vc:i18n name="实收" namespace="reportFeeDetailRoom"></vc:i18n>
-                            </th>
-                            <th class="text-center" colspan="2" v-for="(item,index) in reportFeeDetailRoomInfo.feeTypeCds">
-                                {{item.name}}</br>
-                                欠费/实收
-                            </th>
-
-                        </tr>
+                    <tr>
+                        <th class="text-center">
+                            <vc:i18n name="房屋" namespace="reportFeeDetailRoom"></vc:i18n>
+                        </th>
+                        <th class="text-center">
+                            <vc:i18n name="业主" namespace="reportFeeDetailRoom"></vc:i18n>
+                        </th>
+                        <th class="text-center">
+                            <vc:i18n name="欠费" namespace="reportFeeDetailRoom"></vc:i18n>
+                        </th>
+                        <th class="text-center">
+                            <vc:i18n name="实收" namespace="reportFeeDetailRoom"></vc:i18n>
+                        </th>
+                        <th class="text-center" colspan="2" v-for="(item,index) in reportFeeDetailRoomInfo.feeTypeCds">
+                            {{item.name}}</br>
+                            欠费/实收
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="fee in reportFeeDetailRoomInfo.fees">
-                            <td class="text-center">{{fee.roomName}}</td>
-                            <td class="text-center">{{fee.ownerName}}({{fee.link}})</td>
-                            <td class="text-center">{{fee.oweFee || '0'}}</td>
-                            <td class="text-center">{{fee.receivedFee || '0'}}</td>
-                            <template v-for="(item,index) in reportFeeDetailRoomInfo.feeTypeCds">
-                                <td class="text-center" >
-                                    {{fee['oweFee'+item.statusCd] || 0}} 
-                                </td>
-                                <td class="text-center" >
-                                    {{fee['receivedFee'+item.statusCd] || 0}}
-                                </td>
-                            </template>
-                        </tr>
+                    <tr v-for="fee in reportFeeDetailRoomInfo.fees">
+                        <td class="text-center">{{fee.roomName}}</td>
+                        <td class="text-center">{{fee.ownerName}}({{fee.link}})</td>
+                        <td class="text-center">{{fee.oweFee || '0'}}</td>
+                        <td class="text-center">{{fee.receivedFee || '0'}}</td>
+                        <template v-for="(item,index) in reportFeeDetailRoomInfo.feeTypeCds">
+                            <td class="text-center">
+                                {{fee['oweFee'+item.statusCd] || 0}}
+                            </td>
+                            <td class="text-center">
+                                {{fee['receivedFee'+item.statusCd] || 0}}
+                            </td>
+                        </template>
+                    </tr>
                     </tbody>
                 </table>
                 <div class="row margin-top-xs">

@@ -4,8 +4,10 @@
             <div class=" border-radius ">
                 <div class="margin-xs-r  treeview attendance-staff">
                     <ul class="list-group text-center border-radius">
-                        <!--  -->
-                        <li class="list-group-item node-orgTree " v-for="(item,index) in allocationStorehousesInfo.applyTypes" :key="index" @click="swatchApplyType(item)" :class="{'vc-node-selected':allocationStorehousesInfo.conditions.applyType == item.statusCd}">
+                        <li class="list-group-item node-orgTree "
+                            v-for="(item,index) in allocationStorehousesInfo.applyTypes" :key="index"
+                            @click="swatchApplyType(item)"
+                            :class="{'vc-node-selected':allocationStorehousesInfo.conditions.applyType == item.statusCd}">
                             {{item.name}}
                         </li>
                     </ul>
@@ -21,14 +23,47 @@
                                 <vc:i18n name="查询条件" namespace="allocationStorehouseDetailed"></vc:i18n>
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
-
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                        v-on:click="_moreCondition()">
+                                    {{allocationStorehousesInfo.moreCondition == true?'隐藏':'更多'}}
+                                </button>
                             </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select class="custom-select" v-model="allocationStorehousesInfo.conditions.shIda">
+                                        <input type="text" class=" form-control"
+                                               :placeholder="vc.i18n('请输入物品ID','allocationStorehouseDetailed')"
+                                               v-model="allocationStorehousesInfo.conditions.resId">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" class=" form-control"
+                                               :placeholder="vc.i18n('请输入物品名称','allocationStorehouseDetailed')"
+                                               v-model="allocationStorehousesInfo.conditions.resName">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <select class="custom-select"
+                                                v-model="allocationStorehousesInfo.conditions.parentRstId"
+                                                @change="_listResourceStoreSonTypes">
+                                            <option selected value="">
+                                                {{vc.i18n('请选择物品类型','allocationStorehouseDetailed')}}
+                                            </option>
+                                            <option v-for="(item,index) in allocationStorehousesInfo.resourceStoreTypes"
+                                                    :key="index" v-bind:value="item.rstId">
+                                                {{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <select class="custom-select"
+                                                v-model="allocationStorehousesInfo.conditions.shIda">
                                             <option selected value="">
                                                 {{vc.i18n('必填，请选择源仓库','allocationStorehouseDetailed')}}
                                             </option>
@@ -41,7 +76,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select class="custom-select" v-model="allocationStorehousesInfo.conditions.shIdz">
+                                        <select class="custom-select"
+                                                v-model="allocationStorehousesInfo.conditions.shIdz">
                                             <option selected value="">
                                                 {{vc.i18n('必填，请选择目标仓库','allocationStorehouseDetailed')}}
                                             </option>
@@ -53,41 +89,32 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请输入物品ID','allocationStorehouseDetailed')" v-model="allocationStorehousesInfo.conditions.resId" class=" form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请输入物品名称','allocationStorehouseDetailed')" v-model="allocationStorehousesInfo.conditions.resName" class=" form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <select class="custom-select" v-model="allocationStorehousesInfo.conditions.parentRstId" @change="_listResourceStoreSonTypes">
-                                            <option selected value="">
-                                                {{vc.i18n('请选择物品类型','allocationStorehouseDetailed')}}
-                                            </option>
-                                            <option v-for="(item,index) in allocationStorehousesInfo.resourceStoreTypes"
-                                                    :key="index" v-bind:value="item.rstId">
-                                                {{item.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryAllocationStorehouseMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_queryAllocationStorehouseMethod()">
+                                        <i class="fa fa-search"></i>
                                         <vc:i18n name="查询" namespace="allocationStorehouseDetailed"></vc:i18n>
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetAllocationStorehouseMethod()">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            v-on:click="_resetAllocationStorehouseMethod()">
+                                        <i class="fa fa-repeat"></i>
                                         <vc:i18n name="重置" namespace="allocationStorehouseDetailed"></vc:i18n>
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" v-show="allocationStorehousesInfo.moreCondition == true">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text"
+                                               :placeholder="vc.i18n('请输入调拨申请ID','allocationStorehouseDetailed')"
+                                               v-model="allocationStorehousesInfo.conditions.applyId"
+                                               class=" form-control">
+                                    </div>
+                                </div>
                                 <div class="col-sm-2">
                                     <div class="input-group">
-                                        <select class="custom-select" v-model="allocationStorehousesInfo.conditions.rstId" @change="_listResourceStoreSpecifications">
+                                        <select class="custom-select"
+                                                v-model="allocationStorehousesInfo.conditions.rstId"
+                                                @change="_listResourceStoreSpecifications">
                                             <option selected value="">
                                                 {{vc.i18n('请选择二级分类','allocationStorehouseDetailed')}}
                                             </option>
@@ -100,7 +127,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select class="custom-select" v-model="allocationStorehousesInfo.conditions.rssId">
+                                        <select class="custom-select"
+                                                v-model="allocationStorehousesInfo.conditions.rssId">
                                             <option selected value="">
                                                 {{vc.i18n('请选择物品规格','allocationStorehouseDetailed')}}
                                             </option>
@@ -112,13 +140,10 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <input type="text" :placeholder="vc.i18n('请输入调拨申请ID','allocationStorehouseDetailed')" v-model="allocationStorehousesInfo.conditions.applyId" class=" form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
                                     <select class="custom-select" v-model="allocationStorehousesInfo.conditions.state">
-                                        <option selected value="">{{vc.i18n('请选择调拨状态','allocationStorehouseDetailed')}}</option>
+                                        <option selected value="">
+                                            {{vc.i18n('请选择调拨状态','allocationStorehouseDetailed')}}
+                                        </option>
                                         <option v-for="(item,index) in allocationStorehousesInfo.states" :key="index"
                                                 :value="item.statusCd">{{item.name}}
                                         </option>
@@ -138,6 +163,7 @@
                             </h5>
                             <div class="ibox-tools" style="top:10px;">
                                 <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
+                                    <i class="fa fa-plus"></i>
                                     <vc:i18n name="导出" namespace="allocationStorehouseDetailed"></vc:i18n>
                                 </button>
                             </div>
@@ -145,75 +171,86 @@
                         <div class="ibox-content">
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            <vc:i18n name="调拨单号" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="物品类型" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="物品名称" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="物品规格" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="固定物品" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="被调仓库原库存" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="调拨数量" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="被调仓库" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="目标仓库" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="申请人" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="调拨备注" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="状态" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                        <th class="text-center">
-                                            <vc:i18n name="时间" namespace="allocationStorehouseDetailed"></vc:i18n>
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th class="text-center">
+                                        <vc:i18n name="调拨单号" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="物品ID" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="物品类型" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="物品名称" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="物品规格" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="固定物品" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="被调仓库原库存" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="调拨数量" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="被调仓库" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="目标仓库" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="申请人" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="调拨备注" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="状态" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                    <th class="text-center">
+                                        <vc:i18n name="时间" namespace="allocationStorehouseDetailed"></vc:i18n>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="resourceStore in allocationStorehousesInfo.resourceStores">
-                                        <td class="text-center">{{resourceStore.applyId}}</td>
-                                        <td class="text-center">{{resourceStore.parentRstName}} > {{resourceStore.rstName}}</td>
-                                        <td class="text-center">{{resourceStore.resName}}</td>
-                                        <td class="text-center">{{resourceStore.specName ? resourceStore.specName : '-'}}</td>
-                                        <td class="text-center">{{resourceStore.isFixedName}}</td>
-                                        <td class="text-center">{{resourceStore.originalStock}}{{resourceStore.unitCodeName}}</td>
-                                        <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ? resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}
-                                        </td>
-                                        <td class="text-center" v-if="resourceStore.applyType == '20000'">
-                                            {{resourceStore.startUserName}}
-                                        </td>
-                                        <td class="text-center" v-else>{{resourceStore.shaName}}</td>
-                                        <td class="text-center">{{resourceStore.shzName}}</td>
-                                        <td class="text-center">{{resourceStore.startUserName}}</td>
-                                        <td class="text-center">{{resourceStore.remark}}</td>
-                                        <td class="text-center">{{resourceStore.stateName}}</td>
-                                        <td class="text-center">{{resourceStore.createTime}}</td>
-                                    </tr>
+                                <tr v-for="resourceStore in allocationStorehousesInfo.resourceStores">
+                                    <td class="text-center">{{resourceStore.applyId}}</td>
+                                    <td class="text-center">{{resourceStore.resId}}</td>
+                                    <td class="text-center">
+                                        {{resourceStore.parentRstName}} > {{resourceStore.rstName}}
+                                    </td>
+                                    <td class="text-center">{{resourceStore.resName}}</td>
+                                    <td class="text-center">
+                                        {{resourceStore.specName ? resourceStore.specName : '-'}}
+                                    </td>
+                                    <td class="text-center">{{resourceStore.isFixedName}}</td>
+                                    <td class="text-center">
+                                        {{resourceStore.originalStock}}{{resourceStore.unitCodeName}}
+                                    </td>
+                                    <td class="text-center">{{resourceStore.stock}}{{resourceStore.applyType==20000 ?
+                                        resourceStore.miniUnitCodeName : resourceStore.unitCodeName}}
+                                    </td>
+                                    <td class="text-center" v-if="resourceStore.applyType == '20000'">
+                                        {{resourceStore.startUserName}}
+                                    </td>
+                                    <td class="text-center" v-else>{{resourceStore.shaName}}</td>
+                                    <td class="text-center">{{resourceStore.shzName}}</td>
+                                    <td class="text-center">{{resourceStore.startUserName}}</td>
+                                    <td class="text-center">{{resourceStore.remark}}</td>
+                                    <td class="text-center">{{resourceStore.stateName}}</td>
+                                    <td class="text-center">{{resourceStore.createTime}}</td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <td colspan="15">
-                                            <ul class="pagination float-right"></ul>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="15">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
                                 </tfoot>
                             </table>
                             <!-- 分页 -->

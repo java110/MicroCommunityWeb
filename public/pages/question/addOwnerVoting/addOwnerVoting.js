@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             addOwnerVotingInfo: {
@@ -9,39 +9,39 @@
                 content: '',
                 titleType: '',
                 titleValues: [],
-                roomIds:[]
+                roomIds: []
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initVoiteContent();
             vc.emit('selectRooms', 'refreshTree', {});
-            vc.initDateTime('startTime',function(_value){
+            vc.initDateTime('startTime', function (_value) {
                 $that.addOwnerVotingInfo.startTime = _value;
             });
-            vc.initDateTime('endTime',function(_value){
+            vc.initDateTime('endTime', function (_value) {
                 $that.addOwnerVotingInfo.endTime = _value;
             })
         },
-        _initEvent: function() {
-
-            vc.on('addOwnerVoting','notifySelectRooms',function(_selectRooms){
+        _initEvent: function () {
+            vc.on('addOwnerVoting', 'notifySelectRooms', function (_selectRooms) {
                 let _roomIds = [];
-                _selectRooms.forEach(item =>{
+                _selectRooms.forEach(item => {
                     _roomIds.push(item.roomId);
                 })
                 $that.addOwnerVotingInfo.roomIds = _roomIds;
-
             })
-
         },
         methods: {
-            _initVoiteContent: function() {
+            _initVoiteContent: function () {
                 var $summernote = $('.summernote').summernote({
                     lang: 'zh-CN',
                     height: 200,
                     placeholder: '必填，请输入投票说明',
                     callbacks: {
-                        onChange: function(contents, $editable) {
+                        onChange: function (contents, $editable) {
+                            if (contents && contents.indexOf("<p>") != -1 && contents.indexOf("</p>") != -1) {
+                                contents = contents.substring(3, contents.length - 4);
+                            }
                             vc.component.addOwnerVotingInfo.content = contents;
                         }
                     },
@@ -60,7 +60,8 @@
                 return vc.validate.validate({
                     addOwnerVotingInfo: vc.component.addOwnerVotingInfo
                 }, {
-                    'addOwnerVotingInfo.qaName': [{
+                    'addOwnerVotingInfo.qaName': [
+                        {
                             limit: "required",
                             param: "",
                             errInfo: "名称不能为空"
@@ -69,46 +70,51 @@
                             limit: "maxin",
                             param: "1,256",
                             errInfo: "名称长度必须在1位至256位"
-                        },
+                        }
                     ],
-                    'addOwnerVotingInfo.startTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "开始时间不能为空"
-                    }, ],
-                    'addOwnerVotingInfo.endTime': [{
-                        limit: "required",
-                        param: "",
-                        errInfo: "结束时间不能为空"
-                    }],
+                    'addOwnerVotingInfo.startTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "开始时间不能为空"
+                        }
+                    ],
+                    'addOwnerVotingInfo.endTime': [
+                        {
+                            limit: "required",
+                            param: "",
+                            errInfo: "结束时间不能为空"
+                        }
+                    ],
                 });
             },
-            _saveOwnerVoting: function() {
+            _saveOwnerVoting: function () {
                 if (!vc.component.addOwnerVotingValidate()) {
                     //侦听回传
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost('/question.saveOwnerVote', JSON.stringify(vc.component.addOwnerVotingInfo), {
-                    emulateJSON: true
-                },
-                function(json, res) {
-                    //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
-                    let _json = JSON.parse(json);
-                    if (_json.code == 0) {
-                        //关闭model
-                       vc.goBack();
-                        return;
-                    } else {
-                        vc.toast(_json.msg);
-                    }
-                },
-                function(errInfo, error) {
-                    console.log('请求失败处理');
-                    vc.toast(errInfo);
-                });
+                        emulateJSON: true
+                    },
+                    function (json, res) {
+                        //vm.menus = vm.refreshMenuActive(JSON.parse(json),0);
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            vc.goBack();
+                            vc.toast("添加成功");
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
             },
-            _changeAddTitleType: function() {
+            _changeAddTitleType: function () {
                 let _titleType = $that.addOwnerVotingInfo.titleType;
                 if (_titleType == '3003') {
                     $that.addOwnerVotingInfo.titleValues = [];
@@ -121,7 +127,8 @@
                     }];
                 }
                 if (_titleType == '2002') {
-                    $that.addOwnerVotingInfo.titleValues = [{
+                    $that.addOwnerVotingInfo.titleValues = [
+                        {
                             qaValue: '',
                             seq: 1
                         },
@@ -132,13 +139,13 @@
                     ];
                 }
             },
-            _addTitleValue: function() {
+            _addTitleValue: function () {
                 $that.addOwnerVotingInfo.titleValues.push({
                     qaValue: '',
                     seq: $that.addOwnerVotingInfo.titleValues.length + 1
                 });
             },
-            _deleteTitleValue: function(_seq) {
+            _deleteTitleValue: function (_seq) {
                 let _newTitleValues = [];
                 let _tmpTitleValues = $that.addOwnerVotingInfo.titleValues;
                 _tmpTitleValues.forEach(item => {

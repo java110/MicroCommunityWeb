@@ -15,51 +15,58 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.floorId">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.floorId">
                                     <option selected value="">{{vc.i18n('请选择楼栋','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.floors" :key="index"
-                                        :value="item.floorId">{{item.floorName}}
+                                            :value="item.floorId">{{item.floorName}}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportPayFeeDetail')" name="startTime" v-model="reportPayFeeDetailInfo.conditions.startTime" class=" form-control startTime">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费开始时间','reportPayFeeDetail')"
+                                       name="startTime" v-model="reportPayFeeDetailInfo.conditions.startTime"
+                                       class=" form-control startTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportPayFeeDetail')" name="endTime" v-model="reportPayFeeDetailInfo.conditions.endTime" class=" form-control endTime">
+                                <input type="text" :placeholder="vc.i18n('请选择缴费结束时间','reportPayFeeDetail')"
+                                       name="endTime" v-model="reportPayFeeDetailInfo.conditions.endTime"
+                                       class=" form-control endTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.primeRate">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.primeRate">
                                     <option selected value="">{{vc.i18n('请选择支付方式','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.primeRates" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                            :value="item.statusCd">{{item.name}}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.state">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.state">
                                     <option selected value="">{{vc.i18n('请选择费用状态','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.states" :key="index"
-                                        :value="item.statusCd">{{item.name}}
+                                            :value="item.statusCd">{{item.name}}
                                     </option>
                                 </select>
                             </div>
                         </div>
-
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-md" v-on:click="_queryMethod()">
                                 <i class="fa fa-search"></i>
                                 <span><vc:i18n name="查询" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </button>
-                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()" style="margin-left: 20px;">
+                            <button type="button" class="btn btn-info btn-md" v-on:click="_resetMethod()"
+                                    style="margin-left: 20px;">
                                 <i class="fa fa-repeat"></i>
                                 <span><vc:i18n name="重置" namespace="reportPayFeeDetail"></vc:i18n></span>
                             </button>
@@ -68,7 +75,8 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.feeTypeCd" @change="_selectConfig()">
                                     <option selected value="">{{vc.i18n('请选择费用类型','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeTypeCds" :key="index"
                                             :value="item.statusCd">{{item.name}}
@@ -78,7 +86,8 @@
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <select class="form-control-md form-control input-s-sm inline" v-model="reportPayFeeDetailInfo.conditions.configId">
+                                <select class="form-control-md form-control input-s-sm inline"
+                                        v-model="reportPayFeeDetailInfo.conditions.configId">
                                     <option selected value="">{{vc.i18n('请选择收费项','reportPayFeeDetail')}}</option>
                                     <option v-for="(item,index) in reportPayFeeDetailInfo.feeConfigDtos" :key="index"
                                             :value="item.configId">
@@ -89,7 +98,9 @@
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportPayFeeDetail')" class="form-control form-control-md" v-model="reportPayFeeDetailInfo.conditions.roomName">
+                                <input type="text" :placeholder="vc.i18n('请填写房屋编号,例：1-1-101','reportPayFeeDetail')"
+                                       class="form-control form-control-md"
+                                       v-model="reportPayFeeDetailInfo.conditions.roomName">
                             </div>
                         </div>
                         <div class="col-sm-2" v-if="reportPayFeeDetailInfo.communitys.length>1">
@@ -107,12 +118,16 @@
                         
                         <div class="col-sm-2">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择收费开始时间','reportPayFeeDetail')" v-model="reportPayFeeDetailInfo.conditions.feeStartTime" class=" form-control feeStartTime">
+                                <input type="text" :placeholder="vc.i18n('请选择收费开始时间','reportPayFeeDetail')"
+                                       v-model="reportPayFeeDetailInfo.conditions.feeStartTime"
+                                       class=" form-control feeStartTime">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group input-group">
-                                <input type="text" :placeholder="vc.i18n('请选择收费结束时间','reportPayFeeDetail')" v-model="reportPayFeeDetailInfo.conditions.feeEndTime" class=" form-control feeEndTime">
+                                <input type="text" :placeholder="vc.i18n('请选择收费结束时间','reportPayFeeDetail')"
+                                       v-model="reportPayFeeDetailInfo.conditions.feeEndTime"
+                                       class=" form-control feeEndTime">
                             </div>
                         </div>
                     </div>
@@ -127,7 +142,8 @@
                     <h5>
                         <vc:i18n name="缴费明细表" namespace="reportPayFeeDetail"></vc:i18n>
                     </h5>
-                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;" data-content="所有房屋缴费记录明细"></span>
+                    <span class="fa fa-info-circle popover-show" style="cursor: pointer;"
+                          data-content="所有房屋缴费记录明细"></span>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportFee()">
                             <i class="fa fa-plus"></i>

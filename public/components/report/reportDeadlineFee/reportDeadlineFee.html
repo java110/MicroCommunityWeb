@@ -1,46 +1,45 @@
 <div>
-
     <div class="text-right">
         <button type="button" class="btn btn-primary btn-sm" v-on:click="_exportExcel()">
-                            <vc:i18n name="导出" namespace="reportDeadlineFee"></vc:i18n>
-                        </button>
+            <i class="fa fa-plus"></i>
+            <vc:i18n name="导出" namespace="reportDeadlineFee"></vc:i18n>
+        </button>
     </div>
-
     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
         <thead>
-            <tr>
-                <th class="text-center">
-                    <vc:i18n name="费用编号" namespace="reportDeadlineFee"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="房号/车辆/合同" namespace="reportDeadlineFee"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="费用项" namespace="reportDeadlineFee"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="费用结束时间" namespace="reportDeadlineFee"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="距离费用结束时间（天）" namespace="reportDeadlineFee"></vc:i18n>
-                </th>
-            </tr>
+        <tr>
+            <th class="text-center">
+                <vc:i18n name="费用编号" namespace="reportDeadlineFee"></vc:i18n>
+            </th>
+            <th class="text-center">
+                <vc:i18n name="房号/车辆/合同" namespace="reportDeadlineFee"></vc:i18n>
+            </th>
+            <th class="text-center">
+                <vc:i18n name="费用项" namespace="reportDeadlineFee"></vc:i18n>
+            </th>
+            <th class="text-center">
+                <vc:i18n name="费用结束时间" namespace="reportDeadlineFee"></vc:i18n>
+            </th>
+            <th class="text-center">
+                <vc:i18n name="距离费用结束时间（天）" namespace="reportDeadlineFee"></vc:i18n>
+            </th>
+        </tr>
         </thead>
         <tbody>
-            <tr v-for="(fee,index) in reportDeadlineFeeInfo.fees">
-                <td class="text-center">{{index+1}}</td>
-                <td class="text-center">{{fee.objName}}</td>
-                <td class="text-center">{{fee.feeName}}</td>
-                <td class="text-center">{{fee.deadlineTime}}</td>
-                <td class="text-center">{{fee.oweDay}}</td>
-            </tr>
+        <tr v-for="(fee,index) in reportDeadlineFeeInfo.fees">
+            <td class="text-center">{{index+1}}</td>
+            <td class="text-center">{{fee.objName}}</td>
+            <td class="text-center">{{fee.feeName}}</td>
+            <td class="text-center">{{fee.deadlineTime}}</td>
+            <td class="text-center">{{fee.oweDay}}</td>
+        </tr>
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="7">
-                    <ul class="pagination float-right"></ul>
-                </td>
-            </tr>
+        <tr>
+            <td colspan="7">
+                <ul class="pagination float-right"></ul>
+            </td>
+        </tr>
         </tfoot>
     </table>
     <!-- 分页 -->
@@ -52,6 +51,4 @@
             <vc:create namespace="reportDeadlineFee" path="frame/paginationPlus"></vc:create>
         </div>
     </div>
-
-
 </div>

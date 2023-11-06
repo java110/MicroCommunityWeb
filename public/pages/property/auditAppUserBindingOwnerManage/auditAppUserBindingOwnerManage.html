@@ -19,21 +19,21 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主ID','auditAppUserBindingOwnerManage')"
+                                <input type="text" :placeholder="vc.i18n('请输入关联业主ID','auditAppUserBindingOwnerManage')"
                                        v-model="auditAppUserBindingOwnerManageInfo.conditions.memberId"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主名称','auditAppUserBindingOwnerManage')"
+                                <input type="text" :placeholder="vc.i18n('请输入关联业主名称','auditAppUserBindingOwnerManage')"
                                        v-model="auditAppUserBindingOwnerManageInfo.conditions.appUserName"
                                        class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主身份证','auditAppUserBindingOwnerManage')"
+                                <input type="text" :placeholder="vc.i18n('请输入关联业主身份证','auditAppUserBindingOwnerManage')"
                                        v-model="auditAppUserBindingOwnerManageInfo.conditions.idCard"
                                        class=" form-control">
                             </div>
@@ -54,7 +54,7 @@
                     <div class="row" v-show="auditAppUserBindingOwnerManageInfo.moreCondition == true">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主手机','auditAppUserBindingOwnerManage')"
+                                <input type="text" :placeholder="vc.i18n('请输入关联业主手机号','auditAppUserBindingOwnerManage')"
                                        v-model="auditAppUserBindingOwnerManageInfo.conditions.link"
                                        class=" form-control">
                             </div>
@@ -78,7 +78,7 @@
                 <div class="ibox-title">
                     <h5>
                         <span>
-                            <span><vc:i18n name="审核业主绑定" namespace="auditAppUserBindingOwnerManage"></vc:i18n></span>
+                            <vc:i18n name="审核业主绑定" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                         </span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;"></div>
@@ -87,89 +87,57 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <!-- <th class="text-center">
-                                <span>
-                                    <span>
-                                        <vc:i18n name="绑定" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
-                                </span>ID
-                            </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="业主" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
-                                </span>ID
-                            </th>
-                            <th class="text-center">
-                                <span>
-                                    <span>
-                                        <vc:i18n name="小区" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
-                                </span>ID
-                            </th> -->
-                            <th class="text-center">
-                                <span>
-                                    <span>
-                                        <vc:i18n name="小区名称" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="小区名称" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="关联业主" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="业主ID" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="身份证" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="关联业主" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="手机号" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="身份证" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="状态" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="手机号" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="申请时间" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="状态" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                             <th class="text-center">
-                                <span><span>
+                                <span>
+                                    <vc:i18n name="申请时间" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
+                                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>
                                     <vc:i18n name="手机端类型" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                </span></span>
+                                </span>
                             </th>
                             <th class="text-center">
                                 <span>
-                                    <span>
-                                        <vc:i18n name="操作" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                    </span>
+                                    <vc:i18n name="操作" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                 </span>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="auditAppUserBindingOwner in auditAppUserBindingOwnerManageInfo.auditAppUserBindingOwners">
-                            <!-- <td class="text-center">{{auditAppUserBindingOwner.appUserId}}</td>
-                            <td class="text-center">{{auditAppUserBindingOwner.memberId}}</td>
-                            <td class="text-center">{{auditAppUserBindingOwner.communityId}}</td> -->
                             <td class="text-center">{{auditAppUserBindingOwner.communityName}}</td>
+                            <td class="text-center">{{auditAppUserBindingOwner.ownerId}}</td>
                             <td class="text-center">{{auditAppUserBindingOwner.appUserName}}</td>
                             <td class="text-center">{{auditAppUserBindingOwner.idCard}}</td>
                             <td class="text-center">{{auditAppUserBindingOwner.link}}</td>
@@ -180,23 +148,19 @@
                                 <div class="btn-group" v-if="auditAppUserBindingOwner.state == '10000'">
                                     <button class="btn-white btn btn-xs"
                                             v-on:click="_openAuditAppUserBindingOwnerModel(auditAppUserBindingOwner)">
-                                        <span><span><vc:i18n name="审核"></vc:i18n></span></span>
+                                        <span><vc:i18n name="审核"></vc:i18n></span>
                                     </button>
                                 </div>
                                 <button class="btn-white btn btn-xs"
                                         v-on:click="_deleteAppUserBindingOwnerModel(auditAppUserBindingOwner)">
                                     <span>
-                                        <span>
-                                            <vc:i18n name="解绑" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                        </span>
+                                        <vc:i18n name="解绑" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                     </span>
                                 </button>
                                 <button class="btn-white btn btn-xs"
                                         v-on:click="_resetUserPwdModel(auditAppUserBindingOwner)">
                                     <span>
-                                        <span>
-                                            <vc:i18n name="重置密码" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
-                                        </span>
+                                        <vc:i18n name="重置密码" namespace="auditAppUserBindingOwnerManage"></vc:i18n>
                                     </span>
                                 </button>
                             </td>

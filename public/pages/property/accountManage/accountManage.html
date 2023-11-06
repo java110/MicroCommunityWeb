@@ -7,7 +7,8 @@
                         <span><vc:i18n name="查询条件" namespace="accountManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;" v-on:click="_moreCondition()">
+                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                v-on:click="_moreCondition()">
                             {{accountManageInfo.moreCondition == true?'隐藏':'更多'}}
                         </button>
                     </div>
@@ -16,17 +17,20 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主名称','accountManage')" v-model="accountManageInfo.conditions.ownerName" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入账户名称','accountManage')"
+                                       v-model="accountManageInfo.conditions.ownerName" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入业主身份证号','accountManage')" v-model="accountManageInfo.conditions.idCard" class=" form-control">
+                                <input type="text" :placeholder="vc.i18n('请输入身份证号','accountManage')"
+                                       v-model="accountManageInfo.conditions.idCard" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="number" :placeholder="vc.i18n('请输入联系方式','accountManage')" v-model="accountManageInfo.conditions.link" class=" form-control">
+                                <input type="number" :placeholder="vc.i18n('请输入联系方式','accountManage')"
+                                       v-model="accountManageInfo.conditions.link" class=" form-control">
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -62,7 +66,8 @@
                         <span><vc:i18n name="业主账户" namespace="accountManage"></vc:i18n></span>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_prestoreAccount()" v-if="vc.hasPrivilege('502023032809461736')">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_prestoreAccount()"
+                                v-if="vc.hasPrivilege('502023032809461736')">
                             <span class="fa fa-plus"></span>
                             <span><vc:i18n name="预存" namespace="accountManage"></vc:i18n></span>
                         </button>
@@ -71,53 +76,57 @@
                 <div class="ibox-content">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
-                            <tr>
-                                <th class="text-center">
-                                    <span><vc:i18n name="账户编号" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="账户名称" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="手机号" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="账户类型" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="账户金额" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="创建时间" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                                <th class="text-center">
-                                    <span><vc:i18n name="操作" namespace="accountManage"></vc:i18n></span>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户编号" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户名称" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="身份证号" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="手机号" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户类型" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="账户金额" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="创建时间" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                            <th class="text-center">
+                                <span><vc:i18n name="操作" namespace="accountManage"></vc:i18n></span>
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="account in accountManageInfo.accounts">
-                                <td class="text-center">{{account.acctId}}</td>
-                                <td class="text-center">{{account.acctName}}</td>
-                                <td class="text-center">{{account.link}}</td>
-                                <td class="text-center">{{account.acctTypeName}}</td>
-                                <td class="text-center">{{account.amount}}</td>
-                                <td class="text-center">{{account.createTime}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs" v-on:click="_accountDetail(account)">
+                        <tr v-for="account in accountManageInfo.accounts">
+                            <td class="text-center">{{account.acctId}}</td>
+                            <td class="text-center">{{account.acctName}}</td>
+                            <td class="text-center">{{account.idCard}}</td>
+                            <td class="text-center">{{account.link}}</td>
+                            <td class="text-center">{{account.acctTypeName}}</td>
+                            <td class="text-center">{{account.amount}}</td>
+                            <td class="text-center">{{account.createTime}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_accountDetail(account)">
                                         <span><vc:i18n name="账户明细" namespace="accountManage"></vc:i18n></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="8">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
                         </tfoot>
                     </table>
                     <!-- 分页 -->

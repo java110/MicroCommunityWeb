@@ -1,7 +1,7 @@
 /**
-业主详情页面
+ 业主详情页面
  **/
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             dataReportInfo: {
@@ -19,7 +19,7 @@
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that._initDate();
             $that.dataReportInfo.conditions.communityId = vc.getCurrentCommunity().communityId;
             $that._loadStaffCommunitys();
@@ -29,22 +29,19 @@
             $that._loadDataReportInout();
             $that._loadDataReportOthers();
         },
-        _initEvent: function() {
-            vc.on('dataReport', 'listOwnerData', function(_info) {
+        _initEvent: function () {
+            vc.on('dataReport', 'listOwnerData', function (_info) {
                 $that.changeTab($that.dataReportInfo._currentTab);
             });
         },
         methods: {
-            _initDate: function() {
-                vc.initDate('startDate', function(_value) {
+            _initDate: function () {
+                vc.initDate('startDate', function (_value) {
                     $that.dataReportInfo.conditions.startDate = _value;
                     $that._changeDate();
                 });
-                vc.initDate('endDate', function(_value) {
-                    console.log(_value)
+                vc.initDate('endDate', function (_value) {
                     $that.dataReportInfo.conditions.endDate = _value;
-                    console.log($that.dataReportInfo.conditions.endDate)
-
                     $that._changeDate();
                 });
                 let _data = new Date();
@@ -65,7 +62,7 @@
                 }
                 $that.dataReportInfo.conditions.endDate = _newDate;
             },
-            _changeDate: function(_day) {
+            _changeDate: function (_day) {
                 $that.dataReportInfo.curDay = _day;
                 let _endDate = new Date();
                 if (_day == 'today') {
@@ -89,73 +86,72 @@
                 $that._loadDataReportInout();
                 $that._loadDataReportOthers();
                 $that.changeTab($that.dataReportInfo._currentTab);
-
             },
-            _loadDataReportFee: function() {
+            _loadDataReportFee: function () {
                 let param = {
-                        params: $that.dataReportInfo.conditions
-                    }
-                    //发送get请求
+                    params: $that.dataReportInfo.conditions
+                }
+                //发送get请求
                 vc.http.apiGet('/dataReport.queryFeeDataReport',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.dataReportInfo.fees = _json.data
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadDataReportOrder: function() {
+            _loadDataReportOrder: function () {
                 let param = {
-                        params: $that.dataReportInfo.conditions
-                    }
-                    //发送get请求
+                    params: $that.dataReportInfo.conditions
+                }
+                //发送get请求
                 vc.http.apiGet('/dataReport.queryOrderDataReport',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.dataReportInfo.orders = _json.data
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadDataReportInout: function() {
+            _loadDataReportInout: function () {
                 let param = {
-                        params: $that.dataReportInfo.conditions
-                    }
-                    //发送get请求
+                    params: $that.dataReportInfo.conditions
+                }
+                //发送get请求
                 vc.http.apiGet('/dataReport.queryInoutDataReport',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.dataReportInfo.inouts = _json.data
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _loadDataReportOthers: function() {
+            _loadDataReportOthers: function () {
                 let param = {
-                        params: $that.dataReportInfo.conditions
-                    }
-                    //发送get请求
+                    params: $that.dataReportInfo.conditions
+                }
+                //发送get请求
                 vc.http.apiGet('/dataReport.queryOthersDataReport',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         let _json = JSON.parse(json);
                         $that.dataReportInfo.others = _json.data
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            changeTab: function(_tab) {
+            changeTab: function (_tab) {
                 $that.dataReportInfo._currentTab = _tab;
                 vc.emit(_tab, 'switch', {
                     startDate: $that.dataReportInfo.conditions.startDate,

@@ -6,8 +6,8 @@
                     <vc:i18n name="添加" namespace="addAccessControlWhite"></vc:i18n>
                 </h5>
                 <div class="ibox-tools" style="top:10px;">
-                    <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
-                        <i class="fa fa-close"></i>返回
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="_goBack()">
+                        <i class="fa fa-times"></i>返回
                     </button>
                 </div>
             </div>
@@ -18,11 +18,11 @@
                     </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" :placeholder="vc.i18n('必填，请选择员工','itemReleaseDetail')"
-                            disabled v-model="addAttendanceClassesStaffInfo.staffName">
+                               disabled v-model="addAttendanceClassesStaffInfo.staffName">
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
-                            选择
+                        <button class="btn btn-primary " type="button" v-on:click="chooseStaff()">
+                            <i class="fa fa-search"></i>选择
                         </button>
                     </div>
                 </div>
@@ -32,7 +32,8 @@
                     </label>
                     <div class="col-sm-4">
                         <vc:create path="frame/uploadImageUrl" callBackListener="addAttendanceClassesStaff"
-                            callBackFunction="notifyUploadImage" imageCount="1" namespace="addAttendanceClassesStaff">
+                                   callBackFunction="notifyUploadImage" imageCount="1"
+                                   namespace="addAttendanceClassesStaff">
                         </vc:create>
                     </div>
                 </div>
@@ -40,17 +41,15 @@
             <div class="row">
                 <div class="col-md-12 text-right">
                     <button type="button" class="btn btn-warning " style="margin-right:20px;" @click="_goBack()">
-                        <span>
-                            <vc:i18n name="返回"></vc:i18n>
-                        </span>
+                        <i class="fa fa-close"></i>
+                        <span><vc:i18n name="返回"></vc:i18n></span>
                     </button>
-                    <button class="btn btn-primary" type="button" v-on:click="saveAttendanceClassesStaffInfo()"><i
-                            class="fa fa-check"></i>&nbsp;提交
+                    <button class="btn btn-primary" type="button" v-on:click="saveAttendanceClassesStaffInfo()">
+                        <i class="fa fa-check"></i>&nbsp;提交
                     </button>
                 </div>
             </div>
         </div>
     </div>
     <vc:create path="property/selectStaff"></vc:create>
-
 </div>

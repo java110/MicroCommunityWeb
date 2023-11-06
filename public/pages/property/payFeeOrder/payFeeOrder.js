@@ -133,7 +133,7 @@
                     }
                     $that.listAndComputeFeeInfo(103)
                 });
-                vc.initDate('customStartTime', function(_value) {
+                vc.initDate('customStartTime', function (_value) {
                     $that.payFeeOrderInfo.customStartTime = _value;
                     let start = Date.parse(new Date($that.payFeeOrderInfo.endTime))
                     let end = Date.parse(new Date($that.payFeeOrderInfo.customStartTime))
@@ -141,27 +141,26 @@
                         vc.toast("缴费开始时间必须大于起始时间")
                         $that.payFeeOrderInfo.customStartTime = '';
                         return;
-                    };
+                    }
                     if ($that.payFeeOrderInfo.customEndTime) {
                         $that.listAndComputeFeeInfo(105)
                     }
-
                 });
-                vc.initDate('customEndTime', function(_value) {
-                        $that.payFeeOrderInfo.customEndTime = _value;
-                        let start = Date.parse(new Date($that.payFeeOrderInfo.customStartTime))
-                        let end = Date.parse(new Date($that.payFeeOrderInfo.customEndTime))
-                        if (start - end >= 0) {
-                            vc.toast("缴费开始时间必须大于缴费结束时间")
-                            $that.payFeeOrderInfo.customEndTime = '';
-                            return;
-                        };
-                        if ($that.payFeeOrderInfo.customStartTime) {
-                            $that.listAndComputeFeeInfo(105)
-                        }
-                    })
-                    // 查询用户账户
-                vc.initDateTime('payFeeOrderCreateTime', function(_value) {
+                vc.initDate('customEndTime', function (_value) {
+                    $that.payFeeOrderInfo.customEndTime = _value;
+                    let start = Date.parse(new Date($that.payFeeOrderInfo.customStartTime))
+                    let end = Date.parse(new Date($that.payFeeOrderInfo.customEndTime))
+                    if (start - end >= 0) {
+                        vc.toast("缴费开始时间必须大于缴费结束时间")
+                        $that.payFeeOrderInfo.customEndTime = '';
+                        return;
+                    }
+                    if ($that.payFeeOrderInfo.customStartTime) {
+                        $that.listAndComputeFeeInfo(105)
+                    }
+                })
+                // 查询用户账户
+                vc.initDateTime('payFeeOrderCreateTime', function (_value) {
                     $that.payFeeOrderInfo.createTime = _value;
                 });
                 //与字典表支付方式关联

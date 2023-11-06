@@ -9,13 +9,17 @@
                     v-on:click="_qureyOwnerDetailRoom()">
                 <i class="fa fa-search"></i>查询
             </button>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-on:click="_resetOwnerDetailRoom()">
+                <i class="fa fa-repeat"></i>重置
+            </button>
         </div>
-        
         <div class="col-lg-8 text-right">
-            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-if="vc.hasPrivilege('502023021978930012')" v-on:click="_openAddOwnerRoom()">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                    v-if="vc.hasPrivilege('502023021978930012')" v-on:click="_openAddOwnerRoom()">
+                <i class="fa fa-plus"></i>
                 <vc:i18n name="交房" namespace="simplifyRoomFee"></vc:i18n>
             </button>
-            
         </div>
     </div>
     <div class="margin-top">
@@ -90,12 +94,20 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9">
+                    <ul class="pagination float-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <!-- 分页 -->
         <div class="row">
             <div class="col-sm-4">
                 <span>
-                    <span><vc:i18n name="欠费小计：" namespace="ownerDetailRoom"></vc:i18n> </span>{{ownerDetailRoomInfo.allOweFeeAmount}}
+                    <span><vc:i18n name="欠费小计：" namespace="ownerDetailRoom"></vc:i18n> </span>
+                    {{ownerDetailRoomInfo.allOweFeeAmount}}
                 </span>
             </div>
             <div class="col-sm-8">

@@ -9,9 +9,11 @@
             simplifyMeterWaterFeeInfo: {
                 meterTypes: [],
                 meterWaters: [],
+                total: 0,
+                records: 1,
                 roomId: '',
                 roomName: '',
-                name: '',
+                ownerName: '',
                 floorNum: '',
                 unitNum: '',
                 roomNum: '',
@@ -22,7 +24,7 @@
         },
         _initEvent: function () {
             //切换 至费用页面
-            vc.on('simplifyMeterWaterFee', 'switch', function (_param) {
+            vc.on('simplifyMeterWaterLog', 'switch', function (_param) {
                 if (_param.roomId == '') {
                     return;
                 }
@@ -31,8 +33,7 @@
                 $that._listMeterTypes();
                 $that._listSimplifyMeterWaterFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
-            vc.on('simplifyMeterWaterFee', 'paginationPlus', 'page_event',
+            vc.on('simplifyMeterWaterLog', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     vc.component._listSimplifyMeterWaterFee(_currentPage, DEFAULT_ROWS);
                 });
@@ -48,7 +49,6 @@
                         meterType: $that.simplifyMeterWaterFeeInfo.meterType
                     }
                 };
-
                 //发送get请求
                 vc.http.apiGet('meterWater.listMeterWaters',
                     param,
@@ -57,9 +57,9 @@
                         vc.component.simplifyMeterWaterFeeInfo.total = _meterWaterInfo.total;
                         vc.component.simplifyMeterWaterFeeInfo.records = _meterWaterInfo.records;
                         vc.component.simplifyMeterWaterFeeInfo.meterWaters = _meterWaterInfo.data;
-                        vc.emit('simplifyMeterWaterFee', 'paginationPlus', 'init', {
-                            total: _meterWaterInfo.records,
-                            dataCount: _meterWaterInfo.total,
+                        vc.emit('simplifyMeterWaterLog', 'paginationPlus', 'init', {
+                            total: vc.component.simplifyMeterWaterFeeInfo.records,
+                            dataCount: vc.component.simplifyMeterWaterFeeInfo.total,
                             currentPage: _page
                         });
                     }, function () {
@@ -71,16 +71,17 @@
                 vc.emit('addMeterWater', 'openAddMeterWaterModal', {
                     roomId: $that.simplifyMeterWaterFeeInfo.roomId,
                     roomName: $that.simplifyMeterWaterFeeInfo.roomName,
-                    ownerName: $that.simplifyMeterWaterFeeInfo.name
-
+                    ownerName: $that.simplifyMeterWaterFeeInfo.ownerName
                 });
             },
             clearSimplifyMeterWaterFeeInfo: function () {
                 $that.simplifyMeterWaterFeeInfo = {
                     meterTypes: [],
                     meterWaters: [],
+                    total: 0,
+                    records: 1,
                     roomId: '',
-                    name: '',
+                    ownerName: '',
                     roomName: '',
                     floorNum: '',
                     unitNum: '',

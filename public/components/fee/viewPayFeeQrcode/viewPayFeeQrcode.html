@@ -1,29 +1,30 @@
 <div id="viewPayFeeQrcodeModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="m-t-none m-b ">
-          <vc:i18n name="支付二维码" namespace="viewPayFeeQrcode"></vc:i18n>
-        </h3>
-        <div class="ibox-content">
-          <div class="form-group row">
-            <div class="col-sm-12" style="position: relative;">
-              <div id="qrcode" style="width:200px; height:200px; "></div>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="m-t-none m-b ">
+                    <vc:i18n name="支付二维码" namespace="viewPayFeeQrcode"></vc:i18n>
+                </h3>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <div class="col-sm-12" style="position: relative;">
+                            <div id="qrcode" style="width:200px; height:200px; "></div>
+                        </div>
+                        <div class="col-sm-12 text-center margin-top ">
+                            <span>{{viewPayFeeQrcodeInfo.qrcodeName}}</span>
+                        </div>
+                        <div class="col-sm-12 text-center margin-top ">
+                            <vc:i18n name="请截图贴在收银台" namespace="viewPayFeeQrcode"></vc:i18n>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button type="button" class="btn btn-white float-right" style="margin-right:20px;"
+                                data-dismiss="modal">
+                            <vc:i18n name="关闭" namespace="viewPayFeeQrcode"></vc:i18n>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-12 text-center margin-top ">
-              <span>{{viewPayFeeQrcodeInfo.qrcodeName}}</span>
-            </div>
-            <div class="col-sm-12 text-center margin-top ">
-              <vc:i18n name="请截图贴在收银台" namespace="viewPayFeeQrcode"></vc:i18n>
-            </div>
-          </div>
-          <div class="ibox-content">
-            <button type="button" class="btn btn-white float-right" style="margin-right:20px;" data-dismiss="modal">
-              <vc:i18n name="关闭" namespace="viewPayFeeQrcode"></vc:i18n>
-            </button>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

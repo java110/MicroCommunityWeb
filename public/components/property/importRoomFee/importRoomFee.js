@@ -1,4 +1,4 @@
-(function(vc) {
+(function (vc) {
     vc.extends({
         data: {
             importRoomFeeInfo: {
@@ -13,11 +13,10 @@
             vc.getDict('pay_fee_config', "fee_type_cd", function(_data) {
                 $that.importRoomFeeInfo.feeTypeCds = _data;
             });
-
         },
-        _initEvent: function() {
+        _initEvent: function () {
             vc.on('importRoomFee', 'openImportRoomFeeModal',
-                function(_room) {
+                function (_room) {
                     $('#importRoomFeeModel').modal('show');
                 });
         },
@@ -92,7 +91,7 @@
                         vc.toast(errInfo, 10000);
                     });
             },
-            _exportRoomFeeTemplate: function() {
+            _exportRoomFeeTemplate: function () {
                 vc.jumpToPage('/callComponent/importRoomFee/exportData?communityId=' + vc.getCurrentCommunity().communityId + "&objType=" + $that.importRoomFeeInfo.objType);
             },
             clearAddFeeConfigInfo: function() {
@@ -106,12 +105,13 @@
                 };
                 $that.importRoomFeeInfo.feeTypeCds = _feeTypeCds;
             },
-            _changeFeeTypeCd: function(_feeTypeCd) {},
-            getExcelTemplate: function(e) {
+            _changeFeeTypeCd: function (_feeTypeCd) {
+            },
+            getExcelTemplate: function (e) {
                 //console.log("getExcelTemplate 开始调用")
                 $that.importRoomFeeInfo.excelTemplate = e.target.files[0];
             },
-            checkFileType: function(fileType) {
+            checkFileType: function (fileType) {
                 const acceptTypes = ['xlsx'];
                 for (var i = 0; i < acceptTypes.length; i++) {
                     if (fileType === acceptTypes[i]) {
@@ -120,7 +120,7 @@
                 }
                 return false;
             },
-            checkFileSize: function(fileSize) {
+            checkFileSize: function (fileSize) {
                 //2M
                 const MAX_SIZE = 2 * 1024 * 1024;
                 if (fileSize > MAX_SIZE) {

@@ -95,8 +95,9 @@
                         <vc:i18n name="投诉建议" namespace="complaintManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-white btn-sm" v-on:click="_toAuditPage()"
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_toAuditPage()"
                                 v-if="vc.hasPrivilege('502020061767630003')">
+                            <i class="fa fa-plus"></i>
                             <span><vc:i18n name="设置处理人员" namespace="visitManage"></vc:i18n></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddComplaintModal()">

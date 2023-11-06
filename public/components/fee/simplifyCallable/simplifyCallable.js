@@ -27,7 +27,6 @@
             vc.on('simplifyCallable', 'listOwnerData', function (_param) {
                 $that._listSimplifyCallable(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
             vc.on('simplifyCallable', 'paginationPlus', 'page_event',
                 function (_currentPage) {
                     $that._listSimplifyCallable(_currentPage, DEFAULT_ROWS);
@@ -54,6 +53,7 @@
                         $that.simplifyCallableInfo.callables = _data.data;
                         vc.emit('simplifyOwnerRepair', 'paginationPlus', 'init', {
                             total: $that.simplifyCallableInfo.records,
+                            dataCount: $that.simplifyCallableInfo.total,
                             currentPage: _page
                         });
                     },
@@ -78,25 +78,21 @@
             _openWritePrintOweFeeCallableModal: function () {
                 let _roomId = $that.simplifyCallableInfo.roomId;
                 let _roomName = $that.simplifyCallableInfo.roomName;
-
                 if (!_roomId) {
                     vc.toast('未选择房屋');
                     return;
                 }
-
                 vc.emit('writeOweFeeCallable', 'openWriteOweFeeCallableModal', {
                     roomId: _roomId,
                     roomName: _roomName
                 })
             },
-
-            _openAddOweFeeCallableModal: function() {
-                vc.jumpToPage('/#/pages/fee/roomOweFeeCallable?roomId='+$that.simplifyCallableInfo.roomId)
+            _openAddOweFeeCallableModal: function () {
+                vc.jumpToPage('/#/pages/fee/roomOweFeeCallable?roomId=' + $that.simplifyCallableInfo.roomId)
             },
             _openDeleteOweFeeCallableModel: function (_oweFeeCallable) {
                 vc.emit('deleteOweFeeCallable', 'openDeleteOweFeeCallableModal', _oweFeeCallable);
-            },
-
+            }
         }
     });
 })(window.vc);

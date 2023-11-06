@@ -20,7 +20,6 @@
                 $that.contractDetailFileInfo.contractId = _data.contractId;
                 $that._loadContractDetailFileData(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-
         },
         methods: {
             _loadContractDetailFileData: function (_page, _row) {

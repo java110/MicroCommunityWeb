@@ -1,16 +1,13 @@
 (function (vc, vm) {
-
     vc.extends({
         data: {
             editChargeRuleInfo: {
                 ruleId: '',
                 ruleName: '',
-                remark: '',
-
+                remark: ''
             }
         },
         _initMethod: function () {
-
         },
         _initEvent: function () {
             vc.on('editChargeRule', 'openEditChargeRuleModal', function (_params) {
@@ -35,22 +32,22 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "规则名称不能超过64"
-                        },
+                        }
                     ],
                     'editChargeRuleInfo.remark': [
                         {
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注不能超过512"
-                        },
+                        }
                     ],
                     'editChargeRuleInfo.ruleId': [
                         {
                             limit: "required",
                             param: "",
                             errInfo: "编号不能为空"
-                        }]
-
+                        }
+                    ]
                 });
             },
             editChargeRule: function () {
@@ -58,7 +55,6 @@
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-
                 vc.http.apiPost(
                     '/chargeRule.updateChargeRule',
                     JSON.stringify(vc.component.editChargeRuleInfo),
@@ -72,9 +68,11 @@
                             //关闭model
                             $('#editChargeRuleModel').modal('hide');
                             vc.emit('chargeRuleManage', 'listChargeRule', {});
+                            vc.toast("修改成功");
                             return;
+                        } else {
+                            vc.toast(_json.msg);
                         }
-                        vc.toast(_json.msg);
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -85,11 +83,9 @@
                 vc.component.editChargeRuleInfo = {
                     ruleId: '',
                     ruleName: '',
-                    remark: '',
-
+                    remark: ''
                 }
             }
         }
     });
-
 })(window.vc, window.vc.component);

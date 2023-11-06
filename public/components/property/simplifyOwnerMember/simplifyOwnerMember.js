@@ -6,6 +6,8 @@
             simplifyOwnerMemberInfo: {
                 members: [],
                 ownerId: '',
+                total: 0,
+                records: 1,
                 listColumns: []
             }
         },
@@ -33,9 +35,11 @@
             );
         },
         methods: {
-            _listSimplifyOwnerMember: function (_param) {
+            _listSimplifyOwnerMember: function (_page, _rows) {
                 let param = {
                     params: {
+                        page: _page,
+                        row: _rows,
                         ownerId: vc.component.simplifyOwnerMemberInfo.ownerId,
                         communityId: vc.getCurrentCommunity().communityId
                     }
@@ -47,6 +51,13 @@
                         let _simplifyOwnerMemberInfo = JSON.parse(json);
                         $that.simplifyOwnerMemberInfo.members = _simplifyOwnerMemberInfo.owners;
                         $that.dealSimplifyOwnerMemberAttr(_simplifyOwnerMemberInfo.owners);
+                        vc.component.simplifyOwnerMemberInfo.total = _simplifyOwnerMemberInfo.total;
+                        vc.component.simplifyOwnerMemberInfo.records = _simplifyOwnerMemberInfo.records;
+                        vc.emit('simplifyOwnerMember', 'paginationPlus', 'init', {
+                            total: vc.component.simplifyOwnerMemberInfo.records,
+                            dataCount: vc.component.simplifyOwnerMemberInfo.total,
+                            currentPage: _page
+                        });
                     },
                     function () {
                         console.log('请求失败处理');

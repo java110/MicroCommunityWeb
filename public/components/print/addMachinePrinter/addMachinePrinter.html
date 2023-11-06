@@ -1,39 +1,58 @@
-<div id="addMachinePrinterModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="addMachinePrinterModel" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <h3 class="m-t-none m-b "><span><vc:i18n name="添加" namespace="addMachinePrinter"></vc:i18n></span></h3>
+                <h3 class="m-t-none m-b ">
+                    <span><vc:i18n name="添加" namespace="addMachinePrinter"></vc:i18n></span>
+                </h3>
                 <div class="ibox-content">
                     <div>
                         <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='设备名称' namespace='addMachinePrinter'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='设备名称' namespace='addMachinePrinter'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addMachinePrinterInfo.machineName" type="text" :placeholder="vc.i18n('必填，请填写设备名称','addMachinePrinter')" class="form-control">
+                                    <input v-model="addMachinePrinterInfo.machineName" type="text"
+                                           :placeholder="vc.i18n('必填，请填写设备名称','addMachinePrinter')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='设备编码' namespace='addMachinePrinter'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='设备编码' namespace='addMachinePrinter'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
-                                    <input v-model="addMachinePrinterInfo.machineCode" type="text" :placeholder="vc.i18n('必填，请填写设备编码','addMachinePrinter')" class="form-control">
+                                    <input v-model="addMachinePrinterInfo.machineCode" type="text"
+                                           :placeholder="vc.i18n('必填，请填写设备编码','addMachinePrinter')"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"><span><vc:i18n name='厂家' namespace='addMachinePrinter'></vc:i18n></span></label>
+                                <label class="col-sm-2 col-form-label">
+                                    <span><vc:i18n name='厂家' namespace='addMachinePrinter'></vc:i18n></span>
+                                </label>
                                 <div class="col-sm-10">
                                     <select class="custom-select" v-model="addMachinePrinterInfo.implBean">
-                                        <option selected  disabled value="">{{vc.i18n('必填，请选择厂家','addMachinePrinter')}}</option>
-                                        <option  :value="item.statusCd" v-for="(item,index) in addMachinePrinterInfo.implBeans">{{item.name}}</option>
+                                        <option selected disabled value="">
+                                            {{vc.i18n('必填，请选择厂家','addMachinePrinter')}}
+                                        </option>
+                                        <option :value="item.statusCd"
+                                                v-for="(item,index) in addMachinePrinterInfo.implBeans">{{item.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <button class="btn btn-primary float-right" type="button" v-on:click="saveMachinePrinterInfo()"><i class="fa fa-check"></i>&nbsp;
+                                <button class="btn btn-primary float-right" type="button"
+                                        v-on:click="saveMachinePrinterInfo()"><i class="fa fa-check"></i>&nbsp;
                                     <span><vc:i18n name="保存"></vc:i18n></span>
                                 </button>
-                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" data-dismiss="modal">
+                                <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                                        data-dismiss="modal">
                                     <span><vc:i18n name="取消"></vc:i18n></span>
-                                    </button>
+                                </button>
                             </div>
                         </div>
                     </div>

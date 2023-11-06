@@ -34,12 +34,12 @@
                 $('#roomDecorationRecordModel').modal('show');
             });
             vc.on("roomDecorationRecord", "notifyUploadImage", function (_param) {
-                if(_param.length > 0){
+                if (_param.length > 0) {
                     vc.component.roomDecorationRecordInfo.photos = [];
                     _param.forEach((item) => {
                         vc.component.roomDecorationRecordInfo.photos.push(item.fileId);
                     })
-                }else{
+                } else {
                     vc.component.roomDecorationRecordInfo.photos = [];
                 }
             });
@@ -62,7 +62,7 @@
                             limit: "maxLength",
                             param: "64",
                             errInfo: "状态格式错误"
-                        },
+                        }
                     ],
                     'roomDecorationRecordInfo.isTrue': [
                         {
@@ -81,7 +81,7 @@
                             limit: "maxLength",
                             param: "512",
                             errInfo: "备注错误"
-                        },
+                        }
                     ],
                     'roomDecorationRecordInfo.rId': [
                         {

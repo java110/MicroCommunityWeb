@@ -7,6 +7,8 @@
                 repairs: [],
                 ownerId: '',
                 roomId: '',
+                total: 0,
+                records: 1,
                 roomName: ''
             }
         },
@@ -48,6 +50,7 @@
                         $that.simplifyOwnerRepairInfo.repairs = _repairPoolManageInfo.data;
                         vc.emit('simplifyOwnerRepair', 'paginationPlus', 'init', {
                             total: $that.simplifyOwnerRepairInfo.records,
+                            dataCount: $that.simplifyOwnerRepairInfo.total,
                             currentPage: _page
                         });
                     },
@@ -64,6 +67,8 @@
                     repairs: [],
                     ownerId: '',
                     roomId: '',
+                    total: 0,
+                    records: 1,
                     roomName: ''
                 }
             },

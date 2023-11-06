@@ -1,7 +1,7 @@
 /**
-    入驻小区
-**/
-(function(vc) {
+ 入驻小区
+ **/
+(function (vc) {
     var DEFAULT_PAGE = 1;
     var DEFAULT_ROWS = 10;
     vc.extends({
@@ -16,36 +16,33 @@
                 conditions: {
                     acctId: '',
                     detailType: '',
-                    orderId: '',
+                    orderId: ''
                 }
             }
         },
-        _initMethod: function() {
+        _initMethod: function () {
             $that.accountDetailManageInfo.conditions.acctId = vc.getParam('acctId');
             vc.component._listAccountDetails(DEFAULT_PAGE, DEFAULT_ROWS);
         },
-        _initEvent: function() {
-
-            vc.on('accountDetailManage', 'listAccountDetail', function(_param) {
+        _initEvent: function () {
+            vc.on('accountDetailManage', 'listAccountDetail', function (_param) {
                 vc.component._listAccountDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             });
-            vc.on('pagination', 'page_event', function(_currentPage) {
+            vc.on('pagination', 'page_event', function (_currentPage) {
                 vc.component._listAccountDetails(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
-            _listAccountDetails: function(_page, _rows) {
-
+            _listAccountDetails: function (_page, _rows) {
                 vc.component.accountDetailManageInfo.conditions.page = _page;
                 vc.component.accountDetailManageInfo.conditions.row = _rows;
                 var param = {
                     params: vc.component.accountDetailManageInfo.conditions
                 };
-
                 //发送get请求
                 vc.http.apiGet('/account/queryOwnerAccountDetail',
                     param,
-                    function(json, res) {
+                    function (json, res) {
                         var _accountDetailManageInfo = JSON.parse(json);
                         vc.component.accountDetailManageInfo.total = _accountDetailManageInfo.total;
                         vc.component.accountDetailManageInfo.records = _accountDetailManageInfo.records;
@@ -56,29 +53,27 @@
                             currentPage: _page
                         });
                     },
-                    function(errInfo, error) {
+                    function (errInfo, error) {
                         console.log('请求失败处理');
                     }
                 );
             },
-            _queryAccountDetailMethod: function() {
+            _queryAccountDetailMethod: function () {
                 vc.component._listAccountDetails(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-            _moreCondition: function() {
+            _moreCondition: function () {
                 if (vc.component.accountDetailManageInfo.moreCondition) {
                     vc.component.accountDetailManageInfo.moreCondition = false;
                 } else {
                     vc.component.accountDetailManageInfo.moreCondition = true;
                 }
             },
-            _cancelAccountDetail: function(_detail) {
+            _cancelAccountDetail: function (_detail) {
                 vc.emit('cancelAccountDetail', 'openAddModal', _detail);
             },
-            _goBack: function() {
+            _goBack: function () {
                 vc.goBack();
             }
-
-
         }
     });
 })(window.vc);

@@ -1,0 +1,113 @@
+<div>
+    <div>
+        <div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <span>
+                        <span><vc:i18n name="申请单号" namespace="printAllocationStorehouse"></vc:i18n></span>：{{printAllocationStorehouseInfo.conditions.applyId}}
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <span>
+                        <span><vc:i18n name="申请人" namespace="printAllocationStorehouse"></vc:i18n></span>：{{printAllocationStorehouseInfo.conditions.startUserName}}
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <span>
+                        <span><vc:i18n name="申请时间" namespace="printAllocationStorehouse"></vc:i18n></span>：{{printAllocationStorehouseInfo.conditions.createTime}}
+                    </span>
+                </div>
+            </div>
+            <table class="table table-bordered margin-top">
+                <thead>
+                <tr>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="编号" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="调拨物品" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="物品类型" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="物品规格" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="物品编码" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="固定物品" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        {{printAllocationStorehouseInfo.conditions.applyType == '10000' ||
+                        printAllocationStorehouseInfo.conditions.applyType == '30000' ? '被调仓库' : '退还人'}}
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="目标仓库" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="原库存" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <th scope="col" class="text-center">
+                        <span><vc:i18n name="调拨数量" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in printAllocationStorehouseInfo.resourceStores">
+                    <th scope="row" class="text-center">{{index +1}}</th>
+                    <td class="text-center">{{item.resName}}</td>
+                    <td class="text-center">{{item.parentRstName}} > {{item.rstName}}</td>
+                    <td class="text-center">{{item.specName ? item.specName : '-'}}</td>
+                    <td class="text-center">{{item.resCode}}</td>
+                    <td class="text-center">{{item.isFixedName}}</td>
+                    <td class="text-center">{{printAllocationStorehouseInfo.conditions.applyType == '10000' ||
+                        printAllocationStorehouseInfo.conditions.applyType == '30000' ? item.shaName :
+                        printAllocationStorehouseInfo.conditions.startUserName}}
+                    </td>
+                    <td class="text-center">{{item.shzName}}</td>
+                    <td class="text-center">{{item.originalStock}}{{item.unitCodeName}}</td>
+                    <td class="text-center">
+                        {{item.stock}}{{item.applyType==20000 ? item.miniUnitCodeName : item.unitCodeName}}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">
+                        <span><vc:i18n name="备注" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </th>
+                    <td colspan="9" style="text-align:center">{{printAllocationStorehouseInfo.conditions.remark}}</td>
+                </tr>
+                <tr height="60px">
+                    <td colspan="2" class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="仓库管理员签字" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </td>
+                    <td colspan="2"></td>
+                    <td class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="时间" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </td>
+                    <td colspan="5"></td>
+                </tr>
+                <tr height="60px">
+                    <td colspan="2" class="text-center" style="vertical-align:middle;">
+                        <span><vc:i18n name="调拨人员签字" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </td>
+                    <td colspan="2"></td>
+                    <td class="text-center " style="vertical-align:middle;">
+                        <span><vc:i18n name="时间" namespace="printAllocationStorehouse"></vc:i18n></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="print-btn">
+            <button class="btn btn-primary float-right" type="button" v-on:click="_printAllocationStorehouseDiv()">
+                <i class="fa fa-check"></i>&nbsp;打印
+            </button>
+            <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                    v-on:click="_closePage()">
+                <span><vc:i18n name="取消" namespace="printAllocationStorehouse"></vc:i18n></span>
+            </button>
+        </div>
+    </div>
+</div>

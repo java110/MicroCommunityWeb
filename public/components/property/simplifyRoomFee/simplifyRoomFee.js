@@ -50,7 +50,7 @@
                 $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('simplifyRoomFee', 'paginationPlus', 'page_event',
-                function(_currentPage) {
+                function (_currentPage) {
                     $that._listSimplifyRoomFee(_currentPage, DEFAULT_ROWS);
                 });
         },
@@ -91,11 +91,13 @@
                         $that.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         $that.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
                         let _totalAmount = 0.0;
-                        _feeConfigInfo.fees.forEach(item => {
-                            _totalAmount += parseFloat(item.amountOwed);
-                        })
-                        $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
-                        $that.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees.sort($that._roomFeeCompare);
+                        if (_totalAmount && _totalAmount.length > 0) {
+                            _feeConfigInfo.fees.forEach(item => {
+                                _totalAmount += parseFloat(item.amountOwed);
+                            })
+                            $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
+                            $that.simplifyRoomFeeInfo.fees = _feeConfigInfo.fees.sort($that._roomFeeCompare);
+                        }
                         vc.emit('simplifyRoomFee', 'paginationPlus', 'init', {
                             total: $that.simplifyRoomFeeInfo.records,
                             dataCount: $that.simplifyRoomFeeInfo.total,
@@ -121,7 +123,6 @@
             _toOwnerPayFee: function () {
                 vc.jumpToPage('/#/pages/property/owePayFeeOrder?payObjId=' + $that.simplifyRoomFeeInfo.roomId + "&payObjType=3333&roomName=" + $that.simplifyRoomFeeInfo.roomName);
             },
-           
             _openRoomCreateFeeAddModal: function () {
                 $that.simplifyRoomFeeInfo.ownerName = $that.simplifyRoomFeeInfo.name;
                 vc.emit('roomCreateFeeAdd', 'openRoomCreateFeeAddModal', {
@@ -139,13 +140,15 @@
             },
             _getAttrValue: function (_attrs, _specCd) {
                 let _value = "";
-                _attrs.forEach(item => {
-                    if (item.specCd == _specCd) {
-                        _value = item.value;
-                        return;
-                    }
-                });
-                return _value;
+                if (_attrs && _attrs.length > 0) {
+                    _attrs.forEach(item => {
+                        if (item.specCd == _specCd) {
+                            _value = item.value;
+                            return;
+                        }
+                    });
+                    return _value;
+                }
             },
             _getDeadlineTime: function (_fee) {
                 if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
@@ -275,20 +278,20 @@
             _openBatchPayRoomFeeModal: function () {
                 vc.jumpToPage('/#/pages/property/batchPayFeeOrder?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&payerObjType=3333")
             },
-            _openMonthPayRoomFeeModal: function() {
+            _openMonthPayRoomFeeModal: function () {
                 vc.jumpToPage('/#/pages/property/payFeeMonthOrder?payerObjId=' +
                     $that.simplifyRoomFeeInfo.roomId +
                     "&payerObjType=3333");
             },
-            _openRoomCreateFeeComboModal: function() {
+            _openRoomCreateFeeComboModal: function () {
                 vc.jumpToPage('/#/pages/property/createFeeByCombo?payerObjId=' +
                     $that.simplifyRoomFeeInfo.roomId +
                     "&payerObjName=" + $that.simplifyRoomFeeInfo.roomName + "&payerObjType=3333")
             },
-            _openPrestoreAccountModal: function() {
+            _openPrestoreAccountModal: function () {
                 window.open('/#/pages/owner/ownerDetail?ownerId=' + $that.simplifyRoomFeeInfo.ownerId + "&currentTab=ownerDetailAccount")
             },
-            _viewRoomFeeConfig: function(_fee) {
+            _viewRoomFeeConfig: function (_fee) {
                 let param = {
                     params: {
                         page: 1,
@@ -317,7 +320,6 @@
                                 "公式": _feeConfig.computingFormulaName,
                                 "计费单价": _feeConfig.computingFormula == '2002' ? '-' : _feeConfig.squarePrice,
                                 "附加/固定费用": _feeConfig.additionalAmount,
-
                             }
                         })
                     },
@@ -325,7 +327,6 @@
                         console.log('请求失败处理');
                     }
                 );
-
             },
             _viewRoomFee: function (_fee) {
                 let _data = {
@@ -348,14 +349,14 @@
                     data: _data
                 });
             },
-            _changeSimplifyRoomShowFlag: function() {
+            _changeSimplifyRoomShowFlag: function () {
                 if ($that.simplifyRoomFeeInfo.showFlag == 'MONTH') {
                     $that._listSimplifyRoomMonthFee(DEFAULT_PAGE, DEFAULT_ROWS)
                 } else {
                     $that._listSimplifyRoomFee(DEFAULT_PAGE, DEFAULT_ROWS);
                 }
             },
-            _listSimplifyRoomMonthFee: function(_page, _row) {
+            _listSimplifyRoomMonthFee: function (_page, _row) {
                 let param = {
                     params: {
                         page: 1,
@@ -377,7 +378,7 @@
                 //发送get请求
                 vc.http.apiGet('/fee.listMonthFee',
                     param,
-                    function(json) {
+                    function (json) {
                         let _feeConfigInfo = JSON.parse(json);
                         $that.simplifyRoomFeeInfo.total = _feeConfigInfo.total;
                         $that.simplifyRoomFeeInfo.records = _feeConfigInfo.records;
@@ -388,7 +389,7 @@
                         $that.simplifyRoomFeeInfo.totalAmount = _totalAmount.toFixed(2);
                         $that.simplifyRoomFeeInfo.monthFees = _feeConfigInfo.data;
                     },
-                    function() {
+                    function () {
                         console.log('请求失败处理');
                     }
                 );
