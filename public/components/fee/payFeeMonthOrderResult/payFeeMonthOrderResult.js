@@ -101,6 +101,8 @@
                             vc.toast(_data.msg);
                             if (_data.data && _data.data.orderId) {
                                 $that.payFeeMonthOrderResultInfo.orderId = _data.data.orderId;
+                                $that.payFeeMonthOrderResultInfo.paymentPoolId = _data.data.paymentPoolId;
+
                                 setTimeout('$that._qrCodeCheckPayFinish()', 5000);
                             }
                             return;

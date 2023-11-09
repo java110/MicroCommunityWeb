@@ -269,6 +269,7 @@
                             vc.toast(_data.msg);
                             if (_data.data && _data.data.orderId) {
                                 $that.owePayFeeOrderInfo.orderId = _data.data.orderId;
+                                $that.owePayFeeOrderInfo.paymentPoolId = _data.data.paymentPoolId;
                                 setTimeout('$that._qrCodeCheckPayFinish()', 5000);
                             }
                             return;
