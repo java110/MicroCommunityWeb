@@ -22,7 +22,7 @@
                     link: '',
                     memberCarNumLike: ''
                 },
-                listColumns: []
+                listColumns: [],
                 currentPage: DEFAULT_PAGE,
                 listColumns: [],
             }
