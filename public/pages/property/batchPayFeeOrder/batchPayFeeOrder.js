@@ -336,7 +336,9 @@
                     authCode: $that.batchPayFeeOrderInfo.authCode,
                     receivedAmount: $that.batchPayFeeOrderInfo.feePrices,
                     subServiceCode: 'fee.payBatchFee',
-                    orderId: $that.batchPayFeeOrderInfo.orderId
+                    orderId: $that.batchPayFeeOrderInfo.orderId,
+                    paymentPoolId: $that.batchPayFeeOrderInfo.paymentPoolId
+
                 }
                 vc.http.apiPost(
                     '/payment.checkPayFinish',

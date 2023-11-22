@@ -298,6 +298,7 @@
                     authCode: $that.owePayFeeOrderInfo.authCode,
                     receivedAmount: $that.owePayFeeOrderInfo.feePrices,
                     orderId: $that.owePayFeeOrderInfo.orderId,
+                    paymentPoolId:$that.owePayFeeOrderInfo.paymentPoolId,
                     subServiceCode: 'fee.payOweFee'
                 }
                 vc.http.apiPost(
