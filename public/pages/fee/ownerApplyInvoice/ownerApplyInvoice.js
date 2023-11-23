@@ -68,6 +68,7 @@
                         row: 50,
                         communityId: vc.getCurrentCommunity().communityId,
                         ownerId: $that.ownerApplyInvoiceInfo.ownerId,
+                        openInvoice:'N'
                     }
                 };
                 $that.ownerApplyInvoiceInfo.detailIds = [];
