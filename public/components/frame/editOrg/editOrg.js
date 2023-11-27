@@ -14,22 +14,22 @@
             }
         },
         _initMethod: function () {
-            vc.component._editOrgListParentOrgInfo();
+            $that._editOrgListParentOrgInfo();
         },
         _initEvent: function () {
             vc.on('editOrg', 'openEditOrgModal', function (_params) {
-                vc.component.refreshEditOrgInfo();
+                $that.refreshEditOrgInfo();
                 $('#editOrgModel').modal('show');
-                vc.copyObject(_params, vc.component.editOrgInfo);
-                vc.component.editOrgInfo.parentOrgId = _params.parentId;
+                vc.copyObject(_params, $that.editOrgInfo);
+                $that.editOrgInfo.parentOrgId = _params.parentId;
                 $that._listEditOrgs();
-                //vc.component.editOrgInfo.communityId = vc.component.editOrgInfo.belongCommunityId;
+                //$that.editOrgInfo.communityId = $that.editOrgInfo.belongCommunityId;
             });
         },
         methods: {
             editOrgValidate: function () {
                 return vc.validate.validate({
-                    editOrgInfo: vc.component.editOrgInfo
+                    editOrgInfo: $that.editOrgInfo
                 }, {
                     'editOrgInfo.orgName': [
                         {
@@ -48,11 +48,6 @@
                             limit: "required",
                             param: "",
                             errInfo: "上级ID不能为空"
-                        },
-                        {
-                            limit: "num",
-                            param: "",
-                            errInfo: "上级ID不正确"
                         }
                     ],
                     'editOrgInfo.description': [
@@ -72,13 +67,13 @@
                 });
             },
             editOrg: function () {
-                if (!vc.component.editOrgValidate()) {
+                if (!$that.editOrgValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
                 vc.http.apiPost(
                     '/org.updateOrg',
-                    JSON.stringify(vc.component.editOrgInfo), {
+                    JSON.stringify($that.editOrgInfo), {
                         emulateJSON: true
                     },
                     function (json, res) {
@@ -99,7 +94,7 @@
                     });
             },
             refreshEditOrgInfo: function () {
-                vc.component.editOrgInfo = {
+                $that.editOrgInfo = {
                     orgId: '',
                     orgName: '',
                     orgLevel: '',
@@ -113,11 +108,11 @@
                 }
             },
             _editOrgListParentOrgInfo: function () {
-                var _tmpOrgLevel = vc.component.editOrgInfo.orgLevel;
+                let _tmpOrgLevel = $that.editOrgInfo.orgLevel;
                 if (_tmpOrgLevel > 1) {
                     _tmpOrgLevel = _tmpOrgLevel - 1;
                 }
-                var param = {
+                let param = {
                     params: {
                         orgLevel: _tmpOrgLevel,
                         page: 1,
@@ -129,7 +124,7 @@
                     param,
                     function (json, res) {
                         var _orgManageInfo = JSON.parse(json);
-                        vc.component.editOrgInfo.parentOrg = _orgManageInfo.orgs;
+                        $that.editOrgInfo.parentOrg = _orgManageInfo.orgs;
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -145,11 +140,11 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/org.listOrgs',
+                vc.http.apiGet('/org.listOrg',
                     param,
                     function (json, res) {
                         let _orgManageInfo = JSON.parse(json);
-                        vc.copyObject(_orgManageInfo.orgs[0], vc.component.editOrgInfo)
+                        vc.copyObject(_orgManageInfo.data[0], $that.editOrgInfo)
                     },
                     function (errInfo, error) {
                         console.log('请求失败处理');
@@ -158,4 +153,4 @@
             },
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);

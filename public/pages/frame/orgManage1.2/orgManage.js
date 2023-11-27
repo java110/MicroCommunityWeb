@@ -31,76 +31,76 @@
         watch: {
             "orgManageInfo.conditions.headOrgId": { //深度监听，可监听到对象、数组的变化
                 handler(val, oldVal) {
-                    vc.component._getOrgsByOrgLevel(DEFAULT_PAGE, DEFAULT_ROWS, 2, val);
-                    vc.component.orgManageInfo.conditions.parentOrgId = val;
-                    vc.component.orgManageInfo.conditions.branchOrgId = '';
-                    vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                    $that._getOrgsByOrgLevel(DEFAULT_PAGE, DEFAULT_ROWS, 2, val);
+                    $that.orgManageInfo.conditions.parentOrgId = val;
+                    $that.orgManageInfo.conditions.branchOrgId = '';
+                    $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
                 },
                 deep: true
             },
             "orgManageInfo.conditions.branchOrgId": { //深度监听，可监听到对象、数组的变化
                 handler(val, oldVal) {
                     if (val == '') {
-                        vc.component.orgManageInfo.conditions.parentOrgId = vc.component.orgManageInfo.conditions.headOrgId;
+                        $that.orgManageInfo.conditions.parentOrgId = $that.orgManageInfo.conditions.headOrgId;
                     } else {
-                        vc.component.orgManageInfo.conditions.parentOrgId = val;
+                        $that.orgManageInfo.conditions.parentOrgId = val;
                     }
-                    vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                    $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
                 },
                 deep: true
             }
         },
         _initMethod: function () {
             //只查 查询总公司级组织
-            vc.component.orgManageInfo.orgTree = [];
-            vc.component._listOrgTrees(vc.component.orgManageInfo.orgTree, '1', '', function () {
-                vc.component._loadBranchOrgTrees();
+            $that.orgManageInfo.orgTree = [];
+            $that._listOrgTrees($that.orgManageInfo.orgTree, '1', '', function () {
+                $that._loadBranchOrgTrees();
             });
-            vc.component._getOrgsByOrgLevel(DEFAULT_PAGE, DEFAULT_ROWS, 1, '');
+            $that._getOrgsByOrgLevel(DEFAULT_PAGE, DEFAULT_ROWS, 1, '');
             $that._loadAddCommunitys();
         },
         _initEvent: function () {
             vc.on('orgManage', 'listOrg', function (_param) {
-                //vc.copyObject(_param, vc.component.orgManageInfo.conditions);
-                vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
-                vc.component.orgManageInfo.orgTree = [];
-                vc.component._listOrgTrees(vc.component.orgManageInfo.orgTree, '1', '', function () {
-                    vc.component._loadBranchOrgTrees();
+                //vc.copyObject(_param, $that.orgManageInfo.conditions);
+                $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.orgManageInfo.orgTree = [];
+                $that._listOrgTrees($that.orgManageInfo.orgTree, '1', '', function () {
+                    $that._loadBranchOrgTrees();
                 });
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listOrgs(_currentPage, DEFAULT_ROWS);
+                $that._listOrgs(_currentPage, DEFAULT_ROWS);
             });
             vc.on('orgManage', 'onBack', function (_param) {
-                vc.component.orgManageInfo.showBelongCommunity = false;
+                $that.orgManageInfo.showBelongCommunity = false;
             })
         },
         methods: {
             _refreshOrgTree: function () {
                 $('#orgTree').treeview({
-                    data: vc.component.orgManageInfo.orgTree,
+                    data: $that.orgManageInfo.orgTree,
                     selectedBackColor: '#1ab394'
                 });
                 $('#orgTree').on('nodeSelected', function (event, data) {
                     console.log(event, data);
-                    vc.component.orgManageInfo.currentSelectOrgId = data.orgId;
-                    vc.component.orgManageInfo.conditions.orgLevel = (parseInt(data.orgLevel) + 1);
-                    vc.component.orgManageInfo.conditions.parentOrgId = data.orgId;
-                    vc.component.orgManageInfo.currentBelongCommunityId = data.belongCommunityId;
-                    vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                    $that.orgManageInfo.currentSelectOrgId = data.orgId;
+                    $that.orgManageInfo.conditions.orgLevel = (parseInt(data.orgLevel) + 1);
+                    $that.orgManageInfo.conditions.parentOrgId = data.orgId;
+                    $that.orgManageInfo.currentBelongCommunityId = data.belongCommunityId;
+                    $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
                 });
-                //  if(vc.component.orgManageInfo.currentSelectOrgId == '-1'){
+                //  if($that.orgManageInfo.currentSelectOrgId == '-1'){
                 //    console.log('是否进入');
                 //    $('#orgTree').treeview("selectNode", [0]);
                 //  }
             },
             _loadBranchOrgTrees: function () {
                 //默认查询分公司组织信息
-                vc.component._listOrgTrees(vc.component.orgManageInfo.orgTree[0].nodes,
+                $that._listOrgTrees($that.orgManageInfo.orgTree[0].nodes,
                     '2',
-                    vc.component.orgManageInfo.orgTree[0].orgId,
+                    $that.orgManageInfo.orgTree[0].orgId,
                     function (_tmpOrgs) {
-                        vc.component._refreshOrgTree();
+                        $that._refreshOrgTree();
                     });
             },
             _listOrgTrees: function (_nodes, _orgLevel, _parentOrgId, _callback) {
@@ -119,15 +119,15 @@
                         var _tmpOrgs = JSON.parse(json).orgs;
                         _tmpOrgs.forEach(function (_item) {
                             var _selected = false;
-                            var _currentSelectOrgId = vc.component.orgManageInfo.currentSelectOrgId;
+                            var _currentSelectOrgId = $that.orgManageInfo.currentSelectOrgId;
                             if (_currentSelectOrgId == '-1' && _orgLevel == 1) {
                                 _selected = true;
-                                vc.component.orgManageInfo.currentSelectOrgId = _item.orgId;
-                                vc.component.orgManageInfo.conditions.orgLevel = (parseInt(_item.orgLevel) + 1);
-                                vc.component.orgManageInfo.conditions.parentOrgId = _item.orgId;
-                                vc.component.orgManageInfo.currentBelongCommunityId = _item.belongCommunityId;
-                                vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
-                            } else if (_item.orgId == vc.component.orgManageInfo.currentSelectOrgId) {
+                                $that.orgManageInfo.currentSelectOrgId = _item.orgId;
+                                $that.orgManageInfo.conditions.orgLevel = (parseInt(_item.orgLevel) + 1);
+                                $that.orgManageInfo.conditions.parentOrgId = _item.orgId;
+                                $that.orgManageInfo.currentBelongCommunityId = _item.belongCommunityId;
+                                $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                            } else if (_item.orgId == $that.orgManageInfo.currentSelectOrgId) {
                                 _selected = true;
                             }
                             _nodes.push({
@@ -152,22 +152,22 @@
                 );
             },
             _listOrgs: function (_page, _rows) {
-                vc.component.orgManageInfo.conditions.page = _page;
-                vc.component.orgManageInfo.conditions.row = _rows;
+                $that.orgManageInfo.conditions.page = _page;
+                $that.orgManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.orgManageInfo.conditions
+                    params: $that.orgManageInfo.conditions
                 };
                 //发送get请求
                 vc.http.apiGet('/org.listOrgs',
                     param,
                     function (json, res) {
                         var _orgManageInfo = JSON.parse(json);
-                        vc.component.orgManageInfo.total = _orgManageInfo.total;
-                        vc.component.orgManageInfo.records = _orgManageInfo.records;
-                        vc.component.orgManageInfo.orgs = _orgManageInfo.orgs;
+                        $that.orgManageInfo.total = _orgManageInfo.total;
+                        $that.orgManageInfo.records = _orgManageInfo.records;
+                        $that.orgManageInfo.orgs = _orgManageInfo.orgs;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.orgManageInfo.records,
-                            dataCount: vc.component.orgManageInfo.total,
+                            total: $that.orgManageInfo.records,
+                            dataCount: $that.orgManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -178,9 +178,9 @@
             },
             _openAddOrgModal: function () {
                 vc.emit('addOrg', 'openAddOrgModal', {
-                    parentOrgId: vc.component.orgManageInfo.conditions.parentOrgId,
-                    orgLevel: vc.component.orgManageInfo.conditions.orgLevel,
-                    belongCommunityId: vc.component.orgManageInfo.currentBelongCommunityId
+                    parentOrgId: $that.orgManageInfo.conditions.parentOrgId,
+                    orgLevel: $that.orgManageInfo.conditions.orgLevel,
+                    belongCommunityId: $that.orgManageInfo.currentBelongCommunityId
                 });
             },
             _openEditOrgModel: function (_org) {
@@ -190,25 +190,25 @@
                 vc.emit('deleteOrg', 'openDeleteOrgModal', _org);
             },
             _openBeyondCommunity: function (_org) {
-                vc.component.orgManageInfo.showBelongCommunity = true;
+                $that.orgManageInfo.showBelongCommunity = true;
                 vc.emit('orgCommunityManageInfo', 'openOrgCommunity', _org);
             },
             //查询
             _queryOrgMethod: function () {
-                vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetOrgMethod: function () {
-                vc.component.orgManageInfo.conditions.orgId = "";
-                vc.component.orgManageInfo.conditions.orgName = "";
-                vc.component.orgManageInfo.conditions.communityId = "";
-                vc.component._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.orgManageInfo.conditions.orgId = "";
+                $that.orgManageInfo.conditions.orgName = "";
+                $that.orgManageInfo.conditions.communityId = "";
+                $that._listOrgs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.orgManageInfo.moreCondition) {
-                    vc.component.orgManageInfo.moreCondition = false;
+                if ($that.orgManageInfo.moreCondition) {
+                    $that.orgManageInfo.moreCondition = false;
                 } else {
-                    vc.component.orgManageInfo.moreCondition = true;
+                    $that.orgManageInfo.moreCondition = true;
                 }
             },
             _getOrgsByOrgLevel: function (_page, _rows, _orgLevel, _parentOrgId) {
@@ -226,9 +226,9 @@
                     function (json, res) {
                         var _orgManageInfo = JSON.parse(json);
                         if (_orgLevel == 1) {
-                            vc.component.orgManageInfo.headOrg = _orgManageInfo.orgs;
+                            $that.orgManageInfo.headOrg = _orgManageInfo.orgs;
                         } else {
-                            vc.component.orgManageInfo.branchOrg = _orgManageInfo.orgs;
+                            $that.orgManageInfo.branchOrg = _orgManageInfo.orgs;
                         }
                     },
                     function (errInfo, error) {
