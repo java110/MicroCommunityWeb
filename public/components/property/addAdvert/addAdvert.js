@@ -24,7 +24,7 @@
                 unitName: '',
                 roomId: '',
                 photos: [],
-                viewType: '',
+                viewType: '8888',
                 vedioName: '',
             }
         },
@@ -246,7 +246,7 @@
                     unitName: '',
                     roomId: '',
                     photos: [],
-                    viewType: '',
+                    viewType: '8888',
                     vedioName: ''
                 };
             }
