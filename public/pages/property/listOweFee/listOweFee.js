@@ -135,6 +135,7 @@
             //重置
             _resetOweFeeMethod: function () {
                 vc.resetObject($that.listOweFeeInfo.conditions);
+                $that.listOweFeeInfo.conditions.communityId = vc.getCurrentCommunity().communityId
                 $that.listOweFeeInfo.feeConfigNames = [];
                 $('#configIds').selectpicker('deselectAll');
                 $that._loadListOweFeeInfo(DEFAULT_PAGE, DEFAULT_ROWS);
