@@ -64,25 +64,25 @@
                     return;
                 }
                 if (vc.notNull(vc.getParam("sign"))) {
-                    vc.component.roomCreateFeeInfo.roomId = vc.getParam('payerObjId');
+                    $that.roomCreateFeeInfo.roomId = vc.getParam('payerObjId');
                     $that.roomCreateFeeInfo.conditions.roomId = vc.getParam('payerObjId');
                     $that.roomCreateFeeInfo.conditions.roomNum = '';
-                    vc.component.roomCreateFeeInfo.roomName = vc.getParam('roomName');
+                    $that.roomCreateFeeInfo.roomName = vc.getParam('roomName');
                 } else {
-                    vc.component.roomCreateFeeInfo.roomId = _param.roomId;
+                    $that.roomCreateFeeInfo.roomId = _param.roomId;
                     $that.roomCreateFeeInfo.conditions.roomId = _param.roomId;
                     $that.roomCreateFeeInfo.conditions.roomNum = '';
-                    vc.component.roomCreateFeeInfo.roomName = _param.roomName;
+                    $that.roomCreateFeeInfo.roomName = _param.roomName;
                 }
                 $that.listRoomInRoomCreateFee();
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('roomCreateFee', 'notifyRoom', function (_room) {
                 vc.copyObject(_room, $that.roomCreateFeeInfo);
                 $that.roomCreateFeeInfo.conditions.roomId = _room.roomId;
                 $that.roomCreateFeeInfo.conditions.roomNum = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
                 $that.roomCreateFeeInfo.roomName = $that.roomCreateFeeInfo.conditions.roomNum;
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('roomCreateFee', 'notifyRoomByOwner', function (_room) {
                 vc.copyObject(_room, $that.roomCreateFeeInfo);
@@ -90,14 +90,14 @@
                 $that.roomCreateFeeInfo.conditions.ownerName = _room.ownerName;
                 $that.roomCreateFeeInfo.conditions.roomNum = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
                 $that.roomCreateFeeInfo.roomName = _room.floorNum + "-" + _room.unitNum + "-" + _room.roomNum;
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
                 $that.updateCurrentPage(_currentPage);
-                vc.component._loadListRoomCreateFeeInfo(_currentPage, DEFAULT_ROW);
+                $that._loadListRoomCreateFeeInfo(_currentPage, DEFAULT_ROW);
             });
             vc.on('roomCreateFee', 'notify', function () {
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             })
         },
         methods: {
@@ -120,9 +120,14 @@
                         page: 1,
                         row: 1,
                         communityId: vc.getCurrentCommunity().communityId,
-                        roomId: $that.roomCreateFeeInfo.roomId
+                        roomId: $that.roomCreateFeeInfo.roomId,
                     }
                 };
+                if($that.roomCreateFeeInfo.conditions.roomNum){
+                    param.params.flag = '1';
+                    param.params.roomNum = $that.roomCreateFeeInfo.conditions.roomNum;
+                    param.params.roomId = '';
+                }
                 //发送get请求
                 vc.http.apiGet('/room.queryRooms',
                     param,
@@ -236,14 +241,14 @@
                         let _feeConfigInfo = JSON.parse(json);
                         if (_feeConfigInfo.code == 404) {
                             vc.toast(_feeConfigInfo.msg);
-                            vc.component.roomCreateFeeInfo.fees = [];
+                            $that.roomCreateFeeInfo.fees = [];
                         } else {
-                            vc.component.roomCreateFeeInfo.total = _feeConfigInfo.total;
-                            vc.component.roomCreateFeeInfo.records = _feeConfigInfo.records;
-                            vc.component.roomCreateFeeInfo.fees = _feeConfigInfo.fees;
+                            $that.roomCreateFeeInfo.total = _feeConfigInfo.total;
+                            $that.roomCreateFeeInfo.records = _feeConfigInfo.records;
+                            $that.roomCreateFeeInfo.fees = _feeConfigInfo.fees;
                             if (_feeConfigInfo.fees != null && _feeConfigInfo.fees.length > 0) {
-                                vc.component.roomCreateFeeInfo.roomId = _feeConfigInfo.fees[0].payerObjId;
-                                vc.component.roomCreateFeeInfo.conditions.roomId = _feeConfigInfo.fees[0].payerObjId;
+                                $that.roomCreateFeeInfo.roomId = _feeConfigInfo.fees[0].payerObjId;
+                                $that.roomCreateFeeInfo.conditions.roomId = _feeConfigInfo.fees[0].payerObjId;
                             }
                             vc.emit('pagination', 'init', {
                                 total: _feeConfigInfo.records,
@@ -278,7 +283,7 @@
                 });
             },
             _refreshListRoomCreateFeeInfo: function () {
-                vc.component.roomCreateFeeInfo._currentFeeConfigName = "";
+                $that.roomCreateFeeInfo._currentFeeConfigName = "";
             },
             _goBack: function () {
                 vc.goBack();
@@ -345,26 +350,26 @@
             //查询
             _queryRoomCreateFeeMethod: function () {
                 // 关闭查询组件
-                if ($that.roomCreateFeeInfo.conditions.roomNum != null && $that.roomCreateFeeInfo.conditions.roomNum != '' &&
-                    $that.roomCreateFeeInfo.conditions.roomNum != undefined) {
+                if ($that.roomCreateFeeInfo.conditions.roomNum) {
                     $that.roomCreateFeeInfo.roomName = $that.roomCreateFeeInfo.conditions.roomNum;
                 }
                 vc.emit('inputSearchRoomInfo', 'close', {});
                 vc.emit('inputSearchRoomByOwner', 'close', {});
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that.listRoomInRoomCreateFee();
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             },
             //重置
             _resetRoomCreateFeeMethod: function () {
                 // 关闭查询组件
                 vc.emit('inputSearchRoomInfo', 'close', {});
                 vc.emit('inputSearchRoomByOwner', 'close', {});
-                vc.component.roomCreateFeeInfo.conditions.roomNum = "";
-                vc.component.roomCreateFeeInfo.conditions.state = "";
-                vc.component.roomCreateFeeInfo.conditions.ownerName = "";
-                // vc.component.roomCreateFeeInfo.roomName = "";
-                // vc.component.roomCreateFeeInfo.conditions.roomId = "";
-                vc.component.roomCreateFeeInfo.fees = [];
-                vc.component._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
+                $that.roomCreateFeeInfo.conditions.roomNum = "";
+                $that.roomCreateFeeInfo.conditions.state = "";
+                $that.roomCreateFeeInfo.conditions.ownerName = "";
+                // $that.roomCreateFeeInfo.roomName = "";
+                // $that.roomCreateFeeInfo.conditions.roomId = "";
+                $that.roomCreateFeeInfo.fees = [];
+                $that._loadListRoomCreateFeeInfo(DEFAULT_PAGE, DEFAULT_ROW);
             },
             _viewRoomFeeConfig: function (_fee) {
                 let param = {
