@@ -8,6 +8,20 @@
         data: {
             menuCatalogManageInfo: {
                 menuCatalogs: [],
+                storeTYpes: [
+                    {
+                        name: '物业',
+                        storeType: '800900000003'
+                    }, {
+                        name: '运营团队',
+                        storeType: '800900000001'
+                    }, {
+                        name: '商家',
+                        storeType: '800900000005'
+                    }, {
+                        name: '开发团队',
+                        storeType: '800900000000'
+                    },],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -21,35 +35,35 @@
             }
         },
         _initMethod: function () {
-            vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._swatchStoreType($that.menuCatalogManageInfo.storeTYpes[0]);
         },
         _initEvent: function () {
             vc.on('menuCatalogManage', 'listMenuCatalog', function (_param) {
-                vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listMenuCatalogs(_currentPage, DEFAULT_ROWS);
+                $that._listMenuCatalogs(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             _listMenuCatalogs: function (_page, _rows) {
-                vc.component.menuCatalogManageInfo.conditions.page = _page;
-                vc.component.menuCatalogManageInfo.conditions.row = _rows;
+                $that.menuCatalogManageInfo.conditions.page = _page;
+                $that.menuCatalogManageInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.menuCatalogManageInfo.conditions
+                    params: $that.menuCatalogManageInfo.conditions
                 };
                 param.params.name = param.params.name.trim();
                 //发送get请求
                 vc.http.apiGet('/menuCatalog.listMenuCatalog',
                     param,
                     function (json, res) {
-                        var _menuCatalogManageInfo = JSON.parse(json);
-                        vc.component.menuCatalogManageInfo.total = _menuCatalogManageInfo.total;
-                        vc.component.menuCatalogManageInfo.records = _menuCatalogManageInfo.records;
-                        vc.component.menuCatalogManageInfo.menuCatalogs = _menuCatalogManageInfo.data;
+                        var _json = JSON.parse(json);
+                        $that.menuCatalogManageInfo.total = _json.total;
+                        $that.menuCatalogManageInfo.records = _json.records;
+                        $that.menuCatalogManageInfo.menuCatalogs = _json.data;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.menuCatalogManageInfo.records,
-                            dataCount: vc.component.menuCatalogManageInfo.total,
+                            total: $that.menuCatalogManageInfo.records,
+                            dataCount: $that.menuCatalogManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -69,24 +83,28 @@
             },
             //查询
             _queryMenuCatalogMethod: function () {
-                vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetMenuCatalogMethod: function () {
-                vc.component.menuCatalogManageInfo.conditions.name = "";
-                vc.component.menuCatalogManageInfo.conditions.storeType = "";
-                vc.component.menuCatalogManageInfo.conditions.isShow = "";
-                vc.component._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.menuCatalogManageInfo.conditions.name = "";
+                $that.menuCatalogManageInfo.conditions.storeType = "";
+                $that.menuCatalogManageInfo.conditions.isShow = "";
+                $that._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.menuCatalogManageInfo.moreCondition) {
-                    vc.component.menuCatalogManageInfo.moreCondition = false;
+                if ($that.menuCatalogManageInfo.moreCondition) {
+                    $that.menuCatalogManageInfo.moreCondition = false;
                 } else {
-                    vc.component.menuCatalogManageInfo.moreCondition = true;
+                    $that.menuCatalogManageInfo.moreCondition = true;
                 }
             },
             _openMenuCatalogGroup: function (_menuCatalog) {
                 vc.jumpToPage('/#/pages/dev/menuGroupCatalogManage?caId=' + _menuCatalog.caId + "&storeType=" + _menuCatalog.storeType + "&catalogName=" + _menuCatalog.name);
+            },
+            _swatchStoreType: function (_storeType) {
+                $that.menuCatalogManageInfo.conditions.storeType = _storeType.storeType;
+                $that._listMenuCatalogs(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _getStoreTypeName: function (_storeTypeCd) {
                 // <option value="800900000001">运营团队</option>

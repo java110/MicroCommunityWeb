@@ -1,139 +1,129 @@
 <div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>
-                        <span><vc:i18n name="查询条件" namespace="menuCatalogManage"></vc:i18n></span>
-                    </h5>
-                    <div class="ibox-tools" style="top:10px;"></div>
+        <div class="col-md-2 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview attendance-staff" style="height: 650px;">
+                    <ul class="list-group text-center border-radius">
+                        <li class="list-group-item node-orgTree "
+                            v-for="(item,index) in menuCatalogManageInfo.storeTYpes" :key="index"
+                            @click="_swatchStoreType(item)"
+                            :class="{'vc-node-selected':menuCatalogManageInfo.conditions.storeType == item.storeType}">
+                            {{item.name}}
+                        </li>
+                    </ul>
                 </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" :placeholder="vc.i18n('请输入菜单组名称','menuCatalogManage')"
-                                       v-model="menuCatalogManageInfo.conditions.name" class=" form-control">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件" namespace="menuCatalogManage"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;"></div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('请输入菜单组名称','menuCatalogManage')"
+                                            v-model="menuCatalogManageInfo.conditions.name" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_queryMenuCatalogMethod()">
+                                        <vc:i18n name="查询" namespace="menuCatalogManage"></vc:i18n>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <select class="custom-select" v-model="menuCatalogManageInfo.conditions.storeType">
-                                    <option selected value="">{{vc.i18n('请选择商户类型','menuCatalogManage')}}</option>
-                                    <option value="800900000001">{{vc.i18n('运营团队','menuCatalogManage')}}</option>
-                                    <option value="800900000003">{{vc.i18n('物业','menuCatalogManage')}}</option>
-                                    <option value="800900000005">{{vc.i18n('商家','menuCatalogManage')}}</option>
-                                    <option value="800900000000">{{vc.i18n('开发团队','menuCatalogManage')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="custom-select" v-model="menuCatalogManageInfo.conditions.isShow">
-                                <option selected value="">{{vc.i18n('请选择是否显示','menuCatalogManage')}}</option>
-                                <option value="Y">{{vc.i18n('是','menuCatalogManage')}}</option>
-                                <option value="N">{{vc.i18n('否','menuCatalogManage')}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_queryMenuCatalogMethod()">
-                                <i class="fa fa-search"></i>
-                                <span><vc:i18n name="查询" namespace="menuCatalogManage"></vc:i18n></span>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm" v-on:click="_resetMenuCatalogMethod()">
-                                <i class="fa fa-repeat"></i>
-                                <span><vc:i18n name="重置" namespace="menuCatalogManage"></vc:i18n></span>
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>
-                        <span><vc:i18n name="菜单目录" namespace="menuCatalogManage"></vc:i18n></span>
-                    </h5>
-                    <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddMenuCatalogModal()">
-                            <i class="fa fa-plus"></i>添加
-                        </button>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="菜单目录" namespace="menuCatalogManage"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_openAddMenuCatalogModal()">
+                                    <i class="fa fa-plus"></i>添加
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name="编号" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="组名称" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="图标" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="顺序" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="商户类型" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="页面" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="是否显示" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name="操作" namespace="menuCatalogManage"></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="menuCatalog in menuCatalogManageInfo.menuCatalogs">
+                                        <td class="text-center">{{menuCatalog.caId}}</td>
+                                        <td class="text-center">{{menuCatalog.name}}</td>
+                                        <td class="text-center">{{menuCatalog.icon}}</td>
+                                        <td class="text-center">{{menuCatalog.seq}}</td>
+                                        <td class="text-center">{{_getStoreTypeName(menuCatalog.storeType)}}</td>
+                                        <td class="text-center">{{menuCatalog.url}}</td>
+                                        <td class="text-center">{{menuCatalog.isShow == 'Y'?'是':'否'}}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openEditMenuCatalogModel(menuCatalog)">
+                                                    <vc:i18n name="修改" namespace="menuCatalogManage"></vc:i18n>
+                                                </button>
+                                            </div>
+                                            <!--v-if="menuCatalog.url == '#' || menuCatalog.url == '/'"-->
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openMenuCatalogGroup(menuCatalog)">
+                                                    <vc:i18n name="菜单组" namespace="menuCatalogManage"></vc:i18n>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_openDeleteMenuCatalogModel(menuCatalog)">
+                                                    <vc:i18n name="删除" namespace="menuCatalogManage"></vc:i18n>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
                     </div>
-                </div>
-                <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                        <thead>
-                        <tr>
-                            <th class="text-center">
-                                <span><vc:i18n name="编号" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="菜单组名称" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="图标" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="顺序" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="商户类型" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="页面" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="是否显示" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                            <th class="text-center">
-                                <span><vc:i18n name="操作" namespace="menuCatalogManage"></vc:i18n></span>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="menuCatalog in menuCatalogManageInfo.menuCatalogs">
-                            <td class="text-center">{{menuCatalog.caId}}</td>
-                            <td class="text-center">{{menuCatalog.name}}</td>
-                            <td class="text-center">{{menuCatalog.icon}}</td>
-                            <td class="text-center">{{menuCatalog.seq}}</td>
-                            <td class="text-center">{{_getStoreTypeName(menuCatalog.storeType)}}</td>
-                            <td class="text-center">{{menuCatalog.url}}</td>
-                            <td class="text-center">{{menuCatalog.isShow == 'Y'?'是':'否'}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openEditMenuCatalogModel(menuCatalog)">
-                                        <span><vc:i18n name="修改" namespace="menuCatalogManage"></vc:i18n></span>
-                                    </button>
-                                </div>
-                                <!--v-if="menuCatalog.url == '#' || menuCatalog.url == '/'"-->
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openMenuCatalogGroup(menuCatalog)">
-                                        <span><vc:i18n name="菜单组" namespace="menuCatalogManage"></vc:i18n></span>
-                                    </button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn-white btn btn-xs"
-                                            v-on:click="_openDeleteMenuCatalogModel(menuCatalog)">
-                                        <span><vc:i18n name="删除" namespace="menuCatalogManage"></vc:i18n></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="8">
-                                <ul class="pagination float-right"></ul>
-                            </td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                    <!-- 分页 -->
-                    <vc:create path="frame/pagination"></vc:create>
                 </div>
             </div>
         </div>

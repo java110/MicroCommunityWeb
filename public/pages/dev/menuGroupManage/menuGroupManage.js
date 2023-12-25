@@ -3,11 +3,25 @@
  **/
 (function (vc) {
     var DEFAULT_PAGE = 1;
-    var DEFAULT_ROWS = 10;
+    var DEFAULT_ROWS = 30;
     vc.extends({
         data: {
             menuGroupManageInfo: {
                 menuGroups: [],
+                storeTYpes: [
+                    {
+                        name: '物业',
+                        storeType: '800900000003'
+                    }, {
+                        name: '运营团队',
+                        storeType: '800900000001'
+                    }, {
+                        name: '商家',
+                        storeType: '800900000005'
+                    }, {
+                        name: '开发团队',
+                        storeType: '800900000000'
+                    },],
                 total: 0,
                 records: 1,
                 moreCondition: false,
@@ -22,22 +36,22 @@
             }
         },
         _initMethod: function () {
-            vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._swatchStoreType($that.menuGroupManageInfo.storeTYpes[0]);
         },
         _initEvent: function () {
             vc.on('menuGroupManage', 'listMenuGroup', function (_param) {
-                vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                vc.component._listMenuGroups(_currentPage, DEFAULT_ROWS);
+                $that._listMenuGroups(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
             _listMenuGroups: function (_page, _rows) {
-                vc.component.menuGroupManageInfo.conditions.page = _page;
-                vc.component.menuGroupManageInfo.conditions.row = _rows;
+                $that.menuGroupManageInfo.conditions.page = _page;
+                $that.menuGroupManageInfo.conditions.row = _rows;
                 let param = {
-                    params: vc.component.menuGroupManageInfo.conditions
+                    params: $that.menuGroupManageInfo.conditions
                 };
                 param.params.gId = param.params.gId.trim();
                 param.params.name = param.params.name.trim();
@@ -46,13 +60,13 @@
                 vc.http.apiGet('/menuGroup.listMenuGroups',
                     param,
                     function (json, res) {
-                        var _menuGroupManageInfo = JSON.parse(json);
-                        vc.component.menuGroupManageInfo.total = _menuGroupManageInfo.total;
-                        vc.component.menuGroupManageInfo.records = _menuGroupManageInfo.records;
-                        vc.component.menuGroupManageInfo.menuGroups = _menuGroupManageInfo.menuGroups;
+                        var _json = JSON.parse(json);
+                        $that.menuGroupManageInfo.total = _json.total;
+                        $that.menuGroupManageInfo.records = _json.records;
+                        $that.menuGroupManageInfo.menuGroups = _json.menuGroups;
                         vc.emit('pagination', 'init', {
-                            total: vc.component.menuGroupManageInfo.records,
-                            dataCount: vc.component.menuGroupManageInfo.total,
+                            total: $that.menuGroupManageInfo.records,
+                            dataCount: $that.menuGroupManageInfo.total,
                             currentPage: _page
                         });
                     },
@@ -72,23 +86,27 @@
             },
             //查询
             _queryMenuGroupMethod: function () {
-                vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             //重置
             _resetMenuGroupMethod: function () {
-                vc.component.menuGroupManageInfo.conditions.gId = "";
-                vc.component.menuGroupManageInfo.conditions.name = "";
-                vc.component.menuGroupManageInfo.conditions.icon = "";
-                vc.component.menuGroupManageInfo.conditions.label = "";
-                vc.component.menuGroupManageInfo.conditions.storeType = "";
-                vc.component._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that.menuGroupManageInfo.conditions.gId = "";
+                $that.menuGroupManageInfo.conditions.name = "";
+                $that.menuGroupManageInfo.conditions.icon = "";
+                $that.menuGroupManageInfo.conditions.label = "";
+                $that.menuGroupManageInfo.conditions.storeType = "";
+                $that._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _moreCondition: function () {
-                if (vc.component.menuGroupManageInfo.moreCondition) {
-                    vc.component.menuGroupManageInfo.moreCondition = false;
+                if ($that.menuGroupManageInfo.moreCondition) {
+                    $that.menuGroupManageInfo.moreCondition = false;
                 } else {
-                    vc.component.menuGroupManageInfo.moreCondition = true;
+                    $that.menuGroupManageInfo.moreCondition = true;
                 }
+            },
+            _swatchStoreType: function (_storeType) {
+                $that.menuGroupManageInfo.conditions.storeType = _storeType.storeType;
+                $that._listMenuGroups(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _getStoreTypeName: function (_storeTypeCd) {
                 // <option value="800900000001">运营团队</option>
