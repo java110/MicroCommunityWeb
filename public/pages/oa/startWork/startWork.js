@@ -83,7 +83,7 @@
                 vc.jumpToPage('/#/pages/oa/editWork?workId='+_startWork.workId);
             },
             _openDeleteStartWorkModel: function (_startWork) {
-                vc.emit('deleteStartWork', 'openDeleteStartWorkModal', _startWork);
+                vc.emit('deleteWork','openDeleteWorkModal', _startWork);
             },
             _queryStartWorkMethod: function () {
                 $that._listStartWorks(DEFAULT_PAGE, DEFAULT_ROWS);

@@ -13,39 +13,22 @@
             <thead>
             <tr>
                 <th class="text-center">
-                    <span>
                         <vc:i18n name="员工名称" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
                 </th>
                 <th class="text-center">
-                    <span>
                         <vc:i18n name="认证方式" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
                 </th>
                 <th class="text-center">
-                    <span>
                         <vc:i18n name="认证名称" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
                 </th>
                 <th class="text-center">
-                    <span>
-                        <vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>ID
+                        <vc:i18n name="认证ID" namespace="staffDetailAppAuth"></vc:i18n>
                 </th>
                 <th class="text-center">
-                    <span>
                         <vc:i18n name="认证状态" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
                 </th>
                 <th class="text-center">
-                    <span>
                         <vc:i18n name="认证时间" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
-                </th>
-                <th class="text-center">
-                    <span>
-                        <vc:i18n name="操作" namespace="staffDetailAppAuth"></vc:i18n>
-                    </span>
                 </th>
             </tr>
             </thead>
@@ -57,13 +40,6 @@
                 <td class="text-center">{{staffDetailAppAuthInfo.openId}}</td>
                 <td class="text-center">{{staffDetailAppAuthInfo.stateName}}</td>
                 <td class="text-center">{{staffDetailAppAuthInfo.createTime}}</td>
-                <td class="text-center">
-                    <div class="btn-group">
-                        <button class="btn-white btn btn-xs" v-on:click="_openAddStaffAppAuthModal()">
-                            <span><vc:i18n name="认证" namespace="staffDetailAppAuth"></vc:i18n></span>
-                        </button>
-                    </div>
-                </td>
             </tr>
             </tbody>
         </table>

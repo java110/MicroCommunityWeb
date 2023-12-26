@@ -2,7 +2,7 @@
     vc.extends({
         data: {
             textareaInfo: {
-                context: '',
+                content: '',
             }
         },
         _initMethod: function () {
@@ -13,6 +13,9 @@
                 $that.textareaInfo = _param;
                 $that._initTextarea();
             });
+            vc.on('textarea','setText',function(content){
+                $(".summernote").summernote('code', content);
+            })
         },
         methods: {
             _initTextarea: function () {
@@ -25,7 +28,7 @@
                             $that.sendTextareaFile($summernote, files);
                         },
                         onChange: function (contents, $editable) {
-                            $that.textareaInfo.context = contents;
+                            $that.textareaInfo.content = contents;
                         }
                     },
                     toolbar: [

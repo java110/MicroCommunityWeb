@@ -11,25 +11,25 @@
             }
         },
         _initMethod: function() {
-            vc.component._initEditNoticeInfo();
+            $that._initEditNoticeInfo();
         },
         _initEvent: function() {
             vc.on('editNoticeViewInfo', 'openEditNoticeModal', function(_params) {
-                vc.component.refreshEditNoticeInfo();
+                $that.refreshEditNoticeInfo();
                 _params.context = filterXSS(_params.context);
-                vc.component.editNoticeInfo = _params;
+                $that.editNoticeInfo = _params;
             });
             vc.on('editNoticeView', 'noticeEditNoticeInfo', function(_params) {
-                vc.component.refreshEditNoticeInfo();
+                $that.refreshEditNoticeInfo();
                 _params.context = filterXSS(_params.context);
-                vc.copyObject(_params, vc.component.editNoticeViewInfo);
-                $(".eidtSummernote").summernote('code', vc.component.editNoticeViewInfo.context);
+                vc.copyObject(_params, $that.editNoticeViewInfo);
+                $(".eidtSummernote").summernote('code', $that.editNoticeViewInfo.context);
             });
         },
         methods: {
             editNoticeValidate: function() {
                 return vc.validate.validate({
-                    editNoticeViewInfo: vc.component.editNoticeViewInfo
+                    editNoticeViewInfo: $that.editNoticeViewInfo
                 }, {
                     'editNoticeViewInfo.title': [{
                             limit: "required",
@@ -94,14 +94,14 @@
                 });
             },
             editNotice: function() {
-                if (!vc.component.editNoticeValidate()) {
+                if (!$that.editNoticeValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.editNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.editNoticeViewInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/notice.updateNotice',
-                    JSON.stringify(vc.component.editNoticeViewInfo), {
+                    JSON.stringify($that.editNoticeViewInfo), {
                         emulateJSON: true
                     },
                     function(json, res) {
@@ -121,7 +121,7 @@
                     });
             },
             refreshEditNoticeInfo: function() {
-                vc.component.editNoticeViewInfo = {
+                $that.editNoticeViewInfo = {
                     noticeId: '',
                     title: '',
                     noticeTypeCd: '',
@@ -143,7 +143,7 @@
                 $('.editNoticeStartTime').datetimepicker()
                     .on('changeDate', function(ev) {
                         var value = $(".editNoticeStartTime").val();
-                        vc.component.editNoticeViewInfo.startTime = value;
+                        $that.editNoticeViewInfo.startTime = value;
                     });
                 $('.editNoticeEndTime').datetimepicker({
                     language: 'zh-CN',
@@ -157,7 +157,7 @@
                 $('.editNoticeEndTime').datetimepicker()
                     .on('changeDate', function(ev) {
                         var value = $(".editNoticeEndTime").val();
-                        vc.component.editNoticeViewInfo.endTime = value;
+                        $that.editNoticeViewInfo.endTime = value;
                     });
                 let $summernote = $('.eidtSummernote').summernote({
                     lang: 'zh-CN',
@@ -168,7 +168,7 @@
                             $that.sendEditFile($summernote, files);
                         },
                         onChange: function(contents, $editable) {
-                            vc.component.editNoticeViewInfo.context = contents;
+                            $that.editNoticeViewInfo.context = contents;
                         }
                     }
                 });
@@ -222,4 +222,4 @@
             },
         }
     });
-})(window.vc, window.vc.component);
+})(window.vc, window.$that);
