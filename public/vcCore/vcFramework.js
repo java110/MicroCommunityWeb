@@ -1830,6 +1830,19 @@
         return dateTime;
     }
 
+    vcFramework.addOneDay = function (date) {
+        // 将给定的日期转换为Date对象
+        let currentDate = new Date(date);
+        // 获取当前日期的时间戳
+        let timestamp = currentDate.getTime();
+        // 将时间戳加上一天的毫秒数（24小时 * 60分钟 * 60秒 * 1000毫秒）
+        timestamp += 24 * 60 * 60 * 1000;
+        // 根据新的时间戳创建一个新的Date对象
+        const newDate = new Date(timestamp);
+        // 返回新的日期对象
+        return newDate;
+      }
+
 
     vcFramework.getDateYYYYMMDDHHMISS = function () {
         let date = new Date();

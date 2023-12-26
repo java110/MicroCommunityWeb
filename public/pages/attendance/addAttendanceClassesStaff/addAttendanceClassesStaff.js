@@ -15,14 +15,14 @@
         _initEvent: function () {
             vc.on("addAttendanceClassesStaff", "notifyUploadImage", function (_param) {
                 if (_param.length > 0) {
-                    vc.component.addAttendanceClassesStaffInfo.photo = _param[0].url;
+                    $that.addAttendanceClassesStaffInfo.photo = _param[0].url;
                 }
             });
         },
         methods: {
             addAttendanceClassesStaffValidate() {
                 return vc.validate.validate({
-                    addAttendanceClassesStaffInfo: vc.component.addAttendanceClassesStaffInfo
+                    addAttendanceClassesStaffInfo: $that.addAttendanceClassesStaffInfo
                 }, {
                     'addAttendanceClassesStaffInfo.classesId': [
                         {
@@ -51,14 +51,14 @@
                 });
             },
             saveAttendanceClassesStaffInfo: function () {
-                if (!vc.component.addAttendanceClassesStaffValidate()) {
+                if (!$that.addAttendanceClassesStaffValidate()) {
                     vc.toast(vc.validate.errInfo);
                     return;
                 }
-                vc.component.addAttendanceClassesStaffInfo.communityId = vc.getCurrentCommunity().communityId;
+                $that.addAttendanceClassesStaffInfo.communityId = vc.getCurrentCommunity().communityId;
                 vc.http.apiPost(
                     '/attendanceClasses.saveAttendanceClassesStaff',
-                    JSON.stringify(vc.component.addAttendanceClassesStaffInfo),
+                    JSON.stringify($that.addAttendanceClassesStaffInfo),
                     {
                         emulateJSON: true
                     },

@@ -3,22 +3,23 @@
         <div class="ibox">
             <div class="ibox-title">
                 <h5>
-                    <span><vc:i18n name="新公告" namespace="addNoticeView"></vc:i18n></span>
+                    <vc:i18n name="新公告" namespace="addNoticeView"></vc:i18n>
                 </h5>
                 <div class="ibox-tools" style="top:10px;"></div>
             </div>
             <div class="ibox-content">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="标题" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="标题" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <input v-model="addNoticeViewInfo.title" type="text" :placeholder="vc.i18n('必填，请填写标题','addNoticeView')" class="form-control">
+                        <input v-model="addNoticeViewInfo.title" type="text"
+                            :placeholder="vc.i18n('必填，请填写标题','addNoticeView')" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="公告类型" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="公告类型" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addNoticeViewInfo.noticeTypeCd">
@@ -32,7 +33,7 @@
                 </div>
                 <div class="form-group row" v-if="addNoticeViewInfo.noticeTypeCd == '1003'">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="公告范围" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="公告范围" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addNoticeViewInfo.objType" @change="_changeObjType()">
@@ -45,9 +46,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row" v-if="addNoticeViewInfo.objType != '002' && addNoticeViewInfo.objType != '003' && addNoticeViewInfo.objType != '004'">
+                <div class="form-group row"
+                    v-if="addNoticeViewInfo.objType != '002' && addNoticeViewInfo.objType != '003' && addNoticeViewInfo.objType != '004'">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="全小区公告" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="全小区公告" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
                         <select class="custom-select" v-model="addNoticeViewInfo.isAll">
@@ -57,52 +59,60 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row" v-show="addNoticeViewInfo.objType == '002' || addNoticeViewInfo.objType == '003' || addNoticeViewInfo.objType == '004' ">
+                <div class="form-group row"
+                    v-show="addNoticeViewInfo.objType == '002' || addNoticeViewInfo.objType == '003' || addNoticeViewInfo.objType == '004' ">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="归属楼栋" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="归属楼栋" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <vc:create path="property/floorSelect2" parentModal="addNoticeView" callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
+                        <vc:create path="property/floorSelect2" parentModal="addNoticeView"
+                            callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
                         </vc:create>
                     </div>
                 </div>
-                <div class="form-group row" v-show="addNoticeViewInfo.objType == '003' || addNoticeViewInfo.objType == '004'  ">
+                <div class="form-group row"
+                    v-show="addNoticeViewInfo.objType == '003' || addNoticeViewInfo.objType == '004'  ">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="归属单元" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="归属单元" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <vc:create path="property/unitSelect2" parentModal="addNoticeView" callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
+                        <vc:create path="property/unitSelect2" parentModal="addNoticeView"
+                            callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
                         </vc:create>
                     </div>
                 </div>
                 <div class="form-group row" v-show="addNoticeViewInfo.objType == '004'  ">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="归属房屋" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="归属房屋" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <vc:create path="property/roomSelect2" parentModal="addNoticeView" callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
+                        <vc:create path="property/roomSelect2" parentModal="addNoticeView"
+                            callBackListener="addNoticeView" callBackFunction="notify" namespace="addNoticeView">
                         </vc:create>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="开始时间" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="开始时间" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <input v-model="addNoticeViewInfo.startTime" readonly type="text" :placeholder="vc.i18n('必填，请填写开始时间','addNoticeView')" class="form-control addNoticeStartTime">
+                        <input v-model="addNoticeViewInfo.startTime" readonly type="text"
+                            :placeholder="vc.i18n('必填，请填写开始时间','addNoticeView')"
+                            class="form-control addNoticeStartTime">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="结束时间" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="结束时间" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10">
-                        <input v-model="addNoticeViewInfo.endTime" readonly type="text" :placeholder="vc.i18n('必填，请填写结束时间','addNoticeView')" class="form-control addNoticeEndTime">
+                        <input v-model="addNoticeViewInfo.endTime" readonly type="text"
+                            :placeholder="vc.i18n('必填，请填写结束时间','addNoticeView')" class="form-control addNoticeEndTime">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">
-                        <span><vc:i18n name="公告内容" namespace="addNoticeView"></vc:i18n></span>
+                        <vc:i18n name="公告内容" namespace="addNoticeView"></vc:i18n>
                     </label>
                     <div class="col-sm-10 ">
                         <div class="no-padding">
@@ -117,7 +127,8 @@
                     <button class="btn btn-primary float-right" type="button" v-on:click="saveNoticeInfo()">
                         <i class="fa fa-check"></i>&nbsp;提交
                     </button>
-                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;" v-on:click="closeNoticeInfo()">
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                        v-on:click="closeNoticeInfo()">
                         <i class="fa fa-close"></i>&nbsp;取消
                     </button>
                 </div>

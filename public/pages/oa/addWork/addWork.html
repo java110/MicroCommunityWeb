@@ -1,0 +1,181 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>
+                    <vc:i18n name="发起工作单" namespace="addStaff"></vc:i18n>
+                </h5>
+                <div class="ibox-tools" style="top:10px;"></div>
+            </div>
+            <div class="ibox-content">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="标题" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addWorkInfo.workName" type="text" :placeholder="vc.i18n('必填，请填写标题','addWork')"
+                            class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="工作单类型" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addWorkInfo.wtId">
+                            <option selected disabled value="">
+                                {{vc.i18n('必填，请选择工作单类型','addWork')}}
+                            </option>
+                            <option :value="item.wtId" v-for="(item,index) in addWorkInfo.workTypes">
+                                {{item.typeName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                   
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="处理人" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4 flex justify-start">
+                        <div style="line-height: 35px;"  class="margin-right" v-for="(staff,index) in addWorkInfo.staffs">
+                            <span>{{staff.staffName}}</span>
+                            <span class="fa fa-remove" @click="_deleteWorkStaff(staff)"></span>
+                        </div>
+                        <button class="btn btn-link " type="button" v-on:click="_chooseWorkStaff()">
+                            选择
+                        </button>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="抄送人" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4 flex justify-start">
+                        <div style="line-height: 35px;" class="margin-right" v-for="(staff,index) in addWorkInfo.copyStaffs">
+                            <span>{{staff.staffName}}</span>
+                            <span class="fa fa-remove" @click="_deleteCopyStaff(staff)"></span>
+                        </div>
+                        <button class="btn btn-link " type="button" v-on:click="_chooseCopyWorkStaff()">
+                            选择
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="工作单标识" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addWorkInfo.workCycle">
+                            <option selected disabled value="">
+                                {{vc.i18n('必填，请选择工作单标识','addWork')}}
+                            </option>
+                            <option value="1001">一次性工单</option>
+                            <option value="2002">周期性工单</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="附件" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <vc:create path="frame/uploadFile" callBackListener="addWork" callBackFunction="notifyFile"
+                            namespace="addWork">
+                        </vc:create>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="开始时间" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addWorkInfo.startTime" type="text"
+                            :placeholder="vc.i18n('必填，请填写开始时间','addWork')" class="form-control addWorkStartTime">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="结束时间" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <input v-model="addWorkInfo.endTime" type="text" :placeholder="vc.i18n('必填，请填写结束时间','addWork')"
+                            class="form-control addWorkEndTime">
+                    </div>
+                </div>
+
+                <div class="form-group row" v-if="addWorkInfo.workCycle == '2002'">
+
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="周期" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-4">
+                        <select class="custom-select" v-model="addWorkInfo.period">
+                            <option selected disabled value="">
+                                {{vc.i18n('必填，请选择任务周期','addWork')}}
+                            </option>
+                            <option value="2020022">月/天</option>
+                            <option value="2020023">按周</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="工作单" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-2">
+                        <input v-model="addWorkInfo.hours" type="text" :placeholder="vc.i18n('多少','addWork')"
+                            class="form-control">
+                    </div>
+                    <label class="col-sm-2 col-form-label text-left">小时内完成</label>
+                </div>
+                <div class="form-group row " v-if="addWorkInfo.workCycle == '2002' && addWorkInfo.period == '2020022'">
+                    <label class="col-sm-2  text-right">
+                        <vc:i18n name="月" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-10">
+                        <label class="margin-left" v-for="index in 12">
+                            <input type="checkbox" v-model="addWorkInfo.months" :value="index">
+                            {{index}}月
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row  " v-if="addWorkInfo.workCycle == '2002' && addWorkInfo.period == '2020022'">
+                    <label class="col-sm-2  text-right">
+                        <vc:i18n name="日" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-10">
+                        <label class="margin-left" v-for="index in 31">
+                            <input type="checkbox" v-model="addWorkInfo.days" :value="index">
+                            {{index}}日
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row  " v-if="addWorkInfo.workCycle == '2002' && addWorkInfo.period == '2020023'">
+                    <label class="col-sm-2  text-right">
+                        <vc:i18n name="周" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-10">
+                        <label class="margin-left" v-for="index in 7">
+                            <input type="checkbox" v-model="addWorkInfo.workdays" :value="index">
+                            {{vc.getWorkDay(index)}}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">
+                        <vc:i18n name="工作单内容" namespace="addWork"></vc:i18n>
+                    </label>
+                    <div class="col-sm-10">
+                        <vc:create path="common/textarea">
+                    </div>
+                </div>
+
+
+                <div class="ibox-content">
+                    <button class="btn btn-primary float-right" type="button" v-on:click="saveWorkPool()">
+                        <i class="fa fa-check"></i>&nbsp;提交
+                    </button>
+                    <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
+                        v-on:click="vc.goBack()" data-dismiss="modal">
+                        <i class="fa fa-close"></i>&nbsp;返回
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+
+</div>

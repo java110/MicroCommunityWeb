@@ -6,48 +6,69 @@
     var DEFAULT_ROWS = 10;
     vc.extends({
         data: {
-            startTypeInfo: {
-                startTypes: [],
+            startWorkInfo: {
+                works: [],
+                states:[{
+                    name:'全部',
+                    state:''
+                },{
+                    name:'待处理',
+                    state:'W'
+                },{
+                    name:'处理中',
+                    state:'D'
+                },{
+                    name:'处理完成',
+                    state:'C'
+                }],
                 total: 0,
                 records: 1,
                 moreCondition: false,
                 wtId: '',
                 conditions: {
-                    wtId: '',
+                    state:'',
                     typeName: '',
                     timeout: '',
+                    queryEndTime:'',
+                    queryStartTime:'',
                 }
             }
         },
         _initMethod: function () {
-            $that._listStartTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+            $that._listStartWorks(DEFAULT_PAGE, DEFAULT_ROWS);
         },
         _initEvent: function () {
 
-            vc.on('startType', 'listStartType', function (_param) {
-                $that._listStartTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+            vc.on('startWork', 'listStartWork', function (_param) {
+                $that._listStartWorks(DEFAULT_PAGE, DEFAULT_ROWS);
             });
             vc.on('pagination', 'page_event', function (_currentPage) {
-                $that._listStartTypes(_currentPage, DEFAULT_ROWS);
+                $that._listStartWorks(_currentPage, DEFAULT_ROWS);
             });
+            vc.initDateTime('queryStartTime',function(_value){
+                $that.startWorkInfo.conditions.queryStartTime = _value;
+            })
+            vc.initDateTime('queryEndTime',function(_value){
+                $that.startWorkInfo.conditions.queryEndTime = _value;
+            })
         },
         methods: {
-            _listStartTypes: function (_page, _rows) {
-                $that.startTypeInfo.conditions.page = _page;
-                $that.startTypeInfo.conditions.row = _rows;
+            _listStartWorks: function (_page, _rows) {
+                $that.startWorkInfo.conditions.page = _page;
+                $that.startWorkInfo.conditions.row = _rows;
                 var param = {
-                    params: $that.startTypeInfo.conditions
+                    params: $that.startWorkInfo.conditions
                 };
                 //发送get请求
-                vc.http.apiGet('/startType.listStartType',
+                vc.http.apiGet('/work.queryStartWork',
                     param,
                     function (json, res) {
                         let _json = JSON.parse(json);
-                        $that.startTypeInfo.total = _json.total;
-                        $that.startTypeInfo.records = _json.records;
-                        $that.startTypeInfo.startTypes = _json.data;
+                        $that.startWorkInfo.total = _json.total;
+                        $that.startWorkInfo.records = _json.records;
+                        $that.startWorkInfo.works = _json.data;
                         vc.emit('pagination', 'init', {
-                            total: $that.startTypeInfo.records,
+                            total: $that.startWorkInfo.records,
                             currentPage: _page
                         });
                     }, function (errInfo, error) {
@@ -55,19 +76,22 @@
                     }
                 );
             },
-            _openAddStartTypeModal: function () {
-                vc.emit('addStartType', 'openAddStartTypeModal', {});
+            _openAddStartWorkModal: function () {
+                vc.jumpToPage('/#/pages/oa/addWork');
             },
-            _openEditStartTypeModel: function (_startType) {
-                vc.emit('editStartType', 'openEditStartTypeModal', _startType);
+            _openEditStartWorkModel: function (_startWork) {
+                vc.jumpToPage('/#/pages/oa/editWork?workId='+_startWork.workId);
             },
-            _openDeleteStartTypeModel: function (_startType) {
-                vc.emit('deleteStartType', 'openDeleteStartTypeModal', _startType);
+            _openDeleteStartWorkModel: function (_startWork) {
+                vc.emit('deleteStartWork', 'openDeleteStartWorkModal', _startWork);
             },
-            _queryStartTypeMethod: function () {
-                $that._listStartTypes(DEFAULT_PAGE, DEFAULT_ROWS);
+            _queryStartWorkMethod: function () {
+                $that._listStartWorks(DEFAULT_PAGE, DEFAULT_ROWS);
             },
-
+            swatchWorkState:function(_state){
+                $that.startWorkInfo.conditions.state = _state.state;
+                $that._listStartWorks(DEFAULT_PAGE, DEFAULT_ROWS);
+            }
         }
     });
 })(window.vc);
