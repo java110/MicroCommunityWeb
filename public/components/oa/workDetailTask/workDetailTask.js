@@ -9,6 +9,9 @@
             workDetailTaskInfo: {
                 tasks: [],
                 workId: '',
+                staffNameLike:'',
+                queryStartTime:'',
+                queryEndTime:'',
             }
         },
         _initMethod: function () {
@@ -17,6 +20,14 @@
             vc.on('workDetailTask', 'switch', function (_data) {
                 $that.workDetailTaskInfo.workId = _data.workId;
                 $that._loadWorkDetailTaskData(DEFAULT_PAGE, DEFAULT_ROWS);
+                setTimeout(function(){
+                    vc.initDateTime('taskQueryStartTime',function(_value){
+                        $that.workDetailTaskInfo.queryStartTime = _value;
+                    });
+                    vc.initDateTime('taskQueryEndTime',function(_value){
+                        $that.workDetailTaskInfo.queryEndTime = _value;
+                    });
+                },1000)
             });
             vc.on('workDetailTask', 'paginationPlus', 'page_event',
                 function (_currentPage) {
@@ -32,6 +43,9 @@
                     params: {
                         taskId: $that.workDetailTaskInfo.taskId,
                         workId: $that.workDetailTaskInfo.workId,
+                        staffNameLike: $that.workDetailTaskInfo.staffNameLike,
+                        queryStartTime:$that.workDetailTaskInfo.queryStartTime,
+                        queryEndTime:$that.workDetailTaskInfo.queryEndTime,
                         page: _page,
                         row: _row
                     }
@@ -52,6 +66,10 @@
                         console.log('请求失败处理');
                     }
                 );
+            },
+
+            _qureyWorkDetailTask:function(){
+                $that._loadWorkDetailTaskData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             
             _openEditRoomModel: function (_room) {

@@ -9,6 +9,7 @@
             workDetailCopyInfo: {
                 copys: [],
                 workId: '',
+                staffNameLike:'',
             }
         },
         _initMethod: function () {
@@ -32,6 +33,7 @@
                     params: {
                         taskId: $that.workDetailCopyInfo.taskId,
                         workId: $that.workDetailCopyInfo.workId,
+                        staffNameLike:$that.workDetailCopyInfo.staffNameLike,
                         page: _page,
                         row: _row
                     }
@@ -53,6 +55,9 @@
                     }
                 );
             },
+            _qureyWorkDetailCopy:function(){
+                $that._loadWorkDetailCopyData(DEFAULT_PAGE, DEFAULT_ROWS);
+            }
             
         }
     });

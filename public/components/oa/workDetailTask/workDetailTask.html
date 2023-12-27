@@ -1,62 +1,84 @@
-<div class="margin-top">
-    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-        <thead>
-            <tr>
-                <th class="text-center">
-                    <vc:i18n name="任务编号" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="处理人" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="开始时间" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="结束时间" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="创建时间" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="状态" namespace="workDetailTask"></vc:i18n>
-                </th>
-                <th class="text-center">
-                    <vc:i18n name="操作" namespace="workDetailTask"></vc:i18n>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="task in workDetailTaskInfo.tasks">
-                <td class="text-center">
-                    {{task.taskId}}
-                </td>
-                <td class="text-center">
-                    {{task.staffName}}
-                </td>
-                <td class="text-center">
-                    {{task.startTime}}
-                </td>
-                <td class="text-center">
-                    {{task.endTime}}
-                </td>
-                <td class="text-center">
-                    {{task.createTime}}
-                </td>
-                <td class="text-center">
-                    {{task.stateName}}
-                </td>
-                <td class="text-center">
-                    <div class="btn-group" >
-                        <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(task)">
-                            <vc:i18n name="进度" namespace="workDetailTask"></vc:i18n>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- 分页 -->
-    <div class="text-right">
+<div>
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailTaskInfo.staffNameLike" type="text"
+                :placeholder="vc.i18n('请填写处理人','workDetailTask')" class="form-control">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailTaskInfo.queryStartTime" type="text"
+                :placeholder="vc.i18n('开始时间','workDetailTask')" class="form-control taskQueryStartTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailTaskInfo.queryEndTime" type="text"
+                :placeholder="vc.i18n('结束时间','workDetailTask')" class="form-control taskQueryEndTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyWorkDetailTask()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="任务编号" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="处理人" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="开始时间" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="结束时间" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="创建时间" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="状态" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="workDetailTask"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="task in workDetailTaskInfo.tasks">
+                    <td class="text-center">
+                        {{task.taskId}}
+                    </td>
+                    <td class="text-center">
+                        {{task.staffName}}
+                    </td>
+                    <td class="text-center">
+                        {{task.startTime}}
+                    </td>
+                    <td class="text-center">
+                        {{task.endTime}}
+                    </td>
+                    <td class="text-center">
+                        {{task.createTime}}
+                    </td>
+                    <td class="text-center">
+                        {{task.stateName}}
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button class="btn-white btn btn-xs" v-on:click="_openEditRoomModel(task)">
+                                <vc:i18n name="进度" namespace="workDetailTask"></vc:i18n>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="text-right">
             <vc:create namespace="workDetailTask" path="frame/paginationPlus"></vc:create>
+        </div>
     </div>
 </div>

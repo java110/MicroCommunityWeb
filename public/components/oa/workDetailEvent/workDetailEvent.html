@@ -1,48 +1,70 @@
-<div class="margin-top">
-    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-        <thead>
-            <tr>
-                <th class="text-center">
-                    <vc:i18n name="前处理人" namespace="workDetailEvent"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="处理人" namespace="workDetailEvent"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="任务有效期" namespace="workDetailEvent"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="说明" namespace="workDetailEvent"></vc:i18n>
-                </th>
-                <th data-hide="phone" class="text-center">
-                    <vc:i18n name="时间" namespace="workDetailEvent"></vc:i18n>
-                </th>
-             
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="event in workDetailEventInfo.events">
-                <td class="text-center">
-                    {{event.preStaffName}}
-                </td>
-                <td class="text-center">
-                    {{event.staffName}}
-                </td>
-                <td class="text-center">
-                    {{event.startTime}}</br>
-                    ~{{event.endTime}}
-                </td>
-                <td class="text-center">
-                    {{event.remark}}
-                </td>
-                <td class="text-center">
-                    {{event.createTime}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- 分页 -->
-    <div class="text-right">
+<div>
+    <div class="row margin-top-lg">
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailEventInfo.staffNameLike" type="text"
+                :placeholder="vc.i18n('请填写处理人','workDetailEvent')" class="form-control">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailEventInfo.queryStartTime" type="text"
+                :placeholder="vc.i18n('开始时间','workDetailEvent')" class="form-control eventQueryStartTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-left-xl">
+            <input v-model="workDetailEventInfo.queryEndTime" type="text"
+                :placeholder="vc.i18n('结束时间','workDetailEvent')" class="form-control eventQueryEndTime">
+        </div>
+        <div class="col-lg-2 padding-right-xs padding-right-xl">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px"
+                v-on:click="_qureyWorkDetailEvent()">
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="前处理人" namespace="workDetailEvent"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="处理人" namespace="workDetailEvent"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="任务有效期" namespace="workDetailEvent"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="说明" namespace="workDetailEvent"></vc:i18n>
+                    </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="时间" namespace="workDetailEvent"></vc:i18n>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="event in workDetailEventInfo.events">
+                    <td class="text-center">
+                        {{event.preStaffName}}
+                    </td>
+                    <td class="text-center">
+                        {{event.staffName}}
+                    </td>
+                    <td class="text-center">
+                        {{event.startTime}}</br>
+                        ~{{event.endTime}}
+                    </td>
+                    <td class="text-center">
+                        {{event.remark}}
+                    </td>
+                    <td class="text-center">
+                        {{event.createTime}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="text-right">
             <vc:create namespace="workDetailEvent" path="frame/paginationPlus"></vc:create>
+        </div>
     </div>
 </div>

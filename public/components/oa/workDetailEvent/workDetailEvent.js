@@ -9,6 +9,9 @@
             workDetailEventInfo: {
                 events: [],
                 workId: '',
+                staffNameLike:'',
+                queryStartTime:'',
+                queryEndTime:'',
             }
         },
         _initMethod: function () {
@@ -17,6 +20,14 @@
             vc.on('workDetailEvent', 'switch', function (_data) {
                 $that.workDetailEventInfo.workId = _data.workId;
                 $that._loadWorkDetailEventData(DEFAULT_PAGE, DEFAULT_ROWS);
+                setTimeout(function(){
+                    vc.initDateTime('eventQueryStartTime',function(_value){
+                        $that.workDetailEventInfo.queryStartTime = _value;
+                    });
+                    vc.initDateTime('eventQueryEndTime',function(_value){
+                        $that.workDetailEventInfo.queryEndTime = _value;
+                    });
+                },1000)
             });
             vc.on('workDetailEvent', 'paginationPlus', 'page_event',
                 function (_currentPage) {
@@ -32,6 +43,9 @@
                     params: {
                         taskId: $that.workDetailEventInfo.taskId,
                         workId: $that.workDetailEventInfo.workId,
+                        staffNameLike:$that.workDetailEventInfo.staffNameLike,
+                        queryStartTime:$that.workDetailEventInfo.queryStartTime,
+                        queryEndTime:$that.workDetailEventInfo.queryEndTime,
                         page: _page,
                         row: _row
                     }
@@ -54,8 +68,8 @@
                 );
             },
             
-            _openEditRoomModel: function (_room) {
-                vc.emit('editRoom', 'openEditRoomModal', _room);
+            _qureyWorkDetailEvent: function (_room) {
+                $that._loadWorkDetailEventData(DEFAULT_PAGE, DEFAULT_ROWS);
             },
         }
     });

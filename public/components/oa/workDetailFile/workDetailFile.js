@@ -9,6 +9,9 @@
             workDetailFileInfo: {
                 files: [],
                 workId: '',
+                staffNameLike:'',
+                queryStartTime:'',
+                queryEndTime:'',
             }
         },
         _initMethod: function () {
@@ -17,6 +20,14 @@
             vc.on('workDetailFile', 'switch', function (_data) {
                 $that.workDetailFileInfo.workId = _data.workId;
                 $that._loadWorkDetailFileData(DEFAULT_PAGE, DEFAULT_ROWS);
+                setTimeout(function(){
+                    vc.initDateTime('fileQueryStartTime',function(_value){
+                        $that.workDetailFileInfo.queryStartTime = _value;
+                    });
+                    vc.initDateTime('fileQueryEndTime',function(_value){
+                        $that.workDetailFileInfo.queryEndTime = _value;
+                    });
+                },1000)
             });
             vc.on('workDetailFile', 'paginationPlus', 'page_event',
                 function (_currentPage) {
@@ -32,6 +43,9 @@
                     params: {
                         taskId: $that.workDetailFileInfo.taskId,
                         workId: $that.workDetailFileInfo.workId,
+                        staffNameLike:$that.workDetailFileInfo.staffNameLike,
+                        queryStartTime:$that.workDetailFileInfo.queryStartTime,
+                        queryEndTime:$that.workDetailFileInfo.queryEndTime,
                         page: _page,
                         row: _row
                     }
@@ -53,6 +67,9 @@
                     }
                 );
             },
+            _qureyWorkDetailFile:function(){
+                $that._loadWorkDetailFileData(DEFAULT_PAGE, DEFAULT_ROWS);
+            }
             
         }
     });
