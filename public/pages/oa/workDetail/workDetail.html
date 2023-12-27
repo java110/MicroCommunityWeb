@@ -1,0 +1,192 @@
+<div class="white-bg padding-lg padding-top border-radius">
+    <div class="flex justify-between">
+        <div class="text-title">工作单详情</div>
+        <div>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" 
+                    v-on:click="vc.goBack()">
+                返回
+            </button>
+        </div>
+    </div>
+    <!-- 业主信息 -->
+    <div class="margin-top">
+        <div class="row" style="min-height: 160px;">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                    <vc:i18n name="工单编号：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.workId}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="工单名称：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.workName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="类型名称：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">
+                                {{workDetailInfo.typeName}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="标识：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.workCycle == '1001'?'一次性工单':'周期性工单'}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="开始时间：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.startTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="结束时间：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.endTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="发起人：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.createUserName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="处理人：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.curStaffName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="抄送人：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.curCopyName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="状态：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.stateName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="创建时间：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">{{workDetailInfo.createTime}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="col-form-label">
+                                <vc:i18n name="附件：" namespace="workDetailInfo"></vc:i18n>
+                            </label>
+                            <label class="">
+                                <a :href="workDetailInfo.pathUrl" v-if="workDetailInfo.pathUrl">下载</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vc-line-primary margin-top"></div>
+    <div class="margin-top-sm">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailContent'}"
+                   v-on:click="changeTab('workDetailContent')">
+                    <vc:i18n name="内容" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailTask'}"
+                   v-on:click="changeTab('workDetailTask')">
+                    <vc:i18n name="处理人" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailCopy'}"
+                   v-on:click="changeTab('workDetailCopy')">
+                    <vc:i18n name="抄送人" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailEvent'}"
+                   v-on:click="changeTab('workDetailEvent')">
+                    <vc:i18n name="工作单流转" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailFile'}"
+                   v-on:click="changeTab('workDetailFile')">
+                    <vc:i18n name="流转附件" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailType'}"
+                   v-on:click="changeTab('workDetailType')">
+                    <vc:i18n name="工作单类型" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" v-bind:class="{active:workDetailInfo._currentTab == 'workDetailCycle'}"
+                   v-on:click="changeTab('workDetailCycle')">
+                    <vc:i18n name="工作单周期" namespace="workDetail"></vc:i18n>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailContent'">
+        <div v-html="workDetailInfo.content" class="margin-top"></div>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailTask'">
+        <vc:create path="oa/workDetailTask"></vc:create>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailCopy'">
+        <vc:create path="oa/workDetailCopy"></vc:create>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailEvent'">
+        <vc:create path="oa/workDetailEvent"></vc:create>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailFile'">
+        <vc:create path="oa/workDetailFile"></vc:create>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailType'">
+        <vc:create path="oa/workDetailType"></vc:create>
+    </div>
+    <div v-if="workDetailInfo._currentTab == 'workDetailCycle'">
+        <vc:create path="oa/workDetailCycle"></vc:create>
+    </div>
+    
+    
+</div>
