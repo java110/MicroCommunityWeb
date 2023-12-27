@@ -129,13 +129,18 @@
                                         <td class="text-center">{{work.stateName}}</td>
                                         <td class="text-center">{{work.createTime}}</td>
                                         <td class="text-center">
-                                            <div class="btn-group">
+                                            <div class="btn-group" v-if="work.state == 'W'">
                                                 <button class="btn-white btn btn-xs"
-                                                    v-on:click="_openDoWorkModel(work)">
+                                                    v-on:click="_openTodoTaskDetail(work)">
                                                     <vc:i18n name='办理'></vc:i18n>
                                                 </button>
                                             </div>
-                                           
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_toWorkDetailPage(work)">
+                                                    <vc:i18n name='详情'></vc:i18n>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

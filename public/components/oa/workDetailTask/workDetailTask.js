@@ -75,6 +75,9 @@
             _openEditRoomModel: function (_room) {
                 vc.emit('editRoom', 'openEditRoomModal', _room);
             },
+            _openWorkTaskDetail:function(_work){
+                vc.jumpToPage('/#/pages/oa/workTaskDetail?workId='+_work.workId+"&taskId="+_work.taskId);
+            },
         }
     });
 })(window.vc);

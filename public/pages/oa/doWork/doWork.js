@@ -73,8 +73,8 @@
                     }
                 );
             },
-            _openDoWorkModel:function(_work){
-
+            _openTodoTaskDetail:function(_work){
+                vc.jumpToPage('/#/pages/oa/workTaskDetail?workId='+_work.workId+"&taskId="+_work.taskId+"&todo=ON");
             },
             _queryDoWorkMethod: function () {
                 $that._listDoWorks(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -82,7 +82,11 @@
             swatchWorkState:function(_state){
                 $that.doWorkInfo.conditions.state = _state.state;
                 $that._listDoWorks(DEFAULT_PAGE, DEFAULT_ROWS);
-            }
+            },
+
+            _toWorkDetailPage:function(_work){
+                vc.jumpToPage('/#/pages/oa/workDetail?workId='+_work.workId);
+            },
         }
     });
 })(window.vc);

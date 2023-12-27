@@ -1,0 +1,290 @@
+<div>
+    <div class="white-bg padding-lg padding-top border-radius">
+        <div class="flex justify-between">
+            <div class="text-title">任务单详情</div>
+            <div>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" v-on:click="vc.goBack()">
+                    返回
+                </button>
+            </div>
+        </div>
+        <!-- 业主信息 -->
+        <div class="margin-top">
+            <div class="row" style="min-height: 160px;">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="工单编号：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.workId}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="工单名称：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.workName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="类型名称：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">
+                                    {{workTaskDetailInfo.typeName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="标识：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.workCycle == '1001'?'一次性工单':'周期性工单'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="开始时间：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.startTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="结束时间：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.endTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="发起人：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.createUserName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="处理人：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.curStaffName || '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="抄送人：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.curCopyName || '-'}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="状态：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.stateName}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="创建时间：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">{{workTaskDetailInfo.createTime}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-form-label">
+                                    <vc:i18n name="附件：" namespace="workTaskDetailInfo"></vc:i18n>
+                                </label>
+                                <label class="">
+                                    <a :href="workTaskDetailInfo.pathUrl" v-if="workTaskDetailInfo.pathUrl">下载</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between ">
+            <div class="text-title">内容</div>
+        </div>
+        <div>
+            <div v-html="workTaskDetailInfo.content" class="margin-top"></div>
+        </div>
+    </div>
+
+    <div class="row margin-top" v-if="workTaskDetailInfo.events && workTaskDetailInfo.events.length>0">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="工作单流转" namespace="workTaskDetail"></vc:i18n>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="前处理人" namespace="workTaskDetail"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="处理人" namespace="workTaskDetail"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="任务有效期" namespace="workTaskDetail"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="时间" namespace="workTaskDetail"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="意见" namespace="workTaskDetail"></vc:i18n>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="event in workTaskDetailInfo.events">
+                                <td class="text-center">
+                                    {{event.preStaffName}}
+                                </td>
+                                <td class="text-center">
+                                    {{event.staffName}}
+                                </td>
+                                <td class="text-center">
+                                    {{event.startTime}}</br>
+                                    ~{{event.endTime}}
+                                </td>
+                                <td class="text-center">
+                                    {{event.remark}}
+                                </td>
+                                <td class="text-center">
+                                    {{event.createTime}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top" v-if="workTaskDetailInfo.files && workTaskDetailInfo.files.length>0">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="工作单附件" namespace="workTaskDetail"></vc:i18n>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    <vc:i18n name="处理人" namespace="workDetailFile"></vc:i18n>
+                                </th>
+                                <th data-hide="phone" class="text-center">
+                                    <vc:i18n name="附件" namespace="workDetailFile"></vc:i18n>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="file in workTaskDetailInfo.files">
+                                <td class="text-center">
+                                    {{file.staffName}}
+                                </td>
+                                <td class="text-center">
+                                    <a :href="file.pathUrl" target="_blank">下载</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-top" v-if="workTaskDetailInfo.todo == 'ON'">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>
+                        <vc:i18n name="工单办理" namespace="workTaskDetail"></vc:i18n>
+                    </h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="动作" namespace="workTaskDetail"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" v-model="workTaskDetailInfo.audit.auditCode">
+                                <option selected disabled value="">{{vc.i18n('请选择','workTaskDetail')}}</option>
+                                <option value="C">{{vc.i18n('办理','workTaskDetail')}}</option>
+                                <option value="T">{{vc.i18n('转单','workTaskDetail')}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 转单时 必须指定 委托人 -->
+                    <div class="form-group row" v-if="workTaskDetailInfo.audit.auditCode == 'T'">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="下一处理人" namespace="workTaskDetail"></vc:i18n>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                :placeholder="vc.i18n('必填，请选择下一处理人','workTaskDetail')" disabled
+                                v-model="workTaskDetailInfo.audit.staffName">
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-white " type="button" v-on:click="chooseStaff()">
+                                选择
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="附件" namespace="workTaskDetail"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <vc:create path="frame/uploadFile" callBackListener="workTaskDetail"
+                                callBackFunction="notifyFile" namespace="workTaskDetail">
+                            </vc:create>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">
+                            <vc:i18n name="工单说明" namespace="workTaskDetail"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea :placeholder="vc.i18n('必填，请填写工单说明','workTaskDetail')" class="form-control"
+                                v-model="workTaskDetailInfo.audit.auditMessage">
+                                </textarea>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button class="btn btn-primary float-right" type="button" v-on:click="_auditSubmit()">
+                            提交
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/selectStaff"></vc:create>
+
+</div>

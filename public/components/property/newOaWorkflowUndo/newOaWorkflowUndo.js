@@ -33,10 +33,10 @@
                     $that.newOaWorkflowUndoInfo.conditions.endTime = _value;
                 });
                 $that._listOaWorkFlowUndoForm();
-                vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             })
             vc.on('newOaWorkflowUndo', 'paginationPlus', 'page_event', function(_currentPage) {
-                vc.component._listOaWorkflowUndos(_currentPage, DEFAULT_ROWS);
+                $that._listOaWorkflowUndos(_currentPage, DEFAULT_ROWS);
             });
         },
         methods: {
@@ -61,23 +61,23 @@
                 );
             },
             _listOaWorkflowUndos: function(_page, _rows) {
-                vc.component.newOaWorkflowUndoInfo.conditions.page = _page;
-                vc.component.newOaWorkflowUndoInfo.conditions.row = _rows;
+                $that.newOaWorkflowUndoInfo.conditions.page = _page;
+                $that.newOaWorkflowUndoInfo.conditions.row = _rows;
                 var param = {
-                    params: vc.component.newOaWorkflowUndoInfo.conditions
+                    params: $that.newOaWorkflowUndoInfo.conditions
                 };
 
                 //发送get请求
                 vc.http.apiGet('/oaWorkflow/queryOaWorkflowUserTaskFormData',
                     param,
                     function(json, res) {
-                        var _newOaWorkflowUndoInfo = JSON.parse(json);
-                        vc.component.newOaWorkflowUndoInfo.total = _newOaWorkflowUndoInfo.total;
-                        vc.component.newOaWorkflowUndoInfo.records = _newOaWorkflowUndoInfo.records;
-                        vc.component.newOaWorkflowUndoInfo.undos = _newOaWorkflowUndoInfo.data;
+                        let _json = JSON.parse(json);
+                        $that.newOaWorkflowUndoInfo.total = _json.total;
+                        $that.newOaWorkflowUndoInfo.records = _json.records;
+                        $that.newOaWorkflowUndoInfo.undos = _json.data;
                         vc.emit('newOaWorkflowUndo', 'paginationPlus', 'init', {
-                            total: vc.component.newOaWorkflowUndoInfo.records,
-                            dataCount: vc.component.newOaWorkflowUndoInfo.total,
+                            total: $that.newOaWorkflowUndoInfo.records,
+                            dataCount: $that.newOaWorkflowUndoInfo.total,
                             currentPage: _page
                         });
                     },
@@ -99,7 +99,7 @@
                 vc.jumpToPage("/form.html#/pages/property/newOaWorkflowFormEdit?id=" + _undo.id + "&flowId=" + $that.newOaWorkflowUndoInfo.conditions.flowId);
             },
             _queryOaWorkflowUndoMethod: function() {
-                vc.component._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
+                $that._listOaWorkflowUndos(DEFAULT_PAGE, DEFAULT_ROWS);
             },
             _getNewOaWorkflowUndoState: function(_undo) {
                 /**

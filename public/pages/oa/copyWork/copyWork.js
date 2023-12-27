@@ -82,7 +82,10 @@
             swatchWorkState:function(_state){
                 $that.copyWorkInfo.conditions.state = _state.state;
                 $that._listCopyWorks(DEFAULT_PAGE, DEFAULT_ROWS);
-            }
+            },
+            _toWorkDetailPage:function(_work){
+                vc.jumpToPage('/#/pages/oa/workDetail?workId='+_work.workId);
+            },
         }
     });
 })(window.vc);
