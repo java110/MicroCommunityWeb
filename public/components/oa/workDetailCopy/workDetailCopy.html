@@ -28,6 +28,9 @@
                     <th data-hide="phone" class="text-center">
                         <vc:i18n name="状态" namespace="workDetailCopy"></vc:i18n>
                     </th>
+                    <th data-hide="phone" class="text-center">
+                        <vc:i18n name="说明" namespace="workDetailCopy"></vc:i18n>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +46,9 @@
                     </td>
                     <td class="text-center">
                         {{copy.stateName}}
+                    </td>
+                    <td class="text-center">
+                        {{copy.remark}}
                     </td>
                 </tr>
             </tbody>

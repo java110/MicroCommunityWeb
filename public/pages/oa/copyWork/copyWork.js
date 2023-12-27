@@ -22,6 +22,10 @@
                 records: 1,
                 moreCondition: false,
                 wtId: '',
+                audit:{
+                    copyId:'',
+                    auditMessage:'',
+                },
                 conditions: {
                     state:'',
                     typeName: '',
@@ -74,7 +78,8 @@
                 );
             },
             _openCopyWorkModel:function(_work){
-
+                $('#auditModel').modal('show');
+                $that.copyWorkInfo.audit.copyId = _work.copyId;
             },
             _queryCopyWorkMethod: function () {
                 $that._listCopyWorks(DEFAULT_PAGE, DEFAULT_ROWS);
@@ -86,6 +91,29 @@
             _toWorkDetailPage:function(_work){
                 vc.jumpToPage('/#/pages/oa/workDetail?workId='+_work.workId);
             },
+            _auditSubmit: function () {
+                vc.http.apiPost(
+                    '/work.finishWorkCopy',
+                    JSON.stringify($that.copyWorkInfo.audit), {
+                    emulateJSON: true
+                },
+                    function (json, res) {
+                        let _json = JSON.parse(json);
+                        if (_json.code == 0) {
+                            //关闭model
+                            vc.toast('添加成功');
+                            $('#auditModel').modal('hide');
+                            $that._listCopyWorks(DEFAULT_PAGE, DEFAULT_ROWS);
+                            return;
+                        } else {
+                            vc.toast(_json.msg);
+                        }
+                    },
+                    function (errInfo, error) {
+                        console.log('请求失败处理');
+                        vc.toast(errInfo);
+                    });
+            }
         }
     });
 })(window.vc);
