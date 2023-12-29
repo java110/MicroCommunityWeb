@@ -198,7 +198,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/work.listWorkCopy',
+                vc.http.apiGet('/work.listWorkTask',
                     param,
                     function (json, res) {
                         let _json = JSON.parse(json);
@@ -217,7 +217,7 @@
                     }
                 };
                 //发送get请求
-                vc.http.apiGet('/workCopy.listWorkCopy',
+                vc.http.apiGet('/work.listWorkCopy',
                     param,
                     function (json, res) {
                         let _json = JSON.parse(json);

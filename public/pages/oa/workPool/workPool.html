@@ -1,0 +1,152 @@
+<div>
+    <div class="row">
+        <div class="col-md-1 padding-r-0">
+            <div class=" border-radius ">
+                <div class="margin-xs-r  treeview ">
+                    <ul class="list-group text-center border-radius">
+                        <li class="list-group-item node-orgTree " v-for="(item,index) in workPoolInfo.states"
+                            :key="index" @click="swatchWorkState(item)"
+                            :class="{'vc-node-selected':workPoolInfo.conditions.state == item.state}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="查询条件"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('工单名称','workPool')"
+                                            v-model="workPoolInfo.conditions.workNameLike" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('发起人','workPool')"
+                                            v-model="workPoolInfo.conditions.createUserNameLike" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('处理人','workPool')"
+                                            v-model="workPoolInfo.conditions.staffNameLike" class=" form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('开始时间','workPool')"
+                                            v-model="workPoolInfo.conditions.queryStartTime" class=" form-control queryStartTime">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" :placeholder="vc.i18n('结束时间','workPool')"
+                                            v-model="workPoolInfo.conditions.queryEndTime" class=" form-control queryEndTime">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        v-on:click="_queryWorkPoolMethod()">
+                                            <vc:i18n name="查询"></vc:i18n>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>
+                                <vc:i18n name="工作单池" namespace="workPool"></vc:i18n>
+                            </h5>
+                            <div class="ibox-tools" style="top:10px;">
+                               
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <vc:i18n name='编号' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='工单名称' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='类型名称' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='标识' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        
+                                        <th class="text-center">
+                                            <vc:i18n name='发起人' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='处理人' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='时间段' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='状态' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='创建时间' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
+                                            <vc:i18n name='操作'></vc:i18n>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="work in workPoolInfo.works">
+                                        <td class="text-center">{{work.workId}}</td>
+                                        <td class="text-center">{{work.workName}}</td>
+                                        <td class="text-center">{{work.typeName}}</td>
+                                        <td class="text-center">{{work.workCycle == '1001'?'一次性工单':'周期性工单'}}</td>
+                                        <td class="text-center">{{work.createUserName}}</td>
+                                        <td class="text-center">{{work.staffName || '-'}}</td>
+                                        <td class="text-center">{{work.startTime}}</br>
+                                            ~{{work.endTime}}
+                                        </td>
+                                        <td class="text-center">{{work.stateName}}</td>
+                                        <td class="text-center">{{work.createTime}}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn-white btn btn-xs"
+                                                    v-on:click="_toWorkDetailPage(work)">
+                                                    <vc:i18n name='详情'></vc:i18n>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 分页 -->
+                            <vc:create path="frame/pagination"></vc:create>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
