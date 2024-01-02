@@ -5,7 +5,7 @@
             addWorkTypeInfo: {
                 wtId: '',
                 typeName: '',
-                timeout: '',
+                smsWay: '',
                 remark: '',
 
             }
@@ -35,11 +35,11 @@
                             errInfo: "类型名称不能超过200"
                         },
                     ],
-                    'addWorkTypeInfo.timeout': [
+                    'addWorkTypeInfo.smsWay': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "超时时间不能为空"
+                            errInfo: "通知方式不能为空"
                         },
                     ],
                     'addWorkTypeInfo.remark': [
@@ -90,7 +90,7 @@
             clearAddWorkTypeInfo: function () {
                 $that.addWorkTypeInfo = {
                     typeName: '',
-                    timeout: '',
+                    smsWay: '',
                     remark: '',
 
                 };

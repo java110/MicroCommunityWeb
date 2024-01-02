@@ -6,7 +6,7 @@
                     <vc:i18n name='类型名称' namespace='workDetailType'></vc:i18n>
                 </th>
                 <th class="text-center">
-                    <vc:i18n name='超时时间' namespace='workDetailType'></vc:i18n>
+                    <vc:i18n name='通知方式' namespace='workDetailType'></vc:i18n>
                 </th>
                 <th class="text-center">
                     <vc:i18n name='创建时间' namespace='workDetailType'></vc:i18n>
@@ -20,7 +20,9 @@
             <tr v-for="type in workDetailTypeInfo.types">
                 <!-- <td class="text-center">{{workDetailType.wtId}}</td> -->
                 <td class="text-center">{{type.typeName}}</td>
-                <td class="text-center">{{type.timeout}}</td>
+                <td class="text-center" v-if="type.smsWay == 'WECHAT'">微信</td>
+                <td class="text-center" v-else-if="type.smsWay == 'ALI_SMS'">阿里短信</td>
+                <td class="text-center" v-else>未知</td>
                 <td class="text-center">{{type.createTime}}</td>
                 <td class="text-center">{{type.remark || '-'}}</td>
             </tr>

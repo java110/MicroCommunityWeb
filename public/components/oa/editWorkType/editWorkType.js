@@ -5,7 +5,7 @@
             editWorkTypeInfo: {
                 wtId: '',
                 typeName: '',
-                timeout: '',
+                smsWay: '',
                 remark: '',
 
             }
@@ -38,11 +38,11 @@
                             errInfo: "类型名称不能超过200"
                         },
                     ],
-                    'editWorkTypeInfo.timeout': [
+                    'editWorkTypeInfo.smsWay': [
                         {
                             limit: "required",
                             param: "",
-                            errInfo: "超时时间不能为空"
+                            errInfo: "通知方式不能为空"
                         },
                     ],
                     'editWorkTypeInfo.remark': [
@@ -94,7 +94,7 @@
                 $that.editWorkTypeInfo = {
                     wtId: '',
                     typeName: '',
-                    timeout: '',
+                    smsWay: '',
                     remark: '',
 
                 }

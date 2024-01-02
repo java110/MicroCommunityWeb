@@ -112,6 +112,9 @@
                                             <vc:i18n name='创建时间' namespace='workPool'></vc:i18n>
                                         </th>
                                         <th class="text-center">
+                                            <vc:i18n name='完成时间' namespace='workPool'></vc:i18n>
+                                        </th>
+                                        <th class="text-center">
                                             <vc:i18n name='操作'></vc:i18n>
                                         </th>
                                     </tr>
@@ -127,8 +130,11 @@
                                         <td class="text-center">{{work.startTime}}</br>
                                             ~{{work.endTime}}
                                         </td>
-                                        <td class="text-center">{{work.stateName}}</td>
+                                        <td class="text-center">{{work.stateName}}
+                                            <span v-if="work.state == 'C' && work.taskTimeout == 'Y'">(超时)</span>
+                                        </td>
                                         <td class="text-center">{{work.createTime}}</td>
+                                        <td class="text-center">{{work.finishTime||'-'}}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn-white btn btn-xs"

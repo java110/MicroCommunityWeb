@@ -17,12 +17,20 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">
-                            <vc:i18n name='超时时间' namespace='addWorkType'></vc:i18n>
+                            <vc:i18n name='通知方式' namespace='addWorkType'></vc:i18n>
                         </label>
                         <div class="col-sm-10">
-                            <input v-model="addWorkTypeInfo.timeout" type="number"
-                                :placeholder="vc.i18n('必填，请填写超时时间','addWorkType')" class="form-control">
+                            <select class="custom-select" v-model="addWorkTypeInfo.smsWay">
+                                <option selected disabled value="">
+                                    {{vc.i18n('必填，请选择通知方式','addWorkType')}}
+                                </option>
+                                <option value="WECHAT">微信</option>
+                                <option value="ALI_SMS">阿里短信</option>
+                            </select>
+                            <span v-if="addWorkTypeInfo.smsWay == 'WECHAT'">需要在系统下公众号中配置公众号，公众号为认证过的服务号，并且员工做了员工认证</span>
+                            <span v-if="addWorkTypeInfo.smsWay == 'ALI_SMS'">需要在系统下小区配置中配置阿里云短信信息，模版为工单待处理模版和工单完成模版</span>
                         </div>
+                        
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">
@@ -35,17 +43,12 @@
                     </div>
 
                     <div class="ibox-content">
-                        <button class="btn btn-primary float-right" type="button" v-on:click="saveWorkTypeInfo()"><i
-                                class="fa fa-check"></i>&nbsp;
-                            <span>
-                                <vc:i18n name="保存"></vc:i18n>
-                            </span>
+                        <button class="btn btn-primary float-right" type="button" v-on:click="saveWorkTypeInfo()">
+                            <vc:i18n name="保存"></vc:i18n>
                         </button>
                         <button type="button" class="btn btn-warning float-right" style="margin-right:20px;"
                             data-dismiss="modal">
-                            <span>
-                                <vc:i18n name="取消"></vc:i18n>
-                            </span>
+                            <vc:i18n name="取消"></vc:i18n>
                         </button>
                     </div>
                 </div>

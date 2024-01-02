@@ -15,11 +15,11 @@
                     name:'待处理',
                     state:'W'
                 },{
-                    name:'处理中',
-                    state:'D'
-                },{
                     name:'处理完成',
                     state:'C'
+                },{
+                    name:'超时工作单',
+                    state:'timeout'
                 }],
                 total: 0,
                 records: 1,
@@ -58,9 +58,13 @@
             _listWorkPools: function (_page, _rows) {
                 $that.workPoolInfo.conditions.page = _page;
                 $that.workPoolInfo.conditions.row = _rows;
-                var param = {
-                    params: $that.workPoolInfo.conditions
+                let param = {
+                    params: JSON.parse(JSON.stringify($that.workPoolInfo.conditions))
                 };
+                if(param.params.state == 'timeout'){
+                    param.params.state = 'C';
+                    param.params.taskTimeout = 'Y'
+                }
                 //发送get请求
                 vc.http.apiGet('/work.listWorkTask',
                     param,
