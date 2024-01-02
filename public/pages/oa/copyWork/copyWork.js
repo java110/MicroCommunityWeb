@@ -32,6 +32,7 @@
                     timeout: '',
                     queryEndTime:'',
                     queryStartTime:'',
+                    createUserNameLike:'',
                 }
             }
         },
