@@ -4,53 +4,45 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>
-                        <span><vc:i18n name="查询条件" namespace="attendanceLogManage"></vc:i18n></span>
+                        <vc:i18n name="查询条件" namespace="attendanceLogManage"></vc:i18n>
                     </h5>
                     <div class="ibox-tools" style="top:10px;">
-                        <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
-                                v-on:click="_moreCondition()">
-                            {{attendanceLogManageInfo.moreCondition == true?'隐藏':'更多'}}
-                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入班组名称','attendanceLogManage')"
                                        v-model="attendanceLogManageInfo.conditions.classesName" class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入部门名称','attendanceLogManage')"
                                        v-model="attendanceLogManageInfo.conditions.departmentName"
                                        class=" form-control">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" :placeholder="vc.i18n('请选择打卡时间','attendanceLogManage')"
                                    v-model="attendanceLogManageInfo.conditions.date" class=" form-control queryDate">
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_queryAttendanceLogMethod()">
-                                <i class="fa fa-search"></i>
-                                <span><vc:i18n name="查询" namespace="attendanceLogManage"></vc:i18n></span>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    v-on:click="_resetAttendanceLogMethod()">
-                                <i class="fa fa-repeat"></i>
-                                <span><vc:i18n name="重置" namespace="attendanceLogManage"></vc:i18n></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row" v-show="attendanceLogManageInfo.moreCondition == true">
-                        <div class="col-sm-3">
                             <div class="form-group">
                                 <input type="text" :placeholder="vc.i18n('请输入员工名称','attendanceLogManage')"
                                        v-model="attendanceLogManageInfo.conditions.staffName" class=" form-control">
                             </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryAttendanceLogMethod()">
+                                <vc:i18n name="查询" namespace="attendanceLogManage"></vc:i18n>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetAttendanceLogMethod()">
+                                    <vc:i18n name="重置" namespace="attendanceLogManage"></vc:i18n>
+                            </button>
                         </div>
                     </div>
                 </div>
