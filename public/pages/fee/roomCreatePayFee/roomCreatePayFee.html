@@ -52,10 +52,11 @@
                                     :placeholder="vc.i18n('必填，请填写计费起始时间','roomCreatePayFee')"
                                     class="form-control roomCreateFeeStartTime">
                             </div>
-                            <label class="col-sm-2 col-form-label text-right"  v-show=" roomCreatePayFeeInfo.feeFlag != '1003006'">
+                            <label class="col-sm-2 col-form-label text-right"
+                                v-show=" roomCreatePayFeeInfo.feeFlag != '1003006'">
                                 <vc:i18n name="计费结束时间" namespace="roomCreatePayFee"></vc:i18n>
                             </label>
-                            <div class="col-sm-4"  v-show=" roomCreatePayFeeInfo.feeFlag != '1003006'">
+                            <div class="col-sm-4" v-show=" roomCreatePayFeeInfo.feeFlag != '1003006'">
                                 <input v-model="roomCreatePayFeeInfo.endTime" type="text"
                                     :placeholder="vc.i18n('必填，请填写计费结束时间','roomCreatePayFee')"
                                     class="form-control roomCreateFeeEndTime">
@@ -70,7 +71,7 @@
                                     :placeholder="vc.i18n('必填，请填写收费金额','roomCreatePayFee')" class="form-control">
                             </div>
                         </div>
-                       
+
                         <div class="form-group row" v-if="roomCreatePayFeeInfo.computingFormula == '1102'">
                             <label class="col-sm-2 col-form-label text-right">
                                 <vc:i18n name="递增周期" namespace="roomCreatePayFee"></vc:i18n>
@@ -109,6 +110,29 @@
                                         :key="index">{{item.floorNum}}</option>
                                 </select>
                             </div>
+                            <label class="col-sm-2 col-form-label text-right">
+                                <vc:i18n name="房屋状态" namespace="roomCreatePayFee"></vc:i18n>
+                            </label>
+                            <div class="col-sm-4 padding-top-sm">
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2001" @click="_loadFloorRooms()">已入住
+                                </div>
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2003" @click="_loadFloorRooms()">已交房
+                                </div>
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2005" @click="_loadFloorRooms()">已装修
+                                </div>
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2004" @click="_loadFloorRooms()">未入住
+                                </div>
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2006" @click="_loadFloorRooms()">已出租
+                                </div>
+                                <div class="checkbox custom-control-inline">
+                                    <input type="checkbox" v-model="roomCreatePayFeeInfo.roomState" value="2007" @click="_loadFloorRooms()">已出售
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">
@@ -119,13 +143,13 @@
                                 <span class="margin-right">
                                     <input type="checkbox" class="i-checks all-check" value=""
                                         @click="checkAll($event)"> 全选
-                                </span><br/>
+                                </span><br />
                                 <span class="margin-right" v-for="(item,index) in roomCreatePayFeeInfo.rooms">
                                     <input type="checkbox" class="i-checks checkItem" v-bind:value="item.roomId"
-                                        v-model="roomCreatePayFeeInfo.roomIds"> 
-                                        <span v-if="item.unitNum != '0'">{{item.roomName}}</span>
-                                        <span v-else>{{item.floorNum}}-{{item.roomNum}}</span>
-                                        ({{item.stateName}})
+                                        v-model="roomCreatePayFeeInfo.roomIds">
+                                    <span v-if="item.unitNum != '0'">{{item.roomName}}</span>
+                                    <span v-else>{{item.floorNum}}-{{item.roomNum}}</span>
+                                    ({{item.stateName}})
                                 </span>
                             </div>
                             <div class="col-sm-8 padding-top-sm"

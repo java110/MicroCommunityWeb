@@ -20,6 +20,7 @@
                 rateCycle: '',
                 rate: '',
                 rateStartTime: '',
+                roomState:['2001', '2003', '2005', '2004', '2006', '2007'],
                 floors: []
             }
         },
@@ -168,7 +169,8 @@
                         page: 1,
                         row: 500,
                         communityId: vc.getCurrentCommunity().communityId,
-                        floorId: $that.roomCreatePayFeeInfo.floorId
+                        floorId: $that.roomCreatePayFeeInfo.floorId,
+                        roomState:$that.roomCreatePayFeeInfo.roomState.join(',')
                     }
                 };
                 //发送get请求
