@@ -9,6 +9,7 @@
             payFeeUserAccountInfo: {
                 accountList: [],
                 feeId: '',
+                ownerId:'',
                 communityId: vc.getCurrentCommunity().communityId,
                 quanAccount: false,
                 selectAccountIds: [],
@@ -57,6 +58,7 @@
                         page: DEFAULT_PAGE,
                         row: DEFAULT_ROWS,
                         feeId: $that.payFeeUserAccountInfo.feeId,
+                        ownerId:$that.payFeeUserAccountInfo.ownerId,
                         communityId: $that.payFeeUserAccountInfo.communityId,
                     }
                 };
@@ -64,13 +66,13 @@
                 vc.http.apiGet('/account/queryOwnerAccount',
                     param,
                     function (json, res) {
-                        let listAccountData = JSON.parse(json);
-                        if (listAccountData.data.length < 1) {
+                        let _json = JSON.parse(json);
+                        if (_json.data.length < 1) {
                             vc.toast('当前没有可用账户');
                             return;
                         }
                         //账户余额
-                        $that.payFeeUserAccountInfo.accountList = listAccountData.data;
+                        $that.payFeeUserAccountInfo.accountList = _json.data;
                     }, function (errInfo, error) {
                         console.log('请求失败处理');
                     }
@@ -78,7 +80,6 @@
             },
             // 预存
             _openAddUserAmountModal: function (_userAccount) {
-                //vc.emit('payFeeOrder', 'openAddModalWithParams', _userAccount);
                 window.open('/#/pages/owner/ownerDetail?ownerId=' + _userAccount.objId + "&currentTab=ownerDetailAccount")
             },
             checkAllAccount: function (e) {
@@ -123,6 +124,14 @@
                     })
                 });
                 vc.emit('payFeeOrder', 'changeUserAmountPrice', {
+                    totalUserAmount: _totalUserAmount,
+                    accountList: $that.payFeeUserAccountInfo.accountList,
+                    integralAmount: $that.payFeeUserAccountInfo.integralAmount,
+                    cashAmount: $that.payFeeUserAccountInfo.cashAmount,
+                    couponAmount: $that.payFeeUserAccountInfo.couponAmount,
+                    selectAccount: _selectAccount
+                });
+                vc.emit('batchPayFeeOrder', 'changeUserAmountPrice', {
                     totalUserAmount: _totalUserAmount,
                     accountList: $that.payFeeUserAccountInfo.accountList,
                     integralAmount: $that.payFeeUserAccountInfo.integralAmount,

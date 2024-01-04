@@ -1,0 +1,65 @@
+<div id="batchFeeCycleModal" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{batchFeeCycleInfo.fee.feeName}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row form-group">
+          <label class="col-sm-3 col-form-label">
+            <vc:i18n name="缴费周期" namespace="batchFeeCycle"></vc:i18n>
+          </label>
+          <div class="col-sm-9">
+            <select class="custom-select" v-model="batchFeeCycleInfo.tempCycle" @change="changeTempCycle()" >
+              <option  selected disabled  value="">{{vc.i18n('必填，请选择缴费周期','batchFeeCycle')}}</option>
+              <option value="-100" >{{vc.i18n('默认','batchFeeCycle')}}</option>
+              <option value="-102">{{vc.i18n('自定义周期','batchFeeCycle')}}</option>
+              <option value="-101">{{vc.i18n('自定义金额','batchFeeCycle')}}</option>
+              <option value="-103">{{vc.i18n('自定义结束时间','batchFeeCycle')}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" v-if="batchFeeCycleInfo.tempCycle == '-101'">
+          <label class="col-sm-3 col-form-label">
+            <vc:i18n name="自定义金额" namespace="batchFeeCycle"></vc:i18n>
+          </label>
+          <div class="col-sm-9">
+            <input type="number" :placeholder="vc.i18n('请输入自定义金额','payFeeOrder')" v-model="batchFeeCycleInfo.receivedAmount"
+              class="form-control">
+          </div>
+        </div>
+        <div class="form-group row" v-if="batchFeeCycleInfo.tempCycle == '-102'">
+          <label class="col-sm-3 col-form-label">
+            <vc:i18n name="实际周期" namespace="batchFeeCycle"></vc:i18n>
+          </label>
+          <div class="col-sm-9">
+            <input type="number" :placeholder="vc.i18n('请输入实际周期','payFeeOrder')" v-model="batchFeeCycleInfo.cycles"
+              class="form-control">
+          </div>
+        </div>
+        
+        <div class="form-group row" v-if="batchFeeCycleInfo.tempCycle == '-103'">
+          <label class="col-sm-3 col-form-label">
+            <vc:i18n name="缴费结束时间" namespace="payFeeOrder"></vc:i18n>
+          </label>
+          <div class="col-sm-9">
+            <input type="text" :placeholder="vc.i18n('缴费结束时间','payFeeOrder')" v-model="batchFeeCycleInfo.custEndTime"
+              class=" form-control cust-endTime">
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" @click="_doSubmitFeeCycle()">
+          <vc:i18n name="确定" namespace="batchFeeCycle"></vc:i18n>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

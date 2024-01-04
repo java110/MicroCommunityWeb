@@ -1,0 +1,101 @@
+<div>
+  <div id="doBatchPayFeeModal" class="modal"  role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <vc:i18n name="收费确认" namespace="batchPayConfirm"></vc:i18n>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <label class="col-sm-3 col-form-label">
+              <vc:i18n name="金额：" namespace="batchPayConfirm"></vc:i18n>
+            </label>
+            <label class="col-sm-9 col-form-label">{{batchPayConfirmInfo.feePrices}}<span>
+                <vc:i18n name="元" namespace="batchPayConfirm"></vc:i18n>
+              </span></label>
+          </div>
+          <div class="row">
+            <label class="col-sm-3 col-form-label">
+              <vc:i18n name="账户金额：" namespace="batchPayConfirm"></vc:i18n>
+            </label>
+            <label class="col-sm-9 col-form-label">{{batchPayConfirmInfo.accountAmount}}<span>
+                <vc:i18n name="元" namespace="batchPayConfirm"></vc:i18n>
+              </span></label>
+          </div>
+          <div class="row form-group" v-if="batchPayConfirmInfo.payType == 'common'">
+            <label class="col-sm-3 col-form-label">
+              <vc:i18n name="支付方式:" namespace="batchPayConfirm"></vc:i18n>
+            </label>
+            <div class="col-sm-9">
+              <select class="custom-select" v-model="batchPayConfirmInfo.primeRate">
+                <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','batchPayConfirm')}}</option>
+                <option v-for="(item,index) in batchPayConfirmInfo.primeRates" :key="index"
+                  v-if="item.statusCd != '5' && item.statusCd != '6'" :value="item.statusCd">
+                  {{item.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group" v-else>
+            <label class="col-sm-3 col-form-label">
+              <vc:i18n name="支付方式:" namespace="batchPayConfirm"></vc:i18n>
+            </label>
+            <div class="col-sm-9">
+              <select class="custom-select" v-model="batchPayConfirmInfo.primeRate">
+                <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','batchPayConfirm')}}</option>
+                <option v-for="(item,index) in batchPayConfirmInfo.primeRates" :key="index"
+                  v-if="item.statusCd == '3' || item.statusCd == '4'" :value="item.statusCd">
+                  {{item.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input v-model="batchPayConfirmInfo.authCode" id="authCode" class="form-control" style="width: 60%;"
+            v-if="batchPayConfirmInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee"
+            :placeholder="vc.i18n('请用扫码枪扫码','batchPayConfirm')">
+          <button type="button" class="btn btn-secondary" @click="_closeDoBatchPayFeeModal()">
+            <vc:i18n name="关闭" namespace="batchPayConfirm"></vc:i18n>
+          </button>
+          <button type="button" class="btn btn-primary" @click="_doPayFee()"
+            v-if="batchPayConfirmInfo.payType == 'common'">
+            <vc:i18n name="确定收费" namespace="batchPayConfirm"></vc:i18n>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="payFeeResult" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <vc:i18n name="缴费提示" namespace="batchPayConfirm"></vc:i18n>
+          </h5>
+          <button type="button " class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <vc:i18n name="缴费成功" namespace="batchPayConfirm"></vc:i18n>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" @click="_back()">
+            <vc:i18n name="返回" namespace="batchPayConfirm"></vc:i18n>
+          </button>
+          <button type="button" class="btn btn-primary" @click="_printAndBack()">
+            <vc:i18n name="打印收据" namespace="batchPayConfirm"></vc:i18n>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

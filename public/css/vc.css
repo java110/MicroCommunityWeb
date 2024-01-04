@@ -517,6 +517,10 @@ ul li {
     font-size: 18px;
 }
 
+.text-blue{
+    color: #007bff;
+}
+
 .white-bg {
     background-color: #ffffff;
 }

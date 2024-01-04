@@ -1,39 +1,24 @@
 <div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>
-                        <vc:i18n name="查询条件" namespace="batchPayFeeOrder"></vc:i18n>
-                    </h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-1 text-right">
-                            <div class="form-group">
-                                收费对象
-                            </div>
-                        </div>
-                        <div class="col-sm-11">
-                            <div class="form-group">
-                                <span class="margin-right" v-for="(item,index) in batchPayFeeOrderInfo.payObjs">
-                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="item" v-model="batchPayFeeOrderInfo.payerObjNames" @change="_chanagePayerObjName()"> {{item}}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-lg-1 padding-r-0">
+            <div class="bg-white border-radius">
+                <div class="padding">收费对象</div>
+                <div class="padding-sm" v-for="(item,index) in batchPayFeeOrderInfo.payObjs">
+                    <input type="checkbox" class="i-checks checkItem" v-bind:value="item"
+                        v-model="batchPayFeeOrderInfo.payerObjNames" @change="_chanagePayerObjName()">
+                    {{item}}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-11">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><span><vc:i18n name="批量缴费" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
+                    <h5>
+                        <vc:i18n name="批量缴费" namespace="batchPayFeeOrder"></vc:i18n>
+                    </h5>
                     <div class="ibox-tools" style="top:10px;">
                         <button type="button" class="btn btn-white btn-sm" v-on:click="_goBack()">
-                            <vc:i18n name="返回" ></vc:i18n>
+                            <vc:i18n name="返回"></vc:i18n>
                         </button>
                     </div>
                 </div>
@@ -41,7 +26,8 @@
                     <table id="batchTable" class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                             <tr>
-                                <th class="text-center"><input type="checkbox" class="i-checks all-check" @click="checkAll($event)"></th>
+                                <th class="text-center"><input type="checkbox" class="i-checks all-check"
+                                        @click="checkAll($event)"></th>
                                 <th class="text-center">
                                     <vc:i18n name="费用类型" namespace="batchPayFeeOrder"></vc:i18n>
                                 </th>
@@ -55,21 +41,15 @@
                                     <vc:i18n name="收费对象" namespace="batchPayFeeOrder"></vc:i18n>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="计费起始时间" namespace="batchPayFeeOrder"></vc:i18n>
+                                    <vc:i18n name="应收时间段" namespace="batchPayFeeOrder"></vc:i18n>
                                 </th>
                                 <th class="text-center">
-                                    <vc:i18n name="计费结束时间" namespace="batchPayFeeOrder"></vc:i18n>
-                                </th>
-                                <th class="text-center">
-                                    <vc:i18n name="欠费金额" namespace="batchPayFeeOrder"></vc:i18n>
+                                    应收/欠费
                                 </th>
                                 <th class="text-center">
                                     <div style="width: 100px; margin:0 auto">
                                         <vc:i18n name="缴费周期" namespace="batchPayFeeOrder"></vc:i18n>
                                     </div>
-                                </th>
-                                <th class="text-center">
-                                    应收
                                 </th>
                                 <th class="text-center">
                                     <div style="width: 150px; margin:0 auto">
@@ -84,32 +64,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="batchFee in batchPayFeeOrderInfo.batchFees" >
+                            <tr v-for="batchFee in batchPayFeeOrderInfo.batchFees">
                                 <td class="text-center">
-                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="batchFee.feeId" v-model="batchPayFeeOrderInfo.selectPayFeeIds">
+                                    <input type="checkbox" class="i-checks checkItem" v-bind:value="batchFee.feeId"
+                                        v-model="batchPayFeeOrderInfo.selectPayFeeIds">
                                 </td>
                                 <td class="text-center">{{batchFee.feeTypeCdName}}</td>
                                 <td class="text-center">{{batchFee.feeName}}</td>
                                 <td class="text-center">{{batchFee.feeFlagName}}</td>
                                 <td class="text-center">{{_getBatchPayFeeRoomName(batchFee)}}</td>
-                                <td class="text-center">{{_getEndTime(batchFee)}}</td>
-                                <td class="text-center"> {{_getDeadlineTime(batchFee)}}</td>
-                                <td class="text-center">{{batchFee.amountOwed}}</td>
-                                <td class="text-center">
-                                    <div style="width: 100px; margin:0 auto" v-if="batchFee.feeFlag != '2006012'">
-                                        <select class="custom-select" v-model="batchFee.cycles" @change="_changeMonth(batchFee.cycles,batchFee)">
-                                            <option selected disabled value="">{{vc.i18n('请选择缴费周期','batchPayFeeOrder')}}</option>
-                                            <option v-for="item in _getBatchPaymentCycles(batchFee)" :value="item">{{item}}{{vc.i18n('个月','batchPayFeeOrder')}}</option>
+                                <td class="text-center">{{_getEndTime(batchFee)}}</br>
+                                    ~{{_getDeadlineTime(batchFee)}}
+                                </td>
+                                <td class="text-center">{{batchFee.receivableAmount}}/{{batchFee.amountOwed}}</td>
+                                <td class="text-center" style="width: 130px;" v-if="batchFee.feeFlag != '2006012'">
+                                    <div class="flex justify-start" style="width: 120px; margin:0 auto" >
+                                        <div v-if="batchFee.tempCycle == '-102'" style="line-height: 38px;">周期：{{batchFee.cycles}}个月</div>
+                                        <div v-else-if="batchFee.tempCycle == '-101'" >自定义金额</br>{{batchFee.receivedAmount}}</div>
+                                        <div v-else-if="batchFee.tempCycle == '-103'" >结束时间</br>{{batchFee.custEndTime}}</div>
+                                        <select class="custom-select" v-model="batchFee.cycles" v-else
+                                            @change="_changeMonth(batchFee.cycles,batchFee)">
+                                            <option selected disabled value="">{{vc.i18n('请选择缴费周期','batchPayFeeOrder')}}
+                                            </option>
+                                            <option v-for="item in _getBatchPaymentCycles(batchFee)" :value="item">
+                                                {{item}}{{vc.i18n('个月','batchPayFeeOrder')}}</option>
                                         </select>
-                                    </div>
-                                    <div v-else>
-                                        -
+                                        <span class="fa fa-gear margin-left-xs hand text-blue" style="line-height: 38px;" @click="_settingsFeeCycle(batchFee)"></span>
                                     </div>
                                 </td>
-                                <td class="text-center">{{batchFee.receivableAmount}}</td>
+                                <td v-else>
+                                    -
+                                </td>
                                 <td class="text-center">
-                                    <div style="width: 150px; margin:0 auto" v-if="batchFee.receivedAmountSwitch=='1'" @change="_doComputeTotalFee()">
-                                        <input type="text" :placeholder="vc.i18n('请输入实际金额','batchPayFeeOrder')" v-model="batchFee.receivedAmount" class="form-control">
+                                    <div style="width: 150px; margin:0 auto" v-if="batchFee.receivedAmountSwitch=='1'"
+                                        @change="_doComputeTotalFee()">
+                                        <input type="text" :placeholder="vc.i18n('请输入实际金额','batchPayFeeOrder')"
+                                            v-model="batchFee.receivedAmount" class="form-control">
                                     </div>
                                     <div v-else>
                                         {{batchFee.receivedAmount}}
@@ -117,110 +107,44 @@
                                 </td>
                                 <td class="text-center">
                                     <div style="width: 200px; margin:0 auto">
-                                        <input type="text" :placeholder="vc.i18n('请输入备注','batchPayFeeOrder')" v-model="batchFee.remark" class="form-control">
+                                        <input type="text" :placeholder="vc.i18n('请输入备注','batchPayFeeOrder')"
+                                            v-model="batchFee.remark" class="form-control">
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="8">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
+                   
+                </div>
+            </div>
+
+            <vc:create path="property/payFeeUserAccount"></vc:create>
+            <div class="row">
+                <div class="col-md-8">
                     <div>
                         温馨提示：批量缴费不支持优惠折扣，账户扣款和优惠券抵扣功能，如需要请到缴费页面缴费
-                        <br/>
+                        <br />
                         <b>缴费金额：缴费金额等于所有实收</b>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-2">
-            缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{batchPayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></span></span>
-        </div>
-        <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn btn-success btn-lg btn-block" @click="_openPayFee('qrCode')">
+                <div class="col-md-2">
+                    缴费金额：<span style="font-size: 30px; color: red; padding-left: 0px;">{{batchPayFeeOrderInfo.feePrices}}元</span>
+                </div>
+                <div class="col-md-2 text-right">
+                    <button type="button" class="btn btn-success btn-lg " @click="_openPayFee('qrCode')">
                         <vc:i18n name="扫码收费" namespace="batchPayFeeOrder"></vc:i18n>
-            </button>
-        </div>
-        <div class="col-md-1 " style="margin-bottom:10px; text-align:right">
-            <button type="button" class="btn  btn-primary  btn-lg btn-block" style="margin-left:10px;" v-on:click="_payFee()"><span><vc:i18n name="缴费" namespace="batchPayFeeOrder"></vc:i18n></span>
-            </button>
-        </div>
-    </div>
-
-    <div id="doBatchPayFeeModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><span><vc:i18n name="收费确认" namespace="batchPayFeeOrder"></vc:i18n></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <label class="col-sm-3 col-form-label"><span><vc:i18n name="金额" namespace="batchPayFeeOrder"></vc:i18n></span>：</label>
-                        <label class="col-sm-9 col-form-label">{{batchPayFeeOrderInfo.feePrices}}<span><vc:i18n name="元" namespace="batchPayFeeOrder"></vc:i18n></span></label>
-                    </div>
-                    <div class="row form-group" v-if="batchPayFeeOrderInfo.payType == 'common'">
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="支付方式:" namespace="batchPayFeeOrder"></vc:i18n></label>
-                        <div class="col-sm-9">
-                            <select class="custom-select" v-model="batchPayFeeOrderInfo.primeRate">
-                                <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','batchPayFeeOrder')}}</option>
-                                <option v-for="(item,index) in batchPayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd != '5' && item.statusCd != '6'"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row form-group" v-else>
-                        <label class="col-sm-3 col-form-label"><vc:i18n name="支付方式:" namespace="batchPayFeeOrder"></vc:i18n></label>
-                        <div class="col-sm-9">
-                            <select class="custom-select" v-model="batchPayFeeOrderInfo.primeRate">
-                                <option selected disabled value="">{{vc.i18n('必填，请选择支付方式','batchPayFeeOrder')}}</option>
-                                <option v-for="(item,index) in batchPayFeeOrderInfo.primeRates" :key="index" v-if="item.statusCd == '3' || item.statusCd == '4'"
-                                        :value="item.statusCd">{{item.name}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input v-model="batchPayFeeOrderInfo.authCode" id="authCode" class="form-control" style="width: 60%;" v-if="batchPayFeeOrderInfo.payType == 'qrCode'" type="text" @keyup.enter="_qrCodePayFee" :placeholder="vc.i18n('请用扫码枪扫码','batchPayFeeOrder')">
-                    <button type="button" class="btn btn-secondary" @click="_closeDoBatchPayFeeModal()"><span><vc:i18n name="关闭" namespace="batchPayFeeOrder"></vc:i18n></span></button>
-                    <button type="button" class="btn btn-primary" @click="_doPayFee()" v-if="batchPayFeeOrderInfo.payType == 'common'"><span><vc:i18n name="确定收费" namespace="batchPayFeeOrder"></vc:i18n></span></button>
+                    <button type="button" class="btn  btn-primary btn-lg margin-left-xs"
+                        v-on:click="_openPayFee('common')">
+                        <vc:i18n name="提交收费" namespace="batchPayFeeOrder"></vc:i18n>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <vc:create path="fee/batchPayConfirm"></vc:create>
 
+    <vc:create path="fee/batchFeeCycle"></vc:create>
 
-    <div id="payFeeResult" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><vc:i18n name="缴费提示" namespace="batchPayFeeOrder"></vc:i18n></h5>
-                    <button type="button " class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p><vc:i18n name="缴费成功" namespace="batchPayFeeOrder"></vc:i18n></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="_back()"><vc:i18n name="返回" namespace="batchPayFeeOrder"></vc:i18n></button>
-                    <button type="button" class="btn btn-primary" @click="_printAndBack()"><vc:i18n name="打印收据" namespace="batchPayFeeOrder"></vc:i18n></button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
