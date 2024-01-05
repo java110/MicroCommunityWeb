@@ -444,6 +444,9 @@
                 })
                 vc.jumpToPage('/#/pages/property/simplifyAcceptance?tab=业务受理');
             },
+            _splitPayFee:function(_fee){
+                vc.emit('splitFee', 'openSplitFeeModal',_fee);
+            }
         }
     });
 })(window.vc);

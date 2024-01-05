@@ -1,0 +1,61 @@
+<div>
+
+    <div class="margin-top">
+        <table class="footable table table-stripped toggle-arrow-tiny margin-top" data-page-size="15">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        <vc:i18n name="父费用ID" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="子费用ID" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用名称" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="费用对象" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="计费时间段" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="拆分时间" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                    <th class="text-center">
+                        <vc:i18n name="操作" namespace="feeDetailSub"></vc:i18n>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="sub in feeDetailSubInfo.subs">
+                    <td class="text-center">
+                        <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+sub.preFeeId">{{sub.preFeeId}}</a>
+                    </td>
+                    <td class="text-center">
+                        <a target="_blank" :href="'/#/pages/fee/feeDetail?feeId='+sub.feeId">{{sub.feeId}}</a>
+                    </td>
+                    <td class="text-center">{{sub.feeName}}</td>
+                    <td class="text-center">{{sub.payerObjName}}</td>
+                    <td class="text-center">{{vc.dateFormat(sub.endTime)}}</br>
+                        ~{{vc.dateFormat(sub.maxTime)}}
+                    </td>
+                    <td class="text-center">{{sub.createTime}}</td>
+                    <td class="text-center">
+                        <button class="btn-white btn btn-xs" v-on:click="_mergeFee(sub)">
+                            <vc:i18n name="恢复合并" namespace="feeDetailSub"></vc:i18n>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 float-right">
+                <vc:create namespace="feeDetailSub" path="frame/paginationPlus"></vc:create>
+            </div>
+        </div>
+    </div>
+
+    <vc:create path="fee/mergeFee"></vc:create>
+
+</div>

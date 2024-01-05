@@ -18,7 +18,7 @@
                                 <label class="col-form-label">
                                     <vc:i18n name="费用ID：" namespace="feeDetailInfo"></vc:i18n>
                                 </label>
-                                <label class="">{{feeDetailInfo.configId}}</label>
+                                <label class="">{{feeDetailInfo.feeId}}</label>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -188,6 +188,11 @@
                         <vc:i18n name="补打收据" namespace="feeDetail"></vc:i18n>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailSub'}" v-on:click="changeTab('feeDetailSub')">
+                        <vc:i18n name="费用拆分" namespace="feeDetail"></vc:i18n>
+                    </a>
+                </li>
                 <li class="nav-item" v-if="feeDetailInfo.feeFlag == '2006012'">
                     <a class="nav-link" v-bind:class="{active:feeDetailInfo._currentTab == 'feeDetailFeeRule'}" v-on:click="changeTab('feeDetailFeeRule')">
                         <vc:i18n name="账单规则" namespace="feeDetail"></vc:i18n>
@@ -245,6 +250,10 @@
         <div v-if="feeDetailInfo._currentTab == 'feeDetailReceipt'">
             <vc:create path="fee/feeDetailReceipt"></vc:create>
         </div>
+        <div v-if="feeDetailInfo._currentTab == 'feeDetailSub'">
+            <vc:create path="fee/feeDetailSub"></vc:create>
+        </div>
+        
         <div v-if="feeDetailInfo._currentTab == 'feeDetailFeeRule'">
             <vc:create path="fee/feeDetailFeeRule"></vc:create>
         </div>
