@@ -48,6 +48,8 @@
                             //关闭model
                             $('#splitFeeModel').modal('hide');
                             vc.emit('roomCreateFee', 'notify', {});
+                            vc.emit('listParkingSpaceFee', 'notify', {});
+
                             vc.toast("操作成功");
                             return;
                         } else {

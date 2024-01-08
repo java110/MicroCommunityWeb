@@ -179,6 +179,9 @@
                     title: _fee.feeName + " 详情",
                     data: _data
                 });
+            },
+            _splitPayFee:function(_fee){
+                vc.emit('splitFee', 'openSplitFeeModal',_fee);
             }
         }
     });
