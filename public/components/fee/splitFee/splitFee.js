@@ -4,7 +4,9 @@
             splitFeeInfo: {
                 feeId: '',
                 splitTime: '',
-                remark:''
+                remark:'',
+                endTime:'',
+                deadlineTime:'',
             }
         },
         _initMethod: function () {
@@ -16,6 +18,8 @@
             vc.on('splitFee', 'openSplitFeeModal',
                 function (_fee) {
                     $that.splitFeeInfo.feeId = _fee.feeId;
+                    $that.splitFeeInfo.endTime = vc.dateFormat(_fee.endTime);
+                    $that.splitFeeInfo.deadlineTime = $that._computeSplitDeadLineTime(_fee);
                     $that.splitFeeInfo.splitTime = '';
                     $that.splitFeeInfo.remark = '';
                     $('#splitFeeModel').modal('show');
@@ -55,6 +59,15 @@
                         vc.toast(errInfo);
                     });
             },
+            _computeSplitDeadLineTime: function (_fee) {
+                if (_fee.amountOwed == 0 && _fee.endTime == _fee.deadlineTime) {
+                    return "-";
+                }
+                if (_fee.state == '2009001') {
+                    return "-";
+                }
+                return vc.dateSubOneDay(_fee.startTime, _fee.deadlineTime, _fee.feeFlag);
+            }
         }
     });
 })(window.vc);

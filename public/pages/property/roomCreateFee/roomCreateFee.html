@@ -39,7 +39,7 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <input type="text"
                                             :placeholder="vc.i18n('请填写房屋编号,如1-1-1123','roomCreateFeeInfo')"
@@ -47,14 +47,14 @@
                                         <vc:create path="property/inputSearchRoom"></vc:create>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <select class="custom-select" v-model="roomCreateFeeInfo.conditions.state">
                                         <option selected value="">{{vc.i18n('请选择状态','roomCreateFee')}}</option>
                                         <option value="2008001">{{vc.i18n('有效','roomCreateFee')}}</option>
                                         <option value="2009001">{{vc.i18n('收费结束','roomCreateFee')}}</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <input type="text" :placeholder="vc.i18n('请填写业主名称','roomCreateFeeInfo')"
                                         @input="_inputRoomByOwner()" v-model="roomCreateFeeInfo.conditions.ownerName"
                                         class=" form-control">

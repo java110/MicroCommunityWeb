@@ -8,11 +8,22 @@
                 <div class="ibox-content">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">
+                            <vc:i18n name="时间段" namespace="splitFee"></vc:i18n>
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="form-control border-0" >
+                                {{splitFeeInfo.endTime}}~{{splitFeeInfo.deadlineTime}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">
                             <vc:i18n name="拆分时间" namespace="splitFee"></vc:i18n>
                         </label>
                         <div class="col-sm-10">
                             <input v-model="splitFeeInfo.splitTime" type="text"
                                 :placeholder="vc.i18n('必填，请填写拆分日期','splitFee')" class="form-control splitFeeTime">
+                                <span style="color: red;">后段时间包含拆分时间</span>
                         </div>
                     </div>
                     <div class="form-group row">

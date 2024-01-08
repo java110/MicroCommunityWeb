@@ -26,7 +26,7 @@
                 hireOwnerFee: '0',
                 urlOwnerId: '',
                 conditions: {
-                    state: '',
+                    state: '2008001',
                     roomNum: '',
                     roomId: '',
                     ownerName: ''
